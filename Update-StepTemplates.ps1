@@ -1,12 +1,25 @@
-﻿function Update-StepTemplatesOnDeploymentProcesses
+﻿<#
+.Synopsis
+   Updates the Step Templates used on Deployment Processes to the latest versions
+.DESCRIPTION
+   Step templates can be updated from the library on Octopus, but that doesnt mean that the Deployment processes using that template will start using the latest version right away. Normally, the user would have to update the step template on each deployment process manually. This script takes care of that.
+.EXAMPLE
+   Update-StepTemplatesOnDeploymentProcesses -ActionTemplateID "ActionTemplates-3" -OctopusURI "http://localhost" -APIKey "API-RLMWLZBPMX5DRPLCRNZETFS4HA"
+.EXAMPLE
+   Update-StepTemplatesOnDeploymentProcesses -AllActionTemplates -OctopusURI "http://Octopusdeploy.MyCompany.com" -APIKey "API-TSET42BPMX5DRPLCRNZETFS4HA"
+.LINK
+   Github project: https://github.com/Dalmirog/OctopusSnippets
+#>
+Function Update-StepTemplatesOnDeploymentProcesses
 {
     [CmdletBinding()]        
     Param
     (
-        # Action Template ID. Use when you only want to update template processes that only use this Action Template
+        # Action Template ID. Use when you only want to update the deployment processes that only use this Action Template.
         [Parameter(Mandatory=$true,ParameterSetName= "SingleActionTemplate")]
         [string]$ActionTemplateID,
 
+        # If used, all the action templates will be updated on all the deployment processes.
         [Parameter(Mandatory=$true, ParameterSetName= "MultipleActionTemplates")]
         [switch]$AllActionTemplates,
 
@@ -14,7 +27,7 @@
         [Parameter(Mandatory=$true)]
         [string]$OctopusURI,
 
-        # Octopus instance API Key
+        # Octopus API Key. How to create an API Key = http://docs.octopusdeploy.com/display/OD/How+to+create+an+API+key
         [Parameter(Mandatory=$true)]
         [string]$APIKey
     )
