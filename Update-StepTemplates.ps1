@@ -1,56 +1,113 @@
-﻿#Make sure you have the correcct Template ID before running this script.
-#To get the Id, open the template on the Octopus web UI
-$templateID = "Actiontemplates-3"
+﻿function Update-StepTemplatesOnDeploymentProcesses
+{
+    [CmdletBinding()]        
+    Param
+    (
+        # Action Template ID. Use when you only want to update template processes that only use this Action Template
+        [Parameter(Mandatory=$true,ParameterSetName= "SingleActionTemplate")]
+        [string]$ActionTemplateID,
 
-#Loading Octopus.client assemblies
-Add-Type -Path "C:\Program Files\Octopus Deploy\Tentacle\Newtonsoft.Json.dll"
-Add-Type -Path "C:\Program Files\Octopus Deploy\Tentacle\Octopus.Client.dll"
-Add-Type -Path "C:\Program Files\Octopus Deploy\Tentacle\Octopus.Platform.dll" 
+        [Parameter(Mandatory=$true, ParameterSetName= "MultipleActionTemplates")]
+        [switch]$AllActionTemplates,
 
-#Connection Data
-$apikey = "API-RLMWLZBPMX5DRPLCRNZEOT24HA"
-$OctopusURI = "http://localhost"
-$headers = @{"X-Octopus-ApiKey"="$($apikey)";}
+        # Octopus instance URL
+        [Parameter(Mandatory=$true)]
+        [string]$OctopusURI = "http://localhost",
 
-$endpoint = new-object Octopus.Client.OctopusServerEndpoint "$($OctopusURI)","$($apikey)"
-$repository = new-object Octopus.Client.OctopusRepository $endpoint
+        # Octopus instance API Key
+        [Parameter(Mandatory=$true)]
+        [string]$APIKey = "API-RLMWLZBPMX5DRPLCRNZEOT24HA"
+    )
 
-$template = Invoke-WebRequest -Uri $OctopusURI/api/actiontemplates/$templateID -Method Get -Headers $headers | select -ExpandProperty content| ConvertFrom-Json
+    Begin
+    {
+        #Loading Octopus.client assemblies
+        Add-Type -Path "C:\Program Files\Octopus Deploy\Tentacle\Newtonsoft.Json.dll"
+        Add-Type -Path "C:\Program Files\Octopus Deploy\Tentacle\Octopus.Client.dll"
+        Add-Type -Path "C:\Program Files\Octopus Deploy\Tentacle\Octopus.Platform.dll" 
 
-$usage = Invoke-WebRequest -Uri $OctopusURI/api/actiontemplates/$templateID/usage -Method Get -Headers $headers | select -ExpandProperty content | ConvertFrom-Json
+        #Connection Data
+        $headers = @{"X-Octopus-ApiKey"="$($apikey)";}
 
-#Getting all the DeploymentProcesses that need to be updated
-$deploymentprocesstoupdate = $usage | ?{$_.version -lt $template.Version}
+        #Create endpoint connection
+        $endpoint = new-object Octopus.Client.OctopusServerEndpoint "$($OctopusURI)","$($apikey)"
+        $repository = new-object Octopus.Client.OctopusRepository $endpoint
 
-If($deploymentprocesstoupdate -eq $null){
 
-    Write-Output "All the deployment processes using template '$($template.name)' are using the latest version of it"
+    }
+    Process
+    {
+        $template = Invoke-WebRequest -Uri $OctopusURI/api/actiontemplates/$templateID -Method Get -Headers $headers | select -ExpandProperty content| ConvertFrom-Json
 
-}
+        $usage = Invoke-WebRequest -Uri $OctopusURI/api/actiontemplates/$templateID/usage -Method Get -Headers $headers | select -ExpandProperty content | ConvertFrom-Json
 
-Else{
+        #Getting all the DeploymentProcesses that need to be updated
+        $deploymentprocesstoupdate = $usage | ? {$_.version -ne $template.Version}
 
-    Foreach($d in $deploymentprocesstoupdate){
+        write-host "Template: $($template.name)" -ForegroundColor Magenta
 
-        Write-Output "Updating deployment process of project: $($d.projectname)"
+        If($deploymentprocesstoupdate -eq $null){
 
-        #Getting DeploymentProcess obj
-        $process = $repository.DeploymentProcesses.Get($d.DeploymentProcessId)
-
-        #Finding the step that uses the step template
-        $step = $process.Steps | ?{$_.actions.properties.values -eq $template.Id}
-
-        foreach($prop in $step.Actions.properties.keys){
-
-            $step.Actions.properties.$prop = $template.Properties.$prop
+            Write-host "`t--All deployment processes up to date" -ForegroundColor Green
 
         }
 
-        #Updating the Template.Version property to the latest
-        $step.Actions.properties.'Octopus.Action.Template.version' = $template.Version
+        Else{
 
-        #Saving the updated DeploymentProcess obj on the database
-        $repository.DeploymentProcesses.Modify($process) | Out-Null
-    }
+            Foreach($d in $deploymentprocesstoupdate){
+
+                Write-host "`t--Updating project: $($d.projectname)" -ForegroundColor Yellow
+
+                #Getting DeploymentProcess obj
+                $process = $repository.DeploymentProcesses.Get($d.DeploymentProcessId)
+
+                #Finding the step that uses the step template
+                $step = $process.Steps | ?{$_.actions.properties.values -eq $template.Id}
+
+                try{
+
+                    foreach($prop in $step.Actions.properties.keys){
+
+                        $step.Actions.properties.$prop = $template.Properties.$prop
+                
+                        #Updating the Template.Version property to the latest
+                        $step.Actions.properties.'Octopus.Action.Template.version' = $template.Version
+
+                        #unexistingfunction
+                
+                        If($repository.DeploymentProcesses.Modify($process))
+                        {
+                            Write-host "`t--Project updated: $($d.projectname)" -ForegroundColor Green
+                        }
+
+                    }
+                }
+
+                catch [System.InvalidOperationException]{
+                    #Catching and error caused by modifying the same collection evaluated on the foreach
+                    #Feel free to add a comment proposing a cleaner fix            
+                    }
+
+                catch{
+                    Write-Error "Error updating Process template for Octopus project: $($d.projectname)"
+                    write-error $_.Exception.message
+            
+                }          
+        
+            }
            
+        }
+    }
+    End
+    {
+    }
 }
+
+
+
+
+
+
+
+
+
