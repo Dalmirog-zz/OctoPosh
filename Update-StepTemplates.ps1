@@ -29,15 +29,26 @@ Function Update-StepTemplatesOnDeploymentProcesses
 
         # Octopus API Key. How to create an API Key = http://docs.octopusdeploy.com/display/OD/How+to+create+an+API+key
         [Parameter(Mandatory=$true)]
-        [string]$APIKey
+        [string]$APIKey,
+
+        # Tentacle Installation Directory
+        [Parameter(Mandatory=$false)]
+        $TentacleInstallDir = "C:\Program Files\Octopus Deploy\Tentaclee" #Default Tentacle install dir
     )
 
     Begin
     {
-        #Loading Octopus.client assemblies
-        Add-Type -Path "C:\Program Files\Octopus Deploy\Tentacle\Newtonsoft.Json.dll"
-        Add-Type -Path "C:\Program Files\Octopus Deploy\Tentacle\Octopus.Client.dll"
-        Add-Type -Path "C:\Program Files\Octopus Deploy\Tentacle\Octopus.Platform.dll" 
+        #Loading Octopus.client assemblies. If octopus was installed on another drive, you will have the adjust these paths
+        #If the script gets popular enough, i'll go the extra mile and read the registry to resolve this path
+        
+        if(!(Test-Path "$TentacleInstallDir\octopuse.client.dll")){
+
+            Write-Warning "Octopus Tentacle doesnt seem to be insalled on '$TentacleInstallDir'. Please use the parameter -TentacleInstallDir to specify the path where the Octopus Tentacle was installed. `nTIP - This path should be the parent directory of:`n`t-Newtonsoft.Json.dll`n`t-Octopus.Client.dll`n`t-Octopus.Platform.dll"             
+            break 
+        }
+        Add-Type -Path (join-path $TentacleInstallDir "Newtonsoft.Json.dll")
+        Add-Type -Path (join-path $TentacleInstallDir  "Octopus.Client.dll")
+        Add-Type -Path (join-path $TentacleInstallDir  "Octopus.Platform.dll")
 
         #Connection Data
         $headers = @{"X-Octopus-ApiKey"="$($apikey)";}
