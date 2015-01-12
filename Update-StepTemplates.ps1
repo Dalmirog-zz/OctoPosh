@@ -1,113 +1,56 @@
-﻿function Update-StepTemplatesOnDeploymentProcesses
-{
-    [CmdletBinding()]        
-    Param
-    (
-        # Action Template ID. Use when you only want to update template processes that only use this Action Template
-        [Parameter(Mandatory=$true,ParameterSetName= "SingleActionTemplate")]
-        [string]$ActionTemplateID,
+﻿#Make sure you have the correcct Template ID before running this script.
+#To get the Id, open the template on the Octopus web UI
+$templateID = "Actiontemplates-3"
 
-        [Parameter(Mandatory=$true, ParameterSetName= "MultipleActionTemplates")]
-        [switch]$AllActionTemplates,
+#Loading Octopus.client assemblies
+Add-Type -Path "C:\Program Files\Octopus Deploy\Tentacle\Newtonsoft.Json.dll"
+Add-Type -Path "C:\Program Files\Octopus Deploy\Tentacle\Octopus.Client.dll"
+Add-Type -Path "C:\Program Files\Octopus Deploy\Tentacle\Octopus.Platform.dll" 
 
-        # Octopus instance URL
-        [Parameter(Mandatory=$true)]
-        [string]$OctopusURI = "http://localhost",
+#Connection Data
+$apikey = "API-RLMWLZBPMX5DRPLCRNZEOT24HA"
+$OctopusURI = "http://localhost"
+$headers = @{"X-Octopus-ApiKey"="$($apikey)";}
 
-        # Octopus instance API Key
-        [Parameter(Mandatory=$true)]
-        [string]$APIKey = "API-RLMWLZBPMX5DRPLCRNZEOT24HA"
-    )
+$endpoint = new-object Octopus.Client.OctopusServerEndpoint "$($OctopusURI)","$($apikey)"
+$repository = new-object Octopus.Client.OctopusRepository $endpoint
 
-    Begin
-    {
-        #Loading Octopus.client assemblies
-        Add-Type -Path "C:\Program Files\Octopus Deploy\Tentacle\Newtonsoft.Json.dll"
-        Add-Type -Path "C:\Program Files\Octopus Deploy\Tentacle\Octopus.Client.dll"
-        Add-Type -Path "C:\Program Files\Octopus Deploy\Tentacle\Octopus.Platform.dll" 
+$template = Invoke-WebRequest -Uri $OctopusURI/api/actiontemplates/$templateID -Method Get -Headers $headers | select -ExpandProperty content| ConvertFrom-Json
 
-        #Connection Data
-        $headers = @{"X-Octopus-ApiKey"="$($apikey)";}
+$usage = Invoke-WebRequest -Uri $OctopusURI/api/actiontemplates/$templateID/usage -Method Get -Headers $headers | select -ExpandProperty content | ConvertFrom-Json
 
-        #Create endpoint connection
-        $endpoint = new-object Octopus.Client.OctopusServerEndpoint "$($OctopusURI)","$($apikey)"
-        $repository = new-object Octopus.Client.OctopusRepository $endpoint
+#Getting all the DeploymentProcesses that need to be updated
+$deploymentprocesstoupdate = $usage | ?{$_.version -lt $template.Version}
 
+If($deploymentprocesstoupdate -eq $null){
 
-    }
-    Process
-    {
-        $template = Invoke-WebRequest -Uri $OctopusURI/api/actiontemplates/$templateID -Method Get -Headers $headers | select -ExpandProperty content| ConvertFrom-Json
+    Write-Output "All the deployment processes using template '$($template.name)' are using the latest version of it"
 
-        $usage = Invoke-WebRequest -Uri $OctopusURI/api/actiontemplates/$templateID/usage -Method Get -Headers $headers | select -ExpandProperty content | ConvertFrom-Json
-
-        #Getting all the DeploymentProcesses that need to be updated
-        $deploymentprocesstoupdate = $usage | ? {$_.version -ne $template.Version}
-
-        write-host "Template: $($template.name)" -ForegroundColor Magenta
-
-        If($deploymentprocesstoupdate -eq $null){
-
-            Write-host "`t--All deployment processes up to date" -ForegroundColor Green
-
-        }
-
-        Else{
-
-            Foreach($d in $deploymentprocesstoupdate){
-
-                Write-host "`t--Updating project: $($d.projectname)" -ForegroundColor Yellow
-
-                #Getting DeploymentProcess obj
-                $process = $repository.DeploymentProcesses.Get($d.DeploymentProcessId)
-
-                #Finding the step that uses the step template
-                $step = $process.Steps | ?{$_.actions.properties.values -eq $template.Id}
-
-                try{
-
-                    foreach($prop in $step.Actions.properties.keys){
-
-                        $step.Actions.properties.$prop = $template.Properties.$prop
-                
-                        #Updating the Template.Version property to the latest
-                        $step.Actions.properties.'Octopus.Action.Template.version' = $template.Version
-
-                        #unexistingfunction
-                
-                        If($repository.DeploymentProcesses.Modify($process))
-                        {
-                            Write-host "`t--Project updated: $($d.projectname)" -ForegroundColor Green
-                        }
-
-                    }
-                }
-
-                catch [System.InvalidOperationException]{
-                    #Catching and error caused by modifying the same collection evaluated on the foreach
-                    #Feel free to add a comment proposing a cleaner fix            
-                    }
-
-                catch{
-                    Write-Error "Error updating Process template for Octopus project: $($d.projectname)"
-                    write-error $_.Exception.message
-            
-                }          
-        
-            }
-           
-        }
-    }
-    End
-    {
-    }
 }
 
+Else{
 
+    Foreach($d in $deploymentprocesstoupdate){
 
+        Write-Output "Updating deployment process of project: $($d.projectname)"
 
+        #Getting DeploymentProcess obj
+        $process = $repository.DeploymentProcesses.Get($d.DeploymentProcessId)
 
+        #Finding the step that uses the step template
+        $step = $process.Steps | ?{$_.actions.properties.values -eq $template.Id}
 
+        foreach($prop in $step.Actions.properties.keys){
 
+            $step.Actions.properties.$prop = $template.Properties.$prop
 
+        }
 
+        #Updating the Template.Version property to the latest
+        $step.Actions.properties.'Octopus.Action.Template.version' = $template.Version
+
+        #Saving the updated DeploymentProcess obj on the database
+        $repository.DeploymentProcesses.Modify($process) | Out-Null
+    }
+           
+}
