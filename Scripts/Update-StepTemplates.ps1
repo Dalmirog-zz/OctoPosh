@@ -33,7 +33,7 @@ Function Update-StepTemplatesOnDeploymentProcesses
 
         # Tentacle Installation Directory
         [Parameter(Mandatory=$false)]
-        $TentacleInstallDir = "C:\Program Files\Octopus Deploy\Tentaclee" #Default Tentacle install dir
+        $TentacleInstallDir = "C:\Program Files\Octopus Deploy\Tentacle" #Default Tentacle install dir
     )
 
     Begin
@@ -41,7 +41,7 @@ Function Update-StepTemplatesOnDeploymentProcesses
         #Loading Octopus.client assemblies. If octopus was installed on another drive, you will have the adjust these paths
         #If the script gets popular enough, i'll go the extra mile and read the registry to resolve this path
         
-        if(!(Test-Path "$TentacleInstallDir\octopuse.client.dll")){
+        if(!(Test-Path "$TentacleInstallDir\octopus.client.dll")){
 
             Write-Warning "Octopus Tentacle doesnt seem to be insalled on '$TentacleInstallDir'. Please use the parameter -TentacleInstallDir to specify the path where the Octopus Tentacle was installed. `nTIP - This path should be the parent directory of:`n`t-Newtonsoft.Json.dll`n`t-Octopus.Client.dll`n`t-Octopus.Platform.dll"             
             break 
