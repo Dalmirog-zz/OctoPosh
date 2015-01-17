@@ -11,17 +11,25 @@ $headers = @{"X-Octopus-ApiKey"="$($apikey)";}
 $endpoint = new-object Octopus.Client.OctopusServerEndpoint "$($OctopusURI)","$($apikey)"
 $repository = new-object Octopus.Client.OctopusRepository $endpoint
 
+$list = @()
 
-
-$deployments = $repository.Deployments.FindAll()[0]
+$deployments = $repository.Deployments.FindAll()
 
 foreach ($d in $deployments){
-    Write-Output "Project: $($repository.projects.Get($d.Links.project).name)"
-    Write-Output "Environment: $($repository.Environments.Get($d.Links.Environment).name)"
-    Write-Output "Date: $($repository.Tasks.Get($d.Links.task).queuetime)"
-    Write-Output "Duration: $($repository.Tasks.Get($d.Links.task).Duration)"
-    Write-Output "Status: $($repository.Tasks.Get($d.Links.task).state)"
-    Write-Output "Version: $($repository.Releases.Get($d.Links.Release).version)"
-    Write-Output "Assembled: $($repository.Releases.Get($d.Links.Release).assembled)"
+
+    $property = [ordered]@{
+                   Project = $repository.projects.Get($d.Links.project).name
+                   Environment = $repository.Environments.Get($d.Links.Environment).name
+                   Date = $repository.Tasks.Get($d.Links.task).queuetime
+                   Duration = $repository.Tasks.Get($d.Links.task).Duration
+                   Status = $repository.Tasks.Get($d.Links.task).state
+                   Version = $repository.Releases.Get($d.Links.Release).version
+                   Assembled = $repository.Releases.Get($d.Links.Release).assembled
+               }
+
+    $obj = new-object psobject -Property $property
     
+    $list += $obj
 }
+
+$list | select Date |Format-Table
