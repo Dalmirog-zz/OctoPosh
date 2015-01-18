@@ -3,7 +3,8 @@ Add-Type -Path "C:\Program Files\Octopus Deploy\Tentacle\Octopus.Client.dll"
 Add-Type -Path "C:\Program Files\Octopus Deploy\Tentacle\Octopus.Platform.dll"
 
 #Connection Data
-$apikey = "API-7CH6XN0HHOU7DDEEUGKUFUR1K"
+$apikey = "API-7CH6XN0HHOU7DDEEUGKUFUR1K" #admin
+$apikey #Tester
 $OctopusURI = "http://localhost"
 $headers = @{"X-Octopus-ApiKey"="$($apikey)";}
 

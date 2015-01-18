@@ -10,7 +10,7 @@
 .LINK
    Github project: https://github.com/Dalmirog/OctopusSnippets
 #>
-Function Update-StepTemplatesOnDeploymentProcesses
+Function Update-OctopusStepTemplates
 {
     [CmdletBinding()]        
     Param
@@ -20,8 +20,8 @@ Function Update-StepTemplatesOnDeploymentProcesses
         [string]$ActionTemplateID,
 
         # If used, all the action templates will be updated on all the deployment processes.
-        [Parameter(Mandatory=$true, ParameterSetName= "MultipleActionTemplates")]
-        [switch]$AllActionTemplates,
+        #[Parameter(Mandatory=$true, ParameterSetName= "MultipleActionTemplates")]
+        #[switch]$AllActionTemplates,
 
         # Octopus instance URL
         [Parameter(Mandatory=$true)]
@@ -29,26 +29,14 @@ Function Update-StepTemplatesOnDeploymentProcesses
 
         # Octopus API Key. How to create an API Key = http://docs.octopusdeploy.com/display/OD/How+to+create+an+API+key
         [Parameter(Mandatory=$true)]
-        [string]$APIKey,
-
-        # Tentacle Installation Directory
-        [Parameter(Mandatory=$false)]
-        $TentacleInstallDir = "C:\Program Files\Octopus Deploy\Tentacle" #Default Tentacle install dir
+        [string]$APIKey        
     )
 
     Begin
     {
-        #Loading Octopus.client assemblies. If octopus was installed on another drive, you will have the adjust these paths
-        #If the script gets popular enough, i'll go the extra mile and read the registry to resolve this path
-        
-        if(!(Test-Path "$TentacleInstallDir\octopus.client.dll")){
-
-            Write-Warning "Octopus Tentacle doesnt seem to be insalled on '$TentacleInstallDir'. Please use the parameter -TentacleInstallDir to specify the path where the Octopus Tentacle was installed. `nTIP - This path should be the parent directory of:`n`t-Newtonsoft.Json.dll`n`t-Octopus.Client.dll`n`t-Octopus.Platform.dll"             
-            break 
-        }
-        Add-Type -Path (join-path $TentacleInstallDir "Newtonsoft.Json.dll")
-        Add-Type -Path (join-path $TentacleInstallDir  "Octopus.Client.dll")
-        Add-Type -Path (join-path $TentacleInstallDir  "Octopus.Platform.dll")
+        Add-Type -Path "$PSScriptRoot\..\bin\Newtonsoft.Json.dll"
+        Add-Type -Path "$PSScriptRoot\..\bin\Octopus.Client.dll"
+        Add-Type -Path "$PSScriptRoot\..\bin\Octopus.Platform.dll"
 
         #Connection Data
         $headers = @{"X-Octopus-ApiKey"="$($apikey)";}
@@ -61,9 +49,8 @@ Function Update-StepTemplatesOnDeploymentProcesses
     }
     Process
     {
-        $template = Invoke-WebRequest -Uri $OctopusURI/api/actiontemplates/$templateID -Method Get -Headers $headers | select -ExpandProperty content| ConvertFrom-Json
-
-        $usage = Invoke-WebRequest -Uri $OctopusURI/api/actiontemplates/$templateID/usage -Method Get -Headers $headers | select -ExpandProperty content | ConvertFrom-Json
+        $template = Invoke-WebRequest -Uri $OctopusURI/api/actiontemplates/$ActiontemplateID -Method Get -Headers $headers | select -ExpandProperty content| ConvertFrom-Json
+        $usage = Invoke-WebRequest -Uri $OctopusURI/api/actiontemplates/$ActiontemplateID/usage -Method Get -Headers $headers | select -ExpandProperty content | ConvertFrom-Json
 
         #Getting all the DeploymentProcesses that need to be updated
         $deploymentprocesstoupdate = $usage | ? {$_.version -ne $template.Version}
@@ -126,9 +113,6 @@ Function Update-StepTemplatesOnDeploymentProcesses
     {
     }
 }
-
-
-
 
 
 
