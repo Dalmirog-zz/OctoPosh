@@ -1,8 +1,8 @@
 ﻿<#
 .Synopsis
-   Short description
+   Gets information about Octopus deployments
 .DESCRIPTION
-   Long description
+   Gets information about Octopus deployments
 .EXAMPLE
    Example of how to use this cmdlet
 .EXAMPLE
@@ -17,11 +17,11 @@ function Get-OctopusDeployments
     (
         # Octopus instance URL
         [Parameter(Mandatory=$false)]
-        [string]$OctopusURI = "http://localhost",
+        [string]$OctopusURI = $env:OctopusURI,
 
         # Octopus API Key. How to create an API Key = http://docs.octopusdeploy.com/display/OD/How+to+create+an+API+key
         [Parameter(Mandatory=$false)]
-        [string]$APIKey = "API-7CH6XN0HHOU7DDEEUGKUFUR1K"        
+        [string]$APIKey = $env:OctopusAPIKey        
     )
 
     Begin
@@ -52,7 +52,8 @@ function Get-OctopusDeployments
             $e = $repository.Environments.Get($d.Links.Environment)
             $t = $repository.Tasks.Get($d.Links.task)
             $r = $repository.Releases.Get($d.Links.Release)
-       
+            
+            
             if (($t.Duration).Split(" ")[1] -eq "seconds"){
                 [datetime]$time = "00:00:00"
                 $t.Duration = ($time.AddSeconds(($t.Duration).Split(" ")[0])).TimeOfDay              
@@ -61,7 +62,6 @@ function Get-OctopusDeployments
                 [datetime]$time = "00:00:00"
                 $t.Duration = ($time.AddMinutes(($t.Duration).Split(" ")[0])).TimeOfDay
             }
-    
 
             $property = [ordered]@{
                            Project = $p.name
@@ -82,9 +82,3 @@ function Get-OctopusDeployments
         return $list
     }
 }
-
-#
-
-
-
-

@@ -24,12 +24,12 @@ Function Update-OctopusStepTemplates
         #[switch]$AllActionTemplates,
 
         # Octopus instance URL
-        [Parameter(Mandatory=$true)]
-        [string]$OctopusURI,
+        [Parameter(Mandatory=$false)]
+        [string]$OctopusURI = $env:OctopusURI,
 
         # Octopus API Key. How to create an API Key = http://docs.octopusdeploy.com/display/OD/How+to+create+an+API+key
-        [Parameter(Mandatory=$true)]
-        [string]$APIKey        
+        [Parameter(Mandatory=$false)]
+        [string]$APIKey = $env:OctopusApiKey        
     )
 
     Begin
@@ -84,8 +84,6 @@ Function Update-OctopusStepTemplates
                         #Updating the Template.Version property to the latest
                         $step.Actions.properties.'Octopus.Action.Template.version' = $template.Version
 
-                        #unexistingfunction
-                
                         If($repository.DeploymentProcesses.Modify($process))
                         {
                             Write-host "`t--Project updated: $($d.projectname)" -ForegroundColor Green
