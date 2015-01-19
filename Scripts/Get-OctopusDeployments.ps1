@@ -8,7 +8,7 @@
 .EXAMPLE
    Another example of how to use this cmdlet
 .LINK
-   Github project: https://github.com/Dalmirog/OctopusSnippets
+   Github project: https://github.com/Dalmirog/OctopusDeploy-Powershell-module
 #>
 function Get-OctopusDeployments
 {

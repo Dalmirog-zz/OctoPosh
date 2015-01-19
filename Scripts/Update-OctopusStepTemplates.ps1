@@ -8,7 +8,7 @@
 .EXAMPLE
    Update-StepTemplatesOnDeploymentProcesses -AllActionTemplates -OctopusURI "http://Octopusdeploy.MyCompany.com" -APIKey "API-TSET42BPMX5DRPLCRNZETFS4HA"
 .LINK
-   Github project: https://github.com/Dalmirog/OctopusSnippets
+   Github project: https://github.com/Dalmirog/OctopusDeploy-Powershell-module
 #>
 Function Update-OctopusStepTemplates
 {
