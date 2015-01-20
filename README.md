@@ -1,2 +1,3 @@
-# OctopusSnippets
-Snippets for Octopus Deploy ticket replies. Final versions will be available on Gist as well
+# Octopus Deploy Powershell Module
+
+A set of Cmdlets based on common requests by users.
