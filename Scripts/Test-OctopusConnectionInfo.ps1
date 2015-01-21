@@ -6,7 +6,7 @@
 .EXAMPLE
    Test-OctopusConnectionInfo
 .LINK
-   Github project: ghttps://github.com/Dalmirog/OctopusDeploy-Powershell-module    
+   Github project: ghttps://github.com/Dalmirog/OctopusDeploy-Powershell-module.
 #>
 function Test-OctopusConnectionInfo
 {
