@@ -26,21 +26,20 @@ function Get-OctopusDeployments
 
     Begin
     {
+
+        Test-OctopusConnectionInfo
+        
         Add-Type -Path "$PSScriptRoot\..\bin\Newtonsoft.Json.dll"
         Add-Type -Path "$PSScriptRoot\..\bin\Octopus.Client.dll"
         Add-Type -Path "$PSScriptRoot\..\bin\Octopus.Platform.dll"
-
-        #Connection Data
-        $headers = @{"X-Octopus-ApiKey"="$($apikey)";}
 
         #Create endpoint connection
         $endpoint = new-object Octopus.Client.OctopusServerEndpoint "$($OctopusURI)","$($apikey)"
         $repository = new-object Octopus.Client.OctopusRepository $endpoint
 
-        $list = @()
-
         $deployments = $repository.Deployments.FindAll()
-
+        
+        $list = @()
 
     }
     Process

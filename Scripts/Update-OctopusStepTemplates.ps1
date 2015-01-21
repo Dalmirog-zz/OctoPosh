@@ -23,7 +23,7 @@ Function Update-OctopusStepTemplates
         #[Parameter(Mandatory=$true, ParameterSetName= "MultipleActionTemplates")]
         #[switch]$AllActionTemplates,
 
-        # Octopus instance URL
+        # Octopus instance URL.
         [Parameter(Mandatory=$false)]
         [string]$OctopusURI = $env:OctopusURI,
 
@@ -34,6 +34,9 @@ Function Update-OctopusStepTemplates
 
     Begin
     {
+
+        Test-OctopusConnectionInfo
+        
         Add-Type -Path "$PSScriptRoot\..\bin\Newtonsoft.Json.dll"
         Add-Type -Path "$PSScriptRoot\..\bin\Octopus.Client.dll"
         Add-Type -Path "$PSScriptRoot\..\bin\Octopus.Platform.dll"
