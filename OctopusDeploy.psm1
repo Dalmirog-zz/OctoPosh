@@ -6,7 +6,3 @@ foreach ($script in $scripts){
 
 . $script.FullName
 }
-
-#Creating Environment variables
-$env:OctopusURI = "http://localhost"
-$env:OctopusAPIKey = "API-7CH6XN0HHOU7DDEEUGKUFUR1K"
