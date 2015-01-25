@@ -29,10 +29,10 @@ function Get-OctopusDeployments
 
         $c = New-OctopusConnection
 
-        $deployments = $c.repository.Deployments.FindAll()[0]
+        $deployments = $c.repository.Deployments.FindAll()
         
         $list = @()
-        $packages = @()
+        
 
     }
     Process
@@ -55,6 +55,8 @@ function Get-OctopusDeployments
                 [datetime]$time = "00:00:00"
                 $t.Duration = ($time.AddMinutes(($t.Duration).Split(" ")[0])).TimeOfDay
             }
+
+            $packages = @()
             
             foreach ($s in $r.SelectedPackages){
 
