@@ -27,19 +27,12 @@ function Get-OctopusDeployments
     Begin
     {
 
-        Test-OctopusConnectionInfo
-        
-        Add-Type -Path "$PSScriptRoot\..\bin\Newtonsoft.Json.dll"
-        Add-Type -Path "$PSScriptRoot\..\bin\Octopus.Client.dll"
-        Add-Type -Path "$PSScriptRoot\..\bin\Octopus.Platform.dll"
+        $c = New-OctopusConnection
 
-        #Create endpoint connection
-        $endpoint = new-object Octopus.Client.OctopusServerEndpoint "$($OctopusURI)","$($apikey)"
-        $repository = new-object Octopus.Client.OctopusRepository $endpoint
-
-        $deployments = $repository.Deployments.FindAll()
+        $deployments = $c.repository.Deployments.FindAll()[0]
         
         $list = @()
+        $packages = @()
 
     }
     Process
@@ -47,10 +40,11 @@ function Get-OctopusDeployments
 
         foreach ($d in $deployments){
 
-            $p = $repository.projects.Get($d.Links.project)
-            $e = $repository.Environments.Get($d.Links.Environment)
-            $t = $repository.Tasks.Get($d.Links.task)
-            $r = $repository.Releases.Get($d.Links.Release)
+            $p = $c.repository.projects.Get($d.Links.project)
+            $e = $c.repository.Environments.Get($d.Links.Environment)
+            $t = $c.repository.Tasks.Get($d.Links.task)
+            $r = $c.repository.Releases.Get($d.Links.Release)
+            $dp = $c.repository.DeploymentProcesses.Get($r.links.ProjectDeploymentProcessSnapshot)
             
             
             if (($t.Duration).Split(" ")[1] -eq "seconds"){
@@ -61,6 +55,19 @@ function Get-OctopusDeployments
                 [datetime]$time = "00:00:00"
                 $t.Duration = ($time.AddMinutes(($t.Duration).Split(" ")[0])).TimeOfDay
             }
+            
+            foreach ($s in $r.SelectedPackages){
+
+                $ds = $dp.steps | ? {$_.name -eq "$($s.stepname)"} 
+
+                $properties = [ordered]@{
+                    Packagename = $ds.Actions.properties.'Octopus.Action.Package.NuGetPackageId'
+                    PackageVersion = $s.version
+                }
+
+                $Packages += $entry = New-Object psobject -Property $properties
+
+            }
 
             $property = [ordered]@{
                            Project = $p.name
@@ -70,6 +77,7 @@ function Get-OctopusDeployments
                            Status = $t.state
                            ReleaseVersion = $r.version
                            Assembled = ($r.assembled).DateTime
+                           Packages = $Packages
                        }
 
             $list += $obj = new-object psobject -Property $property
