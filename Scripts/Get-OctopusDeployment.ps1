@@ -4,13 +4,17 @@
 .DESCRIPTION
    Gets information about Octopus deployments
 .EXAMPLE
-   Example of how to use this cmdlet
+   Get-OctopusDeployment
 .EXAMPLE
-   Another example of how to use this cmdlet
+   Get-OctopusDeployment -project "MyProduct.Webapp"
+.EXAMPLE
+   Get-OctopusDeployment -Environment "Staging","UAT"
+.EXAMPLE
+   Get-OctopusDeployment -project "MyProduct.Webapp","MyProduct.service" -Environment "Production"
 .LINK
    Github project: https://github.com/Dalmirog/OctopusDeploy-Powershell-module
 #>
-function Get-OctopusDeployments
+function Get-OctopusDeployment
 {
     [CmdletBinding()]        
     Param
@@ -21,7 +25,16 @@ function Get-OctopusDeployments
 
         # Octopus API Key. How to create an API Key = http://docs.octopusdeploy.com/display/OD/How+to+create+an+API+key
         [Parameter(Mandatory=$false)]
-        [string]$APIKey = $env:OctopusAPIKey        
+        [string]$APIKey = $env:OctopusAPIKey,
+
+        # Octopus environment name
+        [Parameter(Mandatory=$false)]
+        [string[]]$Environment = "*",
+
+        # Octopus project name
+        [Parameter(Mandatory=$false)]
+        [string[]]$Project = "*"        
+          
     )
 
     Begin
@@ -29,8 +42,21 @@ function Get-OctopusDeployments
 
         $c = New-OctopusConnection
 
-        $deployments = $c.repository.Deployments.FindAll()
-        
+        if($Project -ne "*"){
+
+            $project = ($c.repository.Projects.FindMany({param($proj) if ($proj.name -in $Project) {$true}})).id
+                                    
+            }
+
+        if($Environment -ne "*"){
+            
+            $environment = ($c.repository.Environments.FindMany({param($env) if ($env.name -in $environment) {$true}})).id
+            
+            }
+
+        $deployments = $c. repository.Deployments.FindMany({param($dep) if ((($dep.projectid -in $Project) -or ($dep.projectid -like $Project)) -and (($dep.environmentid -in $Environment) -or ($dep.environmentid -like $Environment))) {$true}})
+
+       
         $list = @()
         
 
@@ -46,16 +72,30 @@ function Get-OctopusDeployments
             $r = $c.repository.Releases.Get($d.Links.Release)
             $dp = $c.repository.DeploymentProcesses.Get($r.links.ProjectDeploymentProcessSnapshot)
             
+            <#
+            [datetime]$time = "00:00:00"
+
+            #$t.duration -eq "less than a second"
             
             if (($t.Duration).Split(" ")[1] -eq "seconds"){
-                [datetime]$time = "00:00:00"
+                #[datetime]$time = "00:00:00"
                 $t.Duration = ($time.AddSeconds(($t.Duration).Split(" ")[0])).TimeOfDay              
             }
-            elseif (($t.Duration).Split(" ")[1] -eq "minutes" -or "minute"){
-                [datetime]$time = "00:00:00"
+            if (($t.Duration).Split(" ")[1] -eq ("minutes" -or "minute")){
+                #[datetime]$time = "00:00:00"
+                
                 $t.Duration = ($time.AddMinutes(($t.Duration).Split(" ")[0])).TimeOfDay
             }
+            if ($t.duration -eq "less than a second"){
+                #[datetime]$time = "00:00:00"                
+                $t.Duration = $time.TimeOfDay
+            }
+            if (($t.Duration).Split(" ")[1] -eq ("days" -or "day")){
+                #$t.Duration = ($time.Addhours((($t.Duration).Split(" ")[0]) * 24)).TimeOfDay
+            
+            }
 
+            #>
             $packages = @()
             
             foreach ($s in $r.SelectedPackages){
@@ -63,8 +103,8 @@ function Get-OctopusDeployments
                 $ds = $dp.steps | ? {$_.name -eq "$($s.stepname)"} 
 
                 $properties = [ordered]@{
-                    Packagename = $ds.Actions.properties.'Octopus.Action.Package.NuGetPackageId'
-                    PackageVersion = $s.version
+                    Name = $ds.Actions.properties.'Octopus.Action.Package.NuGetPackageId'
+                    Version = $s.version
                 }
 
                 $Packages += $entry = New-Object psobject -Property $properties
@@ -79,7 +119,7 @@ function Get-OctopusDeployments
                            Status = $t.state
                            ReleaseVersion = $r.version
                            Assembled = ($r.assembled).DateTime
-                           Packages = $Packages
+                           Package = $Packages
                        }
 
             $list += $obj = new-object psobject -Property $property
