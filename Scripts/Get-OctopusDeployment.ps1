@@ -29,11 +29,11 @@ function Get-OctopusDeployment
 
         # Octopus environment name
         [Parameter(Mandatory=$false)]
-        [string[]]$Environment = "*",
+        [string[]]$EnvironmentName = "*",
 
         # Octopus project name
         [Parameter(Mandatory=$false)]
-        [string[]]$Project = "*"        
+        [string[]]$ProjectName = "*"
           
     )
 
@@ -42,27 +42,34 @@ function Get-OctopusDeployment
 
         $c = New-OctopusConnection
 
-        if($Project -ne "*"){
+        #Getting EnvironmentIDs and ProjectIDs based on values set on parameters
+        if($ProjectName -ne "*"){
 
-            $project = ($c.repository.Projects.FindMany({param($proj) if ($proj.name -in $Project) {$true}})).id
+            $projectid = ($c.repository.Projects.FindMany({param($proj) if ($proj.name -in $ProjectName) {$true}})).id
                                     
             }
+        else {$projectid = "*"}
 
-        if($Environment -ne "*"){
+        if($EnvironmentName -ne "*"){
             
-            $environment = ($c.repository.Environments.FindMany({param($env) if ($env.name -in $environment) {$true}})).id
+            $environmentid = ($c.repository.Environments.FindMany({param($env) if ($env.name -in $environmentName) {$true}})).id
             
             }
 
-        $deployments = $c. repository.Deployments.FindMany({param($dep) if ((($dep.projectid -in $Project) -or ($dep.projectid -like $Project)) -and (($dep.environmentid -in $Environment) -or ($dep.environmentid -like $Environment))) {$true}})
+        else {$Environmentid = "*"}
+
+        #Getting deployments based on EnvironmentIds and ProjectIds
+        $deployments = $c. repository.Deployments.FindMany({param($dep) if ((($dep.projectid -in $projectid) -or ($dep.projectid -like $projectid)) -and (($dep.environmentid -in $environmentid) -or ($dep.environmentid -like $environmentid))) {$true}})
 
        
-        $list = @()
+        
         
 
     }
     Process
     {
+
+        $list = @()
 
         foreach ($d in $deployments){
 
@@ -72,30 +79,7 @@ function Get-OctopusDeployment
             $r = $c.repository.Releases.Get($d.Links.Release)
             $dp = $c.repository.DeploymentProcesses.Get($r.links.ProjectDeploymentProcessSnapshot)
             
-            <#
-            [datetime]$time = "00:00:00"
-
-            #$t.duration -eq "less than a second"
-            
-            if (($t.Duration).Split(" ")[1] -eq "seconds"){
-                #[datetime]$time = "00:00:00"
-                $t.Duration = ($time.AddSeconds(($t.Duration).Split(" ")[0])).TimeOfDay              
-            }
-            if (($t.Duration).Split(" ")[1] -eq ("minutes" -or "minute")){
-                #[datetime]$time = "00:00:00"
-                
-                $t.Duration = ($time.AddMinutes(($t.Duration).Split(" ")[0])).TimeOfDay
-            }
-            if ($t.duration -eq "less than a second"){
-                #[datetime]$time = "00:00:00"                
-                $t.Duration = $time.TimeOfDay
-            }
-            if (($t.Duration).Split(" ")[1] -eq ("days" -or "day")){
-                #$t.Duration = ($time.Addhours((($t.Duration).Split(" ")[0]) * 24)).TimeOfDay
-            
-            }
-
-            #>
+            #Getting Nuget packages and their versions
             $packages = @()
             
             foreach ($s in $r.SelectedPackages){
@@ -111,18 +95,34 @@ function Get-OctopusDeployment
 
             }
 
-            $property = [ordered]@{
-                           Project = $p.name
-                           Environment = $e.name
-                           Date = ($t.queuetime).DateTime
-                           Duration = ($t.Duration)
-                           Status = $t.state
-                           ReleaseVersion = $r.version
-                           Assembled = ($r.assembled).DateTime
-                           Package = $Packages
-                       }
+            #Duration calculation needed cause "timed out" deployments dont have a value set for "CompletedTime"
+            if($t.completedtime){
+                
+                $duration = (New-TimeSpan –Start ($t.Starttime).DateTime –End ($t.Completedtime).DateTime).TotalMinutes
 
-            $list += $obj = new-object psobject -Property $property
+                }
+
+            else{$duration = [math]::Round($t.completedtime,2)}
+
+            #Creating output object
+            $properties = [ordered]@{
+                            ProjectName = $p.name
+                            EnvironmentName = $e.name
+                            DeploymentstartTime = ($t.Starttime).DateTime
+                            DeploymentEndTime = ($t.Completedtime).DateTime
+                            DeploymentStartedBy = $d.LastModifiedBy
+                            Duration = $duration
+                            Status = $t.state                           
+                            ReleaseVersion = $r.version
+                            ReleaseCreationDate = ($r.assembled).DateTime
+                            ReleaseNotes = $r.ReleaseNotes
+                            ReleaseCreatedBy = $r.LastModifiedBy
+                            Package = $Packages
+                            Resource = $d
+                        }
+
+            #Adding object to list
+            $list += $obj = new-object psobject -Property $properties
         }
 
     }
