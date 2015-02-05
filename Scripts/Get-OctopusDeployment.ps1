@@ -102,7 +102,7 @@ function Get-OctopusDeployment
 
                 }
 
-            else{$duration = [math]::Round($t.completedtime,2)}
+            else{$duration = 0}
 
             #Creating output object
             $properties = [ordered]@{
@@ -111,7 +111,7 @@ function Get-OctopusDeployment
                             DeploymentstartTime = ($t.Starttime).DateTime
                             DeploymentEndTime = ($t.Completedtime).DateTime
                             DeploymentStartedBy = $d.LastModifiedBy
-                            Duration = $duration
+                            Duration = [math]::Round($duration,2)
                             Status = $t.state                           
                             ReleaseVersion = $r.version
                             ReleaseCreationDate = ($r.assembled).DateTime
