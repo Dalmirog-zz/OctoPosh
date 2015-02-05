@@ -12,16 +12,20 @@ function New-OctopusConnection
 {
     Begin
     {
-        Add-Type -Path "$PSScriptRoot\..\bin\Newtonsoft.Json.dll"
-        Add-Type -Path "$PSScriptRoot\..\bin\Octopus.Client.dll"
-        Add-Type -Path "$PSScriptRoot\..\bin\Octopus.Platform.dll"
+        If(($env:OctopusURI -eq $null) -or ($env:OctopusURI -eq "") -or ($env:OctopusAPIKey -eq $null) -or ($env:OctopusAPIKey -eq ""))
+        {
+            throw "At least one of the following variables does not have a value set: `$env:OctopusURI or `$env:OctopusAPIKey. Use Set-OctopusConnectionInfo to set these values"            
+        }
+
     }
     Process
     {
-                
+        $endpoint = new-object Octopus.Client.OctopusServerEndpoint "$($Env:OctopusURI)","$($env:OctopusAPIKey)"    
+        $repository = new-object Octopus.Client.OctopusRepository $endpoint                     
+
         $properties = [ordered]@{
-            endpoint = new-object Octopus.Client.OctopusServerEndpoint "$($Env:OctopusURI)","$($env:OctopusAPIKey)"
-            repository = new-object Octopus.Client.OctopusRepository $endpoint     
+            endpoint = $endpoint
+            repository = $repository
         }
 
         $output = New-Object psobject -Property $properties
@@ -30,6 +34,7 @@ function New-OctopusConnection
     End
     {
         return $output
+        $output.repository
 
     }
 }
