@@ -6,7 +6,7 @@ The goal of this module is to provide a set of useful cmdlets to perform common 
 
 1. Download the module
 2. Right click on the downloaded zip -> Properties -> Unblock File
-3. Create a folder called *OctopusDeploy* under your [PSModulePath](https://msdn.microsoft.com/en-us/library/dd878326%28v=vs.85%29.aspx)
+3. Create a folder called *OctopusDeploy* under your [PSModulePath](https://msdn.microsoft.com/en-us/library/dd878326%28v=vs.85%29.aspx). Use *C:\Program Files\WindowsPowerShell\Modules* if its on the list of Module Paths.
 4. Extract the contents of the zip on the new *OctopusDeploy* folder
 5. Open a powershell console and run ```Get-command -module OctopusDeploy``` to list all the module's cmdlets
 
@@ -34,6 +34,7 @@ Once the values are set you can check them out using ```Get-OctopusConnectionInf
 | Get-OctopusConnectionInfo      | Gets the current Octopus Connection info|
 | Set-OctopusConnectionInfo     | Sets the Octopus Connection info|
 | Get-OctopusDeployments     | Gets information about Octopus Deployments|
+| New-OctopusAPIKey     | Creates an API Key for a user|
 
 ##Cmdlets Syntax
 

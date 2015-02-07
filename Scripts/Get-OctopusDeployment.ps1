@@ -19,14 +19,6 @@ function Get-OctopusDeployment
     [CmdletBinding()]        
     Param
     (
-        # Octopus instance URL
-        [Parameter(Mandatory=$false)]
-        [string]$OctopusURI = $env:OctopusURI,
-
-        # Octopus API Key. How to create an API Key = http://docs.octopusdeploy.com/display/OD/How+to+create+an+API+key
-        [Parameter(Mandatory=$false)]
-        [string]$APIKey = $env:OctopusAPIKey,
-
         # Octopus environment name
         [Parameter(Mandatory=$false)]
         [string[]]$EnvironmentName = "*",
@@ -60,11 +52,7 @@ function Get-OctopusDeployment
 
         #Getting deployments based on EnvironmentIds and ProjectIds
         $deployments = $c. repository.Deployments.FindMany({param($dep) if ((($dep.projectid -in $projectid) -or ($dep.projectid -like $projectid)) -and (($dep.environmentid -in $environmentid) -or ($dep.environmentid -like $environmentid))) {$true}})
-
-       
         
-        
-
     }
     Process
     {
