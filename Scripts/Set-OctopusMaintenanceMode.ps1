@@ -7,6 +7,8 @@
    Set-OctopusMaintenanceMode -On
 .EXAMPLE
    Set-OctopusMaintenanceMode -Off
+.LINK
+   Github project: https://github.com/Dalmirog/OctopusDeploy-Powershell-module
 #>
 function Set-OctopusMaintenanceMode
 {
@@ -43,6 +45,7 @@ function Set-OctopusMaintenanceMode
     End
     {
         If ($r.statuscode -eq 200) {Return $true}
+
         else {Return $false}
     }
 }

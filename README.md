@@ -35,6 +35,7 @@ Once the values are set you can check them out using ```Get-OctopusConnectionInf
 | Set-OctopusConnectionInfo     | Sets the Octopus Connection info|
 | Get-OctopusDeployments     | Gets information about Octopus Deployments|
 | New-OctopusAPIKey     | Creates an API Key for a user|
+| Set-OctopusMaintenanceMode     | Turns Octopus Maintenance mode On/Off|
 
 ##Cmdlets Syntax
 
