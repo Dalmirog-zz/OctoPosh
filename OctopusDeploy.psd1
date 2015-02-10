@@ -4,13 +4,13 @@
 ModuleToProcess = 'OctopusDeploy.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.1.0.0'
+ModuleVersion = '0.2.0.0'
 
 # Author of this module
-Author = 'Dalmiro Granias'
+Author = 'Dalmiro Granias ; @dalmirogranias'
 
 # Description of the functionality provided by this module
-Description = 'Some Description'
+Description = 'This module contains a set of cmdlets that talk to the Octopus REST API to perform basic Octopus Deploy administration tasks'
 
 # Minimum version of the Windows PowerShell engine required by this module
 PowerShellVersion = '3.0'
