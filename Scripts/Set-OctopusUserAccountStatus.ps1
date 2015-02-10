@@ -1,12 +1,14 @@
 ﻿<#
 .Synopsis
-   Short description
+   Enables or disables an Octopus User Account
 .DESCRIPTION
-   Long description
+   Enables or disables an Octopus User Account
 .EXAMPLE
-   Example of how to use this cmdlet
+   Set-OctopusUserAccountStatus -Username Ian.Paullin -status Enabled
 .EXAMPLE
-   Another example of how to use this cmdlet
+   Get-OctopusUser -EmailAddress Ian.Paullin@VandalayIndustries.com | Set-OctopusUserAccountStatus -status Disabled
+.LINK
+   Github project: https://github.com/Dalmirog/OctopusDeploy-Powershell-module
 #>
 function Set-OctopusUserAccountStatus
 {
@@ -41,8 +43,8 @@ function Set-OctopusUserAccountStatus
         $c = New-OctopusConnection
 
         [Octopus.Client.Model.UserResource[]]$Users = $c.repository.Users.FindMany({param($u) if (($u.username -in $Username) -or ($u.username -like $Username) -or ($u.EmailAddress -in $EmailAddress) -or ($u.emailaddress -in $EmailAddress)) {$true}})
-
-        $users += $Resource
+        
+        If($Resource){$users += $Resource}
 
         If ($status -eq "Enabled"){$IsActive = $true}
 
@@ -57,7 +59,7 @@ function Set-OctopusUserAccountStatus
 
             Write-warning "Setting user account [$($user.username) ; $($user.EmailAddress)] status to: $Status"
 
-            $user.Isactive = $IsActive
+            $user.IsActive = $IsActive
 
             $c.repository.Users.Modify($user)
 
