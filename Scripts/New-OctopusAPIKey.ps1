@@ -8,7 +8,11 @@
 
    API keys can be used to authenticate with the Octopus Deploy REST API in place of a username and password. Using API keys lets you keep your username and password secret, but the API key itself is still sensitive information that needs to be protected
 .EXAMPLE
-   New-OctopusAPIKey -Reason "Scripting"
+   New-OctopusAPIKey -Purpose "Scripting"
+.EXAMPLE
+   New-OctopusAPIKey -Purpose "SQLDB" -username Ian.Paullin
+.EXAMPLE
+   New-OctopusAPIKey -Purpose "SQLDB" -username Ian.Paullin -password AwesomePassword
 .LINK
    Github project: https://github.com/Dalmirog/OctopusDeploy-Powershell-module
 #>
@@ -19,7 +23,11 @@ function New-OctopusAPIKey
     (
         # Octopus login User
         [Parameter(Mandatory=$true)]
-        [string]$reason
+        [string]$Purpose,
+        [Parameter(Mandatory=$true)]
+        [string]$Username,
+        [Parameter(Mandatory=$false)]
+        $password
     )
 
     Begin
@@ -29,11 +37,15 @@ function New-OctopusAPIKey
     Process
     {        
 
-        $LoginObj.Username = Read-host "Username"
+        $LoginObj.Username = $Username
         
-        $password = Read-Host "Password" -AsSecureString 
+        if(!($password)){
+        
+            $password = Read-Host "Password" -AsSecureString 
 
-        $password = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($password))
+            $password = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($password))
+
+        }
 
         $LoginObj.Password = $Password
         
@@ -45,7 +57,7 @@ function New-OctopusAPIKey
 
         $user = $repository.Users.GetCurrent()
 
-        $APIKey = $repository.Users.CreateApiKey($user,$reason)
+        $APIKey = $repository.Users.CreateApiKey($user,$Purpose)
 
     }
     End
