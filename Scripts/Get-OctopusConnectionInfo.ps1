@@ -17,7 +17,7 @@ function Get-OctopusConnectionInfo
     Process
     {
         $properties = [ordered]@{
-            OctopusURI = $env:OctopusURI
+            OctopusURL = $env:OctopusURL
             OctopusAPIKey = $env:OctopusAPIKey
         }
 

@@ -27,7 +27,7 @@ function Set-OctopusConnectionInfo
     }
     Process
     {
-        $env:OctopusURI = $URL
+        $env:OctopusURL = $URL
         $env:OctopusAPIKey = $APIKey        
     }
     End

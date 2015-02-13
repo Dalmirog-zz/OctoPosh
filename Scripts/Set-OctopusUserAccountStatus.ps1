@@ -57,7 +57,7 @@ function Set-OctopusUserAccountStatus
 
         foreach ($user in $Users){
 
-            Write-warning "Setting user account [$($user.username) ; $($user.EmailAddress)] status to: $Status"
+            Write-Verbose "Setting user account [$($user.username) ; $($user.EmailAddress)] status to: $Status"
 
             $user.IsActive = $IsActive
 
