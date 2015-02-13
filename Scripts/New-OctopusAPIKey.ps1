@@ -49,14 +49,14 @@ function New-OctopusAPIKey
 
         $LoginObj.Password = $Password
         
-        $endpoint = new-object Octopus.Client.OctopusServerEndpoint "$($Env:OctopusURI)"    
+        $endpoint = new-object Octopus.Client.OctopusServerEndpoint "$($Env:OctopusURL)"    
 
         $repository = new-object Octopus.Client.OctopusRepository $endpoint
 
         $repository.Users.SignIn($LoginObj)
 
         $user = $repository.Users.GetCurrent()
-
+        
         $APIKey = $repository.Users.CreateApiKey($user,$Purpose)
 
     }

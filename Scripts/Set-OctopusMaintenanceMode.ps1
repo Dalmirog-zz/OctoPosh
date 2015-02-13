@@ -40,7 +40,7 @@ function Set-OctopusMaintenanceMode
  
         $body = @{IsInMaintenanceMode=$MaintenanceMode} | ConvertTo-Json
  
-        $r = Invoke-WebRequest -Uri "$Env:OctopusURI/api/maintenanceconfiguration" -Method PUT -Headers $Header -Body $body
+        $r = Invoke-WebRequest -Uri "$Env:OctopusURL/api/maintenanceconfiguration" -Method PUT -Headers $Header -Body $body
     }
     End
     {
