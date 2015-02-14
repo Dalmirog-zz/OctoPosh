@@ -26,9 +26,11 @@ function Set-OctopusMaintenanceMode
 
     Begin
     {
-        $null = New-OctopusConnection #Using this cmdlet just cause it validates that $env:OctopusAPIKey and $env:OctopusURI are populated
+        #$null = New-OctopusConnection #Using this cmdlet just cause it validates that $env:OctopusAPIKey and $env:OctopusURI are populated
 
-        $Header =  @{ "X-Octopus-ApiKey" = $env:OctopusAPIKey }
+        #$Header =  @{ "X-Octopus-ApiKey" = $env:OctopusAPIKey }
+
+        $Header = New-OctopusConnection -RestAPI
     }
     Process
     {
