@@ -6,24 +6,16 @@
 .EXAMPLE
    $c = New-octopusconnection ; $c.repository.environments.findall()
 .EXAMPLE
-   $header = New-OctopusConnection -RestAPI ; invoke-webrequest -header $header -uri http://Octopus.company.com/api/environments/all -method Get
+   $c = New-OctopusConnection ; invoke-webrequest -header $c.header -uri http://Octopus.company.com/api/environments/all -method Get
 .LINK
    Github project: https://github.com/Dalmirog/OctopusDeploy-Powershell-module
 #>
 function New-OctopusConnection
 {
 
-    [CmdletBinding()]
-    Param
-    (
-        # When used, the function will return the hashtable that can be passed to the [header] parameter of Invoke-Webrequest
-        [switch]$RestAPI
-    )
-
-
     Begin
     {
-        If(($env:OctopusURL -eq $null) -or ($env:OctopusURL -eq "") -or ($env:OctopusAPIKey -eq $null) -or ($env:OctopusAPIKey -eq ""))
+        If(([string]::IsNullOrEmpty($env:OctopusURL)) -or ([string]::IsNullOrEmpty($env:OctopusAPIKey)))
         {
             throw "At least one of the following variables does not have a value set: `$env:OctopusURL or `$env:OctopusAPIKey. Use Set-OctopusConnectionInfo to set these values"            
         }
@@ -32,26 +24,17 @@ function New-OctopusConnection
     Process
     {
 
-        If(!($RestAPI)){
+        $endpoint = new-object Octopus.Client.OctopusServerEndpoint "$($Env:OctopusURL)","$($env:OctopusAPIKey)"    
+        $repository = new-object Octopus.Client.OctopusRepository $endpoint                     
 
-            $endpoint = new-object Octopus.Client.OctopusServerEndpoint "$($Env:OctopusURL)","$($env:OctopusAPIKey)"    
-            $repository = new-object Octopus.Client.OctopusRepository $endpoint                     
-
-            $properties = [ordered]@{
-                endpoint = $endpoint
-                repository = $repository
-            }
-
-            $output = New-Object psobject -Property $properties
-
+        $properties = [ordered]@{
+            endpoint = $endpoint
+            repository = $repository
+            header = @{ "X-Octopus-ApiKey" = $env:OctopusAPIKey }
         }
 
-        else{
-
-            $output =  @{ "X-Octopus-ApiKey" = $env:OctopusAPIKey }
-
-        }
-
+        $output = New-Object psobject -Property $properties
+        
     }
     End
     {
