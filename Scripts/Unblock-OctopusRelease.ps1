@@ -35,25 +35,42 @@ function Unblock-OctopusRelease
     }
     Process
     {
-        if($Resource){
+        Try{
+            if($Resource){
 
-            Invoke-WebRequest $env:OctopusURL/$($Resource.links.ResolveDefect) -Method Post -Headers $c.header
+                $response = Invoke-WebRequest $env:OctopusURL/$($Resource.links.ResolveDefect) -Method Post -Headers $c.header
 
+            }
+        
+            If($Version){
+        
+                $p = $c.repository.Projects.FindOne({param($proj) if($proj.name -eq $ProjectName ){$true}})
+
+                $r = $c.repository.Releases.FindOne({param($Rel) if(($Rel.version -eq $Version) -and ($Rel.projectID -eq $p.ID)) {$true}})
+
+                $response = Invoke-WebRequest $env:OctopusURL/$($r.links.ResolveDefect) -Method Post -Headers $c.header
+        
+            }
         }
-        
-        If($Version){
-        
-            $p = $c.repository.Projects.FindOne({param($proj) if($proj.name -eq $ProjectName ){$true}})
 
-            $r = $c.repository.Releases.FindMany({param($Rel) if (($Rel.version -eq $Version) -and ($Rel.projectID -eq $p.ID)) {$true}})
-
-            Invoke-WebRequest $env:OctopusURL/$($r.links.ResolveDefect) -Method Post -Headers $c.header
+        Catch{
+        
+            write-error $_
         
         }
+
         
 
     }
     End
     {
+
+        if($response.statuscode -eq 200){        
+            Return $True
+        }
+        Else{
+            Return $false
+        }
+
     }
 }

@@ -47,7 +47,7 @@ function Block-OctopusRelease
 
             If($Resource){
 
-                Invoke-WebRequest $env:OctopusURL/$($Resource.links.ReportDefect) -Method Post -Headers $c.header -Body $Defect
+               $response = Invoke-WebRequest $env:OctopusURL/$($Resource.links.ReportDefect) -Method Post -Headers $c.header -Body $Defect
 
             }
         
@@ -57,13 +57,13 @@ function Block-OctopusRelease
 
                 $r = $c.repository.Releases.FindMany({param($Rel) if (($Rel.version -eq $Version) -and ($Rel.projectID -eq $p.ID)) {$true}})
             
-                Invoke-WebRequest $env:OctopusURL/$($r.links.ReportDefect) -Method Post -Headers $c.header -Body $Defect
+               $response = Invoke-WebRequest $env:OctopusURL/$($r.links.ReportDefect) -Method Post -Headers $c.header -Body $Defect
         
             }
         }
         Catch{
         
-            $_
+            write-error $_
         
         }
 
@@ -72,5 +72,11 @@ function Block-OctopusRelease
     }
     End
     {
+        if($response.statuscode -eq 200){        
+            Return $True
+        }
+        Else{
+            Return $false
+        }
     }
 }
