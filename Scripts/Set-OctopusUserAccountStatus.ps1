@@ -22,13 +22,14 @@ function Set-OctopusUserAccountStatus
         [string]$status,
 
         # User name filter
+
         [String[]]$Username,
 
         # Email address filter
         [String[]]$EmailAddress,
         
         # Octopus user resource filter
-        [parameter(ValueFromPipeline=$True)]
+        [parameter(ValueFromPipelineByPropertyName=$true)]
         [Octopus.Client.Model.UserResource[]]$Resource
         #>
 
@@ -42,7 +43,7 @@ function Set-OctopusUserAccountStatus
 
         $c = New-OctopusConnection
 
-        [Octopus.Client.Model.UserResource[]]$Users = $c.repository.Users.FindMany({param($u) if (($u.username -in $Username) -or ($u.username -like $Username) -or ($u.EmailAddress -in $EmailAddress) -or ($u.emailaddress -in $EmailAddress)) {$true}})
+        [Octopus.Client.Model.UserResource[]]$Users = $c.repository.Users.FindMany({param($u) if (($u.username -in $Username) -or ($u.username -like $Username) -or ($u.EmailAddress -in $EmailAddress) -or ($u.emailaddress -like $EmailAddress)) {$true}})
         
         If($Resource){$users += $Resource}
 

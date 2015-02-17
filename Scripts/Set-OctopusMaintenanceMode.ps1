@@ -26,9 +26,7 @@ function Set-OctopusMaintenanceMode
 
     Begin
     {
-        $null = New-OctopusConnection #Using this cmdlet just cause it validates that $env:OctopusAPIKey and $env:OctopusURI are populated
-
-        $Header =  @{ "X-Octopus-ApiKey" = $env:OctopusAPIKey }
+        $c = New-OctopusConnection
     }
     Process
     {
@@ -40,7 +38,7 @@ function Set-OctopusMaintenanceMode
  
         $body = @{IsInMaintenanceMode=$MaintenanceMode} | ConvertTo-Json
  
-        $r = Invoke-WebRequest -Uri "$Env:OctopusURL/api/maintenanceconfiguration" -Method PUT -Headers $Header -Body $body
+        $r = Invoke-WebRequest -Uri "$Env:OctopusURL/api/maintenanceconfiguration" -Method PUT -Headers $c.header -Body $body
     }
     End
     {
