@@ -23,7 +23,7 @@ Describe "Octopus Module Tests" {
                 $envobj.Id | should not be $null 
 
                 #Deleting Environment
-                {Remove-OctopusResource -Resource $envobj} | should not Throw
+                {Remove-OctopusResource -Resource $envobj -Force} | should not Throw
 
                 ##should be changed for Get-OctopusEnvironments
                 $c.repository.Environments.FindByName($testname) | should be $null
@@ -57,9 +57,9 @@ Describe "Octopus Module Tests" {
                 $Projobj.Id | should not be $null
                 
                 #Deleting Project and ProjectGroup
-                Remove-OctopusResource -Resource $Projobj
+                Remove-OctopusResource -Resource $Projobj -Force
                 Start-Sleep -Seconds 2
-                Remove-OctopusResource -Resource $Pgobj               
+                Remove-OctopusResource -Resource $Pgobj -Force               
 
                 $c.repository.ProjectGroups.FindByName($testname) | should be $null
                 $c.repository.Projects.FindByName($testname) | should be $null
