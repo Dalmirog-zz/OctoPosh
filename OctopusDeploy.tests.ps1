@@ -4,7 +4,71 @@ Describe "Octopus Module Tests" {
 
         $TestName = new-testname
 
-        Context "Lovely Tests"{            
+        $c = New-OctopusConnection
+
+        Context "Create/Delete resources"{
+
+            It "Environments"{                
+
+                $env = Get-OctopusResourceModel -Resource Environment
+
+                #Creating environment without required properties
+                {New-OctopusResource -Resource $env} | should Throw
+
+                #Creating environment correctly
+                $env.Name = $testname
+                $envobj = New-OctopusResource -Resource $env
+
+                $envobj.Name | should be $testname
+                $envobj.Id | should not be $null 
+
+                #Deleting Environment
+                {Remove-OctopusResource -Resource $envobj} | should not Throw
+
+                ##should be changed for Get-OctopusEnvironments
+                $c.repository.Environments.FindByName($testname) | should be $null
+
+                }
+
+            It "Projects & Project Groups"{
+
+                $Pg = Get-OctopusResourceModel -Resource ProjectGroup
+                $Proj = Get-OctopusResourceModel -Resource Project
+
+                #Creating Project and ProjectGroup without required properties
+                {New-OctopusResource -Resource $Pg} | should Throw
+                {New-OctopusResource -Resource $Proj} | should Throw
+
+                #Creating Project and ProjectGroup properly
+                $Pg.Name = $testname
+
+                $Pgobj = New-OctopusResource -Resource $Pg
+
+                $Pgobj.Name | should be $testname
+                $Pgobj.Id | should not be $null
+
+                $Proj.Name = $testname
+                $Proj.ProjectGroupId = $Pgobj.Id
+                $Proj.LifecycleId = "lifecycle-ProjectGroups-1"
+
+                $Projobj = New-OctopusResource -Resource $Proj
+
+                $Projobj.Name | should be $testname
+                $Projobj.Id | should not be $null
+                
+                #Deleting Project and ProjectGroup
+                Remove-OctopusResource -Resource $Projobj
+                Start-Sleep -Seconds 2
+                Remove-OctopusResource -Resource $Pgobj               
+
+                $c.repository.ProjectGroups.FindByName($testname) | should be $null
+                $c.repository.Projects.FindByName($testname) | should be $null
+
+            }
+        
+        }
+
+        Context "System administration Tests"{  
 
             It "Get/Set-OctopusConnectionInfo" {
             
@@ -14,11 +78,34 @@ Describe "Octopus Module Tests" {
                 $ci.OctopusURL | should be "SomethingURL"
                 $ci.OctopusAPIKey | should be "SomethingAPIKey"                
 
-                Set-OctopusConnectionInfo -URL "http://localhost" -APIKey "API-7CH6XN0HHOU7DDEEUGKUFUR1K"
+                Set-OctopusConnectionInfo -URL "http://localhost:81" -APIKey "API-YHMOPNVMRLFXJBV4EQWWFKXAWLQ"
 
                 $ci = Get-OctopusConnectionInfo
-                $ci.OctopusURL | should be "http://localhost"
-                $ci.OctopusAPIKey | should be "API-7CH6XN0HHOU7DDEEUGKUFUR1K"
+                $ci.OctopusURL | should be "http://localhost:81"
+                $ci.OctopusAPIKey | should be "API-YHMOPNVMRLFXJBV4EQWWFKXAWLQ"
+            
+            }
+
+            It "Get/Set-OctopusSMTPConfig"{
+            
+                $port = Get-Random
+                
+                Set-OctopusSMTPConfig -SMTPHost "$TestName" `
+                -Port $port -SendEmailFrom "dalmiro@company.com" | should be $true
+
+                $SMTPConfig = Get-OctopusSMTPConfig
+
+                $SMTPConfig.SMTPHost | Should be $TestName
+                $SMTPConfig.SMTPPort | should be $port
+
+                Set-OctopusSMTPConfig -SMTPHost "Localhost" `
+                -Port 25 -SendEmailFrom "Octopus@company.com" | should be $true
+
+                $SMTPConfig = Get-OctopusSMTPConfig
+
+                $SMTPConfig.SMTPHost | Should be "Localhost"
+                $SMTPConfig.SMTPPort | should be 25
+
             
             }
 
@@ -40,15 +127,8 @@ Describe "Octopus Module Tests" {
 
             It "New-OctopusAPIKey creates an API Key"{
 
-                #changing WarningPreference to avoid getting the warning of
-                #new-octopusAPIKey so tests look nicer
-                $WarningPreference = "silentlycontinue"
-
                 $api = New-OctopusAPIKey -Purpose "$TestName" -Username Ian.Paullin -password "Michael2"
-
-                #Setting it back to normal
-                $WarningPreference = "continue"
-
+                
                 $api.purpose | should be $TestName
 
                 $api.APIKey | should not be $null
@@ -56,58 +136,16 @@ Describe "Octopus Module Tests" {
                 {$c.repository.Users.RevokeApiKey($api)} | should not throw
 
             }
-        }
 
-        Context "Create/Delete resources"{
+            It "Blocks/Unblocks Release"{
 
-            $c = New-OctopusConnection
+                Block-OctopusRelease -ProjectName Powershell -Version 1.1.1 -Description $TestName | should be $true
 
-            It "Environment"{                
+                UnBlock-OctopusRelease -ProjectName Powershell -Version 1.1.1 | should be $true
 
-                $env = Get-OctopusResourceModel -Resource Environment
-
-                $env.Name = $testname
-
-                $envobj = New-OctopusResource -Resource $env
-
-                $envobj.Name | should be $testname
-                $envobj.Id | should not be $null 
-
-                Remove-OctopusResource -Resource $envobj
-
-                $c.repository.Environments.FindByName($testname) | should be $null
-
-                }
-
-            It "Project & Project Group"{
-
-                $Pg = Get-OctopusResourceModel -Resource ProjectGroup
-                $Proj = Get-OctopusResourceModel -Resource Project
-
-                $Pg.Name = $testname
-
-                $Pgobj = New-OctopusResource -Resource $Pg
-
-                $Pgobj.Name | should be $testname
-                $Pgobj.Id | should not be $null
-
-                $Proj.Name = $testname
-                $Proj.ProjectGroupId = $Pgobj.Id
-                $Proj.LifecycleId = "lifecycle-ProjectGroups-1"
-
-                $Projobj = New-OctopusResource -Resource $Proj
-
-                $Projobj.Name | should be $testname
-                $Projobj.Id | should not be $null
-                
-                Remove-OctopusResource -Resource $Projobj
-                Remove-OctopusResource -Resource $Pgobj
-               
-
-                $c.repository.ProjectGroups.FindByName($testname) | should be $null
-                $c.repository.Projects.FindByName($testname) | should be $null
 
             }
-        
         }
+
+        
 }
