@@ -37,7 +37,25 @@ Once the values are set you can check them out using ```Get-OctopusConnectionInf
 | New-OctopusAPIKey     | Creates an API Key for a user|
 | Set-OctopusMaintenanceMode     | Turns Octopus Maintenance mode On/Off|
 | Set-OctopusUserAccountStatus     | Enables/Disables an Octopus user account|
+| Block-OctopusRelease     | Blocks an Octopus release|
+| Unblock-OctopusRelease     | Unblocks an Octopus release|
+| Get-OctopusOctopusSMTPConfig     | Gets current Octopus SMTP Config|
+| Set-OctopusOctopusSMTPConfig     | Sets Octopus SMTP Config|
+| Remove-OctopusResource     | Deletes an Octopus Resource|
+| Get-OctopusResourceModel     | Returns an empty object from the Octopus Model|
+
 
 ##Cmdlets Syntax
 
 Run ```Get-help [cmdlet]```
+
+##Credits
+
+This module was made using the following awesome tools
+
+| Name | Site|
+| ------------- | ----------- |
+| Octopus Deploy      | https://octopusdeploy.com/|
+| Pester | https://github.com/pester/Pester|
+| Fiddler | http://www.telerik.com/fiddler |
+| Papercut     | https://papercut.codeplex.com/ |

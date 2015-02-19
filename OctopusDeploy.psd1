@@ -4,10 +4,10 @@
 ModuleToProcess = 'OctopusDeploy.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.2.0.0'
+ModuleVersion = '0.0.1.0'
 
 # Author of this module
-Author = 'Dalmiro Granias ; @dalmirogranias'
+Author = 'Dalmiro Granias ; http://about.me/dalmiro.granias'
 
 # Description of the functionality provided by this module
 Description = 'This module contains a set of cmdlets that talk to the Octopus REST API to perform basic Octopus Deploy administration tasks'

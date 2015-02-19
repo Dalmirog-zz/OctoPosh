@@ -7,6 +7,8 @@
    $EnvironmentObj = Get-OctopusResourceModel -Resource "Environment"
 .EXAMPLE
    $ProjectObj = Get-OctopusResourceModel -Resource "Project"
+.LINK
+   Github project: https://github.com/Dalmirog/OctopusDeploy-Powershell-module
 #>
 function Get-OctopusResourceModel
 {
@@ -14,10 +16,10 @@ function Get-OctopusResourceModel
     Param
     (
         # Resource object model
-        [Parameter(Mandatory=$true,                  
-                   Position=0)]
         [ValidateSet("Environment","Project","ProjectGroup")] 
-        $Resource
+        [string]$Resource,
+                
+        [switch]$ListAvailable
     )
 
     Begin
@@ -26,12 +28,21 @@ function Get-OctopusResourceModel
     }
     Process
     {
-      switch ($Resource){ 
-            "Environment" {$o = New-Object Octopus.Client.Model.EnvironmentResource}
-            "Project" {$o = New-Object Octopus.Client.Model.ProjectResource}            
-            "ProjectGroup" {$o = New-Object Octopus.Client.Model.ProjectGroupResource}            
-        }
+      If(!($ListAvailable)){
+          Switch ($Resource){ 
+                "Environment" {$o = New-Object Octopus.Client.Model.EnvironmentResource}
+                "Project" {$o = New-Object Octopus.Client.Model.ProjectResource}            
+                "ProjectGroup" {$o = New-Object Octopus.Client.Model.ProjectGroupResource}            
+          }
+      }
+      Else{
 
+        "Octopus.Client.Model.EnvironmentResource",
+        "Octopus.Client.Model.ProjectResource",
+        "Octopus.Client.Model.ProjectGroupResource"
+
+        break      
+      }     
     }
     End
     {
