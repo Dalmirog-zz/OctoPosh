@@ -66,7 +66,8 @@ function Get-OctopusDeployment
             $t = $c.repository.Tasks.Get($d.Links.task)
             $r = $c.repository.Releases.Get($d.Links.Release)
             $dp = $c.repository.DeploymentProcesses.Get($r.links.ProjectDeploymentProcessSnapshot)
-            
+            $dev = $c.repository.Events.FindMany({param($event) if (($event.category -eq "DeploymentQueued") -and ($event.MessageReferences.ReferencedDocumentID -contains $d.ID)) {$true}})
+            $rev = $c.repository.Events.FindMany({param($event) if (($event.category -eq "Created") -and ($event.MessageReferences.ReferencedDocumentID -contains $r.Id) -and ($event.Message -like "*Release * was created")) {$true}})
             #Getting Nuget packages and their versions
             $packages = @()
             
@@ -98,13 +99,13 @@ function Get-OctopusDeployment
                             EnvironmentName = $e.name
                             DeploymentstartTime = ($t.Starttime).DateTime
                             DeploymentEndTime = ($t.Completedtime).DateTime
-                            DeploymentStartedBy = $d.LastModifiedBy
+                            DeploymentStartedBy = $dev.Username
                             Duration = [math]::Round($duration,2)
                             Status = $t.state                           
                             ReleaseVersion = $r.version
                             ReleaseCreationDate = ($r.assembled).DateTime
                             ReleaseNotes = $r.ReleaseNotes
-                            ReleaseCreatedBy = $r.LastModifiedBy
+                            ReleaseCreatedBy = $rev.Username
                             Package = $Packages
                             Resource = $d
                         }
