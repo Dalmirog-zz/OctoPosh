@@ -1,6 +1,10 @@
 # Octopus Deploy Powershell Module
 
-The goal of this module is to provide a set of useful cmdlets to perform common administration tasks on Octopus Deploy 
+Octopus Deploy is a friendly deployment automation system for .NET developers. [Its architecture is built API-First](http://docs.octopusdeploy.com/display/OD/Octopus+REST+API), meaning 100% of the data and operations that you can see and perform in the Octopus UI can be performed over the REST API.
+
+This module contains a set of CMDLets that use the Octopus REST API to perform common administrative tasks.
+
+DISCLAIMER: This is an open source project which is NOT supported by Octopus Deploy. All questions/bugs about this module should be entered on this github project.
 
 ##Installing the module
 
@@ -43,6 +47,7 @@ Once the values are set you can check them out using ```Get-OctopusConnectionInf
 | Set-OctopusOctopusSMTPConfig     | Sets Octopus SMTP Config|
 | Remove-OctopusResource     | Deletes an Octopus Resource|
 | Get-OctopusResourceModel     | Returns an empty object from the Octopus Model|
+| Get-OctopusMaintenanceMode     | Gets current Octopus Maintenance mode status|
 
 
 ##Cmdlets Syntax
