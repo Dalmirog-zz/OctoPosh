@@ -109,10 +109,15 @@ Describe "Octopus Module Tests" {
             
             }
 
-            It "Set-OctopusMaintenanceMode ON/OFF" {
+            It "Get/Set-OctopusMaintenanceMode" {
 
                 Set-OctopusMaintenanceMode -On | should be $true
+
+                (Get-OctopusMaintenanceMode).IsInMaintenanceMode | should be $true
+
                 Set-OctopusMaintenanceMode -OFF | should be $true
+
+                (Get-OctopusMaintenanceMode).IsInMaintenanceMode | should be $False
 
             }
 
@@ -137,7 +142,7 @@ Describe "Octopus Module Tests" {
 
             }
 
-            It "Blocks/Unblocks Release"{
+            It "Block/Unblock Release"{
 
                 Block-OctopusRelease -ProjectName Powershell -Version 1.1.1 -Description $TestName | should be $true
 
