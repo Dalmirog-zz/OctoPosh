@@ -8,9 +8,15 @@
 .EXAMPLE
    Get-OctopusDeployment -project "MyProduct.Webapp"
 .EXAMPLE
+   Get-OctopusDeployment -project "MyProduct.*"
+.EXAMPLE
    Get-OctopusDeployment -Environment "Staging","UAT"
 .EXAMPLE
+   Get-OctopusDeployment -Environment "Staging-*","Production"
+.EXAMPLE
    Get-OctopusDeployment -project "MyProduct.Webapp","MyProduct.service" -Environment "Production"
+.EXAMPLE
+   Get-OctopusDeployment -project "MyProduct.Webapp" -Environment "Production" -After 2/20/2015 -Before 2/21/2015
 .LINK
    Github project: https://github.com/Dalmirog/OctopusDeploy-Powershell-module
 #>
@@ -20,12 +26,17 @@ function Get-OctopusDeployment
     Param
     (
         # Octopus environment name
-        [Parameter(Mandatory=$false)]
         [string[]]$EnvironmentName = "*",
 
         # Octopus project name
-        [Parameter(Mandatory=$false)]
-        [string[]]$ProjectName = "*"
+        [string[]]$ProjectName = "*",
+
+        #Before date
+        [System.DateTimeOffset]$Before = [System.DateTimeOffset]::MaxValue,
+        
+        #After date
+        [System.DateTimeOffset]$After = [System.DateTimeOffset]::MinValue
+
           
     )
 
@@ -50,8 +61,14 @@ function Get-OctopusDeployment
 
         else {$Environmentid = "*"}
 
-        #Getting deployments based on EnvironmentIds and ProjectIds
-        $deployments = $c. repository.Deployments.FindMany({param($dep) if ((($dep.projectid -in $projectid) -or ($dep.projectid -like $projectid)) -and (($dep.environmentid -in $environmentid) -or ($dep.environmentid -like $environmentid))) {$true}})
+        #Getting deployments based on EnvironmentIds, ProjectIds, created $Before and $After
+        $deployments = $c. repository.Deployments.FindMany(`
+            
+            {param($dep) if (`
+                (($dep.projectid -in $projectid) -or ($dep.projectid -like $projectid))`
+                 -and (($dep.environmentid -in $environmentid) -or ($dep.environmentid -like $environmentid))`
+                 -and (($dep.created -ge $After) -and ($dep.created -le $Before)))`
+            {$true}})
         
     }
     Process
@@ -68,6 +85,7 @@ function Get-OctopusDeployment
             $dp = $c.repository.DeploymentProcesses.Get($r.links.ProjectDeploymentProcessSnapshot)
             $dev = $c.repository.Events.FindMany({param($event) if (($event.category -eq "DeploymentQueued") -and ($event.MessageReferences.ReferencedDocumentID -contains $d.ID)) {$true}})
             $rev = $c.repository.Events.FindMany({param($event) if (($event.category -eq "Created") -and ($event.MessageReferences.ReferencedDocumentID -contains $r.Id) -and ($event.Message -like "*Release * was created")) {$true}})
+            
             #Getting Nuget packages and their versions
             $packages = @()
             

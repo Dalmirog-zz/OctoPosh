@@ -68,6 +68,24 @@ Describe "Octopus Module Tests" {
         
         }
 
+                Context "Get Resources"{
+
+            It "Deployments" {
+
+                $date = (get-date)
+
+                #I should be creating a deployment or something like that here
+
+                $deployments = Get-OctopusDeployment -ProjectName UnitTest
+
+                $i = Get-Random -Maximum ($deployments.count - 1)
+
+                $deployments[$i].deploymentstarttime -lt $date | should be $true
+
+            }
+
+        }
+
         Context "System administration Tests"{  
 
             It "Get/Set-OctopusConnectionInfo" {
