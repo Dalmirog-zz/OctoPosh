@@ -112,7 +112,7 @@ function Get-OctopusDeployment
             else{$duration = 0}
 
             #Creating output object
-            $properties = [ordered]@{
+            $obj = [PSCustomObject]@{
                             ProjectName = $p.name
                             EnvironmentName = $e.name
                             DeploymentstartTime = ($t.Starttime).DateTime
@@ -126,10 +126,8 @@ function Get-OctopusDeployment
                             ReleaseCreatedBy = $rev.Username
                             Package = $Packages
                             Resource = $d
-                        }
-
-            #Adding object to list
-            $list += $obj = new-object psobject -Property $properties
+                        }                                    
+            $list += $obj
         }
 
     }
