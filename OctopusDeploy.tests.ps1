@@ -57,9 +57,9 @@ Describe "Octopus Module Tests" {
                 $Projobj.Id | should not be $null
                 
                 #Deleting Project and ProjectGroup
-                Remove-OctopusResource -Resource $Projobj -Force
-                Start-Sleep -Seconds 2
-                Remove-OctopusResource -Resource $Pgobj -Force               
+                {$Projobj | Remove-OctopusResource -Force} | should not Throw
+
+                {$Pgobj | Remove-OctopusResource -Force} | should not Throw
 
                 $c.repository.ProjectGroups.FindByName($testname) | should be $null
                 $c.repository.Projects.FindByName($testname) | should be $null

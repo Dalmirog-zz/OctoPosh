@@ -19,6 +19,7 @@ function Remove-OctopusResource
         # Octopus resource object
         [Parameter(Mandatory=$true,
                    ValueFromPipelineByPropertyName=$true,
+                   ValueFromPipeline=$true,
                    Position=0)]
         $Resource,
 
@@ -57,25 +58,36 @@ function Remove-OctopusResource
             if(!($Force)){
 
                 If (!(Get-UserConfirmation -message "Are you sure you want to delete this resource? `n`n$resource`n")){
-                    break
+                    Throw "Canceled by user"
                 }
 
             }
 
             switch ($Resource)
             {
-                {$_.getType() -eq [Octopus.Client.Model.ProjectGroupResource]} {$c.repository.ProjectGroups.Delete($_)}
-                {$_.getType() -eq [Octopus.Client.Model.ProjectResource]} {$c.repository.Projects.Delete($_)}
-                {$_.getType() -eq [Octopus.Client.Model.EnvironmentResource]} {$c.repository.Environments.Delete($_)}
-                {$_.getType() -eq [Octopus.Client.Model.DeploymentResource]} {$c.repository.Deployments.Delete($_)}          
+                {$_.getType() -eq [Octopus.Client.Model.ProjectGroupResource]} {$r = $c.repository.ProjectGroups.Delete($_)}
+                {$_.getType() -eq [Octopus.Client.Model.ProjectResource]} {$r = $c.repository.Projects.Delete($_)}
+                {$_.getType() -eq [Octopus.Client.Model.EnvironmentResource]} {$r = $c.repository.Environments.Delete($_)}
+                {$_.getType() -eq [Octopus.Client.Model.DeploymentResource]} {$r = $c.repository.Deployments.Delete($_)}          
                 
                 Default {throw "Invalid object type. Run 'Get-OctopusResourceModel -ListAvailable' to get a list of the object types accepted by this cmdlet "}
             }
+
+            $counter = 0
+
+            Do{
+
+                $task = $c.repository.Tasks.Get($r.Links.Self)
+                $counter++
+                Start-Sleep -Seconds 2
+
+              }
+            Until (($task.state -notin ("Queued","executing")) -or ($counter -eq 5))
 
         }
     }
     End
     {
-        
+        return $task
     }
 }
