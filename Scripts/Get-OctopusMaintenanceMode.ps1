@@ -16,7 +16,7 @@ function Get-OctopusMaintenanceMode
     }
     Process
     {                         
-        $r = Invoke-WebRequest -Uri "$Env:OctopusURL/api/maintenanceconfiguration" -Method Get -Headers $c.header
+        $r = Invoke-WebRequest -Uri "$Env:OctopusURL/api/maintenanceconfiguration" -Method Get -Headers $c.header -UseBasicParsing
 
         If ($r.statuscode -ne 200) {Return $false}
 

@@ -38,7 +38,7 @@ function Unblock-OctopusRelease
         Try{
             if($Resource){
 
-                $response = Invoke-WebRequest $env:OctopusURL/$($Resource.links.ResolveDefect) -Method Post -Headers $c.header
+                $response = Invoke-WebRequest $env:OctopusURL/$($Resource.links.ResolveDefect) -Method Post -Headers $c.header -UseBasicParsing
 
             }
         
@@ -48,7 +48,7 @@ function Unblock-OctopusRelease
 
                 $r = $c.repository.Releases.FindOne({param($Rel) if(($Rel.version -eq $Version) -and ($Rel.projectID -eq $p.ID)) {$true}})
 
-                $response = Invoke-WebRequest $env:OctopusURL/$($r.links.ResolveDefect) -Method Post -Headers $c.header
+                $response = Invoke-WebRequest $env:OctopusURL/$($r.links.ResolveDefect) -Method Post -Headers $c.header -UseBasicParsing
         
             }
         }

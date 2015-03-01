@@ -60,7 +60,7 @@ function Set-OctopusSMTPConfig
     }
     Process
     {
-        $r = Invoke-WebRequest "$env:OctopusURL/api/smtpconfiguration" -Method Put -Headers $c.header -Body $body
+        $r = Invoke-WebRequest "$env:OctopusURL/api/smtpconfiguration" -Method Put -Headers $c.header -Body $body -UseBasicParsing
 
     }
     End

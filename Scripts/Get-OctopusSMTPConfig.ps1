@@ -16,7 +16,7 @@ function Get-OctopusSMTPConfig
     }
     Process
     {
-        $r = Invoke-WebRequest "$env:OctopusURL/api/smtpconfiguration" -Method Get -Headers $c.header -ContentType Json
+        $r = Invoke-WebRequest "$env:OctopusURL/api/smtpconfiguration" -Method Get -Headers $c.header -ContentType Json -UseBasicParsing
 
     }
     End
