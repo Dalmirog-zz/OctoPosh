@@ -83,9 +83,9 @@ function Get-OctopusDeployment
             $t = $c.repository.Tasks.Get($d.Links.task)
             $r = $c.repository.Releases.Get($d.Links.Release)
             $dp = $c.repository.DeploymentProcesses.Get($r.links.ProjectDeploymentProcessSnapshot)
-            $dev = $c.repository.Events.FindMany({param($event) if (($event.category -eq "DeploymentQueued") -and ($event.MessageReferences.ReferencedDocumentID -contains $d.ID)) {$true}})
-            $rev = $c.repository.Events.FindMany({param($event) if (($event.category -eq "Created") -and ($event.MessageReferences.ReferencedDocumentID -contains $r.Id) -and ($event.Message -like "*Release * was created")) {$true}})
-            
+            $dev = (Invoke-WebRequest -Uri "$env:OctopusURL/api/events?regarding=$($d.Id)" -Method Get -Headers $c.header | ConvertFrom-Json).items | ? {$_.category -eq "DeploymentQueued"}
+            $rev = (Invoke-WebRequest -Uri "$env:OctopusURL/api/events?regarding=$($r.Id)" -Method Get -Headers $c.header | ConvertFrom-Json).items | ? {$_.category -eq "Created"}
+
             #Getting Nuget packages and their versions
             $packages = @()
             
