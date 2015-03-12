@@ -68,19 +68,20 @@ Describe "Octopus Module Tests" {
         
         }
 
-                Context "Get Resources"{
+        Context "Get Resources"{
 
             It "Deployments" {
 
                 $date = (get-date)
 
                 #I should be creating a deployment or something like that here
+                #I'm always getting all the deployments. I should be doing something smarter
 
-                $deployments = Get-OctopusDeployment -ProjectName UnitTest
+                $deployments = Get-OctopusDeployment -ProjectName UnitTest -before $date
 
                 $i = Get-Random -Maximum ($deployments.count - 1)
 
-                $deployments[$i].deploymentstarttime -lt $date | should be $true
+                $deployments[$i].deploymentstarttime -le $date | should be $true
 
             }
 
