@@ -64,3 +64,4 @@ This module was made using the following awesome tools
 | Pester | https://github.com/pester/Pester|
 | Fiddler | http://www.telerik.com/fiddler |
 | Papercut     | https://papercut.codeplex.com/ |
+| TeamCity    | https://www.jetbrains.com/teamcity/ |
