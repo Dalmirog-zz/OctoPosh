@@ -1,5 +1,21 @@
 ﻿import-module "$PSScriptRoot\OctopusDeploy.psm1" -force
 
+Function New-TestName {    
+    
+    $length = 10 #length of random chars
+    $characters = 'abcdefghkmnprstuvwxyzABCDEFGHKLMNPRSTUVWXYZ1234567890' #characters to use
+    
+    # select random characters
+    $random = 1..$length | ForEach-Object { Get-Random -Maximum $characters.length }
+        
+    #Set ofs to "" to avoid having spaces between each char
+    $private:ofs=""
+
+    #output prefix (max 10 chars) + 5 random chars
+    Return [String]($prefix + $characters[$random])
+
+}
+
 Describe "Octopus Module Tests" {
 
         $TestName = new-testname
@@ -68,20 +84,19 @@ Describe "Octopus Module Tests" {
         
         }
 
-        Context "Get Resources"{
+                Context "Get Resources"{
 
             It "Deployments" {
 
                 $date = (get-date)
 
                 #I should be creating a deployment or something like that here
-                #I'm always getting all the deployments. I should be doing something smarter
 
-                $deployments = Get-OctopusDeployment -ProjectName UnitTest -before $date
+                $deployments = Get-OctopusDeployment -ProjectName UnitTest
 
                 $i = Get-Random -Maximum ($deployments.count - 1)
 
-                $deployments[$i].deploymentstarttime -le $date | should be $true
+                $deployments[$i].deploymentstarttime -lt $date | should be $true
 
             }
 
