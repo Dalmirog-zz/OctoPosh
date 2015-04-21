@@ -1,4 +1,4 @@
-﻿import-module "$PSScriptRoot\OctopusDeploy.psm1" -force
+﻿#import-module "$PSScriptRoot\OctopusDeploy.psm1" -force
 
 Function New-TestName {    
     
