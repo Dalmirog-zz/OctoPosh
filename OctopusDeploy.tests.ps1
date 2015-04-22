@@ -1,4 +1,7 @@
-﻿#import-module "$PSScriptRoot\OctopusDeploy.psm1" -force
+﻿if($env:computername -eq "DALMIROPC")
+{
+	import-module "$PSScriptRoot\OctopusDeploy.psm1" -force
+}
 
 Function New-TestName {    
     
@@ -24,7 +27,7 @@ Describe "Octopus Module Tests" {
 
         Context "Create/Delete resources"{
 
-            It "Environments"{                
+            It "Environments"{               
 
                 $env = Get-OctopusResourceModel -Resource Environment
 
@@ -92,7 +95,7 @@ Describe "Octopus Module Tests" {
 
                 #I should be creating a deployment or something like that here
 
-                $deployments = Get-OctopusDeployment -ProjectName UnitTest
+                $deployments = Get-OctopusDeployment -ProjectName TestProject1
 
                 $i = Get-Random -Maximum ($deployments.count - 1)
 
@@ -106,17 +109,20 @@ Describe "Octopus Module Tests" {
 
             It "Get/Set-OctopusConnectionInfo" {
             
+                $originalURL = $env:OctopusURL
+                $originalAPIKey = $env:OctopusAPIKey
+
                 Set-OctopusConnectionInfo -URL "SomethingURL" -APIKey "SomethingAPIKey"
 
                 $ci = Get-OctopusConnectionInfo
                 $ci.OctopusURL | should be "SomethingURL"
                 $ci.OctopusAPIKey | should be "SomethingAPIKey"                
 
-                Set-OctopusConnectionInfo -URL "http://localhost:81" -APIKey "API-YHMOPNVMRLFXJBV4EQWWFKXAWLQ"
+                Set-OctopusConnectionInfo -URL $originalURL -APIKey $originalAPIKey
 
                 $ci = Get-OctopusConnectionInfo
-                $ci.OctopusURL | should be "http://localhost:81"
-                $ci.OctopusAPIKey | should be "API-YHMOPNVMRLFXJBV4EQWWFKXAWLQ"
+                $ci.OctopusURL | should be $originalURL
+                $ci.OctopusAPIKey | should be $originalAPIKey
             
             }
 
@@ -155,7 +161,8 @@ Describe "Octopus Module Tests" {
 
             }
 
-            It "Set-OctopusUserAccountStatus Enabled/Disabled" {
+            <#
+            It "Set-OctopusUserAccountStatus Enabled/Disabled" { https://github.com/Dalmirog/OctopusDeploy-Powershell-module/issues/53
 
                 $d = Set-OctopusUserAccountStatus -Username Ian.Paullin -status Disabled
                 $d.IsActive | should be "False"
@@ -163,10 +170,11 @@ Describe "Octopus Module Tests" {
                 $e = Set-OctopusUserAccountStatus -Username Ian.Paullin -status Enabled
                 $e.IsActive | should be "True"
             }
-
+            #>
+            <# https://github.com/Dalmirog/OctopusDeploy-Powershell-module/issues/52z=
             It "New-OctopusAPIKey creates an API Key"{
 
-                $api = New-OctopusAPIKey -Purpose "$TestName" -Username Ian.Paullin -password "Michael2"
+                $api = New-OctopusAPIKey -Purpose "$TestName" -Username Tester -password "Michael3"
                 
                 $api.purpose | should be $TestName
 
@@ -175,15 +183,16 @@ Describe "Octopus Module Tests" {
                 {$c.repository.Users.RevokeApiKey($api)} | should not throw
 
             }
-
+            #>
+            
+            <# https://github.com/Dalmirog/OctopusDeploy-Powershell-module/issues/49
             It "Block/Unblock Release"{
 
                 Block-OctopusRelease -ProjectName Powershell -Version 1.1.1 -Description $TestName | should be $true
 
                 UnBlock-OctopusRelease -ProjectName Powershell -Version 1.1.1 | should be $true
-
-
             }
+            #>
         }
 
         
