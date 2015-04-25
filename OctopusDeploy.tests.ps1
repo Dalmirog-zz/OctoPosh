@@ -1,9 +1,4 @@
-﻿<#if($env:computername -eq "DALMIROPC")
-{
-	import-module "$PSScriptRoot\OctopusDeploy.psm1" -force
-}
-#>
-
+﻿#Generates a random test name that'll be used to name everything on the tests
 Function New-TestName {    
     
     $length = 10 #length of random chars
@@ -28,193 +23,195 @@ Describe "Octopus Module Tests" {
 
         $c = New-OctopusConnection
 
-             It "New-OctopusResource creates environments"{               
+        It "New-OctopusResource creates environments"{               
 
-                $env = Get-OctopusResourceModel -Resource Environment                
+            $env = Get-OctopusResourceModel -Resource Environment                
 
-                #Creating environment correctly
-                $env.Name = $testname
+            #Creating environment correctly
+            $env.Name = $testname
                 
-                $envobj = New-OctopusResource -Resource $env
+            $envobj = New-OctopusResource -Resource $env
 
-                $envobj.name | should be $testname
+            $envobj.name | should be $testname
 
-                }
+        }
 
-            It "Get-OctopusEnvironment gets environments"{
+        It "Get-OctopusEnvironment gets environments"{
                 
-                Get-OctopusEnvironment -Name $TestName | should not be $null
-            }
+            Get-OctopusEnvironment -Name $TestName | should not be $null
+        }
 
-            It "Remove-OctopusResource deletes environments"{
+        It "Remove-OctopusResource deletes environments"{
                 
-                $env = Get-OctopusEnvironment -Name $TestName
+            $env = Get-OctopusEnvironment -Name $TestName
 
-                {Remove-OctopusResource -Resource $env.resource -Force} | should not Throw               
+            {Remove-OctopusResource -Resource $env.resource -Force} | should not Throw               
 
-                (Get-OctopusEnvironment -Name $TestName) | should be $null
-            }
+            (Get-OctopusEnvironment -Name $TestName) | should be $null
+        }
             
-            It "New-OctopusResource creates Project Groups"{
+        It "New-OctopusResource creates Project Groups"{
 
-                $Pg = Get-OctopusResourceModel -Resource ProjectGroup
+            $Pg = Get-OctopusResourceModel -Resource ProjectGroup
                                                 
-                $Pg.Name = $testname
+            $Pg.Name = $testname
 
-                $Pgobj = New-OctopusResource -Resource $Pg
+            $Pgobj = New-OctopusResource -Resource $Pg
 
-                #Should change this for Get-OctopusProjectGroup
-                $Pgobj.name | should be $testname
+            #Should change this for Get-OctopusProjectGroup
+            $Pgobj.name | should be $testname
 
-            }
+        }
 
-            It "New-OctopusResource creates Projects"{
+        It "New-OctopusResource creates Projects"{
 
-                $Proj = Get-OctopusResourceModel -Resource Project
+            $Proj = Get-OctopusResourceModel -Resource Project
                 
-                $Proj.Name = $testname
-                $Proj.ProjectGroupId = ($c.repository.ProjectGroups.FindByName($testname)).id
-                $Proj.LifecycleId = "lifecycle-ProjectGroups-1"
+            $Proj.Name = $testname
+            $Proj.ProjectGroupId = ($c.repository.ProjectGroups.FindByName($testname)).id
+            $Proj.LifecycleId = "lifecycle-ProjectGroups-1"
 
-                $Projobj = New-OctopusResource -Resource $Proj
+            $Projobj = New-OctopusResource -Resource $Proj
 
-                $Projobj.Name | should be $testname
+            $Projobj.Name | should be $testname
 
-            }
+        }
 
-            It "UGLY PLACEHOLDER FOR GET-OCTOPUSPROJECT"{
+        It "UGLY PLACEHOLDER FOR GET-OCTOPUSPROJECT"{
+
+            Get-OctopusProject -Name $TestName | should not be $null
                 
-            }
+        }
 
-            It "UGLY PLACEHOLDER FOR GET-OCTOPUSPROJECTGROUP"{
+        It "UGLY PLACEHOLDER FOR GET-OCTOPUSPROJECTGROUP"{
                 
-            }
+        }
 
-            It "Remove-OctopusResource deletes Projects"{
+        It "Remove-OctopusResource deletes Projects"{
 
-                #should change this for Get-OctopusProject
-                $projobj = $c.repository.Projects.FindByName($TestName)
+            #should change this for Get-OctopusProject
+            $projobj = $c.repository.Projects.FindByName($TestName)
 
-                {Remove-OctopusResource -Resource $projobj -Force} | should not throw
+            {Remove-OctopusResource -Resource $projobj -Force} | should not throw
 
-                ($c.repository.Projects.FindByName($TestName)) | should be $null
+            ($c.repository.Projects.FindByName($TestName)) | should be $null
 
-            }
+        }
 
-            It "Remove-OctopusResource deletes Project Groups"{
+        It "Remove-OctopusResource deletes Project Groups"{
 
-                #should change this for Get-OctopusProjectGroup
-                $pgobj = $c.repository.ProjectGroups.FindByName($TestName)
+            #should change this for Get-OctopusProjectGroup
+            $pgobj = $c.repository.ProjectGroups.FindByName($TestName)
 
-                {Remove-OctopusResource -Resource $pgobj -Force} | should not throw
+            {Remove-OctopusResource -Resource $pgobj -Force} | should not throw
 
-                ($c.repository.ProjectGroups.FindByName($TestName)) | should be $null
+            ($c.repository.ProjectGroups.FindByName($TestName)) | should be $null
 
-            } 
+        } 
 
-            It "UGLY PLACEHOLDER FOR GET-OCTOPUSDEPLOYMENT"{
+        It "UGLY PLACEHOLDER FOR GET-OCTOPUSDEPLOYMENT"{
 
-            }
+        }
 
-            It "Get-OctopusDeployment gets deployments" {
+        It "Get-OctopusDeployment gets deployments" {
 
-                #I should be creating a deployment or something like that here
+            #I should be creating a deployment or something like that here
 
-                (Get-OctopusDeployment -ProjectName TestProject1) | should not be $null
+            (Get-OctopusDeployment -ProjectName TestProject1) | should not be $null
                 
-            }
+        }
 
-            It "UGLY PLACEHOLDER FOR REMOVE-OCTOPUSDEPLOYMENT"{
+        It "UGLY PLACEHOLDER FOR REMOVE-OCTOPUSDEPLOYMENT"{
 
-            }
+        }
                     
-            It "Get/Set-OctopusConnectionInfo do their thing" {
+        It "Get/Set-OctopusConnectionInfo do their thing" {
             
-                $originalURL = $env:OctopusURL
-                $originalAPIKey = $env:OctopusAPIKey
+            $originalURL = $env:OctopusURL
+            $originalAPIKey = $env:OctopusAPIKey
 
-                Set-OctopusConnectionInfo -URL "SomethingURL" -APIKey "SomethingAPIKey"
+            Set-OctopusConnectionInfo -URL "SomethingURL" -APIKey "SomethingAPIKey"
 
-                $ci = Get-OctopusConnectionInfo
-                $ci.OctopusURL | should be "SomethingURL"
-                $ci.OctopusAPIKey | should be "SomethingAPIKey"                
+            $ci = Get-OctopusConnectionInfo
+            $ci.OctopusURL | should be "SomethingURL"
+            $ci.OctopusAPIKey | should be "SomethingAPIKey"                
 
-                Set-OctopusConnectionInfo -URL $originalURL -APIKey $originalAPIKey
+            Set-OctopusConnectionInfo -URL $originalURL -APIKey $originalAPIKey
 
-                $ci = Get-OctopusConnectionInfo
-                $ci.OctopusURL | should be $originalURL
-                $ci.OctopusAPIKey | should be $originalAPIKey
+            $ci = Get-OctopusConnectionInfo
+            $ci.OctopusURL | should be $originalURL
+            $ci.OctopusAPIKey | should be $originalAPIKey
             
-            }
+        }
 
-            It "Get/Set-OctopusSMTPConfig do their thing"{
+        It "Get/Set-OctopusSMTPConfig do their thing"{
             
-                $port = Get-Random
+            $port = Get-Random
                 
-                Set-OctopusSMTPConfig -SMTPHost "$TestName" `
-                -Port $port -SendEmailFrom "dalmiro@company.com" | should be $true
+            Set-OctopusSMTPConfig -SMTPHost "$TestName" `
+            -Port $port -SendEmailFrom "dalmiro@company.com" | should be $true
 
-                $SMTPConfig = Get-OctopusSMTPConfig
+            $SMTPConfig = Get-OctopusSMTPConfig
 
-                $SMTPConfig.SMTPHost | Should be $TestName
-                $SMTPConfig.SMTPPort | should be $port
+            $SMTPConfig.SMTPHost | Should be $TestName
+            $SMTPConfig.SMTPPort | should be $port
 
-                Set-OctopusSMTPConfig -SMTPHost "Localhost" `
-                -Port 25 -SendEmailFrom "Octopus@company.com" | should be $true
+            Set-OctopusSMTPConfig -SMTPHost "Localhost" `
+            -Port 25 -SendEmailFrom "Octopus@company.com" | should be $true
 
-                $SMTPConfig = Get-OctopusSMTPConfig
+            $SMTPConfig = Get-OctopusSMTPConfig
 
-                $SMTPConfig.SMTPHost | Should be "Localhost"
-                $SMTPConfig.SMTPPort | should be 25
+            $SMTPConfig.SMTPHost | Should be "Localhost"
+            $SMTPConfig.SMTPPort | should be 25
 
             
-            }
+        }
 
-            It "Get/Set-OctopusMaintenanceMode do their thing" {
+        It "Get/Set-OctopusMaintenanceMode do their thing" {
 
-                Set-OctopusMaintenanceMode -On | should be $true
+            Set-OctopusMaintenanceMode -On | should be $true
 
-                (Get-OctopusMaintenanceMode).IsInMaintenanceMode | should be $true
+            (Get-OctopusMaintenanceMode).IsInMaintenanceMode | should be $true
 
-                Set-OctopusMaintenanceMode -OFF | should be $true
+            Set-OctopusMaintenanceMode -OFF | should be $true
 
-                (Get-OctopusMaintenanceMode).IsInMaintenanceMode | should be $False
+            (Get-OctopusMaintenanceMode).IsInMaintenanceMode | should be $False
 
-            }
+        }
 
-            <#
-            It "Set-OctopusUserAccountStatus Enabled/Disabled" { https://github.com/Dalmirog/OctopusDeploy-Powershell-module/issues/53
+        <#
+        It "Set-OctopusUserAccountStatus Enabled/Disabled" { https://github.com/Dalmirog/OctopusDeploy-Powershell-module/issues/53
 
-                $d = Set-OctopusUserAccountStatus -Username Ian.Paullin -status Disabled
-                $d.IsActive | should be "False"
+            $d = Set-OctopusUserAccountStatus -Username Ian.Paullin -status Disabled
+            $d.IsActive | should be "False"
 
-                $e = Set-OctopusUserAccountStatus -Username Ian.Paullin -status Enabled
-                $e.IsActive | should be "True"
-            }
-            #>
-            <# https://github.com/Dalmirog/OctopusDeploy-Powershell-module/issues/52z=
-            It "New-OctopusAPIKey creates an API Key"{
+            $e = Set-OctopusUserAccountStatus -Username Ian.Paullin -status Enabled
+            $e.IsActive | should be "True"
+        }
+        #>
+        <# https://github.com/Dalmirog/OctopusDeploy-Powershell-module/issues/52z=
+        It "New-OctopusAPIKey creates an API Key"{
 
-                $api = New-OctopusAPIKey -Purpose "$TestName" -Username Tester -password "Michael3"
+            $api = New-OctopusAPIKey -Purpose "$TestName" -Username Tester -password "Michael3"
                 
-                $api.purpose | should be $TestName
+            $api.purpose | should be $TestName
 
-                $api.APIKey | should not be $null
+            $api.APIKey | should not be $null
 
-                {$c.repository.Users.RevokeApiKey($api)} | should not throw
+            {$c.repository.Users.RevokeApiKey($api)} | should not throw
 
-            }
-            #>
+        }
+        #>
             
-            <# https://github.com/Dalmirog/OctopusDeploy-Powershell-module/issues/49
-            It "Block/Unblock Release"{
+        <# https://github.com/Dalmirog/OctopusDeploy-Powershell-module/issues/49
+        It "Block/Unblock Release"{
 
-                Block-OctopusRelease -ProjectName Powershell -Version 1.1.1 -Description $TestName | should be $true
+            Block-OctopusRelease -ProjectName Powershell -Version 1.1.1 -Description $TestName | should be $true
 
-                UnBlock-OctopusRelease -ProjectName Powershell -Version 1.1.1 | should be $true
-            }
+            UnBlock-OctopusRelease -ProjectName Powershell -Version 1.1.1 | should be $true
+        }
             
         
-        #>
+    #>
         
 }
