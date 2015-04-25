@@ -1,7 +1,8 @@
-﻿if($env:computername -eq "DALMIROPC")
+﻿<#if($env:computername -eq "DALMIROPC")
 {
 	import-module "$PSScriptRoot\OctopusDeploy.psm1" -force
 }
+#>
 
 Function New-TestName {    
     
@@ -23,71 +24,97 @@ Describe "Octopus Module Tests" {
 
         $TestName = new-testname
 
+        Write-Output "Test name: $TestName"
+
         $c = New-OctopusConnection
 
-        Context "Create/Delete resources"{
+             It "New-OctopusResource creates environments"{               
 
-            It "Environments"{               
-
-                $env = Get-OctopusResourceModel -Resource Environment
-
-                #Creating environment without required properties
-                {New-OctopusResource -Resource $env} | should Throw
+                $env = Get-OctopusResourceModel -Resource Environment                
 
                 #Creating environment correctly
                 $env.Name = $testname
+                
                 $envobj = New-OctopusResource -Resource $env
 
-                $envobj.Name | should be $testname
-                $envobj.Id | should not be $null 
-
-                #Deleting Environment
-                {Remove-OctopusResource -Resource $envobj -Force} | should not Throw
-
-                ##should be changed for Get-OctopusEnvironments
-                $c.repository.Environments.FindByName($testname) | should be $null
+                $envobj.name | should be $testname
 
                 }
 
-            It "Projects & Project Groups"{
+            It "Get-OctopusEnvironment gets environments"{
+                
+                Get-OctopusEnvironment -Name $TestName | should not be $null
+            }
+
+            It "Remove-OctopusResource deletes environments"{
+                
+                $env = Get-OctopusEnvironment -Name $TestName
+
+                {Remove-OctopusResource -Resource $env.resource -Force} | should not Throw               
+
+                (Get-OctopusEnvironment -Name $TestName) | should be $null
+            }
+            
+            It "New-OctopusResource creates Project Groups"{
 
                 $Pg = Get-OctopusResourceModel -Resource ProjectGroup
-                $Proj = Get-OctopusResourceModel -Resource Project
-
-                #Creating Project and ProjectGroup without required properties
-                {New-OctopusResource -Resource $Pg} | should Throw
-                {New-OctopusResource -Resource $Proj} | should Throw
-
-                #Creating Project and ProjectGroup properly
+                                                
                 $Pg.Name = $testname
 
                 $Pgobj = New-OctopusResource -Resource $Pg
 
-                $Pgobj.Name | should be $testname
-                $Pgobj.Id | should not be $null
+                #Should change this for Get-OctopusProjectGroup
+                $Pgobj.name | should be $testname
 
+            }
+
+            It "New-OctopusResource creates Projects"{
+
+                $Proj = Get-OctopusResourceModel -Resource Project
+                
                 $Proj.Name = $testname
-                $Proj.ProjectGroupId = $Pgobj.Id
+                $Proj.ProjectGroupId = ($c.repository.ProjectGroups.FindByName($testname)).id
                 $Proj.LifecycleId = "lifecycle-ProjectGroups-1"
 
                 $Projobj = New-OctopusResource -Resource $Proj
 
                 $Projobj.Name | should be $testname
-                $Projobj.Id | should not be $null
-                
-                #Deleting Project and ProjectGroup
-                {$Projobj | Remove-OctopusResource -Force} | should not Throw
 
-                {$Pgobj | Remove-OctopusResource -Force} | should not Throw
+            }
 
-                $c.repository.ProjectGroups.FindByName($testname) | should be $null
-                $c.repository.Projects.FindByName($testname) | should be $null
+            It "UGLY PLACEHOLDER FOR GET-OCTOPUSPROJECT"{
+                "pass"
+            }
+
+            It "UGLY PLACEHOLDER FOR GET-OCTOPUSPROJECTGROUP"{
+                "pass"
+            }
+
+            It "Remove-OctopusResource deletes Projects"{
+
+                #should change this for Get-OctopusProject
+                $projobj = $c.repository.Projects.FindByName($TestName)
+
+                {Remove-OctopusResource -Resource $projobj -Force} | should not throw
+
+                ($c.repository.Projects.FindByName($TestName)) | should be $null
+
+            }
+
+            It "Remove-OctopusResource deletes Project Groups"{
+
+                #should change this for Get-OctopusProjectGroup
+                $pgobj = $c.repository.ProjectGroups.FindByName($TestName)
+
+                {Remove-OctopusResource -Resource $pgobj -Force} | should not throw
+
+                ($c.repository.ProjectGroups.FindByName($TestName)) | should be $null
 
             }
         
-        }
-
-                Context "Get Resources"{
+        
+        <#
+        Context "Get Resources"{
 
             It "Deployments" {
 
@@ -192,8 +219,8 @@ Describe "Octopus Module Tests" {
 
                 UnBlock-OctopusRelease -ProjectName Powershell -Version 1.1.1 | should be $true
             }
-            #>
+            
         }
-
+        #>
         
 }
