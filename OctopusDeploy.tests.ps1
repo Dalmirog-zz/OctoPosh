@@ -83,11 +83,11 @@ Describe "Octopus Module Tests" {
             }
 
             It "UGLY PLACEHOLDER FOR GET-OCTOPUSPROJECT"{
-                "pass"
+                
             }
 
             It "UGLY PLACEHOLDER FOR GET-OCTOPUSPROJECTGROUP"{
-                "pass"
+                
             }
 
             It "Remove-OctopusResource deletes Projects"{
@@ -110,28 +110,26 @@ Describe "Octopus Module Tests" {
 
                 ($c.repository.ProjectGroups.FindByName($TestName)) | should be $null
 
+            } 
+
+            It "UGLY PLACEHOLDER FOR GET-OCTOPUSDEPLOYMENT"{
+
             }
-        
-        
-        <#
-        Context "Get Resources"{
 
-            It "Deployments" {
-
-                $date = (get-date)
+            It "Get-OctopusDeployment gets deployments" {
 
                 #I should be creating a deployment or something like that here
 
-                $deployments = Get-OctopusDeployment -ProjectName TestProject1
+                (Get-OctopusDeployment -ProjectName TestProject1) | should not be $null
+                
+            }
 
-                $i = Get-Random -Maximum ($deployments.count - 1)
-
-                $deployments[$i].deploymentstarttime -lt $date | should be $true
+            It "UGLY PLACEHOLDER FOR REMOVE-OCTOPUSDEPLOYMENT"{
 
             }
 
-        }
-
+        
+            <#
         Context "System administration Tests"{  
 
             It "Get/Set-OctopusConnectionInfo" {
