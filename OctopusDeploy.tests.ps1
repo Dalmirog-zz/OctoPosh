@@ -127,12 +127,8 @@ Describe "Octopus Module Tests" {
             It "UGLY PLACEHOLDER FOR REMOVE-OCTOPUSDEPLOYMENT"{
 
             }
-
-        
-            <#
-        Context "System administration Tests"{  
-
-            It "Get/Set-OctopusConnectionInfo" {
+                    
+            It "Get/Set-OctopusConnectionInfo do their thing" {
             
                 $originalURL = $env:OctopusURL
                 $originalAPIKey = $env:OctopusAPIKey
@@ -151,7 +147,7 @@ Describe "Octopus Module Tests" {
             
             }
 
-            It "Get/Set-OctopusSMTPConfig"{
+            It "Get/Set-OctopusSMTPConfig do their thing"{
             
                 $port = Get-Random
                 
@@ -174,7 +170,7 @@ Describe "Octopus Module Tests" {
             
             }
 
-            It "Get/Set-OctopusMaintenanceMode" {
+            It "Get/Set-OctopusMaintenanceMode do their thing" {
 
                 Set-OctopusMaintenanceMode -On | should be $true
 
@@ -218,7 +214,7 @@ Describe "Octopus Module Tests" {
                 UnBlock-OctopusRelease -ProjectName Powershell -Version 1.1.1 | should be $true
             }
             
-        }
+        
         #>
         
 }
