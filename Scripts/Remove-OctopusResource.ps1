@@ -19,9 +19,9 @@ function Remove-OctopusResource
         # Octopus resource object
         [Parameter(Mandatory=$true,
                    ValueFromPipelineByPropertyName=$true,
-                   ValueFromPipeline=$true,
+                   #ValueFromPipeline=$true,
                    Position=0)]
-        $Resource,
+        [object[]]$Resource,
 
         # Forces resource delete.
         [switch]$Force
@@ -57,7 +57,7 @@ function Remove-OctopusResource
 
             if(!($Force)){
 
-                If (!(Get-UserConfirmation -message "Are you sure you want to delete this resource? `n`n$resource`n")){
+                If (!(Get-UserConfirmation -message "Are you sure you want to delete this resource? `n`n$($Resource.name)`n")){
                     Throw "Canceled by user"
                 }
 
