@@ -48,6 +48,8 @@ Once the values are set you can check them out using ```Get-OctopusConnectionInf
 | Remove-OctopusResource     | Deletes an Octopus Resource|
 | Get-OctopusResourceModel     | Returns an empty object from the Octopus Model|
 | Get-OctopusMaintenanceMode     | Gets current Octopus Maintenance mode status|
+| Get-OctopusEnvironment     | Gets information about Octopus Environments|
+| Get-OctopusProject     | Gets information about Octopus Projects|
 
 
 ##Cmdlets Syntax
