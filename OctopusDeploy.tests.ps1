@@ -94,7 +94,7 @@ Describe "Octopus Module Tests" {
 
             {Remove-OctopusResource -Resource $projobj -Force} | should not throw
 
-            ($c.repository.Projects.FindByName($TestName)) | should be $null
+            Get-OctopusProject -Name $TestName | should be $null
 
         }
 
