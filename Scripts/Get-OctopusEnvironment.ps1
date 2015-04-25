@@ -1,12 +1,12 @@
 ﻿<#
 .Synopsis
-   Short description
+   Gets information about Octopus Environments
 .DESCRIPTION
-   Long description
+   Gets information about Octopus Environments
 .EXAMPLE
-   Example of how to use this cmdlet
-.EXAMPLE
-   Another example of how to use this cmdlet
+   Get-OctopusEnvironment -name Production
+.LINK
+   Github project: https://github.com/Dalmirog/OctopusDeploy-Powershell-module
 #>
 function Get-OctopusEnvironment
 {
@@ -17,9 +17,6 @@ function Get-OctopusEnvironment
         # Environment name
         [Parameter(Position=0)]
         [string[]]$Name
-
-        # Environment ID
-        #[String]$EnvironmentId
     )
 
     Begin
