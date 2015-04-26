@@ -39,9 +39,10 @@ function Get-OctopusEnvironment
     Process
     {
         $list = @()
-        $deployments = @()
-
+        
         foreach ($e in $environments){
+
+            $deployments = @()
 
             $m = $c.repository.Machines.FindMany({param($ma) if ($e.id -in $ma.EnvironmentIds){$true}})
 
