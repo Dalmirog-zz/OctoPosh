@@ -43,7 +43,7 @@ Describe "Octopus Module Tests" {
 
         It "Remove-OctopusResource deletes environments"{
                 
-            {Get-OctopusEnvironment -Name $testname | Remove-OctopusResource} | should not Throw               
+            {Get-OctopusEnvironment -Name $testname | Remove-OctopusResource -Force} | should not Throw               
 
             (Get-OctopusEnvironment -Name $TestName) | should be $null
         }
