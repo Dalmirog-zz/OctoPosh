@@ -183,9 +183,7 @@ Describe "Octopus Module Tests" {
             $e = Set-OctopusUserAccountStatus -Username "OT\Tester@OT" -status Enabled
             $e.IsActive | should be "True"
         }
-        
-        <#
-        # https://github.com/Dalmirog/OctopusDeploy-Powershell-module/issues/52z=
+                        
         It "New-OctopusAPIKey creates an API Key"{
 
             $api = New-OctopusAPIKey -Purpose "$TestName" -Username 'Ian.Paullin' -password "Michael2" -NoWarning
