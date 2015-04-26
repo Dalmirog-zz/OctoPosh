@@ -90,9 +90,9 @@ Describe "Octopus Module Tests" {
         It "Remove-OctopusResource deletes Projects"{
 
             #should change this for Get-OctopusProject
-            $projobj = $c.repository.Projects.FindByName($TestName)
-
-            {Remove-OctopusResource -Resource $projobj -Force} | should not throw
+            #$projobj = $c.repository.Projects.FindByName($TestName)
+            
+            {Get-OctopusProject -Name $TestName | Remove-OctopusResource -Force} | should not throw
 
             Get-OctopusProject -Name $TestName | should be $null
 
@@ -109,7 +109,7 @@ Describe "Octopus Module Tests" {
 
         } 
 
-        It "UGLY PLACEHOLDER FOR GET-OCTOPUSDEPLOYMENT"{
+        It "UGLY PLACEHOLDER FOR NEW-OCTOPUSDEPLOYMENT"{
 
         }
 
