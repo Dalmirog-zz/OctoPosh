@@ -75,7 +75,7 @@ Describe "Octopus Module Tests" {
 
         }
 
-        It "UGLY PLACEHOLDER FOR GET-OCTOPUSPROJECT"{
+        It "Get-OctopusProject gets projects"{
 
             Get-OctopusProject -Name $TestName | should not be $null
                 
@@ -174,20 +174,21 @@ Describe "Octopus Module Tests" {
 
         }
 
-        <#
-        It "Set-OctopusUserAccountStatus Enabled/Disabled" { https://github.com/Dalmirog/OctopusDeploy-Powershell-module/issues/53
+        
+        It "Set-OctopusUserAccountStatus Enabled/Disabled" {
 
-            $d = Set-OctopusUserAccountStatus -Username Ian.Paullin -status Disabled
+            $d = Set-OctopusUserAccountStatus -Username "OT\Tester@OT" -status Disabled
             $d.IsActive | should be "False"
 
-            $e = Set-OctopusUserAccountStatus -Username Ian.Paullin -status Enabled
+            $e = Set-OctopusUserAccountStatus -Username "OT\Tester@OT" -status Enabled
             $e.IsActive | should be "True"
         }
-        #>
-        <# https://github.com/Dalmirog/OctopusDeploy-Powershell-module/issues/52z=
+        
+        <#
+        # https://github.com/Dalmirog/OctopusDeploy-Powershell-module/issues/52z=
         It "New-OctopusAPIKey creates an API Key"{
 
-            $api = New-OctopusAPIKey -Purpose "$TestName" -Username Tester -password "Michael3" -NoWarning
+            $api = New-OctopusAPIKey -Purpose "$TestName" -Username 'Ian.Paullin' -password "Michael2" -NoWarning
                 
             $api.purpose | should be $TestName
 
@@ -196,8 +197,7 @@ Describe "Octopus Module Tests" {
             {$c.repository.Users.RevokeApiKey($api)} | should not throw
 
         }
-        #>
-            
+                    
         <# https://github.com/Dalmirog/OctopusDeploy-Powershell-module/issues/49
         It "Block/Unblock Release"{
 

@@ -23,27 +23,24 @@ function Set-OctopusUserAccountStatus
 
         # User name filter
 
-        [String[]]$Username,
-
-        # Email address filter
-        [String[]]$EmailAddress,
+        [String[]]$Username
         
         # Octopus user resource filter
-        [parameter(ValueFromPipelineByPropertyName=$true)]
-        [Octopus.Client.Model.UserResource[]]$Resource
+        #[parameter(ValueFromPipelineByPropertyName=$true)]
+        #[Octopus.Client.Model.UserResource[]]$Resource
         #>
 
     )
 
     Begin
     {
-        if ($Username -eq $null -and $EmailAddress -eq $null -and $Resource -eq $null){
-            Throw "You must pass a value to at least one of the following parameters: Name, EmailAddress, Resource"
+        if (($Username -eq $null) -and ($Resource -eq $null)){
+            Throw "You must pass a value to at least one of the following parameters: Name, Resource"
         }
 
         $c = New-OctopusConnection
 
-        [Octopus.Client.Model.UserResource[]]$Users = $c.repository.Users.FindMany({param($u) if (($u.username -in $Username) -or ($u.username -like $Username) -or ($u.EmailAddress -in $EmailAddress) -or ($u.emailaddress -like $EmailAddress)) {$true}})
+        $users = $c.repository.Users.FindMany({param($u) if (($u.username -in $Username) -or ($u.username -like $Username)) {$true}})
         
         If($Resource){$users += $Resource}
 
