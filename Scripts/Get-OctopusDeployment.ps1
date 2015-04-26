@@ -25,10 +25,12 @@ function Get-OctopusDeployment
     [CmdletBinding()]        
     Param
     (
-        # Octopus environment name
+        # Octopus environment name        
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [string[]]$EnvironmentName = "*",
 
-        # Octopus project name
+        # Octopus project name        
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
         [string[]]$ProjectName = "*",
 
         #Before date
@@ -42,9 +44,10 @@ function Get-OctopusDeployment
 
     Begin
     {
-
         $c = New-OctopusConnection
-
+    }
+    Process
+    {
         #Getting EnvironmentIDs and ProjectIDs based on values set on parameters
         if($ProjectName -ne "*"){
 
@@ -69,10 +72,6 @@ function Get-OctopusDeployment
                  -and (($dep.environmentid -in $environmentid) -or ($dep.environmentid -like $environmentid))`
                  -and (($dep.created -ge $After) -and ($dep.created -le $Before)))`
             {$true}})
-        
-    }
-    Process
-    {
 
         $list = @()
 
