@@ -27,7 +27,8 @@ function New-OctopusAPIKey
         [Parameter(Mandatory=$true)]
         [string]$Username,
         [Parameter(Mandatory=$false)]
-        $password
+        $password,
+        [switch]$NoWarning
     )
 
     Begin
@@ -62,7 +63,10 @@ function New-OctopusAPIKey
     }
     End
     {
-        Write-warning "API keys cannot be retrieved once they are created. Make sure you save this key in a safe place like a password management tool."
+        If(!($NoWarning)){
+            Write-warning "API keys cannot be retrieved once they are created. Make sure you save this key in a safe place like a password management tool."
+        }
+
         Return $APIKey
 
     }

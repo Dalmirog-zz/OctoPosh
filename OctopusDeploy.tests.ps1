@@ -192,7 +192,7 @@ Describe "Octopus Module Tests" {
         <# https://github.com/Dalmirog/OctopusDeploy-Powershell-module/issues/52z=
         It "New-OctopusAPIKey creates an API Key"{
 
-            $api = New-OctopusAPIKey -Purpose "$TestName" -Username Tester -password "Michael3"
+            $api = New-OctopusAPIKey -Purpose "$TestName" -Username Tester -password "Michael3" -NoWarning
                 
             $api.purpose | should be $TestName
 
