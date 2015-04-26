@@ -43,9 +43,7 @@ Describe "Octopus Module Tests" {
 
         It "Remove-OctopusResource deletes environments"{
                 
-            $env = Get-OctopusEnvironment -Name $TestName
-
-            {Remove-OctopusResource -Resource $env.resource -Force} | should not Throw               
+            {Get-OctopusEnvironment -Name $testname | Remove-OctopusResource} | should not Throw               
 
             (Get-OctopusEnvironment -Name $TestName) | should be $null
         }
@@ -89,9 +87,6 @@ Describe "Octopus Module Tests" {
 
         It "Remove-OctopusResource deletes Projects"{
 
-            #should change this for Get-OctopusProject
-            #$projobj = $c.repository.Projects.FindByName($TestName)
-            
             {Get-OctopusProject -Name $TestName | Remove-OctopusResource -Force} | should not throw
 
             Get-OctopusProject -Name $TestName | should be $null
@@ -115,7 +110,7 @@ Describe "Octopus Module Tests" {
 
         It "Get-OctopusDeployment gets deployments" {
 
-            #I should be creating a deployment or something like that here
+            #I should be creating a deployment or something like that here            
 
             (Get-OctopusDeployment -ProjectName TestProject1) | should not be $null
                 
