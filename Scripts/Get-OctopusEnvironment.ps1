@@ -14,16 +14,20 @@ function Get-OctopusEnvironment
     [Alias()]
     Param
     (
-        # Environment name
-        [Parameter(Position=0)]
+        # Environment name        
+        [alias("EnvironmentName")]
+        [Parameter(ValueFromPipelineByPropertyName = $true, Position=0)]
         [string[]]$Name
     )
 
     Begin
     {
         $c = New-OctopusConnection
+    }
+    Process
+    {
 
-        if($Name -ne $null){
+        If(!([string]::IsNullOrEmpty($Name))){
             
             $environments = $c.repository.Environments.FindMany({param($env) if (($env.name -in $name) -or ($env.name -like $name)) {$true}})
         }
@@ -34,10 +38,7 @@ function Get-OctopusEnvironment
         }
 
         $dashboard = Get-OctopusResource "/api/dashboard/dynamic" -header $c.header
-        
-    }
-    Process
-    {
+
         $list = @()
         
         foreach ($e in $environments){
