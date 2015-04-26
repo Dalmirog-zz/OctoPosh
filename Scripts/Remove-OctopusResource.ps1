@@ -18,8 +18,7 @@ function Remove-OctopusResource
     (
         # Octopus resource object
         [Parameter(Mandatory=$true,
-                   ValueFromPipelineByPropertyName=$true,
-                   #ValueFromPipeline=$true,
+                   ValueFromPipelineByPropertyName=$true,                   
                    Position=0)]
         [object[]]$Resource,
 
