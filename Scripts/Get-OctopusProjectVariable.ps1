@@ -34,17 +34,17 @@ function Get-OctopusProjectVariable
     Param
     (
         #Project name
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ValueFromPipelineByPropertyName = $true,Position=0)]
         [string[]]$Projectname
     )
 
     Begin
     {
         $c = New-OctopusConnection
+        $list = @()        
     }
     Process
     {
-
         #Getting Projects        
         If(!([string]::IsNullOrEmpty($Projectname))){
             
@@ -55,8 +55,6 @@ function Get-OctopusProjectVariable
         
             $Projects = $c.repository.projects.FindAll()
         }        
-
-        $list = @()        
 
         #Getting info by project
         foreach ($p in $Projects){
@@ -89,9 +87,7 @@ function Get-OctopusProjectVariable
                 } 
             
             $list += $obj
-            #>
-        }       
-
+        }
 
     }
     End

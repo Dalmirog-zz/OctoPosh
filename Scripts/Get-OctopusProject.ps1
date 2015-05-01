@@ -44,6 +44,7 @@ function Get-OctopusProject
     Begin
     {
         $c = New-OctopusConnection
+        $list = @()
     }
     Process
     {
@@ -61,9 +62,6 @@ function Get-OctopusProject
 
         #Getting Dashboard info
         $dashboard = Get-OctopusResource "/api/dashboard/dynamic" -header $c.header
-
-
-        $list = @()        
 
         #Getting info by project
         foreach ($p in $Projects){

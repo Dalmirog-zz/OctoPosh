@@ -45,6 +45,7 @@ function Get-OctopusDeployment
     Begin
     {
         $c = New-OctopusConnection
+        $list = @()
     }
     Process
     {
@@ -72,8 +73,6 @@ function Get-OctopusDeployment
                  -and (($dep.environmentid -in $environmentid) -or ($dep.environmentid -like $environmentid))`
                  -and (($dep.created -ge $After) -and ($dep.created -le $Before)))`
             {$true}})
-
-        $list = @()
 
         foreach ($d in $deployments){
 

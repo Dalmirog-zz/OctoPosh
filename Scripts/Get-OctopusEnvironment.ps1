@@ -23,6 +23,7 @@ function Get-OctopusEnvironment
     Begin
     {
         $c = New-OctopusConnection
+        $list = @()
     }
     Process
     {
@@ -38,8 +39,6 @@ function Get-OctopusEnvironment
         }
 
         $dashboard = Get-OctopusResource "/api/dashboard/dynamic" -header $c.header
-
-        $list = @()
         
         foreach ($e in $environments){
 
