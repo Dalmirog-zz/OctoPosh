@@ -100,6 +100,18 @@ Describe "Octopus Module Tests" {
 
         } 
 
+        It "UGLY PLACEHOLDER FOR NEW-RELEASE"{
+
+        }
+
+        It "Get-OctopusRelease gets AN UGLY HARDCODED release"{
+            Get-OctopusRelease -ProjectName TestProject1 -ReleaseVersion 1.0.15 | should not be $null
+        }
+
+        It "UGLY PLACEHOLDER FOR REMOVE-OCTOPUSRESOURCE DELETES RELEASES"{
+
+        }
+
         It "UGLY PLACEHOLDER FOR NEW-OCTOPUSDEPLOYMENT"{
 
         }
