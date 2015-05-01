@@ -21,14 +21,13 @@ function Set-OctopusUserAccountStatus
         [ValidateSet("Enabled","Disabled")] 
         [string]$status,
 
-        # User name filter
-
-        [String[]]$Username
+        # User Name
+        [String[]]$Username,
         
         # Octopus user resource filter
-        #[parameter(ValueFromPipelineByPropertyName=$true)]
-        #[Octopus.Client.Model.UserResource[]]$Resource
-        #>
+        [parameter(ValueFromPipelineByPropertyName=$true)]
+        [Octopus.Client.Model.UserResource[]]$Resource
+        
 
     )
 
