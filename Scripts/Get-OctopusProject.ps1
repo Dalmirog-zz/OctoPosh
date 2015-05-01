@@ -16,17 +16,13 @@
 
    This command gets all the projects whose name start with the string MyApp
 .EXAMPLE
-   $environments = Get-OctopusEnvironment -Name "Production"
-
-   $environments.latestdeployment | %{ $_ | Get-OctopusProject}
+   Get-OctopusEnvironment -Name "Production" | Select -ExpandProperty LatestDeployments | Get-OctopusProject
 
    This command gets all the projects that deployed to the environment "Production" at least once
 .EXAMPLE
-   $ProjectGroup = Get-OctopusProjectGroup
+   Get-OctopusProjectGroup -name MyProjects | Get-OctopusProject | Remove-OctopusResource
 
-   $ProjectGroup | Get-OctopusProject | Remove-OctopusResource
-
-   This command gets all the projects inside of a Project Group and then deletes them from the database
+   This command gets all the projects inside of the Project Group "MyProjects" and then deletes them from the database
 .LINK
    Github project: https://github.com/Dalmirog/OctopusDeploy-Powershell-module
 #>

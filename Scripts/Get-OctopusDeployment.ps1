@@ -5,18 +5,24 @@
    Gets information about Octopus deployments
 .EXAMPLE
    Get-OctopusDeployment
+
+   Gets all the deployments that were done on the Octopus Instance. You might wanna go grab a coffee after hitting [enter] on this one, its gonna take a while.
 .EXAMPLE
-   Get-OctopusDeployment -project "MyProduct.Webapp"
+   Get-OctopusDeployment -ProjectName "MyProduct.*"
+
+   Gets all the deployments from all the projects which name starts with "MyProduct.*"
 .EXAMPLE
-   Get-OctopusDeployment -project "MyProduct.*"
-.EXAMPLE
-   Get-OctopusDeployment -Environment "Staging","UAT"
-.EXAMPLE
-   Get-OctopusDeployment -Environment "Staging-*","Production"
+   Get-OctopusDeployment -EnvironmentName "Staging","UAT" -ProjectName "MyService"
+
+   Gets all the deployents that were done to the environments Staging and UAT on the project "MyService"
 .EXAMPLE
    Get-OctopusDeployment -project "MyProduct.Webapp","MyProduct.service" -Environment "Production"
+
+   Gets all the deployments that were done to the environment "Production"  on the projects "MyProduct.webapp" and "MyProduct.service"
 .EXAMPLE
    Get-OctopusDeployment -project "MyProduct.Webapp" -Environment "Production" -After 2/20/2015 -Before 2/21/2015
+
+   Gets all the deployments that where done to the environment "Production" on the projects "MyProduct.Webapp" between 2/20/2015 and 2/21/2015
 .LINK
    Github project: https://github.com/Dalmirog/OctopusDeploy-Powershell-module
 #>
@@ -27,10 +33,12 @@ function Get-OctopusDeployment
     (
         # Octopus environment name        
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [alias("Environment")]
         [string[]]$EnvironmentName = "*",
 
         # Octopus project name        
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [alias("Project")]
         [string[]]$ProjectName = "*",
 
         #Before date

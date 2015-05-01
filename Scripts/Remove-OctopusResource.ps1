@@ -6,8 +6,12 @@
 .EXAMPLE
    $ProjectResource = Get-OctopusProject -name "MyApp" ;
    Remove-OctopusResource -resource $ProjectResource
+
+   Deletes the project called "MyApp" from the Octopus Database
 .EXAMPLE
-   Get-OctopusEnvironment -name "Development" | Remove-OctopusResource -force
+   Get-OctopusProjectGroup -name "MyProjects" | select -ExpandProperty Projects | Remove-OctopusResource
+
+   Removes all the projects inside the Project Group "MyProjects"
 .LINK
    Github project: https://github.com/Dalmirog/OctopusDeploy-Powershell-module
 #>
@@ -68,18 +72,16 @@ function Remove-OctopusResource
                 {$_.getType() -eq [Octopus.Client.Model.ProjectResource]} {$r = $c.repository.Projects.Delete($_)}
                 {$_.getType() -eq [Octopus.Client.Model.EnvironmentResource]} {$r = $c.repository.Environments.Delete($_)}
                 {$_.getType() -eq [Octopus.Client.Model.DeploymentResource]} {$r = $c.repository.Deployments.Delete($_)}          
-                
-                Default {throw "Invalid object type. Run 'Get-OctopusResourceModel -ListAvailable' to get a list of the object types accepted by this cmdlet "}
+                Default{Throw "Invalid object type: $($_.getType()) `nRun 'Get-OctopusResourceModel -ListAvailable' to get a list of the object types accepted by this cmdlet"}
             }
 
             $counter = 0
 
+            #Silly loop to make sure the task gets done
             Do{
-
                 $task = $c.repository.Tasks.Get($r.Links.Self)
                 $counter++
                 Start-Sleep -Seconds 2
-
               }
             Until (($task.state -notin ("Queued","executing")) -or ($counter -eq 5))
 
