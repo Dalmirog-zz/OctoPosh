@@ -56,7 +56,6 @@ Describe "Octopus Module Tests" {
 
             $Pgobj = New-OctopusResource -Resource $Pg
 
-            #Should change this for Get-OctopusProjectGroup
             $Pgobj.name | should be $testname
 
         }
@@ -81,8 +80,8 @@ Describe "Octopus Module Tests" {
                 
         }
 
-        It "UGLY PLACEHOLDER FOR GET-OCTOPUSPROJECTGROUP"{
-                
+        It "Get-OctopusProjectGroup gets Project Groups"{
+            Get-OctopusProjectGroup -Name $TestName | should not be $null
         }
 
         It "Remove-OctopusResource deletes Projects"{
@@ -95,12 +94,9 @@ Describe "Octopus Module Tests" {
 
         It "Remove-OctopusResource deletes Project Groups"{
 
-            #should change this for Get-OctopusProjectGroup
-            $pgobj = $c.repository.ProjectGroups.FindByName($TestName)
+            {Get-OctopusProjectGroup -Name $TestName |Remove-OctopusResource -Force} | should not throw
 
-            {Remove-OctopusResource -Resource $pgobj -Force} | should not throw
-
-            ($c.repository.ProjectGroups.FindByName($TestName)) | should be $null
+            Get-OctopusProjectGroup -Name $TestName | should be $null
 
         } 
 
@@ -173,7 +169,6 @@ Describe "Octopus Module Tests" {
             (Get-OctopusMaintenanceMode).IsInMaintenanceMode | should be $False
 
         }
-
         
         It "Set-OctopusUserAccountStatus Enabled/Disabled" {
 
