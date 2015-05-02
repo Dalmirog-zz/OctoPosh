@@ -22,7 +22,10 @@ function Unblock-OctopusRelease
 
         # Release Version. You can only Unblock one release at a time using thie parameter
         [Parameter(Mandatory=$true)]
-        $ReleaseVersion
+        $ReleaseVersion,
+
+        # Forces action.
+        [switch]$Force
     )
 
     Begin
@@ -31,6 +34,12 @@ function Unblock-OctopusRelease
     }
     Process
     {
+
+        If(!($Force)){
+            If (!(Get-UserConfirmation -message "Are you sure you want to unblock release $ReleaseVersion on project $ProjectName ?")){
+                Throw "Canceled by user"
+            }
+        }
     
         $p = $c.repository.Projects.FindOne({param($proj) if($proj.name -eq $ProjectName ){$true}})
 
