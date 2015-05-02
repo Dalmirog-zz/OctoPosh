@@ -22,7 +22,7 @@ function Get-OctopusRelease{
     [CmdletBinding()]    
     Param
     (
-        # Release version
+        ## Release version
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [alias("Version")]
         [string[]]$ReleaseVersion = $null,
