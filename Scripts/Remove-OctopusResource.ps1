@@ -33,26 +33,7 @@ function Remove-OctopusResource
 
     Begin
     {
-        $c = New-OctopusConnection
-
-        Function Get-UserConfirmation{ #Credits to http://www.peetersonline.nl/2009/07/user-confirmation-in-powershell/
-	
-	        param([string]$title="Confirm",[string]$message)
-
-	        $choiceYes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes", "Answer Yes."
-
-	        $choiceNo = New-Object System.Management.Automation.Host.ChoiceDescription "&No", "Answer No."
-
-	        $options = [System.Management.Automation.Host.ChoiceDescription[]]($choiceYes, $choiceNo)
-
-	        $result = $host.ui.PromptForChoice($title, $message, $options, 1)
-
-	        Switch ($result){
-		        0{Return $true}
- 
-		        1{Return $false}
-	        }
-        }
+        $c = New-OctopusConnection        
     }
     Process
     {
