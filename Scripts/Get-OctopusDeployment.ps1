@@ -34,16 +34,12 @@ function Get-OctopusDeployment
         # Octopus environment name        
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [alias("Environment")]
-        [string[]]$EnvironmentName = $null,
+        [string[]]$EnvironmentName = "*",
 
         # Octopus project name        
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [alias("Project")]
-        [string[]]$ProjectName = $null,
-
-        # Release version
-        [Parameter(ValueFromPipelineByPropertyName = $true)]        
-        [string[]]$ReleaseVersion = $null,
+        [string[]]$ProjectName = "*",
 
         #Before date
         [System.DateTimeOffset]$Before = [System.DateTimeOffset]::MaxValue,
@@ -58,66 +54,44 @@ function Get-OctopusDeployment
     {
         $c = New-OctopusConnection
         $list = @()
-        $releases = @()
-        $deployments = @()
     }
     Process
     {
-        If($ProjectName -ne $null){
-            
-            $Projects = $c.repository.Projects.FindMany({param($Proj) if (($Proj.name -in $ProjectName)) {$true}})
-        }
+        #Getting EnvironmentIDs and ProjectIDs based on values set on parameters
+        if($ProjectName -ne "*"){
 
-        else{
-        
-            $Projects = $c.repository.Projects.FindAll()
-        }        
-
-        If($EnvironmentName -ne $null){
-            
-            $environments = $c.repository.Environments.FindMany({param($env) if ($env.name -in $environmentName) {$true}})                        
-                        
-        }
-
-        Else {$environments = $c.repository.Environments.FindAll()}
-
-        foreach ($Project in $Projects){
-
-            If($ReleaseVersion-ne $null){
-
-                foreach ($V in $ReleaseVersion){
-                    Try{       
-                        $rel = $c.repository.Projects.GetReleaseByVersion($Project,$v)
-                    }
-
-                    Catch [Octopus.Client.Exceptions.OctopusResourceNotFoundException]{
-                        write-host "No releases found for project $($Project.name) with the ID $v"
-                        $rel = $null
-                    }                
-                 }
-             }       
-            
-            Else{
-                $rel = ($c.repository.Projects.GetReleases($Project)).items
+            $projectid = ($c.repository.Projects.FindMany({param($proj) if ($proj.name -in $ProjectName) {$true}})).id
+                                    
             }
-                            
-            If ($rel -ne $null){
-                foreach ($r in $rel){
-                    $deployments += ($c.repository.Releases.GetDeployments($r)).items | ?{$_.environmentID -in $environments.id} |?{($_.created -gt $after) -and ($_.created -lt $Before)}
-                    $releases += $r
-                }
+        else {$projectid = "*"}
+
+        if($EnvironmentName -ne "*"){
+            
+            $environmentid = ($c.repository.Environments.FindMany({param($env) if ($env.name -in $environmentName) {$true}})).id
+            
             }
-        }                  
-        
+
+        else {$Environmentid = "*"}
+
+        #Getting deployments based on EnvironmentIds, ProjectIds, created $Before and $After
+        $deployments = $c. repository.Deployments.FindMany(`
+            
+            {param($dep) if (`
+                (($dep.projectid -in $projectid) -or ($dep.projectid -like $projectid))`
+                 -and (($dep.environmentid -in $environmentid) -or ($dep.environmentid -like $environmentid))`
+                 -and (($dep.created -ge $After) -and ($dep.created -le $Before)))`
+            {$true}})
+
         foreach ($d in $deployments){
 
-            $p = $Projects | ? {$_.id -eq $d.projectid}
-            $e = $environments | ? {$_.id -eq $d.environmentID}
+            $p = $c.repository.projects.Get($d.Links.project)
+            $e = $c.repository.Environments.Get($d.Links.Environment)
             $t = $c.repository.Tasks.Get($d.Links.task)
-            $r = $releases | ? {$_.id -eq $d.ReleaseID}
+            $r = $c.repository.Releases.Get($d.Links.Release)
             $dp = $c.repository.DeploymentProcesses.Get($r.links.ProjectDeploymentProcessSnapshot)
             $dev = (Invoke-WebRequest -Uri "$env:OctopusURL/api/events?regarding=$($d.Id)" -Method Get -Headers $c.header | ConvertFrom-Json).items | ? {$_.category -eq "DeploymentQueued"}
-            
+            $rev = (Invoke-WebRequest -Uri "$env:OctopusURL/api/events?regarding=$($r.Id)" -Method Get -Headers $c.header | ConvertFrom-Json).items | ? {$_.category -eq "Created"}
+
             #Getting Nuget packages and their versions
             $packages = @()
             
@@ -154,13 +128,14 @@ function Get-OctopusDeployment
                             Status = $t.state                           
                             ReleaseVersion = $r.version
                             ReleaseCreationDate = ($r.assembled).DateTime
-                            ReleaseNotes = $r.ReleaseNotes                            
+                            ReleaseNotes = $r.ReleaseNotes
+                            ReleaseCreatedBy = $rev.Username
                             Package = $Packages
                             Resource = $d
                         }                                    
             $list += $obj
         }
-        
+
     }
     End
     {
