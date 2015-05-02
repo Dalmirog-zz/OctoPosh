@@ -31,7 +31,7 @@ function Get-OctopusDeployment
     [CmdletBinding()]        
     Param
     (
-        # Octopus environment name        
+        ## Octopus environment name        
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [alias("Environment")]
         [string[]]$EnvironmentName = "*",

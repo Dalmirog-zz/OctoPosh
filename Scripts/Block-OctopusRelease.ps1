@@ -17,20 +17,17 @@ function Block-OctopusRelease
     (
 
         # Project Name of the release. You can only block one release at a time using thie parameter
-        [Parameter(Mandatory=$true,ParameterSetName ='Project/Version')]
+        [Parameter(Mandatory=$true)]
         $ProjectName,
 
         # Release Version number. You can only block one release at a time using thie parameter
-        [Parameter(Mandatory=$true,ParameterSetName ='Project/Version')]
-        $Version,
-
-        # Accepts [Octopus.Client.Module.ReleaseResource] objects. Accepts pipeline value from Get-OctopusRelease
-        [Parameter(Mandatory=$true,ParameterSetName ='Resource',ValueFromPipelineByPropertyName=$true)]
-        [Octopus.Client.Model.ReleaseResource[]]$Resource,
+        [Parameter(Mandatory=$true)]
+        $ReleaseVersion,
 
         # Description of the blocking
         [ValidateNotNullOrEmpty()]
-        [string]$Description=$(throw "[Description] is mandatory, please provide a value to this parameter.")
+        [parameter(Mandatory=$true)]
+        [string]$Description #=$(throw "[Description] is mandatory, please provide a value to this parameter.")
 
     )
 
@@ -42,32 +39,25 @@ function Block-OctopusRelease
     }
     Process
     {
+    
+        $p = $c.repository.Projects.FindOne({param($proj) if($proj.name -eq $ProjectName ){$true}})
 
-        Try{
-
-            If($Resource){
-
-               $response = Invoke-WebRequest $env:OctopusURL/$($Resource.links.ReportDefect) -Method Post -Headers $c.header -Body $Defect -UseBasicParsing
-
-            }
-        
-            If($Version){
-        
-                $p = $c.repository.Projects.FindOne({param($proj) if($proj.name -eq $ProjectName ){$true}})
-
-                $r = $c.repository.Releases.FindMany({param($Rel) if (($Rel.version -eq $Version) -and ($Rel.projectID -eq $p.ID)) {$true}})
-            
-               $response = Invoke-WebRequest $env:OctopusURL/$($r.links.ReportDefect) -Method Post -Headers $c.header -Body $Defect -UseBasicParsing
-        
-            }
-        }
-        Catch{
-        
-            write-error $_
-        
+        If($p -eq $null){
+            Throw "Project not found: $projectname"
         }
 
+        $r = $c.repository.Projects.GetReleaseByVersion($p,$ReleaseVersion)
+
+        If($r -eq $null){
+            Throw "Release $ReleaseVersion not found for project $ProjectName"
+        }
         
+        Try{    
+            $response = Invoke-WebRequest $env:OctopusURL/$($r.links.ReportDefect) -Method Post -Headers $c.header -Body $Defect -UseBasicParsing
+        }
+        Catch{       
+            write-error $_        
+        }
 
     }
     End
