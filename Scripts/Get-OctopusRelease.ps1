@@ -58,28 +58,29 @@ function Get-OctopusRelease{
         }
 
         foreach ($Project in $Projects){
-            foreach ($V in $ReleaseVersion){
-                If($ReleaseVersion-ne $null){
 
+            If($ReleaseVersion-ne $null){
+
+                foreach ($V in $ReleaseVersion){
                     Try{       
-                        $r = $c.repository.Projects.GetReleaseByVersion($Project,$v)
+                        $rel = $c.repository.Projects.GetReleaseByVersion($Project,$v)
                     }
 
                     Catch [Octopus.Client.Exceptions.OctopusResourceNotFoundException]{
                         write-host "No releases found for project $($Project.name) with the ID $v"
-                        $r = $null
+                        $rel = $null
                     }                
-                }
-
-                Else{
-                    $r = ($c.repository.Projects.GetReleases($Project)).items
-                }
+                 }
+             }       
             
-                If ($r -ne $null){
-                    $releases += $r
-                }
+            Else{
+                $rel = ($c.repository.Projects.GetReleases($Project)).items
             }
-        }
+                            
+            If ($rel -ne $null){
+                $releases += $rel
+            }            
+        }       
 
         
         Foreach($release in $releases){
