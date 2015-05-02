@@ -124,7 +124,7 @@ Describe "Octopus Module Tests" {
                 
         }
 
-        It "UGLY PLACEHOLDER FOR REMOVE-OCTOPUSDEPLOYMENT"{
+        It "UGLY PLACEHOLDER FOR REMOVE-OCTOPUSRESOURCE DELETES DEPLOYMENT"{
 
         }
                     
@@ -203,12 +203,11 @@ Describe "Octopus Module Tests" {
 
         }
                     
-        <# https://github.com/Dalmirog/OctopusDeploy-Powershell-module/issues/49
-        It "Block/Unblock Release"{
+        It "Block/Unblock Release blocks/unblocks AN UGLY HARDCODED release"{
 
-            Block-OctopusRelease -ProjectName Powershell -Version 1.1.1 -Description $TestName | should be $true
+            Block-OctopusRelease -ProjectName TestProject -ReleaseVersion 1.0.15 -Description $TestName | should be $true
 
-            UnBlock-OctopusRelease -ProjectName Powershell -Version 1.1.1 | should be $true
+            UnBlock-OctopusRelease -ProjectName TestProject -ReleaseVersion 1.0.15 | should be $true
         }
             
         
