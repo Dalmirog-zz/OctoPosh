@@ -205,9 +205,9 @@ Describe "Octopus Module Tests" {
                     
         It "Block/Unblock Release blocks/unblocks AN UGLY HARDCODED release"{
 
-            Block-OctopusRelease -ProjectName TestProject -ReleaseVersion 1.0.15 -Description $TestName | should be $true
+            Block-OctopusRelease -ProjectName TestProject1 -ReleaseVersion 1.0.15 -Description $TestName | should be $true
 
-            UnBlock-OctopusRelease -ProjectName TestProject -ReleaseVersion 1.0.15 | should be $true
+            UnBlock-OctopusRelease -ProjectName TestProject1 -ReleaseVersion 1.0.15 | should be $true
         }
             
         
