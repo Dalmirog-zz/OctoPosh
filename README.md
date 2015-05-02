@@ -10,9 +10,9 @@ DISCLAIMER: This is an open source project which is NOT supported by Octopus Dep
 
 1. Download the module
 2. Right click on the downloaded zip -> Properties -> Unblock File
-3. Create a folder called *OctopusDeploy* under your [PSModulePath](https://msdn.microsoft.com/en-us/library/dd878326%28v=vs.85%29.aspx). Use *C:\Program Files\WindowsPowerShell\Modules* if its on the list of Module Paths.
-4. Extract the contents of the zip on the new *OctopusDeploy* folder
-5. Open a powershell console and run ```Get-command -module OctopusDeploy``` to list all the module's cmdlets
+3. Create a folder called *OctoPosh* under your [PSModulePath](https://msdn.microsoft.com/en-us/library/dd878326%28v=vs.85%29.aspx). Use *C:\Program Files\WindowsPowerShell\Modules* if its on the list of Module Paths.
+4. Extract the contents of the zip on the new *OctoPosh* folder
+5. Open a powershell console and run ```Get-command -module OctoPosh``` to list all the module's cmdlets
 
 ##Getting Started
 
