@@ -9,10 +9,10 @@ DISCLAIMER: This is an open source project which is NOT supported by Octopus Dep
 ##Installing the module
 
 1. Download the module
-2. Right click on the downloaded zip -> Properties -> Unblock File
-3. Create a folder called *OctopusDeploy* under your [PSModulePath](https://msdn.microsoft.com/en-us/library/dd878326%28v=vs.85%29.aspx). Use *C:\Program Files\WindowsPowerShell\Modules* if its on the list of Module Paths.
-4. Extract the contents of the zip on the new *OctopusDeploy* folder
-5. Open a powershell console and run ```Get-command -module OctopusDeploy``` to list all the module's cmdlets
+2. Right click on the downloaded zip -> **Properties -> **Unblock File**
+3. Create a folder called *OctoPosh* under your [PSModulePath](https://msdn.microsoft.com/en-us/library/dd878326%28v=vs.85%29.aspx). Use *C:\Program Files\WindowsPowerShell\Modules* if its on the list of Module Paths.
+4. Extract the contents of the zip on the new *OctoPosh* folder
+5. Open a powershell console and run ```Get-command -module OctoPosh``` to list all the module's cmdlets
 
 ##Getting Started
 
@@ -37,7 +37,8 @@ Once the values are set you can check them out using ```Get-OctopusConnectionInf
 | ------------- | ----------- |
 | New-OctopusAPIKey     | Creates an API Key for a user|
 | New-OctopusConnection     | Creates a connection with an Octopus Server|
-| Get-OctopusDeployments     | Gets information about Octopus Deployments|
+| Get-OctopusDeployment     | Gets information about Octopus Deployments|
+| Get-OctopusRelease     | Gets information about Octopus Releases|
 | New-OctopusResourceModel     | Returns an empty Octopus resource object|
 | Get-OctopusMaintenanceMode     | Gets current Octopus Maintenance mode status|
 | Get-OctopusEnvironment     | Gets information about Octopus Environments|

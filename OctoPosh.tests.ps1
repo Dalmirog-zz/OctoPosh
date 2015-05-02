@@ -172,11 +172,11 @@ Describe "Octopus Module Tests" {
 
         It "Get/Set-OctopusMaintenanceMode do their thing" {
 
-            Set-OctopusMaintenanceMode -On | should be $true
+            Set-OctopusMaintenanceMode -On -Force | should be $true
 
             (Get-OctopusMaintenanceMode).IsInMaintenanceMode | should be $true
 
-            Set-OctopusMaintenanceMode -OFF | should be $true
+            Set-OctopusMaintenanceMode -OFF -Force | should be $true
 
             (Get-OctopusMaintenanceMode).IsInMaintenanceMode | should be $False
 
@@ -205,9 +205,9 @@ Describe "Octopus Module Tests" {
                     
         It "Block/Unblock Release blocks/unblocks AN UGLY HARDCODED release"{
 
-            Block-OctopusRelease -ProjectName TestProject1 -ReleaseVersion 1.0.15 -Description $TestName | should be $true
+            Block-OctopusRelease -ProjectName TestProject1 -ReleaseVersion 1.0.15 -Description $TestName -Force | should be $true
 
-            UnBlock-OctopusRelease -ProjectName TestProject1 -ReleaseVersion 1.0.15 | should be $true
+            UnBlock-OctopusRelease -ProjectName TestProject1 -ReleaseVersion 1.0.15 -Force | should be $true
         }
             
         

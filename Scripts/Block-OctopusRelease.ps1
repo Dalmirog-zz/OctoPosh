@@ -27,7 +27,10 @@ function Block-OctopusRelease
         # Description of the blocking
         [ValidateNotNullOrEmpty()]
         [parameter(Mandatory=$true)]
-        [string]$Description #=$(throw "[Description] is mandatory, please provide a value to this parameter.")
+        [string]$Description, #=$(throw "[Description] is mandatory, please provide a value to this parameter.")
+
+        # Forces action.
+        [switch]$Force
 
     )
 
@@ -39,6 +42,12 @@ function Block-OctopusRelease
     }
     Process
     {
+
+        If(!($Force)){
+            If (!(Get-UserConfirmation -message "Are you sure you want to block release $ReleaseVersion on project $ProjectName ?")){
+                Throw "Canceled by user"
+            }
+        }
     
         $p = $c.repository.Projects.FindOne({param($proj) if($proj.name -eq $ProjectName ){$true}})
 
@@ -51,7 +60,7 @@ function Block-OctopusRelease
         If($r -eq $null){
             Throw "Release $ReleaseVersion not found for project $ProjectName"
         }
-        
+
         Try{    
             $response = Invoke-WebRequest $env:OctopusURL/$($r.links.ReportDefect) -Method Post -Headers $c.header -Body $Defect -UseBasicParsing
         }
