@@ -92,7 +92,7 @@ function Get-OctopusProject
             
             $obj = [PSCustomObject]@{
                 ProjectName = $p.name
-                ProjectID = $p.Id
+                ID = $p.Id
                 ProjectGroupName = $pg.name                
                 LifecycleName = $l.name
                 LatestDeployments = $deployments
