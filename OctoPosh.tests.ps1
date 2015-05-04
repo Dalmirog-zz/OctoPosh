@@ -1,5 +1,21 @@
 ﻿#Generates a random test name that'll be used to name everything on the tests
 
+Function New-TestName {    
+    
+    $length = 10 #length of random chars
+    $characters = 'abcdefghkmnprstuvwxyzABCDEFGHKLMNPRSTUVWXYZ1234567890' #characters to use
+    
+    # select random characters
+    $random = 1..$length | ForEach-Object { Get-Random -Maximum $characters.length }
+        
+    #Set ofs to "" to avoid having spaces between each char
+    $private:ofs=""
+
+    #output prefix (max 10 chars) + 5 random chars
+    Return [String]($prefix + $characters[$random])
+
+}
+
 Describe "Octopus Module Tests" {
 
         $TestName = new-testname
