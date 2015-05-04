@@ -1,4 +1,5 @@
 ﻿#Generates a random test name that'll be used to name everything on the tests
+
 Function New-TestName {    
     
     $length = 10 #length of random chars
@@ -47,6 +48,15 @@ Describe "Octopus Module Tests" {
 
             (Get-OctopusEnvironment -Name $TestName) | should be $null
         }
+
+        It "UGLY PLACEHOLDER FOR NEW-OCTOPUSRESOURCE CREATES LIFECYCLES"{
+
+        }
+
+        It "Get-OctopusLifecycle gets Lifecycles"{
+                
+            {Get-OctopusLifeCycle} | should not be $null
+        }
             
         It "New-OctopusResource creates Project Groups"{
 
@@ -65,8 +75,8 @@ Describe "Octopus Module Tests" {
             $Proj = Get-OctopusResourceModel -Resource Project
                 
             $Proj.Name = $testname
-            $Proj.ProjectGroupId = ($c.repository.ProjectGroups.FindByName($testname)).id
-            $Proj.LifecycleId = "lifecycle-ProjectGroups-1"
+            $Proj.ProjectGroupId = (Get-OctopusProjectGroup -Name $TestName).id
+            $Proj.LifecycleId = (Get-OctopusLifeCycle)[0].id
 
             $Projobj = New-OctopusResource -Resource $Proj
 
@@ -78,6 +88,10 @@ Describe "Octopus Module Tests" {
 
             Get-OctopusProject -Name $TestName | should not be $null
                 
+        }
+
+        It "UGLY PLACEHOLDER FOR REMOVE-OCTOPUSRESOURCE DELETES LIFECYCLES"{
+
         }
 
         It "Get-OctopusProjectGroup gets Project Groups"{
@@ -100,7 +114,7 @@ Describe "Octopus Module Tests" {
 
         } 
 
-        It "UGLY PLACEHOLDER FOR NEW-RELEASE"{
+        It "UGLY PLACEHOLDER FOR NEW-OCTOPUSRELEASE"{
 
         }
 
@@ -117,8 +131,6 @@ Describe "Octopus Module Tests" {
         }
 
         It "Get-OctopusDeployment gets deployments" {
-
-            #I should be creating a deployment or something like that here            
 
             (Get-OctopusDeployment -ProjectName TestProject1) | should not be $null
                 
