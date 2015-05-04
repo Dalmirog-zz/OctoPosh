@@ -53,19 +53,20 @@ function Get-OctopusLifeCycle
         }        
 
         #Getting info by Lifecycle
-        foreach ($Lifecycle in $Lifecycles){            
+        foreach ($l in $Lifecycles){            
             
             $obj = [PSCustomObject]@{
-                LifecycleName = $Lifecycle.name
-                Id = $Lifecycle.Id                
-                Resource = $Lifecycle           
-            }
-            
+                LifecycleName = $l.name
+                Id = $l.Id
+                ReleaseRetentionPolicy = $l.ReleaseRetentionPolicy
+                TentacleRetentionPolicy = $l.TentacleRetentionPolicy
+                Phases = $l.Phases
+                LastModifiedOn = $l.LastModifiedOn
+                LastModifiedBy = $l.LastModifiedBy
+                Resource = $l           
+            }            
             $list += $obj
-
-        }       
-
-
+        }
     }
     End
     {
