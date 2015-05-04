@@ -69,6 +69,7 @@ function Get-OctopusProjectGroup
 
             $pg = [PSCustomObject]@{
                         ProjectGroupName = $ProjectGroup.name
+                        ProjectGroupId = $ProjectGroup.id
                         Projects = $plist
                         LastModifiedOn = $ProjectGroup.LastModifiedOn
                         LastModifiedBy = $ProjectGroup.LastModifiedBy
