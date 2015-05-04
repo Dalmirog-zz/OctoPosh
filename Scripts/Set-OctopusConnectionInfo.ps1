@@ -15,11 +15,11 @@ function Set-OctopusConnectionInfo
     (
         # Octopus URL
         [Parameter(Mandatory=$true)]
-        $URL,
+        [string]$URL,
 
         # Octopus API Key
         [Parameter(Mandatory=$true)]
-        $APIKey
+        [string]$APIKey
     )
     Begin
     {
