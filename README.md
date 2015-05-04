@@ -14,12 +14,11 @@ DISCLAIMER: This is an open source project which is NOT supported by Octopus Dep
 Check out our [Wiki](https://github.com/Dalmirog/OctoPosh/wiki) for our entire list of cmdlets
 
 ##FAQs
-If your question starts with "How do i do [X] with Octoposh", you might wanna drop by our Gitter channel ask ask there.
-
-Your questions will help shape up the module according to the needs of the community, so dont be a stranger!
+If your question starts with "How do i do [X] with Octoposh", you might wanna drop by our Gitter channel and ask there.
 
 [![Join the chat at https://gitter.im/Dalmirog/OctoPosh](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Dalmirog/OctoPosh?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+Your questions will help shape up the module according to the needs of the community, so dont be a stranger!
 
 ##Credits
 
