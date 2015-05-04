@@ -16,20 +16,7 @@ DISCLAIMER: This is an open source project which is NOT supported by Octopus Dep
 
 ##Getting Started
 
-To start using the **OctopusDeploy** module you'll need to setup your credentials. To do so you can do
-
-```
-Set-OctopusConnectionInfo -URL "Your Octopus Server URI" -APIKey "Your Octopus API Key"
-```
-
-or
-
-```
-$env:OctopusURI = "Your Octopus server URI"
-$env:OctopusAPIKey = "Your API Key"
-```
-
-Once the values are set you can check them out using ```Get-OctopusConnectionInfo```
+Check out [Wiki](https://github.com/Dalmirog/OctoPosh/wiki)
 
 ##Cmdlets Overview
 
