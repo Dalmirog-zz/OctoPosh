@@ -26,7 +26,7 @@
 
    This command gets the Variable Sets of all the projects inside of a Project Group named "MyImportantProjects"
 .LINK
-   Github project: https://github.com/Dalmirog/OctopusDeploy-Powershell-module
+   Github project: https://github.com/Dalmirog/Octoposh
 #>
 function Get-OctopusProjectVariable
 {

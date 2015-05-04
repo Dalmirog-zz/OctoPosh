@@ -8,7 +8,7 @@
 .EXAMPLE
    Set-OctopusSMTPConfig -SMTPHost "SMTP.VdlyInd.com" -Port 25 -SendEmailFrom "Octopus@VandelayIndustries.com" -SMTPLogin "Email@VandelayIndustries.com" -SMTPPassword "SomePassword"
 .LINK
-   Github project: https://github.com/Dalmirog/OctopusDeploy-Powershell-module
+   Github project: https://github.com/Dalmirog/Octoposh
 #>
 function Set-OctopusSMTPConfig
 {

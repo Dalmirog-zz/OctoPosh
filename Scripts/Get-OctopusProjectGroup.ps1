@@ -22,7 +22,7 @@
 
    Gets all the projects that are on the same group as the project "MyProject"
 .LINK
-   Github project: https://github.com/Dalmirog/OctopusDeploy-Powershell-module
+   Github project: https://github.com/Dalmirog/Octoposh
 #>
 function Get-OctopusProjectGroup
 {
@@ -69,6 +69,7 @@ function Get-OctopusProjectGroup
 
             $pg = [PSCustomObject]@{
                         ProjectGroupName = $ProjectGroup.name
+                        Id = $ProjectGroup.id
                         Projects = $plist
                         LastModifiedOn = $ProjectGroup.LastModifiedOn
                         LastModifiedBy = $ProjectGroup.LastModifiedBy

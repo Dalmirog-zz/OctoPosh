@@ -6,7 +6,7 @@
 .EXAMPLE
    Get-OctopusEnvironment -name Production
 .LINK
-   Github project: https://github.com/Dalmirog/OctopusDeploy-Powershell-module
+   Github project: https://github.com/Dalmirog/Octoposh
 #>
 function Get-OctopusEnvironment
 {
@@ -71,6 +71,7 @@ function Get-OctopusEnvironment
             #Creating output object
             $obj = [PSCustomObject]@{
                             EnvironmentName = $e.name
+                            Id = $e.id
                             Machines = $m
                             LatestDeployment = $deployments
                             Resource = $e

@@ -14,7 +14,7 @@
 .EXAMPLE
    New-OctopusAPIKey -Purpose "SQLDB" -username Ian.Paullin -password AwesomePassword
 .LINK
-   Github project: https://github.com/Dalmirog/OctopusDeploy-Powershell-module
+   Github project: https://github.com/Dalmirog/Octoposh
 #>
 function New-OctopusAPIKey
 {

@@ -20,7 +20,7 @@
 
    Creates a new Project Group called "NewProjectGroup" on Octopus
 .LINK
-   Github project: https://github.com/Dalmirog/OctopusDeploy-Powershell-module
+   Github project: https://github.com/Dalmirog/Octoposh
 #>
 function Get-OctopusResourceModel
 {

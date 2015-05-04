@@ -6,7 +6,7 @@
 .EXAMPLE
    Set-OctopusConnectionInfo -URL "http://MyOctopus.AwesomeCompany.com" -API "API-7CH6XN0HHOU7DDEEUGKUFUR1K"
 .LINK
-   Github project: ghttps://github.com/Dalmirog/OctopusDeploy-Powershell-module    
+   Github project: ghttps://github.com/Dalmirog/Octoposh
 #>
 function Set-OctopusConnectionInfo
 {
@@ -15,11 +15,11 @@ function Set-OctopusConnectionInfo
     (
         # Octopus URL
         [Parameter(Mandatory=$true)]
-        $URL,
+        [string]$URL,
 
         # Octopus API Key
         [Parameter(Mandatory=$true)]
-        $APIKey
+        [string]$APIKey
     )
     Begin
     {
