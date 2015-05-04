@@ -8,21 +8,15 @@
 
    This command gets the variable sets of all the projects
 .EXAMPLE
-   Get-OctopusProjectVariable -name MyProject
+   Get-OctopusProjectVariable -ProjectName MyProject
 
    This command gets the Variable Set of the Project named "MyProject"
-.EXAMPLE
-   Get-OctopusProjectVariable -name MyApp*
-
-   This command gets the Variable Sets of all the projects whose name start with the string MyApp
 .EXAMPLE
    Get-OctopusProject -name MyProject | Get-OctopusProjectVariable
 
    This command gets the Variable Set of the Project named "MyProject"
 .EXAMPLE
-   $ProjectGroup = Get-OctopusProjectGroup -name "MyImportantProjects"
-
-   $ProjectGroup | Get-OctopusProject | Get-OctopusProjectVariable
+   Get-OctopusProjectGroup -name "MyImportantProjects"| Get-OctopusProject | Get-OctopusProjectVariable
 
    This command gets the Variable Sets of all the projects inside of a Project Group named "MyImportantProjects"
 .LINK
@@ -48,7 +42,7 @@ function Get-OctopusProjectVariable
         #Getting Projects        
         If(!([string]::IsNullOrEmpty($Projectname))){
             
-            $Projects = $c.repository.Projects.FindMany({param($Proj) if (($Proj.name -in $Projectname) -or ($Proj.name -like $Projectname)) {$true}})
+            $Projects = $c.repository.Projects.FindMany({param($Proj) if (($Proj.name -in $Projectname)) {$true}})
         }
 
         else{
