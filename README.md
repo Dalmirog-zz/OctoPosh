@@ -11,32 +11,15 @@ DISCLAIMER: This is an open source project which is NOT supported by Octopus Dep
 - [How to download the module](https://github.com/Dalmirog/OctoPosh/wiki/Installing-the-module)
 - [How to setup your credentials](https://github.com/Dalmirog/OctoPosh/wiki/Setting-Credentials)
 
-Check out our [Wiki](https://github.com/Dalmirog/OctoPosh/wiki) for more info about the cmdlets usage
+Check out our [Wiki](https://github.com/Dalmirog/OctoPosh/wiki) for our entire list of cmdlets
 
-##Cmdlets Overview
+##FAQs
+If your question starts with "How do i do [X] with Octoposh", you might wanna drop by our Gitter channel ask ask there.
 
-| Cmdlet | Description          |
-| ------------- | ----------- |
-| New-OctopusAPIKey     | Creates an API Key for a user|
-| New-OctopusConnection     | Creates a connection with an Octopus Server|
-| Get-OctopusDeployment     | Gets information about Octopus Deployments|
-| Get-OctopusRelease     | Gets information about Octopus Releases|
-| Get-OctopusResourceModel     | Returns an empty Octopus resource object|
-| Get-OctopusMaintenanceMode     | Gets current Octopus Maintenance mode status|
-| Get-OctopusEnvironment     | Gets information about Octopus Environments|
-| Get-OctopusProject     | Gets information about Octopus Projects|
-| Get-OctopusLifecycle     | Gets information about Octopus Lifecycles|
-| Get-OctopusProjectGroup     | Gets information about Octopus Project Groups|
-| Get-OctopusProjectVariable     | Gets the variable sets of Octopus Projects|
-| Get-OctopusOctopusSMTPConfig     | Gets current Octopus SMTP Config|
-| Get-OctopusConnectionInfo      | Gets the current Octopus Connection info|
-| Set-OctopusConnectionInfo     | Sets the Octopus Connection info|
-| Set-OctopusMaintenanceMode     | Turns Octopus Maintenance mode On/Off|
-| Set-OctopusUserAccountStatus     | Enables/Disables an Octopus user account|
-| Set-OctopusOctopusSMTPConfig     | Sets Octopus SMTP Config|
-| Block-OctopusRelease     | Blocks an Octopus release|
-| Unblock-OctopusRelease     | Unblocks an Octopus release|
-| Remove-OctopusResource     | Deletes an Octopus Resource|
+Your questions will help shape up the module according to the needs of the community, so dont be a stranger!
+
++[![Join the chat at https://gitter.im/Dalmirog/OctoPosh](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Dalmirog/OctoPosh?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
++
 
 ##Credits
 
