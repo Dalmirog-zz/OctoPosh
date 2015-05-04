@@ -16,7 +16,7 @@
 
    Gets information about realeases 1.0.1 and 1.0.2 of the projects "MyWebProject" and "MySQLProject"
 .LINK
-   Github project: https://github.com/Dalmirog/OctopusDeploy-Powershell-module
+   Github project: https://github.com/Dalmirog/OctoPosh
 #>
 function Get-OctopusRelease{
     [CmdletBinding()]    

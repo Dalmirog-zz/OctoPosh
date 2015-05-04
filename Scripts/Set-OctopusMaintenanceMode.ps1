@@ -8,7 +8,7 @@
 .EXAMPLE
    Set-OctopusMaintenanceMode -Off
 .LINK
-   Github project: https://github.com/Dalmirog/OctopusDeploy-Powershell-module
+   Github project: https://github.com/Dalmirog/Octoposh
 #>
 function Set-OctopusMaintenanceMode
 {

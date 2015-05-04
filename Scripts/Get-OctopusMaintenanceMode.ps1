@@ -6,7 +6,7 @@
 .EXAMPLE
    Get-OctopusMaintenanceMode   
 .LINK
-   Github project: https://github.com/Dalmirog/OctopusDeploy-Powershell-module
+   Github project: https://github.com/Dalmirog/Octoposh
 #>
 function Get-OctopusMaintenanceMode
 {

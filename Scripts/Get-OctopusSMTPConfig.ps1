@@ -6,7 +6,7 @@
 .EXAMPLE
    Get-OctopusSMTPConfig
 .LINK
-   Github project: https://github.com/Dalmirog/OctopusDeploy-Powershell-module
+   Github project: https://github.com/Dalmirog/OctoPosh
 #>
 function Get-OctopusSMTPConfig
 {    

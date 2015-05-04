@@ -13,7 +13,7 @@
 
    Removes all the projects inside the Project Group "MyProjects"
 .LINK
-   Github project: https://github.com/Dalmirog/OctopusDeploy-Powershell-module
+   Github project: https://github.com/Dalmirog/Octoposh
 #>
 function Remove-OctopusResource
 {

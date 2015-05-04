@@ -24,7 +24,7 @@
 
    Gets all the deployments that where done to the environment "Production" on the projects "MyProduct.Webapp" between 2/20/2015 and 2/21/2015
 .LINK
-   Github project: https://github.com/Dalmirog/OctopusDeploy-Powershell-module
+   Github project: https://github.com/Dalmirog/OctoPosh
 #>
 function Get-OctopusDeployment
 {

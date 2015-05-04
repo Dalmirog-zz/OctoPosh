@@ -8,7 +8,7 @@
 .EXAMPLE
    Get-OctopusRelease -Project "MyProduct.Webapp" -version 1.0.1 | UnBlock-OctopusRelease
 .LINK
-   Github project: https://github.com/Dalmirog/OctopusDeploy-Powershell-module
+   Github project: https://github.com/Dalmirog/Octoposh
 #>
 function Unblock-OctopusRelease
 {

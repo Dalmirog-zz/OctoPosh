@@ -24,7 +24,7 @@
 
    This command gets all the projects inside of the Project Group "MyProjects" and then deletes them from the database
 .LINK
-   Github project: https://github.com/Dalmirog/OctopusDeploy-Powershell-module
+   Github project: https://github.com/Dalmirog/Octoposh
 #>
 function Get-OctopusProject
 {
