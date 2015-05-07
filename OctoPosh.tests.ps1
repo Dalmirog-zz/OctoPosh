@@ -217,9 +217,11 @@ Describe "Octopus Module Tests" {
                     
         It "Block/Unblock Release blocks/unblocks AN UGLY HARDCODED release"{
 
-            Block-OctopusRelease -ProjectName TestProject1 -ReleaseVersion 1.0.15 -Description $TestName -Force | should be $true
+            $release = Get-OctopusRelease -ProjectName TestProject1 | Select -First 1
+            
+            $release | Block-OctopusRelease -Description $TestName -Force | should be $true
 
-            UnBlock-OctopusRelease -ProjectName TestProject1 -ReleaseVersion 1.0.15 -Force | should be $true
+            $release | UnBlock-OctopusRelease -Force | should be $true
         }
             
         
