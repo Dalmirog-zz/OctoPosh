@@ -17,11 +17,11 @@ function Block-OctopusRelease
     (
 
         # Project Name of the release. You can only block one release at a time using thie parameter
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory=$true, ValueFromPipelineByPropertyName = $true)]
         $ProjectName,
 
         # Release Version number. You can only block one release at a time using thie parameter
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory=$true, ValueFromPipelineByPropertyName = $true)]
         $ReleaseVersion,
 
         # Description of the blocking

@@ -16,12 +16,12 @@ function Unblock-OctopusRelease
     Param
     (
 
-        # Project Name of the release. You can only Unblock one release at a time using thie parameter
-        [Parameter(Mandatory=$true)]
+        # Project Name of the release. You can only block one release at a time using this parameter
+        [Parameter(Mandatory=$true, ValueFromPipelineByPropertyName = $true)]
         $ProjectName,
 
-        # Release Version. You can only Unblock one release at a time using thie parameter
-        [Parameter(Mandatory=$true)]
+        # Release Version number. You can only block one release at a time using this parameter
+        [Parameter(Mandatory=$true, ValueFromPipelineByPropertyName = $true)]
         $ReleaseVersion,
 
         # Forces action.
