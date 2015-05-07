@@ -119,7 +119,7 @@ Describe "Octopus Module Tests" {
         }
 
         It "Get-OctopusRelease gets AN UGLY HARDCODED release"{
-            Get-OctopusRelease -ProjectName TestProject1 -ReleaseVersion 1.0.15 | should not be $null
+            Get-OctopusRelease -ProjectName TestProject1 | should not be $null
         }
 
         It "UGLY PLACEHOLDER FOR REMOVE-OCTOPUSRESOURCE DELETES RELEASES"{
@@ -130,7 +130,7 @@ Describe "Octopus Module Tests" {
 
         }
 
-        It "Get-OctopusDeployment gets deployments" {
+        It "Get-OctopusDeployment gets deployments. IT SHOULD GET A SINGLE DEPLOYMENT" {
 
             (Get-OctopusDeployment -ProjectName TestProject1) | should not be $null
                 
