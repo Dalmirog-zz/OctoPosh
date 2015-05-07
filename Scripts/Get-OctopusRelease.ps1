@@ -58,8 +58,9 @@ function Get-OctopusRelease{
         }
 
         foreach ($Project in $Projects){
-            foreach ($V in $ReleaseVersion){
-                If($ReleaseVersion-ne $null){
+
+            If($ReleaseVersion -ne $null){                
+                foreach ($V in $ReleaseVersion){                
 
                     Try{       
                         $r = $c.repository.Projects.GetReleaseByVersion($Project,$v)
@@ -70,15 +71,15 @@ function Get-OctopusRelease{
                         $r = $null
                     }                
                 }
-
-                Else{
-                    $r = ($c.repository.Projects.GetReleases($Project)).items
-                }
-            
-                If ($r -ne $null){
-                    $releases += $r
-                }
             }
+            Else{
+                $r = ($c.repository.Projects.GetReleases($Project)).items
+            }
+            
+            If ($r -ne $null){
+                $releases += $r
+            }
+            
         }
 
         
