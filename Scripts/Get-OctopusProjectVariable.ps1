@@ -12,9 +12,17 @@
 
    This command gets the Variable Set of the Project named "MyProject"
 .EXAMPLE
-   Get-OctopusProject -name MyProject | Get-OctopusProjectVariable
+   $VariableName = "ConnectionString"
+    
+   Get-OctopusProjectVariable | where {$_.variables.name -eq $VariableName}
 
-   This command gets the Variable Set of the Project named "MyProject"
+   This command gets all the variable sets that include a variable with the name "ConnectionString"
+.EXAMPLE
+   $VariableValue = "MySiteName"
+    
+    Get-OctopusProjectVariable | where {$_.variables.value -eq $VariableValue}
+
+   This command gets all the variable sets that include a variable with the value "MySiteName"
 .EXAMPLE
    Get-OctopusProjectGroup -name "MyImportantProjects"| Get-OctopusProject | Get-OctopusProjectVariable
 
@@ -50,11 +58,13 @@ function Get-OctopusProjectVariable
             $projVar = $C.repository.VariableSets.Get($p.links.variables)
 
             foreach ($var in $projVar.variables){
+
+                $scope = Get-OctopusVariableScopeValue -Resource $projVar -VariableName $var.name
                 
                 $obj = [PSCustomObject]@{
                     Name = $var.name
                     Value = $var.value
-                    Scope = $var.scope
+                    Scope = $scope
                     IsSensitive = $var.IsSensitive
                     IsEditable = $var.IsEditable
                     Prompt = $var.Prompt                    

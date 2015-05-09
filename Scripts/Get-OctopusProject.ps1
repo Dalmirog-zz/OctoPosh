@@ -46,7 +46,6 @@ function Get-OctopusProject
     }
     Process
     {
-        #Getting Projects        
         If(!([string]::IsNullOrEmpty($Name))){            
             $Projects = $c.repository.Projects.FindMany({param($Proj) if (($Proj.name -in $name) -or ($Proj.name -like $name)) {$true}})
 
@@ -61,14 +60,13 @@ function Get-OctopusProject
             $Projects = $c.repository.projects.FindAll()
         }        
 
-        #Getting Dashboard info
-        $dashboard = Get-OctopusResource "/api/dashboard/dynamic" -header $c.header
-
-        #Getting info by project
+        
         If($ResourceOnly){
             $list += $Projects
         }
         Else{
+            $dashboard = Get-OctopusResource "/api/dashboard/dynamic" -header $c.header
+
             foreach ($p in $Projects){
 
             $deployments = @()

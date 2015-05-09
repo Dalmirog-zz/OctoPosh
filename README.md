@@ -13,8 +13,8 @@ DISCLAIMER: This is an open source project which is NOT supported by Octopus Dep
 
 Check out our [Wiki](https://github.com/Dalmirog/OctoPosh/wiki) for our entire list of cmdlets
 
-##FAQs
-If your question starts with "How do i do [X] with Octoposh", you might wanna drop by our Gitter channel and ask there.
+##FAQs y feature requests
+If you want to request a cmdlet or a feature, or you just wanna ask how to do something with the module, drop by our Gitter channel and ask there:
 
 [![Join the chat at https://gitter.im/Dalmirog/OctoPosh](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Dalmirog/OctoPosh?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
