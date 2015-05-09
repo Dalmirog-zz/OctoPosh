@@ -46,6 +46,11 @@ function Get-OctopusProjectGroup
         If(!([string]::IsNullOrEmpty($Name))){
                     
             $ProjectGroups = $c.repository.ProjectGroups.FindMany({param($Pg) if (($Pg.name -in $name) -or ($Pg.name -like $name)) {$true}})
+            foreach($N in $Name){
+                If($n -notin $ProjectGroups.name){
+                    write-host "Project group not found: $n" -ForegroundColor Red
+                }
+            }
         }
 
         else{

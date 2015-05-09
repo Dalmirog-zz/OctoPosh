@@ -48,10 +48,6 @@ function Get-OctopusRelease{
     {
         $Projects = Get-OctopusProject -Name $ProjectName -ResourceOnly
 
-        If($Projects -eq $null){
-            throw "No project/s found with the name/s: $Projectname"
-        }
-
         foreach ($Project in $Projects){
 
             If($ReleaseVersion -ne $null){                
@@ -67,6 +63,7 @@ function Get-OctopusRelease{
                     }                
                 }
             }
+
             Else{
                 $r = ($c.repository.Projects.GetReleases($Project)).items
             }
@@ -80,6 +77,7 @@ function Get-OctopusRelease{
         If($ResourceOnly){
             $list += $releases
         }
+
         Else{
             Foreach($release in $releases){
         

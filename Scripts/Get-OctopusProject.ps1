@@ -48,7 +48,13 @@ function Get-OctopusProject
     {
         #Getting Projects        
         If(!([string]::IsNullOrEmpty($Name))){            
-            $Projects = $c.repository.Projects.FindMany({param($Proj) if (($Proj.name -in $name) -or ($Proj.name -like $name)) {$true}})            
+            $Projects = $c.repository.Projects.FindMany({param($Proj) if (($Proj.name -in $name) -or ($Proj.name -like $name)) {$true}})
+
+            foreach($N in $Name){
+                If($n -notin $Projects.name){
+                    write-host "Project not found: $n" -ForegroundColor Red
+                }
+            }
         }
 
         else{        
