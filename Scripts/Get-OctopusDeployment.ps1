@@ -56,22 +56,21 @@ function Get-OctopusDeployment
     Process
     {
         #Getting EnvironmentIDs and ProjectIDs based on values set on parameters
-        $projectID = (Get-OctopusProject -Name $ProjectName -ResourceOnly).id
+        $projects = Get-OctopusProject -Name $ProjectName -ResourceOnly
 
-        $environmentID = (Get-OctopusEnvironment -Name $EnvironmentName -ResourceOnly).id
+        $environments = Get-OctopusEnvironment -Name $EnvironmentName -ResourceOnly
         
-        #Getting deployments based on EnvironmentIds, ProjectIds, created $Before and $After
         $deployments = $c. repository.Deployments.FindMany(`            
             {param($dep) if (`
-                (($dep.projectid -in $projectid) -or ($dep.projectid -like $projectid))`
-                 -and (($dep.environmentid -in $environmentid) -or ($dep.environmentid -like $environmentid))`
+                (($dep.projectid -in $projects.id))`
+                 -and (($dep.environmentid -in $environments.id))`
                  -and (($dep.created -ge $After) -and ($dep.created -le $Before)))`
             {$true}})
 
         foreach ($d in $deployments){
 
-            $p = $c.repository.projects.Get($d.Links.project)
-            $e = $c.repository.Environments.Get($d.Links.Environment)
+            $p = $projects | ?{$_.id -eq $d.projectid}
+            $e = $environments | ? {$_.id -eq $d.environmentid}
             $t = $c.repository.Tasks.Get($d.Links.task)
             $r = $c.repository.Releases.Get($d.Links.Release)
             $dp = $c.repository.DeploymentProcesses.Get($r.links.ProjectDeploymentProcessSnapshot)
