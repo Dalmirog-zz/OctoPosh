@@ -17,7 +17,9 @@ function Get-OctopusEnvironment
         # Environment name        
         [alias("EnvironmentName")]
         [Parameter(ValueFromPipelineByPropertyName = $true, Position=0)]
-        [string[]]$Name
+        [string[]]$Name,
+        #When used, the cmdlet will only return the plain Octopus resource, withouth the extra info. This mode is used mostly from inside other cmdlets
+        [switch]$ResourceOnly
     )
 
     Begin
@@ -28,8 +30,7 @@ function Get-OctopusEnvironment
     Process
     {
 
-        If(!([string]::IsNullOrEmpty($Name))){
-            
+        If(!([string]::IsNullOrEmpty($Name))){            
             $environments = $c.repository.Environments.FindMany({param($env) if (($env.name -in $name) -or ($env.name -like $name)) {$true}})
         }
 
@@ -38,9 +39,13 @@ function Get-OctopusEnvironment
             $environments = $c.repository.Environments.FindAll()
         }
 
-        $dashboard = Get-OctopusResource "/api/dashboard/dynamic" -header $c.header
+        If ($ResourceOnly){
+            $list += $environments
+        }
+        Else{
+            $dashboard = Get-OctopusResource "/api/dashboard/dynamic" -header $c.header
         
-        foreach ($e in $environments){
+            foreach ($e in $environments){
 
             $deployments = @()
 
@@ -79,6 +84,7 @@ function Get-OctopusEnvironment
                         }                                    
             $list += $obj
 
+        }
         }
 
     }

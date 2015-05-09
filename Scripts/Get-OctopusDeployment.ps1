@@ -34,20 +34,18 @@ function Get-OctopusDeployment
         ## Octopus environment name        
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [alias("Environment")]
-        [string[]]$EnvironmentName = "*",
+        [string[]]$EnvironmentName,
 
         # Octopus project name        
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [alias("Project")]
-        [string[]]$ProjectName = "*",
+        [string[]]$ProjectName,
 
         #Before date
         [System.DateTimeOffset]$Before = [System.DateTimeOffset]::MaxValue,
         
         #After date
-        [System.DateTimeOffset]$After = [System.DateTimeOffset]::MinValue
-
-          
+        [System.DateTimeOffset]$After = [System.DateTimeOffset]::MinValue          
     )
 
     Begin
@@ -58,24 +56,12 @@ function Get-OctopusDeployment
     Process
     {
         #Getting EnvironmentIDs and ProjectIDs based on values set on parameters
-        if($ProjectName -ne "*"){
+        $projectID = (Get-OctopusProject -Name $ProjectName -ResourceOnly).id
 
-            $projectid = ($c.repository.Projects.FindMany({param($proj) if ($proj.name -in $ProjectName) {$true}})).id
-                                    
-            }
-        else {$projectid = "*"}
-
-        if($EnvironmentName -ne "*"){
-            
-            $environmentid = ($c.repository.Environments.FindMany({param($env) if ($env.name -in $environmentName) {$true}})).id
-            
-            }
-
-        else {$Environmentid = "*"}
-
+        $environmentID = (Get-OctopusEnvironment -Name $EnvironmentName -ResourceOnly).id
+        
         #Getting deployments based on EnvironmentIds, ProjectIds, created $Before and $After
-        $deployments = $c. repository.Deployments.FindMany(`
-            
+        $deployments = $c. repository.Deployments.FindMany(`            
             {param($dep) if (`
                 (($dep.projectid -in $projectid) -or ($dep.projectid -like $projectid))`
                  -and (($dep.environmentid -in $environmentid) -or ($dep.environmentid -like $environmentid))`

@@ -40,15 +40,7 @@ function Get-OctopusProjectVariable
     Process
     {
         #Getting Projects        
-        If(!([string]::IsNullOrEmpty($Projectname))){
-            
-            $Projects = $c.repository.Projects.FindMany({param($Proj) if (($Proj.name -in $Projectname)) {$true}})
-        }
-
-        else{
-        
-            $Projects = $c.repository.projects.FindAll()
-        }        
+        $Projects = Get-OctopusProject -Name $Projectname -ResourceOnly       
 
         #Getting info by project
         foreach ($p in $Projects){
