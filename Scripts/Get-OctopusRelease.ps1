@@ -30,7 +30,10 @@ function Get-OctopusRelease{
         # Project Name
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [alias("Project")]
-        [String[]]$ProjectName = $null
+        [String[]]$ProjectName,
+        
+        #When used, the cmdlet will only return the plain Octopus resource, withouth the extra info. This mode is used mostly from inside other cmdlets
+        [switch]$ResourceOnly
     )
 
     Begin
@@ -43,15 +46,7 @@ function Get-OctopusRelease{
     }
     Process
     {
-        If($ProjectName -ne $null){
-            
-            $Projects = $c.repository.Projects.FindMany({param($Proj) if (($Proj.name -in $ProjectName)) {$true}})
-        }
-
-        else{
-        
-            $Projects = $c.repository.Projects.FindAll()
-        }
+        $Projects = Get-OctopusProject -Name $ProjectName -ResourceOnly
 
         If($Projects -eq $null){
             throw "No project/s found with the name/s: $Projectname"
@@ -82,8 +77,11 @@ function Get-OctopusRelease{
             
         }
 
-        
-        Foreach($release in $releases){
+        If($ResourceOnly){
+            $list += $releases
+        }
+        Else{
+            Foreach($release in $releases){
         
         $d = $c.repository.Deployments.FindOne({param($dep) if($dep.releaseid -eq $release.Id){$true}})        
         $rev = (Invoke-WebRequest -Uri "$env:OctopusURL/api/events?regarding=$($release.Id)" -Method Get -Headers $c.header | ConvertFrom-Json).items | ? {$_.category -eq "Created"}
@@ -98,6 +96,7 @@ function Get-OctopusRelease{
             }            
 
         $list += $obj       
+        }
         }
 
     }
