@@ -38,5 +38,45 @@ function Get-UserConfirmation{ #Credits to http://www.peetersonline.nl/2009/07/u
 	        }
         }
 
+#I'm quite sure there's an easier way to do this than using this ugly variable. Bet well...
+function Get-OctopusVariableScopeValue{    
+    param(
+        [parameter(Mandatory=$true)]
+        [Octopus.Client.Model.VariableSetResource]$Resource,
+
+        [parameter(Mandatory=$true)]
+        [String]$VariableName
+
+    )
+
+    $list = @()
+
+    $varscopes = ($Resource.Variables | ?{$_.name -eq $variableName}).scope
+
+    $scopevalues += $Resource.ScopeValues.Environments
+    $scopevalues += $Resource.ScopeValues.Machines
+    $scopevalues += $Resource.ScopeValues.Actions
+    
+    $varscopes.getenumerator() | %{        
+
+        $value = @()
+        If ($_.key -ne "Role"){
+            foreach ($v in $_.value){
+                $value += $scopevalues | ?{$_.Id -eq $v} | select -ExpandProperty name
+            } 
+        }
+
+        else{$value = $_.value}
+
+        $obj = [pscustomobject]@{
+            Scope = $_.key
+            value = $value
+        }
+        $list += $obj
+    }
+    
+   return $list
+}
+
 #Only exporting cmdlets inside \Scripts
 Export-ModuleMember $scripts.BaseName
