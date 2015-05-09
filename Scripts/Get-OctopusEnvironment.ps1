@@ -32,6 +32,13 @@ function Get-OctopusEnvironment
 
         If(!([string]::IsNullOrEmpty($Name))){            
             $environments = $c.repository.Environments.FindMany({param($env) if (($env.name -in $name) -or ($env.name -like $name)) {$true}})
+            
+            foreach($N in $Name){
+                If($n -notin $environments.name){
+                    write-host "Environment not found: $n" -ForegroundColor Red
+                }
+            }
+
         }
 
         else{
