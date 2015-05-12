@@ -42,8 +42,7 @@ function Get-OctopusLifeCycle
     {
 
         #Getting Lifecycles        
-        If(!([string]::IsNullOrEmpty($Name))){
-            
+        If(!([string]::IsNullOrEmpty($Name))){            
             $Lifecycles = $c.repository.Lifecycles.FindMany({param($lc) if (($lc.name -in $name)) {$true}})
         }
 
@@ -70,6 +69,9 @@ function Get-OctopusLifeCycle
     }
     End
     {
-        $list
+        If($list.count -eq 0){
+            $list = $null
+        }
+        return $List
     }
 }

@@ -85,6 +85,9 @@ function Get-OctopusProjectGroup
     }
     End
     {
-        return $list
+        If($list.count -eq 0){
+            $list = $null
+        }
+        return $List
     }
 }

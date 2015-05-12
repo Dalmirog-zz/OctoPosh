@@ -31,10 +31,10 @@ function Get-OctopusProject
     [CmdletBinding()]    
     Param
     (
-        #Project name
-        [alias("ProjectName")]
+        #Name of the project you want info about. This parameter accepts wildcards.
+        [alias("Name")]
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [string[]]$Name,
+        [string[]]$ProjectName,
         #When used, the cmdlet will only return the plain Octopus resource, withouth the extra info. This mode is used mostly from inside other cmdlets
         [switch]$ResourceOnly
     )
@@ -46,10 +46,10 @@ function Get-OctopusProject
     }
     Process
     {
-        If(!([string]::IsNullOrEmpty($Name))){            
-            $Projects = $c.repository.Projects.FindMany({param($Proj) if (($Proj.name -in $name) -or ($Proj.name -like $name)) {$true}})
+        If(!([string]::IsNullOrEmpty($ProjectName))){            
+            $Projects = $c.repository.Projects.FindMany({param($Proj) if (($Proj.name -in $ProjectName) -or ($Proj.name -like $ProjectName)) {$true}})
 
-            foreach($N in $Name){
+            foreach($N in $ProjectName){
                 If($n -notin $Projects.name){
                     write-host "Project not found: $n" -ForegroundColor Red
                 }
@@ -58,12 +58,12 @@ function Get-OctopusProject
 
         else{        
             $Projects = $c.repository.projects.FindAll()
-        }        
-
+        }       
         
         If($ResourceOnly){
             $list += $Projects
         }
+
         Else{
             $dashboard = Get-OctopusResource "/api/dashboard/dynamic" -header $c.header
 
@@ -116,6 +116,9 @@ function Get-OctopusProject
     }
     End
     {
-        $list
+        If($list.count -eq 0){
+            $list = $null
+        }
+        return $List
     }
 }

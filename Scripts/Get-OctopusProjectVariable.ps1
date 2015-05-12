@@ -88,6 +88,9 @@ function Get-OctopusProjectVariable
     }
     End
     {
-        return $list
+        If($list.count -eq 0){
+            $list = $null
+        }
+        return $List
     }
 }
