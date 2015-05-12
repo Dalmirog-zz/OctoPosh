@@ -34,8 +34,10 @@ function Get-OctopusEnvironment
             $environments = $c.repository.Environments.FindMany({param($env) if (($env.name -in $name) -or ($env.name -like $name)) {$true}})
             
             foreach($N in $Name){
-                If($n -notin $environments.name){
-                    write-host "Environment not found: $n" -ForegroundColor Red
+                If(($n -notin $environments.name) -and !($environments.name -like $n)){
+                
+                    Write-Error "Environment not found: $n"
+                    #write-host "Environment not found: $n" -ForegroundColor Red
                 }
             }
 
@@ -97,7 +99,10 @@ function Get-OctopusEnvironment
     }
     End
     {
-        return $list
+        If($list.count -eq 0){
+            $list = $null
+        }
+        return $List
     }
 }
 
