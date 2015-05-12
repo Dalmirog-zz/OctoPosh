@@ -1,8 +1,8 @@
 ﻿<#
 .Synopsis
-   Get-OctopusMachine returns info about Octopus machines (tentacles)
+   This cmdlet returns info about Octopus machines (tentacles)
 .DESCRIPTION
-   Get-OctopusMachine returns info about Octopus machines (tentacles)
+   This cmdlet returns info about Octopus machines (tentacles)
 .EXAMPLE
    Get-OctopusMachine -Name "Database_Prod"
 
@@ -22,7 +22,7 @@
 .EXAMPLE
     Get-OctopusMachine -Mode Listening
 
-    Gets all the machines registered in "Listening" mode. "Polling" mode is also available
+    Gets all the machines registered in "Listening" mode. "Polling" is also a valid value
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
 #>
@@ -31,24 +31,24 @@ function Get-OctopusMachine
     [CmdletBinding(DefaultParameterSetName="Name")]
     Param
     (
-        # ASK MONSE. Make sure to say you cant use 2 wildcarded values
+        # Gets info about machines with this name. Only 1 value with wildcards can be used at a time
         [Alias("Name")]
         [Parameter(ValueFromPipelineByPropertyName=$true,
                    ParameterSetName = "Name")]
         [string[]]$MachineName,
 
-        # ASK MONSE. Make sure to say you cant use 2 wildcarded values
+        # Gets info about all the machines included on this environment. Only 1 value with wildcards can be used at a time
         [Alias("Environment")]
         [Parameter(ValueFromPipelineByPropertyName=$true,
                    ParameterSetName = "Environment")]
         [string[]]$EnvironmentName,
 
-        # ASK MONSE. Make sure to say you cant use 2 wildcarded values
+        # Gets info about all the machines registered with this URL. Only 1 value with wildcards can be used at a time
         [Alias("URI")]
         [Parameter(ParameterSetName = "URL")]
         [string[]]$URL,
 
-        # ASK MONSE
+        # Gets info about all the machines registered with this Communication Style. Only values accepted are "Listening" and "Polling"
         [Alias("Mode","TentacleMode")]
         [ValidateSet("Listening","Polling")]         
         [Parameter(ParameterSetName = "CommunicationStyle")]
@@ -93,7 +93,7 @@ function Get-OctopusMachine
             $Machines = $c.repository.Machines.FindMany({param($Mach) if ((($Mach.URI -in $URL) -or ($Mach.URI -like $URL))) {$true}})
 
             foreach($U in $URL){
-                If(($U -notin $Machines.URI) -and !($Machines.URI -like $URL)){
+                If(($U -notin $Machines.URI) -and !($Machines.URI -like $U)){
                     write-error "No Machines found with the URL: $U"
                     #write-host "No Machines found with the URL: $U" -ForegroundColor Red
                 }
@@ -171,6 +171,6 @@ function Get-OctopusMachine
         If($list.count -eq 0){
             $list = $null
         }
-        return $List
+        return $List 
     }
 }

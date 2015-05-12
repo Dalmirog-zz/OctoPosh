@@ -23,7 +23,7 @@ Describe "Octopus Module Tests" {
         Write-Output "Test name: $TestName"
 
         $c = New-OctopusConnection
-
+        
         It "New-OctopusResource creates environments"{               
 
             $env = Get-OctopusResourceModel -Resource Environment                
@@ -36,9 +36,7 @@ Describe "Octopus Module Tests" {
             $envobj.name | should be $testname
 
         }
-
-        It "Get-OctopusEnvironment gets environments"{
-                
+        It "Get-OctopusEnvironment gets environments"{                
             Get-OctopusEnvironment -Name $TestName | should not be $null
         }
 
@@ -51,8 +49,63 @@ Describe "Octopus Module Tests" {
 
         It "UGLY PLACEHOLDER FOR NEW-OCTOPUSRESOURCE CREATES LIFECYCLES"{
 
+        }        
+        It "[Get-OctopusMachine] gets machines by single name"{
+            $Machinename = "OctopusTest02 - TestMachine1"
+            Get-OctopusMachine -MachineName $Machinename | select -ExpandProperty Machinename | should be $Machinename
         }
-
+        It "[Get-OctopusMachine] gets machines by name using wildcards"{
+            $Machinename = "*OctopusTest*"
+            $regex = $Machinename.Replace('*','')
+            Get-OctopusMachine -MachineName $Machinename | select -ExpandProperty Machinename | should match ([regex]::Escape($regex))
+        }
+        It "[Get-OctopusMachine] gets machines by multiple names"{
+            $Machinename = "OctopusTest02 - TestMachine1","OctopusTest02 - TestMachine2"            
+            Get-OctopusMachine -MachineName $Machinename | select -ExpandProperty Machinename | should be $Machinename
+        }        
+        It "[Get-OctopusMachine] doesnt get machines by non-existent names "{
+            $Machinename = "Charizard"
+            Get-OctopusMachine -MachineName $Machinename -ErrorAction SilentlyContinue | should be $null
+        }        
+        It "[Get-OctopusMachine] gets machines by single environment "{
+            $environmentName = "staging"
+            Get-OctopusMachine -EnvironmentName $environmentName | select -ExpandProperty EnvironmentName -unique | should be $environmentName
+        }        
+        It "[Get-OctopusMachine] gets machines by multiple environments "{
+            $environmentName = "staging","Production"
+            Get-OctopusMachine -EnvironmentName $environmentName | select -ExpandProperty EnvironmentName -Unique | should be $environmentName
+        }
+        It "[Get-OctopusMachine] gets machines by Environment using wildcards"{
+            $EnvironmentName = "Prod*"
+            $regex = $EnvironmentName.Replace('*','')
+            Get-OctopusMachine -EnvironmentName $EnvironmentName| select -ExpandProperty EnvironmentName | should match ([regex]::Escape($regex))
+        }
+        It "[Get-OctopusMachine] gets doesnt get machines from non-existent environments"{
+            $environmentName = "Lugia","Articuno"
+            Get-OctopusMachine -EnvironmentName $environmentName -ErrorAction SilentlyContinue| should be $null
+        }
+        It "[Get-OctopusMachine] gets machines by single URL"{
+            $URL = "https://octopustest02:10937/"
+            Get-OctopusMachine -URL $URL | select -ExpandProperty URI -unique | should be $URL
+        }
+        It "[Get-OctopusMachine] gets machines by multiple URLs"{
+            $URL = "https://octopustest02:10936/"
+            Get-OctopusMachine -URL $URL | select -ExpandProperty URI -unique | should be $URL
+        }
+        It "[Get-OctopusMachine] gets machines by URL using wildcards"{
+            $URL = "*109*"
+            $regex = $URL.Replace('*','')
+            Get-OctopusMachine -URL $URL| select -ExpandProperty URI | should match ([regex]::Escape($regex))
+        }
+        It "[Get-OctopusMachine] gets doesnt get machines from non-existent URL"{
+            $URL = "Umbreon"
+            Get-OctopusMachine -URL $URL -ErrorAction SilentlyContinue| should be $null
+        }
+        It "[Get-OctopusMachine] gets machines by communication style"{
+            $CommunicationStyle = "Listening"
+            Get-OctopusMachine -CommunicationStyle $CommunicationStyle | select -ExpandProperty communicationstyle -unique | should be $CommunicationStyle
+        }        
+        
         It "Get-OctopusLifecycle gets Lifecycles"{
                 
             {Get-OctopusLifeCycle} | should not be $null
@@ -126,7 +179,7 @@ Describe "Octopus Module Tests" {
 
         }
 
-        It "UGLY PLACEHOLDER FOR NEW-OCTOPUSDEPLOYMENT"{
+        It "RUNNING TESTS FOR OCTOPUS DEPLOY AND YOU ARE NOT EVEN TRIGGERING A DEPLOYMENT? JEEZ"{
 
         }
 
@@ -223,8 +276,6 @@ Describe "Octopus Module Tests" {
 
             $release | UnBlock-OctopusRelease -Force | should be $true
         }
-            
-        
-    #>
+        #>
         
 }
