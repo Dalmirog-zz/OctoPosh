@@ -18,6 +18,7 @@ function Get-OctopusTask
         #ID of task you want to get
         [Alias("ID")]
         [parameter(ParameterSetName = "TaskId")]
+        [ValidateNotNullOrEmpty()]
         [String]$TaskID,
         
         # Name of the task
