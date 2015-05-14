@@ -23,12 +23,11 @@ Describe "Octopus Module Tests" {
         Write-Output "Test name: $TestName"
 
         $c = New-OctopusConnection
-        
-        It "New-OctopusResource creates environments"{               
+        "$testname"
+        It "[New-OctopusResource] creates environments"{               
 
             $env = Get-OctopusResourceModel -Resource Environment                
 
-            #Creating environment correctly
             $env.Name = $testname
                 
             $envobj = New-OctopusResource -Resource $env
@@ -36,20 +35,57 @@ Describe "Octopus Module Tests" {
             $envobj.name | should be $testname
 
         }
-        It "Get-OctopusEnvironment gets environments"{                
-            Get-OctopusEnvironment -Name $TestName | should not be $null
-        }
+        It "[New-OctopusResource] creates Project Groups"{
 
-        It "Remove-OctopusResource deletes environments"{
+            $Pg = Get-OctopusResourceModel -Resource ProjectGroup
+                                                
+            $Pg.Name = $testname
+
+            $Pgobj = New-OctopusResource -Resource $Pg
+
+            $Pgobj.name | should be $testname
+
+        }
+        It "[New-OctopusResource] creates Projects"{
+
+            $Proj = Get-OctopusResourceModel -Resource Project
                 
-            {Get-OctopusEnvironment -Name $testname | Remove-OctopusResource -Force} | should not Throw               
+            $Proj.Name = $testname
+            $Proj.ProjectGroupId = (Get-OctopusProjectGroup -Name $TestName).id
+            $Proj.LifecycleId = (Get-OctopusLifeCycle)[0].id
 
-            (Get-OctopusEnvironment -Name $TestName) | should be $null
+            $Projobj = New-OctopusResource -Resource $Proj
+
+            $Projobj.Name | should be $testname
         }
+        It "[NEW-OCTOPUSRESOURCE] CREATES LIFECYCLES. UGLY PLACEHOLDER"{
 
-        It "UGLY PLACEHOLDER FOR NEW-OCTOPUSRESOURCE CREATES LIFECYCLES"{
+        }
+        It "[NEW-OCTOPUSRESOURCE] CREATES MACHINES. UGLY PLACEHOLDER"{
 
-        }        
+        }
+        It "[NEW-OCTOPUSRELEASE] CREATES RELEASES. UGLY PLACEHOLDER"{
+
+        }
+        It "[NEW-OCTOPUSDEPLOYMENT] CREATES DEPLOMENTS. UGLY PLACEHOLDER"{
+
+        }
+        It "[Get-OctopusEnvironment] gets environments"{
+           
+            Get-OctopusEnvironment -Name $TestName | select -ExpandProperty EnvironmentNAme | should be $TestName
+        }
+        It "[Get-OctopusProject] gets projects"{
+
+            Get-OctopusProject -Name $TestName | select -ExpandProperty ProjectName | should be $TestName
+                
+        }
+        It "[Get-OctopusProjectGroup] gets Project Groups"{
+            Get-OctopusProjectGroup -Name $TestName | select -ExpandProperty ProjectGroupName | should be $TestName
+        }
+        It "[Get-OctopusLifecycle] gets Lifecycles"{
+                
+            Get-OctopusLifeCycle | should not be $null
+        }                
         It "[Get-OctopusMachine] gets machines by single name"{
             $Machinename = "OctopusTest02 - TestMachine1"
             Get-OctopusMachine -MachineName $Machinename | select -ExpandProperty Machinename | should be $Machinename
@@ -104,96 +140,44 @@ Describe "Octopus Module Tests" {
         It "[Get-OctopusMachine] gets machines by communication style"{
             $CommunicationStyle = "Listening"
             Get-OctopusMachine -CommunicationStyle $CommunicationStyle | select -ExpandProperty communicationstyle -unique | should be $CommunicationStyle
+        }
+        It "[Get-OctopusRelease] gets AN UGLY HARDCODED release"{
+            #Get-OctopusRelease -ProjectName TestProject1 | should not be $null
+        }
+        It "[Get-OctopusDeployment] gets deployments. IT SHOULD GET A SINGLE DEPLOYMENT" {
+
+            #(Get-OctopusDeployment -ProjectName TestProject1) | should not be $null                
+        }
+        It "[Remove-OctopusResource] deletes environments"{
+                
+            {Get-OctopusEnvironment -Name $testname | Remove-OctopusResource -Force} | should not Throw               
+
+            Get-OctopusEnvironment -Name $TestName -ErrorAction SilentlyContinue | should be $null
         }        
-        
-        It "Get-OctopusLifecycle gets Lifecycles"{
-                
-            {Get-OctopusLifeCycle} | should not be $null
-        }
-            
-        It "New-OctopusResource creates Project Groups"{
-
-            $Pg = Get-OctopusResourceModel -Resource ProjectGroup
-                                                
-            $Pg.Name = $testname
-
-            $Pgobj = New-OctopusResource -Resource $Pg
-
-            $Pgobj.name | should be $testname
-
-        }
-
-        It "New-OctopusResource creates Projects"{
-
-            $Proj = Get-OctopusResourceModel -Resource Project
-                
-            $Proj.Name = $testname
-            $Proj.ProjectGroupId = (Get-OctopusProjectGroup -Name $TestName).id
-            $Proj.LifecycleId = (Get-OctopusLifeCycle)[0].id
-
-            $Projobj = New-OctopusResource -Resource $Proj
-
-            $Projobj.Name | should be $testname
-
-        }
-
-        It "Get-OctopusProject gets projects"{
-
-            Get-OctopusProject -Name $TestName | should not be $null
-                
-        }
-
-        It "UGLY PLACEHOLDER FOR REMOVE-OCTOPUSRESOURCE DELETES LIFECYCLES"{
-
-        }
-
-        It "Get-OctopusProjectGroup gets Project Groups"{
-            Get-OctopusProjectGroup -Name $TestName | should not be $null
-        }
-
-        It "Remove-OctopusResource deletes Projects"{
+        It "[Remove-OctopusResource] deletes Projects"{
 
             {Get-OctopusProject -Name $TestName | Remove-OctopusResource -Force} | should not throw
 
-            Get-OctopusProject -Name $TestName | should be $null
+            Get-OctopusProject -Name $TestName -ErrorAction SilentlyContinue| should be $null
 
         }
-
-        It "Remove-OctopusResource deletes Project Groups"{
+        It "[Remove-OctopusResource] deletes Project Groups"{
 
             {Get-OctopusProjectGroup -Name $TestName |Remove-OctopusResource -Force} | should not throw
 
-            Get-OctopusProjectGroup -Name $TestName | should be $null
-
-        } 
-
-        It "UGLY PLACEHOLDER FOR NEW-OCTOPUSRELEASE"{
+            Get-OctopusProjectGroup -Name $TestName -ErrorAction SilentlyContinue | should be $null
 
         }
-
-        It "Get-OctopusRelease gets AN UGLY HARDCODED release"{
-            Get-OctopusRelease -ProjectName TestProject1 | should not be $null
-        }
-
-        It "UGLY PLACEHOLDER FOR REMOVE-OCTOPUSRESOURCE DELETES RELEASES"{
+        It "[REMOVE-OCTOPUSRESOURCE] DELETES LIFECYCLES. UGLY PLACEHOLDER"{
 
         }
-
-        It "RUNNING TESTS FOR OCTOPUS DEPLOY AND YOU ARE NOT EVEN TRIGGERING A DEPLOYMENT? JEEZ"{
-
-        }
-
-        It "Get-OctopusDeployment gets deployments. IT SHOULD GET A SINGLE DEPLOYMENT" {
-
-            (Get-OctopusDeployment -ProjectName TestProject1) | should not be $null
-                
-        }
-
-        It "UGLY PLACEHOLDER FOR REMOVE-OCTOPUSRESOURCE DELETES DEPLOYMENT"{
+        It "[REMOVE-OCTOPUSRESOURCE] DELETES RELEASES. UGLY PLACEHOLDER"{
 
         }
-                    
-        It "Get/Set-OctopusConnectionInfo do their thing" {
+        It "[REMOVE-OCTOPUSRESOURCE] DELETES DEPLOYMENT. UGLY PLACEHOLDER"{
+
+        }                    
+        It "[Get/Set-OctopusConnectionInfo] do their thing" {
             
             $originalURL = $env:OctopusURL
             $originalAPIKey = $env:OctopusAPIKey
@@ -211,8 +195,7 @@ Describe "Octopus Module Tests" {
             $ci.OctopusAPIKey | should be $originalAPIKey
             
         }
-
-        It "Get/Set-OctopusSMTPConfig do their thing"{
+        It "[Get/Set-OctopusSMTPConfig] do their thing"{
             
             $port = Get-Random
                 
@@ -234,8 +217,7 @@ Describe "Octopus Module Tests" {
 
             
         }
-
-        It "Get/Set-OctopusMaintenanceMode do their thing" {
+        It "[Get/Set-OctopusMaintenanceMode] do their thing" {
 
             Set-OctopusMaintenanceMode -On -Force | should be $true
 
@@ -245,18 +227,16 @@ Describe "Octopus Module Tests" {
 
             (Get-OctopusMaintenanceMode).IsInMaintenanceMode | should be $False
 
-        }
-        
-        It "Set-OctopusUserAccountStatus Enabled/Disabled" {
+        }        
+        It "[Set-OctopusUserAccountStatus] Enables and Disables a user account" {
 
             $d = Set-OctopusUserAccountStatus -Username "OT\Tester@OT" -status Disabled
             $d.IsActive | should be "False"
 
             $e = Set-OctopusUserAccountStatus -Username "OT\Tester@OT" -status Enabled
             $e.IsActive | should be "True"
-        }
-                        
-        It "New-OctopusAPIKey creates an API Key"{
+        }                        
+        It "[New-OctopusAPIKey] creates an API Key"{
 
             $api = New-OctopusAPIKey -Purpose "$TestName" -Username 'Ian.Paullin' -password "Michael2" -NoWarning
                 
@@ -266,9 +246,8 @@ Describe "Octopus Module Tests" {
 
             {$c.repository.Users.RevokeApiKey($api)} | should not throw
 
-        }
-                    
-        It "Block/Unblock Release blocks/unblocks AN UGLY HARDCODED release"{
+        }                    
+        It "[Block/Unblock-OctopusRelease] blocks/unblocks AN UGLY HARDCODED release"{
 
             $release = Get-OctopusRelease -ProjectName TestProject1 | Select -First 1
             

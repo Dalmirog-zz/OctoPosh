@@ -47,8 +47,9 @@ function Get-OctopusProjectGroup
                     
             $ProjectGroups = $c.repository.ProjectGroups.FindMany({param($Pg) if (($Pg.name -in $name) -or ($Pg.name -like $name)) {$true}})
             foreach($N in $Name){
-                If($n -notin $ProjectGroups.name){
-                    write-host "Project group not found: $n" -ForegroundColor Red
+                If(($n -notin $ProjectGroups.name) -or !($ProjectGroups.name -like $n)){
+                    Write-Error "Project group not found: $n"
+                    #write-host "Project group not found: $n" -ForegroundColor Red
                 }
             }
         }

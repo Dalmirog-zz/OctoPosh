@@ -50,8 +50,9 @@ function Get-OctopusProject
             $Projects = $c.repository.Projects.FindMany({param($Proj) if (($Proj.name -in $ProjectName) -or ($Proj.name -like $ProjectName)) {$true}})
 
             foreach($N in $ProjectName){
-                If($n -notin $Projects.name){
-                    write-host "Project not found: $n" -ForegroundColor Red
+                If(($n -notin $Projects.name) -or !($Projects.name -like $n)){
+                    Write-Error "Project not found: $n"
+                    #write-host "Project not found: $n" -ForegroundColor Red
                 }
             }
         }
