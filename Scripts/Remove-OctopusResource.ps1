@@ -32,10 +32,13 @@ function Remove-OctopusResource
         [switch]$AcceptedTypes,
 
         # Forces resource delete.
-        [switch]$Force
+        [switch]$Force,
 
-        
+        # Waits until the task is not on states "Queued" or "Executing"
+        [switch]$Wait,
 
+        # Timeout for -Wait parameter in minutes
+        [double]$Timeout = 2
     )
 
     Begin
@@ -73,17 +76,24 @@ function Remove-OctopusResource
 
             Write-Verbose "Deleting [$($R.GetType().tostring())] $($R.name)"
 
-            $t = $c.repository.$ResourceType.Delete($Resource)
+            $task = $c.repository.$ResourceType.Delete($R)
 
-            $counter = 0
+            If($wait){
 
-            #Silly loop to make sure the task gets done
-            Do{
-                $task = $c.repository.Tasks.Get($t.Links.Self)
-                $counter++
-                Start-Sleep -Seconds 2
-              }
-            Until (($task.state -notin ("Queued","executing")) -or ($counter -eq 5))
+                $StartTime = Get-Date
+
+                Do{
+                    $CurrentTime = Get-date
+                    
+                    $task = Get-OctopusTask -ID $task.id -ResourceOnly
+                    
+                    Start-Sleep -Seconds 2
+                  }
+
+                Until (($task.state -notin ("Queued","executing")) -or ($CurrentTime -gt $StartTime.AddMinutes($Timeout)))
+            }
+
+
             
         }
     }
