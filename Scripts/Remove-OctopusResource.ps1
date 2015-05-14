@@ -67,16 +67,16 @@ function Remove-OctopusResource
             switch ($R)
             {
                 {$_.getType() -eq [Octopus.Client.Model.ProjectGroupResource]} {$ResourceType = "ProjectGroups"}
-                {$_.getType() -eq [Octopus.Client.Model.ProjectResource]} {$ResourceType = "Projets"}
+                {$_.getType() -eq [Octopus.Client.Model.ProjectResource]} {$ResourceType = "Projects"}
                 {$_.getType() -eq [Octopus.Client.Model.EnvironmentResource]} {$ResourceType = "Environments"}
                 {$_.getType() -eq [Octopus.Client.Model.DeploymentResource]} {$ResourceType = "Deployments"}
                 {$_.getType() -eq [Octopus.Client.Model.MachineResource]} {$ResourceType = "Machines"}          
                 Default{Throw "Invalid object type: $($_.getType()) `nRun 'Remove-OctopusResource -AcceptedTypes' to get a list of the object types accepted by this cmdlet"}
             }
 
-            Write-Verbose "Deleting [$($R.GetType().tostring())] $($R.name)"
+            Write-Verbose "Deleting [$($R.GetType().tostring())] $($r.name)"
 
-            $task = $c.repository.$ResourceType.Delete($R)
+            $task = $c.repository.$ResourceType.Delete($r)
 
             If($wait){
 
