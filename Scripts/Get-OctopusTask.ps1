@@ -23,7 +23,7 @@ function Get-OctopusTask
         
         # Name of the task
         [ValidateSet('Backup','Delete','Health','Retention','Deploy','Upgrade','AdhocScript','TestEmail')]        
-        [String]$Name = '*',
+        [String[]]$Name = '*',
 
         #Document related to this task.
         [Alias('DocumentID')]        
@@ -32,7 +32,7 @@ function Get-OctopusTask
         #Document related to this task.
         [Alias('Status')]
         [ValidateSet('Success','TimedOut','Failed','Canceled')]        
-        [string]$State = '*',
+        [string[]]$State = '*',
 
         #Before date
         [System.DateTimeOffset]$Before = [System.DateTimeOffset]::MaxValue,
@@ -56,7 +56,7 @@ function Get-OctopusTask
         }
 
         elseif(($Name -ne '*') -or ($ResourceID -ne '*') -or ($State -ne '*') -or ($Before -ne [System.DateTimeOffset]::MaxValue) -or ($After -ne [System.DateTimeOffset]::MinValue)) {
-            $tasks = $c.repository.Tasks.FindMany({param($t) if( ($t.name -like $Name)  -and ($t.state -like $State) -and (($t.Arguments.values -contains $ResourceID) -or ($t.Arguments -like $ResourceID)) -and ($t.StartTime -ge $After) -and ($t.LastupdatedTime -le $Before)
+            $tasks = $c.repository.Tasks.FindMany({param($t) if( (($t.name -like $Name) -or ($t.name -in $name) ) -and (($t.state -like $State) -or ($t.state -in $State) )-and (($t.Arguments.values -contains $ResourceID) -or ($t.Arguments -like $ResourceID)) -and ($t.StartTime -ge $After) -and ($t.LastupdatedTime -le $Before)
             ) {$true}})        
         }
 
