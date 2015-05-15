@@ -16,23 +16,23 @@ function Get-OctopusTask
     Param
     (
         #ID of task you want to get
-        [Alias("ID")]
-        [parameter(ParameterSetName = "TaskId")]
+        [Alias('ID')]
+        [parameter(ParameterSetName = 'TaskId')]
         [ValidateNotNullOrEmpty()]
         [String]$TaskID,
         
         # Name of the task
-        [ValidateSet("Backup","Delete","Health","Retention","Deploy","Upgrade","AdhocScript","TestEmail")]        
-        [String]$Name = "*",
+        [ValidateSet('Backup','Delete','Health','Retention','Deploy','Upgrade','AdhocScript','TestEmail')]        
+        [String[]]$Name = '*',
 
         #Document related to this task.
-        [Alias("DocumentID")]        
-        [string]$ResourceID = "*",
+        [Alias('DocumentID')]        
+        [string]$ResourceID = '*',
 
         #Document related to this task.
-        [Alias("Status")]
-        [ValidateSet("Success","TimedOut","Failed","Canceled")]        
-        [string]$State = "*",
+        [Alias('Status')]
+        [ValidateSet('Success','TimedOut','Failed','Canceled')]        
+        [string[]]$State = '*',
 
         #Before date
         [System.DateTimeOffset]$Before = [System.DateTimeOffset]::MaxValue,
@@ -55,8 +55,8 @@ function Get-OctopusTask
             $tasks = $c.repository.Tasks.Get($TaskID)
         }
 
-        elseif(($Name -ne "*") -or ($ResourceID -ne "*") -or ($State -ne "*") -or ($Before -ne [System.DateTimeOffset]::MaxValue) -or ($After -ne [System.DateTimeOffset]::MinValue)) {
-            $tasks = $c.repository.Tasks.FindMany({param($t) if( ($t.name -like $Name)  -and ($t.state -like $State) -and (($t.Arguments.values -contains $ResourceID) -or ($t.Arguments -like $ResourceID)) -and ($t.StartTime -ge $After) -and ($t.LastupdatedTime -le $Before)
+        elseif(($Name -ne '*') -or ($ResourceID -ne '*') -or ($State -ne '*') -or ($Before -ne [System.DateTimeOffset]::MaxValue) -or ($After -ne [System.DateTimeOffset]::MinValue)) {
+            $tasks = $c.repository.Tasks.FindMany({param($t) if( (($t.name -like $Name) -or ($t.name -in $name) ) -and (($t.state -like $State) -or ($t.state -in $State) )-and (($t.Arguments.values -contains $ResourceID) -or ($t.Arguments -like $ResourceID)) -and ($t.StartTime -ge $After) -and ($t.LastupdatedTime -le $Before)
             ) {$true}})        
         }
 

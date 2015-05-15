@@ -9,22 +9,22 @@ Function New-TestName {
     $random = 1..$length | ForEach-Object { Get-Random -Maximum $characters.length }
         
     #Set ofs to "" to avoid having spaces between each char
-    $private:ofs=""
+    $private:ofs=''
 
     #output prefix (max 10 chars) + 5 random chars
     Return [String]($prefix + $characters[$random])
 
 }
 
-Describe "Octopus Module Tests" {
+Describe 'Octopus Module Tests' {
 
         $TestName = new-testname
 
         Write-Output "Test name: $TestName"
 
         $c = New-OctopusConnection
-        "$testname"
-        It "[New-OctopusResource] creates environments"{               
+        
+        It '[New-OctopusResource] creates environments'{               
 
             $env = Get-OctopusResourceModel -Resource Environment                
 
@@ -35,7 +35,7 @@ Describe "Octopus Module Tests" {
             $envobj.name | should be $testname
 
         }
-        It "[New-OctopusResource] creates Project Groups"{
+        It '[New-OctopusResource] creates Project Groups'{
 
             $Pg = Get-OctopusResourceModel -Resource ProjectGroup
                                                 
@@ -46,7 +46,7 @@ Describe "Octopus Module Tests" {
             $Pgobj.name | should be $testname
 
         }
-        It "[New-OctopusResource] creates Projects"{
+        It '[New-OctopusResource] creates Projects'{
 
             $Proj = Get-OctopusResourceModel -Resource Project
                 
@@ -58,135 +58,148 @@ Describe "Octopus Module Tests" {
 
             $Projobj.Name | should be $testname
         }
-        It "[NEW-OCTOPUSRESOURCE] CREATES LIFECYCLES. UGLY PLACEHOLDER"{
+        It '[NEW-OCTOPUSRESOURCE] CREATES LIFECYCLES. UGLY PLACEHOLDER'{
 
         }
-        It "[NEW-OCTOPUSRESOURCE] CREATES MACHINES. UGLY PLACEHOLDER"{
+        It '[NEW-OCTOPUSRESOURCE] CREATES MACHINES. UGLY PLACEHOLDER'{
 
         }
-        It "[NEW-OCTOPUSRELEASE] CREATES RELEASES. UGLY PLACEHOLDER"{
+        It '[NEW-OCTOPUSRELEASE] CREATES RELEASES. UGLY PLACEHOLDER'{
 
         }
-        It "[NEW-OCTOPUSDEPLOYMENT] CREATES DEPLOMENTS. UGLY PLACEHOLDER"{
+        It '[NEW-OCTOPUSDEPLOYMENT] CREATES DEPLOMENTS. UGLY PLACEHOLDER'{
 
         }
-        It "[Get-OctopusEnvironment] gets environments"{
+        It '[Get-OctopusEnvironment] gets environments'{
            
-            Get-OctopusEnvironment -Name $TestName | select -ExpandProperty EnvironmentNAme | should be $TestName
+            Get-OctopusEnvironment -Name $TestName | Select-Object -ExpandProperty EnvironmentNAme | should be $TestName
         }
-        It "[Get-OctopusProject] gets projects"{
+        It '[Get-OctopusProject] gets projects'{
 
-            Get-OctopusProject -Name $TestName | select -ExpandProperty ProjectName | should be $TestName
+            Get-OctopusProject -Name $TestName | Select-Object -ExpandProperty ProjectName | should be $TestName
                 
         }
-        It "[Get-OctopusProjectGroup] gets Project Groups"{
-            Get-OctopusProjectGroup -Name $TestName | select -ExpandProperty ProjectGroupName | should be $TestName
+        It '[Get-OctopusProjectGroup] gets Project Groups'{
+            Get-OctopusProjectGroup -Name $TestName | Select-Object -ExpandProperty ProjectGroupName | should be $TestName
         }
-        It "[Get-OctopusLifecycle] gets Lifecycles"{
+        It '[Get-OctopusLifecycle] gets Lifecycles'{
                 
             Get-OctopusLifeCycle | should not be $null
         }                
-        It "[Get-OctopusMachine] gets machines by single name"{
-            $Machinename = "OctopusTest02 - TestMachine1"
-            Get-OctopusMachine -MachineName $Machinename | select -ExpandProperty Machinename | should be $Machinename
+        It '[Get-OctopusMachine] gets machines by single name'{
+            $Machinename = 'OctopusTest02 - TestMachine1'
+            Get-OctopusMachine -MachineName $Machinename | Select-Object -ExpandProperty Machinename | should be $Machinename
         }
-        It "[Get-OctopusMachine] gets machines by name using wildcards"{
-            $Machinename = "*OctopusTest*"
+        It '[Get-OctopusMachine] gets machines by name using wildcards'{
+            $Machinename = '*OctopusTest*'
             $regex = $Machinename.Replace('*','')
-            Get-OctopusMachine -MachineName $Machinename | select -ExpandProperty Machinename | should match ([regex]::Escape($regex))
+            Get-OctopusMachine -MachineName $Machinename | Select-Object -ExpandProperty Machinename | should match ([regex]::Escape($regex))
         }
-        It "[Get-OctopusMachine] gets machines by multiple names"{
-            $Machinename = "OctopusTest02 - TestMachine1","OctopusTest02 - TestMachine2"            
-            Get-OctopusMachine -MachineName $Machinename | select -ExpandProperty Machinename | should be $Machinename
+        It '[Get-OctopusMachine] gets machines by multiple names'{
+            $Machinename = 'OctopusTest02 - TestMachine1','OctopusTest02 - TestMachine2'            
+            Get-OctopusMachine -MachineName $Machinename | Select-Object -ExpandProperty Machinename | should be $Machinename
         }        
-        It "[Get-OctopusMachine] doesnt get machines by non-existent names "{
-            $Machinename = "Charizard"
+        It '[Get-OctopusMachine] doesnt get machines by non-existent names '{
+            $Machinename = 'Charizard'
             Get-OctopusMachine -MachineName $Machinename -ErrorAction SilentlyContinue | should be $null
         }        
-        It "[Get-OctopusMachine] gets machines by single environment "{
-            $environmentName = "staging"
-            Get-OctopusMachine -EnvironmentName $environmentName | select -ExpandProperty EnvironmentName -unique | should be $environmentName
+        It '[Get-OctopusMachine] gets machines by single environment '{
+            $environmentName = 'staging'
+            Get-OctopusMachine -EnvironmentName $environmentName | Select-Object -ExpandProperty EnvironmentName -unique | should be $environmentName
         }        
-        It "[Get-OctopusMachine] gets machines by multiple environments "{
-            $environmentName = "staging","Production"
-            Get-OctopusMachine -EnvironmentName $environmentName | select -ExpandProperty EnvironmentName -Unique | should be $environmentName
+        It '[Get-OctopusMachine] gets machines by multiple environments '{
+            $environmentName = 'staging','Production'
+            Get-OctopusMachine -EnvironmentName $environmentName | Select-Object -ExpandProperty EnvironmentName -Unique | should be $environmentName
         }
-        It "[Get-OctopusMachine] gets machines by Environment using wildcards"{
-            $EnvironmentName = "Prod*"
+        It '[Get-OctopusMachine] gets machines by Environment using wildcards'{
+            $EnvironmentName = 'Prod*'
             $regex = $EnvironmentName.Replace('*','')
-            Get-OctopusMachine -EnvironmentName $EnvironmentName| select -ExpandProperty EnvironmentName | should match ([regex]::Escape($regex))
+            Get-OctopusMachine -EnvironmentName $EnvironmentName| Select-Object -ExpandProperty EnvironmentName | should match ([regex]::Escape($regex))
         }
-        It "[Get-OctopusMachine] gets doesnt get machines from non-existent environments"{
-            $environmentName = "Lugia","Articuno"
+        It '[Get-OctopusMachine] gets doesnt get machines from non-existent environments'{
+            $environmentName = 'Lugia','Articuno'
             Get-OctopusMachine -EnvironmentName $environmentName -ErrorAction SilentlyContinue| should be $null
         }
-        It "[Get-OctopusMachine] gets machines by single URL"{
-            $URL = "https://octopustest02:10937/"
-            Get-OctopusMachine -URL $URL | select -ExpandProperty URI -unique | should be $URL
+        It '[Get-OctopusMachine] gets machines by single URL'{
+            $URL = 'https://octopustest02:10937/'
+            Get-OctopusMachine -URL $URL | Select-Object -ExpandProperty URI -unique | should be $URL
         }
-        It "[Get-OctopusMachine] gets machines by multiple URLs"{
-            $URL = "https://octopustest02:10936/"
-            Get-OctopusMachine -URL $URL | select -ExpandProperty URI -unique | should be $URL
+        It '[Get-OctopusMachine] gets machines by multiple URLs'{
+            $URL = 'https://octopustest02:10936/'
+            Get-OctopusMachine -URL $URL | Select-Object -ExpandProperty URI -unique | should be $URL
         }
-        It "[Get-OctopusMachine] gets machines by URL using wildcards"{
-            $URL = "*109*"
+        It '[Get-OctopusMachine] gets machines by URL using wildcards'{
+            $URL = '*109*'
             $regex = $URL.Replace('*','')
-            Get-OctopusMachine -URL $URL| select -ExpandProperty URI | should match ([regex]::Escape($regex))
+            Get-OctopusMachine -URL $URL| Select-Object -ExpandProperty URI | should match ([regex]::Escape($regex))
         }
-        It "[Get-OctopusMachine] gets doesnt get machines from non-existent URL"{
-            $URL = "Umbreon"
+        It '[Get-OctopusMachine] gets doesnt get machines from non-existent URL'{
+            $URL = 'Umbreon'
             Get-OctopusMachine -URL $URL -ErrorAction SilentlyContinue| should be $null
         }
-        It "[Get-OctopusMachine] gets machines by communication style"{
-            $CommunicationStyle = "Listening"
-            Get-OctopusMachine -CommunicationStyle $CommunicationStyle | select -ExpandProperty communicationstyle -unique | should be $CommunicationStyle
+        It '[Get-OctopusMachine] gets machines by communication style'{
+            $CommunicationStyle = 'Listening'
+            Get-OctopusMachine -CommunicationStyle $CommunicationStyle | Select-Object -ExpandProperty communicationstyle -unique | should be $CommunicationStyle
         }
-        It "[Get-OctopusRelease] gets AN UGLY HARDCODED release"{
+        It '[Get-OctopusRelease] gets AN UGLY HARDCODED release'{
             #Get-OctopusRelease -ProjectName TestProject1 | should not be $null
         }
-        It "[Get-OctopusDeployment] gets deployments. IT SHOULD GET A SINGLE DEPLOYMENT" {
+        It '[Get-OctopusDeployment] gets deployments. IT SHOULD GET A SINGLE DEPLOYMENT' {
 
             #(Get-OctopusDeployment -ProjectName TestProject1) | should not be $null                
         }
-        It "[Remove-OctopusResource] deletes environments"{
+        It '[Start-OctopusHealthChech] doesnt check empty environments'{
+            (Start-OctopusHealthCheck -EnvironmentName $TestName -Force -ErrorAction SilentlyContinue) | should be $null        
+        }
+        It '[Start-OctopusHealthChech] checks health of a single environment'{
+            $task = Start-OctopusHealthCheck -EnvironmentName 'Staging' -Force -ErrorAction SilentlyContinue
+            $task.count | should be 1
+            $task | Get-Member | Select-Object -ExpandProperty typename -Unique | should be 'Octopus.Client.Model.TaskResource'
+        }
+        It '[Start-OctopusHealthChech] checks health of a multiple environments'{
+            $tasks = Start-OctopusHealthCheck -EnvironmentName 'Staging','production' -Force -ErrorAction SilentlyContinue
+            $tasks.count | should be 2
+            $tasks | Get-Member | Select-Object -ExpandProperty typename -Unique | should be 'Octopus.Client.Model.TaskResource'
+        } 
+        It '[Remove-OctopusResource] deletes environments'{
                 
             {Get-OctopusEnvironment -Name $testname | Remove-OctopusResource -Force} | should not Throw               
 
             Get-OctopusEnvironment -Name $TestName -ErrorAction SilentlyContinue | should be $null
         }        
-        It "[Remove-OctopusResource] deletes Projects"{
+        It '[Remove-OctopusResource] deletes Projects'{
 
             {Get-OctopusProject -Name $TestName | Remove-OctopusResource -Force} | should not throw
 
             Get-OctopusProject -Name $TestName -ErrorAction SilentlyContinue| should be $null
 
         }
-        It "[Remove-OctopusResource] deletes Project Groups"{
+        It '[Remove-OctopusResource] deletes Project Groups'{
 
             {Get-OctopusProjectGroup -Name $TestName |Remove-OctopusResource -Force} | should not throw
 
             Get-OctopusProjectGroup -Name $TestName -ErrorAction SilentlyContinue | should be $null
 
         }
-        It "[REMOVE-OCTOPUSRESOURCE] DELETES LIFECYCLES. UGLY PLACEHOLDER"{
+        It '[REMOVE-OCTOPUSRESOURCE] DELETES LIFECYCLES. UGLY PLACEHOLDER'{
 
         }
-        It "[REMOVE-OCTOPUSRESOURCE] DELETES RELEASES. UGLY PLACEHOLDER"{
+        It '[REMOVE-OCTOPUSRESOURCE] DELETES RELEASES. UGLY PLACEHOLDER'{
 
         }
-        It "[REMOVE-OCTOPUSRESOURCE] DELETES DEPLOYMENT. UGLY PLACEHOLDER"{
+        It '[REMOVE-OCTOPUSRESOURCE] DELETES DEPLOYMENT. UGLY PLACEHOLDER'{
 
         }                    
-        It "[Get/Set-OctopusConnectionInfo] do their thing" {
+        It '[Get/Set-OctopusConnectionInfo] do their thing' {
             
             $originalURL = $env:OctopusURL
             $originalAPIKey = $env:OctopusAPIKey
 
-            Set-OctopusConnectionInfo -URL "SomethingURL" -APIKey "SomethingAPIKey"
+            Set-OctopusConnectionInfo -URL 'SomethingURL' -APIKey 'SomethingAPIKey'
 
             $ci = Get-OctopusConnectionInfo
-            $ci.OctopusURL | should be "SomethingURL"
-            $ci.OctopusAPIKey | should be "SomethingAPIKey"                
+            $ci.OctopusURL | should be 'SomethingURL'
+            $ci.OctopusAPIKey | should be 'SomethingAPIKey'                
 
             Set-OctopusConnectionInfo -URL $originalURL -APIKey $originalAPIKey
 
@@ -195,29 +208,29 @@ Describe "Octopus Module Tests" {
             $ci.OctopusAPIKey | should be $originalAPIKey
             
         }
-        It "[Get/Set-OctopusSMTPConfig] do their thing"{
+        It '[Get/Set-OctopusSMTPConfig] do their thing'{
             
             $port = Get-Random
                 
             Set-OctopusSMTPConfig -SMTPHost "$TestName" `
-            -Port $port -SendEmailFrom "dalmiro@company.com" | should be $true
+            -Port $port -SendEmailFrom 'dalmiro@company.com' | should be $true
 
             $SMTPConfig = Get-OctopusSMTPConfig
 
             $SMTPConfig.SMTPHost | Should be $TestName
             $SMTPConfig.SMTPPort | should be $port
 
-            Set-OctopusSMTPConfig -SMTPHost "Localhost" `
-            -Port 25 -SendEmailFrom "Octopus@company.com" | should be $true
+            Set-OctopusSMTPConfig -SMTPHost 'Localhost' `
+            -Port 25 -SendEmailFrom 'Octopus@company.com' | should be $true
 
             $SMTPConfig = Get-OctopusSMTPConfig
 
-            $SMTPConfig.SMTPHost | Should be "Localhost"
+            $SMTPConfig.SMTPHost | Should be 'Localhost'
             $SMTPConfig.SMTPPort | should be 25
 
             
         }
-        It "[Get/Set-OctopusMaintenanceMode] do their thing" {
+        It '[Get/Set-OctopusMaintenanceMode] do their thing' {
 
             Set-OctopusMaintenanceMode -On -Force | should be $true
 
@@ -228,17 +241,17 @@ Describe "Octopus Module Tests" {
             (Get-OctopusMaintenanceMode).IsInMaintenanceMode | should be $False
 
         }        
-        It "[Set-OctopusUserAccountStatus] Enables and Disables a user account" {
+        It '[Set-OctopusUserAccountStatus] Enables and Disables a user account' {
 
-            $d = Set-OctopusUserAccountStatus -Username "OT\Tester@OT" -status Disabled
-            $d.IsActive | should be "False"
+            $d = Set-OctopusUserAccountStatus -Username 'OT\Tester@OT' -status Disabled
+            $d.IsActive | should be 'False'
 
-            $e = Set-OctopusUserAccountStatus -Username "OT\Tester@OT" -status Enabled
-            $e.IsActive | should be "True"
+            $e = Set-OctopusUserAccountStatus -Username 'OT\Tester@OT' -status Enabled
+            $e.IsActive | should be 'True'
         }                        
-        It "[New-OctopusAPIKey] creates an API Key"{
+        It '[New-OctopusAPIKey] creates an API Key'{
 
-            $api = New-OctopusAPIKey -Purpose "$TestName" -Username 'Ian.Paullin' -password "Michael2" -NoWarning
+            $api = New-OctopusAPIKey -Purpose "$TestName" -Username 'Ian.Paullin' -password 'Michael2' -NoWarning
                 
             $api.purpose | should be $TestName
 
@@ -247,9 +260,9 @@ Describe "Octopus Module Tests" {
             {$c.repository.Users.RevokeApiKey($api)} | should not throw
 
         }                    
-        It "[Block/Unblock-OctopusRelease] blocks/unblocks AN UGLY HARDCODED release"{
+        It '[Block/Unblock-OctopusRelease] blocks/unblocks AN UGLY HARDCODED release'{
 
-            $release = Get-OctopusRelease -ProjectName TestProject1 | Select -First 1
+            $release = Get-OctopusRelease -ProjectName TestProject1 | Select-Object -First 1
             
             $release | Block-OctopusRelease -Description $TestName -Force | should be $true
 

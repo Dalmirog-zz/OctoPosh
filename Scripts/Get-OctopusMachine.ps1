@@ -28,30 +28,30 @@
 #>
 function Get-OctopusMachine
 {
-    [CmdletBinding(DefaultParameterSetName="Name")]
+    [CmdletBinding(DefaultParameterSetName='Name')]
     Param
     (
         # Gets info about machines with this name. Only 1 value with wildcards can be used at a time
-        [Alias("Name")]
+        [Alias('Name')]
         [Parameter(ValueFromPipelineByPropertyName=$true,
-                   ParameterSetName = "Name")]
+                   ParameterSetName = 'Name')]
         [string[]]$MachineName,
 
         # Gets info about all the machines included on this environment. Only 1 value with wildcards can be used at a time
-        [Alias("Environment")]
+        [Alias('Environment')]
         [Parameter(ValueFromPipelineByPropertyName=$true,
-                   ParameterSetName = "Environment")]
+                   ParameterSetName = 'Environment')]
         [string[]]$EnvironmentName,
 
         # Gets info about all the machines registered with this URL. Only 1 value with wildcards can be used at a time
-        [Alias("URI")]
-        [Parameter(ParameterSetName = "URL")]
+        [Alias('URI')]
+        [Parameter(ParameterSetName = 'URL')]
         [string[]]$URL,
 
         # Gets info about all the machines registered with this Communication Style. Only values accepted are "Listening" and "Polling"
-        [Alias("Mode","TentacleMode")]
-        [ValidateSet("Listening","Polling")]         
-        [Parameter(ParameterSetName = "CommunicationStyle")]
+        [Alias('Mode','TentacleMode')]
+        [ValidateSet('Listening','Polling')]         
+        [Parameter(ParameterSetName = 'CommunicationStyle')]
         [string]$CommunicationStyle,
 
         #When used, the cmdlet will only return the plain Octopus resource, withouth the extra info. This mode is used mostly from inside other cmdlets
@@ -65,7 +65,7 @@ function Get-OctopusMachine
     }
     Process
     {
-        If(($PSCmdlet.ParameterSetName -eq "Name") -and (!([string]::IsNullOrEmpty($MachineName)))) {
+        If(($PSCmdlet.ParameterSetName -eq 'Name') -and !([string]::IsNullOrEmpty($MachineName))) {
             $Machines = $c.repository.Machines.FindMany({param($Mach) if ((($Mach.name -in $MachineName) -or ($Mach.name -like $MachineName))) {$true}})
 
             foreach($n in $MachineName){
@@ -76,10 +76,10 @@ function Get-OctopusMachine
             }
         }
 
-        elseIf($PSCmdlet.ParameterSetName -eq "CommunicationStyle") {
+        elseIf($PSCmdlet.ParameterSetName -eq 'CommunicationStyle') {
 
-            If($CommunicationStyle -eq "Polling"){$Style = "TentacleActive"}            
-            elseIf($CommunicationStyle -eq "Listening"){$Style = "TentaclePassive"}
+            If($CommunicationStyle -eq 'Polling'){$Style = 'TentacleActive'}            
+            elseIf($CommunicationStyle -eq 'Listening'){$Style = 'TentaclePassive'}
 
             $Machines = $c.repository.Machines.FindMany({param($Mach) if ($Mach.CommunicationStyle -eq $Style){$true}})
 
@@ -89,7 +89,7 @@ function Get-OctopusMachine
             }
         }
 
-        elseIf(($PSCmdlet.ParameterSetName -eq "URL") -and (!([string]::IsNullOrEmpty($URL)))) {
+        elseIf(($PSCmdlet.ParameterSetName -eq 'URL') -and (!([string]::IsNullOrEmpty($URL)))) {
             $Machines = $c.repository.Machines.FindMany({param($Mach) if ((($Mach.URI -in $URL) -or ($Mach.URI -like $URL))) {$true}})
 
             foreach($U in $URL){
@@ -100,7 +100,7 @@ function Get-OctopusMachine
             }
         }
 
-        elseIf(($PSCmdlet.ParameterSetName -eq "Environment") -and !([string]::IsNullOrEmpty($EnvironmentName))) {
+        elseIf(($PSCmdlet.ParameterSetName -eq 'Environment') -and !([string]::IsNullOrEmpty($EnvironmentName))) {
 
             $machines = @()
 
@@ -141,8 +141,8 @@ function Get-OctopusMachine
                     $e = Get-OctopusResource "api/environments/$($machine.EnvironmentIds)" -header $c.header
                 }
                 
-                If($Machine.CommunicationStyle -eq "TentacleActive"){$Style = "Polling"}            
-                If($Machine.CommunicationStyle -eq "TentaclePassive"){$Style = "Listening"}               
+                If($Machine.CommunicationStyle -eq 'TentacleActive'){$Style = 'Polling'}            
+                If($Machine.CommunicationStyle -eq 'TentaclePassive'){$Style = 'Listening'}               
 
                 $obj = [PSCustomObject]@{
                     MachineName = $machine.Name
