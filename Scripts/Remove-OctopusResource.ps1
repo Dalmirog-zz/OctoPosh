@@ -23,12 +23,12 @@ function Remove-OctopusResource
         # Octopus resource object
         [Parameter(Mandatory=$true,
                    ValueFromPipelineByPropertyName=$true,
-                   ParameterSetName = "Delete",                   
+                   ParameterSetName = 'Delete',                   
                    Position=0)]
         [object[]]$Resource,
 
         # Forces resource delete.
-        [parameter(ParameterSetName = "ListAcceptedTypes")]
+        [parameter(ParameterSetName = 'ListAcceptedTypes')]
         [switch]$AcceptedTypes,
 
         # Forces resource delete.
@@ -44,11 +44,11 @@ function Remove-OctopusResource
     Begin
     {
         If($AcceptedTypes){
-            "Octopus.Client.Model.ProjectGroupResource"
-            "Octopus.Client.Model.ProjectResource"
-            "Octopus.Client.Model.EnvironmentResource"
-            "Octopus.Client.Model.DeploymentResource"
-            "Octopus.Client.Model.MachineResource"
+            'Octopus.Client.Model.ProjectGroupResource'
+            'Octopus.Client.Model.ProjectResource'
+            'Octopus.Client.Model.EnvironmentResource'
+            'Octopus.Client.Model.DeploymentResource'
+            'Octopus.Client.Model.MachineResource'
         }
         $c = New-OctopusConnection        
     }
@@ -59,18 +59,18 @@ function Remove-OctopusResource
             if(!($Force)){
 
                 If (!(Get-UserConfirmation -message "Are you sure you want to delete this resource? `n`n [$($R.GetType().tostring())] $($R.name)`n")){
-                    Throw "Canceled by user"
+                    Throw 'Canceled by user'
                 }
 
             }
 
             switch ($R)
             {
-                {$_.getType() -eq [Octopus.Client.Model.ProjectGroupResource]} {$ResourceType = "ProjectGroups"}
-                {$_.getType() -eq [Octopus.Client.Model.ProjectResource]} {$ResourceType = "Projects"}
-                {$_.getType() -eq [Octopus.Client.Model.EnvironmentResource]} {$ResourceType = "Environments"}
-                {$_.getType() -eq [Octopus.Client.Model.DeploymentResource]} {$ResourceType = "Deployments"}
-                {$_.getType() -eq [Octopus.Client.Model.MachineResource]} {$ResourceType = "Machines"}          
+                {$_.getType() -eq [Octopus.Client.Model.ProjectGroupResource]} {$ResourceType = 'ProjectGroups'}
+                {$_.getType() -eq [Octopus.Client.Model.ProjectResource]} {$ResourceType = 'Projects'}
+                {$_.getType() -eq [Octopus.Client.Model.EnvironmentResource]} {$ResourceType = 'Environments'}
+                {$_.getType() -eq [Octopus.Client.Model.DeploymentResource]} {$ResourceType = 'Deployments'}
+                {$_.getType() -eq [Octopus.Client.Model.MachineResource]} {$ResourceType = 'Machines'}          
                 Default{Throw "Invalid object type: $($_.getType()) `nRun 'Remove-OctopusResource -AcceptedTypes' to get a list of the object types accepted by this cmdlet"}
             }
 
@@ -90,7 +90,7 @@ function Remove-OctopusResource
                     Start-Sleep -Seconds 2
                   }
 
-                Until (($task.state -notin ("Queued","executing")) -or ($CurrentTime -gt $StartTime.AddMinutes($Timeout)))
+                Until (($task.state -notin ('Queued','executing')) -or ($CurrentTime -gt $StartTime.AddMinutes($Timeout)))
             }
 
 
