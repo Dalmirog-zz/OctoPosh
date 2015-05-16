@@ -43,7 +43,8 @@ function Get-OctopusProjectVariable
     Begin
     {
         $c = New-OctopusConnection
-        $list = @()        
+        $list = @()
+        $i = 1        
     }
     Process
     {
@@ -52,6 +53,8 @@ function Get-OctopusProjectVariable
 
         #Getting info by project
         foreach ($p in $Projects){
+
+            Write-Progress -Activity "Getting info from variable set of project: $($p.name)" -status "$i of $($Projects.count)" -percentComplete ($i / $Projects.count*100)                
 
             $vars = @()
 
@@ -83,6 +86,8 @@ function Get-OctopusProjectVariable
                 } 
             
             $list += $obj
+            
+            $i++
         }
 
     }

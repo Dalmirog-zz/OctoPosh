@@ -52,6 +52,7 @@ function Get-OctopusDeployment
     {
         $c = New-OctopusConnection
         $list = @()
+        $i = 1
     }
     Process
     {
@@ -68,6 +69,8 @@ function Get-OctopusDeployment
             {$true}})
 
         foreach ($d in $deployments){
+
+            Write-Progress -Activity "Getting info from deloyment: $($d.id)" -status "$i of $($deployments.count)" -percentComplete ($i / $deployments.count*100)
 
             $p = $projects | ?{$_.id -eq $d.projectid}
             $e = $environments | ? {$_.id -eq $d.environmentid}
@@ -109,6 +112,7 @@ function Get-OctopusDeployment
                             DeploymentstartTime = ($t.Starttime).DateTime
                             DeploymentEndTime = ($t.Completedtime).DateTime
                             DeploymentStartedBy = $dev.Username
+                            ID = $d.Id
                             Duration = [math]::Round($duration,2)
                             Status = $t.state                           
                             ReleaseVersion = $r.version
@@ -119,6 +123,8 @@ function Get-OctopusDeployment
                             Resource = $d
                         }                                    
             $list += $obj
+
+            $i++
         }
 
     }

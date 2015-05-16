@@ -62,6 +62,7 @@ function Get-OctopusMachine
     {
         $c = New-OctopusConnection
         $List = @()
+        $i = 1
     }
     Process
     {
@@ -130,7 +131,9 @@ function Get-OctopusMachine
         }
 
         else{            
-            foreach ($machine in $Machines){        
+            foreach ($machine in $Machines){                
+                Write-Progress -Activity "Getting info from machine: $($machine.name)" -status "$i of $($machines.count)" -percentComplete ($i / $machines.count*100)
+
                 $e = @() 
 
                 If($environments){
@@ -162,7 +165,8 @@ function Get-OctopusMachine
                 }
 
                 $list += $obj
-
+                
+                $i++
             }
         }
     }

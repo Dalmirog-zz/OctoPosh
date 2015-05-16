@@ -43,6 +43,7 @@ function Get-OctopusProject
     {
         $c = New-OctopusConnection
         $list = @()
+        $i = 1
     }
     Process
     {
@@ -70,49 +71,50 @@ function Get-OctopusProject
 
             foreach ($p in $Projects){
 
-            $deployments = @()
+                Write-Progress -Activity "Getting info from Project: $($p.name)" -status "$i of $($Projects.count)" -percentComplete ($i / $Projects.count*100)
 
-            $dashboardItem = $dashboard.Items | ?{$p.Id -eq $_.projectid}
+                $deployments = @()
 
-            foreach($d in $dashboardItem){
+                $dashboardItem = $dashboard.Items | ?{$p.Id -eq $_.projectid}
+
+                foreach($d in $dashboardItem){
                 
-                $t = $c.repository.Tasks.Get($d.links.task)
+                    $t = $c.repository.Tasks.Get($d.links.task)
 
-                $dev = (Invoke-WebRequest -Uri "$env:OctopusURL/api/events?regarding=$($d.Id)" -Method Get -Headers $c.header | ConvertFrom-Json).items | ? {$_.category -eq "DeploymentQueued"}
+                    $dev = (Invoke-WebRequest -Uri "$env:OctopusURL/api/events?regarding=$($d.Id)" -Method Get -Headers $c.header | ConvertFrom-Json).items | ? {$_.category -eq "DeploymentQueued"}
 
-                $dep = [PSCustomObject]@{
-                        ProjectName = ($dashboard.Projects | ?{$_.id -eq $d.projectId}).name
-                        EnvironmentName = ($dashboard.Environments | ?{$_.id -eq $d.EnvironmentId}).name
-                        ReleaseVersion = $d.ReleaseVersion
-                        State = $d.state
-                        CreatedBy = $dev.username
-                        StartTime = ($t.StartTime).datetime
-                        EndTime = ($t.CompletedTime).datetime
+                    $dep = [PSCustomObject]@{
+                            ProjectName = ($dashboard.Projects | ?{$_.id -eq $d.projectId}).name
+                            EnvironmentName = ($dashboard.Environments | ?{$_.id -eq $d.EnvironmentId}).name
+                            ReleaseVersion = $d.ReleaseVersion
+                            State = $d.state
+                            CreatedBy = $dev.username
+                            StartTime = ($t.StartTime).datetime
+                            EndTime = ($t.CompletedTime).datetime
+                    }
 
-                        }
-
-                $deployments += $dep
-            }
+                    $deployments += $dep
+                }
             
-            $pg = $c.repository.ProjectGroups.Get($p.projectgroupid)
+                $pg = $c.repository.ProjectGroups.Get($p.projectgroupid)
 
-            $l = $c.repository.Lifecycles.Get($p.LifeCycleId)
+                $l = $c.repository.Lifecycles.Get($p.LifeCycleId)
             
-            $obj = [PSCustomObject]@{
-                ProjectName = $p.name
-                ID = $p.Id
-                ProjectGroupName = $pg.name                
-                LifecycleName = $l.name
-                LatestDeployments = $deployments
-                AutoCreateRelease = $p.AutoCreateRelease
-                Resource = $p                
-            }
+                $obj = [PSCustomObject]@{
+                    ProjectName = $p.name
+                    ID = $p.Id
+                    ProjectGroupName = $pg.name                
+                    LifecycleName = $l.name
+                    LatestDeployments = $deployments
+                    AutoCreateRelease = $p.AutoCreateRelease
+                    Resource = $p                
+                }
             
-            $list += $obj
-
-        }  
-        }     
-
+                $list += $obj
+            
+                $i++
+            }  
+        }
 
     }
     End
