@@ -220,18 +220,23 @@ Describe 'Octopus Module Tests' {
     It '[Get-OctopusDeployment] GETS A DEPLOYMENT. UGLY PLACEHOLDER'{
         #(Get-OctopusDeployment -ProjectName TestProject1) | should not be $null                
     }
-    It '[Start-OctopusHealthChech] doesnt check empty environments'{
+    It '[Start-OctopusHealthChech] doesnt start health checks on empty environments'{
         (Start-OctopusHealthCheck -EnvironmentName $TestName -Force -ErrorAction SilentlyContinue) | should be $null        
     }
-    It '[Start-OctopusHealthChech] checks health of a single environment'{
+    It '[Start-OctopusHealthChech] starts a health check on a single environment'{
         $task = Start-OctopusHealthCheck -EnvironmentName 'Staging' -Force -ErrorAction SilentlyContinue
         $task.count | should be 1
-        $task | Get-Member | Select-Object -ExpandProperty typename -Unique | should be 'Octopus.Client.Model.TaskResource'
+        $task.GetType().fullname| should be 'Octopus.Client.Model.TaskResource'
     }
-    It '[Start-OctopusHealthChech] checks health of a multiple environments'{
+    It '[Start-OctopusHealthChech] starts a health check on multiple environments'{
         $tasks = Start-OctopusHealthCheck -EnvironmentName 'Staging','production' -Force -ErrorAction SilentlyContinue
         $tasks.count | should be 2
         $tasks | Get-Member | Select-Object -ExpandProperty typename -Unique | should be 'Octopus.Client.Model.TaskResource'
+    }    
+    It '[Start-OctopusRetentionPolicy] starts a "Retention" task on the server'{
+        $task = Start-OctopusRetentionPolicy -Force -Wait
+
+        $task.GetType().fullname| should be 'Octopus.Client.Model.TaskResource'
     } 
     It '[Remove-OctopusResource] deletes environments'{                
         {Get-OctopusEnvironment -Name $testname | Remove-OctopusResource -Force} | should not Throw               
