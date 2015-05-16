@@ -109,6 +109,7 @@ function Get-OctopusDeployment
                             DeploymentstartTime = ($t.Starttime).DateTime
                             DeploymentEndTime = ($t.Completedtime).DateTime
                             DeploymentStartedBy = $dev.Username
+                            ID = $d.Id
                             Duration = [math]::Round($duration,2)
                             Status = $t.state                           
                             ReleaseVersion = $r.version
