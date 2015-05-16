@@ -15,33 +15,30 @@ function Get-OctopusTask
     [CmdletBinding()]
     Param
     (
-        #ID of task you want to get
+        # ID of task you want to get
         [Alias('ID')]
         [parameter(ParameterSetName = 'TaskId')]
         [ValidateNotNullOrEmpty()]
-        [String]$TaskID,
+        [String[]]$TaskID,
         
         # Name of the task
         [ValidateSet('Backup','Delete','Health','Retention','Deploy','Upgrade','AdhocScript','TestEmail')]        
         [String[]]$Name = '*',
 
-        #Document related to this task.
+        # Document related to this task.
         [Alias('DocumentID')]        
         [string]$ResourceID = '*',
 
-        #Document related to this task.
+        # Status of the task.
         [Alias('Status')]
         [ValidateSet('Success','TimedOut','Failed','Canceled')]        
         [string[]]$State = '*',
 
-        #Before date
+        # Before date
         [System.DateTimeOffset]$Before = [System.DateTimeOffset]::MaxValue,
         
-        #After date
-        [System.DateTimeOffset]$After = [System.DateTimeOffset]::MinValue,
-        
-        #When used, the cmdlet will only return the plain Octopus resource, withouth the extra info. This mode is used mostly from inside other cmdlets
-        [switch]$ResourceOnly 
+        # After date
+        [System.DateTimeOffset]$After = [System.DateTimeOffset]::MinValue
     )
 
     Begin
@@ -52,7 +49,17 @@ function Get-OctopusTask
     Process
     {
         If($TaskID){
-            $tasks = $c.repository.Tasks.Get($TaskID)
+
+            $tasks = @()
+
+            foreach($t in $TaskID){
+                $task = $c.repository.Tasks.Get($t)
+                If($task -eq $null){
+                    Write-Error "No tasks found with ID $t"
+                }
+                else {$tasks += $task}
+            }           
+            
         }
 
         elseif(($Name -ne '*') -or ($ResourceID -ne '*') -or ($State -ne '*') -or ($Before -ne [System.DateTimeOffset]::MaxValue) -or ($After -ne [System.DateTimeOffset]::MinValue)) {
@@ -64,22 +71,16 @@ function Get-OctopusTask
             $tasks = $c.repository.Tasks.FindAll()
         }
 
-        If($ResourceOnly){
-            $list = $tasks
+        If($tasks.count -ne 0){
+            $list += $tasks
         }
-
-        Else{
-            Foreach ($task in $tasks){
-                $list += $Task
-                #$list += $obj
-            }
-        }
-    }
-    End
-    {
-        If($list.count -eq 0){
+        else{
             $list = $null
         }
+        
+    }
+    End
+    {        
         return $List 
     }
 }
