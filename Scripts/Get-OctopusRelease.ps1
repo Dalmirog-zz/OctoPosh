@@ -38,10 +38,10 @@ function Get-OctopusRelease{
 
     Begin
     {
-        $c = New-OctopusConnection
-        
+        $c = New-OctopusConnection        
         $list = @()
         $releases = @()
+        $i++
         
     }
     Process
@@ -80,21 +80,25 @@ function Get-OctopusRelease{
 
         Else{
             Foreach($release in $releases){
-        
-        $d = $c.repository.Deployments.FindOne({param($dep) if($dep.releaseid -eq $release.Id){$true}})        
-        $rev = (Invoke-WebRequest -Uri "$env:OctopusURL/api/events?regarding=$($release.Id)" -Method Get -Headers $c.header | ConvertFrom-Json).items | ? {$_.category -eq "Created"}
-        
-        $obj = [PSCustomObject]@{
-                ProjectName = ($Projects | ?{$_.id -eq $Release.projectID}).name
-                ReleaseVersion = $release.Version
-                ReleaseNotes = $release.ReleaseNotes
-                ReleaseCreationDate = ($release.assembled).datetime
-                ReleaseCreatedBy = $rev.Username                
-                Resource = $release                
-            }            
 
-        $list += $obj       
-        }
+                Write-Progress -Activity "Getting info from release: $($release.id)" -status "$i of $($releases.count)" -percentComplete ($i / $releases.count*100)                
+        
+                $d = $c.repository.Deployments.FindOne({param($dep) if($dep.releaseid -eq $release.Id){$true}})        
+                $rev = (Invoke-WebRequest -Uri "$env:OctopusURL/api/events?regarding=$($release.Id)" -Method Get -Headers $c.header | ConvertFrom-Json).items | ? {$_.category -eq "Created"}
+        
+                $obj = [PSCustomObject]@{
+                        ProjectName = ($Projects | ?{$_.id -eq $Release.projectID}).name
+                        ReleaseVersion = $release.Version
+                        ReleaseNotes = $release.ReleaseNotes
+                        ReleaseCreationDate = ($release.assembled).datetime
+                        ReleaseCreatedBy = $rev.Username                
+                        Resource = $release                
+                    }            
+
+                $list += $obj       
+            
+                $i++
+            }
         }
 
     }

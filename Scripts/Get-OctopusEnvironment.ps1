@@ -26,6 +26,7 @@ function Get-OctopusEnvironment
     {
         $c = New-OctopusConnection
         $list = @()
+        $i = 1
     }
     Process
     {
@@ -53,49 +54,50 @@ function Get-OctopusEnvironment
         }
         Else{
             $dashboard = Get-OctopusResource "/api/dashboard/dynamic" -header $c.header
-        
+
             foreach ($e in $environments){
 
-            $deployments = @()
+                Write-Progress -Activity "Getting info from Environment: $($E.name)" -status "$i of $($environments.count)" -percentComplete ($i / $environments.count*100)
 
-            $m = $c.repository.Machines.FindMany({param($ma) if ($e.id -in $ma.EnvironmentIds){$true}})
+                $deployments = @()
 
-            $dashboardItem = $dashboard.Items | ?{$e.Id -eq $_.EnvironmentId}
+                $m = $c.repository.Machines.FindMany({param($ma) if ($e.id -in $ma.EnvironmentIds){$true}})
 
-            foreach($d in $dashboardItem){
+                $dashboardItem = $dashboard.Items | ?{$e.Id -eq $_.EnvironmentId}
+
+                foreach($d in $dashboardItem){
                 
-                $t = $c.repository.Tasks.Get($d.links.task)
+                    $t = $c.repository.Tasks.Get($d.links.task)
 
-                $dev = (Invoke-WebRequest -Uri "$env:OctopusURL/api/events?regarding=$($d.Id)" -Method Get -Headers $c.header | ConvertFrom-Json).items | ? {$_.category -eq "DeploymentQueued"}
+                    $dev = (Invoke-WebRequest -Uri "$env:OctopusURL/api/events?regarding=$($d.Id)" -Method Get -Headers $c.header | ConvertFrom-Json).items | ? {$_.category -eq "DeploymentQueued"}
+
+                    $obj = [PSCustomObject]@{
+                            ProjectName = ($dashboard.Projects | ?{$_.id -eq $d.projectId}).name
+                            EnvironmentName = ($dashboard.Environments | ?{$_.id -eq $d.EnvironmentId}).name
+                            ReleaseVersion = $d.ReleaseVersion
+                            State = $d.state
+                            CreatedBy = $dev.username
+                            StartTime = ($t.StartTime).datetime
+                            EndTime = ($t.CompletedTime).datetime
+
+                            }
+
+                    $deployments += $obj
+                }
 
                 $obj = [PSCustomObject]@{
-                        ProjectName = ($dashboard.Projects | ?{$_.id -eq $d.projectId}).name
-                        EnvironmentName = ($dashboard.Environments | ?{$_.id -eq $d.EnvironmentId}).name
-                        ReleaseVersion = $d.ReleaseVersion
-                        State = $d.state
-                        CreatedBy = $dev.username
-                        StartTime = ($t.StartTime).datetime
-                        EndTime = ($t.CompletedTime).datetime
-
-                        }
-
-                $deployments += $obj
-            }                        
-
-            #Creating output object
-            $obj = [PSCustomObject]@{
-                            EnvironmentName = $e.name
-                            Id = $e.id
-                            Machines = $m
-                            LatestDeployment = $deployments
-                            Resource = $e
+                                EnvironmentName = $e.name
+                                Id = $e.id
+                                Machines = $m
+                                LatestDeployment = $deployments
+                                Resource = $e
                                                         
-                        }                                    
-            $list += $obj
+                            }                                    
+                $list += $obj
 
+                $i++
+            }
         }
-        }
-
     }
     End
     {

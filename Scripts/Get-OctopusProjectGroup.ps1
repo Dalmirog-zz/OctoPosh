@@ -39,10 +39,10 @@ function Get-OctopusProjectGroup
     {
         $c = New-OctopusConnection
         $list = @()
+        $i = 1
     }
     Process
     {
-        #Getting Projects        
         If(!([string]::IsNullOrEmpty($Name))){
                     
             $ProjectGroups = $c.repository.ProjectGroups.FindMany({param($Pg) if (($Pg.name -in $name) -or ($Pg.name -like $name)) {$true}})
@@ -60,6 +60,8 @@ function Get-OctopusProjectGroup
         }
         
         foreach($ProjectGroup in $ProjectGroups){
+
+            Write-Progress -Activity "Getting info from Project Group: $($ProjectGroup.name)" -status "$i of $($ProjectGroups.count)" -percentComplete ($i / $ProjectGroups.count*100)
 
             $Plist = @()
             
@@ -82,6 +84,8 @@ function Get-OctopusProjectGroup
                         resource = $ProjectGroup}
 
             $list += $pg
+
+            $i++
         }        
     }
     End
