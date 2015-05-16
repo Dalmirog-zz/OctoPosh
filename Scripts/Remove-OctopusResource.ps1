@@ -85,7 +85,7 @@ function Remove-OctopusResource
                 Do{
                     $CurrentTime = Get-date
                     
-                    $task = Get-OctopusTask -ID $task.id
+                    $task = Get-OctopusTask -ID $task.id -ResourceOnly
                     
                     Start-Sleep -Seconds 2
                   }

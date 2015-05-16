@@ -39,7 +39,8 @@ function Start-OctopusHealthCheck
 
     Begin
     {
-        $c = New-OctopusConnection        
+        $c = New-OctopusConnection
+        $list = @()
     }
     Process
     {
@@ -53,7 +54,7 @@ function Start-OctopusHealthCheck
                     $message = "[API Generated] Check Health on Environment: $Environment"
                 }
 
-                If(!$Force){
+                If(!($Force)){
                     If (!(Get-UserConfirmation -message "Are you sure you want to start a health check on the environment: $Environment")){
                         Throw 'Canceled by user'
                     }
@@ -73,13 +74,14 @@ function Start-OctopusHealthCheck
                     Do{
                         $CurrentTime = Get-date
                     
-                        $task = Get-OctopusTask -ID $task.id
+                        $task = Get-OctopusTask -ID $task.id -ResourceOnly
                     
                         Start-Sleep -Seconds 2
                     }Until (($task.state -notin ('Queued','executing')) -or ($CurrentTime -gt $StartTime.AddMinutes($Timeout)))
 
                     Write-Verbose "Health task on environment $environment finished with status: $($task.state.tostring().toupper())"
                 }
+                $list += $Task
             }
 
             else{
@@ -89,10 +91,9 @@ function Start-OctopusHealthCheck
     }   
     End
     {
-        If(!$Task){
-            $Task = $null
+        If($list.count -eq 0){
+            $list = $null
         }
-
-        return $Task
+        return $List
     }
 }
