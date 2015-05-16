@@ -232,11 +232,12 @@ Describe 'Octopus Module Tests' {
         $tasks = Start-OctopusHealthCheck -EnvironmentName 'Staging','production' -Force -ErrorAction SilentlyContinue
         $tasks.count | should be 2
         $tasks | Get-Member | Select-Object -ExpandProperty typename -Unique | should be 'Octopus.Client.Model.TaskResource'
-    }    
+    }
     It '[Start-OctopusRetentionPolicy] starts a "Retention" task on the server'{
         $task = Start-OctopusRetentionPolicy -Force -Wait
 
         $task.GetType().fullname| should be 'Octopus.Client.Model.TaskResource'
+        $task.name | should be "Retention"
     } 
     It '[Remove-OctopusResource] deletes environments'{                
         {Get-OctopusEnvironment -Name $testname | Remove-OctopusResource -Force} | should not Throw               
