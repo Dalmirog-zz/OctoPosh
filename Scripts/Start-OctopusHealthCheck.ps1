@@ -74,7 +74,7 @@ function Start-OctopusHealthCheck
                     Do{
                         $CurrentTime = Get-date
                     
-                        $task = Get-OctopusTask -ID $task.id -ResourceOnly
+                        $task = Get-OctopusTask -ID $task.id
                     
                         Start-Sleep -Seconds 2
                     }Until (($task.state -notin ('Queued','executing')) -or ($CurrentTime -gt $StartTime.AddMinutes($Timeout)))
