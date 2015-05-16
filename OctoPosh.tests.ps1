@@ -70,8 +70,16 @@ Describe 'Octopus Module Tests' {
     It '[Get-OctopusEnvironment] gets environments'{           
         Get-OctopusEnvironment -Name $TestName | Select-Object -ExpandProperty EnvironmentNAme | should be $TestName
     }
-    It '[Get-OctopusProject] gets projects'{
+    It '[Get-OctopusProject] gets projects by single name'{
         Get-OctopusProject -Name $TestName | Select-Object -ExpandProperty ProjectName | should be $TestName
+    }
+    It '[Get-OctopusProject] gets projects by multiple names'{
+        $names = Get-OctopusProject -ResourceOnly | Select-Object -First 2 -ExpandProperty Name
+        Get-OctopusProject -Name $names | Select-Object -ExpandProperty ProjectName | should be $names
+    }
+    It '[Get-OctopusProject] doent gets projects by non-existent names'{
+        $projectname = "Gengar"
+        Get-OctopusProject -ProjectName $projectname -ErrorAction SilentlyContinue| should be $null        
     }
     It '[Get-OctopusProjectGroup] gets Project Groups'{
         Get-OctopusProjectGroup -Name $TestName | Select-Object -ExpandProperty ProjectGroupName | should be $TestName
@@ -202,6 +210,10 @@ Describe 'Octopus Module Tests' {
         ($tasks.starttime.datetime -gt $before ).count | should be 0
         ($tasks.starttime.datetime -lt $after ).count | should be 0
     }    
+    It '[Get-OCtopusProjectVariable] gets project variable sets'{        
+        $pv = Get-OctopusProjectVariable -Projectname $TestName
+        $pv.Resource.GetType().fullname| should be 'Octopus.Client.Model.VariableSetResource'
+    }
     It '[Get-OctopusRelease] GETS A RELEASE. UGLY PLACEHOLDER'{
         #Get-OctopusRelease -ProjectName TestProject1 | should not be $null
     }
