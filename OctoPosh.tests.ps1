@@ -144,7 +144,7 @@ Describe 'Octopus Module Tests' {
     }
     It '[Get-OctopusTask] gets tasks by single name'{
         $name = 'Adhocscript'
-        Get-OctopusTask -Name AdhocScript | Select-Object -ExpandProperty name -Unique | should be $name
+        Get-OctopusTask -Name $name | Select-Object -ExpandProperty name -Unique | should be $name
     }
     It '[Get-OctopusTask] gets tasks by multiple names'{
         $name1 = 'Adhocscript'
@@ -223,7 +223,7 @@ Describe 'Octopus Module Tests' {
     It '[Start-OctopusHealthChech] doesnt start health checks on empty environments'{
         (Start-OctopusHealthCheck -EnvironmentName $TestName -Force -ErrorAction SilentlyContinue) | should be $null        
     }
-    It '[Start-OctopusHealthChech] starts a health check on a single environment'{
+    <#It '[Start-OctopusHealthChech] starts a health check on a single environment'{
         $task = Start-OctopusHealthCheck -EnvironmentName 'Staging' -Force -ErrorAction SilentlyContinue
         $task.count | should be 1
         $task.GetType().fullname| should be 'Octopus.Client.Model.TaskResource'
@@ -232,7 +232,7 @@ Describe 'Octopus Module Tests' {
         $tasks = Start-OctopusHealthCheck -EnvironmentName 'Staging','production' -Force -ErrorAction SilentlyContinue
         $tasks.count | should be 2
         $tasks | Get-Member | Select-Object -ExpandProperty typename -Unique | should be 'Octopus.Client.Model.TaskResource'
-    }
+    }#>
     It '[Start-OctopusRetentionPolicy] starts a "Retention" task on the server'{
         $task = Start-OctopusRetentionPolicy -Force -Wait
 
