@@ -5,8 +5,12 @@
    Puts Octopus on/off maintenance mode
 .EXAMPLE
    Set-OctopusMaintenanceMode -On
+
+   Set Maintenance mode ON
 .EXAMPLE
    Set-OctopusMaintenanceMode -Off
+
+   Set Maintenance mode OFF
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
 #>

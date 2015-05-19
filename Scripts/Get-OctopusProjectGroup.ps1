@@ -8,15 +8,15 @@
 .EXAMPLE
    Get-OctopusProjectGroup 
 
-   Gets all the Project Groups on the Octopus instance
+   Get all the Project Groups on the Octopus instance
 .EXAMPLE
    Get-OctopusProjectGroup -name "MyProjects"
 
-   Gets the Project Group named "MyProjects"
+   Get a Project Group named "MyProjects"
 .EXAMPLE
    Get-OctopusProjectGroup -name "*web*"
 
-   Gets all the Project Groups with the word "web" on their name
+   Get all the Project Groups with the word "web" on their name
 .EXAMPLE
    Get-OctopusProject "MyProject" | Get-OctopusProjectGroup | select -ExpandProperty projects | Get-OctopusProjects
 

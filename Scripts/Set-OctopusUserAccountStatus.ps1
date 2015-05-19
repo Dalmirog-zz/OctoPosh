@@ -4,9 +4,13 @@
 .DESCRIPTION
    Enables or disables an Octopus User Account
 .EXAMPLE
-   Set-OctopusUserAccountStatus -Username Ian.Paullin -status Enabled
+   Set-OctopusUserAccountStatus -Username Ian.Paullin -status Disabled
+
+   Disable the account of the user Ian.Paullin
 .EXAMPLE
-   Get-OctopusUser -EmailAddress Ian.Paullin@VandalayIndustries.com | Set-OctopusUserAccountStatus -status Disabled
+   Get-OctopusUser -EmailAddress Ian.Paullin@VandalayIndustries.com | Set-OctopusUserAccountStatus -status Enabled
+
+   Enable the account of the user with the email "Ian.Paullin@VandalayIndustries.com"
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
 #>

@@ -4,7 +4,9 @@
 .DESCRIPTION
    Gets current Octopus maintenance mode status
 .EXAMPLE
-   Get-OctopusMaintenanceMode   
+   Get-OctopusMaintenanceMode
+   
+   Get the current status of the Octopus maintenance mode
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
 #>
@@ -33,7 +35,7 @@ function Get-OctopusMaintenanceMode
                 LastModifiedBy = $ev.UserName
                 LastModifiedDate = ($ev.Occurred).datetime
                 LastModifiedAuth = $authmethod
-                }
+            }
         }
     }
     End

@@ -10,19 +10,19 @@
 .EXAMPLE
    Get-OctopusProject -name MyProject
 
-   This command gets the project named "MyProject"
+   Get the project named "MyProject"
 .EXAMPLE
    Get-OctopusProject -name MyApp*
 
-   This command gets all the projects whose name start with the string MyApp
+   Get all the projects whose name starts with the string "MyApp"
 .EXAMPLE
    Get-OctopusEnvironment -Name "Production" | Select -ExpandProperty LatestDeployments | Get-OctopusProject
 
-   This command gets all the projects that deployed to the environment "Production" at least once
+   Gets all the projects that deployed to the environment "Production" at least once
 .EXAMPLE
    Get-OctopusProjectGroup -name MyProjects | Get-OctopusProject | Remove-OctopusResource
 
-   This command gets all the projects inside of the Project Group "MyProjects" and then deletes them from the database
+   Get all the projects inside of the Project Group "MyProjects" and then delete them from the database
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
 #>

@@ -1,6 +1,10 @@
 ﻿<#
 .Synopsis
-   Creates an an API Key for a user using the Octopus Deploy credentials
+   Creates an an API Key for a user using the Octopus Deploy credentials.
+
+   The fact that this command has to be run manually from a console is as design. API Keys should be created only once, stored in a safe place and then reused.
+
+   API keys can be used to authenticate with the Octopus Deploy REST API in place of a username and password. Using API keys lets you keep your username and password secret, but the API key itself is still sensitive information that needs to be protected
 .DESCRIPTION
    Creates an an API Key for a user using the Octopus Deploy credentials.
 
@@ -9,10 +13,16 @@
    API keys can be used to authenticate with the Octopus Deploy REST API in place of a username and password. Using API keys lets you keep your username and password secret, but the API key itself is still sensitive information that needs to be protected
 .EXAMPLE
    New-OctopusAPIKey -Purpose "Scripting"
+
+   Create a new API Key and have Powershell prompt you for User and Password
 .EXAMPLE
    New-OctopusAPIKey -Purpose "SQLDB" -username Ian.Paullin
+
+   Create a new API Key  for a specific user and have Powershell prompt you for User
 .EXAMPLE
    New-OctopusAPIKey -Purpose "SQLDB" -username Ian.Paullin -password AwesomePassword
+
+   Create a new API Key  for a specific user
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
 #>

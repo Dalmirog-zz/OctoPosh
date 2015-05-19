@@ -1,12 +1,26 @@
 ﻿<#
 .Synopsis
-   Short description
+   Gets Octopus Tasks resources.
+
+   This cmdlet can be used to track the status of tasks such as Health checks, Backups, Deployments, etc. See parameter "Name" to see all the kind of tasks available.
 .DESCRIPTION
    Long description
 .EXAMPLE
-   Example of how to use this cmdlet
+   Get-OctopusTask Name Backup
+
+   Get all the Backup tasks of the server
 .EXAMPLE
-   Another example of how to use this cmdlet
+   Get-OctopusTask -name Health -status failed -After (Get-date).adddays(-7)
+
+   Get all the Health check tasks that failed over the past 7 days
+.EXAMPLE
+   Get-OctopusTask -TaskID "ServerTAsks-1234"
+
+   Get the server task with the id "ServerTasks-1234"
+.EXAMPLE
+   Get-OctopusTask -Name Backup -After 01/01/2015
+
+   Get all the Backup tasks 01/01/2015
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
 #>
