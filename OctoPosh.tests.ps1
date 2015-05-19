@@ -158,11 +158,16 @@ Describe 'Octopus Module Tests' {
         $n12tasks.count | should be ($n1tasks.count + $n2tasks.count) 
     }
     It '[Get-OctopusTask] gets tasks by single ID'{
-        $tasks = Get-OctopusTask -After (Get-Date).AddDays(-10) | Select-Object -First 1
-    
-        $results = Get-OctopusTask -TaskID $tasks.id
+        $task = Get-OctopusTask -After (Get-Date).AddDays(-10) | Select-Object -First 1
+        "Task"
+        $task            
 
-        $results.id | should be $tasks.id            
+        $result = Get-OctopusTask -TaskID $task.id
+
+        "Result"
+        $result
+
+        $result.id | should be $task.id            
     }
     It '[Get-OctopusTask] gets tasks by multiple IDs'{
         $i = (Get-Random -Maximum 20)
