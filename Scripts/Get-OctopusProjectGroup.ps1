@@ -1,9 +1,7 @@
 ﻿<#
 .Synopsis
-   Short description
-.DESCRIPTION
    Gets information about Octopus Project Groups
-.EXAMPLE
+.DESCRIPTION
    Gets information about Octopus Project Groups
 .EXAMPLE
    Get-OctopusProjectGroup 
