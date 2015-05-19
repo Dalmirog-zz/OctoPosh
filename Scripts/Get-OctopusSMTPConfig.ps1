@@ -5,6 +5,8 @@
    Gets Octopus SMTP Configuration
 .EXAMPLE
    Get-OctopusSMTPConfig
+
+   Get Octopus SMTP Configuration
 .LINK
    Github project: https://github.com/Dalmirog/OctoPosh
 #>

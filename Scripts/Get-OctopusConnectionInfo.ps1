@@ -1,10 +1,12 @@
 ﻿<#
 .Synopsis
-   Gets the currently configured octopus info (Server URI and API Key)
+   This function gets the data of the variables $env:OctopusURI and $env:OctopusAPI that are used by all the cmdlets of the Octoposh module
 .DESCRIPTION
-   This function gets the data of the variables $env:OctopusURI and $env:OctopusAPI that are used by most of the cmdlets of the OctopusDeploy powershell module
+   This function gets the data of the variables $env:OctopusURI and $env:OctopusAPI that are used by all the cmdlets of the Octoposh module
 .EXAMPLE
    Get-OctopusConnectionInfo
+
+   Get the current connection info. Its the same as getting the values of $env:OctopusURL and $Env:OctopusAPIKey
 .LINK
    Github project: ghttps://github.com/Dalmirog/Octoposh
 #>

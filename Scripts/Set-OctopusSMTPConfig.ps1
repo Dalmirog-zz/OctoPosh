@@ -1,12 +1,16 @@
 ﻿<#
 .Synopsis
-   Sets Octopus SMTP Configuration
+   Sets Octopus SMTP Configuration. This configuration will be used by the deployment process step "Email Message"
 .DESCRIPTION
-   Sets Octopus SMTP Configuration
+   Description.
 .EXAMPLE
    Set-OctopusSMTPConfig -SMTPHost "SMTP.VdlyInd.com" -Port 25 -SendEmailFrom "Octopus@VandelayIndustries.com"
+
+   Set the Octopus SMTP config
 .EXAMPLE
    Set-OctopusSMTPConfig -SMTPHost "SMTP.VdlyInd.com" -Port 25 -SendEmailFrom "Octopus@VandelayIndustries.com" -SMTPLogin "Email@VandelayIndustries.com" -SMTPPassword "SomePassword"
+
+   Set the Octopus SMTP config with a User and Passworrd
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
 #>

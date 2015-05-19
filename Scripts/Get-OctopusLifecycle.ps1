@@ -6,15 +6,15 @@
 .EXAMPLE
    Get-OctopusLifecycle
 
-   This command gets all the Lifecycles of the current Instance
+   Get all the Lifecycles of the current Instance
 .EXAMPLE
    Get-OctopusLifecycle -name MyLifecycle
 
-   This command gets the Lifecycle named "MyLifecycle"
+   Get the Lifecycle named "MyLifecycle"
 .EXAMPLE
    Get-OctopusProject -name MyProject | Get-OctopusLifecycle
 
-   This command gets the Lifecycle of the project called "MyProject"
+   Get the Lifecycle of the project called "MyProject"
 .EXAMPLE
    Get-OctopusProjectGroup -name "MyProjectGroup" | Get-OctopusProject | Get-OctopusLifecycle
 
