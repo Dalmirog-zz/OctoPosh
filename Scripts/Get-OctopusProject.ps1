@@ -25,6 +25,8 @@
    Get all the projects inside of the Project Group "MyProjects" and then delete them from the database
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
+   Advanced Cmdlet Usage: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
+   QA and Cmdlet request: https://gitter.im/Dalmirog/OctoPosh#initial
 #>
 function Get-OctopusProject
 {

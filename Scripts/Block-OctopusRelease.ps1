@@ -9,6 +9,8 @@
    Get-OctopusRelease -Project "MyProduct.Webapp" -version 1.0.1 | Block-OctopusRelease -Reason "Because of reasons"
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
+   Advanced Cmdlet Usage: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
+   QA and Cmdlet request: https://gitter.im/Dalmirog/OctoPosh#initial
 #>
 function Block-OctopusRelease
 {

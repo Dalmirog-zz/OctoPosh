@@ -16,7 +16,9 @@
 
    Gets information about realeases 1.0.1 and 1.0.2 of the projects "MyWebProject" and "MySQLProject"
 .LINK
-   Github project: https://github.com/Dalmirog/OctoPosh
+   Github project: https://github.com/Dalmirog/Octoposh
+   Advanced Cmdlet Usage: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
+   QA and Cmdlet request: https://gitter.im/Dalmirog/OctoPosh#initial
 #>
 function Get-OctopusRelease{
     [CmdletBinding()]    

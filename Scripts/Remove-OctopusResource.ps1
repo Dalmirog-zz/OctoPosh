@@ -14,6 +14,8 @@
    Removes all the projects inside the Project Group "MyProjects"
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
+   Advanced Cmdlet Usage: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
+   QA and Cmdlet request: https://gitter.im/Dalmirog/OctoPosh#initial
 #>
 function Remove-OctopusResource
 {

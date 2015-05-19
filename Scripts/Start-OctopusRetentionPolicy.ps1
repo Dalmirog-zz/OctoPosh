@@ -13,6 +13,8 @@
    Executes the Octopus server-side retention policy and waits until the task is not on states "Queued" or "Executing"
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
+   Advanced Cmdlet Usage: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
+   QA and Cmdlet request: https://gitter.im/Dalmirog/OctoPosh#initial
 #>
 function Start-OctopusRetentionPolicy
 {
