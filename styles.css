@@ -1,10 +1,22 @@
 /*hola*/
 
 .jumbotron {
-	/*background-color: #3D293D;*/
 	background-color: #3D293D;
-  	background-image: linear-gradient(180deg, #3D293D, #2E92DF 400%);
 	color: #fff;
+	padding: 24px 0;
+}
+
+.jumbotron h1 {
+	font-size: 40pt;
+	display: inline-block;
+}
+
+.jumbotron img {
+	padding:0px 10px 15px 0px;
+}
+
+.jumbotron p {
+	font-size: 12pt;
 }
 
 .code {
@@ -22,3 +34,4 @@
 #dalmiro-p {
 	display: inline-block;
 }
+
