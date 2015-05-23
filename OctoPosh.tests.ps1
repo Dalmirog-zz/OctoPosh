@@ -1,5 +1,4 @@
 ﻿#Generates a random test name that'll be used to name everything on the tests
-
 Function New-TestName {    
     
     $length = 10 #length of random chars
@@ -158,16 +157,11 @@ Describe 'Octopus Module Tests' {
         $n12tasks.count | should be ($n1tasks.count + $n2tasks.count) 
     }
     It '[Get-OctopusTask] gets tasks by single ID'{
-        $task = Get-OctopusTask -After (Get-Date).AddDays(-10) | Select-Object -First 1
-        "Task"
-        $task            
+        $tasks = Get-OctopusTask -After (Get-Date).AddDays(-10) | Select-Object -First 1
+    
+        $results = Get-OctopusTask -TaskID $tasks.id
 
-        $result = Get-OctopusTask -TaskID $task.id
-
-        "Result"
-        $result
-
-        $result.id | should be $task.id            
+        $results.id | should be $tasks.id            
     }
     It '[Get-OctopusTask] gets tasks by multiple IDs'{
         $i = (Get-Random -Maximum 20)
@@ -238,12 +232,18 @@ Describe 'Octopus Module Tests' {
         $tasks.count | should be 2
         $tasks | Get-Member | Select-Object -ExpandProperty typename -Unique | should be 'Octopus.Client.Model.TaskResource'
     }#>
-    It '[Start-OctopusRetentionPolicy] starts a "Retention" task on the server'{
+    
+    It '[Start-OctopusRetentionPolicy] starts a "Retention" task'{
         $task = Start-OctopusRetentionPolicy -Force -Wait
 
         $task.GetType().fullname| should be 'Octopus.Client.Model.TaskResource'
         $task.name | should be "Retention"
-    } 
+    }
+    It '[Start-OctopusBackup] Starts a backup task'{
+        $BackupTask = Start-OctopusBackup -Force -Message $TestName
+        $task = Get-OctopusTask -TaskID $BackupTask.id
+        $task.description | should be $TestName
+    }
     It '[Remove-OctopusResource] deletes environments'{                
         {Get-OctopusEnvironment -Name $testname | Remove-OctopusResource -Force} | should not Throw               
 
