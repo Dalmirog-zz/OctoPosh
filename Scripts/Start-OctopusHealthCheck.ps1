@@ -6,11 +6,11 @@
 .EXAMPLE
    Start-OctopusHealthCheck -Environment "Staging"
 
-   Starts a health check on all the machines inside of the environment "Staging"
+   Starts a health on the environment "Staging"
 .EXAMPLE
    Get-OctopusEnvironment -Name "Production" | Start-OctopusHealthCheck -force -Message "Health Check from powershell"
 
-   Starts a health check on all the machines inside of the environment "Production"
+   Starts a health check on the environment "Production"
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
    Advanced Cmdlet Usage: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
