@@ -197,7 +197,7 @@ Describe 'Octopus Module Tests' {
 
         $null = Start-OctopusHealthCheck -EnvironmentName $envs[$i].EnvironmentName -Force -Message "[Unit Tests]Health check on environment: $($envs[$i].EnvironmentName)"
 
-        Get-octopustask -ResourceID $envs[$i].Id -After (get-date).AddMinutes(-10)| should not be $null            
+        Get-octopustask -ResourceID $envs[$i].Id | should not be $null            
     }
     It '[Get-OctopusTask] gets tasks between 2 date ranges'{        
         $After = (Get-date).Adddays(-10)
