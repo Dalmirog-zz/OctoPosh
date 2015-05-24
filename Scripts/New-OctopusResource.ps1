@@ -1,18 +1,20 @@
 ﻿<##
 .Synopsis
-   Creates a new Octopus Resource out of a resource Object
+   Creates a new Octopus Resource out of a resource Object.
+
+   This is an advanced cmdlet and all its examples involve multiple lines of code. Please check the advanced examples for a better reference: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
 .DESCRIPTION
-   Creates a new Octopus Resource out of a resource Object
+   Creates a new Octopus Resource out of a resource Object.
+
+   This is an advanced cmdlet and all its examples involve multiple lines of code. Please check the advanced examples for a better reference: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
 .EXAMPLE
-   $pg = Get-OctopusResourceModel -Resource ProjectGroup
+   $pg = Get-OctopusResourceModel -Resource ProjectGroup ; $pg.name = "NewProjectGroup" ; New-OctopusResource -Resource $pg   
 
-   $pg.name = "NewProjectGroup"
-
-   New-OctopusResource -Resource $pg
-
-   Creates a new Project Group called "NewProjectGroup" on Octopus
+   Create a new Project Group called "NewProjectGroup" on Octopus
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
+   Advanced Cmdlet Usage: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
+   QA and Cmdlet request: https://gitter.im/Dalmirog/OctoPosh#initial
 #>
 function New-OctopusResource
 {
@@ -34,16 +36,21 @@ function New-OctopusResource
     {
         switch ($Resource)
         {
-            {$_.getType() -eq [Octopus.Client.Model.ProjectGroupResource]} {$c.repository.ProjectGroups.Create($_)}
-            {$_.getType() -eq [Octopus.Client.Model.ProjectResource]} {$c.repository.Projects.Create($_)}
-            {$_.getType() -eq [Octopus.Client.Model.EnvironmentResource]} {$c.repository.Environments.Create($_)}
+            #{$_.getType() -eq [Octopus.Client.Model.ProjectGroupResource]} {$c.repository.ProjectGroups.Create($_)}
+            #{$_.getType() -eq [Octopus.Client.Model.ProjectResource]} {$c.repository.Projects.Create($_)}
+            #{$_.getType() -eq [Octopus.Client.Model.EnvironmentResource]} {$c.repository.Environments.Create($_)}
+            {$_.getType() -eq [Octopus.Client.Model.ProjectGroupResource]} {$res = "ProjectGroups"}
+            {$_.getType() -eq [Octopus.Client.Model.ProjectResource]} {$res = "Projects"}
+            {$_.getType() -eq [Octopus.Client.Model.EnvironmentResource]} {$res = "Environments"}
             Default{Throw "Invalid object type: $($_.getType()) `nRun 'Get-OctopusResourceModel -ListAvailable' to get a list of the object types accepted by this cmdlet"}
         }
-
+        Write-Verbose "[$($MyInvocation.MyCommand)] Creating an $($resource.GetType()) object"
+        $newres = $c.repository.$res.Create($resource)
 
     }
     End
     {
+        return $newres
     }
 }
 

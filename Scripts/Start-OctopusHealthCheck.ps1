@@ -6,13 +6,15 @@
 .EXAMPLE
    Start-OctopusHealthCheck -Environment "Staging"
 
-   Starts a health check on all the machines inside of the environment "Staging"
+   Starts a health on the environment "Staging"
 .EXAMPLE
    Get-OctopusEnvironment -Name "Production" | Start-OctopusHealthCheck -force -Message "Health Check from powershell"
 
-   Starts a health check on all the machines inside of the environment "Production"
+   Starts a health check on the environment "Production"
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
+   Advanced Cmdlet Usage: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
+   QA and Cmdlet request: https://gitter.im/Dalmirog/OctoPosh#initial
 #>
 function Start-OctopusHealthCheck
 {
@@ -46,6 +48,8 @@ function Start-OctopusHealthCheck
     {
         foreach ($environment in $EnvironmentName){
             
+            Write-Verbose "[$($MyInvocation.MyCommand)] Processing environment: $environment"
+
             $Machines = Get-OctopusMachine -EnvironmentName $Environment -ResourceOnly
 
             If($Machines -ne $null){
@@ -61,6 +65,7 @@ function Start-OctopusHealthCheck
                 }
         
                 Write-Verbose "Starting Health check on Environment $environment which contains machines:"
+
                 $Machines.name | %{Write-Verbose $_}
 
                 $EnvironmentID = $Machines[0].environmentIDs[0]

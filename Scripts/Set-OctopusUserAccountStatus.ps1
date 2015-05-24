@@ -13,6 +13,8 @@
    Enable the account of the user with the email "Ian.Paullin@VandalayIndustries.com"
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
+   Advanced Cmdlet Usage: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
+   QA and Cmdlet request: https://gitter.im/Dalmirog/OctoPosh#initial
 #>
 function Set-OctopusUserAccountStatus
 {
@@ -26,49 +28,54 @@ function Set-OctopusUserAccountStatus
         [string]$status,
 
         # User Name
+        [parameter(Mandatory = $true, ValueFromPipelineByPropertyName=$true,ParameterSetName = 'Username')]
         [String[]]$Username,
         
         # Octopus user resource filter
-        [parameter(ValueFromPipelineByPropertyName=$true)]
+        [parameter(Mandatory = $true, ValueFromPipelineByPropertyName=$true,ParameterSetName = 'Resource')]
         [Octopus.Client.Model.UserResource[]]$Resource
-        
-
     )
 
     Begin
     {
-        if (($Username -eq $null) -and ($Resource -eq $null)){
-            Throw "You must pass a value to at least one of the following parameters: Name, Resource"
+        $c = New-OctopusConnection        
+        $list = @()
+    }
+
+    Process
+    {
+        If($PSCmdlet.ParameterSetName -eq "Username"){
+            Write-Verbose "[$($MyInvocation.MyCommand)] Getting users with username: $Username"
+            $users = $c.repository.Users.FindMany({param($u) if (($u.username -in $Username) -or ($u.username -like $Username)) {$true}})
+        }
+        Else{
+            Write-Verbose "[$($MyInvocation.MyCommand)] Getting by resource object"
+            $users += $Resource
         }
 
-        $c = New-OctopusConnection
-
-        $users = $c.repository.Users.FindMany({param($u) if (($u.username -in $Username) -or ($u.username -like $Username)) {$true}})
-        
-        If($Resource){$users += $Resource}
+        Write-Verbose "[$($MyInvocation.MyCommand)] Users found: $($users.Count)"
 
         If ($status -eq "Enabled"){$IsActive = $true}
 
         Else {$IsActive = $false}
 
-    }
-
-    Process
-    {
-
         foreach ($user in $Users){
-
-            Write-Verbose "Setting user account [$($user.username) ; $($user.EmailAddress)] status to: $Status"
+            Write-Verbose "[$($MyInvocation.MyCommand)] Setting user account [$($user.username) ; $($user.EmailAddress)] status to: $Status"
 
             $user.IsActive = $IsActive
 
-            $c.repository.Users.Modify($user)
+            $ModifiedUser = $c.repository.Users.Modify($user)
 
+            Write-Verbose "[$($MyInvocation.MyCommand)] [$($ModifiedUser.username) ; $($Modifieduser.EmailAddress)] IsActive status of was set to: $($ModifiedUser.IsActive)"
+
+            $list += $ModifiedUser
         }
-
     }
     End
     {
-           
+        If($list.count -eq 0){
+            $list = $null
+        }
+        return $List
     }
 }

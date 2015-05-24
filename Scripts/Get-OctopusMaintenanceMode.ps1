@@ -9,6 +9,8 @@
    Get the current status of the Octopus maintenance mode
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
+   Advanced Cmdlet Usage: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
+   QA and Cmdlet request: https://gitter.im/Dalmirog/OctoPosh#initial
 #>
 function Get-OctopusMaintenanceMode
 {
@@ -17,13 +19,15 @@ function Get-OctopusMaintenanceMode
         $c = New-OctopusConnection
     }
     Process
-    {                         
-        $r = Invoke-WebRequest -Uri "$Env:OctopusURL/api/maintenanceconfiguration" -Method Get -Headers $c.header -UseBasicParsing
-
+    {
+        Write-Verbose "[$($MyInvocation.MyCommand)] Getting current Maintenance mode from $($Env:OctopusURL)/api/maintenanceconfiguration"                                 
+        $r = Invoke-WebRequest -Uri "$Env:OctopusURL/api/maintenanceconfiguration" -Method Get -Headers $c.header -UseBasicParsing -Verbose:$false
+        
         If ($r.statuscode -ne 200) {Return $false}
 
         else {
-        
+            
+            Write-Verbose "[$($MyInvocation.MyCommand)] Getting info from last change to maintenance mode"            
             $ev = $c.repository.Events.FindOne({param($event) if (($event.category -eq "Modified") -and ($event.Message -eq "Maintenance Configuration was changed.")) {$true}})
 
             If($ev.IdentityEstablishedWith -eq "Session cookie"){$authmethod = "Web"}

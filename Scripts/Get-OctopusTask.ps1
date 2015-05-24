@@ -23,6 +23,8 @@
    Get all the Backup tasks 01/01/2015
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
+   Advanced Cmdlet Usage: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
+   QA and Cmdlet request: https://gitter.im/Dalmirog/OctoPosh#initial
 #>
 function Get-OctopusTask
 {
@@ -63,10 +65,12 @@ function Get-OctopusTask
     Process
     {
         If($TaskID){
+            Write-Verbose "[$($MyInvocation.MyCommand)] Getting tasks by ID"
 
             $tasks = @()
 
             foreach($t in $TaskID){
+                Write-Verbose "[$($MyInvocation.MyCommand)] Getting task id: $t"
                 $task = $c.repository.Tasks.Get($t)
                 If($task -eq $null){
                     Write-Error "No tasks found with ID $t"
@@ -77,24 +81,26 @@ function Get-OctopusTask
         }
 
         elseif(($Name -ne '*') -or ($ResourceID -ne '*') -or ($State -ne '*') -or ($Before -ne [System.DateTimeOffset]::MaxValue) -or ($After -ne [System.DateTimeOffset]::MinValue)) {
+            Write-Verbose "[$($MyInvocation.MyCommand)] Getting task by: `nName: $name`nResourceID: $resourceid`nState: $state`nBefore: $before`nAfter: $after"
             $tasks = $c.repository.Tasks.FindMany({param($t) if( (($t.name -like $Name) -or ($t.name -in $name) ) -and (($t.state -like $State) -or ($t.state -in $State) )-and (($t.Arguments.values -contains $ResourceID) -or ($t.Arguments -like $ResourceID)) -and ($t.StartTime -ge $After) -and ($t.LastupdatedTime -le $Before)
             ) {$true}})        
         }
 
         else{
+            Write-Verbose "[$($MyInvocation.MyCommand)] Getting all tasks"
             $tasks = $c.repository.Tasks.FindAll()
         }
+                
+        Write-Verbose "[$($MyInvocation.MyCommand)] Tasks found: $($Tasks.count)"
 
-        If($tasks.count -ne 0){
-            $list += $tasks
-        }
-        else{
-            $list = $null
-        }
+        $list += $tasks       
         
     }
     End
     {        
-        return $List 
+        If($list.count -eq 0){
+            $list = $null
+        }
+        return $List
     }
 }

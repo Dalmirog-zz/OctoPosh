@@ -1,9 +1,7 @@
 ﻿<#
 .Synopsis
-   Short description
-.DESCRIPTION
    Gets information about Octopus Project Groups
-.EXAMPLE
+.DESCRIPTION
    Gets information about Octopus Project Groups
 .EXAMPLE
    Get-OctopusProjectGroup 
@@ -20,9 +18,11 @@
 .EXAMPLE
    Get-OctopusProject "MyProject" | Get-OctopusProjectGroup | select -ExpandProperty projects | Get-OctopusProjects
 
-   Gets all the projects that are on the same group as the project "MyProject"
+   Get all the projects that are on the same group as the project "MyProject"
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
+   Advanced Cmdlet Usage: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
+   QA and Cmdlet request: https://gitter.im/Dalmirog/OctoPosh#initial
 #>
 function Get-OctopusProjectGroup
 {
@@ -30,9 +30,9 @@ function Get-OctopusProjectGroup
     Param
     (
         # Name of the Project Group
-        [alias("ProjectGroupName")]
+        [alias("Name")]
         [Parameter(ValueFromPipelineByPropertyName=$true,Position=0)]
-        [string[]]$Name
+        [string[]]$ProjectGroupName
     )
 
     Begin
@@ -43,11 +43,12 @@ function Get-OctopusProjectGroup
     }
     Process
     {
-        If(!([string]::IsNullOrEmpty($Name))){
-                    
-            $ProjectGroups = $c.repository.ProjectGroups.FindMany({param($Pg) if (($Pg.name -in $name) -or ($Pg.name -like $name)) {$true}})
-            foreach($N in $Name){
-                If(($n -notin $ProjectGroups.name) -or !($ProjectGroups.name -like $n)){
+        If(!([string]::IsNullOrEmpty($ProjectGroupName))){
+            Write-Verbose "[$($MyInvocation.MyCommand)] Getting Project Groups by name: $ProjectGroupName"
+
+            $ProjectGroups = $c.repository.ProjectGroups.FindMany({param($Pg) if (($Pg.name -in $ProjectGroupName) -or ($Pg.name -like $ProjectGroupName)) {$true}})
+            foreach($N in $ProjectGroupName){
+                If(($n -notin $ProjectGroups.name) -and !($ProjectGroups.name -like $n)){
                     Write-Error "Project group not found: $n"
                     #write-host "Project group not found: $n" -ForegroundColor Red
                 }
@@ -55,13 +56,16 @@ function Get-OctopusProjectGroup
         }
 
         else{
-        
+            Write-Verbose "[$($MyInvocation.MyCommand)] Getting all Project Groups"
             $ProjectGroups = $c.repository.ProjectGroups.FindAll()
         }
+
+        Write-Verbose "[$($MyInvocation.MyCommand)] Project Groups found: $($ProjectGroups.count)"
         
         foreach($ProjectGroup in $ProjectGroups){
 
             Write-Progress -Activity "Getting info from Project Group: $($ProjectGroup.name)" -status "$i of $($ProjectGroups.count)" -percentComplete ($i / $ProjectGroups.count*100)
+            Write-Verbose "[$($MyInvocation.MyCommand)] Getting info of Project Group: $($ProjectGroup.name)"
 
             $Plist = @()
             

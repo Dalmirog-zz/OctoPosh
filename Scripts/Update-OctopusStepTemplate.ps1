@@ -9,6 +9,8 @@
    Update-StepTemplatesOnDeploymentProcesses -AllActionTemplates -OctopusURI "http://Octopusdeploy.MyCompany.com" -APIKey "API-TSET42BPMX5DRPLCRNZETFS4HA"
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
+   Advanced Cmdlet Usage: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
+   QA and Cmdlet request: https://gitter.im/Dalmirog/OctoPosh#initial
 #>
 Function Update-OctopusStepTemplates
 {
@@ -53,6 +55,7 @@ Function Update-OctopusStepTemplates
     Process
     {
         $template = Invoke-WebRequest -Uri $OctopusURI/api/actiontemplates/$ActiontemplateID -Method Get -Headers $headers | select -ExpandProperty content| ConvertFrom-Json
+        
         $usage = Invoke-WebRequest -Uri $OctopusURI/api/actiontemplates/$ActiontemplateID/usage -Method Get -Headers $headers | select -ExpandProperty content | ConvertFrom-Json
 
         #Getting all the DeploymentProcesses that need to be updated

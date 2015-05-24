@@ -6,17 +6,15 @@
 .EXAMPLE
    Get-OctopusRelease -ProjectName "MyProject"
 
-   Gets information about all the realeases created for the project "MyProject"
+   Get all the realeases of the project "MyProject"
 .EXAMPLE
-   Get-OctopusRelease -ProjectName "MyProject" -version 1.0.1
+   Get-OctopusRelease -ProjectName "MyProject" -version 1.0.1,1.0.2
 
-   Gets information about realease 1.0.1 of the project "MyProject"
-.EXAMPLE
-   Get-OctopusRelease -ProjectName "MyWebProject","MySQLProject" -version 1.0.1, 1.0.2
-
-   Gets information about realeases 1.0.1 and 1.0.2 of the projects "MyWebProject" and "MySQLProject"
+   Get the release realeases 1.0.1 & 1.0.2 of the project "MyProject"
 .LINK
-   Github project: https://github.com/Dalmirog/OctoPosh
+   Github project: https://github.com/Dalmirog/Octoposh
+   Advanced Cmdlet Usage: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
+   QA and Cmdlet request: https://gitter.im/Dalmirog/OctoPosh#initial
 #>
 function Get-OctopusRelease{
     [CmdletBinding()]    
@@ -46,12 +44,16 @@ function Get-OctopusRelease{
     }
     Process
     {
+
+		Write-Verbose "[$($MyInvocation.MyCommand)] Getting releases [$ReleaseVersion] for project [$ProjectName]"
         $Projects = Get-OctopusProject -Name $ProjectName -ResourceOnly
 
         foreach ($Project in $Projects){
-
+            
             If($ReleaseVersion -ne $null){                
                 foreach ($V in $ReleaseVersion){                
+                    
+                    Write-Verbose "[$($MyInvocation.MyCommand)] Getting release: $V"
 
                     Try{       
                         $r = $c.repository.Projects.GetReleaseByVersion($Project,$v)
@@ -72,6 +74,8 @@ function Get-OctopusRelease{
                 $releases += $r
             }
             
+            Write-Verbose "[$($MyInvocation.MyCommand)] Releases found: $($releases.count)"
+            
         }
 
         If($ResourceOnly){
@@ -80,6 +84,8 @@ function Get-OctopusRelease{
 
         Else{
             Foreach($release in $releases){
+
+                Write-Verbose "[$($MyInvocation.MyCommand)] Getting info from release: $($release.version)"
 
                 Write-Progress -Activity "Getting info from release: $($release.id)" -status "$i of $($releases.count)" -percentComplete ($i / $releases.count*100)                
         

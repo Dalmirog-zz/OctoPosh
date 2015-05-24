@@ -5,8 +5,16 @@
    Gets information about Octopus Environments
 .EXAMPLE
    Get-OctopusEnvironment -name Production
+
+   Get info about the environment "Production"
+.EXAMPLE
+   Get-OctopusEnvironment -name "Dev*"
+
+   Get info about all the environments whose name starts with "Dev"
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
+   Advanced Cmdlet Usage: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
+   QA and Cmdlet request: https://gitter.im/Dalmirog/OctoPosh#initial
 #>
 function Get-OctopusEnvironment
 {
@@ -32,6 +40,7 @@ function Get-OctopusEnvironment
     {
 
         If(!([string]::IsNullOrEmpty($Name))){            
+            Write-Verbose "[$($MyInvocation.MyCommand)] Getting environments by name: $name" 
             $environments = $c.repository.Environments.FindMany({param($env) if (($env.name -in $name) -or ($env.name -like $name)) {$true}})
             
             foreach($N in $Name){
@@ -45,11 +54,14 @@ function Get-OctopusEnvironment
         }
 
         else{
-        
+            Write-Verbose "[$($MyInvocation.MyCommand)] Getting all Environments" 
             $environments = $c.repository.Environments.FindAll()
         }
 
+        Write-Verbose "[$($MyInvocation.MyCommand)] Environments found: $($environments.count)" 
+
         If ($ResourceOnly){
+            Write-Verbose "[$($MyInvocation.MyCommand)] [ResourceOnly] switch is on. Returning raw Octopus resource objects"
             $list += $environments
         }
         Else{
@@ -58,6 +70,7 @@ function Get-OctopusEnvironment
             foreach ($e in $environments){
 
                 Write-Progress -Activity "Getting info from Environment: $($E.name)" -status "$i of $($environments.count)" -percentComplete ($i / $environments.count*100)
+                Write-Verbose "[$($MyInvocation.MyCommand)] Getting info from environment $($e.name)"
 
                 $deployments = @()
 

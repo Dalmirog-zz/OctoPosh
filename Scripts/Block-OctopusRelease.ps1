@@ -2,43 +2,48 @@
 .Synopsis
    Blocks an Octopus Release from being deployed to another environment
 .DESCRIPTION
-   Long description
+   Blocks an Octopus Release from being deployed to another environment
 .EXAMPLE
    Block-OctopusRelease -Projectname "MyProduct.WebApp" -Version 1.0.0
+
+   Blocks release 1.0.0 of the project "MyProduct.WebApp"
 .EXAMPLE
    Get-OctopusRelease -Project "MyProduct.Webapp" -version 1.0.1 | Block-OctopusRelease -Reason "Because of reasons"
+
+   Blocks the release 1.0.1 of the project "MyProduct.Webapp"
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
+   Advanced Cmdlet Usage: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
+   QA and Cmdlet request: https://gitter.im/Dalmirog/OctoPosh#initial
 #>
 function Block-OctopusRelease
 {
     [CmdletBinding()]
     Param
     (
-
         # Project Name of the release. You can only block one release at a time using thie parameter
         [Parameter(Mandatory=$true, ValueFromPipelineByPropertyName = $true)]
-        $ProjectName,
+        [string]$ProjectName,
 
         # Release Version number. You can only block one release at a time using thie parameter
         [Parameter(Mandatory=$true, ValueFromPipelineByPropertyName = $true)]
-        $ReleaseVersion,
+        [string]$ReleaseVersion,
 
         # Description of the blocking
-        [ValidateNotNullOrEmpty()]
-        [parameter(Mandatory=$true)]
-        [string]$Description, #=$(throw "[Description] is mandatory, please provide a value to this parameter.")
+        [ValidateNotNullOrEmpty()]        
+        [string]$Description,
 
         # Forces action.
         [switch]$Force
-
     )
 
     Begin
     {
         $c = New-OctopusConnection
-
-        $Defect = @{Description = $Description} | ConvertTo-Json
+        If([string]::IsNullOrEmpty($Description)){
+            $Description = "Blocking release $ReleaseVersion of project $ProjectName from Octoposh"
+        }
+        $body = @{Description = $Description} | ConvertTo-Json
     }
     Process
     {
@@ -48,30 +53,33 @@ function Block-OctopusRelease
                 Throw "Canceled by user"
             }
         }
-    
-        $p = $c.repository.Projects.FindOne({param($proj) if($proj.name -eq $ProjectName ){$true}})
+		
+		Write-Verbose "[$($MyInvocation.MyCommand)] Looking for project: $ProjectName"		
+		$p = Get-OctopusProject -ProjectName $ProjectName -ErrorAction Stop -ResourceOnly		
+		Write-Verbose "[$($MyInvocation.MyCommand)] Project found: $ProjectName"
+		
+		Write-Verbose "[$($MyInvocation.MyCommand)] Looking for release: $ReleaseVersion"
 
-        If($p -eq $null){
-            Throw "Project not found: $projectname"
-        }
+        $release = $c.repository.Projects.GetReleaseByVersion($p, $ReleaseVersion)		
 
-        $r = $c.repository.Projects.GetReleaseByVersion($p,$ReleaseVersion)
-
-        If($r -eq $null){
+        If($release -eq $null){
             Throw "Release $ReleaseVersion not found for project $ProjectName"
         }
-
+		
+		Write-Verbose "[$($MyInvocation.MyCommand)] Release found: $($Release.version)"
+		
         Try{    
-            $response = Invoke-WebRequest $env:OctopusURL/$($r.links.ReportDefect) -Method Post -Headers $c.header -Body $Defect -UseBasicParsing
+            Write-Verbose "[$($MyInvocation.MyCommand)] Blocking release $($Release.version)"
+            $r = Invoke-WebRequest $env:OctopusURL/$($release.links.ReportDefect) -Method Post -Headers $c.header -Body $body -UseBasicParsing -Verbose:$false
         }
         Catch{       
             write-error $_        
         }
-
     }
     End
     {
-        if($response.statuscode -eq 200){        
+        Write-Verbose "[$($MyInvocation.MyCommand)] HTTP request to block release $($Release.version) of project $($p.name) returned code $($r.statuscode)"
+        if($r.statuscode -eq 200){
             Return $True
         }
         Else{

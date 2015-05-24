@@ -13,6 +13,8 @@
    Set the Octopus SMTP config with a User and Passworrd
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
+   Advanced Cmdlet Usage: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
+   QA and Cmdlet request: https://gitter.im/Dalmirog/OctoPosh#initial
 #>
 function Set-OctopusSMTPConfig
 {
@@ -64,13 +66,24 @@ function Set-OctopusSMTPConfig
     }
     Process
     {
-        $r = Invoke-WebRequest "$env:OctopusURL/api/smtpconfiguration" -Method Put -Headers $c.header -Body $body -UseBasicParsing
+        
+        Try{
+            Write-Verbose "[$($MyInvocation.MyCommand)] Setting SMTP configuration for $env:OctopusURL"   
+            $r = Invoke-WebRequest "$env:OctopusURL/api/smtpconfiguration" -Method Put -Headers $c.header -Body $body -UseBasicParsing
+        }
+        Catch{
+            write-error $_
+        }  
 
     }
     End
     {
-        If ($r.statuscode -eq 200) {Return $true}
-
-        else {Return $false}
+        Write-Verbose "[$($MyInvocation.MyCommand)] HTTP request to set SMTP configuration returned code $($r.statuscode)"
+        if($r.statuscode -eq 200){
+            Return $True
+        }
+        Else{
+            Return $false
+        }
     }
 }

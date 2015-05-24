@@ -12,19 +12,13 @@
 
    API keys can be used to authenticate with the Octopus Deploy REST API in place of a username and password. Using API keys lets you keep your username and password secret, but the API key itself is still sensitive information that needs to be protected
 .EXAMPLE
-   New-OctopusAPIKey -Purpose "Scripting"
+   New-OctopusAPIKey -Purpose "Scripting" -Username Dalmiro.Granas -Password "Pa$$w0rD"
 
-   Create a new API Key and have Powershell prompt you for User and Password
-.EXAMPLE
-   New-OctopusAPIKey -Purpose "SQLDB" -username Ian.Paullin
-
-   Create a new API Key  for a specific user and have Powershell prompt you for User
-.EXAMPLE
-   New-OctopusAPIKey -Purpose "SQLDB" -username Ian.Paullin -password AwesomePassword
-
-   Create a new API Key  for a specific user
+   Create a new API Key for a user
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
+   Advanced Cmdlet Usage: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
+   QA and Cmdlet request: https://gitter.im/Dalmirog/OctoPosh#initial
 #>
 function New-OctopusAPIKey
 {
@@ -47,7 +41,6 @@ function New-OctopusAPIKey
     }
     Process
     {        
-
         $LoginObj.Username = $Username
         
         if(!($password)){
@@ -64,12 +57,22 @@ function New-OctopusAPIKey
 
         $repository = new-object Octopus.Client.OctopusRepository $endpoint
 
+        Write-Verbose "[$($MyInvocation.MyCommand)] Logging in with user: $Username"
         $repository.Users.SignIn($LoginObj)
 
         $user = $repository.Users.GetCurrent()
         
-        $APIKey = $repository.Users.CreateApiKey($user,$Purpose)
+        Write-Verbose "[$($MyInvocation.MyCommand)] Creating API key for user: $Username"
 
+        Try{
+            $APIKey = $repository.Users.CreateApiKey($user,$Purpose)
+        }
+        Catch{
+            Throw $_
+        }
+        IF($APIKey -ne $null){
+            Write-Verbose "[$($MyInvocation.MyCommand)] API Key Created"
+        }
     }
     End
     {

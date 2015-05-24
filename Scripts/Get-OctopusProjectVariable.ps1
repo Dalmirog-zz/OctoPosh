@@ -29,6 +29,8 @@
    This command gets the Variable Sets of all the projects inside of a Project Group named "MyImportantProjects"
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
+   Advanced Cmdlet Usage: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
+   QA and Cmdlet request: https://gitter.im/Dalmirog/OctoPosh#initial
 #>
 function Get-OctopusProjectVariable
 {
@@ -48,13 +50,15 @@ function Get-OctopusProjectVariable
     }
     Process
     {
+        Write-Verbose "[$($MyInvocation.MyCommand)] Getting Variables of projects: $($Projectname)"
         #Getting Projects        
         $Projects = Get-OctopusProject -Name $Projectname -ResourceOnly       
 
         #Getting info by project
         foreach ($p in $Projects){
 
-            Write-Progress -Activity "Getting info from variable set of project: $($p.name)" -status "$i of $($Projects.count)" -percentComplete ($i / $Projects.count*100)                
+            Write-Progress -Activity "Getting info from variable set of project: $($p.name)" -status "$i of $($Projects.count)" -percentComplete ($i / $Projects.count*100)
+            Write-Verbose "[$($MyInvocation.MyCommand)] Getting Variables info of project: $($P.name)"                
 
             $vars = @()
 

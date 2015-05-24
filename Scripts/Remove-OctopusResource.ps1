@@ -1,19 +1,24 @@
 ﻿<#
 .Synopsis
-   Deletes Octopus Deploy resources such as Projects, Releases, Environments, etc
+   Deletes Octopus Deploy resources such as Projects, Releases, Environments, etc.
+
+   This is an advanced cmdlet and all its examples involve multiple lines of code. Please check the advanced examples for a better reference: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
 .DESCRIPTION
    Deletes Octopus Deploy resources such as Projects, Releases, Environments, etc
-.EXAMPLE
-   $ProjectResource = Get-OctopusProject -name "MyApp" ;
-   Remove-OctopusResource -resource $ProjectResource
 
-   Deletes the project called "MyApp" from the Octopus Database
+   This is an advanced cmdlet and all its examples involve multiple lines of code. Please check the advanced examples for a better reference: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
+.EXAMPLE
+   $ProjectResource = Get-OctopusProject -name "MyApp" ; Remove-OctopusResource -resource $ProjectResource
+   
+   Delete the project called "MyApp" from the Octopus Database
 .EXAMPLE
    Get-OctopusProjectGroup -name "MyProjects" | select -ExpandProperty Projects | Remove-OctopusResource
 
-   Removes all the projects inside the Project Group "MyProjects"
+   Remove all the projects inside the Project Group "MyProjects"
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
+   Advanced Cmdlet Usage: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
+   QA and Cmdlet request: https://gitter.im/Dalmirog/OctoPosh#initial
 #>
 function Remove-OctopusResource
 {
@@ -74,7 +79,7 @@ function Remove-OctopusResource
                 Default{Throw "Invalid object type: $($_.getType()) `nRun 'Remove-OctopusResource -AcceptedTypes' to get a list of the object types accepted by this cmdlet"}
             }
 
-            Write-Verbose "Deleting [$($R.GetType().tostring())] $($r.name)"
+            Write-Verbose "[$($MyInvocation.MyCommand)] Deleting [$($R.GetType().tostring())] $($r.name)"
 
             $task = $c.repository.$ResourceType.Delete($r)
 
@@ -85,20 +90,24 @@ function Remove-OctopusResource
                 Do{
                     $CurrentTime = Get-date
                     
-                    $task = Get-OctopusTask -ID $task.id -ResourceOnly
+                    $task = Get-OctopusTask -ID $task.id
+
+                    Write-Verbose "[$($MyInvocation.MyCommand)] Task $($Task.id) status: $($task.state)"
                     
                     Start-Sleep -Seconds 2
                   }
 
                 Until (($task.state -notin ('Queued','executing')) -or ($CurrentTime -gt $StartTime.AddMinutes($Timeout)))
-            }
-
-
-            
+                Write-Verbose "[$($MyInvocation.MyCommand)] Task finished with status: $($task.state.tostring().toupper())"
+            }            
         }
     }
     End
     {
-        return $task
+        If(!$Task){
+            $Task = $null
+        }
+
+        return $Task
     }
 }
