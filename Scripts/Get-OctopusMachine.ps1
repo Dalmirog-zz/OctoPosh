@@ -69,6 +69,7 @@ function Get-OctopusMachine
     Process
     {
         If(($PSCmdlet.ParameterSetName -eq 'Name') -and !([string]::IsNullOrEmpty($MachineName))) {
+            Write-Verbose "[$($MyInvocation.MyCommand)] Getting Machines by $($PSCmdlet.ParameterSetName): $Machinename "
             $Machines = $c.repository.Machines.FindMany({param($Mach) if ((($Mach.name -in $MachineName) -or ($Mach.name -like $MachineName))) {$true}})
 
             foreach($n in $MachineName){
@@ -80,7 +81,7 @@ function Get-OctopusMachine
         }
 
         elseIf($PSCmdlet.ParameterSetName -eq 'CommunicationStyle') {
-
+            Write-Verbose "[$($MyInvocation.MyCommand)] Getting Machines by $($PSCmdlet.ParameterSetName): $CommunicationStyle"
             If($CommunicationStyle -eq 'Polling'){$Style = 'TentacleActive'}            
             elseIf($CommunicationStyle -eq 'Listening'){$Style = 'TentaclePassive'}
 
@@ -93,6 +94,7 @@ function Get-OctopusMachine
         }
 
         elseIf(($PSCmdlet.ParameterSetName -eq 'URL') -and (!([string]::IsNullOrEmpty($URL)))) {
+            Write-Verbose "[$($MyInvocation.MyCommand)] Getting Machines by $($PSCmdlet.ParameterSetName): $URL"
             $Machines = $c.repository.Machines.FindMany({param($Mach) if ((($Mach.URI -in $URL) -or ($Mach.URI -like $URL))) {$true}})
 
             foreach($U in $URL){
@@ -104,7 +106,8 @@ function Get-OctopusMachine
         }
 
         elseIf(($PSCmdlet.ParameterSetName -eq 'Environment') -and !([string]::IsNullOrEmpty($EnvironmentName))) {
-
+            
+            Write-Verbose "[$($MyInvocation.MyCommand)] Getting Machines by $($PSCmdlet.ParameterSetName): $EnvironmentName"
             $machines = @()
 
             $environments = Get-OctopusEnvironment $EnvironmentName -ResourceOnly
@@ -125,8 +128,11 @@ function Get-OctopusMachine
         }
 
         else{        
+            Write-Verbose "[$($MyInvocation.MyCommand)] Getting all the Machines"
             $Machines = $c.repository.Machines.FindAll()
         }
+
+        Write-Verbose "[$($MyInvocation.MyCommand)] Machines found: $($Machines.count)"
 
         If($ResourceOnly){
             $list += $Machines
@@ -135,6 +141,7 @@ function Get-OctopusMachine
         else{            
             foreach ($machine in $Machines){                
                 Write-Progress -Activity "Getting info from machine: $($machine.name)" -status "$i of $($machines.count)" -percentComplete ($i / $machines.count*100)
+                Write-Verbose "[$($MyInvocation.MyCommand)] Getting info of Machine: $($Machine.name)"
 
                 $e = @() 
 

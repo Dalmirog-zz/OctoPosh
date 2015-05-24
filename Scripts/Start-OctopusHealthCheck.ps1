@@ -48,6 +48,8 @@ function Start-OctopusHealthCheck
     {
         foreach ($environment in $EnvironmentName){
             
+            Write-Verbose "[$($MyInvocation.MyCommand)] Processing environment: $environment"
+
             $Machines = Get-OctopusMachine -EnvironmentName $Environment -ResourceOnly
 
             If($Machines -ne $null){
@@ -63,6 +65,7 @@ function Start-OctopusHealthCheck
                 }
         
                 Write-Verbose "Starting Health check on Environment $environment which contains machines:"
+
                 $Machines.name | %{Write-Verbose $_}
 
                 $EnvironmentID = $Machines[0].environmentIDs[0]

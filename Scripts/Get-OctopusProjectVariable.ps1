@@ -50,13 +50,15 @@ function Get-OctopusProjectVariable
     }
     Process
     {
+        Write-Verbose "[$($MyInvocation.MyCommand)] Getting Variables of projects: $($Projectname)"
         #Getting Projects        
         $Projects = Get-OctopusProject -Name $Projectname -ResourceOnly       
 
         #Getting info by project
         foreach ($p in $Projects){
 
-            Write-Progress -Activity "Getting info from variable set of project: $($p.name)" -status "$i of $($Projects.count)" -percentComplete ($i / $Projects.count*100)                
+            Write-Progress -Activity "Getting info from variable set of project: $($p.name)" -status "$i of $($Projects.count)" -percentComplete ($i / $Projects.count*100)
+            Write-Verbose "[$($MyInvocation.MyCommand)] Getting Variables info of project: $($P.name)"                
 
             $vars = @()
 

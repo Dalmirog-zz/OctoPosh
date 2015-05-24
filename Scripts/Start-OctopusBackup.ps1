@@ -10,7 +10,7 @@
 .EXAMPLE
    Start-OctopusBackup -force -wait -Message "My Custom Backup"  
 
-   Starts a Backup task with a custom description without getting prompted and waits until it finishes 
+   Starts a Backup task with a custom description, without getting prompted and waits until it finishes 
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
    Advanced Cmdlet Usage: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples

@@ -44,6 +44,7 @@ function Start-OctopusRetentionPolicy
             }
         }
 
+        Write-Verbose "[$($MyInvocation.MyCommand)] Starting retention Policy task on $env:OctopusURL"
         $task = $c.repository.RetentionPolicies.ApplyNow()
 
         If($wait){
@@ -57,10 +58,11 @@ function Start-OctopusRetentionPolicy
                     
                 Start-Sleep -Seconds 2
 
-                Write-Verbose "Task $($task.id) status: $($task.state)"
+                Write-Verbose "[$($MyInvocation.MyCommand)] Task $($Task.id) status: $($task.state)"
+
             }Until (($task.state -notin ('Queued','executing')) -or ($CurrentTime -gt $StartTime.AddMinutes($Timeout)))
 
-            Write-Verbose "Retention Policy execution task finished with status: $($task.state)"#.tostring().toupper())"
+            Write-Verbose "[$($MyInvocation.MyCommand)] Task finished with status: $($task.state.tostring().toupper())"
         }
     }
     End

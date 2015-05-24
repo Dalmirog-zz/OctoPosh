@@ -21,13 +21,10 @@ function Set-OctopusMaintenanceMode
     [CmdletBinding()]
     Param
     (
-        # Sets Octopus maintenance mode on
-        [Parameter(Mandatory=$true,ParameterSetName='On')]
-        [switch]$On,
-
-        # Sets Octopus maintenance mode off
-        [Parameter(Mandatory=$true,ParameterSetName='Off')]
-        [switch]$Off,
+        # Octopus maintenance mode switch
+        [ValidateSet("ON","OFF")]
+        [Parameter(Mandatory=$true)]
+        [String]$Mode,
 
         #Such ugly params, I should have just 1 with 2 options
         # Forces action
@@ -40,25 +37,34 @@ function Set-OctopusMaintenanceMode
     }
     Process
     {        
-        If ($on){$MaintenanceMode = "True"}
+        If ($Mode -eq "ON"){$MaintenanceMode = "True"}
 
         else {$MaintenanceMode = "False"}
 
         If(!($Force)){
-            If (!(Get-UserConfirmation -message "Are you sure you want to set maintenance mode for $Env:OctopusURL to: $MaintenanceMode ?")){
+            If (!(Get-UserConfirmation -message "Are you sure you want to set maintenance mode for $Env:OctopusURL to the status: $mode ?")){
                 Throw "Canceled by user"
             }
         }
  
         $body = @{IsInMaintenanceMode=$MaintenanceMode} | ConvertTo-Json
  
-        $r = Invoke-WebRequest -Uri "$Env:OctopusURL/api/maintenanceconfiguration" -Method PUT -Headers $c.header -Body $body -UseBasicParsing
+        Try{
+            Write-Verbose "[$($MyInvocation.MyCommand)] Turning maintenance mode $($Mode)"   
+            $r = Invoke-WebRequest -Uri "$Env:OctopusURL/api/maintenanceconfiguration" -Method PUT -Headers $c.header -Body $body -UseBasicParsing -Verbose:$false
+        }
+        Catch{
+            write-error $_
+        }        
     }
-
     End
     {
-        If ($r.statuscode -eq 200) {Return $true}
-
-        else {Return $false}
+        Write-Verbose "[$($MyInvocation.MyCommand)] HTTP request to set Maintenance mode $Mode returned code $($r.statuscode)"
+        if($r.statuscode -eq 200){
+            Return $True
+        }
+        Else{
+            Return $false
+        }
     }
 }

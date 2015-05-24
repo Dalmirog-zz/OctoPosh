@@ -10,15 +10,11 @@
 .EXAMPLE
    $ProjectObj = Get-OctopusResourceModel -Resource "Project"
 
-   Creates an instance of an Project Resource object
+   Create Project Resource object instance
 .EXAMPLE
    $pg = Get-OctopusResourceModel -Resource ProjectGroup
 
-   $pg.name = "NewProjectGroup"
-
-   New-OctopusResource -Resource $pg
-
-   Creates a new Project Group called "NewProjectGroup" on Octopus
+   Create Project Group resource object instance
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
    Advanced Cmdlet Usage: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
@@ -56,7 +52,6 @@ function Get-OctopusResourceModel
         "Octopus.Client.Model.EnvironmentResource",
         "Octopus.Client.Model.ProjectResource",
         "Octopus.Client.Model.ProjectGroupResource"
-
         break      
       }     
     }

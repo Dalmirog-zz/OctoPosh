@@ -49,7 +49,8 @@ function Get-OctopusProject
     }
     Process
     {
-        If(!([string]::IsNullOrEmpty($ProjectName))){            
+        If(!([string]::IsNullOrEmpty($ProjectName))){
+            Write-Verbose "[$($MyInvocation.MyCommand)] Filtering projects by name: $ProjectName"             
             $Projects = $c.repository.Projects.FindMany({param($Proj) if (($Proj.name -in $ProjectName) -or ($Proj.name -like $ProjectName)) {$true}})
 
             foreach($N in $ProjectName){
@@ -61,10 +62,14 @@ function Get-OctopusProject
         }
 
         else{        
+            Write-Verbose "[$($MyInvocation.MyCommand)] Getting all projects"             
             $Projects = $c.repository.projects.FindAll()
-        }       
+        }
+        
+        Write-Verbose "[$($MyInvocation.MyCommand)] Projects found: $($Projects.count)"                    
         
         If($ResourceOnly){
+            Write-Verbose "[$($MyInvocation.MyCommand)] [ResourceOnly] switch is on. Returning raw Octopus resource objects"
             $list += $Projects
         }
 
@@ -75,6 +80,8 @@ function Get-OctopusProject
 
                 Write-Progress -Activity "Getting info from Project: $($p.name)" -status "$i of $($Projects.count)" -percentComplete ($i / $Projects.count*100)
 
+                Write-Verbose "[$($MyInvocation.MyCommand)] Getting info from project $($p.name)"
+
                 $deployments = @()
 
                 $dashboardItem = $dashboard.Items | ?{$p.Id -eq $_.projectid}
@@ -83,7 +90,7 @@ function Get-OctopusProject
                 
                     $t = $c.repository.Tasks.Get($d.links.task)
 
-                    $dev = (Invoke-WebRequest -Uri "$env:OctopusURL/api/events?regarding=$($d.Id)" -Method Get -Headers $c.header | ConvertFrom-Json).items | ? {$_.category -eq "DeploymentQueued"}
+                    $dev = (Invoke-WebRequest -Uri "$env:OctopusURL/api/events?regarding=$($d.Id)" -Method Get -Headers $c.header -Verbose:$false | ConvertFrom-Json).items | ? {$_.category -eq "DeploymentQueued"}
 
                     $dep = [PSCustomObject]@{
                             ProjectName = ($dashboard.Projects | ?{$_.id -eq $d.projectId}).name

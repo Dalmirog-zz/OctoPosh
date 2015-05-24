@@ -30,9 +30,9 @@ function Get-OctopusLifeCycle
     Param
     (
         #Lifecycle Name
-        [alias("LifecycleName")]
+        [alias("Name")]
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [string[]]$Name
+        [string[]]$LifeCycleName
     )
 
     Begin
@@ -43,21 +43,24 @@ function Get-OctopusLifeCycle
     }
     Process
     {
-
         #Getting Lifecycles        
-        If(!([string]::IsNullOrEmpty($Name))){            
-            $Lifecycles = $c.repository.Lifecycles.FindMany({param($lc) if (($lc.name -in $name)) {$true}})
+        If(!([string]::IsNullOrEmpty($LifeCycleName))){            
+            Write-Verbose "[$($MyInvocation.MyCommand)] Getting Lifecycles with name/s: [$LifeCycleName]"
+            $Lifecycles = $c.repository.Lifecycles.FindMany({param($lc) if (($lc.name -in $LifeCycleName)) {$true}})
         }
 
         else{
-        
+            Write-Verbose "[$($MyInvocation.MyCommand)] Getting all the Lifecycles"
             $Lifecycles = $c.repository.Lifecycles.FindAll()
         }        
+
+        Write-Verbose "[$($MyInvocation.MyCommand)] Lifecycles found: $($Lifecycles.count)"
 
         #Getting info by Lifecycle
         foreach ($l in $Lifecycles){            
             
             Write-Progress -Activity "Getting info from lifecycle: $($l.name)" -status "$i of $($Lifecycles.count)" -percentComplete ($i / $Lifecycles.count*100)
+            Write-Verbose "[$($MyInvocation.MyCommand)] Getting info from Lifecycle: $($l.name)"
 
             $obj = [PSCustomObject]@{
                 LifecycleName = $l.name

@@ -28,10 +28,11 @@ function Set-OctopusUserAccountStatus
         [string]$status,
 
         # User Name
+        [parameter(Mandatory = $true, ValueFromPipelineByPropertyName=$true,ParameterSetName = 'Username')]
         [String[]]$Username,
         
         # Octopus user resource filter
-        [parameter(ValueFromPipelineByPropertyName=$true)]
+        [parameter(Mandatory = $true, ValueFromPipelineByPropertyName=$true,ParameterSetName = 'Resource')]
         [Octopus.Client.Model.UserResource[]]$Resource
         
 
@@ -39,15 +40,18 @@ function Set-OctopusUserAccountStatus
 
     Begin
     {
-        if (($Username -eq $null) -and ($Resource -eq $null)){
-            Throw "You must pass a value to at least one of the following parameters: Name, Resource"
+        $c = New-OctopusConnection
+        
+        If($PSCmdlet.ParameterSetName -eq "Username"){
+            Write-Verbose "[$($MyInvocation.MyCommand)] Getting users with username: $Username"
+            $users = $c.repository.Users.FindMany({param($u) if (($u.username -in $Username) -or ($u.username -like $Username)) {$true}})
+        }
+        Else{
+            Write-Verbose "[$($MyInvocation.MyCommand)] Getting by resource object"
+            $users += $Resource
         }
 
-        $c = New-OctopusConnection
-
-        $users = $c.repository.Users.FindMany({param($u) if (($u.username -in $Username) -or ($u.username -like $Username)) {$true}})
-        
-        If($Resource){$users += $Resource}
+        Write-Verbose "[$($MyInvocation.MyCommand)] Users found: $($users.Count)"
 
         If ($status -eq "Enabled"){$IsActive = $true}
 
@@ -59,18 +63,19 @@ function Set-OctopusUserAccountStatus
     {
 
         foreach ($user in $Users){
-
-            Write-Verbose "Setting user account [$($user.username) ; $($user.EmailAddress)] status to: $Status"
+            Write-Verbose "[$($MyInvocation.MyCommand)] Setting user account [$($user.username) ; $($user.EmailAddress)] status to: $Status"
 
             $user.IsActive = $IsActive
 
-            $c.repository.Users.Modify($user)
+            $ModifiedUser = $c.repository.Users.Modify($user)
+
+            Write-Verbose "[$($MyInvocation.MyCommand)] Activity status of [$($ModifiedUser.username) ; $($Modifieduser.EmailAddress)] was set to: $($ModifiedUser.IsActive)"
 
         }
 
     }
     End
     {
-           
+        
     }
 }
