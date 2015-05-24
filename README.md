@@ -1,5 +1,7 @@
 # OctoPosh: The Octopus Deploy Powershell Module
 
+[![Join the chat at https://gitter.im/Dalmirog/OctoPosh](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Dalmirog/OctoPosh?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Octopus Deploy is a friendly deployment automation system for .NET developers. [Its architecture is built API-First](http://docs.octopusdeploy.com/display/OD/Octopus+REST+API), meaning 99% of what you can do from the Octopus UI can also be performed using the REST API.
 
 This Powershell Module contains a set of CMDLets that use the Octopus REST API to perform common administrative tasks.
