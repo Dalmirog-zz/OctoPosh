@@ -34,14 +34,16 @@ function Set-OctopusUserAccountStatus
         # Octopus user resource filter
         [parameter(Mandatory = $true, ValueFromPipelineByPropertyName=$true,ParameterSetName = 'Resource')]
         [Octopus.Client.Model.UserResource[]]$Resource
-        
-
     )
 
     Begin
     {
-        $c = New-OctopusConnection
-        
+        $c = New-OctopusConnection        
+        $list = @()
+    }
+
+    Process
+    {
         If($PSCmdlet.ParameterSetName -eq "Username"){
             Write-Verbose "[$($MyInvocation.MyCommand)] Getting users with username: $Username"
             $users = $c.repository.Users.FindMany({param($u) if (($u.username -in $Username) -or ($u.username -like $Username)) {$true}})
@@ -57,11 +59,6 @@ function Set-OctopusUserAccountStatus
 
         Else {$IsActive = $false}
 
-    }
-
-    Process
-    {
-
         foreach ($user in $Users){
             Write-Verbose "[$($MyInvocation.MyCommand)] Setting user account [$($user.username) ; $($user.EmailAddress)] status to: $Status"
 
@@ -69,13 +66,16 @@ function Set-OctopusUserAccountStatus
 
             $ModifiedUser = $c.repository.Users.Modify($user)
 
-            Write-Verbose "[$($MyInvocation.MyCommand)] Activity status of [$($ModifiedUser.username) ; $($Modifieduser.EmailAddress)] was set to: $($ModifiedUser.IsActive)"
+            Write-Verbose "[$($MyInvocation.MyCommand)] [$($ModifiedUser.username) ; $($Modifieduser.EmailAddress)] IsActive status of was set to: $($ModifiedUser.IsActive)"
 
+            $list += $ModifiedUser
         }
-
     }
     End
     {
-        
+        If($list.count -eq 0){
+            $list = $null
+        }
+        return $List
     }
 }
