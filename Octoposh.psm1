@@ -10,12 +10,12 @@ foreach ($script in $scripts){
 
 ##Helper Functions. These wont get exported by the module, but will be available to be used by the exported cmdlets
 function Put-OctopusResource([string]$uri, [object]$resource) {
-    Invoke-RestMethod -Method Put -Uri "$env:OctopusURL/$uri" -Body $($resource | ConvertTo-Json -Depth 10) -Headers $c.header
+    Invoke-RestMethod -Method Put -Uri "$env:OctopusURL/$uri" -Body $($resource | ConvertTo-Json -Depth 10) -Headers $c.header -Verbose:$false
 }
 
 function Get-OctopusResource([string]$uri, [object]$header) {
     
-    return Invoke-RestMethod -Method Get -Uri "$env:OctopusURL/$uri" -Headers $header
+    return Invoke-RestMethod -Method Get -Uri "$env:OctopusURL/$uri" -Headers $header -Verbose:$false
 }
 
 function Get-UserConfirmation{ #Credits to http://www.peetersonline.nl/2009/07/user-confirmation-in-powershell/
