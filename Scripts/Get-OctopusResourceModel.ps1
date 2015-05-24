@@ -26,7 +26,7 @@ function Get-OctopusResourceModel
     Param
     (
         # Resource object model
-        [ValidateSet("Environment","Project","ProjectGroup")]
+        [ValidateSet("Environment","Project","ProjectGroup","NugetFeed")]
         [parameter(ParameterSetName='GetResource')] 
         [string]$Resource,
         
@@ -41,19 +41,12 @@ function Get-OctopusResourceModel
     }
     Process
     {
-      If(!($ListAvailable)){
-          Switch ($Resource){ 
-                "Environment" {$o = New-Object Octopus.Client.Model.EnvironmentResource}
-                "Project" {$o = New-Object Octopus.Client.Model.ProjectResource}            
-                "ProjectGroup" {$o = New-Object Octopus.Client.Model.ProjectGroupResource}            
-          }
-      }
-      Else{
-        "Octopus.Client.Model.EnvironmentResource",
-        "Octopus.Client.Model.ProjectResource",
-        "Octopus.Client.Model.ProjectGroupResource"
-        break      
-      }     
+        Switch ($Resource){ 
+            "Environment" {$o = New-Object Octopus.Client.Model.EnvironmentResource}
+            "Project" {$o = New-Object Octopus.Client.Model.ProjectResource}
+            "ProjectGroup" {$o = New-Object Octopus.Client.Model.ProjectGroupResource}
+            "NugetFeed" {$o = New-Object Octopus.Client.Model.FeedResource}
+        }      
     }
     End
     {
