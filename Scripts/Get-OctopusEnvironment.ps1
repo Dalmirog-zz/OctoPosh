@@ -23,10 +23,11 @@ function Get-OctopusEnvironment
     Param
     (
         # Environment name        
-        [alias("EnvironmentName")]
+        [alias("Name")]
         [Parameter(ValueFromPipelineByPropertyName = $true, Position=0)]
-        [string[]]$Name,
-        #When used, the cmdlet will only return the plain Octopus resource, withouth the extra info. This mode is used mostly from inside other cmdlets
+        [string[]]$EnvironmentName,
+        
+        # When used the cmdlet will only return the plain Octopus resource object
         [switch]$ResourceOnly
     )
 
@@ -39,11 +40,11 @@ function Get-OctopusEnvironment
     Process
     {
 
-        If(!([string]::IsNullOrEmpty($Name))){            
-            Write-Verbose "[$($MyInvocation.MyCommand)] Getting environments by name: $name" 
-            $environments = $c.repository.Environments.FindMany({param($env) if (($env.name -in $name) -or ($env.name -like $name)) {$true}})
+        If(!([string]::IsNullOrEmpty($EnvironmentName))){            
+            Write-Verbose "[$($MyInvocation.MyCommand)] Getting environments by name: $EnvironmentName" 
+            $environments = $c.repository.Environments.FindMany({param($env) if (($env.name -in $EnvironmentName) -or ($env.name -like $EnvironmentName)) {$true}})
             
-            foreach($N in $Name){
+            foreach($N in $EnvironmentName){
                 If(($n -notin $environments.name) -and !($environments.name -like $n)){
                 
                     Write-Error "Environment not found: $n"
