@@ -33,20 +33,20 @@ function Get-OctopusDeployment
     [CmdletBinding()]        
     Param
     (
-        ## Octopus environment name        
+        # Environment Name
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [alias("Environment")]
         [string[]]$EnvironmentName,
 
-        # Octopus project name        
+        # Project Name        
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [alias("Project")]
         [string[]]$ProjectName,
 
-        #Before date
+        # Get deployment created before this date
         [System.DateTimeOffset]$Before = [System.DateTimeOffset]::MaxValue,
         
-        #After date
+        # Get deployment created after this date
         [System.DateTimeOffset]$After = [System.DateTimeOffset]::MinValue          
     )
 

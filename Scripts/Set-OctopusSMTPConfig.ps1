@@ -37,11 +37,11 @@ function Set-OctopusSMTPConfig
         # SSL Enabled/Disabled
         [switch]$SSL,        
 
-        # User to login to the SMPT service.
+        # User to login to the SMPT service
         [Parameter(Mandatory=$true, parametersetname='setlogin')]
         [string]$SMTPLogin = $null,
 
-        # Password to login to the SMPT service.
+        # Password to login to the SMPT service
         [Parameter(Mandatory=$true,parametersetname='setlogin')]
         [string]$SMTPPassword = $null
 

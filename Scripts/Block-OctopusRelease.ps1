@@ -10,7 +10,7 @@
 .EXAMPLE
    Get-OctopusRelease -Project "MyProduct.Webapp" -version 1.0.1 | Block-OctopusRelease -Reason "Because of reasons"
 
-   Blocks the release 1.0.1 of the project "MyProduct.Webapp"
+   Blocks the release 1.0.1 of the project "MyProduct.Webapp" with a custom reason text
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
    Advanced Cmdlet Usage: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
@@ -21,19 +21,19 @@ function Block-OctopusRelease
     [CmdletBinding()]
     Param
     (
-        # Project Name of the release. You can only block one release at a time using thie parameter
+        # Project name 
         [Parameter(Mandatory=$true, ValueFromPipelineByPropertyName = $true)]
         [string]$ProjectName,
 
-        # Release Version number. You can only block one release at a time using thie parameter
+        # Release version number
         [Parameter(Mandatory=$true, ValueFromPipelineByPropertyName = $true)]
         [string]$ReleaseVersion,
 
-        # Description of the blocking
+        # Description for the blocking
         [ValidateNotNullOrEmpty()]        
         [string]$Description,
 
-        # Forces action.
+        # Forces cmdlet to continue without prompting
         [switch]$Force
     )
 

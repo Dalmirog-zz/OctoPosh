@@ -33,30 +33,30 @@ function Get-OctopusMachine
     [CmdletBinding(DefaultParameterSetName='Name')]
     Param
     (
-        # Gets info about machines with this name. Only 1 value with wildcards can be used at a time
+        # Machine name
         [Alias('Name')]
         [Parameter(ValueFromPipelineByPropertyName=$true,
                    ParameterSetName = 'Name')]
         [string[]]$MachineName,
 
-        # Gets info about all the machines included on this environment. Only 1 value with wildcards can be used at a time
+        # Environment name. Use to get all machines inside of an environment
         [Alias('Environment')]
         [Parameter(ValueFromPipelineByPropertyName=$true,
                    ParameterSetName = 'Environment')]
         [string[]]$EnvironmentName,
 
-        # Gets info about all the machines registered with this URL. Only 1 value with wildcards can be used at a time
+        # URL of the machine
         [Alias('URI')]
         [Parameter(ParameterSetName = 'URL')]
         [string[]]$URL,
 
-        # Gets info about all the machines registered with this Communication Style. Only values accepted are "Listening" and "Polling"
+        # Communication style of the machine. Only values accepted are "Listening" and "Polling"
         [Alias('Mode','TentacleMode')]
         [ValidateSet('Listening','Polling')]         
         [Parameter(ParameterSetName = 'CommunicationStyle')]
         [string]$CommunicationStyle,
 
-        #When used, the cmdlet will only return the plain Octopus resource, withouth the extra info. This mode is used mostly from inside other cmdlets
+        # When used the cmdlet will only return the plain Octopus resource object
         [switch]$ResourceOnly
     )
 

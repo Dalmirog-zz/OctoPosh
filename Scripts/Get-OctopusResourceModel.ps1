@@ -22,7 +22,7 @@
 #>
 function Get-OctopusResourceModel
 {
-    [CmdletBinding()]
+    [CmdletBinding(DefaultParameterSetName="GetResource")]
     Param
     (
         # Resource object model
@@ -30,7 +30,7 @@ function Get-OctopusResourceModel
         [parameter(ParameterSetName='GetResource')] 
         [string]$Resource,
         
-        #Lists all the available resource types
+        # Lists all the available resource types
         [parameter(ParameterSetName='ListResourceType')]         
         [switch]$ListAvailable
     )

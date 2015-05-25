@@ -21,13 +21,13 @@ function Start-OctopusRetentionPolicy
     [CmdletBinding()]
     Param
     (
-        # Forces health check task start.
+        # Forces cmdlet to continue without prompting
         [switch]$Force,
 
         # Waits until the task is not on states "Queued" or "Executing"
         [switch]$Wait,
 
-        # Timeout for -Wait parameter in minutes. Default timeout is 2 minutes
+        # Timeout for [Wait] parameter in minutes. Default timeout is 2 minutes
         [double]$Timeout = 2
     )
 

@@ -29,7 +29,7 @@ function Get-OctopusLifeCycle
     [CmdletBinding()]    
     Param
     (
-        #Lifecycle Name
+        # Lifecycle Name
         [alias("Name")]
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [string[]]$LifeCycleName

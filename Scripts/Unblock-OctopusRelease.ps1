@@ -21,15 +21,15 @@ function Unblock-OctopusRelease
     [CmdletBinding()]
     Param
     (
-        # Project Name of the release. You can only block one release at a time using this parameter
+        # Project Name
         [Parameter(Mandatory=$true, ValueFromPipelineByPropertyName = $true)]
-        $ProjectName,
+        [string]$ProjectName,
 
-        # Release Version number. You can only block one release at a time using this parameter
+        # Release Version number
         [Parameter(Mandatory=$true, ValueFromPipelineByPropertyName = $true)]
-        $ReleaseVersion,
+        [string]$ReleaseVersion,
 
-        # Forces action.
+        # Forces cmdlet to continue without prompting
         [switch]$Force
     )
 

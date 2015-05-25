@@ -37,7 +37,7 @@ function Get-OctopusTask
         [ValidateNotNullOrEmpty()]
         [String[]]$TaskID,
         
-        # Name of the task
+        # Name of the task. Accepted values are: 'Backup','Delete','Health','Retention','Deploy','Upgrade','AdhocScript','TestEmail'
         [ValidateSet('Backup','Delete','Health','Retention','Deploy','Upgrade','AdhocScript','TestEmail')]        
         [String[]]$Name = '*',
 

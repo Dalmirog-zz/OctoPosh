@@ -20,7 +20,7 @@ function Get-OctopusRelease{
     [CmdletBinding()]    
     Param
     (
-        ## Release version
+        # Release version
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [alias("Version")]
         [string[]]$ReleaseVersion = $null,
@@ -30,7 +30,7 @@ function Get-OctopusRelease{
         [alias("Project")]
         [String[]]$ProjectName,
         
-        #When used, the cmdlet will only return the plain Octopus resource, withouth the extra info. This mode is used mostly from inside other cmdlets
+        # When used the cmdlet will only return the plain Octopus resource object
         [switch]$ResourceOnly
     )
 
@@ -39,8 +39,7 @@ function Get-OctopusRelease{
         $c = New-OctopusConnection        
         $list = @()
         $releases = @()
-        $i++
-        
+        $i++        
     }
     Process
     {
@@ -89,7 +88,8 @@ function Get-OctopusRelease{
 
                 Write-Progress -Activity "Getting info from release: $($release.id)" -status "$i of $($releases.count)" -percentComplete ($i / $releases.count*100)                
         
-                $d = $c.repository.Deployments.FindOne({param($dep) if($dep.releaseid -eq $release.Id){$true}})        
+                $d = $c.repository.Deployments.FindOne({param($dep) if($dep.releaseid -eq $release.Id){$true}})
+                       
                 $rev = (Invoke-WebRequest -Uri "$env:OctopusURL/api/events?regarding=$($release.Id)" -Method Get -Headers $c.header | ConvertFrom-Json).items | ? {$_.category -eq "Created"}
         
                 $obj = [PSCustomObject]@{

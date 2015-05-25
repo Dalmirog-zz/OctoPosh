@@ -26,16 +26,16 @@ function Start-OctopusHealthCheck
                    ValueFromPipelineByPropertyName=$true)]
         [string[]]$EnvironmentName,
 
-        #The message that will show up on the Octopus task
+        # The message that will show up on the Octopus task. If a value is not passed to this parameter, a default message will be used
         [string]$Message,
 
-        # Forces health check task start.
+        # Forces cmdlet to continue without prompting
         [switch]$Force,
 
         # Waits until the task is not on states "Queued" or "Executing"
         [switch]$Wait,
 
-        # Timeout for -Wait parameter in minutes. Default timeout is 2 minutes
+        # Timeout for [Wait] parameter in minutes. Default timeout is 2 minutes
         [double]$Timeout = 2
     )
 

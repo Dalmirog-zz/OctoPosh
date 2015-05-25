@@ -25,7 +25,7 @@ Function Update-OctopusStepTemplates
         #[Parameter(Mandatory=$true, ParameterSetName= "MultipleActionTemplates")]
         #[switch]$AllActionTemplates,
 
-        # Octopus instance URL.
+        # Octopus instance URL
         [Parameter(Mandatory=$false)]
         [string]$OctopusURI = $env:OctopusURI,
 
@@ -117,9 +117,3 @@ Function Update-OctopusStepTemplates
     {
     }
 }
-
-
-
-
-
-
