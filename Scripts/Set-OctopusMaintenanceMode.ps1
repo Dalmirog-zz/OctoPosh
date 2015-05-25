@@ -21,13 +21,12 @@ function Set-OctopusMaintenanceMode
     [CmdletBinding()]
     Param
     (
-        # Octopus maintenance mode switch
+        # Octopus maintenance mode switch. Accepts values "ON" or "OFF"
         [ValidateSet("ON","OFF")]
         [Parameter(Mandatory=$true)]
         [String]$Mode,
 
-        #Such ugly params, I should have just 1 with 2 options
-        # Forces action
+        # Forces cmdlet to continue without prompting
         [switch]$Force
     )
 

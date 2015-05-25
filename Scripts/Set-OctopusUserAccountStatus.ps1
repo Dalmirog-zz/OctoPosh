@@ -22,16 +22,16 @@ function Set-OctopusUserAccountStatus
     Param
     (
         
-        # Sets Octopus maintenance mode on
+        # Status of the user account. Values accepted are "Enabled" and "Disabled"
         [Parameter(Mandatory=$true)]
         [ValidateSet("Enabled","Disabled")] 
         [string]$status,
 
-        # User Name
+        # UserName
         [parameter(Mandatory = $true, ValueFromPipelineByPropertyName=$true,ParameterSetName = 'Username')]
         [String[]]$Username,
         
-        # Octopus user resource filter
+        # Octopus User resource
         [parameter(Mandatory = $true, ValueFromPipelineByPropertyName=$true,ParameterSetName = 'Resource')]
         [Octopus.Client.Model.UserResource[]]$Resource
     )

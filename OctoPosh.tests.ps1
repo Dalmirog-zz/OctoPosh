@@ -22,7 +22,7 @@ Describe 'Octopus Module Tests' {
     Write-Output "Test name: $TestName"
 
     $c = New-OctopusConnection
-       
+           
     It '[New-OctopusResource] creates environments'{               
 
         $env = Get-OctopusResourceModel -Resource Environment                
@@ -231,7 +231,7 @@ Describe 'Octopus Module Tests' {
         $tasks = Start-OctopusHealthCheck -EnvironmentName 'Staging','production' -Force -ErrorAction SilentlyContinue
         $tasks.count | should be 2
         $tasks | Get-Member | Select-Object -ExpandProperty typename -Unique | should be 'Octopus.Client.Model.TaskResource'
-    }#>    
+    }#>
     It '[Start-OctopusRetentionPolicy] starts a "Retention" task'{
         $task = Start-OctopusRetentionPolicy -Force -Wait
 
@@ -369,9 +369,7 @@ Describe 'Octopus Module Tests' {
         $users = Set-OctopusUserAccountStatus -status Enabled -Resource $List
 
         $users.isactive | select -Unique | should be 'true'
-    }
-
-    
+    }    
     It '[New-OctopusAPIKey] creates an API Key'{
         $api = New-OctopusAPIKey -Purpose "$TestName" -Username 'Ian.Paullin' -password 'Michael2' -NoWarning
                 
@@ -383,7 +381,7 @@ Describe 'Octopus Module Tests' {
 
     }                    
     It '[Block/Unblock-OctopusRelease] blocks/unblocks AN UGLY HARDCODED release'{
-        $release = Get-OctopusRelease -ProjectName TestProject1 | Select-Object -First 1
+        $release = Get-OctopusRelease -ProjectName TestProject1 -ReleaseVersion 1.0.31
             
         $release | Block-OctopusRelease -Description $TestName -Force | should be $true
 

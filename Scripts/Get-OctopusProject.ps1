@@ -33,11 +33,12 @@ function Get-OctopusProject
     [CmdletBinding()]    
     Param
     (
-        #Name of the project you want info about. This parameter accepts wildcards.
+        # Project Name
         [alias("Name")]
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [string[]]$ProjectName,
-        #When used, the cmdlet will only return the plain Octopus resource, withouth the extra info. This mode is used mostly from inside other cmdlets
+
+        # When used the cmdlet will only return the plain Octopus resource object
         [switch]$ResourceOnly
     )
 

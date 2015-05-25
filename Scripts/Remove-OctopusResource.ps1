@@ -32,17 +32,17 @@ function Remove-OctopusResource
                    Position=0)]
         [object[]]$Resource,
 
-        # Forces resource delete.
+        # Prints a list of the resource types accepted by the parameter $Resource.
         [parameter(ParameterSetName = 'ListAcceptedTypes')]
         [switch]$AcceptedTypes,
 
-        # Forces resource delete.
+        # Forces cmdlet to continue without prompting
         [switch]$Force,
 
         # Waits until the task is not on states "Queued" or "Executing"
         [switch]$Wait,
 
-        # Timeout for -Wait parameter in minutes
+        # Timeout for [Wait] parameter in minutes
         [double]$Timeout = 2
     )
 
@@ -54,6 +54,7 @@ function Remove-OctopusResource
             'Octopus.Client.Model.EnvironmentResource'
             'Octopus.Client.Model.DeploymentResource'
             'Octopus.Client.Model.MachineResource'
+            'Octopus.Client.Model.FeedResource'
         }
         $c = New-OctopusConnection        
     }
@@ -62,13 +63,10 @@ function Remove-OctopusResource
         Foreach ($r in $Resource){
 
             if(!($Force)){
-
                 If (!(Get-UserConfirmation -message "Are you sure you want to delete this resource? `n`n [$($R.GetType().tostring())] $($R.name)`n")){
                     Throw 'Canceled by user'
                 }
-
             }
-
             switch ($R)
             {
                 {$_.getType() -eq [Octopus.Client.Model.ProjectGroupResource]} {$ResourceType = 'ProjectGroups'}
@@ -76,6 +74,7 @@ function Remove-OctopusResource
                 {$_.getType() -eq [Octopus.Client.Model.EnvironmentResource]} {$ResourceType = 'Environments'}
                 {$_.getType() -eq [Octopus.Client.Model.DeploymentResource]} {$ResourceType = 'Deployments'}
                 {$_.getType() -eq [Octopus.Client.Model.MachineResource]} {$ResourceType = 'Machines'}          
+                {$_.getType() -eq [Octopus.Client.Model.FeedResource]} {$ResourceType = 'Feeds'}
                 Default{Throw "Invalid object type: $($_.getType()) `nRun 'Remove-OctopusResource -AcceptedTypes' to get a list of the object types accepted by this cmdlet"}
             }
 

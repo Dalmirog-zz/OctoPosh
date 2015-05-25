@@ -36,12 +36,10 @@ function New-OctopusResource
     {
         switch ($Resource)
         {
-            #{$_.getType() -eq [Octopus.Client.Model.ProjectGroupResource]} {$c.repository.ProjectGroups.Create($_)}
-            #{$_.getType() -eq [Octopus.Client.Model.ProjectResource]} {$c.repository.Projects.Create($_)}
-            #{$_.getType() -eq [Octopus.Client.Model.EnvironmentResource]} {$c.repository.Environments.Create($_)}
             {$_.getType() -eq [Octopus.Client.Model.ProjectGroupResource]} {$res = "ProjectGroups"}
             {$_.getType() -eq [Octopus.Client.Model.ProjectResource]} {$res = "Projects"}
             {$_.getType() -eq [Octopus.Client.Model.EnvironmentResource]} {$res = "Environments"}
+            {$_.getType() -eq [Octopus.Client.Model.FeedResource]} {$res = "Feeds"}
             Default{Throw "Invalid object type: $($_.getType()) `nRun 'Get-OctopusResourceModel -ListAvailable' to get a list of the object types accepted by this cmdlet"}
         }
         Write-Verbose "[$($MyInvocation.MyCommand)] Creating an $($resource.GetType()) object"

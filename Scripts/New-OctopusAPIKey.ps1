@@ -24,14 +24,20 @@ function New-OctopusAPIKey
 {
     [CmdletBinding()]
     Param
-    (
-        # Octopus login User
+    (        
+        # Purpose of the API Key
         [Parameter(Mandatory=$true)]
         [string]$Purpose,
+
+        # Octopus login Username
         [Parameter(Mandatory=$true)]
         [string]$Username,
+
+        # Octopus login Password
         [Parameter(Mandatory=$false)]
         $password,
+
+        # Supresses warning when running command
         [switch]$NoWarning
     )
 
@@ -43,12 +49,10 @@ function New-OctopusAPIKey
     {        
         $LoginObj.Username = $Username
         
-        if(!($password)){
-        
+        if(!($password)){        
             $password = Read-Host "Password" -AsSecureString 
 
             $password = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($password))
-
         }
 
         $LoginObj.Password = $Password
@@ -58,6 +62,7 @@ function New-OctopusAPIKey
         $repository = new-object Octopus.Client.OctopusRepository $endpoint
 
         Write-Verbose "[$($MyInvocation.MyCommand)] Logging in with user: $Username"
+
         $repository.Users.SignIn($LoginObj)
 
         $user = $repository.Users.GetCurrent()
