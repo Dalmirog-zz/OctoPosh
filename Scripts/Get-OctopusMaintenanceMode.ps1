@@ -21,8 +21,7 @@ function Get-OctopusMaintenanceMode
     Process
     {
         Write-Verbose "[$($MyInvocation.MyCommand)] Getting current Maintenance mode from $($Env:OctopusURL)/api/maintenanceconfiguration"                                 
-        
-        $r = Get-octopusresource -Uri "/api/maintenanceconfiguration" -Method Get -Header $c.header
+        $r = Invoke-WebRequest -Uri "$Env:OctopusURL/api/maintenanceconfiguration" -Method Get -Headers $c.header -UseBasicParsing -Verbose:$false
         
         If ($r.statuscode -ne 200) {Return $false}
 
