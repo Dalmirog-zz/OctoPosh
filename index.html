@@ -14,19 +14,19 @@
 	<body>
 		<div class="jumbotron text-center">
 			<img src="img/octoposh-sm.png">
-			<h1>OctoPosh</h1>
+			<h1>OctoPosh</h1><span id="version"></span>
 			<p>A Powershell module providing cmdlet to do basic tasks on Octopus Deploy.</p>
 		</div>
 		<div class="container">
 			<div class="row">
 				<div class="col-md-4 col-xs-12">
-					<h2>What?</h2>
+					<h2>Intro</h2>
 					<p>OctoPosh is a Powershell module that provides cmdlet to do basic tasks on Octopus Deploy. All the cmdlets use a combination of calls to the Octopus REST API and some occasional uses of the Octopus.Client(which in the end, also uses the REST API).
 					</p>
 					<p>The goal of this module is for it to be the go-to place to programatically get information about your Octopus instance, as well as to automate tasks to help you get your Deployment environment up and running fast and easy. If you go to Octopus' super amazing support site, you'll notice that there are plenty of questions of the kind How do I do [this] using the REST API?. One of the objectives of this module is to create tools to help the user be able to do things in Octopus from Powershell in a rather intuitive way.</p>
 				</div>
 				<div class="col-md-4 col-xs-12">
-					<h2>How?</h2>
+					<h2>Installation</h2>
 					<div class="well well-sm">
 						<ol>
 							<li>Get <strong><a target="_blank" href="https://chocolatey.org/">Chocolatey</a>.</strong></li>
@@ -38,25 +38,17 @@
 					</p>
 				</div>
 				<div class="col-md-4 col-xs-12" id="where">
-					<h2>Where?</h2>
+					<h2>Documentation</h2>
 					<img src="img/github-sm.png">
 					<h4><a target="_blank" href="https://github.com/Dalmirog/OctoPosh/wiki">OctoPosh Wiki on GitHub</a></h4>
 					<p>Visit the OctoPosh Wiki page to learn about the module's features and how to use it.</p>
 					<img src="img/gitter-sm.png">
 					<h4><a target="_blank" href="https://gitter.im/Dalmirog/OctoPosh#initial">OctoPosh on Gitter</a></h4>
 					<p>Get in touch, ask questions, report issues o request features.</p>
-					<h2>Who?</h2>
-					<div class="row">
-						<div class="col-xs-3">
-							<img src="img/dalmirog.jpeg" id="dalmiro-img" class="img-responsive">
-						</div>
-						<div class="col-xs-9">
-							<p id="dalmiro-p">This module was conceived and created by Dalmiro Grañas.</p>
-							<p>Visit my <a target="_blank" href="https://github.com/Dalmirog">GitHub</a> page and <a target="_blank" href="https://dalmirogranias.wordpress.com/">my blog</a>!</p>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
+		<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="js/script.js"></script>
 	</body>
 </html>
