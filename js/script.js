@@ -1,9 +1,14 @@
-var version = document.getElementById("version");
+
+function getAndShowLatestVersion(versions) {
+	var version = document.getElementById("version");
+	var latest = versions.length - 1;
+	version.innerHTML = versions[latest].name;
+}
 
 $(document).ready(function() {
-	$.getJSON("https://api.github.com/repos/dalmirog/OctoPosh/contents/SiteInfo.json?ref=development", function(response) {
-		var versions = JSON.parse(window.atob(response.content).substr(3));
-		var latest = versions.Items.length - 1;
-		version.innerHTML = "v." + versions.Items[latest].Version;
+	$.getJSON("https://api.github.com/repos/dalmirog/OctoPosh/releases", function(response) {
+		getAndShowLatestVersion(response);
 	});
 });
+
+// GET ALL RELEASES /repos/:owner/:repo/releases/
