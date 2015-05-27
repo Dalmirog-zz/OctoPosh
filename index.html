@@ -1,97 +1,83 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <title>Octoposh by Dalmirog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-  </head>
-  <body>
-    <section class="page-header">
-      <h1 class="project-name">Octoposh</h1>
-      <h2 class="project-tagline">The Octopus Deploy Powershell module</h2>
-      <a href="https://github.com/Dalmirog/OctoPosh" class="btn">View on GitHub</a>
-      <a href="https://github.com/Dalmirog/OctoPosh/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/Dalmirog/OctoPosh/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
+<html lang="es">
+	<head>
+		<title>OctoPosh</title>
+		<meta charset="UTF-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="styles.css">
+		<link rel="shortcut icon" href="img/favicon.ico" />
+		<link rel="icon" href="img/favicon.ico" />
+		<link rel="icon" type="image/png" href="img/favicon.png" />
+	</head>
+	<body>
+		<div class="jumbotron text-center">
+			<img src="img/octoposh-sm.png">
+			<h1>OctoPosh</h1><span id="version"></span>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<p>OctoPosh is a Powershell module that provides cmdlet to do basic tasks on Octopus Deploy. All the cmdlets use a combination of calls to the Octopus REST API and some occasional uses of the Octopus.Client(which in the end, also uses the REST API).
+					</p>
+					<p>The goal of this module is for it to be the go-to place to programatically get information about your Octopus instance, as well as to automate tasks to help you get your Deployment environment up and running fast and easy. If you go to Octopus' super amazing support site, you'll notice that there are plenty of questions of the kind How do I do [this] using the REST API?. One of the objectives of this module is to create tools to help the user be able to do things in Octopus from Powershell in a rather intuitive way.</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 col-xs-12">
+					<h2>Installation</h2>
+					<div class="well well-sm">
+						<ol>
+							<li>Get <strong><a target="_blank" href="https://chocolatey.org/">Chocolatey</a>.</strong></li>
+							<li>Run:<br>
+								<button type="button" class="btn btn-xs btn-primary pull-right" id="copy-button" data-clipboard-text="" data-clipboard-target="code-a" title="Click to copy me.">
+									<span class="glyphicon glyphicon-copy"></span>
+								</button>
+								<span class="code" id="code-a">cinst Octoposh -source "http://www.nuget.org/api/v2/"</span>
+							</li>
+						</ol>
+					</div>
+					<p>
+						Click <a href="https://github.com/Dalmirog/OctoPosh/wiki/Installing-the-module">here</a> for installation instructions using GitHub.
+					</p>
+				</div>
+				<div class="col-md-6 col-xs-12" id="documentation">
+					<h2>Documentation</h2>
+					<img src="img/github-sm.png">
+					<h4><a target="_blank" href="https://github.com/Dalmirog/OctoPosh/wiki">OctoPosh Wiki on GitHub</a></h4>
+					<p>Visit the OctoPosh Wiki page to learn about the module's features and how to use it.</p>
+					<img src="img/gitter-sm.png">
+					<h4><a target="_blank" href="https://gitter.im/Dalmirog/OctoPosh#initial">OctoPosh on Gitter</a></h4>
+					<p>Get in touch, ask questions, report issues o request features.</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 col-xs-12">
+					<h2>Latest Releases</h2>
+					<table class="table table-striped table-condensed" id="releases">
+						<tbody>					
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
 
-    <section class="main-content">
-      <h1>
-<a id="octoposh-the-octopus-deploy-powershell-module" class="anchor" href="#octoposh-the-octopus-deploy-powershell-module" aria-hidden="true"><span class="octicon octicon-link"></span></a>OctoPosh: The Octopus Deploy Powershell Module</h1>
+		<script type="text/template" id="releases-template">
+			<tr> 
+				<td>
+					<a href="<%= url %>" target="_blank"><%= name %></a>
+				</td>
+				<td><%= date %></td>
+				<td>
+					<a href="<%= url %>" target="_blank">Release Notes <span class="glyphicon glyphicon-share-alt"></span></a>
+				</td>
+			</tr>
+		</script>
 
-<p>Octopus Deploy is a friendly deployment automation system for .NET developers. <a href="http://docs.octopusdeploy.com/display/OD/Octopus+REST+API">Its architecture is built API-First</a>, meaning 99% of what you can do from the Octopus UI can also be performed using the REST API.</p>
-
-<p>This Powershell Module contains a set of CMDLets that use the Octopus REST API to perform common administrative tasks.</p>
-
-<p>DISCLAIMER: This is an open source project which is NOT supported by Octopus Deploy. All questions/bugs about this module should be entered on this github project.</p>
-
-<h2>
-<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span class="octicon octicon-link"></span></a>Getting Started</h2>
-
-<ul>
-<li><a href="https://github.com/Dalmirog/OctoPosh/wiki/Installing-the-module">How to download the module</a></li>
-<li><a href="https://github.com/Dalmirog/OctoPosh/wiki/Setting-Credentials">How to setup your credentials</a></li>
-</ul>
-
-<p>Check out our <a href="https://github.com/Dalmirog/OctoPosh/wiki">Wiki</a> for our entire list of cmdlets</p>
-
-<h2>
-<a id="faqs-y-feature-requests" class="anchor" href="#faqs-y-feature-requests" aria-hidden="true"><span class="octicon octicon-link"></span></a>FAQs y feature requests</h2>
-
-<p>If you want to request a cmdlet or a feature, or you just wanna ask how to do something with the module, drop by our Gitter channel and ask there:</p>
-
-<p><a href="https://gitter.im/Dalmirog/OctoPosh?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/Dalmirog/OctoPosh"></a></p>
-
-<p>Your questions will help shape up the module according to the needs of the community, so dont be a stranger!</p>
-
-<h2>
-<a id="credits" class="anchor" href="#credits" aria-hidden="true"><span class="octicon octicon-link"></span></a>Credits</h2>
-
-<p>This module was made using the following awesome tools</p>
-
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Site</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Octopus Deploy</td>
-<td><a href="https://octopusdeploy.com/">https://octopusdeploy.com/</a></td>
-</tr>
-<tr>
-<td>Pester</td>
-<td><a href="https://github.com/pester/Pester">https://github.com/pester/Pester</a></td>
-</tr>
-<tr>
-<td>Fiddler</td>
-<td><a href="http://www.telerik.com/fiddler">http://www.telerik.com/fiddler</a></td>
-</tr>
-<tr>
-<td>Papercut</td>
-<td><a href="https://papercut.codeplex.com/">https://papercut.codeplex.com/</a></td>
-</tr>
-<tr>
-<td>TeamCity</td>
-<td><a href="https://www.jetbrains.com/teamcity/">https://www.jetbrains.com/teamcity/</a></td>
-</tr>
-</tbody>
-</table>
-
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/Dalmirog/OctoPosh">Octoposh</a> is maintained by <a href="https://github.com/Dalmirog">Dalmirog</a>.</span>
-
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
-
-    </section>
-
-  
-  </body>
+		<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="js/ZeroClipboard.min.js"></script>
+		<script type="text/javascript" src="js/underscore-min.js"></script>
+		<script type="text/javascript" src="js/script.js"></script>
+	</body>
 </html>
-
