@@ -14,6 +14,12 @@ $(document).ready(function() {
 	var client = new ZeroClipboard( document.getElementById("copy-button"), {
 		moviePath: "/js/ZeroClipboard.swf"
 	});
+
+	client.on( "aftercopy", function( event ) {
+	    $("#copy-button").removeClass("glyphicon-copy");
+	    $("#copy-button").addClass("glyphicon-ok");
+	    alert("Copied text to clipboard: " + event.data["text/plain"] );
+	  } );
 });
 
 // GET ALL RELEASES /repos/:owner/:repo/releases/
