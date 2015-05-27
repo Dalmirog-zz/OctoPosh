@@ -33,7 +33,7 @@ function createReleasesJSON() {
 	for (var i = 0; i <= 4; i++) {
 		releasesJSON[i] = {};
 		releasesJSON[i].name = "OctoPosh " + githubReleases[0].name; //Change [0] for something nice when I have more than one GH release.
-		releasesJSON[i].date = githubReleases[0].published_at;
+		releasesJSON[i].date = githubReleases[0].published_at.substr(0,10);
 		releasesJSON[i].url = githubReleases[0].body;
 	};
 	return releasesJSON;
@@ -41,7 +41,6 @@ function createReleasesJSON() {
 
 function populateReleasesTable() {
 	JSON = createReleasesJSON();
-	console.log(JSON);
 	var template = _.template($("#releases-template").html());
 	JSON.forEach(function(release) {
 		$("#releases > tbody").append(template(release));
