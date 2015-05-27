@@ -16,8 +16,10 @@ $(document).ready(function() {
 	});
 
 	client.on( "aftercopy", function( event ) {
-	    $("#copy-button > span").removeClass("glyphicon-copy btn-primary");
-	    $("#copy-button").addClass("glyphicon-ok btn-success");
+	    $("#copy-button > span").removeClass("glyphicon-copy");
+	    $("#copy-button > span").addClass("glyphicon-ok");
+	    $("#copy-button").removeClass("btn-primary");
+	    $("#copy-button").addClass("btn-success");
 	  } );
 });
 
