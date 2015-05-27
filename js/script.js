@@ -16,8 +16,8 @@ $(document).ready(function() {
 	});
 
 	client.on( "aftercopy", function( event ) {
-	    $("#copy-button").removeClass("glyphicon-copy");
-	    $("#copy-button").addClass("glyphicon-ok");
+	    $("#copy-button").removeClass("glyphicon-copy btn-primary");
+	    $("#copy-button").addClass("glyphicon-ok btn-success");
 	    alert("Copied text to clipboard: " + event.data["text/plain"] );
 	  } );
 });
