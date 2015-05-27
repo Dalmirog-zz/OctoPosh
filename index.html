@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
 	<head>
-		<title>:: OctoPosh ::</title>
+		<title>OctoPosh</title>
 		<meta charset="UTF-8">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="styles.css">
-		<!--<link rel="shortcut icon" href="img/favicon.ico" />
+		<link rel="shortcut icon" href="img/favicon.ico" />
 		<link rel="icon" href="img/favicon.ico" />
-		<link rel="icon" type="image/png" href="img/favicon.png" />-->
+		<link rel="icon" type="image/png" href="img/favicon.png" />
 	</head>
 	<body>
 		<div class="jumbotron text-center">
@@ -42,7 +42,7 @@
 						Click <a href="https://github.com/Dalmirog/OctoPosh/wiki/Installing-the-module">here</a> for installation instructions using GitHub.
 					</p>
 				</div>
-				<div class="col-md-6 col-xs-12" id="where">
+				<div class="col-md-6 col-xs-12" id="documentation">
 					<h2>Documentation</h2>
 					<img src="img/github-sm.png">
 					<h4><a target="_blank" href="https://github.com/Dalmirog/OctoPosh/wiki">OctoPosh Wiki on GitHub</a></h4>
@@ -53,42 +53,31 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-6 col-xs-12" id="releases">
+				<div class="col-md-6 col-xs-12">
 					<h2>Latest Releases</h2>
-					<table class="table table-striped table-condensed">
-						<tbody>
-							<tr class="success">
-								<td><a href="https://github.com/Dalmirog/OctoPosh/releases/tag/v0.1.0" target="_blank">OctoPosh v0.5.0</a></td>
-								<td>2015-04-11</td>
-								<td><a href="https://github.com/Dalmirog/OctoPosh/wiki/Release-Notes" target="_blank">Release Notes <span class="glyphicon glyphicon-share-alt"></span></a></td>
-							</tr>	
-							<tr>
-								<td><a href="https://github.com/Dalmirog/OctoPosh/releases/tag/v0.1.0" target="_blank">OctoPosh v0.4.0</a></td>
-								<td>2015-06-05</td>
-								<td><a href="https://github.com/Dalmirog/OctoPosh/wiki/Release-Notes" target="_blank">Release Notes <span class="glyphicon glyphicon-share-alt"></span></a></td>
-							</tr>
-							<tr>
-								<td><a href="https://github.com/Dalmirog/OctoPosh/releases/tag/v0.1.0" target="_blank">OctoPosh v0.3.0</a></td>
-								<td>2015-05-30</td>
-								<td><a href="https://github.com/Dalmirog/OctoPosh/wiki/Release-Notes" target="_blank">Release Notes <span class="glyphicon glyphicon-share-alt"></span></a></td>
-							</tr>
-							<tr>
-								<td><a href="https://github.com/Dalmirog/OctoPosh/releases/tag/v0.1.0" target="_blank">OctoPosh v0.2.0</a></td>
-								<td>2015-05-26</td>
-								<td><a href="https://github.com/Dalmirog/OctoPosh/wiki/Release-Notes" target="_blank">Release Notes <span class="glyphicon glyphicon-share-alt"></span></a></td>
-							</tr>
-							<tr>
-								<td><a href="https://github.com/Dalmirog/OctoPosh/releases/tag/v0.1.0" target="_blank">OctoPosh v0.1.0</a></td>
-								<td>2015-05-26</td>
-								<td><a href="https://github.com/Dalmirog/OctoPosh/wiki/Release-Notes" target="_blank">Release Notes <span class="glyphicon glyphicon-share-alt"></span></a></td>
-							</tr>							
+					<table class="table table-striped table-condensed" id="releases">
+						<tbody>					
 						</tbody>
 					</table>
 				</div>
 			</div>
 		</div>
+
+		<script type="text/template" id="releases-template">
+			<tr> 
+				<td>
+					<a href="<%= url %>" target="_blank"><%= name %></a>
+				</td>
+				<td><%= date %></td>
+				<td>
+					<a href="<%= url %>" target="_blank">Release Notes <span class="glyphicon glyphicon-share-alt"></span></a>
+				</td>
+			</tr>
+		</script>
+
 		<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
 		<script type="text/javascript" src="js/ZeroClipboard.min.js"></script>
+		<script type="text/javascript" src="js/underscore-min.js"></script>
 		<script type="text/javascript" src="js/script.js"></script>
 	</body>
 </html>

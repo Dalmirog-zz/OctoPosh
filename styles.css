@@ -24,18 +24,7 @@
 	font-weight: 900;
 }
 
-#dalmiro-img {
-	width: 100%;
-	height: 100%;
-	border-radius: 4px;
-	display: inline-block;
-}
-
-#dalmiro-p {
-	display: inline-block;
-}
-
-#where h4 {
+#documentation h4 {
 	display: inline;
 }
 
@@ -43,8 +32,9 @@
 	padding-left: 10px;
 }
 
-#releases > table > tbody > tr:first-child {
+table#releases > tbody > tr:first-child {
 	font-weight: bold;
+	background-color: #DFF0D8;
 }
 
 #copy-button {
