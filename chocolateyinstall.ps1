@@ -11,12 +11,13 @@
 
     If((Get-ChildItem $TargetDirectory).count -gt 0){
         Write-Warning "Deleting content of $TargetDirectory"
-        Remove-Item $TargetDirectory\* -Recurse
+        Remove-Item $TargetDirectory\* -Recurse -Exclude "*.dll"
     }
 
     Write-Host "Copying module files to $TargetDirectory"
-    Copy-Item $PSScriptRoot\* -Destination $TargetDirectory -Force -Recurse -Exclude *.nupkg,chocolateyinstall.ps1    
-
+    
+    Get-ChildItem $modulepath\* -Recurse -Exclude *.nupkg,chocolateyinstall.ps1,*.dll | Copy-Item -Destination $TargetDirectory -Force
+    
     Write-Host "Files copied. Close this console and re-open to be able to start using the module"
 } 
 
