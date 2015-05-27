@@ -10,8 +10,8 @@ function getReleases() {
 
 function displayLatestRelease() {
 	var version = document.getElementById("version");
-	var latest = githubReleases.length 1;
-	version.innerHTML = githubReleases[latest].name;	
+	var latest = githubReleases.length - 1;
+	version.innerHTML = githubReleases[0].name;	
 }
 
 function initZeroClipboard() {
