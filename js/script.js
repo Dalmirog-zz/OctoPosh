@@ -10,7 +10,7 @@ function getReleases() {
 
 function displayLatestRelease() {
 	var version = document.getElementById("version");
-	var latest = githubReleases.length 0;
+	var latest = githubReleases.length 1;
 	version.innerHTML = githubReleases[latest].name;	
 }
 
