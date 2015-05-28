@@ -2,17 +2,17 @@
 
 // Get the data from GitHub API
 function getReleases() {
-	$.getJSON("https://api.github.com/repos/dalmirog/OctoPosh/releases", function(response) {
-		var latestReleases = extractLatestReleases(response);
-		var releasesJSON = createReleasesJSON(latestReleases);
-		populateReleasesTable(releasesJSON);
+	$.getJSON("https://api.github.com/repos/dalmirog/OctoPosh/releases", function callback(response) {
+		var json = createReleasesJSON(extractLatestReleases(response));
+
+		populateReleasesTable(json);
 	});
 }
 
 // Extract the latest 5 releases
 function extractLatestReleases(releasesResponse) {
 	if (releasesResponse.length > 5) {
-		return response.splice(4, response.length);
+		releasesResponse.splice(5, releasesResponse.length);
 	}
 	return releasesResponse;
 }
@@ -20,12 +20,13 @@ function extractLatestReleases(releasesResponse) {
 // Extract the necesary fields
 function createReleasesJSON(releasesResponse) {
 	var releasesJSON = [];
-	releasesResponse.forEach(function(item) {
-		var tag = {};
-		tag.name = item.name;
-		tag.url = item.html_url;
-		tag.date = formatDate(item.published_at);
-		releasesJSON.push(tag);
+
+	releasesResponse.forEach(function each(item) {
+		releasesJSON.push({
+			name: item.name,
+			url: item.html_url,
+			date: formatDate(item.published_at)
+		});
 	});
 	return releasesJSON;
 }
