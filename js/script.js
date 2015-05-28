@@ -55,16 +55,15 @@ function populateReleasesTable(releasesJSON) {
 /* Copy on click */
 
 function initZeroClipboard() {
+	var copyButton = document.getElementById("copy-button");
 	var client = new ZeroClipboard( document.getElementById("copy-button"), {
 		moviePath: "/js/ZeroClipboard.swf"
 	});
 
 	client.on("aftercopy", function(event) {
-	    $("#copy-button > span").removeClass("glyphicon-copy");
-	    $("#copy-button > span").addClass("glyphicon-ok");
-	    $("#copy-button").removeClass("btn-primary");
-	    $("#copy-button").addClass("btn-success");
-	    $("#copy-button").blur();
+	    copyButton.className = "btn btn-xs btn-success pull-right hidden-xs hidden-sm";
+	    copyButton.blur();
+	    document.getElementById("copy-icon").className = "glyphicon glyphicon-ok";
 	  });
 }
 
