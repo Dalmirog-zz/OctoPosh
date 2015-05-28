@@ -1,4 +1,4 @@
-/* Latest Releases Table */
+/*  Latest Releases Table  */
 
 // Get the data from GitHub API
 function getReleases() {
