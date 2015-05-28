@@ -1,10 +1,23 @@
+/* Latest Releases Table */
+
+// Get the data from GitHub API
 function getReleases() {
 	$.getJSON("https://api.github.com/repos/dalmirog/OctoPosh/releases", function(response) {
-		var releasesJSON = createReleasesJSON(response);
+		var latestReleases = extractLatestReleases(response);
+		var releasesJSON = createReleasesJSON(latestReleases);
 		populateReleasesTable(releasesJSON);
 	});
 }
 
+// Extract the latest 5 releases
+function extractLatestReleases(releasesResponse) {
+	if (releasesResponse.length > 5) {
+		return response.splice(4, response.length);
+	}
+	return releasesResponse;
+}
+
+// Extract the necesary fields
 function createReleasesJSON(releasesResponse) {
 	var releasesJSON = [];
 	releasesResponse.forEach(function(item) {
@@ -17,6 +30,7 @@ function createReleasesJSON(releasesResponse) {
 	return releasesJSON;
 }
 
+// Format date to mm-dd-yyyy
 function formatDate(dateString) {
 	dateString = dateString.substr(0,10);
 	var date = new Date(dateString);
@@ -28,12 +42,15 @@ function formatDate(dateString) {
 	return formattedDate;
 }
 
+// Apply template for each one of the latest 5 releases
 function populateReleasesTable(releasesJSON) {
 	var template = _.template($("#releases-template").html());
 	releasesJSON.forEach(function(release) {
 		$("#releases > tbody").append(template(release));
 	});
 }
+
+/* Copy on click */
 
 function initZeroClipboard() {
 	var client = new ZeroClipboard( document.getElementById("copy-button"), {
@@ -48,6 +65,8 @@ function initZeroClipboard() {
 	    $("#copy-button").blur();
 	  });
 }
+
+/* ----------------------------- */
 
 $(document).ready(function() {
 	getReleases();
