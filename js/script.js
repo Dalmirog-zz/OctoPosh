@@ -8,9 +8,24 @@ function getReleases() {
 function createReleasesJSON(releasesResponse) {
 	var releasesJSON = [];
 	releasesResponse.forEach(function(item) {
-		releasesJSON.push(item);
+		var tag = {};
+		tag.name = item.name;
+		tag.url = item.html_url;
+		tag.date = formatDate(item.published_at);
+		releasesJSON.push(tag);
 	});
 	return releasesJSON;
+}
+
+function formatDate(dateString) {
+	dateString = dateString.substr(0,10);
+	var date = new Date(dateString);
+	var formattedDate = [];
+	formattedDate.push(date.getMonth() + 1);
+	formattedDate.push(date.getDate() + 1);
+	formattedDate.push(date.getFullYear());
+	formattedDate = formattedDate.join("-");
+	return formattedDate;
 }
 
 function populateReleasesTable(releasesJSON) {
@@ -30,6 +45,7 @@ function initZeroClipboard() {
 	    $("#copy-button > span").addClass("glyphicon-ok");
 	    $("#copy-button").removeClass("btn-primary");
 	    $("#copy-button").addClass("btn-success");
+	    $("#copy-button").blur();
 	  });
 }
 
