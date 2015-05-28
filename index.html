@@ -31,7 +31,7 @@
 						<ol>
 							<li>Get <strong><a target="_blank" href="https://chocolatey.org/">Chocolatey</a>.</strong></li>
 							<li>Run:<br>
-								<button type="button" class="btn btn-xs btn-primary pull-right" id="copy-button" data-clipboard-text="" data-clipboard-target="code-a" title="Click to copy me.">
+								<button type="button" class="btn btn-xs btn-primary pull-right hidden-xs hidden-sm" id="copy-button" data-clipboard-text="" data-clipboard-target="code-a" title="Click to copy me.">
 									<span class="glyphicon glyphicon-copy"></span>
 								</button>
 								<span class="code" id="code-a">cinst Octoposh -source "http://www.nuget.org/api/v2/"</span>
@@ -39,7 +39,7 @@
 						</ol>
 					</div>
 					<p>
-						Click <a href="https://github.com/Dalmirog/OctoPosh/wiki/Installing-the-module">here</a> for installation instructions using GitHub.
+						Click <a href="https://github.com/Dalmirog/OctoPosh/wiki/Installing-the-module">here</a> alternative installation methods.
 					</p>
 				</div>
 				<div class="col-md-6 col-xs-12" id="documentation">
@@ -64,7 +64,7 @@
 									</td>
 									<td><%= date %></td>
 									<td>
-										<a href="https://github.com/Dalmirog/OctoPosh/wiki/Release-Notes" target="_blank">Release Notes <span class="glyphicon glyphicon-share-alt"></span></a>
+										<a href="<%= rlsNotes %>" target="_blank">Release Notes <span class="glyphicon glyphicon-share-alt"></span></a>
 									</td>
 								</tr>
 							</script>

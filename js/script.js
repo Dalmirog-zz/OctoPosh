@@ -25,7 +25,8 @@ function createReleasesJSON(releasesResponse) {
 		releasesJSON.push({
 			name: item.name,
 			url: item.html_url,
-			date: formatDate(item.published_at)
+			date: formatDate(item.published_at),
+			rlsNotes: item.body
 		});
 	});
 	return releasesJSON;
@@ -33,12 +34,12 @@ function createReleasesJSON(releasesResponse) {
 
 // Format date to mm-dd-yyyy
 function formatDate(dateString) {
-	dateString = dateString.substr(0,10);
-	var date = new Date(dateString);
-	var formattedDate = [];
-	formattedDate.push(date.getMonth() + 1);
-	formattedDate.push(date.getDate() + 1);
-	formattedDate.push(date.getFullYear());
+	var date = new Date(dateString.substr(0,10));
+	var formattedDate = [
+		date.getMonth() + 1,
+		date.getDate() + 1,
+		date.getFullYear()
+	];
 	formattedDate = formattedDate.join("-");
 	return formattedDate;
 }
@@ -46,7 +47,7 @@ function formatDate(dateString) {
 // Apply template for each one of the latest 5 releases
 function populateReleasesTable(releasesJSON) {
 	var template = _.template($("#releases-template").html());
-	releasesJSON.forEach(function(release) {
+	releasesJSON.forEach(function createRow(release) {
 		$("#releases > tbody").append(template(release));
 	});
 }
