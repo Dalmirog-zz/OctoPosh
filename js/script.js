@@ -1,17 +1,30 @@
-var githubReleases;
-
 function getReleases() {
 	$.getJSON("https://api.github.com/repos/dalmirog/OctoPosh/releases", function(response) {
-		githubReleases = response;
-		displayLatestRelease();
-		populateReleasesTable();
+		var releasesJSON = createReleasesJSON(response);
+		displayLatestRelease(releasesJSON);
+		populateReleasesTable(releasesJSON);
 	});
 }
 
-function displayLatestRelease() {
+function displayLatestRelease(releasesJSON) {
 	var version = document.getElementById("version");
-	var latest = githubReleases.length - 1;
-	version.innerHTML = githubReleases[latest].name;	
+	var latest = releasesJSON.length - 1;
+	version.innerHTML = releasesJSON[latest].name;	
+}
+
+function createReleasesJSON(releasesResponse) {
+	var releasesJSON = [];
+	releasesResponse.forEach(function(item) {
+		releasesJSON.push(item);
+	});
+	return releasesJSON;
+}
+
+function populateReleasesTable(releasesJSON) {
+	var template = _.template($("#releases-template").html());
+	releasesJSON.forEach(function(release) {
+		$("#releases > tbody").append(template(release));
+	});
 }
 
 function initZeroClipboard() {
@@ -25,26 +38,6 @@ function initZeroClipboard() {
 	    $("#copy-button").removeClass("btn-primary");
 	    $("#copy-button").addClass("btn-success");
 	  });
-}
-
-
-function createReleasesJSON() {
-	var releasesJSON = [];
-	for (var i = 0; i <= 4; i++) {
-		releasesJSON[i] = {};
-		releasesJSON[i].name = "OctoPosh " + githubReleases[0].name; //Change [0] for something nice when I have more than one GH release.
-		releasesJSON[i].date = githubReleases[0].published_at.substr(0,10);
-		releasesJSON[i].url = githubReleases[0].body;
-	};
-	return releasesJSON;
-}
-
-function populateReleasesTable() {
-	JSON = createReleasesJSON();
-	var template = _.template($("#releases-template").html());
-	JSON.forEach(function(release) {
-		$("#releases > tbody").append(template(release));
-	});
 }
 
 $(document).ready(function() {
