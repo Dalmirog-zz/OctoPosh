@@ -1,15 +1,8 @@
 function getReleases() {
 	$.getJSON("https://api.github.com/repos/dalmirog/OctoPosh/releases", function(response) {
 		var releasesJSON = createReleasesJSON(response);
-		displayLatestRelease(releasesJSON);
 		populateReleasesTable(releasesJSON);
 	});
-}
-
-function displayLatestRelease(releasesJSON) {
-	var version = document.getElementById("version");
-	var latest = releasesJSON.length - 1;
-	version.innerHTML = releasesJSON[latest].name;	
 }
 
 function createReleasesJSON(releasesResponse) {
