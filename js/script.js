@@ -55,12 +55,13 @@ function populateReleasesTable(releasesJSON) {
 /* Copy on click */
 
 function initZeroClipboard() {
-	var copyButton = document.getElementById("copy-button");
 	var client = new ZeroClipboard( document.getElementById("copy-button"), {
 		moviePath: "/js/ZeroClipboard.swf"
 	});
 
 	client.on("aftercopy", function(event) {
+		var copyButton = document.getElementById("copy-button");
+		
 	    copyButton.className = "btn btn-xs btn-success pull-right hidden-xs hidden-sm";
 	    copyButton.blur();
 	    document.getElementById("copy-icon").className = "glyphicon glyphicon-ok";
