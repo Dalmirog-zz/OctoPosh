@@ -63,7 +63,7 @@ Describe 'Octopus Module Tests' {
         $feed.Name = $Feedname
         $feed.FeedUri = $feedURL
 
-        $newfeed = New-OctopusResource -Resource $feed -Verbose
+        $newfeed = New-OctopusResource -Resource $feed
 
         $newfeed.name | should be $testname 
         $newfeed.feeduri | should be $feedURL
