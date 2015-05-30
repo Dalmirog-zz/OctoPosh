@@ -1,8 +1,12 @@
 ﻿<#
 .Synopsis
-   Starts a Backup task on the Octopus Instance
+   Starts a Backup task on the Octopus Instance.
+
+   This cmdlet will only work on Octopus 2.6 and below. On Octopus 3.0 the database technology was switched to SQL server, and the users will be in charge of engineering their own backup strategies
 .DESCRIPTION
    Starts a Backup task on the Octopus Instance
+
+   This cmdlet will only work on Octopus 2.6 and below. On Octopus 3.0 the database technology was switched to SQL server, and the users will be in charge of engineering their own backup strategies
 .EXAMPLE
    Start-OctopusBackup   
 
