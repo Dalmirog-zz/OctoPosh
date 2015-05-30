@@ -12,7 +12,8 @@
 }
 
 .jumbotron img {
-	padding:0px 10px 15px 0px;
+	padding-right: 10px;
+  	margin-top: -25px;
 }
 
 .jumbotron p {
@@ -28,11 +29,7 @@
 	display: inline;
 }
 
-#version {
-	padding-left: 10px;
-}
-
-table#releases > tbody > tr:first-child {
+table#releases > tbody > tr:first-of-type {
 	font-weight: bold;
 	background-color: #DFF0D8;
 }

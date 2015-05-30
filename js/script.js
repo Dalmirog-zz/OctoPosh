@@ -1,18 +1,58 @@
-var githubReleases;
+/* Latest Releases Table */
 
+// Get the data from GitHub API
 function getReleases() {
-	$.getJSON("https://api.github.com/repos/dalmirog/OctoPosh/releases", function(response) {
-		githubReleases = response;
-		displayLatestRelease();
-		populateReleasesTable();
+	$.getJSON("https://api.github.com/repos/dalmirog/OctoPosh/releases", function callback(response) {
+		var json = createReleasesJSON(extractLatestReleases(response));
+
+		populateReleasesTable(json);
 	});
 }
 
-function displayLatestRelease() {
-	var version = document.getElementById("version");
-	var latest = githubReleases.length + 0;
-	version.innerHTML = githubReleases[latest].name;	
+// Extract the latest 5 releases
+function extractLatestReleases(releasesResponse) {
+	if (releasesResponse.length > 5) {
+		releasesResponse.splice(5, releasesResponse.length);
+	}
+	return releasesResponse;
 }
+
+// Extract the necesary fields
+function createReleasesJSON(releasesResponse) {
+	var releasesJSON = [];
+
+	releasesResponse.forEach(function each(item) {
+		releasesJSON.push({
+			name: item.name,
+			url: item.html_url,
+			date: formatDate(item.published_at),
+			rlsNotes: item.body
+		});
+	});
+	return releasesJSON;
+}
+
+// Format date to mm-dd-yyyy
+function formatDate(dateString) {
+	var date = new Date(dateString.substr(0,10));
+	var formattedDate = [
+		date.getMonth() + 1,
+		date.getDate() + 1,
+		date.getFullYear()
+	];
+	formattedDate = formattedDate.join("-");
+	return formattedDate;
+}
+
+// Apply template for each one of the latest 5 releases
+function populateReleasesTable(releasesJSON) {
+	var template = _.template($("#releases-template").html());
+	releasesJSON.forEach(function createRow(release) {
+		$("#releases > tbody").append(template(release));
+	});
+}
+
+/* Copy on click */
 
 function initZeroClipboard() {
 	var client = new ZeroClipboard( document.getElementById("copy-button"), {
@@ -20,33 +60,15 @@ function initZeroClipboard() {
 	});
 
 	client.on("aftercopy", function(event) {
-	    $("#copy-button > span").removeClass("glyphicon-copy");
-	    $("#copy-button > span").addClass("glyphicon-ok");
-	    $("#copy-button").removeClass("btn-primary");
-	    $("#copy-button").addClass("btn-success");
+		var copyButton = document.getElementById("copy-button");
+		
+	    copyButton.className = "btn btn-xs btn-success pull-right hidden-xs hidden-sm";
+	    copyButton.blur();
+	    document.getElementById("copy-icon").className = "glyphicon glyphicon-ok";
 	  });
 }
 
-
-function createReleasesJSON() {
-	var releasesJSON = [];
-	for (var i = 0; i <= 4; i++) {
-		releasesJSON[i] = {};
-		releasesJSON[i].name = "OctoPosh " + githubReleases[0].name; //Change [0] for something nice when I have more than one GH release.
-		releasesJSON[i].date = githubReleases[0].published_at;
-		releasesJSON[i].url = githubReleases[0].body;
-	};
-	return releasesJSON;
-}
-
-function populateReleasesTable() {
-	JSON = createReleasesJSON();
-	console.log(JSON);
-	var template = _.template($("#releases-template").html());
-	JSON.forEach(function(release) {
-		$("#releases > tbody").append(template(release));
-	});
-}
+/* ----------------------------- */
 
 $(document).ready(function() {
 	getReleases();
