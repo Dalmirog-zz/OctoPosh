@@ -59,7 +59,7 @@ function Get-OctopusRelease{
                     }
 
                     Catch [Octopus.Client.Exceptions.OctopusResourceNotFoundException]{
-                        write-host "No releases found for project $($Project.name) with the ID $v"
+                        write-host "No releases found for project $($Project.name) with the version number $v"
                         $r = $null
                     }                
                 }
@@ -88,16 +88,18 @@ function Get-OctopusRelease{
 
                 Write-Progress -Activity "Getting info from release: $($release.id)" -status "$i of $($releases.count)" -percentComplete ($i / $releases.count*100)                
         
-                $d = $c.repository.Deployments.FindOne({param($dep) if($dep.releaseid -eq $release.Id){$true}})
+                #$d = $c.repository.Deployments.FindOne({param($dep) if($dep.releaseid -eq $release.Id){$true}})
                        
-                $rev = (Invoke-WebRequest -Uri "$env:OctopusURL/api/events?regarding=$($release.Id)" -Method Get -Headers $c.header | ConvertFrom-Json).items | ? {$_.category -eq "Created"}
+                $rev = (Invoke-WebRequest -Uri "$env:OctopusURL/api/events?regarding=$($release.Id)" -Method Get -Headers $c.header -Verbose:$false| ConvertFrom-Json).items | ? {$_.category -eq "Created"}
         
                 $obj = [PSCustomObject]@{
                         ProjectName = ($Projects | ?{$_.id -eq $Release.projectID}).name
                         ReleaseVersion = $release.Version
                         ReleaseNotes = $release.ReleaseNotes
-                        ReleaseCreationDate = ($release.assembled).datetime
-                        ReleaseCreatedBy = $rev.Username                
+                        CreationDate = ($release.assembled).datetime
+                        CreatedBy = $rev.Username
+                        LastModifiedOn = ($release.LastModifiedOn).datetime
+                        LastModifiedBy = $release.LastModifiedBy                
                         Resource = $release                
                     }            
 
