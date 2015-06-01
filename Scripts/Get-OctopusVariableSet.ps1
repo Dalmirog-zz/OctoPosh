@@ -49,7 +49,7 @@ function Get-OctopusVariableSet
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [string[]]$LibrarySetName,
 
-        # When used the cmdlet will only return the plain Octopus resource object
+        #When used the cmdlet will only return the plain Octopus resource object
         [switch]$ResourceOnly
     )
 
@@ -119,16 +119,16 @@ function Get-OctopusVariableSet
             }
 
             If($vs.ownerID -in $Projects.id){
-                [string]$Projectname = $Projects | ?{$_.id -eq $vs.ownerid} | select -ExpandProperty name
+                $Pname = $Projects | ?{$_.id -eq $vs.ownerid} | select -ExpandProperty name
                 $LibraryVariableSetName = $null
             }
             else{
-                $Projectname = $null
+                $Pname = $null
                 $LibraryVariableSetName = $LibrarySets | ?{$_.id -eq $vs.ownerid} | select -ExpandProperty name
             }
             
             $obj = [PSCustomObject]@{
-                ProjectName = $Projectname
+                ProjectName = $Pname
                 LibraryVariableSetName = $LibraryVariableSetName
                 Variables = $vars
                 LastModifiedOn = $vs.LastModifiedOn

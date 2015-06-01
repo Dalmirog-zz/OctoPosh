@@ -243,9 +243,25 @@ Describe 'Octopus Module Tests' {
 
         $feed.FeedURI| should be "https://$testname.com"
     }      
-    It '[Get-OCtopusProjectVariable] gets project variable sets'{        
-        $pv = Get-OctopusProjectVariable -Projectname $TestName
-        $pv.Resource.GetType().fullname| should be 'Octopus.Client.Model.VariableSetResource'
+    It '[Get-OctopusVariableSet] gets variable sets by Project name'{        
+        $vs = Get-OctopusVariableSet -Projectname $TestName
+        $vs.ProjectName | should be $TestName
+    }
+    It '[Get-OctopusVariableSet] gets variable sets by Library Set name [UGLY HARCODED VALUE]'{        
+        $SetName = 'Octoposh'
+        
+        $vs = Get-OctopusVariableSet -LibrarySetName $SetName
+        $vs.LibraryVariableSetName | should be $SetName
+    }
+    It '[Get-OctopusVariableSet] gets variable sets by Project name & Library Set name [UGLY HARCODED VALUE]'{        
+        $SetName = 'Octoposh'
+        
+        $vs = Get-OctopusVariableSet -LibrarySetName $SetName -Projectname $TestName
+        
+        $vs.Count | should be 2
+        
+        $vs.LibraryVariableSetName | select -Unique | should be $SetName
+        $vs.ProjectName | select -Unique | should be $TestName
     }
     It '[Get-OctopusRelease] GETS A RELEASE. UGLY PLACEHOLDER'{
         #Get-OctopusRelease -ProjectName TestProject1 | should not be $null
@@ -306,7 +322,7 @@ Describe 'Octopus Module Tests' {
     }
     It '[REMOVE-OCTOPUSRESOURCE] DELETES DEPLOYMENT. UGLY PLACEHOLDER'{
 
-    }                    
+    }
     It '[Get/Set-OctopusConnectionInfo] do their thing' {            
         $originalURL = $env:OctopusURL
         $originalAPIKey = $env:OctopusAPIKey
@@ -426,7 +442,6 @@ Describe 'Octopus Module Tests' {
         $release | Block-OctopusRelease -Description $TestName -Force | should be $true
 
         $release | UnBlock-OctopusRelease -Force | should be $true
-    }
-    #>
+    }   
         
 }
