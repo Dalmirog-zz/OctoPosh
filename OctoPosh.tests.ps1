@@ -54,7 +54,7 @@ Describe 'Octopus Module Tests' {
 
         $Projobj.Name | should be $testname
     }
-    It '[New-OctopusResource] Adds NuGet feeds'{
+    <#It '[New-OctopusResource] Adds NuGet feeds'{
         $Feedname = $testname
         $feedURL = "https://$testname.com"
 
@@ -67,7 +67,7 @@ Describe 'Octopus Module Tests' {
 
         $newfeed.name | should be $testname 
         $newfeed.feeduri | should be $feedURL
-    }    
+    }    #>
     It '[NEW-OCTOPUSRESOURCE] CREATES LIFECYCLES. UGLY PLACEHOLDER'{
 
     }
@@ -223,7 +223,7 @@ Describe 'Octopus Module Tests' {
         ($tasks.starttime.datetime -gt $before ).count | should be 0
         ($tasks.starttime.datetime -lt $after ).count | should be 0
     }
-    It '[Get-OctopusFeed] gets feeds by name'{
+    <#It '[Get-OctopusFeed] gets feeds by name'{
         $feed = Get-OctopusFeed -FeedName $TestName
 
         $feed.Name | should be $TestName
@@ -242,7 +242,7 @@ Describe 'Octopus Module Tests' {
         $feed = Get-OctopusFeed -URL "*$($TestName.substring(5))*"
 
         $feed.FeedURI| should be "https://$testname.com"
-    }      
+    }#>      
     It '[Get-OctopusVariableSet] gets variable sets by Project name'{        
         $vs = Get-OctopusVariableSet -Projectname $TestName
         $vs.ProjectName | should be $TestName
@@ -263,6 +263,15 @@ Describe 'Octopus Module Tests' {
         $vs.LibraryVariableSetName | select -Unique | should be $SetName
         $vs.ProjectName | select -Unique | should be $TestName
     }
+    It '[Update-OctopusReleaseVariableSet] updates the variable set of a release [UGLY HARCODED VALUE]'{
+        Update-OctopusReleaseVariableSet -ProjectName TestProject1 -ReleaseVersion 1.0.34 | should be $true
+    }
+    It '[Update-OctopusReleaseVariableSet] Doesnt update the variable set of a Release that doesnt exist'{
+        Update-OctopusReleaseVariableSet -ProjectName $TestName -ReleaseVersion 1.90.34 -ErrorAction SilentlyContinue | should be $false
+    }
+    It '[Update-OctopusReleaseVariableSet] Doesnt update the variable set of a Release of a Project that doesnt exist'{
+        Update-OctopusReleaseVariableSet -ProjectName unexistentproject -ReleaseVersion 1.0.34 -ErrorAction SilentlyContinue | should be $false
+    }
     It '[Get-OctopusRelease] GETS A RELEASE. UGLY PLACEHOLDER'{
         #Get-OctopusRelease -ProjectName TestProject1 | should not be $null
     }
@@ -281,7 +290,7 @@ Describe 'Octopus Module Tests' {
         $tasks = Start-OctopusHealthCheck -EnvironmentName 'Staging','production' -Force -ErrorAction SilentlyContinue
         $tasks.count | should be 2
         $tasks | Get-Member | Select-Object -ExpandProperty typename -Unique | should be 'Octopus.Client.Model.TaskResource'
-    }#>
+    }#>    
     It '[Start-OctopusRetentionPolicy] starts a "Retention" task'{
         $task = Start-OctopusRetentionPolicy -Force -Wait
 
@@ -308,12 +317,12 @@ Describe 'Octopus Module Tests' {
 
         Get-OctopusProjectGroup -Name $TestName -ErrorAction SilentlyContinue | should be $null
     }
-    It '[Remove-OctopusResource] Deleted NuGet feeds'{
+    <#It '[Remove-OctopusResource] Deletes NuGet feeds'{
         $delete = (Get-OctopusFeed -FeedName $TestName | Remove-OctopusResource -Force -Wait)
 
         $delete.name | should be "delete"
         $delete.state | should be "Success"
-    }
+    }#>
     It '[REMOVE-OCTOPUSRESOURCE] DELETES LIFECYCLES. UGLY PLACEHOLDER'{
 
     }    
@@ -442,6 +451,5 @@ Describe 'Octopus Module Tests' {
         $release | Block-OctopusRelease -Description $TestName -Force | should be $true
 
         $release | UnBlock-OctopusRelease -Force | should be $true
-    }   
-        
+    }         
 }
