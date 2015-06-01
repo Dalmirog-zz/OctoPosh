@@ -44,7 +44,7 @@ function Get-OctopusRelease{
     Process
     {
 
-		Write-Verbose "[$($MyInvocation.MyCommand)] Getting releases [$ReleaseVersion] for project [$ProjectName]"
+		Write-Verbose "[$($MyInvocation.MyCommand)] Getting releases [$ReleaseVersion] of project [$ProjectName]"
         $Projects = Get-OctopusProject -Name $ProjectName -ResourceOnly
 
         foreach ($Project in $Projects){
