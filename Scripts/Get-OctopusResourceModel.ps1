@@ -1,20 +1,20 @@
 ﻿<#
 .Synopsis
-   Returns an empty object from the Octopus Model that can later on be piped down to New-OctopusResource
+   This cmdlet creates instances of Octopus Resource Objects
 .DESCRIPTION
-   Returns an empty object from the Octopus Model that can later on be piped down to New-OctopusResource
+   This cmdlet creates instances of Octopus Resource Objects
 .EXAMPLE
-   $EnvironmentObj = Get-OctopusResourceModel -Resource "Environment"
+   $EnvironmentObj = Get-OctopusResourceModel -Resource Environment
 
-   Creates an instance of an Environment Resource object 
+   Create an Environment Resource object 
 .EXAMPLE
-   $ProjectObj = Get-OctopusResourceModel -Resource "Project"
+   $ProjectObj = Get-OctopusResourceModel -Resource Project
 
-   Create Project Resource object instance
+   Create Project resource object
 .EXAMPLE
    $pg = Get-OctopusResourceModel -Resource ProjectGroup
 
-   Create Project Group resource object instance
+   Create a Project Group resource object
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
    Advanced Cmdlet Usage: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
@@ -22,17 +22,12 @@
 #>
 function Get-OctopusResourceModel
 {
-    [CmdletBinding(DefaultParameterSetName="GetResource")]
+    [CmdletBinding()]
     Param
     (
         # Resource object model
-        [ValidateSet("Environment","Project","ProjectGroup","NugetFeed")]
-        [parameter(ParameterSetName='GetResource')] 
-        [string]$Resource,
-        
-        # Lists all the available resource types
-        [parameter(ParameterSetName='ListResourceType')]         
-        [switch]$ListAvailable
+        [ValidateSet('Environment','Project','ProjectGroup','NugetFeed','LibraryVariableSet')]         
+        [string]$Resource
     )
 
     Begin
@@ -42,10 +37,11 @@ function Get-OctopusResourceModel
     Process
     {
         Switch ($Resource){ 
-            "Environment" {$o = New-Object Octopus.Client.Model.EnvironmentResource}
-            "Project" {$o = New-Object Octopus.Client.Model.ProjectResource}
-            "ProjectGroup" {$o = New-Object Octopus.Client.Model.ProjectGroupResource}
-            "NugetFeed" {$o = New-Object Octopus.Client.Model.FeedResource}
+            'Environment' {$o = New-Object Octopus.Client.Model.EnvironmentResource}
+            'Project' {$o = New-Object Octopus.Client.Model.ProjectResource}
+            'ProjectGroup' {$o = New-Object Octopus.Client.Model.ProjectGroupResource}
+            'NugetFeed' {$o = New-Object Octopus.Client.Model.FeedResource}
+            'LibraryVariableSet' {$o = New-Object Octopus.Client.Model.LibraryVariableSetResource}
         }      
     }
     End

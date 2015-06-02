@@ -44,7 +44,7 @@ function Get-OctopusRelease{
     Process
     {
 
-		Write-Verbose "[$($MyInvocation.MyCommand)] Getting releases [$ReleaseVersion] for project [$ProjectName]"
+		Write-Verbose "[$($MyInvocation.MyCommand)] Getting releases [$ReleaseVersion] of project [$ProjectName]"
         $Projects = Get-OctopusProject -Name $ProjectName -ResourceOnly
 
         foreach ($Project in $Projects){
@@ -59,7 +59,7 @@ function Get-OctopusRelease{
                     }
 
                     Catch [Octopus.Client.Exceptions.OctopusResourceNotFoundException]{
-                        write-host "No releases found for project $($Project.name) with the version number $v"
+                        Write-Error "No releases found for project $($Project.name) with the version number $v"
                         $r = $null
                     }                
                 }
