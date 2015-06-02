@@ -54,7 +54,7 @@ Describe 'Octopus Module Tests' {
 
         $Projobj.Name | should be $testname
     }
-    <#It '[New-OctopusResource] Adds NuGet feeds'{
+    It '[New-OctopusResource] Adds NuGet feeds'{
         $Feedname = $testname
         $feedURL = "https://$testname.com"
 
@@ -67,7 +67,7 @@ Describe 'Octopus Module Tests' {
 
         $newfeed.name | should be $testname 
         $newfeed.feeduri | should be $feedURL
-    }    #>
+    }
     It '[NEW-OCTOPUSRESOURCE] CREATES LIFECYCLES. UGLY PLACEHOLDER'{
 
     }
@@ -223,7 +223,7 @@ Describe 'Octopus Module Tests' {
         ($tasks.starttime.datetime -gt $before ).count | should be 0
         ($tasks.starttime.datetime -lt $after ).count | should be 0
     }
-    <#It '[Get-OctopusFeed] gets feeds by name'{
+    It '[Get-OctopusFeed] gets feeds by name'{
         $feed = Get-OctopusFeed -FeedName $TestName
 
         $feed.Name | should be $TestName
@@ -242,7 +242,7 @@ Describe 'Octopus Module Tests' {
         $feed = Get-OctopusFeed -URL "*$($TestName.substring(5))*"
 
         $feed.FeedURI| should be "https://$testname.com"
-    }#>      
+    }      
     It '[Get-OctopusVariableSet] gets variable sets by Project name'{        
         $vs = Get-OctopusVariableSet -Projectname $TestName
         $vs.ProjectName | should be $TestName
@@ -317,12 +317,12 @@ Describe 'Octopus Module Tests' {
 
         Get-OctopusProjectGroup -Name $TestName -ErrorAction SilentlyContinue | should be $null
     }
-    <#It '[Remove-OctopusResource] Deletes NuGet feeds'{
+    It '[Remove-OctopusResource] Deletes NuGet feeds'{
         $delete = (Get-OctopusFeed -FeedName $TestName | Remove-OctopusResource -Force -Wait)
 
         $delete.name | should be "delete"
         $delete.state | should be "Success"
-    }#>
+    }
     It '[REMOVE-OCTOPUSRESOURCE] DELETES LIFECYCLES. UGLY PLACEHOLDER'{
 
     }    
