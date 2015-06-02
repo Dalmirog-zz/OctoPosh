@@ -76,7 +76,7 @@ function Remove-OctopusResource
                 {$_.getType() -eq [Octopus.Client.Model.DeploymentResource]} {$ResourceType = 'Deployments'}
                 {$_.getType() -eq [Octopus.Client.Model.MachineResource]} {$ResourceType = 'Machines'}          
                 {$_.getType() -eq [Octopus.Client.Model.FeedResource]} {$ResourceType = 'Feeds'}
-                #{$_.getType() -eq [Octopus.Client.Model.VariableSetResource]} {$ResourceType = 'VariableSets'}
+                {$_.getType() -eq [Octopus.Client.Model.VariableSetResource]} {$ResourceType = 'LibraryVariableSets'}
                 Default{Throw "Invalid object type: $($_.getType()) `nRun 'Remove-OctopusResource -AcceptedTypes' to get a list of the object types accepted by this cmdlet"}                
             }
 
@@ -86,7 +86,10 @@ function Remove-OctopusResource
                 #Deleting using REST API cause client library delete method doesnt work
                 $task = (Invoke-WebRequest ($env:OctopusURL + $r.Links.Self) -Method Delete -Headers $c.header).content | ConvertFrom-Json
             }
-            #elseif($ResourceType -eq 'VariableSets'){}
+            elseif($ResourceType -eq 'LibraryVariableSets'){
+                #Deleting using REST API cause client library delete method doesnt work
+                $task = Invoke-RestMethod ($env:OctopusURL + '/api/LibraryVariableSets/' +$r.OwnerId) -Method Delete -Headers $c.header
+            }
             else{
                 $task = $c.repository.$ResourceType.Delete($r)
             }

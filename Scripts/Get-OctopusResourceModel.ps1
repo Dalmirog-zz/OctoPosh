@@ -26,13 +26,9 @@ function Get-OctopusResourceModel
     Param
     (
         # Resource object model
-        [ValidateSet("Environment","Project","ProjectGroup","NugetFeed")]
+        [ValidateSet('Environment','Project','ProjectGroup','NugetFeed','LibraryVariableSet')]
         [parameter(ParameterSetName='GetResource')] 
-        [string]$Resource,
-        
-        # Lists all the available resource types
-        [parameter(ParameterSetName='ListResourceType')]         
-        [switch]$ListAvailable
+        [string]$Resource
     )
 
     Begin
@@ -42,10 +38,11 @@ function Get-OctopusResourceModel
     Process
     {
         Switch ($Resource){ 
-            "Environment" {$o = New-Object Octopus.Client.Model.EnvironmentResource}
-            "Project" {$o = New-Object Octopus.Client.Model.ProjectResource}
-            "ProjectGroup" {$o = New-Object Octopus.Client.Model.ProjectGroupResource}
-            "NugetFeed" {$o = New-Object Octopus.Client.Model.FeedResource}
+            'Environment' {$o = New-Object Octopus.Client.Model.EnvironmentResource}
+            'Project' {$o = New-Object Octopus.Client.Model.ProjectResource}
+            'ProjectGroup' {$o = New-Object Octopus.Client.Model.ProjectGroupResource}
+            'NugetFeed' {$o = New-Object Octopus.Client.Model.FeedResource}
+            'LibraryVariableSet' {$o = New-Object Octopus.Client.Model.LibraryVariableSetResource}
         }      
     }
     End
