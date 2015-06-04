@@ -22,7 +22,7 @@ Describe 'Octopus Module Tests' {
     Write-Output "Test name: $TestName"
 
     $c = New-OctopusConnection
-    <#           
+    
     It '[New-OctopusResource] creates environments'{               
 
         $env = Get-OctopusResourceModel -Resource Environment                
@@ -272,7 +272,7 @@ Describe 'Octopus Module Tests' {
         
         $vs.LibraryVariableSetName | select -Unique | should be $SetName
         $vs.ProjectName | select -Unique | should be $TestName
-    }#>
+    }
     It '[Get-OctopusRelease] Gets latest X releases of a project'{
         #This uses a hardcoded project with more than 30 releases
         $latest = Get-Random -Minimum 1 -Maximum 30
@@ -307,7 +307,7 @@ Describe 'Octopus Module Tests' {
     }
     It '[Get-OctopusDeployment] GETS A DEPLOYMENT. UGLY PLACEHOLDER'{
         #(Get-OctopusDeployment -ProjectName TestProject1) | should not be $null                
-    }<#
+    }
     It '[Update-OctopusReleaseVariableSet] updates the variable set of a release [UGLY HARCODED VALUE]'{
         Update-OctopusReleaseVariableSet -ProjectName TestProject1 -ReleaseVersion 1.0.34 | should be $true
     }
@@ -329,7 +329,7 @@ Describe 'Octopus Module Tests' {
         $tasks = Start-OctopusHealthCheck -EnvironmentName 'Staging','production' -Force -ErrorAction SilentlyContinue
         $tasks.count | should be 2
         $tasks | Get-Member | Select-Object -ExpandProperty typename -Unique | should be 'Octopus.Client.Model.TaskResource'
-    }#> <#   
+    }#>   
     It '[Start-OctopusRetentionPolicy] starts a "Retention" task'{
         $task = Start-OctopusRetentionPolicy -Force -Wait
 
@@ -496,6 +496,5 @@ Describe 'Octopus Module Tests' {
         $release | Block-OctopusRelease -Description $TestName -Force | should be $true
 
         $release | UnBlock-OctopusRelease -Force | should be $true
-    }         
-    #>
+    }
 }
