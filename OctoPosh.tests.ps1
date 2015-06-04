@@ -54,7 +54,7 @@ Describe 'Octopus Module Tests' {
 
         $Projobj.Name | should be $testname
     }
-    It '[New-OctopusResource] Adds NuGet feeds'{
+    It '[New-OctopusResource] adds NuGet feeds'{
         $Feedname = $testname
         $feedURL = "https://$testname.com"
 
@@ -67,6 +67,16 @@ Describe 'Octopus Module Tests' {
 
         $newfeed.name | should be $testname 
         $newfeed.feeduri | should be $feedURL
+    }
+    It '[New-OctopusResource] creates Library Variable Sets'{
+        $libraryName = $testname
+        $library = Get-OctopusResourceModel -Resource LibraryVariableSet
+
+        $library.Name = $libraryName
+
+        $NewLibrary = New-OctopusResource -Resource $library
+
+        $NewLibrary.name | should be $testname         
     }
     It '[NEW-OCTOPUSRESOURCE] CREATES LIFECYCLES. UGLY PLACEHOLDER'{
 
@@ -248,10 +258,10 @@ Describe 'Octopus Module Tests' {
         $vs.ProjectName | should be $TestName
     }
     It '[Get-OctopusVariableSet] gets variable sets by Library Set name [UGLY HARCODED VALUE]'{        
-        $SetName = 'Octoposh'
+        $LibraryName = $TestName
         
-        $vs = Get-OctopusVariableSet -LibrarySetName $SetName
-        $vs.LibraryVariableSetName | should be $SetName
+        $Library = Get-OctopusVariableSet -LibrarySetName $LibraryName
+        $Library.LibraryVariableSetName | should be $LibraryName
     }
     It '[Get-OctopusVariableSet] gets variable sets by Project name & Library Set name [UGLY HARCODED VALUE]'{        
         $SetName = 'Octoposh'
@@ -319,6 +329,12 @@ Describe 'Octopus Module Tests' {
     }
     It '[Remove-OctopusResource] Deletes NuGet feeds'{
         $delete = (Get-OctopusFeed -FeedName $TestName | Remove-OctopusResource -Force -Wait)
+
+        $delete.name | should be "delete"
+        $delete.state | should be "Success"
+    }
+    It '[Remove-OctopusResource] Deletes NuGet feeds'{
+        $delete = (Get-OctopusVariableSet -LibrarySetName $LibraryName | Remove-OctopusResource -Force -Wait)
 
         $delete.name | should be "delete"
         $delete.state | should be "Success"
