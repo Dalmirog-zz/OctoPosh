@@ -327,14 +327,14 @@ Describe 'Octopus Module Tests' {
 
         Get-OctopusProjectGroup -Name $TestName -ErrorAction SilentlyContinue | should be $null
     }
-    It '[Remove-OctopusResource] Deletes NuGet feeds'{
+    It '[Remove-OctopusResource] deletes NuGet feeds'{
         $delete = (Get-OctopusFeed -FeedName $TestName | Remove-OctopusResource -Force -Wait)
 
         $delete.name | should be "delete"
         $delete.state | should be "Success"
     }
-    It '[Remove-OctopusResource] Deletes NuGet feeds'{
-        $delete = (Get-OctopusVariableSet -LibrarySetName $LibraryName | Remove-OctopusResource -Force -Wait)
+    It '[Remove-OctopusResource] deletes Library Variable Sets'{
+        $delete = (Get-OctopusVariableSet -LibrarySetName $TestName | Remove-OctopusResource -Force -Wait)
 
         $delete.name | should be "delete"
         $delete.state | should be "Success"
