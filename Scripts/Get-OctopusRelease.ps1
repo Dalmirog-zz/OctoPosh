@@ -43,7 +43,7 @@ function Get-OctopusRelease{
         $c = New-OctopusConnection        
         $list = @()
         $releases = @()
-        $i++        
+        $i = 1         
     }
     Process
     {
@@ -91,7 +91,7 @@ function Get-OctopusRelease{
 
                 Write-Verbose "[$($MyInvocation.MyCommand)] Getting info from release: $($release.version)"
 
-                Write-Progress -Activity "Getting info from release: $($release.id)" -status "$i of $($releases.count)" -percentComplete ($i / $releases.count*100)                
+                Write-Progress -Activity "Getting info from release: $($release.id)" -status "$i of $($releases.count)" -percentComplete ($i / $releases.count * 100)                
         
                 #$d = $c.repository.Deployments.FindOne({param($dep) if($dep.releaseid -eq $release.Id){$true}})
                        
