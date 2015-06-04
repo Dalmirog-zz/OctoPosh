@@ -436,7 +436,7 @@ Describe 'Octopus Module Tests' {
         $users.isactive | select -Unique | should be 'true'
     }    
     It '[New-OctopusAPIKey] creates an API Key'{
-        $api = New-OctopusAPIKey -Purpose "$TestName" -Username 'Ian.Paullin' -password 'Michael2' -NoWarning
+        $api = New-OctopusAPIKey -Purpose "$TestName" -Username 'Ian.Paullin' -password 'Michael2' -NoWarning -OctopusURL $env:OctopusURL
                 
         $api.purpose | should be $TestName
 

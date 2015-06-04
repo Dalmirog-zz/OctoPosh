@@ -12,7 +12,7 @@
 
    API keys can be used to authenticate with the Octopus Deploy REST API in place of a username and password. Using API keys lets you keep your username and password secret, but the API key itself is still sensitive information that needs to be protected
 .EXAMPLE
-   New-OctopusAPIKey -Purpose "Scripting" -Username Dalmiro.Granas -Password "Pa$$w0rD"
+   New-OctopusAPIKey -Purpose "Scripting" -Username Dalmiro.Granas -Password "Pa$$w0rD" -OctopusURL "https://MyOctopusInstance.com"
 
    Create a new API Key for a user
 .LINK
@@ -32,6 +32,11 @@ function New-OctopusAPIKey
         # Octopus login Username
         [Parameter(Mandatory=$true)]
         [string]$Username,
+        
+        # Octopus instance URL
+        [Parameter(Mandatory=$true)]
+        [alias("URL")]
+        [string]$OctopusURL,
 
         # Octopus login Password
         [Parameter(Mandatory=$false)]
@@ -57,7 +62,7 @@ function New-OctopusAPIKey
 
         $LoginObj.Password = $Password
         
-        $endpoint = new-object Octopus.Client.OctopusServerEndpoint "$($Env:OctopusURL)"    
+        $endpoint = new-object Octopus.Client.OctopusServerEndpoint "$($OctopusURL)"    
 
         $repository = new-object Octopus.Client.OctopusRepository $endpoint
 
