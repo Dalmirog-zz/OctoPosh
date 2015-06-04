@@ -17,18 +17,22 @@
    QA and Cmdlet request: https://gitter.im/Dalmirog/OctoPosh#initial
 #>
 function Get-OctopusRelease{
-    [CmdletBinding()]    
+    [CmdletBinding(DefaultParameterSetName='none')]    
     Param
     (
-        # Release version
-        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        # Release version number
+        [Parameter(ValueFromPipelineByPropertyName = $true,ParameterSetName ="ByVersion")]
         [alias("Version")]
         [string[]]$ReleaseVersion = $null,
 
-        # Project Name
+        # Project Name. Only one Project can be passed to this parameter at a time
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [alias("Project")]
-        [String[]]$ProjectName,
+        [String]$ProjectName,
+
+        # Get latest X releases. The highest number allowed by this parameter is 30
+        [Parameter(ParameterSetName ="Latest")]        
+        [int]$Latest,
         
         # When used the cmdlet will only return the plain Octopus resource object
         [switch]$ResourceOnly
@@ -45,37 +49,38 @@ function Get-OctopusRelease{
     {
 
 		Write-Verbose "[$($MyInvocation.MyCommand)] Getting releases [$ReleaseVersion] of project [$ProjectName]"
-        $Projects = Get-OctopusProject -Name $ProjectName -ResourceOnly
+        
+        $Project = Get-OctopusProject -Name $ProjectName -ResourceOnly
 
-        foreach ($Project in $Projects){
-            
-            If($ReleaseVersion -ne $null){                
-                foreach ($V in $ReleaseVersion){                
+        If($ReleaseVersion -ne $null){                
+            foreach ($V in $ReleaseVersion){                
                     
-                    Write-Verbose "[$($MyInvocation.MyCommand)] Getting release: $V"
+                Write-Verbose "[$($MyInvocation.MyCommand)] Getting release: $V"
 
-                    Try{       
-                        $r = $c.repository.Projects.GetReleaseByVersion($Project,$v)
-                    }
-
-                    Catch [Octopus.Client.Exceptions.OctopusResourceNotFoundException]{
-                        Write-Error "No releases found for project $($Project.name) with the version number $v"
-                        $r = $null
-                    }                
+                Try{       
+                    $r = $c.repository.Projects.GetReleaseByVersion($Project,$v)
                 }
-            }
 
-            Else{
-                $r = ($c.repository.Projects.GetReleases($Project)).items
+                Catch [Octopus.Client.Exceptions.OctopusResourceNotFoundException]{
+                    Write-Error "No releases found for project $($Project.name) with the version number $v"
+                    $r = $null
+                }
+                
+                If ($r -ne $null){
+                    $releases += $r
+                }                                
             }
-            
-            If ($r -ne $null){
-                $releases += $r
-            }
-            
-            Write-Verbose "[$($MyInvocation.MyCommand)] Releases found: $($releases.count)"
-            
         }
+
+        Else{
+            $releases += ($c.repository.Projects.GetReleases($Project)).items
+            If($Latest){
+                Write-Verbose "[$($MyInvocation.MyCommand)] Getting latest $Latest releases of project $($Project.name)"
+                $releases = $releases[0..($Latest -1)]
+            }
+        }
+            
+        Write-Verbose "[$($MyInvocation.MyCommand)] Releases found for project $($Project.name): $($releases.count)"     
 
         If($ResourceOnly){
             $list += $releases
@@ -93,7 +98,7 @@ function Get-OctopusRelease{
                 $rev = (Invoke-WebRequest -Uri "$env:OctopusURL/api/events?regarding=$($release.Id)" -Method Get -Headers $c.header -Verbose:$false| ConvertFrom-Json).items | ? {$_.category -eq "Created"}
         
                 $obj = [PSCustomObject]@{
-                        ProjectName = ($Projects | ?{$_.id -eq $Release.projectID}).name
+                        ProjectName = $Project.name
                         ReleaseVersion = $release.Version
                         ReleaseNotes = $release.ReleaseNotes
                         CreationDate = ($release.assembled).datetime

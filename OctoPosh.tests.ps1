@@ -273,6 +273,41 @@ Describe 'Octopus Module Tests' {
         $vs.LibraryVariableSetName | select -Unique | should be $SetName
         $vs.ProjectName | select -Unique | should be $TestName
     }
+    It '[Get-OctopusRelease] Gets latest X releases of a project'{
+        #This uses a hardcoded project with more than 30 releases
+        $latest = Get-Random -Minimum 1 -Maximum 30
+        $releases = Get-OctopusRelease -ProjectName TestProject1 -Latest $latest -resourceonly
+
+        $releases.count | should be $latest
+    }
+    It '[Get-OctopusRelease] Gets all the releases of a project'{
+        #This test asumes that if the amount of releases is greater than 30, then those should be all of the releases
+        $releases = Get-OctopusRelease -ProjectName TestProject1 -resourceonly
+
+        $releases.count | should be greater than 30
+    }
+    It '[Get-OctopusRelease] Gets a single release by release version'{
+        $release = Get-OctopusRelease -ProjectName TestProject1 -resourceonly -Latest 1
+
+        (Get-OctopusRelease -ProjectName TestProject1 -ReleaseVersion $release.version).count | should be 1
+    }
+    It '[Get-OctopusRelease] Gets a releases by multiple release versions'{
+        $max = 10
+        $rel1 = Get-Random -Minimum 1 -Maximum $max
+        do{
+            $rel2 = Get-Random -Minimum 1 -Maximum $max
+        }until($rel2 -ne $rel1)
+
+        $AllReleases = Get-OctopusRelease -ProjectName TestProject1 -ResourceOnly -Latest $max
+
+        $releases = Get-OctopusRelease -ProjectName TestProject1 -resourceonly -ReleaseVersion $AllReleases[$rel1].version,$AllReleases[$rel2].version
+
+        $releases.count | should be 2
+        
+    }
+    It '[Get-OctopusDeployment] GETS A DEPLOYMENT. UGLY PLACEHOLDER'{
+        #(Get-OctopusDeployment -ProjectName TestProject1) | should not be $null                
+    }
     It '[Update-OctopusReleaseVariableSet] updates the variable set of a release [UGLY HARCODED VALUE]'{
         Update-OctopusReleaseVariableSet -ProjectName TestProject1 -ReleaseVersion 1.0.34 | should be $true
     }
@@ -281,12 +316,6 @@ Describe 'Octopus Module Tests' {
     }
     It '[Update-OctopusReleaseVariableSet] Doesnt update the variable set of a Release of a Project that doesnt exist'{
         Update-OctopusReleaseVariableSet -ProjectName unexistentproject -ReleaseVersion 1.0.34 -ErrorAction SilentlyContinue | should be $false
-    }
-    It '[Get-OctopusRelease] GETS A RELEASE. UGLY PLACEHOLDER'{
-        #Get-OctopusRelease -ProjectName TestProject1 | should not be $null
-    }
-    It '[Get-OctopusDeployment] GETS A DEPLOYMENT. UGLY PLACEHOLDER'{
-        #(Get-OctopusDeployment -ProjectName TestProject1) | should not be $null                
     }
     It '[Start-OctopusHealthChech] doesnt start health checks on empty environments'{
         (Start-OctopusHealthCheck -EnvironmentName $TestName -Force -ErrorAction SilentlyContinue) | should be $null        
