@@ -26,7 +26,7 @@ function Get-OctopusResourceModel
     Param
     (
         # Resource object model
-        [ValidateSet('Environment','Project','ProjectGroup','NugetFeed','LibraryVariableSet')]         
+        [ValidateSet('Environment','Project','ProjectGroup','NugetFeed','LibraryVariableSet','Machine')]         
         [string]$Resource
     )
 
@@ -42,6 +42,7 @@ function Get-OctopusResourceModel
             'ProjectGroup' {$o = New-Object Octopus.Client.Model.ProjectGroupResource}
             'NugetFeed' {$o = New-Object Octopus.Client.Model.FeedResource}
             'LibraryVariableSet' {$o = New-Object Octopus.Client.Model.LibraryVariableSetResource}
+            'Machine' {$o = New-Object Octopus.Client.Model.MachineResource}
         }      
     }
     End

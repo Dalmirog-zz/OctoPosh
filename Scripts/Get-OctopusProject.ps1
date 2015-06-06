@@ -57,7 +57,7 @@ function Get-OctopusProject
             foreach($N in $ProjectName){
                 If(($n -notin $Projects.name) -or !($Projects.name -like $n)){
                     Write-Error "Project not found: $n"
-                    #write-host "Project not found: $n" -ForegroundColor Red
+                    #throw "Project not found: $n"
                 }
             }
         }
@@ -69,7 +69,7 @@ function Get-OctopusProject
         
         Write-Verbose "[$($MyInvocation.MyCommand)] Projects found: $($Projects.count)"                    
         
-        If($ResourceOnly){
+        If($ResourceOnly -and $Projects){
             Write-Verbose "[$($MyInvocation.MyCommand)] [ResourceOnly] switch is on. Returning raw Octopus resource objects"
             $list += $Projects
         }
