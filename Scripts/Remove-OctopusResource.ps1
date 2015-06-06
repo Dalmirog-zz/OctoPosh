@@ -56,6 +56,7 @@ function Remove-OctopusResource
             'Octopus.Client.Model.MachineResource'
             'Octopus.Client.Model.FeedResource'
             'Octopus.Client.Model.LibraryVariableSetResource'
+            'Octopus.Client.Model.MachineResource'
         }
         $c = New-OctopusConnection        
     }
@@ -82,7 +83,7 @@ function Remove-OctopusResource
 
             Write-Verbose "[$($MyInvocation.MyCommand)] Deleting [$($R.GetType().tostring())] $($r.name)"
 
-            If($ResourceType -eq 'Feeds'){
+            If(($ResourceType -eq 'Feeds') -or ($ResourceType -eq 'Machines')){
                 #Deleting using REST API cause client library delete method doesnt work
                 $task = (Invoke-WebRequest ($env:OctopusURL + $r.Links.Self) -Method Delete -Headers $c.header).content | ConvertFrom-Json
             }

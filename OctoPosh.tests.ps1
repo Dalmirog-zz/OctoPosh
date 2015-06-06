@@ -78,6 +78,22 @@ Describe 'Octopus Module Tests' {
 
         $NewLibrary.name | should be $testname         
     }
+    It '[New-OctopusResource] adds a Machine to an Environment'{
+        
+        $machine = Get-OctopusResourceModel -Resource Machine
+                
+        $environment = Get-OctopusEnvironment -EnvironmentName $testname
+
+        $machine.name = $testname
+        $machine.EnvironmentIds.Add($environment.id) | Out-Null
+        $machine.Thumbprint = "8A7E6157A34158EDA1B5127CB027B2A267760A4F"
+        $machine.CommunicationStyle = "TentacleActive"
+        $machine.Roles.Add("WebServer") | Out-Null
+
+        $NewMachine = New-OctopusResource -Resource $machine
+
+        $NewMachine.name | should be $testname
+    }
     It '[NEW-OCTOPUSRESOURCE] CREATES LIFECYCLES. UGLY PLACEHOLDER'{
 
     }
@@ -111,7 +127,7 @@ Describe 'Octopus Module Tests' {
         Get-OctopusLifeCycle | should not be $null
     }                
     It '[Get-OctopusMachine] gets machines by single name'{
-        $Machinename = 'OctopusTest02 - TestMachine1'
+        $Machinename = $TestName
         Get-OctopusMachine -MachineName $Machinename | Select-Object -ExpandProperty Machinename | should be $Machinename
     }
     It '[Get-OctopusMachine] gets machines by name using wildcards'{
@@ -369,6 +385,12 @@ Describe 'Octopus Module Tests' {
     }
     It '[Remove-OctopusResource] deletes Library Variable Sets'{
         $delete = (Get-OctopusVariableSet -LibrarySetName $TestName | Remove-OctopusResource -Force -Wait)
+
+        $delete.name | should be "delete"
+        $delete.state | should be "Success"
+    }
+    It '[Remove-OctopusResource] deletes Machines'{
+        $delete = (Get-OctopusMachine -MachineName $TestName | Remove-OctopusResource -Force -Wait)
 
         $delete.name | should be "delete"
         $delete.state | should be "Success"
