@@ -52,67 +52,71 @@ function Get-OctopusRelease{
         
         $Project = Get-OctopusProject -Name $ProjectName -ResourceOnly
 
-        If($ReleaseVersion -ne $null){                
-            foreach ($V in $ReleaseVersion){                
+            If ($Project){
+            If($ReleaseVersion -ne $null){                
+                foreach ($V in $ReleaseVersion){                
                     
-                Write-Verbose "[$($MyInvocation.MyCommand)] Getting release: $V"
+                    Write-Verbose "[$($MyInvocation.MyCommand)] Getting release: $V"
 
-                Try{       
-                    $r = $c.repository.Projects.GetReleaseByVersion($Project,$v)
-                }
+                    Try{       
+                        $r = $c.repository.Projects.GetReleaseByVersion($Project,$v)
+                    }
 
-                Catch [Octopus.Client.Exceptions.OctopusResourceNotFoundException]{
-                    Write-Error "No releases found for project $($Project.name) with the version number $v"
-                    $r = $null
-                }
+                    #Catch [Octopus.Client.Exceptions.OctopusResourceNotFoundException]{
+                    Catch {
+                        Write-Error "No releases found for project $($Project.name) with the version number $v"
+                        $r = $null
+                    }
                 
-                If ($r -ne $null){
-                    $releases += $r
-                }                                
+                    If ($r -ne $null){
+                        $releases += $r
+                    }                                
+                }
             }
-        }
 
-        Else{
-            $releases += ($c.repository.Projects.GetReleases($Project)).items
-            If($Latest){
-                Write-Verbose "[$($MyInvocation.MyCommand)] Getting latest $Latest releases of project $($Project.name)"
-                $releases = $releases[0..($Latest -1)]
+            Else{
+                $releases += ($c.repository.Projects.GetReleases($Project)).items
+                If($Latest){
+                    Write-Verbose "[$($MyInvocation.MyCommand)] Getting latest $Latest releases of project $($Project.name)"
+                    $releases = $releases[0..($Latest -1)]
+                }
             }
-        }
             
-        Write-Verbose "[$($MyInvocation.MyCommand)] Releases found for project $($Project.name): $($releases.count)"     
+            Write-Verbose "[$($MyInvocation.MyCommand)] Releases found for project $($Project.name): $($releases.count)"     
 
-        If($ResourceOnly){
-            $list += $releases
-        }
+            If($ResourceOnly){
+                $list += $releases
+            }
 
-        Else{
-            Foreach($release in $releases){
+            Else{
+                Foreach($release in $releases){
 
-                Write-Verbose "[$($MyInvocation.MyCommand)] Getting info from release: $($release.version)"
+                    Write-Verbose "[$($MyInvocation.MyCommand)] Getting info from release: $($release.version)"
 
-                Write-Progress -Activity "Getting info from release: $($release.id)" -status "$i of $($releases.count)" -percentComplete ($i / $releases.count * 100)                
+                    Write-Progress -Activity "Getting info from release: $($release.id)" -status "$i of $($releases.count)" -percentComplete ($i / $releases.count * 100)                
         
-                #$d = $c.repository.Deployments.FindOne({param($dep) if($dep.releaseid -eq $release.Id){$true}})
+                    #$d = $c.repository.Deployments.FindOne({param($dep) if($dep.releaseid -eq $release.Id){$true}})
                        
-                $rev = (Invoke-WebRequest -Uri "$env:OctopusURL/api/events?regarding=$($release.Id)" -Method Get -Headers $c.header -Verbose:$false| ConvertFrom-Json).items | ? {$_.category -eq "Created"}
+                    $rev = (Invoke-WebRequest -Uri "$env:OctopusURL/api/events?regarding=$($release.Id)" -Method Get -Headers $c.header -Verbose:$false| ConvertFrom-Json).items | ? {$_.category -eq "Created"}
         
-                $obj = [PSCustomObject]@{
-                        ProjectName = $Project.name
-                        ReleaseVersion = $release.Version
-                        ReleaseNotes = $release.ReleaseNotes
-                        CreationDate = ($release.assembled).datetime
-                        CreatedBy = $rev.Username
-                        LastModifiedOn = ($release.LastModifiedOn).datetime
-                        LastModifiedBy = $release.LastModifiedBy                
-                        Resource = $release                
-                    }            
+                    $obj = [PSCustomObject]@{
+                            ProjectName = $Project.name
+                            ReleaseVersion = $release.Version
+                            ReleaseNotes = $release.ReleaseNotes
+                            CreationDate = ($release.assembled).datetime
+                            CreatedBy = $rev.Username
+                            LastModifiedOn = ($release.LastModifiedOn).datetime
+                            LastModifiedBy = $release.LastModifiedBy                
+                            Resource = $release                
+                        }            
 
-                $list += $obj       
+                    $list += $obj       
             
-                $i++
+                    $i++
+                }
             }
-        }
+
+        }        
 
     }
     End

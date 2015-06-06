@@ -54,11 +54,16 @@ function Update-OctopusReleaseVariableSet
     }
     End
     {
-        Write-Verbose "[$($MyInvocation.MyCommand)] HTTP request to update variables for release $($Release.version) of project $($p.name) returned code $($r.statuscode)"
-        if($r.statuscode -eq 200){
-            Return $True
+        If($r){
+            Write-Verbose "[$($MyInvocation.MyCommand)] HTTP request to update variables for release $($Release.version) of project $($p.name) returned code $($r.statuscode)"
+            if($r.statuscode -eq 200){
+                Return $True
+            }
+            Else{
+                Return $false
+            }
         }
-        Else{
+        else{
             Return $false
         }
     }
