@@ -11,6 +11,10 @@
    Get-OctopusRelease -ProjectName "MyProject" -version 1.0.1,1.0.2
 
    Get the release realeases 1.0.1 & 1.0.2 of the project "MyProject"
+.EXAMPLE
+   Get-OctopusRelease -ProjectName "MyProject" -Latest 10
+
+   Get the 10 releases of a project. The values allowed for this parameter are 1-30
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
    Advanced Cmdlet Usage: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
@@ -31,6 +35,7 @@ function Get-OctopusRelease{
         [String]$ProjectName,
 
         # Get latest X releases. The highest number allowed by this parameter is 30
+        [ValidateRange(1,30)] 
         [Parameter(ParameterSetName ="Latest")]        
         [int]$Latest,
         
@@ -93,9 +98,7 @@ function Get-OctopusRelease{
 
                     Write-Verbose "[$($MyInvocation.MyCommand)] Getting info from release: $($release.version)"
 
-                    Write-Progress -Activity "Getting info from release: $($release.id)" -status "$i of $($releases.count)" -percentComplete ($i / $releases.count * 100)                
-        
-                    #$d = $c.repository.Deployments.FindOne({param($dep) if($dep.releaseid -eq $release.Id){$true}})
+                    Write-Progress -Activity "Getting info from release: $($release.id)" -status "$i of $($releases.count)" -percentComplete ($i / $releases.count * 100)                       
                        
                     $rev = (Invoke-WebRequest -Uri "$env:OctopusURL/api/events?regarding=$($release.Id)" -Method Get -Headers $c.header -Verbose:$false| ConvertFrom-Json).items | ? {$_.category -eq "Created"}
         
