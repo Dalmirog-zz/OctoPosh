@@ -280,6 +280,11 @@ Describe 'Octopus Module Tests' {
 
         $releases.count | should be $latest
     }
+    It '[Get-OctopusRelease] [latest] cant get amount of release out of range'{
+        Get-OctopusRelease -ProjectName TestProject1 -Latest -1 | should throw
+
+        Get-OctopusRelease -ProjectName TestProject1 -Latest 31 | should throw
+    }
     It '[Get-OctopusRelease] Gets all the releases of a project. Placeholder until #119 is fixed'{
         #This test asumes that if the amount of releases is greater than 30, then those should be all of the releases
         #$releases = Get-OctopusRelease -ProjectName TestProject1 -resourceonly
