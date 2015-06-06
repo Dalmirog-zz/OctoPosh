@@ -14,7 +14,7 @@
 .EXAMPLE
    Get-OctopusRelease -ProjectName "MyProject" -Latest 10
 
-   Get the 10 releases of a project. The values allowed for this parameter are 1-30
+   Get the latest 10 releases of a project. The values allowed for this parameter are 1-30
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
    Advanced Cmdlet Usage: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
