@@ -339,7 +339,17 @@ Describe 'Octopus Module Tests' {
         Update-OctopusReleaseVariableSet -ProjectName unexistentproject -ReleaseVersion 1.0.34 -ErrorAction SilentlyContinue | should be $false
     }
     It '[Start-OctopusHealthChech] doesnt start health checks on empty environments'{
-        (Start-OctopusHealthCheck -EnvironmentName $TestName -Force -ErrorAction SilentlyContinue) | should be $null        
+        $EnvironmentName = "EmptyEnvironment"
+
+        $env = Get-OctopusResourceModel -Resource Environment                
+
+        $env.Name = $EnvironmentName
+                
+        $envobj = New-OctopusResource -Resource $env
+
+        (Start-OctopusHealthCheck -EnvironmentName $EnvironmentName -Force -ErrorAction SilentlyContinue) | should be $null
+
+        $delete = Remove-OctopusResource -Resource $envobj -Force -Wait
     }
     <#It '[Start-OctopusHealthChech] starts a health check on a single environment'{
         $task = Start-OctopusHealthCheck -EnvironmentName 'Staging' -Force -ErrorAction SilentlyContinue
@@ -361,6 +371,12 @@ Describe 'Octopus Module Tests' {
         $BackupTask = Start-OctopusBackup -Force -Message $TestName
         $task = Get-OctopusTask -TaskID $BackupTask.id
         $task.description | should be $TestName
+    }
+    It '[Remove-OctopusResource] deletes Machines'{
+        $delete = (Get-OctopusMachine -MachineName $TestName | Remove-OctopusResource -Force -Wait)
+
+        $delete.name | should be "delete"
+        $delete.state | should be "Success"
     }
     It '[Remove-OctopusResource] deletes environments'{                
         {Get-OctopusEnvironment -Name $testname | Remove-OctopusResource -Force} | should not Throw               
@@ -385,12 +401,6 @@ Describe 'Octopus Module Tests' {
     }
     It '[Remove-OctopusResource] deletes Library Variable Sets'{
         $delete = (Get-OctopusVariableSet -LibrarySetName $TestName | Remove-OctopusResource -Force -Wait)
-
-        $delete.name | should be "delete"
-        $delete.state | should be "Success"
-    }
-    It '[Remove-OctopusResource] deletes Machines'{
-        $delete = (Get-OctopusMachine -MachineName $TestName | Remove-OctopusResource -Force -Wait)
 
         $delete.name | should be "delete"
         $delete.state | should be "Success"
