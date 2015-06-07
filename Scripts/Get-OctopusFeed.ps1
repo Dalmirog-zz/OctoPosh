@@ -25,7 +25,10 @@ function Get-OctopusFeed
 
         # URL of the feed
         [Alias("URI","FeedURI")]
-        [string[]]$URL
+        [string[]]$URL,
+        
+        # When used the cmdlet will only return the plain Octopus resource object
+        [switch]$ResourceOnly
     )
 
     Begin
@@ -47,7 +50,11 @@ function Get-OctopusFeed
             {$true}})
         }
 
-        Write-Verbose "[$($MyInvocation.MyCommand)] Feeds found: $($feeds.count)"            
+        Write-Verbose "[$($MyInvocation.MyCommand)] Feeds found: $($feeds.count)"
+
+        If($ResourceOnly){
+            $list += $Machines
+        }
 
         foreach($feed in $feeds){
 
