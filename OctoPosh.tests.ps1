@@ -19,8 +19,6 @@ Describe 'Octopus Module Tests' {
 
     $TestName = new-testname
 
-    Write-Output "Test name: $TestName"
-
     $c = New-OctopusConnection
     
     It '[New-OctopusResource] creates environments'{               
@@ -96,10 +94,7 @@ Describe 'Octopus Module Tests' {
     }
     It '[NEW-OCTOPUSRESOURCE] CREATES LIFECYCLES. UGLY PLACEHOLDER'{
 
-    }
-    It '[NEW-OCTOPUSRESOURCE] CREATES MACHINES. UGLY PLACEHOLDER'{
-
-    }
+    }    
     It '[NEW-OCTOPUSRELEASE] CREATES RELEASES. UGLY PLACEHOLDER'{
 
     }
@@ -371,6 +366,51 @@ Describe 'Octopus Module Tests' {
         $BackupTask = Start-OctopusBackup -Force -Message $TestName
         $task = Get-OctopusTask -TaskID $BackupTask.id
         $task.description | should be $TestName
+    }
+    It '[Update-OctopusResource] Updates ProjectGroups'{
+        $description = "New Description"
+        
+        $projectGroup = Get-OctopusProjectGroup -name $TestName
+
+        $projectGroup.resource.Description = $description
+
+        $projectGroup | Update-OctopusResource -Force | select -ExpandProperty Description -Unique | should be $description
+    }
+    It '[Update-OctopusResource] Updates Projects'{
+        $description = "New Description"
+
+        $project = Get-OctopusProject -name $TestName
+
+        $project.resource.Description = $description
+
+        $project | Update-OctopusResource -Force | select -ExpandProperty Description -Unique | should be $description
+    }
+    It '[Update-OctopusResource] Updates Environments'{
+        $description = "New Description"
+
+        $Environment = Get-OctopusEnvironment -name $TestName
+
+        $Environment.resource.Description = $description
+
+        $Environment | Update-OctopusResource -Force | select -ExpandProperty Description -Unique| should be $description
+    }
+    It '[Update-OctopusResource] Updates Machines'{
+        $Role = "SomeRole"
+
+        $Machine = Get-OctopusMachine -name $TestName
+
+        $Machine.resource.roles.Add($Role)
+
+        $role -in ($Machine | Update-OctopusResource -Force).roles | should be $true
+    }
+    It '[Update-OctopusResource] Updates External Feeds'{
+        $URL = "https://SomeURL.com/Nuget"
+
+        $Feed = Get-OctopusFeed -FeedName $TestName
+
+        $feed.Resource.FeedUri = $URL
+
+        $feed | Update-OctopusResource -Force | select -ExpandProperty FeedURI -Unique | should be $URL
     }
     It '[Remove-OctopusResource] deletes Machines'{
         $delete = (Get-OctopusMachine -MachineName $TestName | Remove-OctopusResource -Force -Wait)
