@@ -22,7 +22,7 @@
 #>
 function Remove-OctopusResource
 {
-    [CmdletBinding()]
+    [CmdletBinding(DefaultParameterSetName='Delete')]
     Param
     (
         # Octopus resource object
@@ -56,7 +56,6 @@ function Remove-OctopusResource
             'Octopus.Client.Model.MachineResource'
             'Octopus.Client.Model.FeedResource'
             'Octopus.Client.Model.LibraryVariableSetResource'
-            'Octopus.Client.Model.MachineResource'
         }
         $c = New-OctopusConnection        
     }
