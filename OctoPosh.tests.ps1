@@ -19,8 +19,6 @@ Describe 'Octopus Module Tests' {
 
     $TestName = new-testname
 
-    Write-Output "Test name: $TestName"
-
     $c = New-OctopusConnection
     
     It '[New-OctopusResource] creates environments'{               
@@ -376,7 +374,7 @@ Describe 'Octopus Module Tests' {
 
         $projectGroup.resource.Description = $description
 
-        {$projectGroup | Update-OctopusResource -Force} | select -ExpandProperty Description -Unique | should be $description
+        $projectGroup | Update-OctopusResource -Force | select -ExpandProperty Description -Unique | should be $description
     }
     It '[Update-OctopusResource] Updates Projects'{
         $description = "New Description"
@@ -385,7 +383,7 @@ Describe 'Octopus Module Tests' {
 
         $project.resource.Description = $description
 
-        {$project | Update-OctopusResource -Force} | select -ExpandProperty Description -Unique | should be $description
+        $project | Update-OctopusResource -Force | select -ExpandProperty Description -Unique | should be $description
     }
     It '[Update-OctopusResource] Updates Environments'{
         $description = "New Description"
@@ -394,7 +392,7 @@ Describe 'Octopus Module Tests' {
 
         $Environment.resource.Description = $description
 
-        {$Environment | Update-OctopusResource -Force} | select -ExpandProperty Description -Unique| should be $description
+        $Environment | Update-OctopusResource -Force | select -ExpandProperty Description -Unique| should be $description
     }
     It '[Update-OctopusResource] Updates Machines'{
         $Role = "SomeRole"
