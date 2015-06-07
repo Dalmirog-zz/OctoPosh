@@ -1,16 +1,20 @@
 ﻿<#
 .Synopsis
-   
+   Updates Octopus Resources on the database.   
 
    This is an advanced cmdlet and all its examples involve multiple lines of code. Please check the advanced examples for a better reference: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
-.DE
-   Deletes Octopus Deploy resources such as Projects, Releases, Environments, etc
+.DESCRIPTION
+   Updates Octopus Resources on the database.   
 
    This is an advanced cmdlet and all its examples involve multiple lines of code. Please check the advanced examples for a better reference: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
 .EXAMPLE
-   
+    $pg = Get-OctopusProjectGroup -name SomeProjectName ; $pg.resource.name = "SomeOtherProjectName" ; $Pg | Update-OctopusResource
+
+    Update the Name of a ProjectGroup   
 .EXAMPLE
-   
+    $machine = Get-OctopusMachine -MachineName "SQL_Production" ; $machine.resource.isdisabled = $true ; $machine | Update-OctopusResource
+    
+    Update the [IsDisabled] property of a machine to disable it
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
    Advanced Cmdlet Usage: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
@@ -24,7 +28,7 @@ function Update-OctopusResource
         # Octopus resource object
         [Parameter(Mandatory=$true,
                    ValueFromPipelineByPropertyName=$true,
-                   ParameterSetName = 'Update',                   
+                   ParameterSetName = 'Update',
                    Position=0)]
         [object[]]$Resource,
 
@@ -42,10 +46,9 @@ function Update-OctopusResource
             'Octopus.Client.Model.ProjectGroupResource'
             'Octopus.Client.Model.ProjectResource'
             'Octopus.Client.Model.EnvironmentResource'
-            'Octopus.Client.Model.DeploymentResource'
             'Octopus.Client.Model.MachineResource'
             'Octopus.Client.Model.FeedResource'
-            'Octopus.Client.Model.LibraryVariableSetResource'            
+            #'Octopus.Client.Model.LibraryVariableSetResource'            
         }
 
         $c = New-OctopusConnection        
@@ -63,11 +66,10 @@ function Update-OctopusResource
             {
                 {$_.getType() -eq [Octopus.Client.Model.ProjectGroupResource]} {$ResourceType = 'ProjectGroups'}
                 {$_.getType() -eq [Octopus.Client.Model.ProjectResource]} {$ResourceType = 'Projects'}
-                {$_.getType() -eq [Octopus.Client.Model.EnvironmentResource]} {$ResourceType = 'Environments'}
-                {$_.getType() -eq [Octopus.Client.Model.DeploymentResource]} {$ResourceType = 'Deployments'}
+                {$_.getType() -eq [Octopus.Client.Model.EnvironmentResource]} {$ResourceType = 'Environments'}                
                 {$_.getType() -eq [Octopus.Client.Model.MachineResource]} {$ResourceType = 'Machines'}          
                 {$_.getType() -eq [Octopus.Client.Model.FeedResource]} {$ResourceType = 'Feeds'}
-                {$_.getType() -eq [Octopus.Client.Model.VariableSetResource]} {$ResourceType = 'LibraryVariableSets'}
+                #{$_.getType() -eq [Octopus.Client.Model.VariableSetResource]} {$ResourceType = 'LibraryVariableSets'}
                 Default{Throw "Invalid object type: $($_.getType()) `nRun 'Update-OctopusResource -AcceptedTypes' to get a list of the object types accepted by this cmdlet"}                
             }
 
