@@ -25,7 +25,7 @@
    Get all the deployments that were done to the environment "Production" on the projects "MyProduct.Webapp" between 2/20/2015 and 2/21/2015
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
-   Advanced Cmdlet Usage: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
+   Wiki: https://github.com/Dalmirog/OctoPosh/wiki
    QA and Cmdlet request: https://gitter.im/Dalmirog/OctoPosh#initial
 #>
 function Get-OctopusDeployment

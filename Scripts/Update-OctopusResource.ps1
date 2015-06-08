@@ -2,11 +2,11 @@
 .Synopsis
    Updates Octopus Resources on the database.   
 
-   This is an advanced cmdlet and all its examples involve multiple lines of code. Please check the advanced examples for a better reference: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
+   This is an advanced cmdlet and all its examples involve multiple lines of code. Please check the advanced examples for a better reference: https://github.com/Dalmirog/OctoPosh/wiki/Modifying-Resources
 .DESCRIPTION
    Updates Octopus Resources on the database.   
 
-   This is an advanced cmdlet and all its examples involve multiple lines of code. Please check the advanced examples for a better reference: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
+   This is an advanced cmdlet and all its examples involve multiple lines of code. Please check the advanced examples for a better reference: https://github.com/Dalmirog/OctoPosh/wiki/Modifying-Resources
 .EXAMPLE
     $pg = Get-OctopusProjectGroup -name SomeProjectName ; $pg.resource.name = "SomeOtherProjectName" ; $Pg | Update-OctopusResource
 
@@ -17,7 +17,7 @@
     Update the [IsDisabled] property of a machine to disable it
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
-   Advanced Cmdlet Usage: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
+   Advanced Cmdlet Usage: https://github.com/Dalmirog/OctoPosh/wiki/Modifying-Resources
    QA and Cmdlet request: https://gitter.im/Dalmirog/OctoPosh#initial
 #>
 function Update-OctopusResource

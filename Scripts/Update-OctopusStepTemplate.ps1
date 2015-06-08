@@ -9,7 +9,7 @@
    Update-StepTemplatesOnDeploymentProcesses -AllActionTemplates -OctopusURI "http://Octopusdeploy.MyCompany.com" -APIKey "API-TSET42BPMX5DRPLCRNZETFS4HA"
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
-   Advanced Cmdlet Usage: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
+   Wiki: https://github.com/Dalmirog/OctoPosh/wiki
    QA and Cmdlet request: https://gitter.im/Dalmirog/OctoPosh#initial
 #>
 Function Update-OctopusStepTemplates
