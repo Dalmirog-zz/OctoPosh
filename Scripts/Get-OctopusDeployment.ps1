@@ -8,6 +8,10 @@
 
    Get all the deployments that were done on the Octopus Instance. You might wanna go grab a coffee after hitting [enter] on this one, its gonna take a while.
 .EXAMPLE
+   Get-OctopusDeployment -Project "MyProject" -ReleaseVersion 1.0.0
+
+   Get all the deployments that were done for the release 1.0.0 of the project "MyProject"
+.EXAMPLE
    Get-OctopusDeployment -ProjectName "MyProduct.*"
 
    Get all the deployments from all the projects which name starts with "MyProduct.*"
@@ -43,11 +47,19 @@ function Get-OctopusDeployment
         [alias("Project")]
         [string[]]$ProjectName,
 
+        # Release Version. When a value is passed to this parameter, only one project can be declared and [EnvironmentName] will be ignored
+        [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [alias("Release")]
+        [String[]]$ReleaseVersion,
+
         # Get deployment created before this date
         [System.DateTimeOffset]$Before = [System.DateTimeOffset]::MaxValue,
         
         # Get deployment created after this date
-        [System.DateTimeOffset]$After = [System.DateTimeOffset]::MinValue          
+        [System.DateTimeOffset]$After = [System.DateTimeOffset]::MinValue,
+        
+        # When used the cmdlet will only return the plain Octopus resource object
+        [switch]$ResourceOnly          
     )
 
     Begin
@@ -58,24 +70,44 @@ function Get-OctopusDeployment
     }
     Process
     {
-        #Getting EnvironmentIDs and ProjectIDs based on values set on parameters
-
         Write-Verbose "[$($MyInvocation.MyCommand)] Getting deployments for Projects [$ProjectName] on Environments [$EnvironmentName]"
 
         $projects = Get-OctopusProject -Name $ProjectName -ResourceOnly
 
         $environments = Get-OctopusEnvironment -Name $EnvironmentName -ResourceOnly
         
-        $deployments = $c. repository.Deployments.FindMany(`            
-            {param($dep) if (`
-                (($dep.projectid -in $projects.id))`
-                 -and (($dep.environmentid -in $environments.id))`
-                 -and (($dep.created -ge $After) -and ($dep.created -le $Before)))`
-            {$true}})
+        If($ReleaseVersion){
+            Write-Verbose "[$($MyInvocation.MyCommand)] Filtering deployments by release for project $($Projects.name)"
+            If($ProjectName.count -ne 1){
+                #Should figure out a smarter way to do this from the parameters
+                throw "Only 1 project can be selected when using the parameter [ReleaseVersion]. Amount of projects selected: $($ProjectName.count)"
+            }
+            else{
+                $deployments = @()
+                
+                foreach($Version in $ReleaseVersion){
+                    $release = Get-OctopusRelease -ProjectName $projects.name -ReleaseVersion $Version -ResourceOnly
+                    $deployments += ($c.repository.Releases.GetDeployments($release,30)).items | ?{($_.created -gt $After) -and ($_.created -lt $Before)}                    
+                }
+            }
+        }
+        else{
+            $deployments = $c. repository.Deployments.FindMany(`            
+                {param($dep) if (`
+                    (($dep.projectid -in $projects.id))`
+                     -and (($dep.environmentid -in $environments.id))`
+                     -and (($dep.created -ge $After) -and ($dep.created -le $Before)))`
+                {$true}})
+        }
 
         Write-Verbose "[$($MyInvocation.MyCommand)] Deployments found: $($deployments.count)"
 
-        foreach ($d in $deployments){
+        If ($ResourceOnly){
+            Write-Verbose "[$($MyInvocation.MyCommand)] [ResourceOnly] switch is on. Returning raw Octopus resource objects"
+            $list += $Deployments
+        }
+        Else{
+            foreach ($d in $deployments){
 
             Write-Progress -Activity "Getting info from deloyment: $($d.id)" -status "$i of $($deployments.count)" -percentComplete ($i / $deployments.count*100)
             Write-Verbose "[$($MyInvocation.MyCommand)] Getting info of deployment: $($d.id)"
@@ -105,11 +137,9 @@ function Get-OctopusDeployment
             }
 
             #Duration calculation needed cause "timed out" deployments dont have a value set for "CompletedTime"
-            if($t.completedtime){
-                
+            if($t.completedtime){                
                 $duration = (New-TimeSpan –Start ($t.Starttime).DateTime –End ($t.Completedtime).DateTime).TotalMinutes
-
-                }
+            }
 
             else{$duration = 0}
 
@@ -134,7 +164,7 @@ function Get-OctopusDeployment
 
             $i++
         }
-
+        }
     }
     End
     {
