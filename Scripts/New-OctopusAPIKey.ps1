@@ -17,7 +17,7 @@
    Create a new API Key for a user
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
-   Advanced Cmdlet Usage: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
+   Wiki: https://github.com/Dalmirog/OctoPosh/wiki
    QA and Cmdlet request: https://gitter.im/Dalmirog/OctoPosh#initial
 #>
 function New-OctopusAPIKey

@@ -13,7 +13,7 @@
    Unblocks the release 1.0.1 of the project "MyProduct.Webapp"
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
-   Advanced Cmdlet Usage: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
+   Wiki: https://github.com/Dalmirog/OctoPosh/wiki
    QA and Cmdlet request: https://gitter.im/Dalmirog/OctoPosh#initial
 #>
 function Unblock-OctopusRelease

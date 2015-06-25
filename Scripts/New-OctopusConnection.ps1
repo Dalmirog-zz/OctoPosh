@@ -13,7 +13,7 @@
    Use the [Header] Member of the Object returned by New-OctopusConnection as a header to call the REST API using Invoke-WebRequest 
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
-   Advanced Cmdlet Usage: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
+   Wiki: https://github.com/Dalmirog/OctoPosh/wiki
    QA and Cmdlet request: https://gitter.im/Dalmirog/OctoPosh#initial
 #>
 function New-OctopusConnection
