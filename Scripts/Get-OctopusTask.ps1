@@ -47,7 +47,7 @@ function Get-OctopusTask
 
         # Status of the task.
         [Alias('Status')]
-        [ValidateSet('Success','TimedOut','Failed','Canceled')]        
+        [ValidateSet('Success','TimedOut','Failed','Canceled','Executing','Canceling')]        
         [string[]]$State = '*',
 
         # Before date
