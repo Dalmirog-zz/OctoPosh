@@ -43,12 +43,15 @@ function Update-OctopusResource
     Begin
     {
         If($AcceptedTypes){
-            'Octopus.Client.Model.ProjectGroupResource'
-            'Octopus.Client.Model.ProjectResource'
-            'Octopus.Client.Model.EnvironmentResource'
-            'Octopus.Client.Model.MachineResource'
-            'Octopus.Client.Model.FeedResource'
-            #'Octopus.Client.Model.LibraryVariableSetResource'            
+
+            $types = ("Octopus.Client.Model.ProjectGroupResource",
+            "Octopus.Client.Model.ProjectResource",
+            "Octopus.Client.Model.EnvironmentResource",
+            "Octopus.Client.Model.MachineResource",
+            "Octopus.Client.Model.FeedResource",
+            "Octopus.Client.Model.VariableSetResource")
+            
+            return $types
         }
 
         $c = New-OctopusConnection        
@@ -68,8 +71,8 @@ function Update-OctopusResource
                 {$_.getType() -eq [Octopus.Client.Model.ProjectResource]} {$ResourceType = 'Projects'}
                 {$_.getType() -eq [Octopus.Client.Model.EnvironmentResource]} {$ResourceType = 'Environments'}                
                 {$_.getType() -eq [Octopus.Client.Model.MachineResource]} {$ResourceType = 'Machines'}          
-                {$_.getType() -eq [Octopus.Client.Model.FeedResource]} {$ResourceType = 'Feeds'}
-                #{$_.getType() -eq [Octopus.Client.Model.VariableSetResource]} {$ResourceType = 'LibraryVariableSets'}
+                {$_.getType() -eq [Octopus.Client.Model.FeedResource]} {$ResourceType = 'Feeds'}                
+                {$_.getType() -eq [Octopus.Client.Model.VariableSetResource]} {$ResourceType = 'VariableSets'}
                 Default{Throw "Invalid object type: $($_.getType()) `nRun 'Update-OctopusResource -AcceptedTypes' to get a list of the object types accepted by this cmdlet"}                
             }
 
