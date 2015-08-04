@@ -1,3 +1,8 @@
+# Disclaimer
+The module hasn't been tested with Octopus 3.0 yet. Even though most of it works with 3.0, the module has only been tested with 2.X
+
+3.0 Support comming soon: https://github.com/Dalmirog/OctoPosh/issues/130
+
 # OctoPosh: The Octopus Deploy Powershell Module
 
 Octopus Deploy is a friendly deployment automation system for .NET developers. [Its architecture is built API-First](http://docs.octopusdeploy.com/display/OD/Octopus+REST+API), meaning 99% of what you can do from the Octopus UI can also be performed using the REST API.
