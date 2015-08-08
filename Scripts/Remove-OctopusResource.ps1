@@ -56,6 +56,7 @@ function Remove-OctopusResource
             'Octopus.Client.Model.MachineResource'
             'Octopus.Client.Model.FeedResource'
             'Octopus.Client.Model.LibraryVariableSetResource'
+            'Octopus.Client.Model.LifecycleResource'
         }
         $c = New-OctopusConnection        
     }
@@ -77,6 +78,7 @@ function Remove-OctopusResource
                 {$_.getType() -eq [Octopus.Client.Model.MachineResource]} {$ResourceType = 'Machines'}          
                 {$_.getType() -eq [Octopus.Client.Model.FeedResource]} {$ResourceType = 'Feeds'}
                 {$_.getType() -eq [Octopus.Client.Model.VariableSetResource]} {$ResourceType = 'LibraryVariableSets'}
+                {$_.getType() -eq [Octopus.Client.Model.LifecycleResource]} {$ResourceType = 'Lifecycles'}
                 Default{Throw "Invalid object type: $($_.getType()) `nRun 'Remove-OctopusResource -AcceptedTypes' to get a list of the object types accepted by this cmdlet"}                
             }
 
