@@ -7,6 +7,14 @@
    This cmdlet adds/Updates Octopus variables from a JSON file to a Variable Set. Then it returns the updated Variable Set for it to be saved on the database using Update-OctopusResource.
 
    This is an advanced cmdlet. For info about its usage go to: https://github.com/Dalmirog/OctoPosh/wiki/Modifying-Variable-Sets
+.EXAMPLE
+   Update-OctopusVariableSet -ProjectName "MyProject" -file "C:\Files\Variables.json" -mode Overwrite
+
+   Overwrites the variable set of the project "MyProject" with the contents of C:\Files\Variables.json
+.EXAMPLE
+   Update-OctopusVariableSet -Library "MyLibrarySet" -file "C:\Files\Variables.json" -mode Merge
+
+   Merges the variables inside of "C:\Files\Variables.json" with the variable set "MyLibrarySet"
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
    Advanced Cmdlet Usage: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
