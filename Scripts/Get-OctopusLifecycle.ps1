@@ -32,7 +32,10 @@ function Get-OctopusLifeCycle
         # Lifecycle Name
         [alias("Name")]
         [Parameter(ValueFromPipelineByPropertyName = $true)]
-        [string[]]$LifeCycleName
+        [string[]]$LifeCycleName,
+
+        # When used the cmdlet will only return the plain Octopus resource object
+        [switch]$ResourceOnly
     )
 
     Begin
@@ -56,25 +59,30 @@ function Get-OctopusLifeCycle
 
         Write-Verbose "[$($MyInvocation.MyCommand)] Lifecycles found: $($Lifecycles.count)"
 
-        #Getting info by Lifecycle
-        foreach ($l in $Lifecycles){            
+        If($ResourceOnly){
+            $list += $Lifecycles
+        }
+        else{
+            #Getting info by Lifecycle
+            foreach ($l in $Lifecycles){            
             
-            Write-Progress -Activity "Getting info from lifecycle: $($l.name)" -status "$i of $($Lifecycles.count)" -percentComplete ($i / $Lifecycles.count*100)
-            Write-Verbose "[$($MyInvocation.MyCommand)] Getting info from Lifecycle: $($l.name)"
+                Write-Progress -Activity "Getting info from lifecycle: $($l.name)" -status "$i of $($Lifecycles.count)" -percentComplete ($i / $Lifecycles.count*100)
+                Write-Verbose "[$($MyInvocation.MyCommand)] Getting info from Lifecycle: $($l.name)"
 
-            $obj = [PSCustomObject]@{
-                LifecycleName = $l.name
-                Id = $l.Id
-                ReleaseRetentionPolicy = $l.ReleaseRetentionPolicy
-                TentacleRetentionPolicy = $l.TentacleRetentionPolicy
-                Phases = $l.Phases
-                LastModifiedOn = $l.LastModifiedOn
-                LastModifiedBy = $l.LastModifiedBy
-                Resource = $l           
-            }            
-            $list += $obj
+                $obj = [PSCustomObject]@{
+                    LifecycleName = $l.name
+                    Id = $l.Id
+                    ReleaseRetentionPolicy = $l.ReleaseRetentionPolicy
+                    TentacleRetentionPolicy = $l.TentacleRetentionPolicy
+                    Phases = $l.Phases
+                    LastModifiedOn = $l.LastModifiedOn
+                    LastModifiedBy = $l.LastModifiedBy
+                    Resource = $l           
+                }            
+                $list += $obj
 
-            $i++
+                $i++
+            }
         }
     }
     End
