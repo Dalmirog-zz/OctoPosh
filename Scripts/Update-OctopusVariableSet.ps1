@@ -51,7 +51,7 @@ function Update-OctopusVariableSet
                 Throw "File not found: $file"
             }
     
-            $JSON = Get-Content $file
+            $JSON = Get-Content $file -Raw
 
             Try{
                 Write-Verbose "[$($MyInvocation.MyCommand)] Importing variables as JSON from: $file"
