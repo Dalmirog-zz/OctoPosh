@@ -98,13 +98,17 @@ function Update-OctopusVariableSet
                     }
                 }
 
-                $prompt = New-Object Octopus.Platform.Model.VariablePromptOptions
-
-                $prompt.Description = $var.prompt.Description
-                $prompt.Label = $var.prompt.Label
-                $prompt.Required = $var.prompt.required
-
-                $newvar.Prompt = $prompt
+                If(!([string]::IsNullOrEmpty($var.Prompt))){
+                   $prompt = New-Object Octopus.Platform.Model.VariablePromptOptions
+   
+                   $prompt.Description = $var.prompt.Description
+                   $prompt.Label = $var.prompt.Label
+                   $prompt.Required = $var.prompt.required
+   
+                   $newvar.Prompt = $prompt
+                } Else {
+                    $newvar.Prompt = $var.prompt
+                }
         
                 $NewVariableSet.Variables.Add($newvar)                
             }            
