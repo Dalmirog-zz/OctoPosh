@@ -76,6 +76,23 @@ It '[New-OctopusResource] creates environments'{
 
         $NewLibrary.name | should be $testname         
     }
+    It '[New-OctopusResource] adds a Machine to an Environment'{
+        
+        $machine = Get-OctopusResourceModel -Resource Machine
+                
+        $environment = Get-OctopusEnvironment -EnvironmentName $testname
+
+        $machine.name = $testname
+        $machine.EnvironmentIds.Add($environment.id) | Out-Null
+        $machine.Thumbprint = "8A7E6157A34158EDA1B5127CB027B2A267760A4F"
+        $machine.CommunicationStyle = "TentacleActive"
+        $machine.Roles.Add("WebServer") | Out-Null
+        $machine.Uri = "https://localhost:10933"
+
+        $NewMachine = New-OctopusResource -Resource $machine
+
+        $NewMachine.name | should be $testname
+    }
     It '[Get-OctopusEnvironment] gets environments'{           
         Get-OctopusEnvironment -Name $TestName | Select-Object -ExpandProperty EnvironmentNAme | should be $TestName
     }
@@ -95,28 +112,36 @@ It '[New-OctopusResource] creates environments'{
     }
     It '[Get-OctopusLifecycle] gets Lifecycles'{
         Get-OctopusLifeCycle | should not be $null
-    }
-
-    It '[Remove-OctopusResource] deletes environments'{                
-        {Get-OctopusEnvironment -Name $testname | Remove-OctopusResource -Force} | should not Throw               
-
-        Get-OctopusEnvironment -Name $TestName -ErrorAction SilentlyContinue | should be $null
     }        
     It '[Remove-OctopusResource] deletes Projects'{
-        {Get-OctopusProject -Name $TestName | Remove-OctopusResource -Force} | should not throw
+        (Get-OctopusProject -Name $TestName | Remove-OctopusResource -Force) | should be $true
 
         Get-OctopusProject -Name $TestName -ErrorAction SilentlyContinue| should be $null
     }
     It '[Remove-OctopusResource] deletes Project Groups'{
-        {Get-OctopusProjectGroup -Name $TestName |Remove-OctopusResource -Force} | should not throw
+        (Get-OctopusProjectGroup -Name $TestName |Remove-OctopusResource -Force) | should be $true
 
         Get-OctopusProjectGroup -Name $TestName -ErrorAction SilentlyContinue | should be $null
     }
     It '[Remove-OctopusResource] deletes NuGet feeds'{
         (Get-OctopusFeed -FeedName $TestName | Remove-OctopusResource -Force) | should be $true
+
+        Get-OctopusFeed -FeedName $TestName -ErrorAction SilentlyContinue | should be $null
     }
     It '[Remove-OctopusResource] deletes Library Variable Sets'{
         (Get-OctopusVariableSet -LibrarySetName $TestName | Remove-OctopusResource -Force) | should be $true        
+
+        Get-OctopusVariableSet -LibrarySetName $TestName -ErrorAction SilentlyContinue | should be $null
+    }
+    It '[Remove-OctopusResource] deletes Machines'{
+        (Get-OctopusMachine -MachineName $TestName | Remove-OctopusResource -Force) | should be $true       
+        
+        Get-OctopusMachine -Name $TestName -ErrorAction SilentlyContinue | should be $null
+    }
+    It '[Remove-OctopusResource] deletes environments'{                
+        (Get-OctopusEnvironment -Name $testname | Remove-OctopusResource -Force) | should be $true
+
+        Get-OctopusEnvironment -Name $TestName -ErrorAction SilentlyContinue | should be $null
     }
     It '[Get/Set-OctopusConnectionInfo] do their thing' {            
         $originalURL = $env:OctopusURL
