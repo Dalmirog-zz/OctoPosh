@@ -192,7 +192,27 @@ It '[New-OctopusResource] creates environments'{
         $tasks.count | should not be 0
         ($tasks.starttime.datetime -gt $before ).count | should be 0
         ($tasks.starttime.datetime -lt $after ).count | should be 0
-    }      
+    } 
+        It '[Get-OctopusFeed] gets feeds by name'{
+        $feed = Get-OctopusFeed -FeedName $TestName
+
+        $feed.Name | should be $TestName
+    }
+    It '[Get-OctopusFeed] gets feeds by using wildcards'{
+        $feed = Get-OctopusFeed -FeedName "*$($TestName.substring(5))*"
+
+        $feed.Name | should be $TestName
+    }  
+    It '[Get-OctopusFeed] gets feeds by URL'{
+        $feed = Get-OctopusFeed -URL "https://$testname.com"
+
+        $feed.FeedURI| should be "https://$testname.com"
+    }
+    It '[Get-OctopusFeed] gets feeds by URL using wildcards'{
+        $feed = Get-OctopusFeed -URL "*$($TestName.substring(5))*"
+
+        $feed.FeedURI| should be "https://$testname.com"
+    }     
     It '[Remove-OctopusResource] deletes Projects'{
         (Get-OctopusProject -Name $TestName | Remove-OctopusResource -Force) | should be $true
 
