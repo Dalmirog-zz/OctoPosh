@@ -1,4 +1,37 @@
-﻿<#
+﻿#Generates a random test name that'll be used to name everything on the tests
+Function New-TestName {    
+    
+    $length = 10 #length of random chars
+    $characters = 'abcdefghkmnprstuvwxyzABCDEFGHKLMNPRSTUVWXYZ1234567890' #characters to use
+    
+    # select random characters
+    $random = 1..$length | ForEach-Object { Get-Random -Maximum $characters.length }
+        
+    #Set ofs to "" to avoid having spaces between each char
+    $private:ofs=''
+
+    #output prefix (max 10 chars) + 5 random chars
+    Return [String]($prefix + $characters[$random])
+
+}
+
+Describe 'Octopus Module Tests' {
+
+    $TestName = new-testname
+
+    $c = New-OctopusConnection
+    
+    It '[New-OctopusResource] creates environments'{               
+
+        $env = Get-OctopusResourceModel -Resource Environment                
+
+        $env.Name = $testname
+                
+        $envobj = New-OctopusResource -Resource $env
+
+        $envobj.name | should be $testname
+
+    }
     It '[New-OctopusResource] creates Project Groups'{
         $Pg = Get-OctopusResourceModel -Resource ProjectGroup
                                                 
@@ -43,7 +76,6 @@
 
         $NewLibrary.name | should be $testname         
     }
-    #>
     It '[New-OctopusResource] adds a Machine to an Environment'{
         
         $machine = Get-OctopusResourceModel -Resource Machine
@@ -60,7 +92,6 @@
 
         $NewMachine.name | should be $testname
     }
-    <#
     It '[NEW-OCTOPUSRESOURCE] CREATES LIFECYCLES. UGLY PLACEHOLDER'{
 
     }    
@@ -324,7 +355,7 @@
         $tasks = Start-OctopusHealthCheck -EnvironmentName 'Staging','production' -Force -ErrorAction SilentlyContinue
         $tasks.count | should be 2
         $tasks | Get-Member | Select-Object -ExpandProperty typename -Unique | should be 'Octopus.Client.Model.TaskResource'
-    }  
+    }#>   
     It '[Start-OctopusRetentionPolicy] starts a "Retention" task'{
         $task = Start-OctopusRetentionPolicy -Force -Wait
 
@@ -542,4 +573,5 @@
         $release | Block-OctopusRelease -Description $TestName -Force | should be $true
 
         $release | UnBlock-OctopusRelease -Force | should be $true
-    }#>
+    }
+}
