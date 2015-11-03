@@ -212,6 +212,20 @@ It '[New-OctopusResource] creates environments'{
         $feed = Get-OctopusFeed -URL "*$($TestName.substring(5))*"
 
         $feed.FeedURI| should be "https://$testname.com"
+    }
+        It '[Get-OctopusVariableSet] gets variable sets by Project name'{        
+        $vs = Get-OctopusVariableSet -Projectname $TestName
+        $vs.ProjectName | should be $TestName
+    }
+    It '[Get-OctopusVariableSet] gets variable sets by Library Set name'{                        
+        $Library = Get-OctopusVariableSet -LibrarySetName $TestName
+        $Library.LibraryVariableSetName | should be $TestName
+    }
+    It '[Get-OctopusVariableSet] gets variable sets by Project name & Library Set name'{                        
+        $vs = Get-OctopusVariableSet -LibrarySetName $TestName -Projectname $TestName        
+        $vs.Count | should be 2        
+        $vs.LibraryVariableSetName | select -Unique | should be $TestName
+        $vs.ProjectName | select -Unique | should be $TestName
     }     
     It '[Remove-OctopusResource] deletes Projects'{
         (Get-OctopusProject -Name $TestName | Remove-OctopusResource -Force) | should be $true
