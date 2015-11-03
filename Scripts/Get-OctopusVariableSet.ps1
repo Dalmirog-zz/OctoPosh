@@ -69,7 +69,9 @@ function Get-OctopusVariableSet
             $Projects = Get-OctopusProject -ResourceOnly
             $LibrarySets = $c.repository.LibraryVariableSets.FindAll()
             
-            $variablesetids += $LibrarySets.links.variables
+            If($LibrarySets.count -gt 0){
+                $variablesetids += $LibrarySets.links.variables
+            }
             $variablesetids += $Projects.links.variables
         }
         else{
@@ -85,7 +87,7 @@ function Get-OctopusVariableSet
             }
         }
 
-        If($ResourceOnly){
+        If($ResourceOnly -and $variablesetids){
             foreach ($id in $variablesetids){
                 Write-Verbose "[$($MyInvocation.MyCommand)] [ResourceOnly] switch is on. Returning raw Octopus resource objects"
                 $list += $c.repository.VariableSets.Get($id)
@@ -146,8 +148,8 @@ function Get-OctopusVariableSet
     }
     End
     {
-        If($list.count -eq 0){
-            $list = $null
+        If($List.count -eq 0){
+            $List = $null
         }
         return $List
     }
