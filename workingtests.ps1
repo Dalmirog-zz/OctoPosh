@@ -124,7 +124,75 @@ It '[New-OctopusResource] creates environments'{
     It '[Get-OctopusMachine] gets machines by communication style'{
         $CommunicationStyle = 'Listening'
         Get-OctopusMachine -CommunicationStyle $CommunicationStyle | Select-Object -ExpandProperty communicationstyle -unique | should be $CommunicationStyle
-    }        
+    }
+        It '[Get-OctopusTask] gets tasks by single name'{
+        $name = 'Retention'
+        Get-OctopusTask -Name $name | Select-Object -ExpandProperty name -Unique | should be $name
+    }
+    It '[Get-OctopusTask] gets tasks by multiple names'{
+        $name1 = 'Retention'
+        $name2 = 'Deploy'
+
+        $n1tasks = Get-OctopusTask -Name $name1
+        $n2tasks = Get-OctopusTask -Name $name2
+    
+        $n12tasks = Get-octopustask -Name $name1,$name2
+
+        $n12tasks.count | should be ($n1tasks.count + $n2tasks.count) 
+    }
+    It '[Get-OctopusTask] gets tasks by single ID'{
+        $tasks = Get-OctopusTask -After (Get-Date).AddDays(-10) | Select-Object -First 1
+    
+        $results = Get-OctopusTask -TaskID $tasks.id
+
+        $results.id | should be $tasks.id            
+    }
+    It '[Get-OctopusTask] gets tasks by multiple IDs'{
+        $i = (Get-Random -Maximum 20)
+
+        $tasks = Get-OctopusTask -After (Get-Date).AddDays(-10) | Select-Object -First $i
+
+        $results = Get-OctopusTask -TaskID $tasks.id
+
+        $results.id | should be $tasks.id            
+    }
+    It '[Get-OctopusTask] gets tasks by single state'{
+        $state = 'Failed'
+            
+        $tasks = Get-OctopusTask -State $state
+    
+        $tasks | Select-Object -ExpandProperty State -Unique | should be $state
+    }
+    It '[Get-OctopusTask] gets tasks by multiple states'{
+        $state1 = 'Failed'
+        $state2 = 'success'
+            
+        $s1tasks = Get-OctopusTask -State $state1
+        $s2tasks = Get-OctopusTask -State $state2
+
+        $s12tasks = Get-OctopusTask -State $state1,$state2
+
+        $s12tasks.count | should be ($s1tasks.count + $s2tasks.count)            
+    }
+    It '[Get-OctopusTask] gets tasks by single Resource ID'{        
+        $envs = Get-OctopusEnvironment | ?{$_.machines.count -gt 0}
+
+        $i = Get-Random -Maximum ($envs.count - 1) -Minimum 0
+
+        $null = Start-OctopusHealthCheck -EnvironmentName $envs[$i].EnvironmentName -Force -Message "[Unit Tests]Health check on environment: $($envs[$i].EnvironmentName)"
+
+        Get-octopustask -ResourceID $envs[$i].Id | should not be $null            
+    }
+    It '[Get-OctopusTask] gets tasks between 2 date ranges'{        
+        $After = (Get-date).Adddays(-10)
+        $before = (Get-Date).AddDays(-1)
+        
+        $tasks = Get-OctopusTask -After $After -Before $before
+
+        $tasks.count | should not be 0
+        ($tasks.starttime.datetime -gt $before ).count | should be 0
+        ($tasks.starttime.datetime -lt $after ).count | should be 0
+    }      
     It '[Remove-OctopusResource] deletes Projects'{
         (Get-OctopusProject -Name $TestName | Remove-OctopusResource -Force) | should be $true
 
