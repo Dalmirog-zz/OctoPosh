@@ -344,7 +344,7 @@ Describe 'Octopus Module Tests' {
 
         (Start-OctopusHealthCheck -EnvironmentName $EnvironmentName -Force -ErrorAction SilentlyContinue) | should be $null
 
-        $delete = Remove-OctopusResource -Resource $envobj -Force -Wait
+        $delete = Remove-OctopusResource -Resource $envobj -Force
     }
     <#It '[Start-OctopusHealthChech] starts a health check on a single environment'{
         $task = Start-OctopusHealthCheck -EnvironmentName 'Staging' -Force -ErrorAction SilentlyContinue
@@ -413,7 +413,7 @@ Describe 'Octopus Module Tests' {
         $feed | Update-OctopusResource -Force | select -ExpandProperty FeedURI -Unique | should be $URL
     }
     It '[Remove-OctopusResource] deletes Machines'{
-        $delete = (Get-OctopusMachine -MachineName $TestName | Remove-OctopusResource -Force -Wait)
+        $delete = (Get-OctopusMachine -MachineName $TestName | Remove-OctopusResource -Force)
 
         $delete.name | should be "delete"
         $delete.state | should be "Success"
@@ -434,13 +434,13 @@ Describe 'Octopus Module Tests' {
         Get-OctopusProjectGroup -Name $TestName -ErrorAction SilentlyContinue | should be $null
     }
     It '[Remove-OctopusResource] deletes NuGet feeds'{
-        $delete = (Get-OctopusFeed -FeedName $TestName | Remove-OctopusResource -Force -Wait)
+        $delete = (Get-OctopusFeed -FeedName $TestName | Remove-OctopusResource -Force)
 
         $delete.name | should be "delete"
         $delete.state | should be "Success"
     }
     It '[Remove-OctopusResource] deletes Library Variable Sets'{
-        $delete = (Get-OctopusVariableSet -LibrarySetName $TestName | Remove-OctopusResource -Force -Wait)
+        $delete = (Get-OctopusVariableSet -LibrarySetName $TestName | Remove-OctopusResource -Force)
 
         $delete.name | should be "delete"
         $delete.state | should be "Success"
