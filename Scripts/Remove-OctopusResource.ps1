@@ -37,7 +37,13 @@ function Remove-OctopusResource
         [switch]$AcceptedTypes,
 
         # Forces cmdlet to continue without prompting
-        [switch]$Force
+        [switch]$Force,
+
+        # Waits until the task is not on states "Queued" or "Executing"
+        [switch]$Wait,
+
+        # Timeout for [Wait] parameter in minutes
+        [double]$Timeout = 2
     )
 
     Begin
@@ -77,29 +83,44 @@ function Remove-OctopusResource
             }
 
             Write-Verbose "[$($MyInvocation.MyCommand)] Deleting [$($R.GetType().tostring())] $($r.name)"
-            Try{
-                If(($ResourceType -eq 'Feeds') -or ($ResourceType -eq 'Machines')){
-                    #Deleting using REST API cause client library delete method doesnt work
-                    $task = (Invoke-WebRequest ($env:OctopusURL + $r.Links.Self) -Method Delete -Headers $c.header).content | ConvertFrom-Json
-                }
-                elseif($ResourceType -eq 'LibraryVariableSets'){
-                    #Deleting using REST API cause client library delete method doesnt work
-                    $task = Invoke-RestMethod ($env:OctopusURL + '/api/LibraryVariableSets/' +$r.OwnerId) -Method Delete -Headers $c.header
-                }
-                else{
-                    $task = $c.repository.$ResourceType.Delete($r)
-                }
+
+            If(($ResourceType -eq 'Feeds') -or ($ResourceType -eq 'Machines')){
+                #Deleting using REST API cause client library delete method doesnt work
+                $task = (Invoke-WebRequest ($env:OctopusURL + $r.Links.Self) -Method Delete -Headers $c.header).content | ConvertFrom-Json
             }
-            Catch{
-                #If task fails, it'll return the error
-                return $_
+            elseif($ResourceType -eq 'LibraryVariableSets'){
+                #Deleting using REST API cause client library delete method doesnt work
+                $task = Invoke-RestMethod ($env:OctopusURL + '/api/LibraryVariableSets/' +$r.OwnerId) -Method Delete -Headers $c.header
             }
-            
+            else{
+                $task = $c.repository.$ResourceType.Delete($r)
+            }
+
+            If($wait){
+
+                $StartTime = Get-Date
+
+                Do{
+                    $CurrentTime = Get-date
+                    
+                    $task = Get-OctopusTask -ID $task.id
+
+                    Write-Verbose "[$($MyInvocation.MyCommand)] Task $($Task.id) status: $($task.state)"
+                    
+                    Start-Sleep -Seconds 2
+                  }
+
+                Until (($task.state -notin ('Queued','executing')) -or ($CurrentTime -gt $StartTime.AddMinutes($Timeout)))
+                Write-Verbose "[$($MyInvocation.MyCommand)] Task finished with status: $($task.state.tostring().toupper())"
+            }            
         }
     }
     End
     {
-        #If task starts it'll return true.
-        return $true
+        If(!$Task){
+            $Task = $null
+        }
+
+        return $Task
     }
 }
