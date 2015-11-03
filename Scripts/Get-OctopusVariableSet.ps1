@@ -72,6 +72,7 @@ function Get-OctopusVariableSet
             If($LibrarySets.count -gt 0){
                 $variablesetids += $LibrarySets.links.variables
             }
+
             $variablesetids += $Projects.links.variables
         }
         else{
@@ -83,7 +84,9 @@ function Get-OctopusVariableSet
             If(![string]::IsNullOrEmpty($LibrarySetName)){
                 Write-Verbose "[$($MyInvocation.MyCommand)] Getting library variable sets: $LibrarySetName"    
                 $LibrarySets = $c.repository.LibraryVariableSets.FindMany({param($lib) if (($lib.name -in $LibrarySetName) -or ($lib.name -like $LibrarySetName)) {$true}})
-                $variablesetids += $LibrarySets.links.variables                
+                If($LibrarySets.count -gt 0){
+                    $variablesetids += $LibrarySets.links.variables
+                }        
             }
         }
 
