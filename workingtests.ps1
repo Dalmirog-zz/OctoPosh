@@ -76,6 +76,26 @@ It '[New-OctopusResource] creates environments'{
 
         $NewLibrary.name | should be $testname         
     }
+    It '[Get-OctopusEnvironment] gets environments'{           
+        Get-OctopusEnvironment -Name $TestName | Select-Object -ExpandProperty EnvironmentNAme | should be $TestName
+    }
+    It '[Get-OctopusProject] gets projects by single name'{
+        Get-OctopusProject -Name $TestName | Select-Object -ExpandProperty ProjectName | should be $TestName
+    }
+    It '[Get-OctopusProject] gets projects by multiple names'{
+        $names = Get-OctopusProject -ResourceOnly | Select-Object -First 2 -ExpandProperty Name
+        Get-OctopusProject -Name $names | Select-Object -ExpandProperty ProjectName | should be $names
+    }
+    It '[Get-OctopusProject] doent gets projects by non-existent names'{
+        $projectname = "Gengar"
+        Get-OctopusProject -ProjectName $projectname -ErrorAction SilentlyContinue| should be $null        
+    }
+    It '[Get-OctopusProjectGroup] gets Project Groups'{
+        Get-OctopusProjectGroup -Name $TestName | Select-Object -ExpandProperty ProjectGroupName | should be $TestName
+    }
+    It '[Get-OctopusLifecycle] gets Lifecycles'{
+        Get-OctopusLifeCycle | should not be $null
+    }
 
     It '[Remove-OctopusResource] deletes environments'{                
         {Get-OctopusEnvironment -Name $testname | Remove-OctopusResource -Force} | should not Throw               
@@ -201,7 +221,21 @@ It '[New-OctopusResource] creates environments'{
 
         $users.isactive | select -Unique | should be 'true'
     }    
+        It '[New-OctopusAPIKey] creates an API Key'{
+        $api = New-OctopusAPIKey -Purpose "$TestName" -Username 'Ian.Paullin' -password 'Michael3' -NoWarning -OctopusURL $env:OctopusURL
+                
+        $api.purpose | should be $TestName
 
+        $api.APIKey | should not be $null
 
+        {$c.repository.Users.RevokeApiKey($api)} | should not throw
 
+    }                    
+    It '[Block/Unblock-OctopusRelease] blocks/unblocks a release'{
+        $release = Get-OctopusRelease -ProjectName Release_Tests -Latest 1
+            
+        $release | Block-OctopusRelease -Description $TestName -Force | should be $true
+
+        $release | UnBlock-OctopusRelease -Force | should be $true
+    }
 }
