@@ -112,6 +112,18 @@ It '[New-OctopusResource] creates environments'{
     }
     It '[Get-OctopusLifecycle] gets Lifecycles'{
         Get-OctopusLifeCycle | should not be $null
+    }
+    It '[Get-OctopusMachine] gets machines by single name'{
+        $Machinename = $TestName
+        Get-OctopusMachine -MachineName $Machinename | Select-Object -ExpandProperty Machinename | should be $Machinename
+    }    
+    It '[Get-OctopusMachine] doesnt get machines by non-existent names '{
+        $Machinename = 'Charizard'
+        Get-OctopusMachine -MachineName $Machinename -ErrorAction SilentlyContinue | should be $null
+    }    
+    It '[Get-OctopusMachine] gets machines by communication style'{
+        $CommunicationStyle = 'Listening'
+        Get-OctopusMachine -CommunicationStyle $CommunicationStyle | Select-Object -ExpandProperty communicationstyle -unique | should be $CommunicationStyle
     }        
     It '[Remove-OctopusResource] deletes Projects'{
         (Get-OctopusProject -Name $TestName | Remove-OctopusResource -Force) | should be $true
