@@ -98,6 +98,51 @@ It '[New-OctopusResource] creates environments'{
     It '[Remove-OctopusResource] deletes Library Variable Sets'{
         (Get-OctopusVariableSet -LibrarySetName $TestName | Remove-OctopusResource -Force) | should be $true        
     }
+    It '[Get/Set-OctopusConnectionInfo] do their thing' {            
+        $originalURL = $env:OctopusURL
+        $originalAPIKey = $env:OctopusAPIKey
+
+        Set-OctopusConnectionInfo -URL 'SomethingURL' -APIKey 'SomethingAPIKey'
+
+        $ci = Get-OctopusConnectionInfo
+        $ci.OctopusURL | should be 'SomethingURL'
+        $ci.OctopusAPIKey | should be 'SomethingAPIKey'                
+
+        Set-OctopusConnectionInfo -URL $originalURL -APIKey $originalAPIKey
+
+        $ci = Get-OctopusConnectionInfo
+        $ci.OctopusURL | should be $originalURL
+        $ci.OctopusAPIKey | should be $originalAPIKey            
+    }
+    It '[Get/Set-OctopusSMTPConfig] do their thing'{            
+        $port = Get-Random
+                
+        Set-OctopusSMTPConfig -SMTPHost "$TestName" `
+        -Port $port -SendEmailFrom 'dalmiro@company.com' | should be $true
+
+        $SMTPConfig = Get-OctopusSMTPConfig
+
+        $SMTPConfig.SMTPHost | Should be $TestName
+        $SMTPConfig.SMTPPort | should be $port
+
+        Set-OctopusSMTPConfig -SMTPHost 'Localhost' `
+        -Port 25 -SendEmailFrom 'Octopus@company.com' | should be $true
+
+        $SMTPConfig = Get-OctopusSMTPConfig
+
+        $SMTPConfig.SMTPHost | Should be 'Localhost'
+        $SMTPConfig.SMTPPort | should be 25
+    }
+    It '[Get/Set-OctopusMaintenanceMode] do their thing' {
+        Set-OctopusMaintenanceMode -Mode ON -Force | should be $true
+
+        (Get-OctopusMaintenanceMode).IsInMaintenanceMode | should be $true
+
+        Set-OctopusMaintenanceMode -Mode OFF -Force | should be $true
+
+        (Get-OctopusMaintenanceMode).IsInMaintenanceMode | should be $False
+    }
+
 
 
 }
