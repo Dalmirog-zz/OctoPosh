@@ -20,38 +20,80 @@ Describe 'Octopus Module Tests' {
     $TestName = new-testname
 
     $c = New-OctopusConnection
-    
-    It '[New-OctopusResource] adds NuGet feeds'{
-        $Feedname = $testname
-        $feedURL = "https://$testname.com"
 
-        $feed = Get-OctopusResourceModel -Resource NugetFeed
+    It '[New-OctopusResource] creates Project Groups'{
+        $Pg = Get-OctopusResourceModel -Resource ProjectGroup
+                                                
+        $Pg.Name = $testname
 
-        $feed.Name = $Feedname
-        $feed.FeedUri = $feedURL
+        $Pgobj = New-OctopusResource -Resource $Pg
 
-        $newfeed = New-OctopusResource -Resource $feed
-
-        $newfeed.name | should be $testname 
-        $newfeed.feeduri | should be $feedURL
+        $Pgobj.name | should be $testname
     }
-    It '[New-OctopusResource] creates Library Variable Sets'{
-        $libraryName = $testname
-        $library = Get-OctopusResourceModel -Resource LibraryVariableSet
+    It '[New-OctopusResource] creates Projects'{
+        $Proj = Get-OctopusResourceModel -Resource Project
+                
+        $Proj.Name = $testname
+        $Proj.ProjectGroupId = (Get-OctopusProjectGroup -Name $TestName).id
+        $Proj.LifecycleId = (Get-OctopusLifeCycle)[0].id
 
-        $library.Name = $libraryName
+        $Projobj = New-OctopusResource -Resource $Proj
 
-        $NewLibrary = New-OctopusResource -Resource $library
-
-        $NewLibrary.name | should be $testname         
+        $Projobj.Name | should be $testname
     }
 
-    It '[Remove-OctopusResource] deletes NuGet feeds'{
-        (Get-OctopusFeed -FeedName $TestName | Remove-OctopusResource -Force) | should be $true
+    It 'Creating releases for tests'{
 
+        for($i = 0 ;$i -lt 31 ; $i++){
+            cd $PSScriptRoot
+            & ".\tools\Octo.exe" create-release --server=$env:OctopusURL --apikey=$env:OctopusAPIKey --project=$testname
+        }
+
+        1 | should not be $null
+
+    }
+
+    It '[Get-OctopusRelease] Gets latest X releases of a project'{
+        #This uses a hardcoded project with more than 30 releases
+        $latest = Get-Random -Minimum 1 -Maximum 30
+        $releases = Get-OctopusRelease -ProjectName $TestName -Latest $latest -resourceonly
+
+        $releases.count | should be $latest
+    }
+    It '[Get-OctopusRelease] [latest] cant get amount of release out of range'{
+        {Get-OctopusRelease -ProjectName $TestName -Latest -1} | should throw
+
+        {Get-OctopusRelease -ProjectName $TestName -Latest 31} | should throw
+    }
+
+    It '[Get-OctopusRelease] Gets a single release by release version'{
+        $release = Get-OctopusRelease -ProjectName $TestName -resourceonly -Latest 1
+
+        (Get-OctopusRelease -ProjectName $TestName -ReleaseVersion $release.version).ReleaseVersion| should be $release.Version
+    }
+    It '[Get-OctopusRelease] Gets a releases by multiple release versions'{
+        $max = 10
+        $rel1 = Get-Random -Minimum 1 -Maximum $max
+        do{
+            $rel2 = Get-Random -Minimum 1 -Maximum $max
+        }until($rel2 -ne $rel1)
+
+        $AllReleases = Get-OctopusRelease -ProjectName $TestName -ResourceOnly -Latest $max
+
+        $releases = Get-OctopusRelease -ProjectName $TestName -resourceonly -ReleaseVersion $AllReleases[$rel1].version,$AllReleases[$rel2].version
+
+        $releases.count | should be 2
         
+    }#>
+    It '[Remove-OctopusResource] deletes Projects'{
+        (Get-OctopusProject -Name $TestName | Remove-OctopusResource -Force) | should be $true
+
+        Get-OctopusProject -Name $TestName -ErrorAction SilentlyContinue| should be $null
     }
-    It '[Remove-OctopusResource] deletes Library Variable Sets'{
-        (Get-OctopusVariableSet -LibrarySetName $TestName | Remove-OctopusResource -Force) | should be $true
-    }
+    It '[Remove-OctopusResource] deletes Project Groups'{
+        (Get-OctopusProjectGroup -Name $TestName |Remove-OctopusResource -Force) | should be $true
+
+        Get-OctopusProjectGroup -Name $TestName -ErrorAction SilentlyContinue | should be $null
+    }   
+
 }
