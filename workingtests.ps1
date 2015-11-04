@@ -226,7 +226,62 @@ It '[New-OctopusResource] creates environments'{
         $vs.Count | should be 2        
         $vs.LibraryVariableSetName | select -Unique | should be $TestName
         $vs.ProjectName | select -Unique | should be $TestName
-    }     
+    }
+    
+    It 'Creating releases for tests'{
+
+        for($i = 0 ;$i -lt 31 ; $i++){
+            cd $PSScriptRoot
+            & ".\tools\Octo.exe" create-release --server=$env:OctopusURL --apikey=$env:OctopusAPIKey --project=$testname
+        }
+
+        1 | should not be $null
+
+    }
+
+    It '[Get-OctopusRelease] Gets latest X releases of a project'{
+        #This uses a hardcoded project with more than 30 releases
+        $latest = Get-Random -Minimum 1 -Maximum 30
+        $releases = Get-OctopusRelease -ProjectName $TestName -Latest $latest -resourceonly
+
+        $releases.count | should be $latest
+    }
+    It '[Get-OctopusRelease] [latest] cant get amount of release out of range'{
+        {Get-OctopusRelease -ProjectName $TestName -Latest -1} | should throw
+
+        {Get-OctopusRelease -ProjectName $TestName -Latest 31} | should throw
+    }
+
+    It '[Get-OctopusRelease] Gets a single release by release version'{
+        $release = Get-OctopusRelease -ProjectName $TestName -resourceonly -Latest 1
+
+        (Get-OctopusRelease -ProjectName $TestName -ReleaseVersion $release.version).ReleaseVersion| should be $release.Version
+    }
+    It '[Get-OctopusRelease] Gets a releases by multiple release versions'{
+        $max = 10
+        $rel1 = Get-Random -Minimum 1 -Maximum $max
+        do{
+            $rel2 = Get-Random -Minimum 1 -Maximum $max
+        }until($rel2 -ne $rel1)
+
+        $AllReleases = Get-OctopusRelease -ProjectName $TestName -ResourceOnly -Latest $max
+
+        $releases = Get-OctopusRelease -ProjectName $TestName -resourceonly -ReleaseVersion $AllReleases[$rel1].version,$AllReleases[$rel2].version
+
+        $releases.count | should be 2
+        
+    }
+    It '[Update-OctopusReleaseVariableSet] updates the variable set of a release'{
+        $release = Get-OctopusRelease -ProjectName $TestName -Latest 1 -ResourceOnly
+        Update-OctopusReleaseVariableSet -ProjectName $TestName -ReleaseVersion $release.version | should be $true
+    }
+    It '[Update-OctopusReleaseVariableSet] Doesnt update the variable set of a Release that doesnt exist'{
+        Update-OctopusReleaseVariableSet -ProjectName $TestName -ReleaseVersion 100.90.34 -ErrorAction SilentlyContinue | should be $false
+    }
+    It '[Update-OctopusReleaseVariableSet] Doesnt update the variable set of a Release of a Project that doesnt exist'{
+        Update-OctopusReleaseVariableSet -ProjectName unexistentproject -ReleaseVersion 1.0.34 -ErrorAction SilentlyContinue | should be $false
+    }
+        
     It '[Remove-OctopusResource] deletes Projects'{
         (Get-OctopusProject -Name $TestName | Remove-OctopusResource -Force) | should be $true
 
@@ -257,6 +312,12 @@ It '[New-OctopusResource] creates environments'{
 
         Get-OctopusEnvironment -Name $TestName -ErrorAction SilentlyContinue | should be $null
     }
+    It '[Start-OctopusRetentionPolicy] starts a "Retention" task'{
+        $task = Start-OctopusRetentionPolicy -Force -Wait
+
+        $task.GetType().fullname| should be 'Octopus.Client.Model.TaskResource'
+        $task.name | should be "Retention"
+    } 
     It '[Get/Set-OctopusConnectionInfo] do their thing' {            
         $originalURL = $env:OctopusURL
         $originalAPIKey = $env:OctopusAPIKey
