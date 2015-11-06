@@ -1,7 +1,5 @@
 # Disclaimer
-The module hasn't been tested with Octopus 3.0 yet. Even though most of it works with 3.0, the module has only been tested with 2.X
-
-3.0 Support comming soon: https://github.com/Dalmirog/OctoPosh/issues/130
+The module is being tested and developed in Octopus 3+. It might also work for 2.x, but its not gonna be tailores to work with this version.
 
 # OctoPosh: The Octopus Deploy Powershell Module
 
@@ -36,3 +34,4 @@ This module was made using the following awesome tools
 | Fiddler | http://www.telerik.com/fiddler |
 | Papercut     | https://papercut.codeplex.com/ |
 | TeamCity    | https://www.jetbrains.com/teamcity/ |
+| Powershell Gallery | https://www.powershellgallery.com/|
