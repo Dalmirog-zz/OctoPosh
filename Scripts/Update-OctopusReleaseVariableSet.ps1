@@ -45,7 +45,7 @@ function Update-OctopusReleaseVariableSet
            Try{    
                 Write-Verbose "[$($MyInvocation.MyCommand)] Updating variable set of Release $ReleaseVersion of Project $ProjectName" 
         
-                $r = Invoke-WebRequest -Uri ("$env:OctopusURL" + "$($release.Links.self)/snapshot-variables") -Method Post -Headers $c.header
+                $r = Invoke-WebRequest -Uri ("$env:OctopusURL" + "$($release.Links.self)/snapshot-variables") -Method Post -Headers $c.header -UseBasicParsing
             }
             Catch{       
                 write-error $_        
