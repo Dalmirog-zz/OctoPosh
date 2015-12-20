@@ -32,6 +32,7 @@ function Get-OctopusRelease{
         # Project Name. Only one Project can be passed to this parameter at a time
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [alias("Project")]
+        [ValidateNotNullOrEmpty()]
         [String]$ProjectName,
 
         # Get latest X releases. The highest number allowed by this parameter is 30
