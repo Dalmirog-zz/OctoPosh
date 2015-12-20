@@ -36,6 +36,7 @@ function Get-OctopusProject
         # Project Name
         [alias("Name")]
         [Parameter(ValueFromPipelineByPropertyName = $true)]
+        [ValidateNotNullOrEmpty()]
         [string[]]$ProjectName,
 
         # When used the cmdlet will only return the plain Octopus resource object
