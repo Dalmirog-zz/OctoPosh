@@ -108,9 +108,7 @@ function Get-OctopusRelease{
                             ReleaseVersion = $release.Version
                             ReleaseNotes = $release.ReleaseNotes
                             CreationDate = ($release.assembled).datetime
-                            CreatedBy = $rev.Username
-                            LastModifiedOn = ($release.LastModifiedOn).datetime
-                            LastModifiedBy = $release.LastModifiedBy                
+                            CreatedBy = $rev.Username          
                             Resource = $release                
                         }            
 
