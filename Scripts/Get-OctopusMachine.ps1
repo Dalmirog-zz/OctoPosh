@@ -168,8 +168,6 @@ function Get-OctopusMachine
                     CommunicationStyle = $Style
                     Status = $machine.Status
                     StatusSummary = $machine.StatusSummary
-                    LastModifiedOn = $machine.LastModifiedOn
-                    LastModifiedBy = $machine.LastModifiedBy
                     Resource = $machine
                 }
 

@@ -87,22 +87,18 @@ Describe 'Octopus Module Tests' {
         $machine.Thumbprint = "8A7E6157A34158EDA1B5127CB027B2A267760A4F"
         $machine.CommunicationStyle = "TentacleActive"
         $machine.Roles.Add("WebServer") | Out-Null
+        $machine.Uri = "https://localhost:10933"
 
         $NewMachine = New-OctopusResource -Resource $machine
 
         $NewMachine.name | should be $testname
     }
-    It '[NEW-OCTOPUSRESOURCE] CREATES LIFECYCLES. UGLY PLACEHOLDER'{
-
-    }    
-    It '[NEW-OCTOPUSRELEASE] CREATES RELEASES. UGLY PLACEHOLDER'{
-
-    }
-    It '[NEW-OCTOPUSDEPLOYMENT] CREATES DEPLOMENTS. UGLY PLACEHOLDER'{
-
-    }
     It '[Get-OctopusEnvironment] gets environments'{           
         Get-OctopusEnvironment -Name $TestName | Select-Object -ExpandProperty EnvironmentNAme | should be $TestName
+    }
+    It '[Get-OctopusEnvironment] returns 0 results when environment name is "" '{
+        $env = Get-OctopusEnvironment -Name ""
+        $env.count | should be 0
     }
     It '[Get-OctopusProject] gets projects by single name'{
         Get-OctopusProject -Name $TestName | Select-Object -ExpandProperty ProjectName | should be $TestName
@@ -120,68 +116,25 @@ Describe 'Octopus Module Tests' {
     }
     It '[Get-OctopusLifecycle] gets Lifecycles'{
         Get-OctopusLifeCycle | should not be $null
-    }                
+    }
     It '[Get-OctopusMachine] gets machines by single name'{
         $Machinename = $TestName
         Get-OctopusMachine -MachineName $Machinename | Select-Object -ExpandProperty Machinename | should be $Machinename
-    }
-    It '[Get-OctopusMachine] gets machines by name using wildcards'{
-        $Machinename = '*OctopusTest*'
-        $regex = $Machinename.Replace('*','')
-        Get-OctopusMachine -MachineName $Machinename | Select-Object -ExpandProperty Machinename | should match ([regex]::Escape($regex))
-    }
-    It '[Get-OctopusMachine] gets machines by multiple names'{
-        $Machinename = 'OctopusTest02 - TestMachine1','OctopusTest02 - TestMachine2'            
-        Get-OctopusMachine -MachineName $Machinename | Select-Object -ExpandProperty Machinename | should be $Machinename
-    }        
+    }    
     It '[Get-OctopusMachine] doesnt get machines by non-existent names '{
         $Machinename = 'Charizard'
         Get-OctopusMachine -MachineName $Machinename -ErrorAction SilentlyContinue | should be $null
-    }        
-    It '[Get-OctopusMachine] gets machines by single environment '{
-        $environmentName = 'staging'
-        Get-OctopusMachine -EnvironmentName $environmentName | Select-Object -ExpandProperty EnvironmentName -unique | should be $environmentName
-    }        
-    It '[Get-OctopusMachine] gets machines by multiple environments '{
-        $environmentName = 'staging','Production'
-        Get-OctopusMachine -EnvironmentName $environmentName | Select-Object -ExpandProperty EnvironmentName -Unique | should be $environmentName
-    }
-    It '[Get-OctopusMachine] gets machines by Environment using wildcards'{
-        $EnvironmentName = 'Prod*'
-        $regex = $EnvironmentName.Replace('*','')
-        Get-OctopusMachine -EnvironmentName $EnvironmentName| Select-Object -ExpandProperty EnvironmentName | should match ([regex]::Escape($regex))
-    }
-    It '[Get-OctopusMachine] gets doesnt get machines from non-existent environments'{
-        $environmentName = 'Lugia','Articuno'
-        Get-OctopusMachine -EnvironmentName $environmentName -ErrorAction SilentlyContinue| should be $null
-    }
-    It '[Get-OctopusMachine] gets machines by single URL'{
-        $URL = 'https://octopustest02:10937/'
-        Get-OctopusMachine -URL $URL | Select-Object -ExpandProperty URI -unique | should be $URL
-    }
-    It '[Get-OctopusMachine] gets machines by multiple URLs'{
-        $URL = 'https://octopustest02:10936/'
-        Get-OctopusMachine -URL $URL | Select-Object -ExpandProperty URI -unique | should be $URL
-    }
-    It '[Get-OctopusMachine] gets machines by URL using wildcards'{
-        $URL = '*109*'
-        $regex = $URL.Replace('*','')
-        Get-OctopusMachine -URL $URL| Select-Object -ExpandProperty URI | should match ([regex]::Escape($regex))
-    }
-    It '[Get-OctopusMachine] gets doesnt get machines from non-existent URL'{
-        $URL = 'Umbreon'
-        Get-OctopusMachine -URL $URL -ErrorAction SilentlyContinue| should be $null
-    }
+    }    
     It '[Get-OctopusMachine] gets machines by communication style'{
         $CommunicationStyle = 'Listening'
         Get-OctopusMachine -CommunicationStyle $CommunicationStyle | Select-Object -ExpandProperty communicationstyle -unique | should be $CommunicationStyle
     }
-    It '[Get-OctopusTask] gets tasks by single name'{
-        $name = 'Adhocscript'
+        It '[Get-OctopusTask] gets tasks by single name'{
+        $name = 'Retention'
         Get-OctopusTask -Name $name | Select-Object -ExpandProperty name -Unique | should be $name
     }
     It '[Get-OctopusTask] gets tasks by multiple names'{
-        $name1 = 'Adhocscript'
+        $name1 = 'Retention'
         $name2 = 'Deploy'
 
         $n1tasks = Get-OctopusTask -Name $name1
@@ -236,15 +189,15 @@ Describe 'Octopus Module Tests' {
     }
     It '[Get-OctopusTask] gets tasks between 2 date ranges'{        
         $After = (Get-date).Adddays(-10)
-        $before = (Get-Date).AddDays(-1)
+        $before = Get-Date
         
         $tasks = Get-OctopusTask -After $After -Before $before
 
         $tasks.count | should not be 0
         ($tasks.starttime.datetime -gt $before ).count | should be 0
         ($tasks.starttime.datetime -lt $after ).count | should be 0
-    }
-    It '[Get-OctopusFeed] gets feeds by name'{
+    } 
+        It '[Get-OctopusFeed] gets feeds by name'{
         $feed = Get-OctopusFeed -FeedName $TestName
 
         $feed.Name | should be $TestName
@@ -263,49 +216,50 @@ Describe 'Octopus Module Tests' {
         $feed = Get-OctopusFeed -URL "*$($TestName.substring(5))*"
 
         $feed.FeedURI| should be "https://$testname.com"
-    }      
-    It '[Get-OctopusVariableSet] gets variable sets by Project name'{        
+    }
+        It '[Get-OctopusVariableSet] gets variable sets by Project name'{        
         $vs = Get-OctopusVariableSet -Projectname $TestName
         $vs.ProjectName | should be $TestName
     }
-    It '[Get-OctopusVariableSet] gets variable sets by Library Set name [UGLY HARCODED VALUE]'{        
-        $LibraryName = $TestName
-        
-        $Library = Get-OctopusVariableSet -LibrarySetName $LibraryName
-        $Library.LibraryVariableSetName | should be $LibraryName
+    It '[Get-OctopusVariableSet] gets variable sets by Library Set name'{                        
+        $Library = Get-OctopusVariableSet -LibrarySetName $TestName
+        $Library.LibraryVariableSetName | should be $TestName
     }
-    It '[Get-OctopusVariableSet] gets variable sets by Project name & Library Set name [UGLY HARCODED VALUE]'{        
-        $SetName = 'Octoposh'
-        
-        $vs = Get-OctopusVariableSet -LibrarySetName $SetName -Projectname $TestName
-        
-        $vs.Count | should be 2
-        
-        $vs.LibraryVariableSetName | select -Unique | should be $SetName
+    It '[Get-OctopusVariableSet] gets variable sets by Project name & Library Set name'{                        
+        $vs = Get-OctopusVariableSet -LibrarySetName $TestName -Projectname $TestName        
+        $vs.Count | should be 2        
+        $vs.LibraryVariableSetName | select -Unique | should be $TestName
         $vs.ProjectName | select -Unique | should be $TestName
     }
+    
+    It 'Creating releases for tests'{
+
+        for($i = 0 ;$i -lt 31 ; $i++){
+            cd $PSScriptRoot
+            & ".\tools\Octo.exe" create-release --server=$env:OctopusURL --apikey=$env:OctopusAPIKey --project=$testname
+        }
+
+        1 | should not be $null
+
+    }
+
     It '[Get-OctopusRelease] Gets latest X releases of a project'{
         #This uses a hardcoded project with more than 30 releases
         $latest = Get-Random -Minimum 1 -Maximum 30
-        $releases = Get-OctopusRelease -ProjectName TestProject1 -Latest $latest -resourceonly
+        $releases = Get-OctopusRelease -ProjectName $TestName -Latest $latest -resourceonly
 
         $releases.count | should be $latest
     }
     It '[Get-OctopusRelease] [latest] cant get amount of release out of range'{
-        {Get-OctopusRelease -ProjectName TestProject1 -Latest -1} | should throw
+        {Get-OctopusRelease -ProjectName $TestName -Latest -1} | should throw
 
-        {Get-OctopusRelease -ProjectName TestProject1 -Latest 31} | should throw
+        {Get-OctopusRelease -ProjectName $TestName -Latest 31} | should throw
     }
-    It '[Get-OctopusRelease] Gets all the releases of a project. Placeholder until #119 is fixed'{
-        #This test asumes that if the amount of releases is greater than 30, then those should be all of the releases
-        #$releases = Get-OctopusRelease -ProjectName TestProject1 -resourceonly
-        
-        #$releases.count -ge 30 | should be $true
-    }
+
     It '[Get-OctopusRelease] Gets a single release by release version'{
-        $release = Get-OctopusRelease -ProjectName TestProject1 -resourceonly -Latest 1
+        $release = Get-OctopusRelease -ProjectName $TestName -resourceonly -Latest 1
 
-        (Get-OctopusRelease -ProjectName TestProject1 -ReleaseVersion $release.version).ReleaseVersion| should be $release.Version
+        (Get-OctopusRelease -ProjectName $TestName -ReleaseVersion $release.version).ReleaseVersion| should be $release.Version
     }
     It '[Get-OctopusRelease] Gets a releases by multiple release versions'{
         $max = 10
@@ -314,59 +268,24 @@ Describe 'Octopus Module Tests' {
             $rel2 = Get-Random -Minimum 1 -Maximum $max
         }until($rel2 -ne $rel1)
 
-        $AllReleases = Get-OctopusRelease -ProjectName TestProject1 -ResourceOnly -Latest $max
+        $AllReleases = Get-OctopusRelease -ProjectName $TestName -ResourceOnly -Latest $max
 
-        $releases = Get-OctopusRelease -ProjectName TestProject1 -resourceonly -ReleaseVersion $AllReleases[$rel1].version,$AllReleases[$rel2].version
+        $releases = Get-OctopusRelease -ProjectName $TestName -resourceonly -ReleaseVersion $AllReleases[$rel1].version,$AllReleases[$rel2].version
 
         $releases.count | should be 2
         
     }
-    It '[Get-OctopusDeployment] GETS A DEPLOYMENT. UGLY PLACEHOLDER'{
-        #(Get-OctopusDeployment -ProjectName TestProject1) | should not be $null                
-    }
-    It '[Update-OctopusReleaseVariableSet] updates the variable set of a release [UGLY HARCODED VALUE]'{
-        Update-OctopusReleaseVariableSet -ProjectName TestProject1 -ReleaseVersion 1.0.34 | should be $true
+    It '[Update-OctopusReleaseVariableSet] updates the variable set of a release'{
+        $release = Get-OctopusRelease -ProjectName $TestName -Latest 1 -ResourceOnly
+        Update-OctopusReleaseVariableSet -ProjectName $TestName -ReleaseVersion $release.version | should be $true
     }
     It '[Update-OctopusReleaseVariableSet] Doesnt update the variable set of a Release that doesnt exist'{
-        Update-OctopusReleaseVariableSet -ProjectName $TestName -ReleaseVersion 1.90.34 -ErrorAction SilentlyContinue | should be $false
+        Update-OctopusReleaseVariableSet -ProjectName $TestName -ReleaseVersion 100.90.34 -ErrorAction SilentlyContinue | should be $false
     }
     It '[Update-OctopusReleaseVariableSet] Doesnt update the variable set of a Release of a Project that doesnt exist'{
         Update-OctopusReleaseVariableSet -ProjectName unexistentproject -ReleaseVersion 1.0.34 -ErrorAction SilentlyContinue | should be $false
     }
-    It '[Start-OctopusHealthChech] doesnt start health checks on empty environments'{
-        $EnvironmentName = "EmptyEnvironment"
 
-        $env = Get-OctopusResourceModel -Resource Environment                
-
-        $env.Name = $EnvironmentName
-                
-        $envobj = New-OctopusResource -Resource $env
-
-        (Start-OctopusHealthCheck -EnvironmentName $EnvironmentName -Force -ErrorAction SilentlyContinue) | should be $null
-
-        $delete = Remove-OctopusResource -Resource $envobj -Force -Wait
-    }
-    <#It '[Start-OctopusHealthChech] starts a health check on a single environment'{
-        $task = Start-OctopusHealthCheck -EnvironmentName 'Staging' -Force -ErrorAction SilentlyContinue
-        $task.count | should be 1
-        $task.GetType().fullname| should be 'Octopus.Client.Model.TaskResource'
-    }
-    It '[Start-OctopusHealthChech] starts a health check on multiple environments'{
-        $tasks = Start-OctopusHealthCheck -EnvironmentName 'Staging','production' -Force -ErrorAction SilentlyContinue
-        $tasks.count | should be 2
-        $tasks | Get-Member | Select-Object -ExpandProperty typename -Unique | should be 'Octopus.Client.Model.TaskResource'
-    }#>   
-    It '[Start-OctopusRetentionPolicy] starts a "Retention" task'{
-        $task = Start-OctopusRetentionPolicy -Force -Wait
-
-        $task.GetType().fullname| should be 'Octopus.Client.Model.TaskResource'
-        $task.name | should be "Retention"
-    }
-    It '[Start-OctopusBackup] Starts a backup task'{
-        $BackupTask = Start-OctopusBackup -Force -Message $TestName
-        $task = Get-OctopusTask -TaskID $BackupTask.id
-        $task.description | should be $TestName
-    }
     It '[Update-OctopusResource] Updates ProjectGroups'{
         $description = "New Description"
         
@@ -412,48 +331,68 @@ Describe 'Octopus Module Tests' {
 
         $feed | Update-OctopusResource -Force | select -ExpandProperty FeedURI -Unique | should be $URL
     }
-    It '[Remove-OctopusResource] deletes Machines'{
-        $delete = (Get-OctopusMachine -MachineName $TestName | Remove-OctopusResource -Force -Wait)
-
-        $delete.name | should be "delete"
-        $delete.state | should be "Success"
-    }
-    It '[Remove-OctopusResource] deletes environments'{                
-        {Get-OctopusEnvironment -Name $testname | Remove-OctopusResource -Force} | should not Throw               
-
-        Get-OctopusEnvironment -Name $TestName -ErrorAction SilentlyContinue | should be $null
-    }        
+        
     It '[Remove-OctopusResource] deletes Projects'{
-        {Get-OctopusProject -Name $TestName | Remove-OctopusResource -Force} | should not throw
+        (Get-OctopusProject -Name $TestName | Remove-OctopusResource -Force) | should be $true
 
         Get-OctopusProject -Name $TestName -ErrorAction SilentlyContinue| should be $null
     }
     It '[Remove-OctopusResource] deletes Project Groups'{
-        {Get-OctopusProjectGroup -Name $TestName |Remove-OctopusResource -Force} | should not throw
+        (Get-OctopusProjectGroup -Name $TestName |Remove-OctopusResource -Force) | should be $true
 
         Get-OctopusProjectGroup -Name $TestName -ErrorAction SilentlyContinue | should be $null
     }
     It '[Remove-OctopusResource] deletes NuGet feeds'{
-        $delete = (Get-OctopusFeed -FeedName $TestName | Remove-OctopusResource -Force -Wait)
+        (Get-OctopusFeed -FeedName $TestName | Remove-OctopusResource -Force) | should be $true
 
-        $delete.name | should be "delete"
-        $delete.state | should be "Success"
+        Get-OctopusFeed -FeedName $TestName -ErrorAction SilentlyContinue | should be $null
     }
     It '[Remove-OctopusResource] deletes Library Variable Sets'{
-        $delete = (Get-OctopusVariableSet -LibrarySetName $TestName | Remove-OctopusResource -Force -Wait)
+        (Get-OctopusVariableSet -LibrarySetName $TestName | Remove-OctopusResource -Force) | should be $true        
 
-        $delete.name | should be "delete"
-        $delete.state | should be "Success"
+        Get-OctopusVariableSet -LibrarySetName $TestName -ErrorAction SilentlyContinue | should be $null
     }
-    It '[REMOVE-OCTOPUSRESOURCE] DELETES LIFECYCLES. UGLY PLACEHOLDER'{
-
-    }    
-    It '[REMOVE-OCTOPUSRESOURCE] DELETES RELEASES. UGLY PLACEHOLDER'{
-
+    It '[Remove-OctopusResource] deletes Machines'{
+        (Get-OctopusMachine -MachineName $TestName | Remove-OctopusResource -Force) | should be $true       
+        
+        Get-OctopusMachine -Name $TestName -ErrorAction SilentlyContinue | should be $null
     }
-    It '[REMOVE-OCTOPUSRESOURCE] DELETES DEPLOYMENT. UGLY PLACEHOLDER'{
+    It '[Remove-OctopusResource] deletes environments'{                
+        (Get-OctopusEnvironment -Name $testname | Remove-OctopusResource -Force) | should be $true
 
+        Get-OctopusEnvironment -Name $TestName -ErrorAction SilentlyContinue | should be $null
     }
+    It '[Start-OctopusRetentionPolicy] starts a "Retention" task'{
+        $task = Start-OctopusRetentionPolicy -Force -Wait
+
+        $task.GetType().fullname| should be 'Octopus.Client.Model.TaskResource'
+        $task.name | should be "Retention"
+    }
+
+        It '[Start-OctopusHealthChech] doesnt start health checks on empty environments'{
+        $EnvironmentName = "EmptyEnvironment"
+
+        $env = Get-OctopusResourceModel -Resource Environment                
+
+        $env.Name = $EnvironmentName
+                
+        $envobj = New-OctopusResource -Resource $env
+
+        (Start-OctopusHealthCheck -EnvironmentName $EnvironmentName -Force -ErrorAction SilentlyContinue) | should be $null
+
+        $delete = Remove-OctopusResource -Resource $envobj -Force
+    }
+    <#It '[Start-OctopusHealthChech] starts a health check on a single environment'{
+        $task = Start-OctopusHealthCheck -EnvironmentName 'Staging' -Force -ErrorAction SilentlyContinue
+        $task.count | should be 1
+        $task.GetType().fullname| should be 'Octopus.Client.Model.TaskResource'
+    }
+    It '[Start-OctopusHealthChech] starts a health check on multiple environments'{
+        $tasks = Start-OctopusHealthCheck -EnvironmentName 'Staging','production' -Force -ErrorAction SilentlyContinue
+        $tasks.count | should be 2
+        $tasks | Get-Member | Select-Object -ExpandProperty typename -Unique | should be 'Octopus.Client.Model.TaskResource'
+    }#> 
+
     It '[Get/Set-OctopusConnectionInfo] do their thing' {            
         $originalURL = $env:OctopusURL
         $originalAPIKey = $env:OctopusAPIKey
@@ -498,7 +437,7 @@ Describe 'Octopus Module Tests' {
 
         (Get-OctopusMaintenanceMode).IsInMaintenanceMode | should be $False
     }
-    It '[Set-OctopusUserAccountStatus] Enables\Disables a user account by name' {        
+        It '[Set-OctopusUserAccountStatus] Enables\Disables a user account by name' {        
         $User = Set-OctopusUserAccountStatus -Username 'OT\Tester@OT' -status Disabled
         $User.IsActive | should be 'False'
 
@@ -557,8 +496,8 @@ Describe 'Octopus Module Tests' {
 
         $users.isactive | select -Unique | should be 'true'
     }    
-    It '[New-OctopusAPIKey] creates an API Key'{
-        $api = New-OctopusAPIKey -Purpose "$TestName" -Username 'Ian.Paullin' -password 'Michael2' -NoWarning -OctopusURL $env:OctopusURL
+        It '[New-OctopusAPIKey] creates an API Key'{
+        $api = New-OctopusAPIKey -Purpose "$TestName" -Username 'Ian.Paullin' -password 'Michael3' -NoWarning -OctopusURL $env:OctopusURL
                 
         $api.purpose | should be $TestName
 
@@ -567,8 +506,8 @@ Describe 'Octopus Module Tests' {
         {$c.repository.Users.RevokeApiKey($api)} | should not throw
 
     }                    
-    It '[Block/Unblock-OctopusRelease] blocks/unblocks AN UGLY HARDCODED release'{
-        $release = Get-OctopusRelease -ProjectName TestProject1 -ReleaseVersion 1.0.31
+    It '[Block/Unblock-OctopusRelease] blocks/unblocks a release'{
+        $release = Get-OctopusRelease -ProjectName Release_Tests -Latest 1
             
         $release | Block-OctopusRelease -Description $TestName -Force | should be $true
 
