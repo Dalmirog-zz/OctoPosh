@@ -1,3 +1,6 @@
+# Disclaimer
+The module is being tested and developed in Octopus 3+. It might also work for 2.x, but its not gonna be tailores to work with this version.
+
 # OctoPosh: The Octopus Deploy Powershell Module
 
 Octopus Deploy is a friendly deployment automation system for .NET developers. [Its architecture is built API-First](http://docs.octopusdeploy.com/display/OD/Octopus+REST+API), meaning 99% of what you can do from the Octopus UI can also be performed using the REST API.
@@ -31,3 +34,4 @@ This module was made using the following awesome tools
 | Fiddler | http://www.telerik.com/fiddler |
 | Papercut     | https://papercut.codeplex.com/ |
 | TeamCity    | https://www.jetbrains.com/teamcity/ |
+| Powershell Gallery | https://www.powershellgallery.com/|
