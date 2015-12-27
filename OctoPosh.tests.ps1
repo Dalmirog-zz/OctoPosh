@@ -104,6 +104,10 @@ Describe 'Octopus Module Tests' {
     It '[Get-OctopusEnvironment] gets environments'{           
         Get-OctopusEnvironment -Name $TestName | Select-Object -ExpandProperty EnvironmentNAme | should be $TestName
     }
+    It '[Get-OctopusEnvironment] returns 0 results when environment name is "" '{
+        $env = Get-OctopusEnvironment -Name ""
+        $env.count | should be 0
+    }
     It '[Get-OctopusProject] gets projects by single name'{
         Get-OctopusProject -Name $TestName | Select-Object -ExpandProperty ProjectName | should be $TestName
     }
