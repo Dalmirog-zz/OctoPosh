@@ -77,17 +77,18 @@ Describe 'Octopus Module Tests' {
         $NewLibrary.name | should be $testname         
     }
     It '[New-OctopusResource] adds a Machine to an Environment'{
-        
         $machine = Get-OctopusResourceModel -Resource Machine
-                
+        
         $environment = Get-OctopusEnvironment -EnvironmentName $testname
-
+        
         $machine.name = $testname
         $machine.EnvironmentIds.Add($environment.id) | Out-Null
-        $machine.Thumbprint = "8A7E6157A34158EDA1B5127CB027B2A267760A4F"
-        $machine.CommunicationStyle = "TentacleActive"
-        $machine.Roles.Add("WebServer") | Out-Null
-        $machine.Uri = "https://localhost:10933"
+        $machine.Roles.Add("WebServer") | Out-Null        
+
+        $machineEndpoint = New-Object Octopus.Client.Model.Endpoints.ListeningTentacleEndpointResource
+        $machine.EndPoint = $machineEndpoint
+        $machine.Endpoint.Uri = "https://localhost:10933"
+        $machine.Endpoint.Thumbprint = "8A7E6157A34158EDA1B5127CB027B2A267760A4F"
 
         $NewMachine = New-OctopusResource -Resource $machine
 
