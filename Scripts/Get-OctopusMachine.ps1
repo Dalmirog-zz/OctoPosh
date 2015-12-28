@@ -117,6 +117,7 @@ function Get-OctopusMachine
                 $envmachines = $c.repository.Environments.GetMachines($env)
 
                 If($envmachines){
+                    Write-Verbose "[$($MyInvocation.MyCommand)] [ResourceOnly] switch is on. Returning raw Octopus resource objects"
                     $machines += $envmachines            
                 }
 
