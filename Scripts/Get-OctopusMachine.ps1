@@ -153,8 +153,8 @@ function Get-OctopusMachine
                     $e = Get-OctopusResource "api/environments/$($machine.EnvironmentIds)" -header $c.header
                 }
                 
-                If($Machine.CommunicationStyle -eq 'TentacleActive'){$Style = 'Polling'}            
-                If($Machine.CommunicationStyle -eq 'TentaclePassive'){$Style = 'Listening'}               
+                If($Machine.Endpoint.CommunicationStyle -eq 'TentacleActive'){$Style = 'Polling'}            
+                If($Machine.Endpoint.CommunicationStyle -eq 'TentaclePassive'){$Style = 'Listening'}               
 
                 $obj = [PSCustomObject]@{
                     MachineName = $machine.Name
@@ -164,7 +164,7 @@ function Get-OctopusMachine
                     IsDisabled = $machine.IsDisabled
                     EnvironmentName = $e.name
                     Roles = $machine.Roles
-                    Squid = $machine.Squid
+                    HasLatestCalamari = $machine.HasLatestCalamari
                     CommunicationStyle = $Style
                     Status = $machine.Status
                     StatusSummary = $machine.StatusSummary
