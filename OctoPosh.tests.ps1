@@ -232,7 +232,7 @@ Describe 'Octopus Module Tests' {
         $vs.LibraryVariableSetName | select -Unique | should be $TestName
         $vs.ProjectName | select -Unique | should be $TestName
     }
-    
+        
     It 'Creating releases for tests'{
 
         for($i = 0 ;$i -lt 31 ; $i++){
@@ -256,7 +256,6 @@ Describe 'Octopus Module Tests' {
 
         {Get-OctopusRelease -ProjectName $TestName -Latest 31} | should throw
     }
-
     It '[Get-OctopusRelease] Gets a single release by release version'{
         $release = Get-OctopusRelease -ProjectName $TestName -resourceonly -Latest 1
 
@@ -286,7 +285,6 @@ Describe 'Octopus Module Tests' {
     It '[Update-OctopusReleaseVariableSet] Doesnt update the variable set of a Release of a Project that doesnt exist'{
         Update-OctopusReleaseVariableSet -ProjectName unexistentproject -ReleaseVersion 1.0.34 -ErrorAction SilentlyContinue | should be $false
     }
-
     It '[Update-OctopusResource] Updates ProjectGroups'{
         $description = "New Description"
         
@@ -331,8 +329,7 @@ Describe 'Octopus Module Tests' {
         $feed.Resource.FeedUri = $URL
 
         $feed | Update-OctopusResource -Force | select -ExpandProperty FeedURI -Unique | should be $URL
-    }
-        
+    }        
     It '[Remove-OctopusResource] deletes Projects'{
         (Get-OctopusProject -Name $TestName | Remove-OctopusResource -Force) | should be $true
 
@@ -369,8 +366,7 @@ Describe 'Octopus Module Tests' {
         $task.GetType().fullname| should be 'Octopus.Client.Model.TaskResource'
         $task.name | should be "Retention"
     }
-
-        It '[Start-OctopusHealthChech] doesnt start health checks on empty environments'{
+    It '[Start-OctopusHealthChech] doesnt start health checks on empty environments'{
         $EnvironmentName = "EmptyEnvironment"
 
         $env = Get-OctopusResourceModel -Resource Environment                
@@ -392,8 +388,7 @@ Describe 'Octopus Module Tests' {
         $tasks = Start-OctopusHealthCheck -EnvironmentName 'Staging','production' -Force -ErrorAction SilentlyContinue
         $tasks.count | should be 2
         $tasks | Get-Member | Select-Object -ExpandProperty typename -Unique | should be 'Octopus.Client.Model.TaskResource'
-    }#> 
-
+    }#>
     It '[Get/Set-OctopusConnectionInfo] do their thing' {            
         $originalURL = $env:OctopusURL
         $originalAPIKey = $env:OctopusAPIKey
@@ -438,7 +433,7 @@ Describe 'Octopus Module Tests' {
 
         (Get-OctopusMaintenanceMode).IsInMaintenanceMode | should be $False
     }
-        It '[Set-OctopusUserAccountStatus] Enables\Disables a user account by name' {        
+    It '[Set-OctopusUserAccountStatus] Enables\Disables a user account by name' {        
         $User = Set-OctopusUserAccountStatus -Username 'OT\Tester@OT' -status Disabled
         $User.IsActive | should be 'False'
 
