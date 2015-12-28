@@ -85,7 +85,7 @@ function Get-OctopusMachine
             If($CommunicationStyle -eq 'Polling'){$Style = 'TentacleActive'}            
             elseIf($CommunicationStyle -eq 'Listening'){$Style = 'TentaclePassive'}
 
-            $Machines = $c.repository.Machines.FindMany({param($Mach) if ($Mach.CommunicationStyle -eq $Style){$true}})
+            $Machines = $c.repository.Machines.FindMany({param($Mach) if ($Mach.Endpoint.CommunicationStyle -eq $Style){$true}})
 
             If($Machines -eq $null){
                 Write-Error "No Machines found with CommunicationStyle: $($Style)"
