@@ -130,7 +130,7 @@ Describe 'Octopus Module Tests' {
         $CommunicationStyle = 'Listening'
         Get-OctopusMachine -CommunicationStyle $CommunicationStyle | Select-Object -ExpandProperty communicationstyle -unique | should be $CommunicationStyle
     }
-        It '[Get-OctopusTask] gets tasks by single name'{
+    It '[Get-OctopusTask] gets tasks by single name'{
         $name = 'Retention'
         Get-OctopusTask -Name $name | Select-Object -ExpandProperty name -Unique | should be $name
     }
@@ -198,7 +198,7 @@ Describe 'Octopus Module Tests' {
         ($tasks.starttime.datetime -gt $before ).count | should be 0
         ($tasks.starttime.datetime -lt $after ).count | should be 0
     } 
-        It '[Get-OctopusFeed] gets feeds by name'{
+    It '[Get-OctopusFeed] gets feeds by name'{
         $feed = Get-OctopusFeed -FeedName $TestName
 
         $feed.Name | should be $TestName
@@ -218,7 +218,7 @@ Describe 'Octopus Module Tests' {
 
         $feed.FeedURI| should be "https://$testname.com"
     }
-        It '[Get-OctopusVariableSet] gets variable sets by Project name'{        
+    It '[Get-OctopusVariableSet] gets variable sets by Project name'{        
         $vs = Get-OctopusVariableSet -Projectname $TestName
         $vs.ProjectName | should be $TestName
     }
