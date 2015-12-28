@@ -70,9 +70,32 @@ function Start-OctopusCalamariUpdate
             $machines = Get-OctopusMachine -MachineName $MachineName -ResourceOnly
         }
 
-        "Checking health in "
-        $machines.name
+        If(!$message){
+            $message = "[API Generated] Starting 'Calamari Update' task on machines: $($machines.name)"
+        }
+
+        If(!($Force)){
+            If (!(Get-UserConfirmation -message "Are you sure you want to start a health check on the environment: $Environment")){
+                Throw 'Canceled by user'
+            }
+        }
        
+        $task = $c.repository.Tasks.ExecuteCalamariUpdate($Message,$machines.id)
+
+        If($wait){
+
+            $StartTime = Get-Date
+
+            Do{
+                $CurrentTime = Get-date
+                    
+                $task = Get-OctopusTask -ID $task.id
+                    
+                Start-Sleep -Seconds 2
+            }Until (($task.state -notin ('Queued','executing')) -or ($CurrentTime -gt $StartTime.AddMinutes($Timeout)))
+
+            Write-Verbose "Task on environment $environment finished with status: $($task.state.tostring().toupper())"
+        }
 
 
         
