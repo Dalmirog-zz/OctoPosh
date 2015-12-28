@@ -70,7 +70,7 @@ function Start-OctopusHealthCheck
 
                 $EnvironmentID = $Machines[0].environmentIDs[0]
 
-                $Task = $c.repository.Tasks.ExecuteHealthCheck($Message,5,$environmentId,$Machines.Id)        
+                $Task = $c.repository.Tasks.ExecuteHealthCheck($Message,5,5,$environmentId,$Machines.Id)        
 
                 If($wait){
 
