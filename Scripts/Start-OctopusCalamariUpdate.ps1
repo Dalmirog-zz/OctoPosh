@@ -6,11 +6,11 @@
 .EXAMPLE
    Start-OctopusCalamariUpdate -Environment "Staging"
 
-   Starts a "Calamari Update" task on the environment "Staging"
+   Starts a "Calamari Update" taks on the environment "Staging"
 .EXAMPLE
-   Start-OctopusCalamariUpdate -MachineName "NY-DB1"
+   Start-OctopusCalamariUpdate -MachineName 
 
-   Starts a "Calamari Update" task on the machine "NY-DB1"
+   Starts a health check on the environment "Production"
 .LINK
    Github project: https://github.com/Dalmirog/Octoposh
    Wiki: https://github.com/Dalmirog/OctoPosh/wiki
@@ -64,10 +64,6 @@ function Start-OctopusCalamariUpdate
 
                 $Machines += $m
             }
-        }
-
-        Else{
-            $machines = Get-OctopusMachine -MachineName $MachineName -ResourceOnly
         }
 
         "Checking health in "
