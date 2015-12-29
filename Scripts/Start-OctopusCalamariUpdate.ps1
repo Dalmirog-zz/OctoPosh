@@ -6,7 +6,7 @@
 .EXAMPLE
    Start-OctopusCalamariUpdate -Environment "Staging"
 
-   Starts a "Calamari Update" task on the environment "Staging"
+   Starts a "Calamari Update" task for all the machines inside of the environment "Staging"
 .EXAMPLE
    Start-OctopusCalamariUpdate -MachineName "NY-DB1"
 
@@ -18,17 +18,15 @@
 #>
 function Start-OctopusCalamariUpdate
 {
-    [CmdletBinding(DefaultParameterSetName='Environment')]    
+    [CmdletBinding(DefaultParameterSetName='Machine')]    
     Param
     (
         # The name of the environment/s on which you wanna start a health check. A task will start for each Environment listed on this parameter
-        [Parameter(Mandatory=$true,
-                   ValueFromPipelineByPropertyName=$true,
+        [Parameter(Mandatory=$true,                   
                    ParameterSetName='Environment')]
         [string[]]$EnvironmentName,
 
-        [Parameter(Mandatory=$true,
-                   ValueFromPipelineByPropertyName=$true,
+        [Parameter(Mandatory=$true,                   
                    ParameterSetName='Machine')]
         [string[]]$MachineName,
 
@@ -58,7 +56,7 @@ function Start-OctopusCalamariUpdate
             
                 Write-Verbose "[$($MyInvocation.MyCommand)] Getting machines from Environment: $environment"
 
-                $m = Get-OctopusMachine -EnvironmentName $Environment -ResourceOnly
+                $m = Get-OctopusMachine -EnvironmentName $Environment -ResourceOnly -ErrorAction Stop
                 
                 Write-Verbose "[$($MyInvocation.MyCommand)] Found $($m.count) machines in environment $environment"                
 
@@ -67,11 +65,15 @@ function Start-OctopusCalamariUpdate
         }
 
         Else{
-            $machines = Get-OctopusMachine -MachineName $MachineName -ResourceOnly
+            $machines = Get-OctopusMachine -MachineName $MachineName -ResourceOnly -ErrorAction Stop
         }
 
-        If(!$message){
-            $message = "[API Generated] Starting 'Calamari Update' task on machines: $($machines.name)"
+        If(!$message -and $PSCmdlet.ParameterSetName -eq 'Machine'){
+            $message = "[API Generated] Starting 'Calamari Update' task on Machines: $($machines.name)"
+        }
+
+        elseIf(!$message -and $PSCmdlet.ParameterSetName -eq 'Environment'){
+            $message = "[API Generated] Starting 'Calamari Update' task on Environments: $EnvironmentName"
         }
 
         If(!($Force)){
@@ -79,9 +81,9 @@ function Start-OctopusCalamariUpdate
                 Throw 'Canceled by user'
             }
         }
-       
-        $task = $c.repository.Tasks.ExecuteCalamariUpdate($Message,$machines.id)
-
+        If($machines.count -ne 0){
+            $task = $c.repository.Tasks.ExecuteCalamariUpdate($Message,$machines.id)
+        }
         If($wait){
 
             $StartTime = Get-Date
@@ -92,9 +94,16 @@ function Start-OctopusCalamariUpdate
                 $task = Get-OctopusTask -ID $task.id
                     
                 Start-Sleep -Seconds 2
+
+                Write-Verbose "[Get-OctopusTask] Task state is: $($task.state)"
             }Until (($task.state -notin ('Queued','executing')) -or ($CurrentTime -gt $StartTime.AddMinutes($Timeout)))
 
-            Write-Verbose "Task on environment $environment finished with status: $($task.state.tostring().toupper())"
+            Write-Verbose "[Get-OctopusTask] Task finished or cmdlet timed out. Last task status: $($task.state.tostring().toupper())"
+            return $task
+        }
+
+        else{
+            return $task
         }
 
 

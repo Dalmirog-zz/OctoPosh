@@ -360,6 +360,31 @@ Describe 'Octopus Module Tests' {
 
         Get-OctopusEnvironment -Name $TestName -ErrorAction SilentlyContinue | should be $null
     }
+    It '[Start-OctopusCalamariUpdate] starts a calamari update task agains a single environment'{
+        $Environments = Get-OctopusEnvironment -ResourceOnly
+        $i = Get-Random -Minimum 0 -Maximum ($Environments.count - 1)
+
+        $task = Start-OctopusCalamariUpdate -EnvironmentName $Environments[$i].Name -Force
+        $task.gettype() | should be "Octopus.Client.Model.TaskResource"
+
+        $Machines = Get-OctopusMachine -ResourceOnly
+        $i = Get-Random -Minimum 0 -Maximum ($Machines.count - 1)
+
+        $task = Start-OctopusCalamariUpdate -MachineName $Machines[$i].Name -Force
+        $task.gettype() | should be "Octopus.Client.Model.TaskResource"
+    }
+    It '[Start-OctopusCalamariUpdate] doesnt start a task if at least 1 machine/environment doesnt exist'{
+        $machines = Get-OctopusMachine -ResourceOnly
+        $i = Get-Random -Minimum 0 -Maximum ($machines.count -1)
+        
+        { Start-OctopusCalamariUpdate -MachineName (Get-Random -Maximum 10000),$machines[$i].Name -Force -ErrorAction Stop }| should Throw
+
+        $environments = Get-OctopusEnvironment -ResourceOnly
+        $i = Get-Random -Minimum 0 -Maximum ($environments.count -1)
+        
+        { Start-OctopusCalamariUpdate -EnvironmentName (Get-Random -Maximum 10000),$environments[$i].Name -Force -ErrorAction Stop }| should Throw
+       
+    }
     It '[Start-OctopusRetentionPolicy] starts a "Retention" task'{
         $task = Start-OctopusRetentionPolicy -Force -Wait
 
@@ -492,7 +517,7 @@ Describe 'Octopus Module Tests' {
 
         $users.isactive | select -Unique | should be 'true'
     }    
-        It '[New-OctopusAPIKey] creates an API Key'{
+    It '[New-OctopusAPIKey] creates an API Key'{
         $api = New-OctopusAPIKey -Purpose "$TestName" -Username 'Ian.Paullin' -password 'Michael3' -NoWarning -OctopusURL $env:OctopusURL
                 
         $api.purpose | should be $TestName
