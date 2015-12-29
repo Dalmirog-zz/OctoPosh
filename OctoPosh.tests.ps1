@@ -361,10 +361,10 @@ Describe 'Octopus Module Tests' {
         Get-OctopusEnvironment -Name $TestName -ErrorAction SilentlyContinue | should be $null
     }
     It '[Start-OctopusCalamariUpdate] starts a calamari update task agains a single environment'{
-        $Environments = Get-OctopusEnvironment -ResourceOnly
+        $Environments = Get-OctopusEnvironment | ?{$_.Machines.count -gt 0}
         $i = Get-Random -Minimum 0 -Maximum ($Environments.count - 1)
 
-        $task = Start-OctopusCalamariUpdate -EnvironmentName $Environments[$i].Name -Force
+        $task = Start-OctopusCalamariUpdate -EnvironmentName $Environments[$i].EnvironmentName -Force
         $task.gettype() | should be "Octopus.Client.Model.TaskResource"
 
         $Machines = Get-OctopusMachine -ResourceOnly
