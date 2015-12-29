@@ -77,17 +77,18 @@ Describe 'Octopus Module Tests' {
         $NewLibrary.name | should be $testname         
     }
     It '[New-OctopusResource] adds a Machine to an Environment'{
-        
         $machine = Get-OctopusResourceModel -Resource Machine
-                
+        
         $environment = Get-OctopusEnvironment -EnvironmentName $testname
-
+        
         $machine.name = $testname
         $machine.EnvironmentIds.Add($environment.id) | Out-Null
-        $machine.Thumbprint = "8A7E6157A34158EDA1B5127CB027B2A267760A4F"
-        $machine.CommunicationStyle = "TentacleActive"
-        $machine.Roles.Add("WebServer") | Out-Null
-        $machine.Uri = "https://localhost:10933"
+        $machine.Roles.Add("WebServer") | Out-Null        
+
+        $machineEndpoint = New-Object Octopus.Client.Model.Endpoints.ListeningTentacleEndpointResource
+        $machine.EndPoint = $machineEndpoint
+        $machine.Endpoint.Uri = "https://localhost:10933"
+        $machine.Endpoint.Thumbprint = "8A7E6157A34158EDA1B5127CB027B2A267760A4F"
 
         $NewMachine = New-OctopusResource -Resource $machine
 
@@ -129,7 +130,7 @@ Describe 'Octopus Module Tests' {
         $CommunicationStyle = 'Listening'
         Get-OctopusMachine -CommunicationStyle $CommunicationStyle | Select-Object -ExpandProperty communicationstyle -unique | should be $CommunicationStyle
     }
-        It '[Get-OctopusTask] gets tasks by single name'{
+    It '[Get-OctopusTask] gets tasks by single name'{
         $name = 'Retention'
         Get-OctopusTask -Name $name | Select-Object -ExpandProperty name -Unique | should be $name
     }
@@ -197,7 +198,7 @@ Describe 'Octopus Module Tests' {
         ($tasks.starttime.datetime -gt $before ).count | should be 0
         ($tasks.starttime.datetime -lt $after ).count | should be 0
     } 
-        It '[Get-OctopusFeed] gets feeds by name'{
+    It '[Get-OctopusFeed] gets feeds by name'{
         $feed = Get-OctopusFeed -FeedName $TestName
 
         $feed.Name | should be $TestName
@@ -217,7 +218,7 @@ Describe 'Octopus Module Tests' {
 
         $feed.FeedURI| should be "https://$testname.com"
     }
-        It '[Get-OctopusVariableSet] gets variable sets by Project name'{        
+    It '[Get-OctopusVariableSet] gets variable sets by Project name'{        
         $vs = Get-OctopusVariableSet -Projectname $TestName
         $vs.ProjectName | should be $TestName
     }
@@ -231,7 +232,7 @@ Describe 'Octopus Module Tests' {
         $vs.LibraryVariableSetName | select -Unique | should be $TestName
         $vs.ProjectName | select -Unique | should be $TestName
     }
-    
+        
     It 'Creating releases for tests'{
 
         for($i = 0 ;$i -lt 31 ; $i++){
@@ -255,7 +256,6 @@ Describe 'Octopus Module Tests' {
 
         {Get-OctopusRelease -ProjectName $TestName -Latest 31} | should throw
     }
-
     It '[Get-OctopusRelease] Gets a single release by release version'{
         $release = Get-OctopusRelease -ProjectName $TestName -resourceonly -Latest 1
 
@@ -285,7 +285,6 @@ Describe 'Octopus Module Tests' {
     It '[Update-OctopusReleaseVariableSet] Doesnt update the variable set of a Release of a Project that doesnt exist'{
         Update-OctopusReleaseVariableSet -ProjectName unexistentproject -ReleaseVersion 1.0.34 -ErrorAction SilentlyContinue | should be $false
     }
-
     It '[Update-OctopusResource] Updates ProjectGroups'{
         $description = "New Description"
         
@@ -330,8 +329,7 @@ Describe 'Octopus Module Tests' {
         $feed.Resource.FeedUri = $URL
 
         $feed | Update-OctopusResource -Force | select -ExpandProperty FeedURI -Unique | should be $URL
-    }
-        
+    }        
     It '[Remove-OctopusResource] deletes Projects'{
         (Get-OctopusProject -Name $TestName | Remove-OctopusResource -Force) | should be $true
 
@@ -362,14 +360,38 @@ Describe 'Octopus Module Tests' {
 
         Get-OctopusEnvironment -Name $TestName -ErrorAction SilentlyContinue | should be $null
     }
+    It '[Start-OctopusCalamariUpdate] starts a calamari update task agains a single environment'{
+        $Environments = Get-OctopusEnvironment -ResourceOnly
+        $i = Get-Random -Minimum 0 -Maximum ($Environments.count - 1)
+
+        $task = Start-OctopusCalamariUpdate -EnvironmentName $Environments[$i].Name -Force
+        $task.gettype() | should be "Octopus.Client.Model.TaskResource"
+
+        $Machines = Get-OctopusMachine -ResourceOnly
+        $i = Get-Random -Minimum 0 -Maximum ($Machines.count - 1)
+
+        $task = Start-OctopusCalamariUpdate -MachineName $Machines[$i].Name -Force
+        $task.gettype() | should be "Octopus.Client.Model.TaskResource"
+    }
+    It '[Start-OctopusCalamariUpdate] doesnt start a task if at least 1 machine/environment doesnt exist'{
+        $machines = Get-OctopusMachine -ResourceOnly
+        $i = Get-Random -Minimum 0 -Maximum ($machines.count -1)
+        
+        { Start-OctopusCalamariUpdate -MachineName (Get-Random -Maximum 10000),$machines[$i].Name -Force -ErrorAction Stop }| should Throw
+
+        $environments = Get-OctopusEnvironment -ResourceOnly
+        $i = Get-Random -Minimum 0 -Maximum ($environments.count -1)
+        
+        { Start-OctopusCalamariUpdate -EnvironmentName (Get-Random -Maximum 10000),$environments[$i].Name -Force -ErrorAction Stop }| should Throw
+       
+    }
     It '[Start-OctopusRetentionPolicy] starts a "Retention" task'{
         $task = Start-OctopusRetentionPolicy -Force -Wait
 
         $task.GetType().fullname| should be 'Octopus.Client.Model.TaskResource'
         $task.name | should be "Retention"
     }
-
-        It '[Start-OctopusHealthChech] doesnt start health checks on empty environments'{
+    It '[Start-OctopusHealthChech] doesnt start health checks on empty environments'{
         $EnvironmentName = "EmptyEnvironment"
 
         $env = Get-OctopusResourceModel -Resource Environment                
@@ -391,8 +413,7 @@ Describe 'Octopus Module Tests' {
         $tasks = Start-OctopusHealthCheck -EnvironmentName 'Staging','production' -Force -ErrorAction SilentlyContinue
         $tasks.count | should be 2
         $tasks | Get-Member | Select-Object -ExpandProperty typename -Unique | should be 'Octopus.Client.Model.TaskResource'
-    }#> 
-
+    }#>
     It '[Get/Set-OctopusConnectionInfo] do their thing' {            
         $originalURL = $env:OctopusURL
         $originalAPIKey = $env:OctopusAPIKey
@@ -437,7 +458,7 @@ Describe 'Octopus Module Tests' {
 
         (Get-OctopusMaintenanceMode).IsInMaintenanceMode | should be $False
     }
-        It '[Set-OctopusUserAccountStatus] Enables\Disables a user account by name' {        
+    It '[Set-OctopusUserAccountStatus] Enables\Disables a user account by name' {        
         $User = Set-OctopusUserAccountStatus -Username 'OT\Tester@OT' -status Disabled
         $User.IsActive | should be 'False'
 
@@ -496,7 +517,7 @@ Describe 'Octopus Module Tests' {
 
         $users.isactive | select -Unique | should be 'true'
     }    
-        It '[New-OctopusAPIKey] creates an API Key'{
+    It '[New-OctopusAPIKey] creates an API Key'{
         $api = New-OctopusAPIKey -Purpose "$TestName" -Username 'Ian.Paullin' -password 'Michael3' -NoWarning -OctopusURL $env:OctopusURL
                 
         $api.purpose | should be $TestName

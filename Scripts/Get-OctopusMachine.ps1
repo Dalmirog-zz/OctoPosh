@@ -85,7 +85,7 @@ function Get-OctopusMachine
             If($CommunicationStyle -eq 'Polling'){$Style = 'TentacleActive'}            
             elseIf($CommunicationStyle -eq 'Listening'){$Style = 'TentaclePassive'}
 
-            $Machines = $c.repository.Machines.FindMany({param($Mach) if ($Mach.CommunicationStyle -eq $Style){$true}})
+            $Machines = $c.repository.Machines.FindMany({param($Mach) if ($Mach.Endpoint.CommunicationStyle -eq $Style){$true}})
 
             If($Machines -eq $null){
                 Write-Error "No Machines found with CommunicationStyle: $($Style)"
@@ -117,6 +117,7 @@ function Get-OctopusMachine
                 $envmachines = $c.repository.Environments.GetMachines($env)
 
                 If($envmachines){
+                    Write-Verbose "[$($MyInvocation.MyCommand)] [ResourceOnly] switch is on. Returning raw Octopus resource objects"
                     $machines += $envmachines            
                 }
 
@@ -153,8 +154,8 @@ function Get-OctopusMachine
                     $e = Get-OctopusResource "api/environments/$($machine.EnvironmentIds)" -header $c.header
                 }
                 
-                If($Machine.CommunicationStyle -eq 'TentacleActive'){$Style = 'Polling'}            
-                If($Machine.CommunicationStyle -eq 'TentaclePassive'){$Style = 'Listening'}               
+                If($Machine.Endpoint.CommunicationStyle -eq 'TentacleActive'){$Style = 'Polling'}            
+                If($Machine.Endpoint.CommunicationStyle -eq 'TentaclePassive'){$Style = 'Listening'}               
 
                 $obj = [PSCustomObject]@{
                     MachineName = $machine.Name
@@ -164,7 +165,7 @@ function Get-OctopusMachine
                     IsDisabled = $machine.IsDisabled
                     EnvironmentName = $e.name
                     Roles = $machine.Roles
-                    Squid = $machine.Squid
+                    HasLatestCalamari = $machine.HasLatestCalamari
                     CommunicationStyle = $Style
                     Status = $machine.Status
                     StatusSummary = $machine.StatusSummary
