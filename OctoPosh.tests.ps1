@@ -178,7 +178,7 @@ Describe 'Octopus Module Tests' {
         $s12tasks = Get-OctopusTask -State $state1,$state2
 
         $s12tasks.count | should be ($s1tasks.count + $s2tasks.count)            
-    }
+    }#>
     It '[Get-OctopusTask] gets tasks by single Resource ID'{        
         $envs = Get-OctopusEnvironment | ?{$_.machines.count -gt 0}
 
@@ -329,6 +329,13 @@ Describe 'Octopus Module Tests' {
         $feed.Resource.FeedUri = $URL
 
         $feed | Update-OctopusResource -Force | select -ExpandProperty FeedURI -Unique | should be $URL
+    }
+    It '[Block/Unblock-OctopusRelease] blocks/unblocks a release'{
+        $release = Get-OctopusRelease -ProjectName $TestName -Latest 1
+            
+        $release | Block-OctopusRelease -Description $TestName -Force | should be $true
+
+        $release | UnBlock-OctopusRelease -Force | should be $true
     }        
     It '[Remove-OctopusResource] deletes Projects'{
         (Get-OctopusProject -Name $TestName | Remove-OctopusResource -Force) | should be $true
@@ -466,10 +473,10 @@ Describe 'Octopus Module Tests' {
         $User.IsActive | should be 'True'
     }
     It '[Set-OctopusUserAccountStatus] Enables\Disables multiple user accounts by name' {        
-        $User = Set-OctopusUserAccountStatus -Username 'OT\Tester@OT','Ian.Paullin@OT' -status Disabled
+        $User = Set-OctopusUserAccountStatus -Username 'OT\Tester@OT','ian.paullin@OT' -status Disabled
         $User.IsActive | select -Unique | should be 'False'
         
-        $User = Set-OctopusUserAccountStatus -Username 'OT\Tester@OT','Ian.Paullin@OT' -status Enabled
+        $User = Set-OctopusUserAccountStatus -Username 'OT\Tester@OT','ian.paullin@OT' -status Enabled
         $User.IsActive | select -Unique | should be 'True'    
     }
     It '[Set-OctopusUserAccountStatus] Doesnt Enable/Disable a non-existent user account by name'{
@@ -526,12 +533,10 @@ Describe 'Octopus Module Tests' {
 
         {$c.repository.Users.RevokeApiKey($api)} | should not throw
 
-    }                    
-    It '[Block/Unblock-OctopusRelease] blocks/unblocks a release'{
-        $release = Get-OctopusRelease -ProjectName Release_Tests -Latest 1
-            
-        $release | Block-OctopusRelease -Description $TestName -Force | should be $true
-
-        $release | UnBlock-OctopusRelease -Force | should be $true
-    }
+    }                        
 }
+#Block to tests particular tests while debugging
+<#Describe 'Test'{
+          
+    }
+}#>
