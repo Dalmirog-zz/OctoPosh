@@ -43,14 +43,17 @@ function Remove-OctopusResource
     Begin
     {
         If($AcceptedTypes){
-            'Octopus.Client.Model.ProjectGroupResource'
-            'Octopus.Client.Model.ProjectResource'
-            'Octopus.Client.Model.EnvironmentResource'
-            'Octopus.Client.Model.DeploymentResource'
-            'Octopus.Client.Model.MachineResource'
-            'Octopus.Client.Model.FeedResource'
-            'Octopus.Client.Model.LibraryVariableSetResource'
-            'Octopus.Client.Model.LifecycleResource'
+            $types = ("Octopus.Client.Model.ProjectGroupResource",
+            "Octopus.Client.Model.ProjectResource",
+            "Octopus.Client.Model.EnvironmentResource",
+            "Octopus.Client.Model.MachineResource",
+            "Octopus.Client.Model.FeedResource",
+            "Octopus.Client.Model.VariableSetResource",
+            "Octopus.Client.Model.LifecycleResource",
+            'Octopus.Client.Model.TeamResource',
+            'Octopus.Client.Model.UserResource')
+            
+            return $types
         }
         $c = New-OctopusConnection        
     }
@@ -73,6 +76,8 @@ function Remove-OctopusResource
                 {$_.getType() -eq [Octopus.Client.Model.FeedResource]} {$ResourceType = 'Feeds'}
                 {$_.getType() -eq [Octopus.Client.Model.VariableSetResource]} {$ResourceType = 'LibraryVariableSets'}
                 {$_.getType() -eq [Octopus.Client.Model.LifecycleResource]} {$ResourceType = 'Lifecycles'}
+                {$_.getType() -eq [Octopus.Client.Model.TeamResource]} {$ResourceType = 'Teams'}
+                {$_.getType() -eq [Octopus.Client.Model.UserResource]} {$ResourceType = 'Users'}
                 Default{Throw "Invalid object type: $($_.getType()) `nRun 'Remove-OctopusResource -AcceptedTypes' to get a list of the object types accepted by this cmdlet"}                
             }
 
