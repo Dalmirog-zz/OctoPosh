@@ -130,6 +130,20 @@ Describe 'Octopus Module Tests' {
         $CommunicationStyle = 'Listening'
         Get-OctopusMachine -CommunicationStyle $CommunicationStyle | Select-Object -ExpandProperty communicationstyle -unique | should be $CommunicationStyle
     }
+    It '[Get-OctopusUserRole] Gets a single user role by name'{
+        $rolename = "System Administrator"
+        Get-OctopusUserRole -UserRoleName $rolename | select -ExpandProperty name | should be $rolename
+    }
+    It '[Get-OctopusUserRole] Gets multiple roles by names'{
+        $rolenames = "System Administrator","Project lead"
+        Get-OctopusUserRole -UserRoleName $rolenames | select -ExpandProperty name | should be $rolenames
+    }
+    It '[Get-OctopusUserRole] Gets multiple roles by names'{
+        $rolename = "*Administrator*"
+        $userrole = Get-OctopusUserRole -UserRoleName $rolename | select -ExpandProperty name 
+        $userrole -like $rolename
+        $userrole -like $rolename | should be $true
+    }
     It '[Get-OctopusTask] gets tasks by single name'{
         $name = 'Retention'
         Get-OctopusTask -Name $name | Select-Object -ExpandProperty name -Unique | should be $name
@@ -536,7 +550,6 @@ Describe 'Octopus Module Tests' {
     }                        
 }
 #Block to tests particular tests while debugging
-<#Describe 'Test'{
-          
+Describe 'Test'{
+
     }
-}#>
