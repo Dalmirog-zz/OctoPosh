@@ -568,65 +568,6 @@ Describe 'Octopus Module Tests' {
 
         (Get-OctopusMaintenanceMode).IsInMaintenanceMode | should be $False
     }
-    It '[Set-OctopusUserAccountStatus] Enables\Disables a user account by name' {        
-        $User = Set-OctopusUserAccountStatus -Username 'OT\Tester@OT' -status Disabled
-        $User.IsActive | should be 'False'
-
-        $User = Set-OctopusUserAccountStatus -Username 'OT\Tester@OT' -status Enabled
-        $User.IsActive | should be 'True'
-    }
-    It '[Set-OctopusUserAccountStatus] Enables\Disables multiple user accounts by name' {        
-        $User = Set-OctopusUserAccountStatus -Username 'OT\Tester@OT','ian.paullin@OT' -status Disabled
-        $User.IsActive | select -Unique | should be 'False'
-        
-        $User = Set-OctopusUserAccountStatus -Username 'OT\Tester@OT','ian.paullin@OT' -status Enabled
-        $User.IsActive | select -Unique | should be 'True'    
-    }
-    It '[Set-OctopusUserAccountStatus] Doesnt Enable/Disable a non-existent user account by name'{
-        $username = "DoesntExist"
-
-        (Set-OctopusUserAccountStatus -Username $username -status Disabled) | should be $null
-        (Set-OctopusUserAccountStatus -Username $username -status Enabled) | should be $null
-
-    }
-    It '[Set-OctopusUserAccountStatus] Only Enables/Disables users that exist from a list with existent and non-existent usernames'{
-        $username = "DoesntExist","OT\Tester@OT"
-
-        $users = Set-OctopusUserAccountStatus -Username $username -status Disabled
-
-        $users.count | should be 1
-
-        $users = Set-OctopusUserAccountStatus -Username $username -status Enabled
-
-        $users.count | should be 1
-
-    }
-    It '[Set-OctopusUserAccountStatus] Enables\Disables a user account by single resource' {        
-        $List = @()
-        $username = "OT\Tester@OT"
-        $list += $c.repository.Users.FindMany({param($u) if (($u.username -in $Username) -or ($u.username -like $Username)) {$true}})
-
-        $user = Set-OctopusUserAccountStatus -status Disabled -Resource $List
-
-        $user.isactive | should be 'false'
-
-        $user = Set-OctopusUserAccountStatus -status Enabled -Resource $List
-
-        $user.isactive | should be 'true'
-    }
-    It '[Set-OctopusUserAccountStatus] Enables\Disables a user account by multiple resources' {        
-        $List = @()
-        $username = "OT\Tester@OT","Ian.Paullin@OT"
-        $list += $c.repository.Users.FindMany({param($u) if (($u.username -in $Username) -or ($u.username -like $Username)) {$true}})
-
-        $users = Set-OctopusUserAccountStatus -status Disabled -Resource $List
-
-        $users.isactive | select -Unique | should be 'false'
-
-        $users = Set-OctopusUserAccountStatus -status Enabled -Resource $List
-
-        $users.isactive | select -Unique | should be 'true'
-    }    
     It '[New-OctopusAPIKey] creates an API Key'{
         $api = New-OctopusAPIKey -Purpose "$TestName" -Username 'Ian.Paullin' -password 'Michael3' -NoWarning -OctopusURL $env:OctopusURL
                 
