@@ -27,6 +27,7 @@
 #>
 function Get-OctopusUser
 {
+    [CmdletBinding()]
     Param
     (
         # User Name. Accepts wildcard.        

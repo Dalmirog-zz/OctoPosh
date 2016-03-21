@@ -27,6 +27,7 @@
 #>
 function Get-OctopusTeam
 {
+    [CmdletBinding()]
     Param
     (
         # Team Name. Accepts wildcard.

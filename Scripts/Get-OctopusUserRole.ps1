@@ -27,6 +27,7 @@
 #>
 function Get-OctopusUserRole
 {
+    [CmdletBinding()]
     Param
     (
         # User role Name. Accepts wildcard.
