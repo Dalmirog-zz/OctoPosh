@@ -346,8 +346,12 @@ Describe 'Octopus Module Tests' {
     It '[Get-OctopusTask] gets tasks by single Resource ID'{        
         $envs = Get-OctopusEnvironment | ?{$_.machines.count -gt 0}
 
-        $i = Get-Random -Maximum ($envs.count - 1) -Minimum 0
-
+        If($envs.count -ne 0){
+            $i = Get-Random -Maximum ($envs.count - 1) -Minimum 0
+        }
+        else{
+            $i = 0
+        }
         $null = Start-OctopusHealthCheck -EnvironmentName $envs[$i].EnvironmentName -Force -Message "[Unit Tests]Health check on environment: $($envs[$i].EnvironmentName)"
 
         Get-octopustask -ResourceID $envs[$i].Id | should not be $null            
@@ -579,25 +583,45 @@ Describe 'Octopus Module Tests' {
     }
     It '[Start-OctopusCalamariUpdate] starts a calamari update task agains a single environment'{
         $Environments = Get-OctopusEnvironment | ?{$_.Machines.count -gt 0}
-        $i = Get-Random -Minimum 0 -Maximum ($Environments.count - 1)
 
+        If($Environments.count -ne 0){
+            $i = Get-Random -Minimum 0 -Maximum ($Environments.count - 1)
+        }
+        else{
+            $i = 0
+        }
         $task = Start-OctopusCalamariUpdate -EnvironmentName $Environments[$i].EnvironmentName -Force
         $task.gettype() | should be "Octopus.Client.Model.TaskResource"
 
         $Machines = Get-OctopusMachine -ResourceOnly
-        $i = Get-Random -Minimum 0 -Maximum ($Machines.count - 1)
 
+        If($Machines.count -ne 0){
+            $i = Get-Random -Minimum 0 -Maximum ($Machines.count - 1)
+        }
+        else{
+            $i = 0
+        }
         $task = Start-OctopusCalamariUpdate -MachineName $Machines[$i].Name -Force
         $task.gettype() | should be "Octopus.Client.Model.TaskResource"
     }
     It '[Start-OctopusCalamariUpdate] doesnt start a task if at least 1 machine/environment doesnt exist'{
         $machines = Get-OctopusMachine -ResourceOnly
-        $i = Get-Random -Minimum 0 -Maximum ($machines.count -1)
+        If($Machines.count -ne 0){
+            $i = Get-Random -Minimum 0 -Maximum ($machines.count - 1)
+        }
+        else{
+            $i = 0
+        }
         
         { Start-OctopusCalamariUpdate -MachineName (Get-Random -Maximum 10000),$machines[$i].Name -Force -ErrorAction Stop }| should Throw
 
         $environments = Get-OctopusEnvironment -ResourceOnly
-        $i = Get-Random -Minimum 0 -Maximum ($environments.count -1)
+        If($Environments.count -ne 0){
+            $i = Get-Random -Minimum 0 -Maximum ($Environments.count - 1)
+        }
+        else{
+            $i = 0
+        }
         
         { Start-OctopusCalamariUpdate -EnvironmentName (Get-Random -Maximum 10000),$environments[$i].Name -Force -ErrorAction Stop }| should Throw
        
