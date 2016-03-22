@@ -243,7 +243,9 @@ Describe 'Octopus Module Tests' {
         New-OctopusResource -Resource $teamObj1
         New-OctopusResource -Resource $teamObj2
     }
+    
     CreateTestReleases -testname $TestName -amount 31
+
     It '[Get-OctopusEnvironment] gets environments'{           
         Get-OctopusEnvironment -Name $TestName | Select-Object -ExpandProperty EnvironmentNAme | should be $TestName
     }
@@ -344,17 +346,11 @@ Describe 'Octopus Module Tests' {
         $s12tasks.count | should be ($s1tasks.count + $s2tasks.count)            
     }#>
     It '[Get-OctopusTask] gets tasks by single Resource ID'{        
-        $envs = Get-OctopusEnvironment | ?{$_.machines.count -gt 0}
+        $env = Get-OctopusEnvironment -EnvironmentName $TestName -ResourceOnly
 
-        If($envs.count -ne 0){
-            $i = Get-Random -Maximum ($envs.count - 1) -Minimum 0
-        }
-        else{
-            $i = 0
-        }
-        $null = Start-OctopusHealthCheck -EnvironmentName $envs[$i].EnvironmentName -Force -Message "[Unit Tests]Health check on environment: $($envs[$i].EnvironmentName)"
+        $null = Start-OctopusHealthCheck -EnvironmentName $env.Name -Force -Message "[Unit Tests]Health check on environment: $($env.Name)"
 
-        Get-octopustask -ResourceID $envs[$i].Id | should not be $null            
+        Get-octopustask -ResourceID $env.id | should not be $null            
     }
     It '[Get-OctopusTask] gets tasks between 2 date ranges'{        
         $After = (Get-date).Adddays(-10)
