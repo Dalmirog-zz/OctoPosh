@@ -139,19 +139,22 @@ function Get-OctopusMachine
             $list += $Machines
         }
 
-        else{            
+        else{
+        
             foreach ($machine in $Machines){                
                 Write-Progress -Activity "Getting info from machine: $($machine.name)" -status "$i of $($machines.count)" -percentComplete ($i / $machines.count*100)
                 Write-Verbose "[$($MyInvocation.MyCommand)] Getting info of Machine: $($Machine.name)"
 
-                $e = @() 
+                $e = @()
 
                 If($environments){
-                    $e = $environments | ?{$_.id -eq $machine.EnvironmentIds}
+                    $e = ($environments | ?{$_.id -eq $machine.EnvironmentIds}).name
                 }
 
                 Else{
-                    $e = Get-OctopusResource "api/environments/$($machine.EnvironmentIds)" -header $c.header
+                    foreach($eid in $machine.EnvironmentIDs){
+                        $e += (Get-OctopusResource "api/environments/$eid" -header $c.header).name
+                    }                    
                 }
                 
                 If($Machine.Endpoint.CommunicationStyle -eq 'TentacleActive'){$Style = 'Polling'}            
@@ -163,7 +166,7 @@ function Get-OctopusMachine
                     Thumbprint = $machine.Thumbprint
                     URI = $machine.uri
                     IsDisabled = $machine.IsDisabled
-                    EnvironmentName = $e.name
+                    EnvironmentName = $e
                     Roles = $machine.Roles
                     HasLatestCalamari = $machine.HasLatestCalamari
                     CommunicationStyle = $Style

@@ -128,7 +128,7 @@ function Get-OctopusDeployment
                 $ds = $dp.steps | ? {$_.name -eq "$($s.stepname)"} 
 
                 $properties = [ordered]@{
-                    Name = $ds.Actions.properties.'Octopus.Action.Package.NuGetPackageId'
+                    Name = $ds.Actions.properties.'Octopus.Action.Package.NuGetPackageId'.value
                     Version = $s.version
                 }
 

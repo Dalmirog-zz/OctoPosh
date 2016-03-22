@@ -15,12 +15,71 @@ Function New-TestName {
 
 }
 
+Function CreateTestADUser ($TestName){
+    Import-Module ActiveDirectory
+
+    If(!(Get-Module ActiveDirectory)){
+        Write-Error "ActideDirectory Powershell module not found. Expect user-related tests to fail"
+    }
+    
+    $Name = "$TestName"    
+    $Password = convertto-securestring "Michael123!" -asplaintext -force
+
+    New-ADUser -Name $Name `
+    -UserPrincipalName $Name `
+    -DisplayName $Name `
+    -AccountPassword $Password `
+    -PasswordNeverExpires $true `
+    -ChangePasswordAtLogon $false `
+    -Enabled $true `
+    -Verbose
+}
+
+Function DeleteTestADUser ($testname){
+    Import-Module ActiveDirectory
+
+    If(!(Get-Module ActiveDirectory)){
+        Write-Error "ActideDirectory Powershell module not found. Expect user-related tests to fail"
+    }
+
+    $filter = 'Name -eq ' + "`"" +$testname + "`""
+
+    Get-ADUser -Filter $filter | Remove-ADUser -Verbose -Confirm:$false
+}
+
+Function CreateTestADGroup ($testname){
+    $date = (Get-Date).ToString('MM/dd/yyyy')
+    New-ADGroup -Name ($testname + "_group") `
+    -GroupCategory Security `
+    -GroupScope Global `
+    -Description "Group created on [$date] under the test name $testname" `
+    -Verbose
+}
+
+Function DeleteTestADGroup($testname){
+    $filter = 'Name -eq ' + "`"" +$testname+"`""
+
+    Get-ADGroup -Filter $filter | Remove-ADGroup -Verbose -Confirm:$false
+}
+
+Function CreateTestReleases($testname,$amount){
+    for($i = 0 ;$i -lt $amount ; $i++){
+        cd $PSScriptRoot
+        & ".\tools\Octo.exe" create-release --server=$env:OctopusURL --apikey=$env:OctopusAPIKey --project=$testname
+    }    
+}
+
 Describe 'Octopus Module Tests' {
 
     $TestName = new-testname
 
     $c = New-OctopusConnection
-    
+
+    CreateTestADUser -TestName $TestName
+    CreateTestADUser -TestName ($TestName + "2")    
+
+    CreateTestADGroup -Testname $TestName
+
     It '[New-OctopusResource] creates environments'{               
 
         $env = Get-OctopusResourceModel -Resource Environment                
@@ -76,7 +135,7 @@ Describe 'Octopus Module Tests' {
 
         $NewLibrary.name | should be $testname         
     }
-    It '[New-OctopusResource] adds a Machine to an Environment'{
+    It '[New-OctopusResource] creates Targets'{
         $machine = Get-OctopusResourceModel -Resource Machine
         
         $environment = Get-OctopusEnvironment -EnvironmentName $testname
@@ -94,6 +153,99 @@ Describe 'Octopus Module Tests' {
 
         $NewMachine.name | should be $testname
     }
+    It '[New-OctopusResource] creates users (only testing this in AD mode)'{
+        $TestName1 = $TestName
+        $TestName2 = ($TestName + "2")
+
+        #Creating first user
+        $newUser1 = Get-OctopusResourceModel -Resource User
+
+        $newUser1.Username = "$TestName1" #Must match AD username if you are using Active Directory Authentication. If your user is Domain\John.Doe, put "John.Doe" on this field.
+        $newUser1.DisplayName = "$TestName1" #Try to make it match "Username" for consistency.
+        $newUser1.EmailAddress = "$TestName1@email.com"
+        $newUser1.IsActive = $true
+        $newUser1.IsService = $false
+
+        New-OctopusResource -Resource $newUser1
+
+        Get-OctopusUser -UserName $TestName1 | select -ExpandProperty Username | should be $TestName1
+
+        #Creating 2nd user
+        $newUser2 = Get-OctopusResourceModel -Resource User
+        $newUser2.Username = "$TestName2" #Must match AD username if you are using Active Directory Authentication. If your user is Domain\John.Doe, put "John.Doe" on this field.
+        $newUser2.DisplayName = "$TestName2" #Try to make it match "Username" for consistency.
+        $newUser2.EmailAddress = "$TestName2@email.com"
+        $newUser2.IsActive = $true
+        $newUser2.IsService = $false
+
+        New-OctopusResource -Resource $newUser2
+        Get-OctopusUser -UserName $TestName2 | select -ExpandProperty Username | should be $TestName2
+    }
+    It '[New-OctopusResource] creates teams' {
+        $testname1 = $TestName
+        $testname2 = $TestName + "2"
+
+        #Create a team with Users
+
+        $teamObj1 = Get-OctopusResourceModel -Resource Team
+        $teamObj2 = Get-OctopusResourceModel -Resource Team
+
+        $userRoles = Get-OctopusUserRole -UserRoleName "System Administrator"
+
+        $environments = Get-OctopusEnvironment -EnvironmentName $TestName -ResourceOnly
+
+        $projects = Get-OctopusProject -ProjectName $TestName -ResourceOnly
+
+        $users = Get-OctopusUser -UserName $testname1,$testname2
+                        
+        $filter = 'Name -eq ' + "`"" +$testname + '_group' +"`""
+
+        $groups = Get-ADGroup -Filter $filter
+
+        #Collection workaround to make sure that this will work 
+        #regardless of the amount of UserRoles, Environments,Projects, users fetched above
+        $userRoleIds = New-Object 'System.Collections.Generic.List[System.String]'
+        $userRoles | %{$userRoleIds.Add($_.id)}
+
+        $environmentIds = New-Object 'System.Collections.Generic.List[System.String]'
+        $environments | %{$EnvironmentIds.Add($_.id)}
+
+        $projectIds = New-Object 'System.Collections.Generic.List[System.String]'
+        $projects | %{$projectIds.Add($_.id)}
+
+        $userIds = New-Object 'System.Collections.Generic.List[System.String]'
+        $users | %{$UserIds.Add($_.id)}
+        ##
+
+        $teamObj1.Name = $testname1 #Name of the team
+        $teamObj1.UserRoleIds = $userRoleIds
+        $teamObj1.EnvironmentIds = $environmentIds
+        $teamObj1.ProjectIds = $projectIds
+        $teamObj1.MemberUserIds = $userIds
+
+        $teamObj2.Name = $testname2 #Name of the team
+        $teamObj2.UserRoleIds = $userRoleIds
+        $teamObj2.EnvironmentIds = $environmentIds
+        $teamObj2.ProjectIds = $projectIds
+        $teamObj2.MemberUserIds = $userIds
+
+        foreach ($group in $groups){
+            $nri = New-Object Octopus.Client.Model.NamedReferenceItem
+
+            $nri.DisplayName = $group.Name
+            $nri.Id = $group.SID
+
+            $teamObj1.ExternalSecurityGroups.Add($nri)
+            $teamObj2.ExternalSecurityGroups.Add($nri)
+        }
+
+
+        New-OctopusResource -Resource $teamObj1
+        New-OctopusResource -Resource $teamObj2
+    }
+    
+    CreateTestReleases -testname $TestName -amount 31
+
     It '[Get-OctopusEnvironment] gets environments'{           
         Get-OctopusEnvironment -Name $TestName | Select-Object -ExpandProperty EnvironmentNAme | should be $TestName
     }
@@ -130,6 +282,20 @@ Describe 'Octopus Module Tests' {
         $CommunicationStyle = 'Listening'
         Get-OctopusMachine -CommunicationStyle $CommunicationStyle | Select-Object -ExpandProperty communicationstyle -unique | should be $CommunicationStyle
     }
+    It '[Get-OctopusUserRole] Gets a single user role by name'{
+        $rolename = "System Administrator"
+        Get-OctopusUserRole -UserRoleName $rolename | select -ExpandProperty name | should be $rolename
+    }
+    It '[Get-OctopusUserRole] Gets multiple roles by names'{
+        $rolenames = "System Administrator","Project lead"
+        Get-OctopusUserRole -UserRoleName $rolenames | select -ExpandProperty name | should be $rolenames
+    }
+    It '[Get-OctopusUserRole] Gets multiple roles by names'{
+        $rolename = "*Administrator*"
+        $userrole = Get-OctopusUserRole -UserRoleName $rolename | select -ExpandProperty name 
+        $userrole -like $rolename
+        $userrole -like $rolename | should be $true
+    }
     It '[Get-OctopusTask] gets tasks by single name'{
         $name = 'Retention'
         Get-OctopusTask -Name $name | Select-Object -ExpandProperty name -Unique | should be $name
@@ -153,7 +319,7 @@ Describe 'Octopus Module Tests' {
         $results.id | should be $tasks.id            
     }
     It '[Get-OctopusTask] gets tasks by multiple IDs'{
-        $i = (Get-Random -Maximum 20)
+        $i = (Get-Random -Minimum 1 -Maximum 20)
 
         $tasks = Get-OctopusTask -After (Get-Date).AddDays(-10) | Select-Object -First $i
 
@@ -178,15 +344,13 @@ Describe 'Octopus Module Tests' {
         $s12tasks = Get-OctopusTask -State $state1,$state2
 
         $s12tasks.count | should be ($s1tasks.count + $s2tasks.count)            
-    }
+    }#>
     It '[Get-OctopusTask] gets tasks by single Resource ID'{        
-        $envs = Get-OctopusEnvironment | ?{$_.machines.count -gt 0}
+        $env = Get-OctopusEnvironment -EnvironmentName $TestName -ResourceOnly
 
-        $i = Get-Random -Maximum ($envs.count - 1) -Minimum 0
+        $null = Start-OctopusHealthCheck -EnvironmentName $env.Name -Force -Message "[Unit Tests]Health check on environment: $($env.Name)"
 
-        $null = Start-OctopusHealthCheck -EnvironmentName $envs[$i].EnvironmentName -Force -Message "[Unit Tests]Health check on environment: $($envs[$i].EnvironmentName)"
-
-        Get-octopustask -ResourceID $envs[$i].Id | should not be $null            
+        Get-octopustask -ResourceID $env.id | should not be $null            
     }
     It '[Get-OctopusTask] gets tasks between 2 date ranges'{        
         $After = (Get-date).Adddays(-10)
@@ -232,18 +396,6 @@ Describe 'Octopus Module Tests' {
         $vs.LibraryVariableSetName | select -Unique | should be $TestName
         $vs.ProjectName | select -Unique | should be $TestName
     }
-        
-    It 'Creating releases for tests'{
-
-        for($i = 0 ;$i -lt 31 ; $i++){
-            cd $PSScriptRoot
-            & ".\tools\Octo.exe" create-release --server=$env:OctopusURL --apikey=$env:OctopusAPIKey --project=$testname
-        }
-
-        1 | should not be $null
-
-    }
-
     It '[Get-OctopusRelease] Gets latest X releases of a project'{
         #This uses a hardcoded project with more than 30 releases
         $latest = Get-Random -Minimum 1 -Maximum 30
@@ -274,6 +426,32 @@ Describe 'Octopus Module Tests' {
 
         $releases.count | should be 2
         
+    }
+    It '[Get-OctopusUser] gets user by single name'{
+        Get-OctopusUser -UserName $TestName | select -ExpandProperty Username | should be $TestName
+    }
+    It '[Get-OctopusUser] gets multiple users by name'{
+        $Names = ($TestName,($TestName + "2"))
+        $users = Get-OctopusUser -UserName $Names
+        $users.Username | should be $Names
+    }
+    It '[Get-OctopusUser] gets multiple users by name using wildcard'{
+        $Names = ($TestName,($TestName + "2"))
+        $users = Get-OctopusUser -UserName "$TestName*"
+        $users.Username | should be $Names
+    }
+    It '[Get-OctopusTeam] gets a team by single name'{
+        Get-OctopusTeam -TeamName $TestName | select -ExpandProperty name | should be $TestName
+    }
+    It '[Get-OctopusTeam] gets teams by multiple names'{
+        $names = ($TestName,($TestName + "2"))
+        $teams = Get-OctopusTeam -TeamName $names
+        $teams.name | should be $names
+    }
+    It '[Get-OctopusTeam] gets teams by name using wildcards'{
+        $names = ($TestName,($TestName + "2"))
+        $teams = Get-OctopusTeam -TeamName "$TestName*"
+        $teams.name | should be $names
     }
     It '[Update-OctopusReleaseVariableSet] updates the variable set of a release'{
         $release = Get-OctopusRelease -ProjectName $TestName -Latest 1 -ResourceOnly
@@ -329,7 +507,75 @@ Describe 'Octopus Module Tests' {
         $feed.Resource.FeedUri = $URL
 
         $feed | Update-OctopusResource -Force | select -ExpandProperty FeedURI -Unique | should be $URL
-    }        
+    }
+    It '[Update-OctopusResource] Updates users'{
+        $newDisplayName = ($TestName + "Modified")
+
+        $user = Get-OctopusUser -UserName $TestName
+        
+        $user.Displayname = $newDisplayName
+
+        Update-OctopusResource -Resource $user -Force
+
+        Get-OctopusUser -UserName $TestName | select -ExpandProperty Displayname | should be $newDisplayName
+    }
+    It '[Update-OctopusResource] updates teams'{
+        $team = Get-OctopusTeam -TeamName $TestName
+        $team.EnvironmentIds = $null
+        Update-OctopusResource -Resource $team -Force
+    }
+    It '[Block/Unblock-OctopusRelease] blocks/unblocks a release'{
+        $release = Get-OctopusRelease -ProjectName $TestName -Latest 1
+            
+        $release | Block-OctopusRelease -Description $TestName -Force | should be $true
+
+        $release | UnBlock-OctopusRelease -Force | should be $true
+    }
+    It '[New-OctopusAPIKey] creates an API Key'{
+        $api = New-OctopusAPIKey -Purpose "$TestName" -Username $TestName -password "Michael123!" -NoWarning -OctopusURL $env:OctopusURL
+                
+        $api.purpose | should be $TestName
+
+        $api.APIKey | should not be $null
+
+        {$c.repository.Users.RevokeApiKey($api)} | should not throw
+
+    }
+    It '[Start-OctopusCalamariUpdate] starts a calamari update task on an environment'{
+        $Env = Get-OctopusEnvironment -EnvironmentName $TestName -ResourceOnly
+
+        $task = Start-OctopusCalamariUpdate -EnvironmentName $env.Name -Force
+        $task.gettype() | should be "Octopus.Client.Model.TaskResource"        
+    }
+    It '[Start-OctopusCalamariUpdate] starts a calamari update task on a machine'{
+        $Machine = Get-OctopusMachine -ResourceOnly -MachineName $TestName
+        
+        $task = Start-OctopusCalamariUpdate -MachineName $Machine.Name -Force
+        $task.gettype() | should be "Octopus.Client.Model.TaskResource"
+    }
+    It '[Start-OctopusCalamariUpdate] doesnt start a task if at least 1 of the listed machines doesnt exist'{
+        $Existingmachine = Get-OctopusMachine -MachineName $TestName -ResourceOnly
+        
+        {Start-OctopusCalamariUpdate -MachineName $Existingmachine.name,"NonExistingMachine" -Force -ErrorAction Stop }| should Throw
+    }
+    It '[Start-OctopusCalamariUpdate] doesnt start a task if at least 1 of the listed environments doesnt exist'{
+        $Existingenvironment = Get-OctopusEnvironment -ResourceOnly -EnvironmentName $TestName        
+        
+        { Start-OctopusCalamariUpdate -EnvironmentName $Existingenvironment.name,"NonExistingEnvironment" -Force -ErrorAction Stop }| should Throw
+    }    
+
+    It '[Remove-OctopusResource] deletes teams' {
+        $testname1 = $TestName
+        $testname2 = $TestName + "2"
+
+        $teams = Get-OctopusTeam -TeamName $testname1,$testname2         
+
+        $teams | %{Remove-OctopusResource -Resource $_ -Force}
+
+        $teams = Get-OctopusTeam -TeamName $testname1,$testname2 -ErrorAction SilentlyContinue
+
+        $teams.Count | should be 0
+    }      
     It '[Remove-OctopusResource] deletes Projects'{
         (Get-OctopusProject -Name $TestName | Remove-OctopusResource -Force) | should be $true
 
@@ -360,30 +606,9 @@ Describe 'Octopus Module Tests' {
 
         Get-OctopusEnvironment -Name $TestName -ErrorAction SilentlyContinue | should be $null
     }
-    It '[Start-OctopusCalamariUpdate] starts a calamari update task agains a single environment'{
-        $Environments = Get-OctopusEnvironment | ?{$_.Machines.count -gt 0}
-        $i = Get-Random -Minimum 0 -Maximum ($Environments.count - 1)
-
-        $task = Start-OctopusCalamariUpdate -EnvironmentName $Environments[$i].EnvironmentName -Force
-        $task.gettype() | should be "Octopus.Client.Model.TaskResource"
-
-        $Machines = Get-OctopusMachine -ResourceOnly
-        $i = Get-Random -Minimum 0 -Maximum ($Machines.count - 1)
-
-        $task = Start-OctopusCalamariUpdate -MachineName $Machines[$i].Name -Force
-        $task.gettype() | should be "Octopus.Client.Model.TaskResource"
-    }
-    It '[Start-OctopusCalamariUpdate] doesnt start a task if at least 1 machine/environment doesnt exist'{
-        $machines = Get-OctopusMachine -ResourceOnly
-        $i = Get-Random -Minimum 0 -Maximum ($machines.count -1)
-        
-        { Start-OctopusCalamariUpdate -MachineName (Get-Random -Maximum 10000),$machines[$i].Name -Force -ErrorAction Stop }| should Throw
-
-        $environments = Get-OctopusEnvironment -ResourceOnly
-        $i = Get-Random -Minimum 0 -Maximum ($environments.count -1)
-        
-        { Start-OctopusCalamariUpdate -EnvironmentName (Get-Random -Maximum 10000),$environments[$i].Name -Force -ErrorAction Stop }| should Throw
-       
+    It '[Remove-OctopusResource] deletes users'{
+        $user1 = Get-OctopusUser -UserName "$TestName" ; Remove-OctopusResource -Resource $user1 -Force | should be $true
+        $user2 = Get-OctopusUser -UserName ("$TestName"+"2") ; Remove-OctopusResource -Resource $user2 -Force | should be $true
     }
     It '[Start-OctopusRetentionPolicy] starts a "Retention" task'{
         $task = Start-OctopusRetentionPolicy -Force -Wait
@@ -457,81 +682,54 @@ Describe 'Octopus Module Tests' {
         Set-OctopusMaintenanceMode -Mode OFF -Force | should be $true
 
         (Get-OctopusMaintenanceMode).IsInMaintenanceMode | should be $False
-    }
-    It '[Set-OctopusUserAccountStatus] Enables\Disables a user account by name' {        
-        $User = Set-OctopusUserAccountStatus -Username 'OT\Tester@OT' -status Disabled
-        $User.IsActive | should be 'False'
-
-        $User = Set-OctopusUserAccountStatus -Username 'OT\Tester@OT' -status Enabled
-        $User.IsActive | should be 'True'
-    }
-    It '[Set-OctopusUserAccountStatus] Enables\Disables multiple user accounts by name' {        
-        $User = Set-OctopusUserAccountStatus -Username 'OT\Tester@OT','Ian.Paullin@OT' -status Disabled
-        $User.IsActive | select -Unique | should be 'False'
-        
-        $User = Set-OctopusUserAccountStatus -Username 'OT\Tester@OT','Ian.Paullin@OT' -status Enabled
-        $User.IsActive | select -Unique | should be 'True'    
-    }
-    It '[Set-OctopusUserAccountStatus] Doesnt Enable/Disable a non-existent user account by name'{
-        $username = "DoesntExist"
-
-        (Set-OctopusUserAccountStatus -Username $username -status Disabled) | should be $null
-        (Set-OctopusUserAccountStatus -Username $username -status Enabled) | should be $null
-
-    }
-    It '[Set-OctopusUserAccountStatus] Only Enables/Disables users that exist from a list with existent and non-existent usernames'{
-        $username = "DoesntExist","OT\Tester@OT"
-
-        $users = Set-OctopusUserAccountStatus -Username $username -status Disabled
-
-        $users.count | should be 1
-
-        $users = Set-OctopusUserAccountStatus -Username $username -status Enabled
-
-        $users.count | should be 1
-
-    }
-    It '[Set-OctopusUserAccountStatus] Enables\Disables a user account by single resource' {        
-        $List = @()
-        $username = "OT\Tester@OT"
-        $list += $c.repository.Users.FindMany({param($u) if (($u.username -in $Username) -or ($u.username -like $Username)) {$true}})
-
-        $user = Set-OctopusUserAccountStatus -status Disabled -Resource $List
-
-        $user.isactive | should be 'false'
-
-        $user = Set-OctopusUserAccountStatus -status Enabled -Resource $List
-
-        $user.isactive | should be 'true'
-    }
-    It '[Set-OctopusUserAccountStatus] Enables\Disables a user account by multiple resources' {        
-        $List = @()
-        $username = "OT\Tester@OT","Ian.Paullin@OT"
-        $list += $c.repository.Users.FindMany({param($u) if (($u.username -in $Username) -or ($u.username -like $Username)) {$true}})
-
-        $users = Set-OctopusUserAccountStatus -status Disabled -Resource $List
-
-        $users.isactive | select -Unique | should be 'false'
-
-        $users = Set-OctopusUserAccountStatus -status Enabled -Resource $List
-
-        $users.isactive | select -Unique | should be 'true'
     }    
-    It '[New-OctopusAPIKey] creates an API Key'{
-        $api = New-OctopusAPIKey -Purpose "$TestName" -Username 'Ian.Paullin' -password 'Michael3' -NoWarning -OctopusURL $env:OctopusURL
-                
-        $api.purpose | should be $TestName
 
-        $api.APIKey | should not be $null
+    DeleteTestADUser -testname $TestName
+    DeleteTestADUser -testname ($TestName + "2")
+    DeleteTestADGroup -testname ($TestName + "_group")
+}
+#Block to tests particular tests while debugging
+Describe 'Test'{
+<#
+        $TestName = new-testname
 
-        {$c.repository.Users.RevokeApiKey($api)} | should not throw
+    $c = New-OctopusConnection
 
-    }                    
-    It '[Block/Unblock-OctopusRelease] blocks/unblocks a release'{
-        $release = Get-OctopusRelease -ProjectName Release_Tests -Latest 1
-            
-        $release | Block-OctopusRelease -Description $TestName -Force | should be $true
+    CreateTestADUser -TestName $TestName
+    CreateTestADUser -TestName ($TestName + "2")
+    It '[New-OctopusResource] creates users (only testing this in AD mode)'{
+        $TestName1 = $TestName
+        $TestName2 = ($TestName + "2")
 
-        $release | UnBlock-OctopusRelease -Force | should be $true
+        #Creating first user
+        $newUser1 = Get-OctopusResourceModel -Resource User
+
+        $newUser1.Username = "$TestName1" #Must match AD username if you are using Active Directory Authentication. If your user is Domain\John.Doe, put "John.Doe" on this field.
+        $newUser1.DisplayName = "$TestName1" #Try to make it match "Username" for consistency.
+        $newUser1.EmailAddress = "$TestName1@email.com"
+        $newUser1.IsActive = $true
+        $newUser1.IsService = $false
+
+        New-OctopusResource -Resource $newUser1
+
+        Get-OctopusUser -UserName $TestName1 | select -ExpandProperty Username | should be $TestName1
+
+        #Creating 2nd user
+        $newUser2 = Get-OctopusResourceModel -Resource User
+        $newUser2.Username = "$TestName2" #Must match AD username if you are using Active Directory Authentication. If your user is Domain\John.Doe, put "John.Doe" on this field.
+        $newUser2.DisplayName = "$TestName2" #Try to make it match "Username" for consistency.
+        $newUser2.EmailAddress = "$TestName2@email.com"
+        $newUser2.IsActive = $true
+        $newUser2.IsService = $false
+
+        New-OctopusResource -Resource $newUser2
+        Get-OctopusUser -UserName $TestName2 | select -ExpandProperty Username | should be $TestName2
     }
+    It '[Remove-OctopusResource] deletes users'{
+        $user1 = Get-OctopusUser -UserName "$TestName" ; Remove-OctopusResource -Resource $user1 -Force | should be $true
+        $user2 = Get-OctopusUser -UserName ("$TestName"+"2") ; Remove-OctopusResource -Resource $user2 -Force | should be $true
+    }
+    DeleteTestADUser -testname $TestName
+    DeleteTestADUser -testname ($TestName + "2")
+    #>
 }

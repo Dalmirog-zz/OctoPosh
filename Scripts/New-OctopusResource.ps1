@@ -43,16 +43,15 @@ function New-OctopusResource
             {$_.getType() -eq [Octopus.Client.Model.LibraryVariableSetResource]} {$res = 'LibraryVariableSets'}
             {$_.getType() -eq [Octopus.Client.Model.MachineResource]} {$res = 'Machines'}
             {$_.getType() -eq [Octopus.Client.Model.LifecycleResource]} {$res = 'Lifecycles'}
+            {$_.getType() -eq [Octopus.Client.Model.UserResource]} {$res = 'Users'}
+            {$_.getType() -eq [Octopus.Client.Model.TeamResource]} {$res = 'Teams'}
             Default{Throw "Invalid object type: $($_.getType()) `nRun 'Get-OctopusResourceModel -ListAvailable' to get a list of the object types accepted by this cmdlet"}
         }
         Write-Verbose "[$($MyInvocation.MyCommand)] Creating an $($resource.GetType()) object"
         $newres = $c.repository.$res.Create($resource)
-
     }
     End
     {
         return $newres
     }
 }
-
-
