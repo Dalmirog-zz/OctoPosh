@@ -317,7 +317,7 @@ Describe 'Octopus Module Tests' {
         $results.id | should be $tasks.id            
     }
     It '[Get-OctopusTask] gets tasks by multiple IDs'{
-        $i = (Get-Random -Maximum 20)
+        $i = (Get-Random -Minimum 1 -Maximum 20)
 
         $tasks = Get-OctopusTask -After (Get-Date).AddDays(-10) | Select-Object -First $i
 
@@ -535,6 +535,16 @@ Describe 'Octopus Module Tests' {
 
         $release | UnBlock-OctopusRelease -Force | should be $true
     }
+    It '[New-OctopusAPIKey] creates an API Key'{
+        $api = New-OctopusAPIKey -Purpose "$TestName" -Username $TestName -password "Michael123!" -NoWarning -OctopusURL $env:OctopusURL
+                
+        $api.purpose | should be $TestName
+
+        $api.APIKey | should not be $null
+
+        {$c.repository.Users.RevokeApiKey($api)} | should not throw
+
+    }
     It '[Remove-OctopusResource] deletes teams' {
         $testname1 = $TestName
         $testname2 = $TestName + "2"
@@ -698,17 +708,7 @@ Describe 'Octopus Module Tests' {
         Set-OctopusMaintenanceMode -Mode OFF -Force | should be $true
 
         (Get-OctopusMaintenanceMode).IsInMaintenanceMode | should be $False
-    }
-    It '[New-OctopusAPIKey] creates an API Key'{
-        $api = New-OctopusAPIKey -Purpose "$TestName" -Username $TestName -password "Michael123!" -NoWarning -OctopusURL $env:OctopusURL
-                
-        $api.purpose | should be $TestName
-
-        $api.APIKey | should not be $null
-
-        {$c.repository.Users.RevokeApiKey($api)} | should not throw
-
-    }
+    }    
 
     DeleteTestADUser -testname $TestName
     DeleteTestADUser -testname ($TestName + "2")
@@ -716,4 +716,46 @@ Describe 'Octopus Module Tests' {
 }
 #Block to tests particular tests while debugging
 Describe 'Test'{
+<#
+        $TestName = new-testname
+
+    $c = New-OctopusConnection
+
+    CreateTestADUser -TestName $TestName
+    CreateTestADUser -TestName ($TestName + "2")
+    It '[New-OctopusResource] creates users (only testing this in AD mode)'{
+        $TestName1 = $TestName
+        $TestName2 = ($TestName + "2")
+
+        #Creating first user
+        $newUser1 = Get-OctopusResourceModel -Resource User
+
+        $newUser1.Username = "$TestName1" #Must match AD username if you are using Active Directory Authentication. If your user is Domain\John.Doe, put "John.Doe" on this field.
+        $newUser1.DisplayName = "$TestName1" #Try to make it match "Username" for consistency.
+        $newUser1.EmailAddress = "$TestName1@email.com"
+        $newUser1.IsActive = $true
+        $newUser1.IsService = $false
+
+        New-OctopusResource -Resource $newUser1
+
+        Get-OctopusUser -UserName $TestName1 | select -ExpandProperty Username | should be $TestName1
+
+        #Creating 2nd user
+        $newUser2 = Get-OctopusResourceModel -Resource User
+        $newUser2.Username = "$TestName2" #Must match AD username if you are using Active Directory Authentication. If your user is Domain\John.Doe, put "John.Doe" on this field.
+        $newUser2.DisplayName = "$TestName2" #Try to make it match "Username" for consistency.
+        $newUser2.EmailAddress = "$TestName2@email.com"
+        $newUser2.IsActive = $true
+        $newUser2.IsService = $false
+
+        New-OctopusResource -Resource $newUser2
+        Get-OctopusUser -UserName $TestName2 | select -ExpandProperty Username | should be $TestName2
+    }
+    It '[Remove-OctopusResource] deletes users'{
+        $user1 = Get-OctopusUser -UserName "$TestName" ; Remove-OctopusResource -Resource $user1 -Force | should be $true
+        $user2 = Get-OctopusUser -UserName ("$TestName"+"2") ; Remove-OctopusResource -Resource $user2 -Force | should be $true
+    }
+    DeleteTestADUser -testname $TestName
+    DeleteTestADUser -testname ($TestName + "2")
+    #>
 }
