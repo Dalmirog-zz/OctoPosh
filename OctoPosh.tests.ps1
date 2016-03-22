@@ -57,7 +57,7 @@ Function CreateTestADGroup ($testname){
 }
 
 Function DeleteTestADGroup($testname){
-    $filter = 'Name -eq ' + "`"" +$testname + '_group' +"`""
+    $filter = 'Name -eq ' + "`"" +$testname+"`""
 
     Get-ADGroup -Filter $filter | Remove-ADGroup -Verbose -Confirm:$false
 }
