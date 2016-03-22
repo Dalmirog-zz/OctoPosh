@@ -541,6 +541,40 @@ Describe 'Octopus Module Tests' {
         {$c.repository.Users.RevokeApiKey($api)} | should not throw
 
     }
+    It '[Start-OctopusCalamariUpdate] starts a calamari update task on an environment'{
+        $Env = Get-OctopusEnvironment -EnvironmentName $TestName -ResourceOnly
+
+        $task = Start-OctopusCalamariUpdate -EnvironmentName $env.Name -Force
+        $task.gettype() | should be "Octopus.Client.Model.TaskResource"        
+    }
+    It '[Start-OctopusCalamariUpdate] starts a calamari update task on a machine'{
+        $Machine = Get-OctopusMachine -ResourceOnly -MachineName $TestName
+        
+        $task = Start-OctopusCalamariUpdate -MachineName $Machine.Name -Force
+        $task.gettype() | should be "Octopus.Client.Model.TaskResource"
+    }
+    It '[Start-OctopusCalamariUpdate] doesnt start a task if at least 1 machine/environment doesnt exist'{
+        $machines = Get-OctopusMachine -ResourceOnly
+        If($Machines.count -ne 0){
+            $i = Get-Random -Minimum 0 -Maximum ($machines.count - 1)
+        }
+        else{
+            $i = 0
+        }
+        
+        { Start-OctopusCalamariUpdate -MachineName (Get-Random -Maximum 10000),$machines[$i].Name -Force -ErrorAction Stop }| should Throw
+
+        $environments = Get-OctopusEnvironment -ResourceOnly
+        If($Environments.count -ne 0){
+            $i = Get-Random -Minimum 0 -Maximum ($Environments.count - 1)
+        }
+        else{
+            $i = 0
+        }
+        
+        { Start-OctopusCalamariUpdate -EnvironmentName (Get-Random -Maximum 10000),$environments[$i].Name -Force -ErrorAction Stop }| should Throw
+       
+    }
     It '[Remove-OctopusResource] deletes teams' {
         $testname1 = $TestName
         $testname2 = $TestName + "2"
@@ -586,51 +620,6 @@ Describe 'Octopus Module Tests' {
     It '[Remove-OctopusResource] deletes users'{
         $user1 = Get-OctopusUser -UserName "$TestName" ; Remove-OctopusResource -Resource $user1 -Force | should be $true
         $user2 = Get-OctopusUser -UserName ("$TestName"+"2") ; Remove-OctopusResource -Resource $user2 -Force | should be $true
-    }
-    It '[Start-OctopusCalamariUpdate] starts a calamari update task agains a single environment'{
-        $Environments = Get-OctopusEnvironment | ?{$_.Machines.count -gt 0}
-
-        If($Environments.count -ne 0){
-            $i = Get-Random -Minimum 0 -Maximum ($Environments.count - 1)
-        }
-        else{
-            $i = 0
-        }
-        $task = Start-OctopusCalamariUpdate -EnvironmentName $Environments[$i].EnvironmentName -Force
-        $task.gettype() | should be "Octopus.Client.Model.TaskResource"
-
-        $Machines = Get-OctopusMachine -ResourceOnly
-
-        If($Machines.count -ne 0){
-            $i = Get-Random -Minimum 0 -Maximum ($Machines.count - 1)
-        }
-        else{
-            $i = 0
-        }
-        $task = Start-OctopusCalamariUpdate -MachineName $Machines[$i].Name -Force
-        $task.gettype() | should be "Octopus.Client.Model.TaskResource"
-    }
-    It '[Start-OctopusCalamariUpdate] doesnt start a task if at least 1 machine/environment doesnt exist'{
-        $machines = Get-OctopusMachine -ResourceOnly
-        If($Machines.count -ne 0){
-            $i = Get-Random -Minimum 0 -Maximum ($machines.count - 1)
-        }
-        else{
-            $i = 0
-        }
-        
-        { Start-OctopusCalamariUpdate -MachineName (Get-Random -Maximum 10000),$machines[$i].Name -Force -ErrorAction Stop }| should Throw
-
-        $environments = Get-OctopusEnvironment -ResourceOnly
-        If($Environments.count -ne 0){
-            $i = Get-Random -Minimum 0 -Maximum ($Environments.count - 1)
-        }
-        else{
-            $i = 0
-        }
-        
-        { Start-OctopusCalamariUpdate -EnvironmentName (Get-Random -Maximum 10000),$environments[$i].Name -Force -ErrorAction Stop }| should Throw
-       
     }
     It '[Start-OctopusRetentionPolicy] starts a "Retention" task'{
         $task = Start-OctopusRetentionPolicy -Force -Wait
