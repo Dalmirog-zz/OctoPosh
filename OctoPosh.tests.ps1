@@ -553,28 +553,17 @@ Describe 'Octopus Module Tests' {
         $task = Start-OctopusCalamariUpdate -MachineName $Machine.Name -Force
         $task.gettype() | should be "Octopus.Client.Model.TaskResource"
     }
-    It '[Start-OctopusCalamariUpdate] doesnt start a task if at least 1 machine/environment doesnt exist'{
-        $machines = Get-OctopusMachine -ResourceOnly
-        If($Machines.count -ne 0){
-            $i = Get-Random -Minimum 0 -Maximum ($machines.count - 1)
-        }
-        else{
-            $i = 0
-        }
+    It '[Start-OctopusCalamariUpdate] doesnt start a task if at least 1 of the listed machines doesnt exist'{
+        $Existingmachine = Get-OctopusMachine -MachineName $TestName -ResourceOnly
         
-        { Start-OctopusCalamariUpdate -MachineName (Get-Random -Maximum 10000),$machines[$i].Name -Force -ErrorAction Stop }| should Throw
-
-        $environments = Get-OctopusEnvironment -ResourceOnly
-        If($Environments.count -ne 0){
-            $i = Get-Random -Minimum 0 -Maximum ($Environments.count - 1)
-        }
-        else{
-            $i = 0
-        }
-        
-        { Start-OctopusCalamariUpdate -EnvironmentName (Get-Random -Maximum 10000),$environments[$i].Name -Force -ErrorAction Stop }| should Throw
-       
+        {Start-OctopusCalamariUpdate -MachineName $Existingmachine.name,"NonExistingMachine" -Force -ErrorAction Stop }| should Throw
     }
+    It '[Start-OctopusCalamariUpdate] doesnt start a task if at least 1 of the listed environments doesnt exist'{
+        $Existingenvironment = Get-OctopusEnvironment -ResourceOnly -EnvironmentName $TestName        
+        
+        { Start-OctopusCalamariUpdate -EnvironmentName $Existingenvironment.name,"NonExistingEnvironment" -Force -ErrorAction Stop }| should Throw
+    }    
+
     It '[Remove-OctopusResource] deletes teams' {
         $testname1 = $TestName
         $testname2 = $TestName + "2"
