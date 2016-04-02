@@ -1,13 +1,21 @@
-$scripts = Get-ChildItem $PSScriptRoot\scripts -Filter "*.ps1"
-
+#region Loading necesary assemblies
 Add-Type -Path "$PSScriptRoot\bin\Newtonsoft.Json.dll"
 Add-Type -Path "$PSScriptRoot\bin\Octopus.Client.dll"
+#endregion
+
+#region Dot sourcing and exporting all scripts inside \Scripts.
+#I keep reading everywhere that dot sourcing is not a recommended practice, but having all the functions in a single PSM1 file is way too uncomfortable for me.
+#If there's a way to export functions from a separate file without dot-sourcing, I'll be MORE than glad to hear about it/accept a PR.
+$scripts = Get-ChildItem $PSScriptRoot\scripts -Filter "*.ps1"
 
 foreach ($script in $scripts){
 . $script.FullName
 }
 
-##Helper Functions. These wont get exported by the module, but will be available to be used by the exported cmdlets
+Export-ModuleMember $scripts.BaseName
+#endregion
+
+#region Helper Functions. These wont get exported by the module, but will be available to be used by the exported cmdlets
 function Put-OctopusResource([string]$uri, [object]$resource) {
     Invoke-RestMethod -Method Put -Uri "$env:OctopusURL/$uri" -Body $($resource | ConvertTo-Json -Depth 10) -Headers $c.header -Verbose:$false
 }
@@ -75,6 +83,4 @@ function Get-OctopusVariableScopeValue{
     
    return $list
 }
-
-#Only exporting cmdlets inside \Scripts
-Export-ModuleMember $scripts.BaseName
+#endregion
