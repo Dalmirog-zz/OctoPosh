@@ -66,8 +66,6 @@ function Get-OctopusFeed
                 FeedURI = $feed.FeedURI
                 LoginUser= $feed.Username                
                 ID = $Feed.id
-                LastModifiedOn = $feed.LastModifiedOn
-                LastModifiedBy = $feed.LastModifiedBy
                 Resource = $feed
             }
             
