@@ -162,7 +162,7 @@ function Get-OctopusMachine
 
                 $obj = [PSCustomObject]@{
                     MachineName = $machine.Name
-                    MachineID = $machine.Id
+                    ID = $machine.Id
                     Thumbprint = $machine.Thumbprint
                     URI = $machine.uri
                     IsDisabled = $machine.IsDisabled
