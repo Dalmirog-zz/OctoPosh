@@ -1,4 +1,5 @@
-﻿#Generates a random test name that'll be used to name everything on the tests
+﻿#region Helper functions
+#Generates a random test name that'll be used to name everything on the tests
 Function New-TestName {    
     
     $length = 10 #length of random chars
@@ -15,6 +16,7 @@ Function New-TestName {
 
 }
 
+#Creates a user in Active Directory
 Function CreateTestADUser ($TestName){
     Import-Module ActiveDirectory
 
@@ -35,6 +37,7 @@ Function CreateTestADUser ($TestName){
     -Verbose
 }
 
+#Deletes a user in Active Directory
 Function DeleteTestADUser ($testname){
     Import-Module ActiveDirectory
 
@@ -47,6 +50,7 @@ Function DeleteTestADUser ($testname){
     Get-ADUser -Filter $filter | Remove-ADUser -Verbose -Confirm:$false
 }
 
+#Creates a group in Active Directory
 Function CreateTestADGroup ($testname){
     $date = (Get-Date).ToString('MM/dd/yyyy')
     New-ADGroup -Name ($testname + "_group") `
@@ -56,12 +60,14 @@ Function CreateTestADGroup ($testname){
     -Verbose
 }
 
+#Deletes a group in Active Directory
 Function DeleteTestADGroup($testname){
     $filter = 'Name -eq ' + "`"" +$testname+"`""
 
     Get-ADGroup -Filter $filter | Remove-ADGroup -Verbose -Confirm:$false
 }
 
+#Creates X amount of releases in a project. It doesn't deploy any of them.
 Function CreateTestReleases($testname,$amount){
     for($i = 0 ;$i -lt $amount ; $i++){
         cd $PSScriptRoot
@@ -69,6 +75,14 @@ Function CreateTestReleases($testname,$amount){
     }    
 }
 
+#Returns a single random object of a collection
+Function Get-RandomObject ([Object[]]$Collection){
+    $i = Get-random -Minimum 0 -Maximum $Collection.Count
+    return $Collection[$i]
+}
+#endregion
+
+#region Tests
 Describe 'Octopus Module Tests' {
 
     $TestName = new-testname
@@ -524,6 +538,34 @@ Describe 'Octopus Module Tests' {
         $team.EnvironmentIds = $null
         Update-OctopusResource -Resource $team -Force
     }
+    It '[New-OctopusProjectClone] clones a project using default Lifecycle and ProjectGroup'{
+        $clone = New-OctopusProjectClone -BaseProjectName $TestName -ProjectName ($TestName + "_clone")
+        $Clone.Name | should be ($TestName + "_clone")
+        {$c.repository.Projects.Delete($clone)} | should not throw
+    }
+    It '[New-OctopusProjectClone] clones a project using a custom Lifecycle'{        
+        $lifecycle = Get-RandomObject (Get-OctopusLifeCycle -ResourceOnly)
+        $clone = New-OctopusProjectClone -BaseProjectName $TestName -ProjectName ($TestName + "_clone") -LifecycleName $lifecycle.name
+        $Clone.Name | should be ($TestName + "_clone")
+        $Clone.LifecycleID | should be $lifecycle.id
+        {$c.repository.Projects.Delete($clone)} | should not throw
+    }
+    It '[New-OctopusProjectClone] clones a project using a custom ProjectGroup'{        
+        $ProjectGroup = Get-RandomObject (Get-OctopusProjectGroup -ResourceOnly)
+        $clone = New-OctopusProjectClone -BaseProjectName $TestName -ProjectName ($TestName + "_clone") -ProjectGroup $ProjectGroup.name
+        $Clone.Name | should be ($TestName + "_clone")
+        $Clone.ProjectGroupID | should be $ProjectGroup.id
+        {$c.repository.Projects.Delete($clone)} | should not throw
+    }
+    It '[New-OctopusProjectClone] Doesnt create a clone with a duplicate name '{        
+        {New-OctopusProjectClone -BaseProjectName $TestName -ProjectName $TestName} | should throw        
+    }
+    It '[New-OctopusProjectClone] doesnt create a clone with a non-existing Lifecycle'{
+        {New-OctopusProjectClone -BaseProjectName $TestName -ProjectName ($TestName + "_clone") -LifecycleName (New-TestName)} | should throw
+    }    
+    It '[New-OctopusProjectClone] doesnt create a clone with a non-existing ProjectGroup'{
+        {New-OctopusProjectClone -BaseProjectName $TestName -ProjectName ($TestName + "_clone") -ProjectGroupName (New-TestName)} | should throw
+    }
     It '[Block/Unblock-OctopusRelease] blocks/unblocks a release'{
         $release = Get-OctopusRelease -ProjectName $TestName -Latest 1
             
@@ -688,48 +730,8 @@ Describe 'Octopus Module Tests' {
     DeleteTestADUser -testname ($TestName + "2")
     DeleteTestADGroup -testname ($TestName + "_group")
 }
-#Block to tests particular tests while debugging
-Describe 'Test'{
-<#
-        $TestName = new-testname
 
-    $c = New-OctopusConnection
-
-    CreateTestADUser -TestName $TestName
-    CreateTestADUser -TestName ($TestName + "2")
-    It '[New-OctopusResource] creates users (only testing this in AD mode)'{
-        $TestName1 = $TestName
-        $TestName2 = ($TestName + "2")
-
-        #Creating first user
-        $newUser1 = Get-OctopusResourceModel -Resource User
-
-        $newUser1.Username = "$TestName1" #Must match AD username if you are using Active Directory Authentication. If your user is Domain\John.Doe, put "John.Doe" on this field.
-        $newUser1.DisplayName = "$TestName1" #Try to make it match "Username" for consistency.
-        $newUser1.EmailAddress = "$TestName1@email.com"
-        $newUser1.IsActive = $true
-        $newUser1.IsService = $false
-
-        New-OctopusResource -Resource $newUser1
-
-        Get-OctopusUser -UserName $TestName1 | select -ExpandProperty Username | should be $TestName1
-
-        #Creating 2nd user
-        $newUser2 = Get-OctopusResourceModel -Resource User
-        $newUser2.Username = "$TestName2" #Must match AD username if you are using Active Directory Authentication. If your user is Domain\John.Doe, put "John.Doe" on this field.
-        $newUser2.DisplayName = "$TestName2" #Try to make it match "Username" for consistency.
-        $newUser2.EmailAddress = "$TestName2@email.com"
-        $newUser2.IsActive = $true
-        $newUser2.IsService = $false
-
-        New-OctopusResource -Resource $newUser2
-        Get-OctopusUser -UserName $TestName2 | select -ExpandProperty Username | should be $TestName2
-    }
-    It '[Remove-OctopusResource] deletes users'{
-        $user1 = Get-OctopusUser -UserName "$TestName" ; Remove-OctopusResource -Resource $user1 -Force | should be $true
-        $user2 = Get-OctopusUser -UserName ("$TestName"+"2") ; Remove-OctopusResource -Resource $user2 -Force | should be $true
-    }
-    DeleteTestADUser -testname $TestName
-    DeleteTestADUser -testname ($TestName + "2")
-    #>
+#Block to test particular tests while debugging
+Describe 'Test'{  
 }
+#endregion
