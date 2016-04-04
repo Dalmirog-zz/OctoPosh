@@ -20,9 +20,13 @@ function Put-OctopusResource([string]$uri, [object]$resource) {
     Invoke-RestMethod -Method Put -Uri "$env:OctopusURL/$uri" -Body $($resource | ConvertTo-Json -Depth 10) -Headers $c.header -Verbose:$false
 }
 
-function Get-OctopusResource([string]$uri, [object]$header) {
+function Post-OctopusResource([string]$uri, [object]$resource) {
+    Invoke-RestMethod -Method Post -Uri "$env:OctopusURL/$uri" -Body $($resource | ConvertTo-Json -Depth 10) -Headers $c.header -Verbose:$false
+}
+
+function Get-OctopusResource([string]$uri) {
     
-    return Invoke-RestMethod -Method Get -Uri "$env:OctopusURL/$uri" -Headers $header -Verbose:$false
+    return Invoke-RestMethod -Method Get -Uri "$env:OctopusURL/$uri" -Headers $c.header -Verbose:$false
 }
 
 function Get-UserConfirmation{ #Credits to http://www.peetersonline.nl/2009/07/user-confirmation-in-powershell/
