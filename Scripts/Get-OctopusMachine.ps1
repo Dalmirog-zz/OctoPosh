@@ -85,7 +85,7 @@ function Get-OctopusMachine
             If($CommunicationStyle -eq 'Polling'){$Style = 'TentacleActive'}            
             elseIf($CommunicationStyle -eq 'Listening'){$Style = 'TentaclePassive'}
 
-            $Machines = $c.repository.Machines.FindMany({param($Mach) if ($Mach.CommunicationStyle -eq $Style){$true}})
+            $Machines = $c.repository.Machines.FindMany({param($Mach) if ($Mach.Endpoint.CommunicationStyle -eq $Style){$true}})
 
             If($Machines -eq $null){
                 Write-Error "No Machines found with CommunicationStyle: $($Style)"
@@ -117,6 +117,7 @@ function Get-OctopusMachine
                 $envmachines = $c.repository.Environments.GetMachines($env)
 
                 If($envmachines){
+                    Write-Verbose "[$($MyInvocation.MyCommand)] [ResourceOnly] switch is on. Returning raw Octopus resource objects"
                     $machines += $envmachines            
                 }
 
@@ -138,23 +139,26 @@ function Get-OctopusMachine
             $list += $Machines
         }
 
-        else{            
+        else{
+        
             foreach ($machine in $Machines){                
                 Write-Progress -Activity "Getting info from machine: $($machine.name)" -status "$i of $($machines.count)" -percentComplete ($i / $machines.count*100)
                 Write-Verbose "[$($MyInvocation.MyCommand)] Getting info of Machine: $($Machine.name)"
 
-                $e = @() 
+                $e = @()
 
                 If($environments){
-                    $e = $environments | ?{$_.id -eq $machine.EnvironmentIds}
+                    $e = ($environments | ?{$_.id -eq $machine.EnvironmentIds}).name
                 }
 
                 Else{
-                    $e = Get-OctopusResource "api/environments/$($machine.EnvironmentIds)" -header $c.header
+                    foreach($eid in $machine.EnvironmentIDs){
+                        $e += (Get-OctopusResource "api/environments/$eid" -header $c.header).name
+                    }                    
                 }
                 
-                If($Machine.CommunicationStyle -eq 'TentacleActive'){$Style = 'Polling'}            
-                If($Machine.CommunicationStyle -eq 'TentaclePassive'){$Style = 'Listening'}               
+                If($Machine.Endpoint.CommunicationStyle -eq 'TentacleActive'){$Style = 'Polling'}            
+                If($Machine.Endpoint.CommunicationStyle -eq 'TentaclePassive'){$Style = 'Listening'}               
 
                 $obj = [PSCustomObject]@{
                     MachineName = $machine.Name
@@ -162,14 +166,12 @@ function Get-OctopusMachine
                     Thumbprint = $machine.Thumbprint
                     URI = $machine.uri
                     IsDisabled = $machine.IsDisabled
-                    EnvironmentName = $e.name
+                    EnvironmentName = $e
                     Roles = $machine.Roles
-                    Squid = $machine.Squid
+                    HasLatestCalamari = $machine.HasLatestCalamari
                     CommunicationStyle = $Style
                     Status = $machine.Status
                     StatusSummary = $machine.StatusSummary
-                    LastModifiedOn = $machine.LastModifiedOn
-                    LastModifiedBy = $machine.LastModifiedBy
                     Resource = $machine
                 }
 

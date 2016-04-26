@@ -87,7 +87,7 @@ function Get-OctopusDeployment
                 
                 foreach($Version in $ReleaseVersion){
                     $release = Get-OctopusRelease -ProjectName $projects.name -ReleaseVersion $Version -ResourceOnly
-                    $deployments += ($c.repository.Releases.GetDeployments($release,30)).items | ?{($_.created -gt $After) -and ($_.created -lt $Before)}                    
+                    $deployments += ($c.repository.Releases.GetDeployments($release,0)).items | ?{($_.created -gt $After) -and ($_.created -lt $Before)}                    
                 }
             }
         }
@@ -128,7 +128,7 @@ function Get-OctopusDeployment
                 $ds = $dp.steps | ? {$_.name -eq "$($s.stepname)"} 
 
                 $properties = [ordered]@{
-                    Name = $ds.Actions.properties.'Octopus.Action.Package.NuGetPackageId'
+                    Name = $ds.Actions.properties.'Octopus.Action.Package.NuGetPackageId'.value
                     Version = $s.version
                 }
 

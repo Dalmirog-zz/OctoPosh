@@ -37,26 +37,23 @@ function Remove-OctopusResource
         [switch]$AcceptedTypes,
 
         # Forces cmdlet to continue without prompting
-        [switch]$Force,
-
-        # Waits until the task is not on states "Queued" or "Executing"
-        [switch]$Wait,
-
-        # Timeout for [Wait] parameter in minutes
-        [double]$Timeout = 2
+        [switch]$Force
     )
 
     Begin
     {
         If($AcceptedTypes){
-            'Octopus.Client.Model.ProjectGroupResource'
-            'Octopus.Client.Model.ProjectResource'
-            'Octopus.Client.Model.EnvironmentResource'
-            'Octopus.Client.Model.DeploymentResource'
-            'Octopus.Client.Model.MachineResource'
-            'Octopus.Client.Model.FeedResource'
-            'Octopus.Client.Model.LibraryVariableSetResource'
-            'Octopus.Client.Model.LifecycleResource'
+            $types = ("Octopus.Client.Model.ProjectGroupResource",
+            "Octopus.Client.Model.ProjectResource",
+            "Octopus.Client.Model.EnvironmentResource",
+            "Octopus.Client.Model.MachineResource",
+            "Octopus.Client.Model.FeedResource",
+            "Octopus.Client.Model.VariableSetResource",
+            "Octopus.Client.Model.LifecycleResource",
+            'Octopus.Client.Model.TeamResource',
+            'Octopus.Client.Model.UserResource')
+            
+            return $types
         }
         $c = New-OctopusConnection        
     }
@@ -79,48 +76,35 @@ function Remove-OctopusResource
                 {$_.getType() -eq [Octopus.Client.Model.FeedResource]} {$ResourceType = 'Feeds'}
                 {$_.getType() -eq [Octopus.Client.Model.VariableSetResource]} {$ResourceType = 'LibraryVariableSets'}
                 {$_.getType() -eq [Octopus.Client.Model.LifecycleResource]} {$ResourceType = 'Lifecycles'}
+                {$_.getType() -eq [Octopus.Client.Model.TeamResource]} {$ResourceType = 'Teams'}
+                {$_.getType() -eq [Octopus.Client.Model.UserResource]} {$ResourceType = 'Users'}
                 Default{Throw "Invalid object type: $($_.getType()) `nRun 'Remove-OctopusResource -AcceptedTypes' to get a list of the object types accepted by this cmdlet"}                
             }
 
             Write-Verbose "[$($MyInvocation.MyCommand)] Deleting [$($R.GetType().tostring())] $($r.name)"
-
-            If(($ResourceType -eq 'Feeds') -or ($ResourceType -eq 'Machines')){
-                #Deleting using REST API cause client library delete method doesnt work
+            Try{
+                If(($ResourceType -eq 'Feeds') -or ($ResourceType -eq 'Machines')){
+                    #Deleting using REST API cause client library delete method doesnt work
                 $task = (Invoke-WebRequest ($env:OctopusURL + $r.Links.Self) -Method Delete -Headers $c.header -UseBasicParsing).content | ConvertFrom-Json
+                }
+                elseif($ResourceType -eq 'LibraryVariableSets'){
+                    #Deleting using REST API cause client library delete method doesnt work
+                    $task = Invoke-RestMethod ($env:OctopusURL + '/api/LibraryVariableSets/' +$r.OwnerId) -Method Delete -Headers $c.header
+                }
+                else{
+                    $task = $c.repository.$ResourceType.Delete($r)
+                }
             }
-            elseif($ResourceType -eq 'LibraryVariableSets'){
-                #Deleting using REST API cause client library delete method doesnt work
-                $task = Invoke-RestMethod ($env:OctopusURL + '/api/LibraryVariableSets/' +$r.OwnerId) -Method Delete -Headers $c.header
+            Catch{
+                #If task fails, it'll return the error
+                return $_
             }
-            else{
-                $task = $c.repository.$ResourceType.Delete($r)
-            }
-
-            If($wait){
-
-                $StartTime = Get-Date
-
-                Do{
-                    $CurrentTime = Get-date
-                    
-                    $task = Get-OctopusTask -ID $task.id
-
-                    Write-Verbose "[$($MyInvocation.MyCommand)] Task $($Task.id) status: $($task.state)"
-                    
-                    Start-Sleep -Seconds 2
-                  }
-
-                Until (($task.state -notin ('Queued','executing')) -or ($CurrentTime -gt $StartTime.AddMinutes($Timeout)))
-                Write-Verbose "[$($MyInvocation.MyCommand)] Task finished with status: $($task.state.tostring().toupper())"
-            }            
+            
         }
     }
     End
     {
-        If(!$Task){
-            $Task = $null
-        }
-
-        return $Task
+        #If task starts it'll return true.
+        return $true
     }
 }

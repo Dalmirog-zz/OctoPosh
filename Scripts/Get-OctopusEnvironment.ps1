@@ -40,7 +40,7 @@ function Get-OctopusEnvironment
     Process
     {
 
-        If(!([string]::IsNullOrEmpty($EnvironmentName))){            
+        If(!($EnvironmentName -eq $null)){            
             Write-Verbose "[$($MyInvocation.MyCommand)] Getting environments by name: $EnvironmentName" 
             $environments = $c.repository.Environments.FindMany({param($env) if (($env.name -in $EnvironmentName) -or ($env.name -like $EnvironmentName)) {$true}})
             

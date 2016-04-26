@@ -50,7 +50,9 @@ function Update-OctopusResource
             "Octopus.Client.Model.MachineResource",
             "Octopus.Client.Model.FeedResource",
             "Octopus.Client.Model.VariableSetResource",
-            "Octopus.Client.Model.LifecycleResource")
+            "Octopus.Client.Model.LifecycleResource",
+            'Octopus.Client.Model.TeamResource',
+            'Octopus.Client.Model.UserResource')
             
             return $types
         }
@@ -75,6 +77,8 @@ function Update-OctopusResource
                 {$_.getType() -eq [Octopus.Client.Model.FeedResource]} {$ResourceType = 'Feeds'}                
                 {$_.getType() -eq [Octopus.Client.Model.VariableSetResource]} {$ResourceType = 'VariableSets'}
                 {$_.getType() -eq [Octopus.Client.Model.LifecycleResource]} {$ResourceType = 'Lifecycles'}
+                {$_.getType() -eq [Octopus.Client.Model.TeamResource]} {$ResourceType = 'Teams'}
+                {$_.getType() -eq [Octopus.Client.Model.UserResource]} {$ResourceType = 'Users'}
                 Default{Throw "Invalid object type: $($_.getType()) `nRun 'Update-OctopusResource -AcceptedTypes' to get a list of the object types accepted by this cmdlet"}                
             }
 
