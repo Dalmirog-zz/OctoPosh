@@ -32,7 +32,10 @@ function Get-OctopusProjectGroup
         # Name of the Project Group
         [alias("Name")]
         [Parameter(ValueFromPipelineByPropertyName=$true,Position=0)]
-        [string[]]$ProjectGroupName
+        [string[]]$ProjectGroupName,
+
+        # When used the cmdlet will only return the plain Octopus resource object
+        [switch]$ResourceOnly
     )
 
     Begin
@@ -61,8 +64,11 @@ function Get-OctopusProjectGroup
         }
 
         Write-Verbose "[$($MyInvocation.MyCommand)] Project Groups found: $($ProjectGroups.count)"
-        
-        foreach($ProjectGroup in $ProjectGroups){
+        If($ResourceOnly){
+            $list = $ProjectGroups
+        }
+        Else{
+            foreach($ProjectGroup in $ProjectGroups){
 
             Write-Progress -Activity "Getting info from Project Group: $($ProjectGroup.name)" -status "$i of $($ProjectGroups.count)" -percentComplete ($i / $ProjectGroups.count*100)
             Write-Verbose "[$($MyInvocation.MyCommand)] Getting info of Project Group: $($ProjectGroup.name)"
@@ -88,7 +94,8 @@ function Get-OctopusProjectGroup
             $list += $pg
 
             $i++
-        }        
+        }
+        }
     }
     End
     {
