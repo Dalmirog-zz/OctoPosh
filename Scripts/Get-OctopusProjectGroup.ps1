@@ -83,8 +83,6 @@ function Get-OctopusProjectGroup
                         ProjectGroupName = $ProjectGroup.name
                         Id = $ProjectGroup.id
                         Projects = $plist
-                        LastModifiedOn = $ProjectGroup.LastModifiedOn
-                        LastModifiedBy = $ProjectGroup.LastModifiedBy
                         resource = $ProjectGroup}
 
             $list += $pg
