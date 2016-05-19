@@ -64,17 +64,23 @@ function Update-OctopusVariableSet
     
             return $obj
         }        
-
-        function Validate-Scope([string]$Name,[string]$value,[Octopus.Client.Model.VariableScopeValues]$scopes){
-    
-            $ID = $variableSet.ScopeValues.$Name | ?{$_.name -eq $value} | select -ExpandProperty ID
-
-            If(!$ID){
-                Throw "Value [$value] was not found on the scope for [$name]"
+        
+        function Get-ScopeId([string] $name, $value) {
+            $isArray = ($value -is [System.Array])
+            if (-not $isArray) {
+                $value = @($value)
             }
-            else{
-                return $ID
+                        
+            $scopeValues = $variableSet.ScopeValues.$Name
+ 
+            foreach($v in $value) {               
+                $ID = $scopeValues | ?{$_.name -eq $v} | select -ExpandProperty ID
+                if ($Id) {
+                    return $Id
+                }
             }
+            
+            
         }
 
         function create-VariableSet([PSObject]$FileVariables, [Octopus.Client.Model.VariableSetResource]$variableSet){
@@ -85,6 +91,8 @@ function Update-OctopusVariableSet
 
             foreach($var in $FileVariables){                
 
+                $variableName = $var.Name
+
                 $newvar = New-Object Octopus.Client.Model.VariableResource        
                 $newvar.Name = $var.Name
                 $newvar.Value = $var.Value
@@ -92,14 +100,30 @@ function Update-OctopusVariableSet
                 $newvar.IsSensitive = $var.IsSensitive
         
                 If(!([string]::IsNullOrEmpty($var.Scope))){
+
                     foreach($scope in ($var.Scope | Get-Member | ?{$_.membertype -eq "NoteProperty"} | select -ExpandProperty Name)){
-                        $scopeID = Validate-Scope -Name ($scope + "s") -value $var.scope.$scope -scopes $variableSet.ScopeValues
-                        $newvar.Scope.Add([Octopus.platform.Model.Scopefield]::$scope, (New-Object Octopus.Platform.Model.ScopeValue($scopeID)))
+                        $name = ($scope + "s")
+                        $value = $var.scope.$scope
+                        
+                        if (-not $value -is [System.Array]) {
+                            $value = @($value)
+                        }
+                        
+                        $scopeIds = $value | foreach { Get-ScopeId $name $_ }
+                        foreach($scopeId in $scopeIds) {                                   
+                            If(!$scopeId){
+                                Throw "Value [$scopeValue] was not found on the scope for [$name] for variable $variableName"
+                            }          
+                        }
+                        
+                        write-verbose "Adding $variableName $scope $value"
+                        $newvar.Scope.Add([Octopus.Client.Model.Scopefield]::$scope, (New-Object Octopus.Client.Model.ScopeValue($scopeIds)))    
                     }
+
                 }
 
                 If(!([string]::IsNullOrEmpty($var.Prompt))){
-                   $prompt = New-Object Octopus.Platform.Model.VariablePromptOptions
+                   $prompt = New-Object Octopus.Client.Model.VariablePromptOptions
    
                    $prompt.Description = $var.prompt.Description
                    $prompt.Label = $var.prompt.Label
@@ -116,17 +140,17 @@ function Update-OctopusVariableSet
         }
 
         function comparescope([Octopus.Client.Model.VariableResource]$var1, [Octopus.Client.Model.VariableResource]$var2){
-            Write-Verbose "comparing $($var1.name) and $($var2.name)"
-
             foreach($scopetype in $var1.Scope.Keys){
-                Write-Output "Hello?"
                 Try{                
+                    $scope1 = $var1.Scope["$scopetype"]
+                    $scope2 = $var2.Scope["$scopetype"]
+                    
                     If($var1.Scope.Count -eq 0){
                         $compare = $null
                         Write-Output "hello?"
                     }
                     else{
-                        $compare = Compare-Object $var1.Scope["$scopetype"] $var2.Scope["$scopetype"]
+                        $compare = Compare-Object $scope1 $scope2
                     }
                 }
                 Catch{                
@@ -143,51 +167,43 @@ function Update-OctopusVariableSet
                 }            
         
             }
-            Write-Verbose "Identical: $Identical"
             return $Identical
         }
         
-        function VariableExists([Octopus.Client.Model.VariableResource]$variable ,[Octopus.Client.Model.VariableSetResource]$variableSet){
+         
+        function Get-MatchingVariable([Octopus.Client.Model.VariableResource]$variable ,[Octopus.Client.Model.VariableSetResource]$variableSet){
             foreach($var in $variableSet.Variables){
-                If(($var.name -eq $variable.name) -and ($var.scope.keys.count -eq $variable.scope.Keys.count) -and ($var.scope.keys.count -ne 0)){
-                    If((comparescope -var1 $var -var2 $variable) -eq $true){
-                        $varExists = $true
-                        break
-                    }
-                    Else{
-                        $varExists = $false
-                    }
+                
+                if ($var.name -ne $variable.name) {continue;}
+                if ($var.scope.keys.count -ne $variable.scope.keys.count) {continue;}
+                if ($var.scope.keys.count -eq 0) {return $var}
 
-                }
-
-                If(($var.name -eq $variable.name) -and ($var.scope.keys.count -eq $variable.scope.Keys.count) -and ($var.scope.keys.count -eq 0)){
-                    $varExists = $true
-                    break
-                }
-
-                else{
-                    $varExists = $false
+                If((comparescope -var1 $var -var2 $variable) -eq $true){
+                    return $var
                 }
             }
-            return $varExists
+            return $null
         }
-        
-        function Get-MergedVariableSet([Octopus.Client.Model.VariableSetResource]$base,[Octopus.Client.Model.VariableSetResource]$New) {
-
-            $mergedVariableSet = $base    
+         
+        function Get-MergedVariableSet([Octopus.Client.Model.VariableSetResource]$mergedVariableSet, [Octopus.Client.Model.VariableSetResource]$New) {
+            $variableSetName = $mergedVariableSet.Name
+            write-verbose "Merging changes to variable set $variableSetName"
 
             foreach ($Variable in $new.Variables){
-                If(VariableExists -variable $Variable -variableSet $base){
-                    $MergedvariableSet.Variables | ?{$_.name -eq $Variable.name} | %{
-                        $_.value = $Variable.value 
-                        $_.IsEditable = $Variable.IsEditable
-                        $_.IsSensitive = $Variable.IsSensitive 
-                        $_.Prompt = $prompt
-                        
-                        }
+                $matchingVariable = Get-MatchingVariable $variable $mergedVariableSet
+                
+                $variableName = $variable.Name
+                
+                if ($matchingVariable) {
+                    write-verbose "Updating matching variable $variableName on $mergedVariableSetName"
+                    $matchingVariable.value = $Variable.value 
+                    $matchingVariable.IsEditable = $Variable.IsEditable
+                    $matchingVariable.IsSensitive = $Variable.IsSensitive 
+                    $matchingVariable.Prompt = $prompt
                 }
-                else{
-                    $mergedVariableSet.variables.add($variable)
+                else {
+                    write-verbose "Adding new variable $variableName to $mergedVariableSetName"
+                    $mergedVariableSet.Variables.add($variable)
                 }
             }
     
@@ -217,7 +233,7 @@ function Update-OctopusVariableSet
                 $finalVarSet = $BaseVariableset
             }
             else{
-                $finalVarSet = Get-MergedVariableSet -Base $BaseVariableset -New $newVariableSet
+                $finalVarSet = Get-MergedVariableSet -mergedVariableSet $BaseVariableset -New $newVariableSet
             }
         }
         else{
