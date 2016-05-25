@@ -83,7 +83,14 @@ Function Get-RandomObject ([Object[]]$Collection){
 #endregion
 
 #region Tests
-Describe 'Octopus Module Tests' {
+Describe 'Test Environment'{
+    It 'Check that the Active Directory Powershell Module is installed on the VM running the tests'{
+        Import-Module ActiveDirectory
+        (Get-Module ActiveDirectory).count | Should be 1
+    }
+}
+
+Describe 'Octoposh' {
 
     $TestName = new-testname
 
@@ -105,6 +112,25 @@ Describe 'Octopus Module Tests' {
         $envobj.name | should be $testname
 
     }
+    It '[New-OctopusResource] creates Targets'{
+        $machine = Get-OctopusResourceModel -Resource Machine
+        
+        $environment = Get-OctopusEnvironment -EnvironmentName $testname -ResourceOnly
+        
+        $machine.name = $testname
+        $machine.EnvironmentIds.Add($environment.id) | Out-Null
+        $machine.Roles.Add("WebServer") | Out-Null        
+
+        $machineEndpoint = New-Object Octopus.Client.Model.Endpoints.ListeningTentacleEndpointResource
+        $machine.EndPoint = $machineEndpoint
+        
+        $machine.Endpoint.Uri = "https://localhost:10933" #Machine URL and port
+        $machine.Endpoint.Thumbprint = "8A7E6157A34158EDA1B5127CB027B2A267760A4F" #Machine Thumbprint
+
+        $NewMachine = New-OctopusResource -Resource $machine
+
+        $NewMachine.name | should be $testname
+    } 
     It '[New-OctopusResource] creates Project Groups'{
         $Pg = Get-OctopusResourceModel -Resource ProjectGroup
                                                 
@@ -148,24 +174,6 @@ Describe 'Octopus Module Tests' {
         $NewLibrary = New-OctopusResource -Resource $library
 
         $NewLibrary.name | should be $testname         
-    }
-    It '[New-OctopusResource] creates Targets'{
-        $machine = Get-OctopusResourceModel -Resource Machine
-        
-        $environment = Get-OctopusEnvironment -EnvironmentName $testname
-        
-        $machine.name = $testname
-        $machine.EnvironmentIds.Add($environment.id) | Out-Null
-        $machine.Roles.Add("WebServer") | Out-Null        
-
-        $machineEndpoint = New-Object Octopus.Client.Model.Endpoints.ListeningTentacleEndpointResource
-        $machine.EndPoint = $machineEndpoint
-        $machine.Endpoint.Uri = "https://localhost:10933"
-        $machine.Endpoint.Thumbprint = "8A7E6157A34158EDA1B5127CB027B2A267760A4F"
-
-        $NewMachine = New-OctopusResource -Resource $machine
-
-        $NewMachine.name | should be $testname
     }
     It '[New-OctopusResource] creates users (only testing this in AD mode)'{
         $TestName1 = $TestName
@@ -557,7 +565,7 @@ Describe 'Octopus Module Tests' {
         $Clone.ProjectGroupID | should be $ProjectGroup.id
         {$c.repository.Projects.Delete($clone)} | should not throw
     }
-    It '[New-OctopusProjectClone] Doesnt create a clone with a duplicate name '{        
+    It '[New-OctopusProjectClone] doesnt create a clone with a duplicate name '{        
         {New-OctopusProjectClone -BaseProjectName $TestName -ProjectName $TestName} | should throw        
     }
     It '[New-OctopusProjectClone] doesnt create a clone with a non-existing Lifecycle'{
@@ -617,7 +625,7 @@ Describe 'Octopus Module Tests' {
         $teams = Get-OctopusTeam -TeamName $testname1,$testname2 -ErrorAction SilentlyContinue
 
         $teams.Count | should be 0
-    }      
+    }     
     It '[Remove-OctopusResource] deletes Projects'{
         (Get-OctopusProject -Name $TestName | Remove-OctopusResource -Force) | should be $true
 
@@ -638,7 +646,7 @@ Describe 'Octopus Module Tests' {
 
         Get-OctopusVariableSet -LibrarySetName $TestName -ErrorAction SilentlyContinue | should be $null
     }
-    It '[Remove-OctopusResource] deletes Machines'{
+    It '[Remove-OctopusResource] deletes Targets'{
         (Get-OctopusMachine -MachineName $TestName | Remove-OctopusResource -Force) | should be $true       
         
         Get-OctopusMachine -Name $TestName -ErrorAction SilentlyContinue | should be $null
@@ -648,7 +656,7 @@ Describe 'Octopus Module Tests' {
 
         Get-OctopusEnvironment -Name $TestName -ErrorAction SilentlyContinue | should be $null
     }
-    It '[Remove-OctopusResource] deletes users'{
+    It '[Remove-OctopusResource] deletes Users'{
         $user1 = Get-OctopusUser -UserName "$TestName" ; Remove-OctopusResource -Resource $user1 -Force | should be $true
         $user2 = Get-OctopusUser -UserName ("$TestName"+"2") ; Remove-OctopusResource -Resource $user2 -Force | should be $true
     }
@@ -732,6 +740,7 @@ Describe 'Octopus Module Tests' {
 }
 
 #Block to test particular tests while debugging
-Describe 'Test'{  
+Describe 'Debug'{  
+
 }
 #endregion
