@@ -16,7 +16,7 @@
 
     Gets the user roles with the names "Project Lead" & "Environment Manager"
 .EXAMPLE
-    Get-OctopusTeam -name "Environment*"
+    Get-OctopusUserRole -name "Environment*"
 
     Gets all the roles whose name starts with "Environment"
 .LINK
