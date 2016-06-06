@@ -68,10 +68,10 @@ Function DeleteTestADGroup($testname){
 }
 
 #Creates X amount of releases in a project. It doesn't deploy any of them.
-Function CreateTestReleases($testname,$amount){
+Function CreateTestReleases($ProjectName,$amount){
     for($i = 0 ;$i -lt $amount ; $i++){
         cd $PSScriptRoot
-        & ".\tools\Octo.exe" create-release --server=$env:OctopusURL --apikey=$env:OctopusAPIKey --project=$testname
+        & ".\tools\Octo.exe" create-release --server=$env:OctopusURL --apikey=$env:OctopusAPIKey --project=$Projectname
     }    
 }
 
@@ -266,7 +266,7 @@ Describe 'Octoposh' {
         New-OctopusResource -Resource $teamObj2
     }
     
-    CreateTestReleases -testname $TestName -amount 31
+    CreateTestReleases -Projectname $TestName -amount 31
 
     It '[Get-OctopusEnvironment] gets environments'{           
         Get-OctopusEnvironment -Name $TestName | Select-Object -ExpandProperty EnvironmentNAme | should be $TestName
@@ -613,7 +613,17 @@ Describe 'Octoposh' {
         
         { Start-OctopusCalamariUpdate -EnvironmentName $Existingenvironment.name,"NonExistingEnvironment" -Force -ErrorAction Stop }| should Throw
     }    
+    It '[Get-OctopusTargetDiscoveryInfo] gets a Target info'{
+       $machine = Get-OctopusMachine -ResourceOnly | ?{($_.status -eq "online") -and ($_.endpoint.communicationstyle -eq "TentaclePassive")} | select -First 1
 
+       $URIpieces = $machine.Uri.Replace("/","").split(":")
+
+       {$discovery = Get-OctopusMachineDiscoveryInfo -ComputerName $URIpieces[-2] -Port $URIpieces[-1] -CommunicationStyle Listening} | should not throw 
+       $discovery.thumbprint.count | should be 1
+    }
+    It '[Get-OctopusTargetDiscoveryInfo] Throws if it cant find a valid Target'{
+        {Get-OctopusMachineDiscoveryInfo -ComputerName whatever -Port whatever -CommunicationStyle Listening} | should throw
+    }
     It '[Remove-OctopusResource] deletes teams' {
         $testname1 = $TestName
         $testname2 = $TestName + "2"
