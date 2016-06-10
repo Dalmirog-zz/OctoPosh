@@ -80,6 +80,89 @@ Function Get-RandomObject ([Object[]]$Collection){
     $i = Get-random -Minimum 0 -Maximum $Collection.Count
     return $Collection[$i]
 }
+
+#Create a Tentacle instance on the server running the tests. This test has to be executed on a VM with the Tentacle Installed
+function Create-TentacleInstance
+{
+
+    Param
+    (
+        #Test name to be used to name everything when creating this temporary Tentacle instance 
+        [Parameter(Mandatory=$true)]
+        $Name,
+
+        #Port for the Tentacle
+        [Parameter(Mandatory=$true)]
+        $Port
+    )
+
+    Begin
+    {
+    #Check if Tentacle is installed on the machine
+        If(!(Test-path HKLM:\SOFTWARE\Octopus\Tentacle)){
+            Throw "Tentacle is not installed on this machine!"
+        }
+
+    }
+    Process
+    {
+        $TentacleExe = Join-Path (Get-ItemProperty HKLM:\SOFTWARE\Octopus\Tentacle).InstallLocation "Tentacle.exe"
+        
+                
+        $ServerThumbprint = "5ABB6C87D26B59CF8A3982C1B9801C3846930A78" #replace this ugly hardcode with https://github.com/Dalmirog/OctoPosh/issues/188
+
+        & $TentacleExe create-instance --instance $name --config "C:\Octopus\$Name\Tentacle-$name.config"
+        & $TentacleExe new-certificate --instance $Name --if-blank
+        & $TentacleExe configure --instance $name --reset-trust
+        & $TentacleExe configure --instance $name --home "C:\Octopus\$name" --app "C:\Octopus\Applications\$name" --port $Port --noListen "False"
+        & $TentacleExe configure --instance $name --trust $ServerThumbprint
+        & "netsh" advfirewall firewall add rule "name=Octopus Deploy Tentacle" dir=in action=allow protocol=TCP localport=$Port
+        & $TentacleExe service --instance $name --install --start
+    }
+    End
+    {
+    }
+}
+
+#Deletes a Tentacle instance
+function Delete-TentacleInstance
+{
+
+    Param
+    (
+        #Name of the instance to be deleted
+        [Parameter(Mandatory=$true)]
+        $Name
+    )
+
+    Begin
+    {
+    #Check if Tentacle is installed on the machine
+        If(!(Test-path HKLM:\SOFTWARE\Octopus\Tentacle)){
+            Throw "Tentacle is not installed on this machine!"
+        }
+
+    }
+    Process
+    {
+        $TentacleExe = Join-Path (Get-ItemProperty HKLM:\SOFTWARE\Octopus\Tentacle).InstallLocation "Tentacle.exe"
+        
+        & $TentacleExe service --instance $name --stop --uninstall
+        & $TentacleExe delete-instance --instance $name
+
+        If(Test-Path C:\Octopus\$name){
+            Remove-Item C:\Octopus\$name -Recurse -Force
+        }
+
+        If(Test-Path C:\Octopus\Applications\$name){
+            Remove-Item C:\Octopus\Applications\$name -Recurse -Force
+        }
+    }
+    End
+    {
+    }
+}
+
 #endregion
 
 #region Tests
@@ -266,7 +349,10 @@ Describe 'Octoposh' {
         New-OctopusResource -Resource $teamObj2
     }
     
-    CreateTestReleases -Projectname $TestName -amount 31
+    #Create fake releases for upcoming tests
+    It 'Creating fake releases for upcoming tests...'{
+        CreateTestReleases -Projectname $TestName -amount 31
+    }
 
     It '[Get-OctopusEnvironment] gets environments'{           
         Get-OctopusEnvironment -Name $TestName | Select-Object -ExpandProperty EnvironmentNAme | should be $TestName
@@ -613,17 +699,7 @@ Describe 'Octoposh' {
         
         { Start-OctopusCalamariUpdate -EnvironmentName $Existingenvironment.name,"NonExistingEnvironment" -Force -ErrorAction Stop }| should Throw
     }    
-    It '[Get-OctopusTargetDiscoveryInfo] gets a Target info'{
-       $machine = Get-OctopusMachine -ResourceOnly | ?{($_.status -eq "online") -and ($_.endpoint.communicationstyle -eq "TentaclePassive")} | select -First 1
 
-       $URIpieces = $machine.Uri.Replace("/","").split(":")
-
-       {$discovery = Get-OctopusMachineDiscoveryInfo -ComputerName $URIpieces[-2] -Port $URIpieces[-1] -CommunicationStyle Listening} | should not throw 
-       $discovery.thumbprint.count | should be 1
-    }
-    It '[Get-OctopusTargetDiscoveryInfo] Throws if it cant find a valid Target'{
-        {Get-OctopusMachineDiscoveryInfo -ComputerName whatever -Port whatever -CommunicationStyle Listening} | should throw
-    }
     It '[Remove-OctopusResource] deletes teams' {
         $testname1 = $TestName
         $testname2 = $TestName + "2"
@@ -742,6 +818,21 @@ Describe 'Octoposh' {
         Set-OctopusMaintenanceMode -Mode OFF -Force | should be $true
 
         (Get-OctopusMaintenanceMode).IsInMaintenanceMode | should be $False
+    }
+    It '[Get-OctopusTargetDiscoveryInfo] gets a Target info'{
+       
+       $Port = Get-Random -Minimum 11000 -Maximum 12000
+
+       Create-TentacleInstance -Name $TestName -Port $port
+
+       $discovery = Get-OctopusTargetDiscoveryInfo -ComputerName $env:computername -Port $port -CommunicationStyle Listening
+
+       [string]::IsNullOrEmpty($discovery.thumbprint) | should be $false
+
+       Delete-TentacleInstance -Name $TestName
+    }
+    It '[Get-OctopusTargetDiscoveryInfo] Throws if it cant find a valid Target'{
+        {Get-OctopusMachineDiscoveryInfo -ComputerName whatever -Port (get-random) -CommunicationStyle Listening} | should throw
     }    
 
     DeleteTestADUser -testname $TestName
@@ -750,7 +841,7 @@ Describe 'Octoposh' {
 }
 
 #Block to test particular tests while debugging
-Describe 'Debug'{  
+Describe 'Debug'{
 
 }
 #endregion
