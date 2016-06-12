@@ -24,9 +24,11 @@
 
     Gets all the machines registered in "Listening" mode. "Polling" is also a valid value
 .LINK
+   WebSite: http://Octoposh.net
    Github project: https://github.com/Dalmirog/Octoposh
    Wiki: https://github.com/Dalmirog/OctoPosh/wiki
    QA and Cmdlet request: https://gitter.im/Dalmirog/OctoPosh#initial
+   
 #>
 function Get-OctopusMachine
 {
