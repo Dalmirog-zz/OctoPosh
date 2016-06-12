@@ -77,7 +77,15 @@ Function CreateTestReleases($ProjectName,$amount){
 
 #Returns a single random object of a collection
 Function Get-RandomObject ([Object[]]$Collection){
-    $i = Get-random -Minimum 0 -Maximum $Collection.Count
+    if($Collection.Count -ne 0){
+        $max = $Collection.Count - 1
+    }
+    else{
+        $Max = 0
+    }
+
+    $i = Get-random -Minimum 0 -Maximum $max
+
     return $Collection[$i]
 }
 
@@ -350,7 +358,7 @@ Describe 'Octoposh' {
     }
     
     #Create fake releases for upcoming tests
-    It 'Creating fake releases for upcoming tests...'{
+    It "Creating dummy releases in project [$testName] for upcoming tests..."{
         CreateTestReleases -Projectname $TestName -amount 31
     }
 
@@ -698,7 +706,32 @@ Describe 'Octoposh' {
         $Existingenvironment = Get-OctopusEnvironment -ResourceOnly -EnvironmentName $TestName        
         
         { Start-OctopusCalamariUpdate -EnvironmentName $Existingenvironment.name,"NonExistingEnvironment" -Force -ErrorAction Stop }| should Throw
-    }    
+    }
+    It '[Get-OctopusDashboard] Gets dashboard without any parameters'{
+        $d = Get-OctopusDashboard
+        $d | should not be $null
+    }
+    It '[Get-OctopusDashboard] Throws if an invalid Project, Environment or Deployment Status is passed'{
+        {Get-OctopusDashboard -ProjectName (Get-Random)} | should throw
+        {Get-OctopusDashboard -EnvironmentName (Get-Random)} | should throw
+        {Get-OctopusDashboard -DeploymentStatus (Get-Random)} | should throw
+    }
+    It '[Get-OctopusDashboard] Gets results from specific environments'{
+        $dashboard = Get-OctopusDashboard #getting the whole dashboard to get an environment that actually has deployments. In the future I'd like to generate deployments on my own and use them here
+        $environmentName = Get-RandomObject $dashboard.EnvironmentName
+        Get-OctopusDashboard -EnvironmentName $environmentName | select -ExpandProperty EnvironmentName | should be $environmentName
+
+    }
+    It '[Get-OctopusDashboard] Gets results from specific Projects'{
+        $dashboard = Get-OctopusDashboard #getting the whole dashboard to get a project that actually has deployments. In the future I'd like to generate deployments on my own and use them here
+        $ProjectName = Get-RandomObject $dashboard.ProjectNAme
+        Get-OctopusDashboard -ProjectName $Projectname | select -ExpandProperty ProjectName | should be $ProjectName
+    }
+    It '[Get-OctopusDashboard] Gets results from a specific deployment status'{
+        $dashboard = Get-OctopusDashboard #getting the whole dashboard to get a few deployments with different status. In the future I'd like to generate deployments on my own and use them here
+        $ProjectName = Get-RandomObject $dashboard.ProjectNAme
+        Get-OctopusDashboard -ProjectName $Projectname | select -ExpandProperty ProjectName | should be $ProjectName
+    }
 
     It '[Remove-OctopusResource] deletes teams' {
         $testname1 = $TestName
