@@ -363,32 +363,32 @@ Describe 'Octoposh' {
     }
 
     It '[Get-OctopusEnvironment] gets environments'{           
-        Get-OctopusEnvironment -Name $TestName | Select-Object -ExpandProperty EnvironmentNAme | should be $TestName
+        Get-OctopusEnvironment -Name $TestName | Select-Object -ExpandProperty Name | should be $TestName
     }
     It '[Get-OctopusEnvironment] returns 0 results when environment name is "" '{
         $env = Get-OctopusEnvironment -Name ""
         $env.count | should be 0
     }
     It '[Get-OctopusProject] gets projects by single name'{
-        Get-OctopusProject -Name $TestName | Select-Object -ExpandProperty ProjectName | should be $TestName
+        Get-OctopusProject -Name $TestName | Select-Object -ExpandProperty Name | should be $TestName
     }
     It '[Get-OctopusProject] gets projects by multiple names'{
         $names = Get-OctopusProject -ResourceOnly | Select-Object -First 2 -ExpandProperty Name
-        Get-OctopusProject -Name $names | Select-Object -ExpandProperty ProjectName | should be $names
+        Get-OctopusProject -Name $names | Select-Object -ExpandProperty Name | should be $names
     }
     It '[Get-OctopusProject] doent gets projects by non-existent names'{
         $projectname = "Gengar"
         Get-OctopusProject -ProjectName $projectname -ErrorAction SilentlyContinue| should be $null        
     }
     It '[Get-OctopusProjectGroup] gets Project Groups'{
-        Get-OctopusProjectGroup -Name $TestName | Select-Object -ExpandProperty ProjectGroupName | should be $TestName
+        Get-OctopusProjectGroup -Name $TestName | Select-Object -ExpandProperty Name | should be $TestName
     }
     It '[Get-OctopusLifecycle] gets Lifecycles'{
         Get-OctopusLifeCycle | should not be $null
     }
     It '[Get-OctopusMachine] gets machines by single name'{
         $Machinename = $TestName
-        Get-OctopusMachine -MachineName $Machinename | Select-Object -ExpandProperty Machinename | should be $Machinename
+        Get-OctopusMachine -MachineName $Machinename | Select-Object -ExpandProperty Name | should be $Machinename
     }    
     It '[Get-OctopusMachine] doesnt get machines by non-existent names '{
         $Machinename = 'Charizard'

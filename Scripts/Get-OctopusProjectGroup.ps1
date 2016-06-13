@@ -86,7 +86,7 @@ function Get-OctopusProjectGroup
             }
 
             $pg = [PSCustomObject]@{
-                        ProjectGroupName = $ProjectGroup.name
+                        Name = $ProjectGroup.name
                         Id = $ProjectGroup.id
                         Projects = $plist
                         resource = $ProjectGroup}

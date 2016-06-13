@@ -163,7 +163,7 @@ function Get-OctopusMachine
                 If($Machine.Endpoint.CommunicationStyle -eq 'TentaclePassive'){$Style = 'Listening'}               
 
                 $obj = [PSCustomObject]@{
-                    MachineName = $machine.Name
+                    Name = $machine.Name
                     ID = $machine.Id
                     Thumbprint = $machine.Thumbprint
                     URI = $machine.uri
