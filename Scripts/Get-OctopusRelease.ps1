@@ -105,6 +105,7 @@ function Get-OctopusRelease{
         
                     $obj = [PSCustomObject]@{
                             ProjectName = $Project.name
+                            ID = $release.Id
                             ReleaseVersion = $release.Version
                             ReleaseNotes = $release.ReleaseNotes
                             CreationDate = ($release.assembled).datetime

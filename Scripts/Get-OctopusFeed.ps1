@@ -12,7 +12,10 @@
 
    Get a feed with a specific string inside the URL
 .LINK
+   WebSite: http://Octoposh.net
    Github project: https://github.com/Dalmirog/Octoposh
+   Wiki: https://github.com/Dalmirog/OctoPosh/wiki
+   QA and Cmdlet request: https://gitter.im/Dalmirog/OctoPosh#initial
 #>
 function Get-OctopusFeed
 {
@@ -66,8 +69,6 @@ function Get-OctopusFeed
                 FeedURI = $feed.FeedURI
                 LoginUser= $feed.Username                
                 ID = $Feed.id
-                LastModifiedOn = $feed.LastModifiedOn
-                LastModifiedBy = $feed.LastModifiedBy
                 Resource = $feed
             }
             

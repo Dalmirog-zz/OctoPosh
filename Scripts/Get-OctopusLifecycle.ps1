@@ -70,7 +70,7 @@ function Get-OctopusLifeCycle
                 Write-Verbose "[$($MyInvocation.MyCommand)] Getting info from Lifecycle: $($l.name)"
 
                 $obj = [PSCustomObject]@{
-                    LifecycleName = $l.name
+                    Name = $l.name
                     Id = $l.Id
                     ReleaseRetentionPolicy = $l.ReleaseRetentionPolicy
                     TentacleRetentionPolicy = $l.TentacleRetentionPolicy

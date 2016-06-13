@@ -100,7 +100,7 @@ function Get-OctopusEnvironment
                 }
 
                 $obj = [PSCustomObject]@{
-                                EnvironmentName = $e.name
+                                Name = $e.name
                                 Id = $e.id
                                 Machines = $m
                                 LatestDeployment = $deployments

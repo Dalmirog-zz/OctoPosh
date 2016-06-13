@@ -112,7 +112,7 @@ function Get-OctopusProject
                 $l = $c.repository.Lifecycles.Get($p.LifeCycleId)
             
                 $obj = [PSCustomObject]@{
-                    ProjectName = $p.name
+                    Name = $p.name
                     ID = $p.Id
                     ProjectGroupName = $pg.name                
                     LifecycleName = $l.name
