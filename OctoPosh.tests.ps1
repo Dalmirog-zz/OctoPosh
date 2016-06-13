@@ -101,7 +101,10 @@ function Create-TentacleInstance
 
         #Port for the Tentacle
         [Parameter(Mandatory=$true)]
-        $Port
+        $Port,
+        #Octopus Server thumbprint
+        [Parameter(Mandatory=$true)]
+        $ServerThumbprint
     )
 
     Begin
@@ -116,9 +119,6 @@ function Create-TentacleInstance
     {
         $TentacleExe = Join-Path (Get-ItemProperty HKLM:\SOFTWARE\Octopus\Tentacle).InstallLocation "Tentacle.exe"
         
-                
-        $ServerThumbprint = "5ABB6C87D26B59CF8A3982C1B9801C3846930A78" #replace this ugly hardcode with https://github.com/Dalmirog/OctoPosh/issues/188
-
         & $TentacleExe create-instance --instance $name --config "C:\Octopus\$Name\Tentacle-$name.config"
         & $TentacleExe new-certificate --instance $Name --if-blank
         & $TentacleExe configure --instance $name --reset-trust
@@ -854,18 +854,61 @@ Describe 'Octoposh' {
     }
     It '[Get-OctopusTargetDiscoveryInfo] gets a Target info'{
        
-       $Port = Get-Random -Minimum 11000 -Maximum 12000
+       Try{
+           $Port = Get-Random -Minimum 11000 -Maximum 12000
 
-       Create-TentacleInstance -Name $TestName -Port $port
+           Create-TentacleInstance -Name $TestName -Port $port -ServerThumbprint (Get-OctopusServerThumbPrint)
+       
+           $count = 0
+           do{
+                $service = Get-Service -Name "OctopusDeploy Tentacle: $TestName"
+                If($service.Status -eq "Running"){
+                    $discovery = Get-OctopusTargetDiscoveryInfo -ComputerName $env:computername -Port $port -CommunicationStyle Listening
 
-       $discovery = Get-OctopusTargetDiscoveryInfo -ComputerName $env:computername -Port $port -CommunicationStyle Listening
+                    [string]::IsNullOrEmpty($discovery.thumbprint) | should be $false
+                }
+                $count++
+           }
 
-       [string]::IsNullOrEmpty($discovery.thumbprint) | should be $false
+           While(($service.Status -ne "Running") -or ($count -eq 10))
+       }
 
-       Delete-TentacleInstance -Name $TestName
+       Catch{}
+
+       Finally{
+        Delete-TentacleInstance -Name $TestName
+       }
     }
     It '[Get-OctopusTargetDiscoveryInfo] Throws if it cant find a valid Target'{
         {Get-OctopusMachineDiscoveryInfo -ComputerName whatever -Port (get-random) -CommunicationStyle Listening} | should throw
+    }
+    It "[Get-OctopusServerThumbprint] gets the server thumbprint when using an admin's API Key"{
+        $thumbprint = $null
+        {$thumbprint = Get-OctopusServerThumbprint} | should not throw
+        [string]::IsNullOrEmpty($thumbprint) | should be $true
+    }
+    It "[Get-OctopusServerThumbprint] throws when using an invalid API Key or URL"{
+
+        #saving backup of URL and APIKey
+        $apikeybackup = $env:OctopusAPIKey
+        $urlbackup = $env:OctopusURL
+        Try{
+            #Set fake APIKey and test
+            $env:OctopusAPIKey = "test"
+            {Get-OctopusServerThumbprint} | should throw
+
+            #Set fake URL and test            
+            $env:OctopusURL = "test"
+            {Get-OctopusServerThumbprint} | should throws
+        }
+
+        Catch{}
+
+        Finally{
+            #Fix URL and APIKey for future tests
+            $env:OctopusURL = $urlbackup
+            $env:OctopusAPIKey = $apikeybackup
+        }
     }    
 
     DeleteTestADUser -testname $TestName
