@@ -101,10 +101,11 @@ function Get-OctopusRelease{
 
                     Write-Progress -Activity "Getting info from release: $($release.id)" -status "$i of $($releases.count)" -percentComplete ($i / $releases.count * 100)                       
                        
-                    $rev = (Invoke-WebRequest -Uri "$env:OctopusURL/api/events?regarding=$($release.Id)" -Method Get -Headers $c.header -Verbose:$false| ConvertFrom-Json).items | ? {$_.category -eq "Created"}
+                    $rev = (Invoke-WebRequest -Uri "$env:OctopusURL/api/events?regarding=$($release.Id)" -Method Get -Headers $c.header -UseBasicParsing -Verbose:$false| ConvertFrom-Json).items | ? {$_.category -eq "Created"}
         
                     $obj = [PSCustomObject]@{
                             ProjectName = $Project.name
+                            ID = $release.Id
                             ReleaseVersion = $release.Version
                             ReleaseNotes = $release.ReleaseNotes
                             CreationDate = ($release.assembled).datetime

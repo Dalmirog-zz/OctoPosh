@@ -135,6 +135,7 @@ function Get-OctopusVariableSet
             $obj = [PSCustomObject]@{
                 ProjectName = $Pname
                 LibraryVariableSetName = $LibraryVariableSetName
+                ID = $vs.ID
                 Variables = $vars
                 LastModifiedOn = $vs.LastModifiedOn
                 LastModifiedBy = $vs.LastModifiedBy

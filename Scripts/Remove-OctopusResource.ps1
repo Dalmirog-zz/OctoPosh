@@ -85,7 +85,7 @@ function Remove-OctopusResource
             Try{
                 If(($ResourceType -eq 'Feeds') -or ($ResourceType -eq 'Machines')){
                     #Deleting using REST API cause client library delete method doesnt work
-                    $task = (Invoke-WebRequest ($env:OctopusURL + $r.Links.Self) -Method Delete -Headers $c.header).content | ConvertFrom-Json
+                $task = (Invoke-WebRequest ($env:OctopusURL + $r.Links.Self) -Method Delete -Headers $c.header -UseBasicParsing).content | ConvertFrom-Json
                 }
                 elseif($ResourceType -eq 'LibraryVariableSets'){
                     #Deleting using REST API cause client library delete method doesnt work

@@ -117,8 +117,8 @@ function Get-OctopusDeployment
             $t = $c.repository.Tasks.Get($d.Links.task)
             $r = $c.repository.Releases.Get($d.Links.Release)
             $dp = $c.repository.DeploymentProcesses.Get($r.links.ProjectDeploymentProcessSnapshot)
-            $dev = (Invoke-WebRequest -Uri "$env:OctopusURL/api/events?regarding=$($d.Id)" -Method Get -Headers $c.header -Verbose:$false | ConvertFrom-Json).items | ? {$_.category -eq "DeploymentQueued"}
-            $rev = (Invoke-WebRequest -Uri "$env:OctopusURL/api/events?regarding=$($r.Id)" -Method Get -Headers $c.header -Verbose:$false | ConvertFrom-Json).items | ? {$_.category -eq "Created"}
+            $dev = (Invoke-WebRequest -Uri "$env:OctopusURL/api/events?regarding=$($d.Id)" -Method Get -Headers $c.header -UseBasicParsing -Verbose:$false | ConvertFrom-Json).items | ? {$_.category -eq "DeploymentQueued"}
+            $rev = (Invoke-WebRequest -Uri "$env:OctopusURL/api/events?regarding=$($r.Id)" -Method Get -Headers $c.header -UseBasicParsing -Verbose:$false | ConvertFrom-Json).items | ? {$_.category -eq "Created"}
 
             #Getting Nuget packages and their versions
             $packages = @()
@@ -138,7 +138,8 @@ function Get-OctopusDeployment
 
             #Duration calculation needed cause "timed out" deployments dont have a value set for "CompletedTime"
             if($t.completedtime){                
-                $duration = (New-TimeSpan –Start ($t.Starttime).DateTime –End ($t.Completedtime).DateTime).TotalMinutes
+                $duration = New-TimeSpan –Start ($t.Starttime).DateTime –End ($t.Completedtime).DateTime
+                $duration = [string]::Format("{0:D2}:{1:D2}:{2:D2}", $duration.Hours,$duration.Minutes,$duration.Seconds)              
             }
 
             else{$duration = 0}
@@ -151,7 +152,7 @@ function Get-OctopusDeployment
                             DeploymentEndTime = ($t.Completedtime).DateTime
                             DeploymentStartedBy = $dev.Username
                             ID = $d.Id
-                            Duration = [math]::Round($duration,2)
+                            Duration = $duration
                             Status = $t.state                           
                             ReleaseVersion = $r.version
                             ReleaseCreationDate = ($r.assembled).DateTime

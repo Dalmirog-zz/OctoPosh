@@ -92,7 +92,7 @@ function Get-OctopusProject
                 
                     $t = $c.repository.Tasks.Get($d.links.task)
 
-                    $dev = (Invoke-WebRequest -Uri "$env:OctopusURL/api/events?regarding=$($d.Id)" -Method Get -Headers $c.header -Verbose:$false | ConvertFrom-Json).items | ? {$_.category -eq "DeploymentQueued"}
+                    $dev = (Invoke-WebRequest -Uri "$env:OctopusURL/api/events?regarding=$($d.Id)" -Method Get -Headers $c.header -UseBasicParsing -Verbose:$false | ConvertFrom-Json).items | ? {$_.category -eq "DeploymentQueued"}
 
                     $dep = [PSCustomObject]@{
                             ProjectName = ($dashboard.Projects | ?{$_.id -eq $d.projectId}).name
@@ -112,7 +112,7 @@ function Get-OctopusProject
                 $l = $c.repository.Lifecycles.Get($p.LifeCycleId)
             
                 $obj = [PSCustomObject]@{
-                    ProjectName = $p.name
+                    Name = $p.name
                     ID = $p.Id
                     ProjectGroupName = $pg.name                
                     LifecycleName = $l.name

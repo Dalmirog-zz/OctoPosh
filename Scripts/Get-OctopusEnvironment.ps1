@@ -83,7 +83,7 @@ function Get-OctopusEnvironment
                 
                     $t = $c.repository.Tasks.Get($d.links.task)
 
-                    $dev = (Invoke-WebRequest -Uri "$env:OctopusURL/api/events?regarding=$($d.Id)" -Method Get -Headers $c.header | ConvertFrom-Json).items | ? {$_.category -eq "DeploymentQueued"}
+                    $dev = (Invoke-WebRequest -Uri "$env:OctopusURL/api/events?regarding=$($d.Id)" -Method Get -UseBasicParsing -Headers $c.header | ConvertFrom-Json).items | ? {$_.category -eq "DeploymentQueued"}
 
                     $obj = [PSCustomObject]@{
                             ProjectName = ($dashboard.Projects | ?{$_.id -eq $d.projectId}).name
@@ -100,7 +100,7 @@ function Get-OctopusEnvironment
                 }
 
                 $obj = [PSCustomObject]@{
-                                EnvironmentName = $e.name
+                                Name = $e.name
                                 Id = $e.id
                                 Machines = $m
                                 LatestDeployment = $deployments
