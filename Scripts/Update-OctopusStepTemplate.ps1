@@ -54,9 +54,9 @@ Function Update-OctopusStepTemplates
     }
     Process
     {
-        $template = Invoke-WebRequest -Uri $OctopusURI/api/actiontemplates/$ActiontemplateID -Method Get -Headers $headers | select -ExpandProperty content| ConvertFrom-Json
+        $template = Invoke-WebRequest -Uri $OctopusURI/api/actiontemplates/$ActiontemplateID -Method Get -Headers $headers -UseBasicParsing | select -ExpandProperty content| ConvertFrom-Json
         
-        $usage = Invoke-WebRequest -Uri $OctopusURI/api/actiontemplates/$ActiontemplateID/usage -Method Get -Headers $headers | select -ExpandProperty content | ConvertFrom-Json
+        $usage = Invoke-WebRequest -Uri $OctopusURI/api/actiontemplates/$ActiontemplateID/usage -Method Get -Headers $headers -UseBasicParsing | select -ExpandProperty content | ConvertFrom-Json
 
         #Getting all the DeploymentProcesses that need to be updated
         $deploymentprocesstoupdate = $usage | ? {$_.version -ne $template.Version}
