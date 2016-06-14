@@ -18,6 +18,10 @@
 
    Get the server task with the id "ServerTasks-1234"
 .EXAMPLE
+   Get-OctopusTask -TaskID "ServerTAsks-1234" -GetTaskDetail
+
+   Get a more detailed version of the Task "ServerTasks-1234". Among other things, this detailed version allows you to get the names and status of all the steps involved in the task.
+.EXAMPLE
    Get-OctopusTask -Name Backup -After 01/01/2015
 
    Get all the Backup tasks 01/01/2015
@@ -44,6 +48,9 @@ function Get-OctopusTask
         # Document related to this task.
         [Alias('DocumentID')]        
         [string]$ResourceID = '*',
+
+        # Get a more detailed version of the Task. Among other things, this detailed version allows you to get the names and status of all the steps involved in the task.
+        [switch]$GetTaskDetail,
 
         # Status of the task.
         [Alias('Status')]
@@ -92,9 +99,15 @@ function Get-OctopusTask
         }
                 
         Write-Verbose "[$($MyInvocation.MyCommand)] Tasks found: $($Tasks.count)"
-
-        $list += $tasks       
-        
+        If($GetTaskDetail){
+            Write-Verbose "[$($MyInvocation.MyCommand)] GetTaskDetail switch was passed. Getting detailed info of each task. This might make the cmdlet take up to x2 times to finish processing."
+            foreach($t in $tasks){
+                $list += $c.repository.Tasks.GetDetails($t)
+            }
+        }
+        Else{
+            $list += $tasks       
+        }
     }
     End
     {        

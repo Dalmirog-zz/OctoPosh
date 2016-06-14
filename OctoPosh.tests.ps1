@@ -477,7 +477,16 @@ Describe 'Octoposh' {
         $tasks.count | should not be 0
         ($tasks.starttime.datetime -gt $before ).count | should be 0
         ($tasks.starttime.datetime -lt $after ).count | should be 0
-    } 
+    }
+    It '[Get-OctopusTask] gets tasks with details'{
+        $tasks = Get-OctopusTask -After (Get-Date).AddDays(-10) | Select-Object -First 1
+    
+        $detail = Get-OctopusTask -TaskID $tasks.id -GetTaskDetail
+
+        $detail.task.GetType().Fullname | should be "Octopus.client.Model.TaskResource"       
+        $detail.ActivityLog.GetType().Fullname | should be "Octopus.Client.Model.ActivityElement"
+        $detail.Progress.GetType().Fullname | should be "Octopus.Client.Model.TaskProgress"
+    }
     It '[Get-OctopusFeed] gets feeds by name'{
         $feed = Get-OctopusFeed -FeedName $TestName
 
