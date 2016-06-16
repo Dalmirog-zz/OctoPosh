@@ -41,7 +41,6 @@ Function Update-OctopusStepTemplates
         
         Add-Type -Path "$PSScriptRoot\..\bin\Newtonsoft.Json.dll"
         Add-Type -Path "$PSScriptRoot\..\bin\Octopus.Client.dll"
-        Add-Type -Path "$PSScriptRoot\..\bin\Octopus.Platform.dll"
 
         #Connection Data
         $headers = @{"X-Octopus-ApiKey"="$($apikey)";}
