@@ -14,11 +14,11 @@
 
    Get all the Health check tasks that failed over the past 7 days
 .EXAMPLE
-   Get-OctopusTask -TaskID "ServerTAsks-1234"
+   Get-OctopusTask -TaskID "ServerTasks-1234"
 
    Get the server task with the id "ServerTasks-1234"
 .EXAMPLE
-   Get-OctopusTask -TaskID "ServerTAsks-1234" -GetTaskDetail
+   Get-OctopusTask -TaskID "ServerTasks-1234" -GetTaskDetail
 
    Get a more detailed version of the Task "ServerTasks-1234". Among other things, this detailed version allows you to get the names and status of all the steps involved in the task.
 .EXAMPLE
