@@ -88,10 +88,19 @@ function Get-OctopusTask
         }
 
         elseif(($Name -ne '*') -or ($ResourceID -ne '*') -or ($State -ne '*') -or ($Before -ne [System.DateTimeOffset]::MaxValue) -or ($After -ne [System.DateTimeOffset]::MinValue)) {
+            
             Write-Verbose "[$($MyInvocation.MyCommand)] Getting task by: `nName: $name`nResourceID: $resourceid`nState: $state`nBefore: $before`nAfter: $after"
-            $tasks = $c.repository.Tasks.FindMany({param($t) if( (($t.name -like $Name) -or ($t.name -in $name) ) -and (($t.state -like $State) -or ($t.state -in $State) )-and (($t.Arguments.values -contains $ResourceID) -or ($t.Arguments -like $ResourceID)) -and ($t.StartTime -ge $After) -and ($t.LastupdatedTime -le $Before)
-            ) {$true}})        
-        }
+            
+            $tasks = $c.repository.Tasks.FindMany({
+                param($t) 
+                if( 
+                    (($t.name -like $Name) -or ($t.name -in $name) ) -and 
+                    (($t.state -like $State) -or ($t.state -in $State) )-and 
+                    (($t.Arguments.values -contains $ResourceID) -or ($t.Arguments -like $ResourceID)) -and 
+                    ($t.StartTime -ge $After) -and 
+                    ($t.LastupdatedTime -le $Before)
+                ) {$true}})        
+            }
 
         else{
             Write-Verbose "[$($MyInvocation.MyCommand)] Getting all tasks"
