@@ -14,9 +14,13 @@
 
    Get all the Health check tasks that failed over the past 7 days
 .EXAMPLE
-   Get-OctopusTask -TaskID "ServerTAsks-1234"
+   Get-OctopusTask -TaskID "ServerTasks-1234"
 
    Get the server task with the id "ServerTasks-1234"
+.EXAMPLE
+   Get-OctopusTask -TaskID "ServerTasks-1234" -GetTaskDetail
+
+   Get a more detailed version of the Task "ServerTasks-1234". Among other things, this detailed version allows you to get the names and status of all the steps involved in the task.
 .EXAMPLE
    Get-OctopusTask -Name Backup -After 01/01/2015
 
@@ -44,6 +48,9 @@ function Get-OctopusTask
         # Document related to this task.
         [Alias('DocumentID')]        
         [string]$ResourceID = '*',
+
+        # Get a more detailed version of the Task. Among other things, this detailed version allows you to get the names and status of all the steps involved in the task.
+        [switch]$GetTaskDetail,
 
         # Status of the task.
         [Alias('Status')]
@@ -81,10 +88,19 @@ function Get-OctopusTask
         }
 
         elseif(($Name -ne '*') -or ($ResourceID -ne '*') -or ($State -ne '*') -or ($Before -ne [System.DateTimeOffset]::MaxValue) -or ($After -ne [System.DateTimeOffset]::MinValue)) {
+            
             Write-Verbose "[$($MyInvocation.MyCommand)] Getting task by: `nName: $name`nResourceID: $resourceid`nState: $state`nBefore: $before`nAfter: $after"
-            $tasks = $c.repository.Tasks.FindMany({param($t) if( (($t.name -like $Name) -or ($t.name -in $name) ) -and (($t.state -like $State) -or ($t.state -in $State) )-and (($t.Arguments.values -contains $ResourceID) -or ($t.Arguments -like $ResourceID)) -and ($t.StartTime -ge $After) -and ($t.LastupdatedTime -le $Before)
-            ) {$true}})        
-        }
+            
+            $tasks = $c.repository.Tasks.FindMany({
+                param($t) 
+                if( 
+                    (($t.name -like $Name) -or ($t.name -in $name) ) -and 
+                    (($t.state -like $State) -or ($t.state -in $State) )-and 
+                    (($t.Arguments.values -contains $ResourceID) -or ($t.Arguments -like $ResourceID)) -and 
+                    ($t.StartTime -ge $After) -and 
+                    ($t.LastupdatedTime -le $Before)
+                ) {$true}})        
+            }
 
         else{
             Write-Verbose "[$($MyInvocation.MyCommand)] Getting all tasks"
@@ -92,9 +108,15 @@ function Get-OctopusTask
         }
                 
         Write-Verbose "[$($MyInvocation.MyCommand)] Tasks found: $($Tasks.count)"
-
-        $list += $tasks       
-        
+        If($GetTaskDetail){
+            Write-Verbose "[$($MyInvocation.MyCommand)] GetTaskDetail switch was passed. Getting detailed info of each task. This might make the cmdlet take up to x2 times to finish processing."
+            foreach($t in $tasks){
+                $list += $c.repository.Tasks.GetDetails($t)
+            }
+        }
+        Else{
+            $list += $tasks       
+        }
     }
     End
     {        
