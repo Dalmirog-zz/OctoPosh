@@ -877,7 +877,8 @@ Describe 'Octoposh' {
            $Port = Get-Random -Minimum 11000 -Maximum 12000
 
            Create-TentacleInstance -Name $TestName -Port $port -ServerThumbprint (Get-OctopusServerThumbPrint)
-       
+                Write-Output "sleeping for 120"
+        Start-Sleep -Seconds 120
            $count = 0
            do{
                 $service = Get-Service -Name "OctopusDeploy Tentacle: $TestName"
