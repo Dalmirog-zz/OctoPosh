@@ -882,7 +882,9 @@ Describe 'Octoposh' {
            While(($service.Status -ne "Running") -or ($count -eq 10))
        }
 
-       Catch{}
+       Catch{
+        throw $_
+       }
 
        Finally{
         Delete-TentacleInstance -Name $TestName
