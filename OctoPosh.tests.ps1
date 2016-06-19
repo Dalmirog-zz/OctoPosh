@@ -117,6 +117,7 @@ function Create-TentacleInstance
     }
     Process
     {
+        Try{
         $TentacleExe = Join-Path (Get-ItemProperty HKLM:\SOFTWARE\Octopus\Tentacle).InstallLocation "Tentacle.exe"
         
         & $TentacleExe create-instance --instance $name --config "C:\Octopus\$Name\Tentacle-$name.config"
@@ -126,6 +127,10 @@ function Create-TentacleInstance
         & $TentacleExe configure --instance $name --trust $ServerThumbprint
         & "netsh" advfirewall firewall add rule "name=Octopus Deploy Tentacle" dir=in action=allow protocol=TCP localport=$Port
         & $TentacleExe service --instance $name --install --start
+        }
+        Catch{
+            throw $_
+        }
     }
     End
     {
@@ -153,17 +158,22 @@ function Delete-TentacleInstance
     }
     Process
     {
-        $TentacleExe = Join-Path (Get-ItemProperty HKLM:\SOFTWARE\Octopus\Tentacle).InstallLocation "Tentacle.exe"
+        Try{
+            $TentacleExe = Join-Path (Get-ItemProperty HKLM:\SOFTWARE\Octopus\Tentacle).InstallLocation "Tentacle.exe"
         
-        & $TentacleExe service --instance $name --stop --uninstall
-        & $TentacleExe delete-instance --instance $name
+            & $TentacleExe service --instance $name --stop --uninstall
+            & $TentacleExe delete-instance --instance $name
 
-        If(Test-Path C:\Octopus\$name){
-            Remove-Item C:\Octopus\$name -Recurse -Force
+            If(Test-Path C:\Octopus\$name){
+                Remove-Item C:\Octopus\$name -Recurse -Force
+            }
+
+            If(Test-Path C:\Octopus\Applications\$name){
+                Remove-Item C:\Octopus\Applications\$name -Recurse -Force
+            }
         }
-
-        If(Test-Path C:\Octopus\Applications\$name){
-            Remove-Item C:\Octopus\Applications\$name -Recurse -Force
+        Catch{
+            throw $_
         }
     }
     End
@@ -863,7 +873,7 @@ Describe 'Octoposh' {
     }
     It '[Get-OctopusTargetDiscoveryInfo] gets a Target info'{
        
-       Try{
+       
            $Port = Get-Random -Minimum 11000 -Maximum 12000
 
            Create-TentacleInstance -Name $TestName -Port $port -ServerThumbprint (Get-OctopusServerThumbPrint)
@@ -879,16 +889,11 @@ Describe 'Octoposh' {
                 $count++
            }
 
-           While(($service.Status -ne "Running") -or ($count -eq 10))
-       }
-
-       Catch{
-        throw $_
-       }
-
-       Finally{
-        Delete-TentacleInstance -Name $TestName
-       }
+           Until(($service.Status -eq "Running") -or ($count -eq 10))
+       
+       
+           Delete-TentacleInstance -Name $TestName
+       
     }
     It '[Get-OctopusTargetDiscoveryInfo] Throws if it cant find a valid Target'{
         {Get-OctopusMachineDiscoveryInfo -ComputerName whatever -Port (get-random) -CommunicationStyle Listening} | should throw
