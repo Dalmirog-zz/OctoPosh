@@ -123,9 +123,9 @@ function Create-TentacleInstance
         & $TentacleExe create-instance --instance $name --config "C:\Octopus\$Name\Tentacle-$name.config"
         & $TentacleExe new-certificate --instance $Name --if-blank
         & $TentacleExe configure --instance $name --reset-trust
-        & $TentacleExe configure --instance $name --home "C:\Octopus\$name" --app "C:\Octopus\Applications\$name" --port $Port --noListen "False"
+        & $TentacleExe configure --instance $name --home "C:\Octopus\$name" --app "C:\Octopus\Applications\$name" --port 11000 --noListen "False"
         & $TentacleExe configure --instance $name --trust $ServerThumbprint
-        & "netsh" advfirewall firewall add rule "name=Octopus Deploy Tentacle" dir=in action=allow protocol=TCP localport=$Port
+        & "netsh" advfirewall firewall add rule "name=Octopus Deploy Tentacle" dir=in action=allow protocol=TCP localport=11000
         & $TentacleExe service --instance $name --install --start
         }
         Catch{
