@@ -24,6 +24,7 @@
 
    Get all the projects inside of the Project Group "MyProjects" and then delete them from the database
 .LINK
+   WebSite: http://Octoposh.net
    Github project: https://github.com/Dalmirog/Octoposh
    Wiki: https://github.com/Dalmirog/OctoPosh/wiki
    QA and Cmdlet request: https://gitter.im/Dalmirog/OctoPosh#initial
