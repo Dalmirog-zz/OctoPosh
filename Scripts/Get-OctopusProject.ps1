@@ -8,9 +8,9 @@
 
    This command gets all the projects of the current Instance
 .EXAMPLE
-   Get-OctopusProject -name MyProject
+   Get-OctopusProject -name MyAwesomeProject
 
-   Get the project named "MyProject"
+   Get the project named "MyAwesomeProject"
 .EXAMPLE
    Get-OctopusProject -name MyApp*
 
