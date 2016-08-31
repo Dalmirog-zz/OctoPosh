@@ -80,7 +80,7 @@ function Get-OctopusProject
 
             foreach ($p in $Projects){
 
-                Write-Progress -Activity "Getting info from Project: $($p.name)" -status "$i of $($Projects.count)" -percentComplete ($i / $Projects.count*100)
+                Write-Progress -Activity "Getting info from Project: $($p.name)" -status "$i of $($Projects.count)" -percentComplete ([Double][Double]$i / $Projects.count*100)
 
                 Write-Verbose "[$($MyInvocation.MyCommand)] Getting info from project $($p.name)"
 

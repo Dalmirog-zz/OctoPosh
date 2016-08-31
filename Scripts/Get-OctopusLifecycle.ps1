@@ -66,7 +66,7 @@ function Get-OctopusLifeCycle
             #Getting info by Lifecycle
             foreach ($l in $Lifecycles){            
             
-                Write-Progress -Activity "Getting info from lifecycle: $($l.name)" -status "$i of $($Lifecycles.count)" -percentComplete ($i / $Lifecycles.count*100)
+                Write-Progress -Activity "Getting info from lifecycle: $($l.name)" -status "$i of $($Lifecycles.count)" -percentComplete ([Double]$i / $Lifecycles.count*100)
                 Write-Verbose "[$($MyInvocation.MyCommand)] Getting info from Lifecycle: $($l.name)"
 
                 $obj = [PSCustomObject]@{

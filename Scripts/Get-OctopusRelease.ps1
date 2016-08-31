@@ -99,7 +99,7 @@ function Get-OctopusRelease{
 
                     Write-Verbose "[$($MyInvocation.MyCommand)] Getting info from release: $($release.version)"
 
-                    Write-Progress -Activity "Getting info from release: $($release.id)" -status "$i of $($releases.count)" -percentComplete ($i / $releases.count * 100)                       
+                    Write-Progress -Activity "Getting info from release: $($release.id)" -status "$i of $($releases.count)" -percentComplete ([Double]$i / $releases.count * 100)                       
                        
                     $rev = (Invoke-WebRequest -Uri "$env:OctopusURL/api/events?regarding=$($release.Id)" -Method Get -Headers $c.header -UseBasicParsing -Verbose:$false| ConvertFrom-Json).items | ? {$_.category -eq "Created"}
         

@@ -109,7 +109,7 @@ function Get-OctopusDeployment
         Else{
             foreach ($d in $deployments){
 
-            Write-Progress -Activity "Getting info from deloyment: $($d.id)" -status "$i of $($deployments.count)" -percentComplete ($i / $deployments.count*100)
+            Write-Progress -Activity "Getting info from deloyment: $($d.id)" -status "$i of $($deployments.count)" -percentComplete ([Double]$i / $deployments.count*100)
             Write-Verbose "[$($MyInvocation.MyCommand)] Getting info of deployment: $($d.id)"
 
             $p = $projects | ?{$_.id -eq $d.projectid}

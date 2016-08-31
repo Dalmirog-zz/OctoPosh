@@ -70,7 +70,7 @@ function Get-OctopusEnvironment
 
             foreach ($e in $environments){
 
-                Write-Progress -Activity "Getting info from Environment: $($E.name)" -status "$i of $($environments.count)" -percentComplete ($i / $environments.count*100)
+                Write-Progress -Activity "Getting info from Environment: $($E.name)" -status "$i of $($environments.count)" -percentComplete ([Double]$i / $environments.count*100)
                 Write-Verbose "[$($MyInvocation.MyCommand)] Getting info from environment $($e.name)"
 
                 $deployments = @()
