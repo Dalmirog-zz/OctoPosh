@@ -144,7 +144,7 @@ function Get-OctopusMachine
         else{
         
             foreach ($machine in $Machines){                
-                Write-Progress -Activity "Getting info from machine: $($machine.name)" -status "$i of $($machines.count)" -percentComplete ($i / $machines.count*100)
+                Write-Progress -Activity "Getting info from machine: $($machine.name)" -status "$i of $($machines.count)" -percentComplete ([Double]$i / $machines.count*100)
                 Write-Verbose "[$($MyInvocation.MyCommand)] Getting info of Machine: $($Machine.name)"
 
                 $e = @()

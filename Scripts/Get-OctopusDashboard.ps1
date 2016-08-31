@@ -91,7 +91,7 @@ function Get-OctopusDashboard
                 Continue
             }
 
-            #Write-Progress -Activity "Massaging dashboard info for deployment: $($deployment.id)" -status "$i of $($rawDashboard.items.count)" -percentComplete ($i / $rawDashboard.items.count*100)            
+            #Write-Progress -Activity "Massaging dashboard info for deployment: $($deployment.id)" -status "$i of $($rawDashboard.items.count)" -percentComplete ([Double]$i / $rawDashboard.items.count*100)            
             [datetime]$queuetime = $deployment.queueTime
             $startdate = '{0:yyyy/mm/dd HH:mm:ss}' -f $queuetime
 

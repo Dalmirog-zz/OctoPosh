@@ -70,7 +70,7 @@ function Get-OctopusProjectGroup
         Else{
             foreach($ProjectGroup in $ProjectGroups){
 
-            Write-Progress -Activity "Getting info from Project Group: $($ProjectGroup.name)" -status "$i of $($ProjectGroups.count)" -percentComplete ($i / $ProjectGroups.count*100)
+            Write-Progress -Activity "Getting info from Project Group: $($ProjectGroup.name)" -status "$i of $($ProjectGroups.count)" -percentComplete ([Double]$i / $ProjectGroups.count*100)
             Write-Verbose "[$($MyInvocation.MyCommand)] Getting info of Project Group: $($ProjectGroup.name)"
 
             $Plist = @()

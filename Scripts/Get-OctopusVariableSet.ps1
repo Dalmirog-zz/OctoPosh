@@ -102,7 +102,7 @@ function Get-OctopusVariableSet
 
             $vs = $c.repository.VariableSets.Get($id)
 
-            Write-Progress -Activity "Getting info from variable set : $($vs.id)" -status "$i of $($variablesetids.count)" -percentComplete ($i / $variablesetids.count*100)
+            Write-Progress -Activity "Getting info from variable set : $($vs.id)" -status "$i of $($variablesetids.count)" -percentComplete ([Double]$i / $variablesetids.count*100)
             Write-Verbose "[$($MyInvocation.MyCommand)] Getting info from variable set : $($vs.id)"                
 
             $vars = @()           

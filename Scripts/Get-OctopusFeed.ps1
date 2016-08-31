@@ -61,7 +61,7 @@ function Get-OctopusFeed
 
         foreach($feed in $feeds){
 
-            Write-Progress -Activity "Getting info from feed: $($feed.name)" -status "$i of $($feeds.count)" -percentComplete ($i / $feeds.count*100)
+            Write-Progress -Activity "Getting info from feed: $($feed.name)" -status "$i of $($feeds.count)" -percentComplete ([Double]$i / $feeds.count*100)
             Write-Verbose "[$($MyInvocation.MyCommand)] Getting info from feed $($feed.name)"
 
             $obj = [PSCustomObject]@{
