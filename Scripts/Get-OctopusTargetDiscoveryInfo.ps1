@@ -49,7 +49,7 @@ function Get-OctopusTargetDiscoveryInfo
 
         Try{
 
-            $discover = ((Invoke-WebRequest $url -Headers $c.header).content | ConvertFrom-Json).endpoint
+            $discover = ((Invoke-WebRequest $url -Headers $c.header -UseBasicParsing).content | ConvertFrom-Json).endpoint
         }
         Catch{
             Write-Error "Unable to make a connection to $url. Error was: `n $_"
