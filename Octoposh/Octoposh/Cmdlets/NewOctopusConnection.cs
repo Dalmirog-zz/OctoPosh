@@ -6,6 +6,7 @@ using Octopus.Client;
 namespace Octoposh.Cmdlets
 {
     [Cmdlet ("New","OctopusConnection")]
+    [OutputType(typeof(OctopusConnection))]
     public class NewOctopusConnection : Cmdlet
     {
         private readonly string _server = Environment.GetEnvironmentVariable("OctopusURL");

@@ -5,6 +5,7 @@ using Octoposh.Model;
 namespace Octoposh.Cmdlets
 {
     [Cmdlet ("Get","OctopusConnectionInfo")]
+    [OutputType(typeof(OctopusConnectionInfo))]
     public class GetOctopusConnectionInfo : Cmdlet
     {
         protected override void ProcessRecord()
