@@ -8,7 +8,7 @@ namespace Octoposh.Model
     class OutputConverter
     {
         private ResourceCollector _resourceCollector = new ResourceCollector();
-        private OctopusConnection _connection = new NewOctopusConnection().Invoke<OctopusConnection>().ToList()[0];
+        private readonly OctopusConnection _connection = new NewOctopusConnection().Invoke<OctopusConnection>().ToList()[0];
 
         /// <summary>
         /// Uses Octopus Resources to return objects with meaningful human-reabable properties.
@@ -43,11 +43,18 @@ namespace Octoposh.Model
                     case "Octopus.Client.Model.Endpoints.PollingTentacleEndpointResource":
                         communicationStyle = "PollingTentacle";
                         break;
+                    case "Octopus.Client.Model.Endpoints.OfflineDropEndpointResource":
+                        communicationStyle = "OfflineDrop";
+                        break;
+
+                    case "Octopus.Client.Model.Endpoints.SSHEndpointResource":
+                        communicationStyle = "PollingTentacle";
+                        break;
                 }
 
                 list.Add(new OutputOctopusMachine
                 {
-                    MachineName = machine.Name,
+                    Name = machine.Name,
                     Id = machine.Id,
                     EnvironmentName = environmentNames.ToArray(),
                     Resource = machine,

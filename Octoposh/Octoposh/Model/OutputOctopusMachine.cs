@@ -9,7 +9,7 @@ namespace Octoposh.Model
 {
     class OutputOctopusMachine
     {
-        public string MachineName { get; set; }
+        public string Name { get; set; }
         public string[] EnvironmentName { get; set; }
         public MachineResource Resource { get; set; }
         public string Id { get; set; }
