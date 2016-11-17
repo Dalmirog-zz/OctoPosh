@@ -62,7 +62,7 @@ namespace Octoposh.Cmdlets
                     //Multiple values but one of them is wildcarded, which is not an accepted scenario (I.e -MachineName WebServer*, Database1)
                     if (MachineName.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && MachineName.Count > 1))
                     {
-                        throw OctoposhExceptions.CollectionHasRegularAndWildcardItem("MachineName");
+                        throw OctoposhExceptions.ParameterCollectionHasRegularAndWildcardItem("MachineName");
                     }
                     //Only 1 wildcarded value (ie -MachineName WebServer*)
                     else if (MachineName.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && MachineName.Count == 1))
@@ -74,6 +74,24 @@ namespace Octoposh.Cmdlets
                     else if (!MachineName.Any(item => WildcardPattern.ContainsWildcardCharacters(item)))
                     {
                         baseResourceList = _connection.Repository.Machines.FindMany(x => MachineName.Contains(x.Name.ToLower()));
+                    }
+                    break;
+                case ByURL:
+                    //Multiple values but one of them is wildcarded, which is not an accepted scenario (I.e -URL http://Tentacle*, http://Database1)
+                    if (URL.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && URL.Count > 1))
+                    {
+                        throw OctoposhExceptions.ParameterCollectionHasRegularAndWildcardItem("URL");
+                    }
+                    //Only 1 wildcarded value (ie -URL http://Tentacle*)
+                    else if (URL.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && URL.Count == 1))
+                    {
+                        var pattern = new WildcardPattern(URL.First().ToLower());
+                        baseResourceList = _connection.Repository.Machines.FindMany(x => pattern.IsMatch(x.Uri));
+                    }
+                    //multiple non-wildcared values (i.e. -URL http://Tentacle ,http://Database)
+                    else if (!URL.Any(item => WildcardPattern.ContainsWildcardCharacters(item)))
+                    {
+                        baseResourceList = _connection.Repository.Machines.FindMany(x => URL.Contains(x.Uri));
                     }
                     break;
                 case ByCommunicationStyle:
@@ -110,7 +128,6 @@ namespace Octoposh.Cmdlets
                         baseResourceList.AddRange(_connection.Repository.Environments.GetMachines(environment));
                     }
                     break;
-
             }
 
             if (ResourceOnly)

@@ -31,9 +31,7 @@ namespace CmdletTest
                 var pattern = new WildcardPattern(Name.ToLower());
 
                 Output.AddRange(Names.Where(
-                    x => pattern.IsMatch(x.ToLower()) ||
-                    x ==
-                
+                    x => pattern.IsMatch(x.ToLower()) 
                 ));
             }
 
@@ -42,11 +40,6 @@ namespace CmdletTest
                 Console.WriteLine(name);
             }
 
-        }
-
-        private bool validateNotMoreThanOneWildcard(List<string> items)
-        {
-            
         }
     }
 }
