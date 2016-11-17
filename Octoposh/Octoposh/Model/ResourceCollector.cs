@@ -11,23 +11,21 @@ namespace Octoposh.Model
     {
         public List<EnvironmentResource> Environments = new List<EnvironmentResource>();
 
-        public bool IsResourceHereAlready(string resourceId, string type)
+        public bool IsResourceHereAlready(string resourceId)
         {
-            switch (type)
+            switch (GetResourceTypebyId(resourceId))
             {
-                case "Environment":
-                    if (Environments.Count != 0)
-                    {
-                        return Environments.Exists(x => x.Id == resourceId);
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                    
+                case "Environments":
+                    return Environments.Count != 0 && Environments.Exists(x => x.Id == resourceId);
                 default:
                     return false;
             }
         }
+
+        private string GetResourceTypebyId(string Id)
+        {
+            return Id.Split('-')[0];
+        }
+
     }
 }

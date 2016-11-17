@@ -7,8 +7,10 @@ namespace Octoposh.Model
 {
     class OutputConverter
     {
-        private ResourceCollector _resourceCollector = new ResourceCollector();
-        private OctopusConnection _connection = new NewOctopusConnection().Invoke<OctopusConnection>().ToList()[0];
+
+        private readonly ResourceCollector _resourceCollector = new ResourceCollector();
+
+        private readonly OctopusConnection _connection = new NewOctopusConnection().Invoke<OctopusConnection>().ToList()[0];
 
         /// <summary>
         /// Uses Octopus Resources to return objects with meaningful human-reabable properties.
@@ -22,12 +24,20 @@ namespace Octoposh.Model
             {
                 var environmentNames = new List<string>();
 
-                var environments =
-                    _connection.Repository.Environments.GetAll().Where(x => machine.EnvironmentIds.Contains(x.Id));
-
-                foreach (var environment in environments)
+                foreach (var environmentId in machine.EnvironmentIds)
                 {
-                    environmentNames.Add(environment.Name);
+                    if (_resourceCollector.Environments.Any(x => x.Id == environmentId))
+                    {
+                        environmentNames.Add(
+                            (_resourceCollector.Environments.First(x => x.Id == environmentId)).Name);
+                    }
+                    else
+                    {
+                        _resourceCollector.Environments.Add(_connection.Repository.Environments.Get(environmentId));
+
+                        environmentNames.Add((_resourceCollector.Environments.First(x => x.Id == environmentId)).Name);
+                    }
+                    
                 }
 
                 var communicationStyle = "";
@@ -43,11 +53,18 @@ namespace Octoposh.Model
                     case "Octopus.Client.Model.Endpoints.PollingTentacleEndpointResource":
                         communicationStyle = "PollingTentacle";
                         break;
+                    case "Octopus.Client.Model.Endpoints.OfflineDropEndpointResource":
+                        communicationStyle = "OfflineDrop";
+                        break;
+
+                    case "Octopus.Client.Model.Endpoints.SSHEndpointResource":
+                        communicationStyle = "PollingTentacle";
+                        break;
                 }
 
                 list.Add(new OutputOctopusMachine
                 {
-                    MachineName = machine.Name,
+                    Name = machine.Name,
                     Id = machine.Id,
                     EnvironmentName = environmentNames.ToArray(),
                     Resource = machine,
