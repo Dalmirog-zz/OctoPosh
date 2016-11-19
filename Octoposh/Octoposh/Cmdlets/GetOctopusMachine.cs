@@ -16,7 +16,7 @@ namespace Octoposh.Cmdlets
         private const string ByEnvironment = "ByEnvironment";
         private const string All = "All";
         private const string ByCommunicationStyle = "ByCommunicationStyle";
-        private const string ByURL = "ByURL";
+        private const string ByUrl = "ByURL";
         
 
         [Alias("Name")]
@@ -28,7 +28,7 @@ namespace Octoposh.Cmdlets
         public List<string> EnvironmentName { get; set; }
 
         [Alias("URI")]
-        [Parameter(ValueFromPipeline = true, ParameterSetName = ByURL)]
+        [Parameter(ValueFromPipeline = true, ParameterSetName = ByUrl)]
         public List<string> URL { get; set; }
 
         [Alias("Mode")]
@@ -52,7 +52,7 @@ namespace Octoposh.Cmdlets
         {
             var baseResourceList = new List<MachineResource>();
 
-            switch (this.ParameterSetName)
+            switch (ParameterSetName)
             {
                 case All:
                     baseResourceList = _connection.Repository.Machines.FindAll();
@@ -76,7 +76,7 @@ namespace Octoposh.Cmdlets
                         baseResourceList = _connection.Repository.Machines.FindMany(x => MachineName.Contains(x.Name.ToLower()));
                     }
                     break;
-                case ByURL:
+                case ByUrl:
                     //Multiple values but one of them is wildcarded, which is not an accepted scenario (I.e -URL http://Tentacle*, http://Database1)
                     if (URL.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && URL.Count > 1))
                     {

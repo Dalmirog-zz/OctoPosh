@@ -15,6 +15,8 @@ namespace Octoposh.Model
         public string Uri { get; set; }
         public bool IsDisabled { get; set; }
         public ReferenceCollection Roles { get; set; }
+        public string Status { get; set; }
+        public string StatusSummary { get; set; }
         public bool HasLatestClamari { get; set; }
         public string CommunicationStyle { get; set; }
         public MachineResource Resource { get; set; }
