@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
@@ -7,6 +8,7 @@ using Octopus.Client.Model;
 
 namespace Octoposh.Cmdlets
 {
+    ///TODO: Add built-in help (COMMUNITY)
     [Cmdlet("Get", "OctopusMachine", DefaultParameterSetName = All)]
     [OutputType(typeof(List<OutputOctopusMachine>))]
     [OutputType(typeof(List<MachineResource>))]
@@ -17,17 +19,20 @@ namespace Octoposh.Cmdlets
         private const string All = "All";
         private const string ByCommunicationStyle = "ByCommunicationStyle";
         private const string ByUrl = "ByURL";
-        
 
+        ///TODO: Add parameters description (COMMUNITY)
         [Alias("Name")]
+        [ValidateNotNullOrEmpty()]
         [Parameter(Position = 1, ValueFromPipeline = true, ParameterSetName = ByName)]
         public List<string> MachineName { get; set; }
 
         [Alias("Environment")]
+        [ValidateNotNullOrEmpty()]
         [Parameter(ValueFromPipeline = true, ParameterSetName = ByEnvironment)]
         public List<string> EnvironmentName { get; set; }
 
         [Alias("URI")]
+        [ValidateNotNullOrEmpty()]
         [Parameter(ValueFromPipeline = true, ParameterSetName = ByUrl)]
         public List<string> URL { get; set; }
 
@@ -44,8 +49,10 @@ namespace Octoposh.Cmdlets
         protected override void BeginProcessing()
         {
             _connection = new NewOctopusConnection().Invoke<OctopusConnection>().ToList()[0];
-            MachineName = MachineName?.ConvertAll(s => s.ToLower());
-            EnvironmentName = EnvironmentName?.ConvertAll(s => s.ToLower());
+            MachineName = MachineName.ConvertAll(s => s.ToLower());
+            EnvironmentName = EnvironmentName.ConvertAll(s => s.ToLower());
+            //Todo: Add Verbose messages
+            
         }
 
         protected override void ProcessRecord()
