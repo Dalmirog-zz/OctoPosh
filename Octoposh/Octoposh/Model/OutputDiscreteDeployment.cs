@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Octoposh.Model
 {
-    class OutputDashboardDeployment
+    class OutputDiscreteDeployment
     {
         public string ProjectName { get; set; }
         public string EnvironmentName { get; set; }
