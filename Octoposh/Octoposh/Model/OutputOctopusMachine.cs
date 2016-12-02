@@ -7,7 +7,7 @@ using Octopus.Client.Model;
 
 namespace Octoposh.Model
 {
-    internal class OutputOctopusMachine
+    public class OutputOctopusMachine
     {
         public string Name { get; set; }
         public string[] EnvironmentName { get; set; }
