@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <StartAction>Program</StartAction>
+    <StartProgram>C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe</StartProgram>
+    <StartArguments>-NoProfile -NoExit -Command "Import-Module .\Octoposh.dll %3b set-OctopusconnectionInfo -server %27http://Devbox:81%27 -apikey %27API-BNIX85KLM16AZC5SCBX64DAGTK%27"</StartArguments>
+  </PropertyGroup>
+</Project>

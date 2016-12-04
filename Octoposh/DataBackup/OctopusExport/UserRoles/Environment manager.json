@@ -1,0 +1,29 @@
+{
+  "$type": "Octopus.Core.Model.Users.UserRole, Octopus.Core",
+  "Id": "userroles-environmentmanager",
+  "Name": "Environment manager",
+  "Description": "Environment managers can view and edit environments and their machines.",
+  "GrantedPermissions": [
+    "EnvironmentCreate",
+    "EnvironmentEdit",
+    "EnvironmentDelete",
+    "MachineCreate",
+    "MachineEdit",
+    "MachineDelete",
+    "TaskViewLog",
+    "TaskCreate",
+    "TaskCancel",
+    "AccountCreate",
+    "AccountEdit",
+    "AccountDelete",
+    "MachinePolicyView",
+    "MachinePolicyCreate",
+    "MachinePolicyDelete",
+    "EnvironmentView",
+    "MachineView",
+    "TaskView",
+    "TeamView",
+    "AccountView"
+  ],
+  "CanBeDeleted": false
+}

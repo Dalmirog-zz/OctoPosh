@@ -1,0 +1,852 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Cake.Powershell</name>
+    </assembly>
+    <members>
+        <member name="T:Cake.Powershell.PowershellAliases">
+            <summary>
+            Contains Cake aliases for running Powershell commands.
+            </summary>
+        </member>
+        <member name="M:Cake.Powershell.PowershellAliases.StartPowershellScript(Cake.Core.ICakeContext,System.String)">
+            <summary>
+            Starts a powershell script using the specified information.
+            </summary>
+            <param name="context">The cake context.</param>
+            <param name="script">The powershell script to run.</param>
+            <returns>A collection of powershell objects</returns>
+        </member>
+        <member name="M:Cake.Powershell.PowershellAliases.StartPowershellScript(Cake.Core.ICakeContext,System.String,System.Action{Cake.Core.IO.ProcessArgumentBuilder})">
+            <summary>
+            Starts a powershell script using the specified information.
+            </summary>
+            <param name="context">The cake context.</param>
+            <param name="script">The powershell script to run.</param>
+            <param name="arguments">The arguments to append.</param>
+            <returns>A collection of powershell objects</returns>
+        </member>
+        <member name="M:Cake.Powershell.PowershellAliases.StartPowershellScript(Cake.Core.ICakeContext,System.String,Cake.Powershell.PowershellSettings)">
+            <summary>
+            Starts a powershell script using the specified information.
+            </summary>
+            <param name="context">The cake context.</param>
+            <param name="script">The powershell script to run.</param>
+            <param name="settings">The information about the script to start.</param>
+            <returns>A collection of powershell objects</returns>
+        </member>
+        <member name="M:Cake.Powershell.PowershellAliases.StartPowershellFile(Cake.Core.ICakeContext,Cake.Core.IO.FilePath)">
+            <summary>
+            Starts a powershell script using the specified information.
+            </summary>
+            <param name="context">The cake context.</param>
+            <param name="path">The path of the script file to run.</param>
+            <returns>A collection of powershell objects</returns>
+        </member>
+        <member name="M:Cake.Powershell.PowershellAliases.StartPowershellFile(Cake.Core.ICakeContext,Cake.Core.IO.FilePath,System.Action{Cake.Core.IO.ProcessArgumentBuilder})">
+            <summary>
+            Starts a powershell script using the specified information.
+            </summary>
+            <param name="context">The cake context.</param>
+            <param name="path">The path of the script file to run.</param>
+            <param name="arguments">The arguments to append.</param>
+            <returns>A collection of powershell objects</returns>
+        </member>
+        <member name="M:Cake.Powershell.PowershellAliases.StartPowershellFile(Cake.Core.ICakeContext,Cake.Core.IO.FilePath,Cake.Powershell.PowershellSettings)">
+            <summary>
+            Starts a powershell script using the specified information.
+            </summary>
+            <param name="context">The cake context.</param>
+            <param name="path">The path of the script file to run.</param>
+            <param name="settings">The information about the script to start.</param>
+            <returns>A collection of powershell objects</returns>
+        </member>
+        <member name="M:Cake.Powershell.PowershellAliases.StartPowershellDownload(Cake.Core.ICakeContext,System.Uri,Cake.Core.IO.FilePath)">
+            <summary>
+            Starts a powershell script using the specified information.
+            </summary>
+            <param name="context">The cake context.</param>
+            <param name="uri">The location of the script file to download and run.</param>
+            <param name="path">The temporary path to download the file to.</param>
+            <returns>A collection of powershell objects</returns>
+        </member>
+        <member name="M:Cake.Powershell.PowershellAliases.StartPowershellDownload(Cake.Core.ICakeContext,System.Uri,Cake.Core.IO.FilePath,System.Action{Cake.Core.IO.ProcessArgumentBuilder})">
+            <summary>
+            Starts a powershell script using the specified information.
+            </summary>
+            <param name="context">The cake context.</param>
+            <param name="uri">The location of the script file to download and run.</param>
+            <param name="path">The temporary path to download the file to.</param>
+            <param name="arguments">The arguments to append.</param>
+            <returns>A collection of powershell objects</returns>
+        </member>
+        <member name="M:Cake.Powershell.PowershellAliases.StartPowershellDownload(Cake.Core.ICakeContext,System.Uri,Cake.Core.IO.FilePath,Cake.Powershell.PowershellSettings)">
+            <summary>
+            Starts a powershell script using the specified information.
+            </summary>
+            <param name="context">The cake context.</param>
+            <param name="uri">The location of the script file to download and run.</param>
+            <param name="path">The temporary path to download the file to.</param>
+            <param name="settings">The information about the script to start.</param>
+            <returns>A collection of powershell objects</returns>
+        </member>
+        <member name="T:Cake.Powershell.ArrayArgument">
+            <summary>
+            Represents a comma separated array of arguments.
+            </summary>
+        </member>
+        <member name="M:Cake.Powershell.ArrayArgument.#ctor(System.Collections.Generic.IEnumerable{Cake.Core.IO.IProcessArgument})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cake.Powershell.ArrayArgument"/> class.
+            </summary>
+            <param name="arguments">The arguments that will be comma separated.</param>
+        </member>
+        <member name="M:Cake.Powershell.ArrayArgument.Render">
+            <summary>
+            Render the arguments as a <see cref="T:System.String" />.
+            Sensitive information will be included.
+            </summary>
+            <returns>
+            A comma separated string representation of the arguments.
+            </returns>
+        </member>
+        <member name="M:Cake.Powershell.ArrayArgument.RenderSafe">
+            <summary>
+            Renders the argument as a <see cref="T:System.String" />.
+            Sensitive information will be redacted.
+            </summary>
+            <returns>
+            A comma separated safe string representation of the argument.
+            </returns>
+        </member>
+        <member name="T:Cake.Powershell.NamedArgument">
+            <summary>
+            Represents a named argument and its value.
+            </summary>
+        </member>
+        <member name="M:Cake.Powershell.NamedArgument.#ctor(System.String,Cake.Core.IO.IProcessArgument)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cake.Powershell.NamedArgument"/> class.
+            </summary>
+            <param name="name">The name of the argument.</param>
+            <param name="value">The argument value.</param>
+        </member>
+        <member name="M:Cake.Powershell.NamedArgument.#ctor(System.String,Cake.Core.IO.IProcessArgument,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cake.Powershell.NamedArgument"/> class.
+            </summary>
+            <param name="name">The name of the argument.</param>
+            <param name="value">The argument value.</param>
+            <param name="format">The format of argument.</param>
+        </member>
+        <member name="P:Cake.Powershell.NamedArgument.Format">
+            <summary>
+            Gets or sets the format of the argument
+            </summary>
+            <value>The argument format.</value>
+        </member>
+        <member name="M:Cake.Powershell.NamedArgument.Render">
+            <summary>
+            Render the arguments as a <see cref="T:System.String" />.
+            </summary>
+            <returns>A string representation of the argument.</returns>
+        </member>
+        <member name="M:Cake.Powershell.NamedArgument.RenderSafe">
+            <summary>
+            Renders the argument as a <see cref="T:System.String"/>.
+            Sensitive information will be redacted.
+            </summary>
+            <returns>A safe string representation of the argument.</returns>
+        </member>
+        <member name="M:Cake.Powershell.NamedArgument.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Cake.Powershell.StringLiteralArgument">
+            <summary>
+            Represents a string-literal argument. Specifically,
+            '$' chars will not be evaulated as variables, nor will '()' pairs as expressions.
+            </summary>
+        </member>
+        <member name="M:Cake.Powershell.StringLiteralArgument.#ctor(Cake.Core.IO.IProcessArgument)">
+            <summary>
+            Initializes an instance of the <see cref="T:Cake.Powershell.StringLiteralArgument"/> class.
+            </summary>
+            <param name="argument">An <see cref="T:Cake.Core.IO.IProcessArgument"/> to wrap as a string-literal.</param>
+        </member>
+        <member name="M:Cake.Powershell.StringLiteralArgument.Render">
+            <summary>
+            Renders the argument as a string-literal <see cref="T:System.String"/>.
+            </summary>
+            <returns>A string-literal represenation of the argument.</returns>
+        </member>
+        <member name="M:Cake.Powershell.StringLiteralArgument.RenderSafe">
+            <summary>
+            Renders the argument as a string-literal <see cref="T:System.String"/>.
+            Sensitive information will be redacted.
+            </summary>
+            <returns>A safe string representation of the argument.</returns>
+        </member>
+        <member name="M:Cake.Powershell.StringLiteralArgument.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Cake.Powershell.PowershellSettingsExtensions">
+            <summary>
+            Contains extension methods for <see cref="T:Cake.Powershell.PowershellSettings" />.
+            </summary>
+        </member>
+        <member name="M:Cake.Powershell.PowershellSettingsExtensions.WithArguments(Cake.Powershell.PowershellSettings,System.Action{Cake.Core.IO.ProcessArgumentBuilder})">
+            <summary>
+            Sets the arguments for the powershell command
+            </summary>
+            <param name="settings">The powershell settings.</param>
+            <param name="arguments">The arguments to append.</param>
+            <returns>The same <see cref="T:Cake.Powershell.PowershellSettings"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:Cake.Powershell.PowershellSettingsExtensions.WithModule(Cake.Powershell.PowershellSettings,System.String)">
+            <summary>
+            Adds the specified module to load into the initial state
+            </summary>
+            <param name="settings">The powershell settings.</param>
+            <param name="module">The module to load.</param>
+            <returns>The same <see cref="T:Cake.Powershell.PowershellSettings"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:Cake.Powershell.PowershellSettingsExtensions.UseWorkingDirectory(Cake.Powershell.PowershellSettings,Cake.Core.IO.DirectoryPath)">
+            <summary>
+            Sets the working directory for the process to be started.
+            </summary>
+            <param name="settings">The powershell settings.</param>
+            <param name="path">The working directory where the powershell command is to be started.</param>
+            <returns>The same <see cref="T:Cake.Powershell.PowershellSettings"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:Cake.Powershell.PowershellSettingsExtensions.SetTimeout(Cake.Powershell.PowershellSettings,System.Int32)">
+            <summary>
+            Sets the optional timeout for powershell command
+            </summary>
+            <param name="settings">The powershell settings.</param>
+            <param name="timeout">The timeout duration</param>
+            <returns>The same <see cref="T:Cake.Powershell.PowershellSettings"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:Cake.Powershell.PowershellSettingsExtensions.UseComputerName(Cake.Powershell.PowershellSettings,System.String)">
+            <summary>
+            Sets the computer name to connect to
+            </summary>
+            <param name="settings">The powershell settings.</param>
+            <param name="name">The computer name</param>
+            <returns>The same <see cref="T:Cake.Powershell.PowershellSettings"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:Cake.Powershell.PowershellSettingsExtensions.UsePort(Cake.Powershell.PowershellSettings,System.Int32)">
+            <summary>
+            Sets the remote port to connect on.
+            </summary>
+            <param name="settings">The powershell settings.</param>
+            <param name="port">The remote port to connext on.</param>
+            <returns>The same <see cref="T:Cake.Powershell.PowershellSettings"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:Cake.Powershell.PowershellSettingsExtensions.UseUsername(Cake.Powershell.PowershellSettings,System.String)">
+            <summary>
+            Gets or sets the credentials to use when connecting
+            </summary>
+            <param name="settings">The powershell settings.</param>
+            <param name="username">The username to connect with.</param>
+            <returns>The same <see cref="T:Cake.Powershell.PowershellSettings"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:Cake.Powershell.PowershellSettingsExtensions.UsePassword(Cake.Powershell.PowershellSettings,System.String)">
+            <summary>
+            Gets or sets the credentials to use when connecting
+            </summary>
+            <param name="settings">The powershell settings.</param>
+            <param name="password">The password to connect with.</param>
+            <returns>The same <see cref="T:Cake.Powershell.PowershellSettings"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:Cake.Powershell.PowershellSettingsExtensions.SetFormatOutput(Cake.Powershell.PowershellSettings,System.Boolean)">
+            <summary>
+            Sets a value indicating whether the output of an application should be formatted as text
+            </summary>
+            <param name="settings">The powershell settings.</param>
+            <param name="format">true if output should be written to the cake console; otherwise, false. The default is false.</param>
+            <returns>The same <see cref="T:Cake.Powershell.PowershellSettings"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:Cake.Powershell.PowershellSettingsExtensions.SetLogOutput(Cake.Powershell.PowershellSettings,System.Boolean)">
+            <summary>
+            Sets a value indicating whether the output of an application is written to the cake console
+            </summary>
+            <param name="settings">The powershell settings.</param>
+            <param name="log">true if output should be written to the cake console; otherwise, false. The default is false.</param>
+            <returns>The same <see cref="T:Cake.Powershell.PowershellSettings"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:Cake.Powershell.PowershellSettingsExtensions.OutputToAppConsole(Cake.Powershell.PowershellSettings,System.Boolean)">
+            <summary>
+            Sets a value indicating whether the output of an application is written to its on-screen console.
+            </summary>
+            <param name="settings">The powershell settings.</param>
+            <param name="outputToAppConsole">true if output should be written to the app's on-screen console; otherwsie, false. The default is true.</param>
+            <returns>The same <see cref="T:Cake.Powershell.PowershellSettings"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="T:Cake.Powershell.ProcessArgumentListExtensions">
+            <summary>
+            Contains extension methods for <see cref="T:Cake.Core.IO.ProcessArgumentBuilder" />.
+            </summary>
+        </member>
+        <member name="M:Cake.Powershell.ProcessArgumentListExtensions.Append(Cake.Core.IO.ProcessArgumentBuilder,System.String,System.String)">
+            <summary>
+            Appends the specified text to the argument builder.
+            </summary>
+            <param name="builder">The builder.</param>
+            <param name="name">The argument name.</param>
+            <param name="text">The text to be appended.</param>
+            <returns>The same <see cref="T:Cake.Core.IO.ProcessArgumentBuilder"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:Cake.Powershell.ProcessArgumentListExtensions.Append(Cake.Core.IO.ProcessArgumentBuilder,System.String,System.String,System.String)">
+            <summary>
+            Appends the specified text to the argument builder.
+            </summary>
+            <param name="builder">The builder.</param>
+            <param name="name">The argument name.</param>
+            <param name="text">The text to be appended.</param>
+            <param name="format">The format of the named argument.</param>
+            <returns>The same <see cref="T:Cake.Core.IO.ProcessArgumentBuilder"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:Cake.Powershell.ProcessArgumentListExtensions.AppendQuoted(Cake.Core.IO.ProcessArgumentBuilder,System.String,System.String)">
+            <summary>
+            Quotes and appends the specified text to the argument builder.
+            </summary>
+            <param name="builder">The builder.</param>
+            <param name="name">The argument name.</param>
+            <param name="text">The text to be quoted and appended.</param>
+            <returns>The same <see cref="T:Cake.Core.IO.ProcessArgumentBuilder"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:Cake.Powershell.ProcessArgumentListExtensions.AppendQuoted(Cake.Core.IO.ProcessArgumentBuilder,System.String,Cake.Core.IO.IProcessArgument)">
+            <summary>
+            Quotes and appends the specified argument to the argument builder.
+            </summary>
+            <param name="builder">The builder.</param>
+            <param name="name">The argument name.</param>
+            <param name="argument">The argument to be quoted and appended.</param>
+            <returns>The same <see cref="T:Cake.Core.IO.ProcessArgumentBuilder"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:Cake.Powershell.ProcessArgumentListExtensions.AppendQuoted(Cake.Core.IO.ProcessArgumentBuilder,System.String,Cake.Core.IO.IProcessArgument,System.String)">
+            <summary>
+            Quotes and appends the specified argument to the argument builder.
+            </summary>
+            <param name="builder">The builder.</param>
+            <param name="name">The argument name.</param>
+            <param name="argument">The argument to be quoted and appended.</param>
+            <param name="format">The format of the named argument.</param>
+            <returns>The same <see cref="T:Cake.Core.IO.ProcessArgumentBuilder"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:Cake.Powershell.ProcessArgumentListExtensions.AppendStringLiteral(Cake.Core.IO.ProcessArgumentBuilder,System.String,System.String)">
+            <summary>
+            Appends the specified text as a string-literal to the argument builder.
+            </summary>
+            <param name="builder">The builder.</param>
+            <param name="name">The argument name.</param>
+            <param name="text">The text to be quoted and appended as a string-literal.</param>
+            <returns>The same <see cref="T:Cake.Core.IO.ProcessArgumentBuilder"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:Cake.Powershell.ProcessArgumentListExtensions.AppendStringLiteral(Cake.Core.IO.ProcessArgumentBuilder,System.String,Cake.Core.IO.IProcessArgument)">
+            <summary>
+            Appends the specified argument as a string-literal to the argument builder.
+            </summary>
+            <param name="builder">The builder.</param>
+            <param name="name">The argument name.</param>
+            <param name="argument">The argument to be quoted and appended as a string-literal.</param>
+            <returns>The same <see cref="T:Cake.Core.IO.ProcessArgumentBuilder"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:Cake.Powershell.ProcessArgumentListExtensions.AppendArray(Cake.Core.IO.ProcessArgumentBuilder,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Appends the specified arguments as an array to the argument builder.
+            </summary>
+            <param name="builder">The builder.</param>
+            <param name="name">The argument name.</param>
+            <param name="arguments">The text collection to be appended as an array.</param>
+            <returns>The same <see cref="T:Cake.Core.IO.ProcessArgumentBuilder"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:Cake.Powershell.ProcessArgumentListExtensions.AppendArray(Cake.Core.IO.ProcessArgumentBuilder,System.String,System.Collections.Generic.IEnumerable{Cake.Core.IO.IProcessArgument})">
+            <summary>
+            Appends the specified arguments as an array to the argument builder.
+            </summary>
+            <param name="builder">The builder.</param>
+            <param name="name">The argument name.</param>
+            <param name="arguments">The arguments to be appended as an array.</param>
+            <returns>The same <see cref="T:Cake.Core.IO.ProcessArgumentBuilder"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:Cake.Powershell.ProcessArgumentListExtensions.AppendSecret(Cake.Core.IO.ProcessArgumentBuilder,System.String,System.String)">
+            <summary>
+            Appends the specified secret text to the argument builder.
+            </summary>
+            <param name="builder">The builder.</param>
+            <param name="name">The argument name.</param>
+            <param name="text">The secret text to be appended.</param>
+            <returns>The same <see cref="T:Cake.Core.IO.ProcessArgumentBuilder"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:Cake.Powershell.ProcessArgumentListExtensions.AppendSecret(Cake.Core.IO.ProcessArgumentBuilder,System.String,Cake.Core.IO.IProcessArgument)">
+            <summary>
+            Appends the specified secret text to the argument builder.
+            </summary>
+            <param name="builder">The builder.</param>
+            <param name="name">The argument name.</param>
+            <param name="argument">The secret argument to be appended.</param>
+            <returns>The same <see cref="T:Cake.Core.IO.ProcessArgumentBuilder"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:Cake.Powershell.ProcessArgumentListExtensions.AppendSecret(Cake.Core.IO.ProcessArgumentBuilder,System.String,Cake.Core.IO.IProcessArgument,System.String)">
+            <summary>
+            Appends the specified secret text to the argument builder.
+            </summary>
+            <param name="builder">The builder.</param>
+            <param name="name">The argument name.</param>
+            <param name="argument">The secret argument to be appended.</param>
+            <param name="format">The format of the named argument.</param>
+            <returns>The same <see cref="T:Cake.Core.IO.ProcessArgumentBuilder"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:Cake.Powershell.ProcessArgumentListExtensions.AppendQuotedSecret(Cake.Core.IO.ProcessArgumentBuilder,System.String,System.String)">
+            <summary>
+            Quotes and appends the specified secret text to the argument builder.
+            </summary>
+            <param name="builder">The builder.</param>
+            <param name="name">The argument name.</param>
+            <param name="text">The secret text to be quoted and appended.</param>
+            <returns>The same <see cref="T:Cake.Core.IO.ProcessArgumentBuilder"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:Cake.Powershell.ProcessArgumentListExtensions.AppendQuotedSecret(Cake.Core.IO.ProcessArgumentBuilder,System.String,Cake.Core.IO.IProcessArgument)">
+            <summary>
+            Quotes and appends the specified secret text to the argument builder.
+            </summary>
+            <param name="builder">The builder.</param>
+            <param name="name">The argument name.</param>
+            <param name="argument">The secret argument to be appended.</param>
+            <returns>The same <see cref="T:Cake.Core.IO.ProcessArgumentBuilder"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:Cake.Powershell.ProcessArgumentListExtensions.AppendQuotedSecret(Cake.Core.IO.ProcessArgumentBuilder,System.String,Cake.Core.IO.IProcessArgument,System.String)">
+            <summary>
+            Quotes and appends the specified secret text to the argument builder.
+            </summary>
+            <param name="builder">The builder.</param>
+            <param name="name">The argument name.</param>
+            <param name="argument">The secret argument to be appended.</param>
+            <param name="format">The format of the named argument.</param>
+            <returns>The same <see cref="T:Cake.Core.IO.ProcessArgumentBuilder"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:Cake.Powershell.ProcessArgumentListExtensions.AppendStringLiteralSecret(Cake.Core.IO.ProcessArgumentBuilder,System.String,System.String)">
+            <summary>
+            Appends the specified secret text as a string-literal to the argument builder.
+            </summary>
+            <param name="builder">The builder.</param>
+            <param name="name">The argument name.</param>
+            <param name="text">The secret text to be appended.</param>
+        </member>
+        <member name="M:Cake.Powershell.ProcessArgumentListExtensions.AppendStringLiteralSecret(Cake.Core.IO.ProcessArgumentBuilder,System.String,Cake.Core.IO.IProcessArgument)">
+            <summary>
+            Appends the specified secret argument as a string-literal to the argument builder.
+            </summary>
+            <param name="builder">The builder.</param>
+            <param name="name">The argument name.</param>
+            <param name="argument">The secret argument to be appended.</param>
+            <returns>The same <see cref="T:Cake.Core.IO.ProcessArgumentBuilder"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:Cake.Powershell.ProcessArgumentListExtensions.AppendSecretArray(Cake.Core.IO.ProcessArgumentBuilder,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Appends the specified arguments as an array to the argument builder.
+            </summary>
+            <param name="builder">The builder.</param>
+            <param name="name">The argument name.</param>
+            <param name="arguments">The arguments to be appended as an array.</param>
+            <returns>The same <see cref="T:Cake.Core.IO.ProcessArgumentBuilder"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:Cake.Powershell.ProcessArgumentListExtensions.AppendSecretArray(Cake.Core.IO.ProcessArgumentBuilder,System.String,System.Collections.Generic.IEnumerable{Cake.Core.IO.IProcessArgument})">
+            <summary>
+            Appends the specified secret arguments as an array to the argument builder.
+            </summary>
+            <param name="builder">The builder.</param>
+            <param name="name">The argument name.</param>
+            <param name="arguments">The secret arguments to be appended as an array.</param>
+            <returns>The same <see cref="T:Cake.Core.IO.ProcessArgumentBuilder"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="T:Cake.Powershell.SecureExtensions">
+            <summary>
+            Extensions methods for creating secure strings
+            </summary>
+        </member>
+        <member name="M:Cake.Powershell.SecureExtensions.MakeSecure(System.String)">
+            <summary>
+            Creates a secure string for storing powershell passwords
+            </summary>
+            <param name="password">The string to make secure.</param>
+            <returns>The secure string.</returns>
+        </member>
+        <member name="T:Cake.Powershell.CakePSHostNoConsoleRawUserInterface">
+            <summary>
+            An implementation of <see cref="T:System.Management.Automation.Host.PSHostRawUserInterface"/> that is used when an app has no console for output.
+            </summary>
+            <seealso cref="T:System.Management.Automation.Host.PSHostRawUserInterface" />
+        </member>
+        <member name="P:Cake.Powershell.CakePSHostNoConsoleRawUserInterface.BackgroundColor">
+            <summary>
+            There is no console, so a ConsoleColor of black is returned.
+            </summary>
+        </member>
+        <member name="P:Cake.Powershell.CakePSHostNoConsoleRawUserInterface.BufferSize">
+            <summary>
+            There is no console, so buffer size of 300x5000 is returned to prevent crashes.
+            </summary>
+        </member>
+        <member name="P:Cake.Powershell.CakePSHostNoConsoleRawUserInterface.CursorPosition">
+            <summary>
+            There is no console, so an empty Coordinates instance is returned.
+            </summary>
+        </member>
+        <member name="P:Cake.Powershell.CakePSHostNoConsoleRawUserInterface.CursorSize">
+            <summary>
+            There is no console, so a cursor size of 1 is returned.
+            </summary>
+        </member>
+        <member name="P:Cake.Powershell.CakePSHostNoConsoleRawUserInterface.ForegroundColor">
+            <summary>
+            There is no console, so a ConsoleColor of white is returned.
+            </summary>
+        </member>
+        <member name="P:Cake.Powershell.CakePSHostNoConsoleRawUserInterface.KeyAvailable">
+            <summary>
+            There is no color, so false is returned to indicate no key was pressed.
+            </summary>
+        </member>
+        <member name="P:Cake.Powershell.CakePSHostNoConsoleRawUserInterface.MaxPhysicalWindowSize">
+            <summary>
+            There is no console, so the value of <see cref="P:Cake.Powershell.CakePSHostNoConsoleRawUserInterface.BufferSize"/> is returned.
+            </summary>
+        </member>
+        <member name="P:Cake.Powershell.CakePSHostNoConsoleRawUserInterface.MaxWindowSize">
+            <summary>
+            There is no console, so the value of <see cref="P:Cake.Powershell.CakePSHostNoConsoleRawUserInterface.BufferSize"/> is returned.
+            </summary>
+        </member>
+        <member name="P:Cake.Powershell.CakePSHostNoConsoleRawUserInterface.WindowPosition">
+            <summary>
+            There is no console, so empty Coordinates are returned.
+            </summary>
+        </member>
+        <member name="P:Cake.Powershell.CakePSHostNoConsoleRawUserInterface.WindowSize">
+            <summary>
+            There is no console, so the value of <see cref="P:Cake.Powershell.CakePSHostNoConsoleRawUserInterface.BufferSize"/> is returned.
+            </summary>
+        </member>
+        <member name="P:Cake.Powershell.CakePSHostNoConsoleRawUserInterface.WindowTitle">
+            <summary>
+            There is no console, so an empty string is returned.
+            </summary>
+        </member>
+        <member name="M:Cake.Powershell.CakePSHostNoConsoleRawUserInterface.ReadKey(System.Management.Automation.Host.ReadKeyOptions)">
+            <summary>
+            There is no console, so this is not implemented.
+            </summary>
+            <param name="options">The options.</param>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:Cake.Powershell.CakePSHostNoConsoleRawUserInterface.GetBufferContents(System.Management.Automation.Host.Rectangle)">
+            <summary>
+            There is no console, so this is not implemented.
+            </summary>
+            <param name="rectangle">The rectangle.</param>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:Cake.Powershell.CakePSHostNoConsoleRawUserInterface.FlushInputBuffer">
+            <summary>
+            There is no console, does nothing
+            </summary>
+        </member>
+        <member name="M:Cake.Powershell.CakePSHostNoConsoleRawUserInterface.SetBufferContents(System.Management.Automation.Host.Coordinates,System.Management.Automation.Host.BufferCell[0:,0:])">
+            <summary>
+            There is no console, does nothing
+            </summary>
+        </member>
+        <member name="M:Cake.Powershell.CakePSHostNoConsoleRawUserInterface.SetBufferContents(System.Management.Automation.Host.Rectangle,System.Management.Automation.Host.BufferCell)">
+            <summary>
+            There is no console, does nothing
+            </summary>
+        </member>
+        <member name="M:Cake.Powershell.CakePSHostNoConsoleRawUserInterface.ScrollBufferContents(System.Management.Automation.Host.Rectangle,System.Management.Automation.Host.Coordinates,System.Management.Automation.Host.Rectangle,System.Management.Automation.Host.BufferCell)">
+            <summary>
+            There is no console, does nothing
+            </summary>
+        </member>
+        <member name="P:Cake.Powershell.CakePSHostRawUserInterface.BackgroundColor">
+            <summary>
+            Gets or sets the background color of the displayed text.
+            This maps to the corresponding Console.Background property.
+            </summary>
+        </member>
+        <member name="P:Cake.Powershell.CakePSHostRawUserInterface.BufferSize">
+            <summary>
+            Gets or sets the size of the host buffer. In this example the 
+            buffer size is adapted from the Console buffer size members.
+            </summary>
+        </member>
+        <member name="P:Cake.Powershell.CakePSHostRawUserInterface.CursorPosition">
+            <summary>
+            Gets or sets the cursor position. In this example this 
+            functionality is not needed so the property throws a 
+            NotImplementException exception.
+            </summary>
+        </member>
+        <member name="P:Cake.Powershell.CakePSHostRawUserInterface.CursorSize">
+            <summary>
+            Gets or sets the size of the displayed cursor. In this example 
+            the cursor size is taken directly from the Console.CursorSize 
+            property.
+            </summary>
+        </member>
+        <member name="P:Cake.Powershell.CakePSHostRawUserInterface.ForegroundColor">
+            <summary>
+            Gets or sets the foreground color of the displayed text.
+            This maps to the corresponding Console.ForgroundColor property.
+            </summary>
+        </member>
+        <member name="P:Cake.Powershell.CakePSHostRawUserInterface.KeyAvailable">
+            <summary>
+            Gets a value indicating whether the user has pressed a key. This maps   
+            to the corresponding Console.KeyAvailable property.
+            </summary>
+        </member>
+        <member name="P:Cake.Powershell.CakePSHostRawUserInterface.MaxPhysicalWindowSize">
+            <summary>
+            Gets the dimensions of the largest window that could be 
+            rendered in the current display, if the buffer was at the least 
+            that large. This example uses the Console.LargestWindowWidth and 
+            Console.LargestWindowHeight properties to determine the returned 
+            value of this property.
+            </summary>
+        </member>
+        <member name="P:Cake.Powershell.CakePSHostRawUserInterface.MaxWindowSize">
+            <summary>
+            Gets the dimentions of the largest window size that can be 
+            displayed. This example uses the Console.LargestWindowWidth and 
+            console.LargestWindowHeight properties to determine the returned 
+            value of this property.
+            </summary>
+        </member>
+        <member name="P:Cake.Powershell.CakePSHostRawUserInterface.WindowPosition">
+            <summary>
+            Gets or sets the position of the displayed window. This example 
+            uses the Console window position APIs to determine the returned 
+            value of this property.
+            </summary>
+        </member>
+        <member name="P:Cake.Powershell.CakePSHostRawUserInterface.WindowSize">
+            <summary>
+            Gets or sets the size of the displayed window. This example 
+            uses the corresponding Console window size APIs to determine the  
+            returned value of this property.
+            </summary>
+        </member>
+        <member name="P:Cake.Powershell.CakePSHostRawUserInterface.WindowTitle">
+            <summary>
+            Gets or sets the title of the displayed window. The example 
+            maps the Console.Title property to the value of this property.
+            </summary>
+        </member>
+        <member name="M:Cake.Powershell.CakePSHostRawUserInterface.FlushInputBuffer">
+            <summary>
+            This API resets the input buffer. In this example this 
+            functionality is not needed so the method returns nothing.
+            </summary>
+        </member>
+        <member name="M:Cake.Powershell.CakePSHostRawUserInterface.GetBufferContents(System.Management.Automation.Host.Rectangle)">
+            <summary>
+            This API returns a rectangular region of the screen buffer. In 
+            this example this functionality is not needed so the method throws 
+            a NotImplementException exception.
+            </summary>
+            <param name="rectangle">Defines the size of the rectangle.</param>
+            <returns>Throws a NotImplementedException exception.</returns>
+        </member>
+        <member name="M:Cake.Powershell.CakePSHostRawUserInterface.ReadKey(System.Management.Automation.Host.ReadKeyOptions)">
+            <summary>
+            This API reads a pressed, released, or pressed and released keystroke 
+            from the keyboard device, blocking processing until a keystroke is 
+            typed that matches the specified keystroke options. In this example 
+            this functionality is not needed so the method throws a
+            NotImplementException exception.
+            </summary>
+            <param name="options">Options, such as IncludeKeyDown,  used when 
+            reading the keyboard.</param>
+            <returns>Throws a NotImplementedException exception.</returns>
+        </member>
+        <member name="M:Cake.Powershell.CakePSHostRawUserInterface.ScrollBufferContents(System.Management.Automation.Host.Rectangle,System.Management.Automation.Host.Coordinates,System.Management.Automation.Host.Rectangle,System.Management.Automation.Host.BufferCell)">
+            <summary>
+            This API crops a region of the screen buffer. In this example 
+            this functionality is not needed so the method throws a
+            NotImplementException exception.
+            </summary>
+            <param name="source">The region of the screen to be scrolled.</param>
+            <param name="destination">The region of the screen to receive the 
+            source region contents.</param>
+            <param name="clip">The region of the screen to include in the operation.</param>
+            <param name="fill">The character and attributes to be used to fill all cell.</param>
+        </member>
+        <member name="M:Cake.Powershell.CakePSHostRawUserInterface.SetBufferContents(System.Management.Automation.Host.Coordinates,System.Management.Automation.Host.BufferCell[0:,0:])">
+            <summary>
+            This method copies an array of buffer cells into the screen buffer 
+            at a specified location. In this example this functionality is 
+            not needed so the method throws a NotImplementedException exception.
+            </summary>
+            <param name="origin">The parameter is not used.</param>
+            <param name="contents">The parameter is not used.</param>
+        </member>
+        <member name="M:Cake.Powershell.CakePSHostRawUserInterface.SetBufferContents(System.Management.Automation.Host.Rectangle,System.Management.Automation.Host.BufferCell)">
+            <summary>
+            This method copies a given character, foreground color, and background 
+            color to a region of the screen buffer. In this example this 
+            functionality is not needed so the method throws a
+            NotImplementException exception./// </summary>
+            <param name="rectangle">Defines the area to be filled. </param>
+            <param name="fill">Defines the fill character.</param>
+        </member>
+        <member name="T:Cake.Powershell.IPowershellRunner">
+            <summary>
+            Responsible for executing powershell scripts.
+            </summary>
+        </member>
+        <member name="M:Cake.Powershell.IPowershellRunner.Start(System.String,Cake.Powershell.PowershellSettings)">
+            <summary>
+            Starts a powershell script using the specified information.
+            </summary>
+            <param name="script">The powershell script to run.</param>
+            <param name="settings">The information about the script to start.</param>
+            <returns>Powershell objects.</returns>
+        </member>
+        <member name="M:Cake.Powershell.IPowershellRunner.Start(Cake.Core.IO.FilePath,Cake.Powershell.PowershellSettings)">
+            <summary>
+            Starts a powershell script using the specified information.
+            </summary>
+            <param name="path">The path of the script file to run.</param>
+            <param name="settings">The information about the script to start.</param>
+            <returns>Powershell objects.</returns>
+        </member>
+        <member name="M:Cake.Powershell.IPowershellRunner.Start(System.Uri,Cake.Core.IO.FilePath,Cake.Powershell.PowershellSettings)">
+            <summary>
+            Starts a powershell script using the specified information.
+            </summary>
+            <param name="uri">The location of the script file to download and run.</param>
+            <param name="path">The temporary path to download the file to.</param>
+            <param name="settings">The information about the process to start.</param>
+            <returns>Powershell objects.</returns>
+        </member>
+        <member name="T:Cake.Powershell.PowershellRunner">
+            <summary>
+            Responsible for executing powershell scripts.
+            </summary>
+        </member>
+        <member name="M:Cake.Powershell.PowershellRunner.#ctor(Cake.Core.ICakeEnvironment,Cake.Core.Diagnostics.ICakeLog)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cake.Powershell.PowershellRunner" /> class.
+            </summary>
+            <param name="environment">The environment.</param>
+            <param name="log">The log.</param>
+        </member>
+        <member name="M:Cake.Powershell.PowershellRunner.Start(System.String,Cake.Powershell.PowershellSettings)">
+            <summary>
+            Starts a powershell script using the specified information.
+            </summary>
+            <param name="script">The powershell script to run.</param>
+            <param name="settings">The information about the script to start.</param>
+            <returns>Powershell objects.</returns>
+        </member>
+        <member name="M:Cake.Powershell.PowershellRunner.Start(Cake.Core.IO.FilePath,Cake.Powershell.PowershellSettings)">
+            <summary>
+            Starts a powershell script using the specified information.
+            </summary>
+            <param name="path">The path of the script file to run.</param>
+            <param name="settings">The information about the script to start.</param>
+            <returns>Powershell objects.</returns>
+        </member>
+        <member name="M:Cake.Powershell.PowershellRunner.Start(System.Uri,Cake.Core.IO.FilePath,Cake.Powershell.PowershellSettings)">
+            <summary>
+            Starts a powershell script using the specified information.
+            </summary>
+            <param name="uri">The location of the script file to download and run.</param>
+            <param name="path">The temporary path to download the file to.</param>
+            <param name="settings">The information about the process to start.</param>
+            <returns>Powershell objects.</returns>
+        </member>
+        <member name="T:Cake.Powershell.PowershellSettings">
+            <summary>
+            The settings used when running powershell processes.
+            </summary>
+        </member>
+        <member name="M:Cake.Powershell.PowershellSettings.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cake.Powershell.PowershellSettings" /> class.
+            </summary>
+        </member>
+        <member name="P:Cake.Powershell.PowershellSettings.WorkingDirectory">
+            <summary>
+            Gets or sets the working directory for the process to be started.
+            </summary>
+        </member>
+        <member name="P:Cake.Powershell.PowershellSettings.Timeout">
+            <summary>
+            Gets or sets optional timeout for process execution
+            </summary>
+        </member>
+        <member name="P:Cake.Powershell.PowershellSettings.ComputerName">
+            <summary>
+            Gets or sets optional computer name to run the process on
+            </summary>
+        </member>
+        <member name="P:Cake.Powershell.PowershellSettings.Port">
+            <summary>
+            Gets or sets the remote port to connect on
+            </summary>
+        </member>
+        <member name="P:Cake.Powershell.PowershellSettings.Username">
+            <summary>
+            Gets or sets the credentials to use when connecting
+            </summary>
+        </member>
+        <member name="P:Cake.Powershell.PowershellSettings.Password">
+            <summary>
+            Gets or sets the credentials to use when connecting
+            </summary>
+        </member>
+        <member name="P:Cake.Powershell.PowershellSettings.FormatOutput">
+            <summary>
+            If the powershell output should be a formatted string
+            </summary>
+        </member>
+        <member name="P:Cake.Powershell.PowershellSettings.LogOutput">
+            <summary>
+            Log the powershell output
+            </summary>
+        </member>
+        <member name="P:Cake.Powershell.PowershellSettings.OutputToAppConsole">
+            <summary>
+            If the host should output to the app's console
+            </summary>
+        </member>
+        <member name="P:Cake.Powershell.PowershellSettings.Modules">
+            <summary>
+            Gets or sets the modules to load into the initial state
+            </summary>
+        </member>
+        <member name="P:Cake.Powershell.PowershellSettings.Arguments">
+            <summary>
+            Gets or sets the set of command-line arguments to use when starting the application.
+            </summary>
+            <value>The set of command-line arguments to use when starting the application.</value>
+        </member>
+        <member name="T:Cake.Powershell.NamespaceDoc">
+            <summary>
+            This namespace contains Powershell command aliases and related members.
+            </summary>
+        </member>
+    </members>
+</doc>

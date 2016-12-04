@@ -1,0 +1,31 @@
+{
+  "$type": "Octopus.Core.Model.ServerTasks.ServerTask, Octopus.Core",
+  "Id": "ServerTasks-101",
+  "Name": "Health",
+  "Arguments": {
+    "MachinePolicyId": "MachinePolicies-1"
+  },
+  "Description": "Check Tentacle health",
+  "QueueTime": "2016-12-04T16:20:23.5810247+00:00",
+  "QueueTimeExpiry": "10675199.02:48:05.4775807",
+  "ExecutionTimeExpiry": "00:00:00",
+  "StartTime": "2016-12-04T16:20:23.5951125+00:00",
+  "LastUpdatedTime": "2016-12-04T16:20:23.7857031+00:00",
+  "CompletedTime": "2016-12-04T16:20:23.7857031+00:00",
+  "ErrorMessage": "",
+  "ConcurrencyTag": null,
+  "State": "Success",
+  "HasPendingInterruptions": false,
+  "HasWarningsOrErrors": false,
+  "ServerVersion": "3.4.14+Branch.master.Sha.2bb81229f335511f625ca4fe6832e2752c1565a0",
+  "ServerNode": "DEVBOX",
+  "LogDifferentiationToken": "SZW3H43HZB",
+  "AdditionalDescription": null,
+  "DurationSeconds": 0,
+  "ProjectId": null,
+  "EnvironmentId": null,
+  "TenantId": null,
+  "ExtendedViewLogPermissions": [],
+  "ExtendedCreatePermissions": [],
+  "CanRerun": true
+}

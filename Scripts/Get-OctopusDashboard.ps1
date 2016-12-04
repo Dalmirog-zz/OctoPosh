@@ -110,7 +110,7 @@ function Get-OctopusDashboard
             $obj = [PSCustomObject]@{
                 ProjectName = If($Project){$Project.name} else{($rawDashboard.projects | ?{$_.Id -eq $deployment.projectID}).name}   
                 EnvironmentName = If($Environment){$Environment.name} else{($rawDashboard.Environments| ?{$_.Id -eq $deployment.EnvironmentID}).name}
-                ReleaseVersion = [version]$deployment.ReleaseVersion
+                ReleaseVersion = $deployment.ReleaseVersion
                 DeploymentStatus = $deployment.state
                 StartDate = $startdate
                 EndDate = $EndDate
