@@ -1,0 +1,30 @@
+{
+  "$type": "Octopus.Core.Model.Users.UserRole, Octopus.Core",
+  "Id": "userroles-projectinitiator",
+  "Name": "Project initiator",
+  "Description": "All project viewer permissions, plus: create new projects.",
+  "GrantedPermissions": [
+    "ProjectCreate",
+    "ProjectEdit",
+    "ProjectDelete",
+    "DefectReport",
+    "DefectResolve",
+    "ReleaseView",
+    "ProjectView",
+    "DeploymentView",
+    "EnvironmentView",
+    "ArtifactView",
+    "EventView",
+    "ProjectGroupView",
+    "LibraryVariableSetView",
+    "TeamView",
+    "UserView",
+    "UserRoleView",
+    "TaskView",
+    "InterruptionViewSubmitResponsible",
+    "LifecycleView",
+    "MachinePolicyView",
+    "TenantView"
+  ],
+  "CanBeDeleted": false
+}

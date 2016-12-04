@@ -39,9 +39,9 @@ namespace Octoposh.Tests
 
                 powershell.Commands.AddCommand(command);
 
-                //todo: figure out what to do wit the URL and API Key
+                //todo: figure out what to do with the URL and API Key
                 Environment.SetEnvironmentVariable("OctopusURL", "http://Devbox:81");
-                Environment.SetEnvironmentVariable("OctopusAPIKey", "API-BNIX85KLM16AZC5SCBX64DAGTK");
+                Environment.SetEnvironmentVariable("OctopusAPIKey", "API-B3ZK7BTFAKSKRTCHQFKAZNPT5Y");
 
                 return powershell;
         }
