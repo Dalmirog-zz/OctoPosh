@@ -12,7 +12,7 @@ namespace Octoposh.Model
         public string Name { get; set; }
         public string Id { get; set; }
         public List<MachineResource> Machines { get; set; }
-        public List< OutputDashboardDeployment> Deployments { get; set; }
+        public List< OutputDiscreteDeployment> Deployments { get; set; }
         public EnvironmentResource Resource { get; set; }
     }
 }

@@ -10,6 +10,7 @@ namespace Octoposh.Model
     internal class ResourceCollector
     {
         public List<EnvironmentResource> Environments = new List<EnvironmentResource>();
+        public List<LifecycleResource> Lifecycles = new List<LifecycleResource>();
 
         public bool IsResourceHereAlready(string resourceId)
         {
@@ -17,6 +18,8 @@ namespace Octoposh.Model
             {
                 case "Environments":
                     return Environments.Count != 0 && Environments.Exists(x => x.Id == resourceId);
+                case "Lifecycles":
+                    return Lifecycles.Count != 0 && Lifecycles.Exists(x => x.Id == resourceId);
                 default:
                     return false;
             }
