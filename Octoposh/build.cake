@@ -8,6 +8,12 @@
 
 var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Debug");
+var OctopusInstance = Argument("OctopusInstance","");
+var ConnectionString = Argument("ConnectionString","");
+var OctopusAdmin = Argument("OctopusAdmin","");
+var OctopusPassword = Argument("OctopusPassword","");
+var CreateInstance = Argument("CreateInstance","");
+
 
 //////////////////////////////////////////////////////////////////////
 // PREPARATION
@@ -20,10 +26,10 @@ var buildDir = Directory("./Octoposh/bin/") + Directory(configuration);
 // TASKS
 //////////////////////////////////////////////////////////////////////
 
-Task("Clean")
+Task("Clean")    
     .Does(() =>
 {
-    CleanDirectory(buildDir);
+	CleanDirectory(buildDir);
 });
 
 Task("Restore-NuGet-Packages")
@@ -43,8 +49,24 @@ Task("Build")
 
 });
 
+Task("Create-Octopus-Instance")
+	.IsDependentOn("Build")
+    .Description("Creates the test Octopus instance. If an instance with that name already exists, it won't be re-created but its data will be restored sing the backup in Source Control")	
+    .Does(() =>
+{
+    StartPowershellFile("Scripts/OctopusServer.ps1", new PowershellSettings()
+        .SetFormatOutput()
+        .SetLogOutput()
+		.WithArguments(args=>
+		{
+			args.Append("Action","CreateInstance");
+			args.Append("CreateInstance",CreateInstance);
+			args.Append("InstanceName",OctopusInstance);
+		}));
+});
+
 Task("Stop-Octopus-Server")
-    .IsDependentOn("Build")
+    .IsDependentOn("Create-Octopus-Instance")
     .Description("Stops the Octopus server so its database can be restored")	
     .Does(() =>
 {
@@ -54,6 +76,7 @@ Task("Stop-Octopus-Server")
 		.WithArguments(args=>
 		{
 			args.Append("Action","StopService");
+			args.Append("InstanceName",OctopusInstance);
 		}));
 });
 
@@ -64,7 +87,7 @@ Task("Restore-Test-DB")
 		ExecuteSqlFile("./Scripts/RestoreCleanDatabase.sql", new SqlQuerySettings()
 		{
 			Provider = "MsSql",
-			ConnectionString = "Server=(local)\\SQLEXPRESS;Database=OctoposhTest;Integrated Security=SSPI"
+			ConnectionString = ConnectionString
 		});
 	});
 
@@ -79,6 +102,8 @@ Task("Import-Octopus-Backup")
 		.WithArguments(args=>
 		{
 			args.Append("Action","ImportBackup");
+			args.Append("Password",OctopusPassword);
+			args.Append("InstanceName",OctopusInstance);
 		}));
 });
 
@@ -93,6 +118,7 @@ Task("Start-Octopus-Server")
 		.WithArguments(args=>
 		{
 			args.Append("Action","StartService");
+			args.Append("InstanceName",OctopusInstance);
 		}));
 });
 

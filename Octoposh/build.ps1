@@ -52,7 +52,10 @@ Param(
     [switch]$Mono,
     [switch]$SkipToolPackageRestore,
     [Parameter(Position=0,Mandatory=$false,ValueFromRemainingArguments=$true)]
-    [string[]]$ScriptArgs
+    [string[]]$ScriptArgs,
+    [ValidateSet("Development", "BuildServer")]
+    [string]$Environment = "Development",
+	[switch]$CreateOctopusInstance = $false
 )
 
 [Reflection.Assembly]::LoadWithPartialName("System.Security") | Out-Null
@@ -183,7 +186,20 @@ if (!(Test-Path $CAKE_EXE)) {
     Throw "Could not find Cake.exe at $CAKE_EXE"
 }
 
+If($Environment -eq "BuildServer"){
+    $config = Get-Content .\BuildServerConfig.Json | ConvertFrom-Json
+}
+else{
+    $config = Get-Content .\DevEnvConfig.Json | ConvertFrom-Json
+}
+
+# Should we create the Octopus Instance set in the config.JSON file if it doesn't exist?
+$CreateInstance = 'false'
+IF($CreateOctopusInstance){
+	$CreateInstance = 'true'
+}
+
 # Start Cake
 Write-Host "Running build script..."
-Invoke-Expression "& `"$CAKE_EXE`" `"$Script`" -target=`"$Target`" -configuration=`"$Configuration`" -verbosity=`"$Verbosity`" $UseMono $UseDryRun $UseExperimental $ScriptArgs"
+Invoke-Expression "& `"$CAKE_EXE`" `"$Script`" -target=`"$Target`" -configuration=`"$Configuration`" -verbosity=`"$Verbosity`" $UseMono $UseDryRun $UseExperimental $ScriptArgs -OctopusInstance=`"$($config.OctopusInstance)`" -ConnectionString=`"$($config.ConnectionString)`" -OctopusAdmin=`"$($config.OctopusAdmin)`" -OctopusPassword=`"$($config.OctopusPassword)`" -CreateInstance=`"$CreateInstance`""
 exit $LASTEXITCODE
