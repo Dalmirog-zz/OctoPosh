@@ -1,0 +1,29 @@
+{
+  "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
+  "Id": "CommunityActionTemplates-176",
+  "Name": "Windows - Add Back Connection Host Name",
+  "ExternalId": "d66d091d-39d8-43ba-a7d4-db868cd9f7d5",
+  "Description": "Disables loopback checking for a given host header name, allowing an IIS site running with integrated authentication to be accessed from the same machine, e.g. an MVC application referencing a WebAPI application. See below for more information:\n\n<https://support.microsoft.com/en-us/kb/896861>",
+  "Version": 1,
+  "ActionType": "Octopus.Script",
+  "Author": "robbell",
+  "Website": "https://library.octopus.com/step-templates/d66d091d-39d8-43ba-a7d4-db868cd9f7d5",
+  "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/windows-add-back-connection-host-name.json",
+  "Category": "Windows",
+  "Properties": {
+    "Octopus.Action.Script.ScriptBody": "$hostName = $OctopusParameters['HostName']\n\n$key = 'HKLM:\\System\\CurrentControlSet\\Control\\Lsa\\MSV1_0\\'\n\n$hostNames = get-itemproperty $key -Name BackConnectionHostNames -ErrorAction SilentlyContinue\n\nIf ($hostNames -eq $null) { new-itemproperty $key -Name BackConnectionHostNames -Value $hostName -PropertyType MultiString }\n\nElseIf ($hostNames.BackConnectionHostNames -notcontains  $hostName) { set-itemproperty $key -Name BackConnectionHostNames -Value ($hostNames.BackConnectionHostNames + $hostName) }\n",
+    "Octopus.Action.Script.Syntax": "PowerShell"
+  },
+  "Parameters": [
+    {
+      "Id": null,
+      "Name": "HostName",
+      "Label": "Host header name",
+      "HelpText": "The host header of the target application referenced by the client application. For example, an MVC website which requires access to a WebAPI application on the same machine would add a back connection host name for the API's host header, e.g.:\n\napi.mycompany.com",
+      "DefaultValue": null,
+      "DisplaySettings": {}
+    }
+  ],
+  "LogoAttachmentKey": "CommunityActionTemplates-176",
+  "LogoAttachmentMimeType": "image/png"
+}

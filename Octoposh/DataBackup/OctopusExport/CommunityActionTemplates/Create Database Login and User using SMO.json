@@ -1,0 +1,61 @@
+{
+  "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
+  "Id": "CommunityActionTemplates-32",
+  "Name": "Create Database Login and User using SMO",
+  "ExternalId": "7ed93dfa-b137-4341-9c6c-84fa0565d865",
+  "Description": "Requires SMO to be installed on the machine where this step will be run.",
+  "Version": 6,
+  "ActionType": "Octopus.Script",
+  "Author": "lavaeater",
+  "Website": "https://library.octopus.com/step-templates/7ed93dfa-b137-4341-9c6c-84fa0565d865",
+  "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/sql-smo-create-login-and-user.json",
+  "Category": "SQL Server",
+  "Properties": {
+    "Octopus.Action.Script.ScriptBody": "[System.Reflection.Assembly]::LoadWithPartialName(\"Microsoft.SqlServer.SMO\") | out-null\n\ntry\n{    \n    $server = new-object ('Microsoft.SqlServer.Management.Smo.Server') $SqlServer\n    \n    $server.ConnectionContext.LoginSecure = $true \n\n    if ($server.Logins.Contains($LoginName))  \n    {\n        write-host \"Login $LoginName already exists\"   \n    }\n    else \n    {\n        write-host \"Login does not exist, creating\"\n        $login = New-Object -TypeName Microsoft.SqlServer.Management.Smo.Login -ArgumentList $SqlServer, $LoginName\n        $login.LoginType = [Microsoft.SqlServer.Management.Smo.LoginType]::WindowsUser\n        $login.PasswordExpirationEnabled = $false\n        $login.Create()\n        Write-Host(\"Login $LoginName created successfully.\")\n    }\n\n    if($server.Databases.Contains($SqlDatabase)) \n    {\n        $database = $server.Databases[$SqlDatabase]\n        \n        if (!$database.Users[$LoginName])\n        {\n            $dbUser = New-Object -TypeName Microsoft.SqlServer.Management.Smo.User -ArgumentList $database, $LoginName\n            $dbUser.Login = $LoginName\n            $dbUser.Create()\n            Write-Host(\"User $dbUser created successfully.\")\n\n            if($SqlRole -ne $null) \n            {\n                #assign database role for a new user\n                $dbrole = $database.Roles[$SqlRole]\n                $dbrole.AddMember($LoginName)\n                $dbrole.Alter()\n                Write-Host(\"User $LoginName successfully added to $SqlRole role.\")\n            }\n        }\n    }\n    else \n    {\n        write-host \"Database $SqlDatabase does not exist\"\n    }\n}\ncatch\n{    \n    $error[0] | format-list -force\n    #Exit 1\n}",
+    "Octopus.Action.Script.Syntax": "PowerShell"
+  },
+  "Parameters": [
+    {
+      "Id": null,
+      "Name": "SqlServer",
+      "Label": "Database Server Name",
+      "HelpText": "Name of the to create the login for.",
+      "DefaultValue": "",
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "SqlDatabase",
+      "Label": "Database Name",
+      "HelpText": "Name of the database. The created Login and User will get the role dbowner by defaultfor this database.",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "LoginName",
+      "Label": "Windows Login Name",
+      "HelpText": "The login name to create a login and user in the database for. In our projects we use integrated security - you should too.",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "SqlRole",
+      "Label": "Database Role Name",
+      "HelpText": "We default to db_owner, you might want to change this to suit your needs.",
+      "DefaultValue": "db_owner",
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    }
+  ],
+  "LogoAttachmentKey": "CommunityActionTemplates-32",
+  "LogoAttachmentMimeType": "image/png"
+}

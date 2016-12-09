@@ -1,0 +1,60 @@
+{
+  "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
+  "Id": "CommunityActionTemplates-73",
+  "Name": "IIS - Change App Offline",
+  "ExternalId": "78169a17-54da-4fb8-afe7-774a1e857112",
+  "Description": "Change the an app_offline file to app_online vice versa to turn the maintenance page on and off.",
+  "Version": 6,
+  "ActionType": "Octopus.Script",
+  "Author": "mmiller678",
+  "Website": "https://library.octopus.com/step-templates/78169a17-54da-4fb8-afe7-774a1e857112",
+  "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/iis-change-app-offline-online.json",
+  "Category": "IIS",
+  "Properties": {
+    "Octopus.Action.Script.Syntax": "PowerShell",
+    "Octopus.Action.Script.ScriptBody": "$offlineHtml = Join-Path $OctopusParameters[\"InstallationFolder\"] $OctopusParameters[\"AppOfflineFileName\"]\n$onlineHtml = Join-Path $OctopusParameters[\"InstallationFolder\"] $OctopusParameters[\"AppOnlineFileName\"]\n\nif (\"#{ChangeMode}\" -eq \"Online\")\n{\n    #Offline exists and so does online - remove offline\n    if ((Test-Path($offlineHtml)) -and (Test-Path($onlineHtml)))\n    {\n        Remove-Item $offlineHtml\n    }\n    \n    #Offline exists and online doesn't - move offline to online\n    if ((Test-Path($offlineHtml)) -and !(Test-Path($onlineHtml)))\n    {\n        Move-Item $offlineHtml $onlineHtml\n    }\n}\n\nif (\"#{ChangeMode}\" -eq \"Offline\")\n{\n    #Online exists and offline doesn't - move online to offline\n    if ((Test-Path($onlineHtml)) -and !(Test-Path($offlineHtml)))\n    {\n        Move-Item $onlineHtml $offlineHtml\n    }\n}"
+  },
+  "Parameters": [
+    {
+      "Id": null,
+      "Name": "AppOfflineFileName",
+      "Label": null,
+      "HelpText": null,
+      "DefaultValue": "app_offline.htm",
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "AppOnlineFileName",
+      "Label": null,
+      "HelpText": null,
+      "DefaultValue": "app_online.htm",
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "InstallationFolder",
+      "Label": null,
+      "HelpText": "Where the application is installed on tentacle server.",
+      "DefaultValue": "",
+      "DisplaySettings": {}
+    },
+    {
+      "Id": null,
+      "Name": "ChangeMode",
+      "Label": null,
+      "HelpText": null,
+      "DefaultValue": "",
+      "DisplaySettings": {
+        "Octopus.ControlType": "Select",
+        "Octopus.SelectOptions": "Offline|Offline\nOnline|Online"
+      }
+    }
+  ],
+  "LogoAttachmentKey": "CommunityActionTemplates-73",
+  "LogoAttachmentMimeType": "image/png"
+}

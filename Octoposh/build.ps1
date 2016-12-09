@@ -52,10 +52,10 @@ Param(
     [switch]$Mono,
     [switch]$SkipToolPackageRestore,
     [Parameter(Position=0,Mandatory=$false,ValueFromRemainingArguments=$true)]
-    [string[]]$ScriptArgs,
-    [ValidateSet("Development", "BuildServer")]
-    [string]$Environment = "Development",
-	[switch]$CreateOctopusInstance = $false
+    [string[]]$ScriptArgs,    
+    [string]$Configfile = ".\DevEnvConfig.json",
+	[switch]$CreateOctopusInstance = $false,
+	[switch]$RemoveOctopusInstance = $false
 )
 
 [Reflection.Assembly]::LoadWithPartialName("System.Security") | Out-Null
@@ -186,20 +186,25 @@ if (!(Test-Path $CAKE_EXE)) {
     Throw "Could not find Cake.exe at $CAKE_EXE"
 }
 
-If($Environment -eq "BuildServer"){
-    $config = Get-Content .\BuildServerConfig.Json | ConvertFrom-Json
+If(Test-Path $Configfile){
+	$Configfile = (Resolve-Path $Configfile).path
+	$config = Get-Content $Configfile | ConvertFrom-Json
 }
 else{
-    $config = Get-Content .\DevEnvConfig.Json | ConvertFrom-Json
+	Throw "Config file not found: $ConfigFile"
 }
 
 # Should we create the Octopus Instance set in the config.JSON file if it doesn't exist?
-$CreateInstance = 'false'
+$CreateInstance = 0
 IF($CreateOctopusInstance){
-	$CreateInstance = 'true'
+	$CreateInstance = 1
+}
+$Removeinstance = 0
+IF($RemoveOctopusInstance){
+	$Removeinstance = 1
 }
 
 # Start Cake
 Write-Host "Running build script..."
-Invoke-Expression "& `"$CAKE_EXE`" `"$Script`" -target=`"$Target`" -configuration=`"$Configuration`" -verbosity=`"$Verbosity`" $UseMono $UseDryRun $UseExperimental $ScriptArgs -OctopusInstance=`"$($config.OctopusInstance)`" -ConnectionString=`"$($config.ConnectionString)`" -OctopusAdmin=`"$($config.OctopusAdmin)`" -OctopusPassword=`"$($config.OctopusPassword)`" -CreateInstance=`"$CreateInstance`""
+Invoke-Expression "& `"$CAKE_EXE`" `"$Script`" -target=`"$Target`" -configuration=`"$Configuration`" -verbosity=`"$Verbosity`" $UseMono $UseDryRun $UseExperimental $ScriptArgs -OctopusInstance=`"$($config.OctopusInstance)`" -ConnectionString=`"$($config.ConnectionString)`" -OctopusAdmin=`"$($config.OctopusAdmin)`" -OctopusPassword=`"$($config.OctopusPassword)`" -CreateInstance=`"$CreateInstance`" -RemoveInstance=`"$RemoveInstance`" -ConfigFile=`"$ConfigFile`""
 exit $LASTEXITCODE

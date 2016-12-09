@@ -7,6 +7,7 @@
 
 var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Debug");
+var ConfigFile = Argument("ConfigFile","");
 
 //////////////////////////////////////////////////////////////////////
 // PREPARATION
@@ -37,6 +38,7 @@ Task("Export-Octopus-Backup")
 		.WithArguments(args=>
 		{
 			args.Append("Action","ExportBackup");
+			args.Append("ConfigFile",ConfigFile);
 		}));
 });
 

@@ -1,0 +1,41 @@
+{
+  "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
+  "Id": "CommunityActionTemplates-100",
+  "Name": "IIS Website AppFabric Application - Start",
+  "ExternalId": "3f80830a-8920-44d9-bf2f-af6b84262631",
+  "Description": "Starts an AppFabric application in IIS.",
+  "Version": 11,
+  "ActionType": "Octopus.Script",
+  "Author": "caioproiete",
+  "Website": "https://library.octopus.com/step-templates/3f80830a-8920-44d9-bf2f-af6b84262631",
+  "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/iis-website-appfabric-application-start.json",
+  "Category": "IIS",
+  "Properties": {
+    "Octopus.Action.Script.ScriptBody": "Import-Module WebAdministration\n\n$webSiteName = $OctopusParameters['WebSiteName']\n$applicationName = $OctopusParameters['ApplicationName']\n\nif (!$webSiteName)\n{\n    Write-Error \"No Website name was specified. Please specify the name of the Website that contains the AppFabric application.\"\n    exit -2\n}\n\nif (!$applicationName)\n{\n    Write-Error \"No Application name was specified. Please specify the name of the AppFabric Application contained in the Website.\"\n    exit -2\n}\n\nWrite-Output \"Starting IIS AppFabric application $applicationName in website $webSiteName\"\nStart-AsApplication $webSiteName $applicationName\n",
+    "Octopus.Action.Script.Syntax": "PowerShell"
+  },
+  "Parameters": [
+    {
+      "Id": null,
+      "Name": "WebsiteName",
+      "Label": "Website name",
+      "HelpText": "The name of the site in IIS",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "ApplicationName",
+      "Label": "Application Name",
+      "HelpText": "The name of the AppFabric application inside the Website in IIS",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    }
+  ],
+  "LogoAttachmentKey": "CommunityActionTemplates-100",
+  "LogoAttachmentMimeType": "image/png"
+}
