@@ -187,8 +187,7 @@ if (!(Test-Path $CAKE_EXE)) {
 }
 
 If(Test-Path $Configfile){
-	$Configfile = (Resolve-Path $Configfile).path
-	$config = Get-Content $Configfile | ConvertFrom-Json
+	$Configfile = (Resolve-Path $Configfile).path	
 }
 else{
 	Throw "Config file not found: $ConfigFile"
@@ -206,5 +205,5 @@ IF($RemoveOctopusInstance){
 
 # Start Cake
 Write-Host "Running build script..."
-Invoke-Expression "& `"$CAKE_EXE`" `"$Script`" -target=`"$Target`" -configuration=`"$Configuration`" -verbosity=`"$Verbosity`" $UseMono $UseDryRun $UseExperimental $ScriptArgs -OctopusInstance=`"$($config.OctopusInstance)`" -ConnectionString=`"$($config.ConnectionString)`" -OctopusAdmin=`"$($config.OctopusAdmin)`" -OctopusPassword=`"$($config.OctopusPassword)`" -CreateInstance=`"$CreateInstance`" -RemoveInstance=`"$RemoveInstance`" -ConfigFile=`"$ConfigFile`""
+Invoke-Expression "& `"$CAKE_EXE`" `"$Script`" -target=`"$Target`" -configuration=`"$Configuration`" -verbosity=`"$Verbosity`" $UseMono $UseDryRun $UseExperimental $ScriptArgs -CreateInstance=`"$CreateInstance`" -RemoveInstance=`"$RemoveInstance`" -ConfigFile=`"$ConfigFile`""
 exit $LASTEXITCODE

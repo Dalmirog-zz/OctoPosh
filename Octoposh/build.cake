@@ -8,10 +8,6 @@
 
 var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Debug");
-var OctopusInstance = Argument("OctopusInstance","");
-var ConnectionString = Argument("ConnectionString","");
-var OctopusAdmin = Argument("OctopusAdmin","");
-var OctopusPassword = Argument("OctopusPassword","");
 var CreateInstance = Argument("CreateInstance","");
 var RemoveInstance = Argument("RemoveInstance","");
 var ConfigFile = Argument("ConfigFile","");
@@ -61,8 +57,7 @@ Task("Create-Octopus-Instance")
 		.WithArguments(args=>
 		{
 			args.Append("Action","CreateInstance");
-			args.Append("CreateInstance",CreateInstance);
-			args.Append("InstanceName",OctopusInstance);
+			args.Append("CreateInstance",CreateInstance);			
 			args.Append("ConfigFile",ConfigFile);			
 		}));
 });
@@ -77,8 +72,7 @@ Task("Import-Octopus-Backup")
         .SetLogOutput()
 		.WithArguments(args=>
 		{
-			args.Append("Action","ImportBackup");
-			args.Append("InstanceName",OctopusInstance);
+			args.Append("Action","ImportBackup");			
 			args.Append("ConfigFile",ConfigFile);
 		}));
 });
@@ -94,7 +88,6 @@ Task("Start-Octopus-Server")
 		.WithArguments(args=>
 		{
 			args.Append("Action","StartService");
-			args.Append("InstanceName",OctopusInstance);
 		}));
 });
 
@@ -120,7 +113,6 @@ Task("Remove-Octopus-Instance")
 		{
 			args.Append("Action","RemoveInstance");
 			args.Append("RemoveInstance",RemoveInstance);
-			args.Append("InstanceName",OctopusInstance);	
 			args.Append("ConfigFile",ConfigFile);		
 		}));
 });
