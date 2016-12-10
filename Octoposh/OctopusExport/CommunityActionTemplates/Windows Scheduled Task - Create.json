@@ -1,0 +1,141 @@
+{
+  "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
+  "Id": "CommunityActionTemplates-191",
+  "Name": "Windows Scheduled Task - Create",
+  "ExternalId": "17bc51d1-8b88-4aad-b188-24a0904d0bf2",
+  "Description": "Create Windows scheduled task. If the task exists it will be torn down and re-added to ensure consistency",
+  "Version": 9,
+  "ActionType": "Octopus.Script",
+  "Author": "ekrapfl",
+  "Website": "https://library.octopus.com/step-templates/17bc51d1-8b88-4aad-b188-24a0904d0bf2",
+  "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/windows-scheduled-task-create.json",
+  "Category": "Windows",
+  "Properties": {
+    "Octopus.Action.Script.ScriptBody": "#use http://msdn.microsoft.com/en-us/library/windows/desktop/bb736357(v=vs.85).aspx for API reference\n\nFunction Create-ScheduledTask($TaskName,$RunAsUser,$RunAsPassword,$TaskRun,$Arguments,$Schedule,$StartTime,$StartDate,$RunWithElevatedPermissions,$Days){    \n    $cmd = \"'$TaskRun'\"\n    if($Arguments) {\n        $cmd = \"'$TaskRun' '$Arguments'\"\n    }\n\n    $parameters = @{\n        'rp' = $RunAsPassword;\n        'sc' = $Schedule;\n    }\n    \n    if(-Not (StringIsNullOrWhiteSpace($StartDate))) {\n        $parameters['sd'] = $StartDate\n    }\n    if(-Not (StringIsNullOrWhiteSpace($StartTime))) {\n        $parameters['st'] = $StartTime\n    }\n    if(-Not (StringIsNullOrWhiteSpace($Interval))) {\n        switch -Regex ($Schedule) \n        {\n          \"MINUTE|HOURLY|ONLOGON|ONIDLE\"  { $parameters['MO'] = $Interval; break }\n          \"WEEKLY|MONTHLY\"  { $parameters['ri'] = $Interval; break }\n          \"ONCE|ONSTART|ONEVENT\"    { \"\"; break } # We don't currently support providing an XPATH query string at the moment\n        }\n    }\n    if(-Not (StringIsNullOrWhiteSpace($Duration))) {\n        $parameters['du'] = $Duration\n    }\n    if($RunWithElevatedPermissions) {\n        $parameters['rl'] = \"HIGHEST\"\n    }\n    if(-Not (StringIsNullOrWhiteSpace($Days))) {\n        if($Schedule -ne \"WEEKDAYS\") {\n            $parameters['d'] = $Days\n        } else {\n            $parameters['d'] = \"MON,TUE,WED,THU,FRI\"\n        }\n    }\n\n    $str = $parameters | Out-String\n    Write-Output \"schtasks.exe /create /F /tr $cmd /tn $TaskName /ru $RunAsUser\" $str\n        \n    schtasks.exe /create /F /tr $cmd /tn $TaskName /ru $RunAsUser @parameters\n }\n\nFunction Delete-ScheduledTask($TaskName) {   \n    $Command = \"schtasks.exe /delete /s localhost /tn `\"$TaskName`\" /F\"            \n    Invoke-Expression $Command \n}\n\nFunction Stop-ScheduledTask($TaskName) {  \n    $Command = \"schtasks.exe /end /s localhost /tn `\"$TaskName`\"\"            \n    Invoke-Expression $Command \n}\n\nFunction Start-ScheduledTask($TaskName) {   \n    $Command = \"schtasks.exe /run /s localhost /tn `\"$TaskName`\"\"            \n    Invoke-Expression $Command \n}\n\nFunction Enable-ScheduledTask($TaskName) {  \n    $Command = \"schtasks.exe /change /s localhost /tn `\"$TaskName`\" /ENABLE\"            \n    Invoke-Expression $Command \n}\n\nFunction ScheduledTask-Exists($taskName) {\n   $schedule = new-object -com Schedule.Service \n   $schedule.connect() \n   $tasks = $schedule.getfolder(\"\\\").gettasks(0)\n\n   foreach ($task in ($tasks | select Name)) {\n      #echo \"TASK: $($task.name)\"\n      if($task.Name -eq $taskName) {\n         #write-output \"$task already exists\"\n         return $true\n      }\n   }\n\n   return $false\n} \n\nFunction StringIsNullOrWhitespace([string] $string)\n{\n    if ($string -ne $null) { $string = $string.Trim() }\n    return [string]::IsNullOrEmpty($string)\n}\n\n$taskName = $OctopusParameters['TaskName']\n$runAsUser = $OctopusParameters['RunAsUser']\n$runAsPassword = $OctopusParameters['RunAsPassword']\n$command = $OctopusParameters['Command']\n$arguments = $OctopusParameters['Arguments']\n$schedule = $OctopusParameters['Schedule']\n$startTime = $OctopusParameters['StartTime']\n$startDate = $OctopusParameters['StartDate']\n$interval = $OctopusParameters['Interval']\n$duration = $OctopusParameters['Duration']\n$runWithElevatedPermissions = [boolean]::Parse($OctopusParameters['RunWithElevatedPermissions'])\n$days = $OctopusParameters['Days']\n\nif((ScheduledTask-Exists($taskName))){\n    Write-Output \"$taskName already exists, Tearing down...\"\n    Write-Output \"Stopping $taskName...\"\n    Stop-ScheduledTask($taskName)\n    Write-Output \"Successfully Stopped $taskName\"\n    Write-Output \"Deleting $taskName...\"\n    Delete-ScheduledTask($taskName)\n    Write-Output \"Successfully Deleted $taskName\"\n}\nWrite-Output \"Creating Scheduled Task - $taskName\"\n\nCreate-ScheduledTask $taskName $runAsUser $runAsPassword $command $arguments $schedule $startTime $startDate $runWithElevatedPermissions $days\nWrite-Output \"Successfully Created $taskName\"\nEnable-ScheduledTask($taskName)\nWrite-Output \"$taskName enabled\"",
+    "Octopus.Action.Script.Syntax": "PowerShell",
+    "Octopus.Action.Script.ScriptSource": "Inline",
+    "Octopus.Action.Script.ScriptFileName": "",
+    "Octopus.Action.Package.NuGetFeedId": "",
+    "Octopus.Action.Package.NuGetPackageId": ""
+  },
+  "Parameters": [
+    {
+      "Id": null,
+      "Name": "TaskName",
+      "Label": "Name",
+      "HelpText": "The name of the Scheduled Task",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "RunAsUser",
+      "Label": "User",
+      "HelpText": "The User that the task will run as",
+      "DefaultValue": "System",
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "RunAsPassword",
+      "Label": "Password",
+      "HelpText": "Specifying a password allows the task to run when the user is not logged on to the server.",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "Sensitive"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "Command",
+      "Label": "Action",
+      "HelpText": "The Action that the task executes. Usually a path to the executable",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "Arguments",
+      "Label": "Arguments",
+      "HelpText": "A value that specifies any arguments to be passed to run the task.",
+      "DefaultValue": null,
+      "DisplaySettings": {}
+    },
+    {
+      "Id": null,
+      "Name": "Schedule",
+      "Label": "Schedule",
+      "HelpText": "When the Task is triggered",
+      "DefaultValue": "DAILY",
+      "DisplaySettings": {
+        "Octopus.ControlType": "Select",
+        "Octopus.SelectOptions": "MINUTE|Every Minute\nHOURLY|Hourly\nDAILY|Daily\nWEEKLY|Weekly\nWEEKDAYS|Weekdays\nONCE|One off\nONSTART|On Start\nONLOGON|On Logon\nONIDLE|On Idle\nMONTHLY|Monthly"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "StartTime",
+      "Label": "Start Time",
+      "HelpText": "The Time the task will run. Use the format HH:mm:ss",
+      "DefaultValue": "12:00",
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "StartDate",
+      "Label": "Start Date",
+      "HelpText": "The date the task will start running. use the format MM/dd/yyyy",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "Interval",
+      "Label": "Interval",
+      "HelpText": "A value that specifies the repetition interval in minutes.",
+      "DefaultValue": null,
+      "DisplaySettings": {}
+    },
+    {
+      "Id": null,
+      "Name": "Duration",
+      "Label": "Duration",
+      "HelpText": "A value that specifies the duration to run the task. The time format is HH:mm (24-hour time).",
+      "DefaultValue": null,
+      "DisplaySettings": {}
+    },
+    {
+      "Id": null,
+      "Name": "RunWithElevatedPermissions",
+      "Label": "RunWithElevatedPermissions",
+      "HelpText": null,
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "Checkbox"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "Days",
+      "Label": "Days",
+      "HelpText": "A value that specifies the day of the week to run the task. Valid values are: MON, TUE, WED, THU, FRI, SAT, SUN and for MONTHLY schedules 1 - 31 (days of the month). The wildcard character (*) specifies all days.",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText",
+        "Octopus.SelectOptions": ""
+      }
+    }
+  ],
+  "LogoAttachmentKey": "CommunityActionTemplates-191",
+  "LogoAttachmentMimeType": "image/png"
+}

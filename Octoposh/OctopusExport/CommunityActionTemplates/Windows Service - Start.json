@@ -1,0 +1,29 @@
+{
+  "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
+  "Id": "CommunityActionTemplates-197",
+  "Name": "Windows Service - Start",
+  "ExternalId": "60733bf3-1617-4d85-a40f-4b6a0b9289ef",
+  "Description": "Starts a Windows Service.",
+  "Version": 5,
+  "ActionType": "Octopus.Script",
+  "Author": "nblumhardt",
+  "Website": "https://library.octopus.com/step-templates/60733bf3-1617-4d85-a40f-4b6a0b9289ef",
+  "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/windows-service-start.json",
+  "Category": "Windows",
+  "Properties": {
+    "Octopus.Action.Script.ScriptBody": "$serviceName = $OctopusParameters['ServiceName']\r\rWrite-Output \"Starting $serviceName...\"\r\r$serviceInstance = Get-Service $serviceName\rif ($serviceInstance.Status -eq \"Running\") {\r    Write-Output \"The $serviceName service is already running.\"\r} else {\r    start-service $serviceName\r    $serviceInstance.WaitForStatus('Running', '00:01:00')\r    Write-Output \"Started $serviceName\"\r}\r",
+    "Octopus.Action.Script.Syntax": "PowerShell"
+  },
+  "Parameters": [
+    {
+      "Id": null,
+      "Name": "ServiceName",
+      "Label": "Service Name",
+      "HelpText": "Name of the Windows Service (this is not always the display name).",
+      "DefaultValue": null,
+      "DisplaySettings": {}
+    }
+  ],
+  "LogoAttachmentKey": "CommunityActionTemplates-197",
+  "LogoAttachmentMimeType": "image/png"
+}

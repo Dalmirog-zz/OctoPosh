@@ -1,0 +1,29 @@
+{
+  "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
+  "Id": "CommunityActionTemplates-187",
+  "Name": "Windows - Restart Computer",
+  "ExternalId": "3db008be-3fd8-4114-8f5d-0b986babf934",
+  "Description": "Restarts the computer.",
+  "Version": 0,
+  "ActionType": "Octopus.Script",
+  "Author": "Severswoed",
+  "Website": "https://library.octopus.com/step-templates/3db008be-3fd8-4114-8f5d-0b986babf934",
+  "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/windows-restart-computer.json",
+  "Category": "Windows",
+  "Properties": {
+    "Octopus.Action.Script.ScriptBody": "Restart-Computer -ComputerName $ComputerName -force",
+    "Octopus.Action.Script.Syntax": "PowerShell"
+  },
+  "Parameters": [
+    {
+      "Id": null,
+      "Name": "ComputerName",
+      "Label": "Computer name",
+      "HelpText": "Computer to restart.",
+      "DefaultValue": null,
+      "DisplaySettings": {}
+    }
+  ],
+  "LogoAttachmentKey": "CommunityActionTemplates-187",
+  "LogoAttachmentMimeType": "image/png"
+}

@@ -1,0 +1,62 @@
+{
+  "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
+  "Id": "CommunityActionTemplates-131",
+  "Name": "Run Entity Framework migrations (Update-Database)",
+  "ExternalId": "a6cd35d6-164a-4e57-a0f8-0d327129783a",
+  "Description": "Runs `Update-Database` to update the database to the latest Entity Framework migrations",
+  "Version": 4,
+  "ActionType": "Octopus.Script",
+  "Author": "foresightyj",
+  "Website": "https://library.octopus.com/step-templates/a6cd35d6-164a-4e57-a0f8-0d327129783a",
+  "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/run-entity-framework-migrations.json",
+  "Category": "Entity Framework",
+  "Properties": {
+    "Octopus.Action.Script.ScriptBody": "# A collection of functions that can be used by script steps to determine where packages installed\n# by previous steps are located on the filesystem.\n \nfunction Find-InstallLocations {\n    $result = @()\n    $OctopusParameters.Keys | foreach {\n        if ($_.EndsWith('].Output.Package.InstallationDirectoryPath')) {\n            $result += $OctopusParameters[$_]\n        }\n    }\n    return $result\n}\n \nfunction Find-InstallLocation($stepName) {\n    $result = $OctopusParameters.Keys | where {\n        $_.Equals(\"Octopus.Action[$stepName].Output.Package.InstallationDirectoryPath\",  [System.StringComparison]::OrdinalIgnoreCase)\n    } | select -first 1\n \n    if ($result) {\n        return $OctopusParameters[$result]\n    }\n \n    throw \"No install location found for step: $stepName\"\n}\n \nfunction Find-SingleInstallLocation {\n    $all = @(Find-InstallLocations)\n    if ($all.Length -eq 1) {\n        return $all[0]\n    }\n    if ($all.Length -eq 0) {\n        throw \"No package steps found\"\n    }\n    throw \"Multiple package steps have run; please specify a single step\"\n}\n\nfunction Test-LastExit($cmd) {\n    if ($LastExitCode -ne 0) {\n        Write-Host \"##octopus[stderr-error]\"\n        write-error \"$cmd failed with exit code: $LastExitCode\"\n    }\n}\n\n\n\n\n$stepName = $OctopusParameters['NugetPackageStepName']\n\n$stepPath = \"\"\nif (-not [string]::IsNullOrEmpty($stepName)) {\n    Write-Host \"Finding path to package step: $stepName\"\n    $stepPath = Find-InstallLocation $stepName\n} else {\n    $stepPath = Find-SingleInstallLocation\n}\nWrite-Host \"Package was installed to: $stepPath\"\n\n$binPath = Join-Path $stepPath \"bin\"\n\n#Locate Migrate.exe\n$efToolsFolder = $OctopusParameters['EfToolsFolder']\n$originalMigrateExe = Join-Path $efToolsFolder \"migrate.exe\"\n\nif (-Not(Test-Path $originalMigrateExe)){\n    throw (\"Unable to locate migrate.exe file. Specifed path $originalMigrateExe does not exist.\")\n}\nWrite-Host(\"Found Migrate.Exe from $originalMigrateExe\")\n\n# Move migrate.exe to ASP.NET Project's bin folder as per https://msdn.microsoft.com/de-de/data/jj618307.aspx?f=255&MSPPError=-2147217396\nCopy-Item $originalMigrateExe -Destination $binPath\n\n$migrateExe = Join-Path $binPath \"migrate.exe\"\nWrite-Host(\"Copied $originalMigrateExe into $binPath\")\n\n#Locate Assembly with DbContext class\n$contextDllName = $OctopusParameters['AssemblyDllName']\n$contextDllPath = Join-Path $binPath $contextDllName\nif (-Not(Test-Path $contextDllPath)){\n    throw (\"Unable to locate assembly file with DbContext class. Specifed path $contextDllPath does not exist.\")\n}\nWrite-Host(\"Using $contextDllName from $contextDllPath\")\n\n#Locate web.config. Migrate.exe needs it for some reason, even if connection string is provided\n$webConfigPath = Join-Path $stepPath \"web.config\"\nif (-Not(Test-Path $webConfigPath)){\n    throw (\"Unable to locate web.config file. Specifed path $webConfigPath does not exist.\")\n}\n\n$connectionStringName = $OctopusParameters['ConnectionStringName']\n\n$migrateCommand = \"& \"\"$migrateExe\"\" \"\"$contextDllName\"\" /connectionStringName=\"\"$connectionStringName\"\" /startupConfigurationFile=\"\"$webConfigPath\"\" /startUpDirectory=\"\"$binPath\"\" /Verbose\"\n\nWrite-Host \"##octopus[stderr-error]\"        # Stderr is an error\nWrite-Host \"Executing: \" $migrateCommand\nWrite-Host \n\nInvoke-Expression $migrateCommand | Write-Host\n\n",
+    "Octopus.Action.Script.Syntax": "PowerShell",
+    "Octopus.Action.Script.ScriptSource": "Inline"
+  },
+  "Parameters": [
+    {
+      "Id": null,
+      "Name": "EfToolsFolder",
+      "Label": "Path to EF Tools folder",
+      "HelpText": "Please provide a full path to a folder where Migrate.exe (along with other EF files are contained, available from EF nuget package) on tentacle",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "NugetPackageStepName",
+      "Label": "Site Path",
+      "HelpText": "Name of the previously-deployed package step that contains the files with web.config and `/bin` folder",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "StepName"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "AssemblyDllName",
+      "Label": "Name of Assembly file with EF-Context",
+      "HelpText": "Please provide a name of the assembly file where EF-context is stored",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "ConnectionStringName",
+      "Label": "ConnectionStringName",
+      "HelpText": "Name of the key in <connectionStrings> section in Web.Config",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    }
+  ],
+  "LogoAttachmentKey": "CommunityActionTemplates-131",
+  "LogoAttachmentMimeType": "image/png"
+}

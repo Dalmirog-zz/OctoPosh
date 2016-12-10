@@ -1,0 +1,45 @@
+{
+  "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
+  "Id": "CommunityActionTemplates-105",
+  "Name": "Network - Add URL Reservation",
+  "ExternalId": "45eea99e-061c-45d2-bcc0-9320269a4ee4",
+  "Description": "Creates an HTTP URL reservation (ACL) using NETSH.",
+  "Version": 9,
+  "ActionType": "Octopus.Script",
+  "Author": "jonnii",
+  "Website": "https://library.octopus.com/step-templates/45eea99e-061c-45d2-bcc0-9320269a4ee4",
+  "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/network-add-url-reservation.json",
+  "Category": "HTTP",
+  "Properties": {
+    "Octopus.Action.Script.ScriptBody": "$url = $OctopusParameters['Url']\n$user = $OctopusParameters['User']\n$delegate = if ('True' -eq $OctopusParameters['Delegate']) { 'yes' } else { 'no'}\n\n$delacl = \"http delete urlacl url=$url\"\n$addacl = \"http add urlacl url=$url user=$user delegate=$delegate\"\n\nwrite-host \"Removing ACL: $delacl\"\n$delacl | netsh | out-host\n\nwrite-host \"Creating ACL: $addacl\"\n$addacl | netsh | out-host\n",
+    "Octopus.Action.Script.Syntax": "PowerShell"
+  },
+  "Parameters": [
+    {
+      "Id": null,
+      "Name": "Url",
+      "Label": "URL",
+      "HelpText": "The URL to reserve. Example: _http://+:8080_",
+      "DefaultValue": "",
+      "DisplaySettings": {}
+    },
+    {
+      "Id": null,
+      "Name": "Delegate",
+      "Label": "Allow delegation",
+      "HelpText": "Indicates whether or not the user can delegate URLs. Example: _True_ or _False_",
+      "DefaultValue": "False",
+      "DisplaySettings": {}
+    },
+    {
+      "Id": null,
+      "Name": "User",
+      "Label": "User",
+      "HelpText": "Specifies the user or group name. Example: _DOMAIN\\user_",
+      "DefaultValue": "",
+      "DisplaySettings": {}
+    }
+  ],
+  "LogoAttachmentKey": "CommunityActionTemplates-105",
+  "LogoAttachmentMimeType": "image/png"
+}

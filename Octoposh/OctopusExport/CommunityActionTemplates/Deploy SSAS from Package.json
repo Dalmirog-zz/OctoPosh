@@ -1,0 +1,71 @@
+{
+  "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
+  "Id": "CommunityActionTemplates-38",
+  "Name": "Deploy SSAS from Package",
+  "ExternalId": "1409c3dd-e87d-49f1-9b4f-382af800b75d",
+  "Description": "Deploys SSAS packages using Microsoft.AnalysisServices.Deployment.exe.",
+  "Version": 10,
+  "ActionType": "Octopus.Script",
+  "Author": "matt40k",
+  "Website": "https://library.octopus.com/step-templates/1409c3dd-e87d-49f1-9b4f-382af800b75d",
+  "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/ssas-deploy-from-package.json",
+  "Category": "SQL Server",
+  "Properties": {
+    "Octopus.Action.Script.Syntax": "PowerShell",
+    "Octopus.Action.Script.ScriptBody": "$ErrorActionPreference = 'Stop'\n$regKeyFormat = 'HKLM:\\Software\\Wow6432Node\\Microsoft\\Microsoft SQL Server\\{0}0\\Tools\\ClientSetup\\'\n$vsVersions = @( '12' )\n\nfunction Validate-Argument($name, $value) {\n    if (!$value) {\n        throw ('Missing required value for parameter ''{0}''.' -f $name)\n    }\n    return $value\n}\n\n# Returns the Microsoft.AnalysisServices.Deployment.exe path\nfunction Load-SsasDeploy {\n  Write-Verbose 'Attempting to discover install folder...' \n  $regKey = $vsVersions | foreach { $regKeyFormat -f $_ } | where { Test-Path $_ } | select -first 1\n    \n  if (!$regKey) {\n    throw 'No usable SQL installation found.'\n  }\n\t\n  Write-Verbose 'SQL Server found. Attempting to discover DTS path...'\n  $dtsDir = Get-ItemProperty -Path $regKey | select -ExpandProperty SqlToolsPath\n  $exePath = $dtsDir + 'Microsoft.AnalysisServices.Deployment.exe'\n  if ( -not (Test-Path $exePath))\n  {\n      throw 'Missing: Cannot file Microsoft.AnalysisServices.Deployment.exe - ' + $exePath\n  }\n  Write-Verbose 'Microsoft.AnalysisServices.Deployment.exe found.'\n  return '\"'+$exePath+'\"'\n}\n\n# Update Deploy xml (.deploymenttargets)\nfunction Update-Deploy {\n\t[xml]$deployContent = Get-Content $file\n\t$deployContent.DeploymentTarget.Database = $ssasDatabase \n\t$deployContent.DeploymentTarget.Server = $ssasServer\n\t$deployContent.DeploymentTarget.ConnectionString = 'DataSource=' + $ssasServer + ';Timeout=0'\n\t$deployContent.Save($file)\n}\n# Update Config xml (.configsettings)\nfunction Update-Config {\n\t[xml]$configContent = Get-Content $file\n    $configContent.ConfigurationSettings.Database.DataSources.DataSource.ConnectionString = 'Provider=SQLNCLI11.1;Data Source=' + $dbServer + ';Integrated Security=SSPI;Initial Catalog=' + $dbDatabase\n\t$configContent.Save($file)\n}\n# Update Config xml (.deploymentoptions)\nfunction Update-Option {\n\t[xml]$optionContent = Get-Content $file\n    $optionContent.DeploymentOptions.ProcessingOption = 'DoNotProcess'\n\t$optionContent.Save($file)\n}\n\n# Get arguments\n$ssasPackageStepName = Validate-Argument 'SSAS Package Step Name' $OctopusParameters['SsasPackageStepName']\n$ssasServer = Validate-Argument 'SSAS server name' $OctopusParameters['SsasServer']\n$ssasDatabase = Validate-Argument 'SSAS database name' $OctopusParameters['SsasDatabase']\n$dbServer = Validate-Argument 'SSAS source server' $OctopusParameters['SrcServer']\n$dbDatabase = Validate-Argument 'SSAS source database' $OctopusParameters['SrcDatabase']\n\n# Set .NET CurrentDirectory to package installation path\n$installDirPathFormat = 'Octopus.Action[{0}].Output.Package.InstallationDirectoryPath' -f $ssasPackageStepName\n$installDirPath = $OctopusParameters[$installDirPathFormat]\n\n#$ssasServer     = 'server2\\md_dev'\n#$ssasDatabase   = 'BusinessIntelligence'\n#$dbServer       = 'server1\\dev'\n#$dbDatabase     = 'Warehouse'\n#$installDirPath = 'c:\\packages\\v1'\n\nWrite-Verbose ('Setting CurrentDirectory to ''{0}''' -f $installDirPath)\n[System.Environment]::CurrentDirectory = $installDirPath\n\n$exe = Load-SsasDeploy\n\n$files = Get-ChildItem –Path $installDirPath\\* -Include *.deploymenttargets\nforeach ($file in $files) {\n  $name = [IO.Path]::GetFileNameWithoutExtension($file)\n\n  Write-Host 'Updating' $file\n  Update-Deploy\n  $file = $installDirPath + '\\' + $name + '.configsettings'\n  Write-Host 'Updating' $file\n  Update-Config\n  $file = $installDirPath + '\\' + $name + '.deploymentoptions'\n  Write-Host 'Updating' $file\n  Update-Option\n\n  $arg = '\"' + $installDirPath + '\\' + $name + '.asdatabase\" /s:\"' + $installDirPath + '\\Log.txt\"'\n  Write-Host $exe $arg\n  $execute = [scriptblock]::create('& ' + $exe + ' ' + $arg)\n  Invoke-Command -ScriptBlock $execute\n}\n"
+  },
+  "Parameters": [
+    {
+      "Id": null,
+      "Name": "SsasPackageStepName",
+      "Label": null,
+      "HelpText": null,
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "StepName"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "SsasServer",
+      "Label": "Server",
+      "HelpText": null,
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "SsasDatabase",
+      "Label": "Database",
+      "HelpText": null,
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "SrcServer",
+      "Label": "Data Source - Server",
+      "HelpText": null,
+      "DefaultValue": "",
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "SrcDatabase",
+      "Label": "Data Source - Database",
+      "HelpText": null,
+      "DefaultValue": "Warehouse",
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    }
+  ],
+  "LogoAttachmentKey": "CommunityActionTemplates-38",
+  "LogoAttachmentMimeType": "image/png"
+}

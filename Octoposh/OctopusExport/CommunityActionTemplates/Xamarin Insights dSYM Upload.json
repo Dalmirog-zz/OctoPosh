@@ -1,0 +1,51 @@
+{
+  "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
+  "Id": "CommunityActionTemplates-199",
+  "Name": "Xamarin Insights dSYM Upload",
+  "ExternalId": "a1c51946-abd0-434c-99f3-b7a1b5af74c5",
+  "Description": "Uploads a dSYM symbols file to Xamarin Insights, for more readable exceptions.",
+  "Version": 0,
+  "ActionType": "Octopus.Script",
+  "Author": "Colin.Dabritz@Viewpoint.com",
+  "Website": "https://library.octopus.com/step-templates/a1c51946-abd0-434c-99f3-b7a1b5af74c5",
+  "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/xamarin-Insights-upload-dysm.json",
+  "Category": "Xamarin",
+  "Properties": {
+    "Octopus.Action.Script.ScriptBody": "#####################################\n# Xamarin Insights dSYM Upload script\n#\n# Uploads a dSYM sybmols file to Xamarin insights from a Nuget file\n#  extracted in a previous Octopus Deploy step. Allows a variety of parameters.\n#\n# Uploads to configured application, by API Key.\n#\n# API Documentation is available at: https://developer.xamarin.com/guides/insights/user-interface/settings/#Uploading_a_dSYM_File\n#\n# The API key involved is provided in the \"Settings\" for the particular app on the Xamarin Insights portal.\n# https://insights.xamarin.com/\n# Log in, open the application, and click settings. The general \"settings\" tab has the API Key field.\n#\n# Example curl request:\n# curl -F \"dsym=@YOUR-APPS-DSYM.zip;type=application/zip\" https://xaapi.xamarin.com/api/dsym?apikey=13dd6c82159361ea13ad25a0d9100eb6e228bb17\n#\n# v0.1 - Initial version, uploads one dSYM file.\n# \n# The nuget package must contain the *.app.dSYM.zip file.  \n#\n# The following *.nuspec example will package a release IPA and associated *.app.dSYM.zip file.\n#\n# The upload script requires a search path (default package root) with exactly one *.app.dSYM.zip file.\n# \n# Specify package path relative to the nuspec file location\n#\n# https://docs.nuget.org/create/nuspec-reference#file-element-examples\n#\n# In some cases the ID, Version, and Description may need manually specified.\n#\n\n<#\n\n    <?xml version=\"1.0\"?>\n    <package>\n      <metadata>\n        <id>$id$</id>\n        <title>$id$</title>\n        <version>$version$</version>\n        <description>Mobile project packaged for Octopus deploy. $description$</description>\n      </metadata>\n      <files>\n        <!-- Matches mobile package files. Note this will only include the platform being built,\n\t         and should match only a single file. -->\n        \n        <!-- iOS -->\n        <file src=\"**/Release/**/*.ipa\" target=\"\" />\n\n        <!-- Include release dSYM symbols file -->\n        <file src=\"**/Release/*.app.dSYM.zip\" target=\"\" />\n\n      </files>\n    </package>\n\n#>\n\n#############################\n# Debug Parameter Overrides #\n#############################\n\n# These values are set explicitly durring debugging so that the script can\n#   be run in the editor.\n# For local debugging, uncomment these values and fill in appropriately.\n\n<#\n\n# debug folder with app files\n$stepPath = \"C:\\Temp\\powershellscript\\\"\n\n$OctopusParameters = @{\n\"InsightsAppSpecificApiToken\" = \"YourApiKeyhere\";\n# \"NugetSearchPath\" = \"bin\\iPhone\"; # Additional path information, reatlive to the nuget file root, e.g. release\n}\n\n# #>\n\n###################################\n# Octopus Deploy common functions #\n###################################\n\n# A collection of functions that can be used by script steps to determine where packages installed\n# by previous steps are located on the filesystem.\n \nfunction Find-InstallLocations {\n    $result = @()\n    $OctopusParameters.Keys | foreach {\n        if ($_.EndsWith('].Output.Package.InstallationDirectoryPath')) {\n            $result += $OctopusParameters[$_]\n        }\n    }\n    return $result\n}\n \nfunction Find-InstallLocation($stepName) {\n    $result = $OctopusParameters.Keys | where {\n        $_.Equals(\"Octopus.Action[$stepName].Output.Package.InstallationDirectoryPath\",  [System.StringComparison]::OrdinalIgnoreCase)\n    } | select -first 1\n \n    if ($result) {\n        return $OctopusParameters[$result]\n    }\n \n    throw \"No install location found for step: $stepName\"\n}\n\nfunction Find-SingleInstallLocation {\n    $all = @(Find-InstallLocations)\n    if ($all.Length -eq 1) {\n        return $all[0]\n    }\n    if ($all.Length -eq 0) {\n        throw \"No package steps found\"\n    }\n    throw \"Multiple package steps have run; please specify a single step\"\n}\n\n#####################\n# Utility functions #\n#####################\n\nfunction Get-ExactlyOneDsymFileInfo($searchPath)\n{\n    $symbolFiles = Get-ChildItem -Path $searchPath -Recurse -Filter *.app.dSYM.zip\n    \n    $fileCount = $symbolFiles.count\n\n    if($fileCount -ne 1)\n    {\n        throw \"Did not find exactly one (1) symbols file. Found $fileCount dSYM file(s). Searched under path: $searchPath\"\n    }\n\n    return $symbolFiles\n}\n\n####################\n# Basic Parameters #\n####################\n\n$apiToken = $OctopusParameters['InsightsAppSpecificApiToken']\n\n$octopusFilePathOverride = $OctopusParameters['NugetSearchPath']\n\n$stepName = $OctopusParameters['MobileAppPackageStepName']\n\n# set step path, if not already set\nIf([string]::IsNullOrEmpty($stepPath))\n{\n    if (![string]::IsNullOrEmpty($stepName)) {\n        Write-Host \"Finding path to package step: $stepName\"\n        $stepPath = Find-InstallLocation $stepName\n    } else {\n        $stepPath = Find-SingleInstallLocation\n    }\n}\n\nWrite-Host \"##octopus[stderr-progress]\"\n\n# if we were not provided a file name, search for a single package file\nif([string]::IsNullOrWhiteSpace($octopusFilePathOverride))\n{\n    $appFileInfo = Get-ExactlyOneDsymFileInfo $stepPath\n    $appFullFilePath = $appFileInfo.FullName\n}\nelse\n{\n    $searchPathOverride = Join-Path $stepPath $octopusFilePathOverride\n    $appFileInfo = Get-ExactlyOneDsymFileInfo $searchPathOverride\n    $appFullFilePath = $appFileInfo.FullName\n}\n\n$fileName = [System.IO.Path]::GetFileName($appFullFilePath)\n\n$apiUploadUri = \"https://xaapi.xamarin.com/api/dsym?apikey=$apiToken\"\n\n# Request token details\n$uniqueBoundaryToken = [Guid]::NewGuid().ToString()\n\n$contentType = \"multipart/form-data; boundary=$uniqueBoundaryToken\"\n\n\nWrite-Host \"File Location: $appFullFilePath\"\n\n################################\n# Set up Hockey App parameters #\n################################\n\n$formSectionSeparator = @\"\n\n--$uniqueBoundaryToken\n\n\"@\n\n############################\n# Prepare request wrappers #\n############################\n\n# Standard for multipart form data\n# http://www.w3.org/TR/html401/interact/forms.html#h-17.13.4\n\n$stringEncoding = [System.Text.Encoding]::ASCII\n\n# Note the hard-coded \"ipa\" name here is per HockeyApp API documentation\n#  and it applies to ALL platform application files.\n\n$preFileBytes = $stringEncoding.GetBytes(\n$formSectionSeparator +\n@\"\nContent-Disposition: form-data; name=\"dsym\"; filename=\"$fileName\"\nContent-Type: application/zip\n\n\n\"@)\n\n# file bytes will go in between\n\n$postFileBytes = $stringEncoding.GetBytes(@\"\n\n--$uniqueBoundaryToken--\n\"@)\n\n######################\n# Invoke the request #\n######################\n\n# Note, previous approach was Invoke-RestMethod based. It worked, but was NOT memory\n# efficient, leading to high memory usage and \"out of memory\" errors.\n\n# Based on examples from\n# http://stackoverflow.com/questions/566462/upload-files-with-httpwebrequest-multipart-form-data\n# and \n# https://gist.github.com/nolim1t/271018\n\n# Uses a dot net WebRequest and streaming to limit memory usage\n\n$WebRequest = [System.Net.WebRequest]::Create(\"$apiUploadUri\")\n\n$WebRequest.ContentType = $contentType\n$WebRequest.Method = \"POST\"\n$WebRequest.KeepAlive = $true;\n\n$RequestStream = $WebRequest.GetRequestStream()\n\n# before file bytes\n$RequestStream.Write($preFileBytes, 0, $preFileBytes.Length);\n\n#files bytes\n\n$fileMode = [System.IO.FileMode]::Open\n$fileAccess = [System.IO.FileAccess]::Read\n\n$fileStream = New-Object IO.FileStream $appFullFilePath,$fileMode,$fileAccess\n$bufferSize = 4096 # 4k at a time\n$byteBuffer = New-Object Byte[] ($bufferSize)\n\n# read bytes. While bytes are read...\nwhile(($bytesRead = $fileStream.Read($byteBuffer,0,$byteBuffer.Length)) -ne 0)\n{\n    # write those byes to the request stream\n    $RequestStream.Write($byteBuffer, 0, $bytesRead)\n}\n\n$fileStream.Close()\n\n# after file bytes\n$RequestStream.Write($postFileBytes, 0, $postFileBytes.Length);\n\n$RequestStream.Close()\n\n$response = $WebRequest.GetResponse();\n",
+    "Octopus.Action.Script.Syntax": "PowerShell"
+  },
+  "Parameters": [
+    {
+      "Id": null,
+      "Name": "InsightsAppSpecificApiToken",
+      "Label": "Insights Api Token",
+      "HelpText": "Your Xamarin API Key for the specific application you are uploading the symbol files to.\n\nVisit:\nhttps://insights.xamarin.com\n\nLog in, browse your application, and click Settings. Your application specific API Token should be visible under \"API Key\".",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "PackageStepName",
+      "Label": "Package Step Name",
+      "HelpText": "Name of the previously-deployed package step that contains the dSYM symbol file that you want to deploy.",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "StepName"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "NugetSearchPath",
+      "Label": "Nuget Search Path (Optional)",
+      "HelpText": "This fully optional search path allows you to look in a specific folder path in your nuget file, such as \"bin\\release\". This may be needed in cases when the nuget file has multiple dSYM files in different locations.",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    }
+  ],
+  "LogoAttachmentKey": "CommunityActionTemplates-199",
+  "LogoAttachmentMimeType": "image/png"
+}

@@ -1,0 +1,101 @@
+{
+  "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
+  "Id": "CommunityActionTemplates-62",
+  "Name": "GitHub - Create Release",
+  "ExternalId": "7a6704f9-c675-4dd2-bb2d-5fba374fd439",
+  "Description": "Create a release for a Github Repository.",
+  "Version": 3,
+  "ActionType": "Octopus.Script",
+  "Author": "alfhenrik",
+  "Website": "https://library.octopus.com/step-templates/7a6704f9-c675-4dd2-bb2d-5fba374fd439",
+  "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/github-tag-release.json",
+  "Category": "GitHub",
+  "Properties": {
+    "Octopus.Action.Script.ScriptBody": "$formattedVersionNumber = [string]::Format(\"v{0}\", $versionNumber)\r$isDraft = [bool]::Parse($draft)\r$isPrerelease = [bool]::Parse($preRelease)\r\r$releaseData = @{\r    tag_name = $formattedVersionNumber;\r    target_commitish = $commitId;\r    name = $formattedVersionNumber;\r    body = $releaseNotes;\r    draft = $isDraft;\r    prerelease = $isPrerelease;\r}\r\r$releaseParams = @{\r    Uri = \"https://api.github.com/repos/$gitHubUsername/$gitHubRepository/releases\";\r    Method = 'POST';\r    Headers = @{\r        Authorization = 'Basic ' + [Convert]::ToBase64String(\r            [Text.Encoding]::ASCII.GetBytes($gitHubApiKey + \":x-oauth-basic\")\r        );\r    }\r    ContentType = 'application/json';\r    Body = (ConvertTo-Json $releaseData -Compress)\r}\r\rWrite-Host \"Creating release $formattedVersionNumber for $commitId.\"\r$result = Invoke-RestMethod @releaseParams\r\rWrite-Host \"Release successfully created.\"\r$result",
+    "Octopus.Action.Script.Syntax": "PowerShell"
+  },
+  "Parameters": [
+    {
+      "Id": null,
+      "Name": "versionNumber",
+      "Label": "Version Number",
+      "HelpText": "The version number for this release",
+      "DefaultValue": "#{Octopus.Release.Number}",
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "commitId",
+      "Label": "Commitish",
+      "HelpText": "Specifies the commitish value that determines where the Git tag is created from. Can be any branch or commit SHA. Unused if the Git tag already exists.",
+      "DefaultValue": "master",
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "releaseNotes",
+      "Label": "Release Notes",
+      "HelpText": "The notes to accompany this GitHub release. Defaults to the release notes of the release.",
+      "DefaultValue": "#{Octopus.Release.Notes}",
+      "DisplaySettings": {
+        "Octopus.ControlType": "MultiLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "gitHubUsername",
+      "Label": "Owner",
+      "HelpText": "The owner of the repository.",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "gitHubRepository",
+      "Label": "Repository",
+      "HelpText": "The repository to create the release for.",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "gitHubApiKey",
+      "Label": "Api Token",
+      "HelpText": "The GitHub [API key](https://github.com/blog/1509-personal-api-tokens)",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "Sensitive"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "draft",
+      "Label": "Draft",
+      "HelpText": "Set to true to mark this as a draft release (not visible to users)",
+      "DefaultValue": "false",
+      "DisplaySettings": {
+        "Octopus.ControlType": "Checkbox"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "preRelease",
+      "Label": "PreRelease",
+      "HelpText": "Set to true to mark this as a pre-release version",
+      "DefaultValue": "false",
+      "DisplaySettings": {
+        "Octopus.ControlType": "Checkbox"
+      }
+    }
+  ],
+  "LogoAttachmentKey": "CommunityActionTemplates-62",
+  "LogoAttachmentMimeType": "image/png"
+}
