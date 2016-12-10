@@ -46,8 +46,8 @@ function CreateOctopusInstance {
 	& $OctopusServerexe service --instance $InstanceName --install --reconfigure --start --console
 }
 
-#$OctopusBackupDir = (Resolve-Path $PSScriptRoot\..\DataBackup\OctopusExport).path #Relative to the location of the .cake script, NOT to the location of this ps1 script.
-$OctopusBackupDir = ".\DataBackup\OctopusExport"
+#$OctopusExportDir = (Resolve-Path $PSScriptRoot\..\DataBackup\OctopusExport).path #Relative to the location of the .cake script, NOT to the location of this ps1 script.
+$OctopusExportDir = ".\OctopusExport"
 Write-Output "Using config file: $ConfigFile"
 $Config = Get-Content $ConfigFile | ConvertFrom-Json
 
@@ -78,10 +78,10 @@ else{
 				& $OctopusServerexe service --instance $InstanceName --start
 					}
 			"ImportBackup" {
-				& $OctopusMigratorexe import --instance $InstanceName --directory "$OctopusBackupDir" --password $config.OctopusPassword --overwrite --include-tasklogs
+				& $OctopusMigratorexe import --instance $InstanceName --directory "$OctopusExportDir" --password $config.OctopusPassword --overwrite --include-tasklogs
 				}
 			"ExportBackup" {				
-				& $OctopusMigratorexe export --instance $InstanceName --directory "$OctopusBackupDir" --password $config.OctopusPassword
+				& $OctopusMigratorexe export --instance $InstanceName --directory "$OctopusExportDir" --password $config.OctopusPassword
 			}
 
 			"RemoveInstance" {
