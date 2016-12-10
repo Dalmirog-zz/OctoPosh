@@ -80,8 +80,9 @@ else{
 			"ImportBackup" {
 				& $OctopusMigratorexe import --instance $InstanceName --directory "$OctopusExportDir" --password $config.OctopusPassword --overwrite --include-tasklogs
 				}
-			"ExportBackup" {				
-				& $OctopusMigratorexe export --instance $InstanceName --directory "$OctopusExportDir" --password $config.OctopusPassword
+			"ExportBackup" {		
+				Write-output "about to run: $OctopusMigratorexe export --instance $($config.OctopusInstanceName) --directory $OctopusExportDir --password $($config.OctopusPassword) "		
+				& $OctopusMigratorexe export --instance $config.OctopusInstance --directory $OctopusExportDir --password $config.OctopusPassword
 			}
 
 			"RemoveInstance" {

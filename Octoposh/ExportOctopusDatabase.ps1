@@ -40,7 +40,7 @@ http://cakebuild.net
 
 [CmdletBinding()]
 Param(
-    [string]$Script = "ExportOctopusDatabase.cake",
+    [string]$Script = ".\ExportOctopusDatabase.cake",
     [string]$Target = "Default",
     [ValidateSet("Release", "Debug")]
     [string]$Configuration = "Release",
@@ -186,7 +186,6 @@ if (!(Test-Path $CAKE_EXE)) {
 
 If(Test-Path $Configfile){
 	$Configfile = (Resolve-Path $Configfile).path
-	$config = Get-Content $Configfile | ConvertFrom-Json
 }
 else{
 	Throw "Config file not found: $ConfigFile"

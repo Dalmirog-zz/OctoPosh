@@ -14,21 +14,21 @@ var ConfigFile = Argument("ConfigFile","");
 //////////////////////////////////////////////////////////////////////
 
 // Define directories.
-var exportDir = Directory("./DataBackup/OctopusExport");
+var exportDir = Directory("./OctopusExport");
 
 //////////////////////////////////////////////////////////////////////
 // TASKS
 //////////////////////////////////////////////////////////////////////
 
-//Task("Clean")
-//	.Description("Cleans the current contents of the export directory")	
-//    .Does(() =>
-//{
-//    CleanDirectory(exportDir);
-//});
+Task("Clean")
+	.Description("Cleans the current contents of the export directory")	
+    .Does(() =>
+{
+    CleanDirectory(exportDir);
+});
 
 Task("Export-Octopus-Backup")
-	//.IsDependentOn("Clean") 
+	.IsDependentOn("Clean") 
     .Description("Exports and Octopus backup")	
     .Does(() =>
 {
