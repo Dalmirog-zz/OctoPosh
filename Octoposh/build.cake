@@ -36,15 +36,29 @@ Task("Restore-NuGet-Packages")
     NuGetRestore("Octoposh.sln");
 });
 
-Task("Build")
-    .IsDependentOn("Restore-NuGet-Packages")
+Task("Replace-Test-Project-App-Settings")	
+	.IsDependentOn("Restore-NuGet-Packages")
+    .Description("Replace app.config settings on test project so they are run against the Octopus Instance that's being created by this build.")	
     .Does(() =>
 {
-      // Use MSBuild
-      MSBuild("Octoposh.sln", settings =>
+    StartPowershellFile("Octoposh.Tests/Scripts/replaceAppSettings.ps1", new PowershellSettings()
+        .SetFormatOutput()
+        .SetLogOutput()
+		.WithArguments(args=>
+		{			
+			args.Append("ConfigFile",ConfigFile);			
+		}));
+});
+
+Task("Build")
+    .IsDependentOn("Replace-Test-Project-App-Settings")
+	.Does(() =>
+	{
+		// Use MSBuild
+		MSBuild("Octoposh.sln", settings =>
         settings.SetConfiguration(configuration));
 
-});
+	});
 
 Task("Create-Octopus-Instance")	
 	.IsDependentOn("Build")

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Management.Automation;
 using System.Management.Automation.Runspaces;
@@ -39,9 +40,12 @@ namespace Octoposh.Tests
 
                 powershell.Commands.AddCommand(command);
 
+                var octopusUrl = string.Concat("http://localhost:", ConfigurationManager.AppSettings["OctopusBindingPort"]);
+                var octopusApiKey = ConfigurationManager.AppSettings["OctopusAPIKey"];
+
                 //todo: figure out what to do with the URL and API Key
-                Environment.SetEnvironmentVariable("OctopusURL", "http://Devbox:81");
-                Environment.SetEnvironmentVariable("OctopusAPIKey", "API-B3ZK7BTFAKSKRTCHQFKAZNPT5Y");
+                Environment.SetEnvironmentVariable("OctopusURL", octopusUrl);
+                Environment.SetEnvironmentVariable("OctopusAPIKey", octopusApiKey);
 
                 return powershell;
         }
