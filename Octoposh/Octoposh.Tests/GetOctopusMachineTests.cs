@@ -14,17 +14,18 @@ namespace Octoposh.Tests
     [TestFixture]
     public class GetOctopusMachineTests
     {
+        private static readonly string CmdletName = "Get-OctopusMachine";
+
         [Test]
         public void GetMachineBySingleName()
         {
-            var cmdletname = "Get-OctopusMachine";
             var parameters = new List<CmdletParameter> {new CmdletParameter()
             {
                 Name = "MachineName", Value = new[] {"North"}
             }};
 
 
-            var powershell = new CmdletRunspace().CreatePowershellcmdlet(cmdletname, typeof(GetOctopusMachine), parameters);
+            var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, typeof(GetOctopusMachine), parameters);
             var results = powershell.Invoke<List<OutputOctopusMachine>>();
 
             Assert.AreEqual(results[0].Count, 1);
@@ -38,13 +39,12 @@ namespace Octoposh.Tests
         [Test]
         public void GetMachineByMultipleNames()
         {
-            var cmdletname = "Get-OctopusMachine";
             var parameters = new List<CmdletParameter> {new CmdletParameter()
             {
                 Name = "MachineName", Value = new[] {"North","South"}
             }};
 
-            var powershell = new CmdletRunspace().CreatePowershellcmdlet(cmdletname, typeof(GetOctopusMachine),parameters);
+            var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, typeof(GetOctopusMachine),parameters);
             var results = powershell.Invoke<List<OutputOctopusMachine>>();
             
             Assert.AreEqual(results[0].Count,2);
@@ -55,6 +55,22 @@ namespace Octoposh.Tests
                 Console.WriteLine(item.Name);
             }
         }
-            
+
+        [Test]
+        public void DontGetMachineIfNameDoesntMatch()
+        {
+            var parameters = new List<CmdletParameter> {new CmdletParameter()
+            {
+                Name = "MachineName", Value = new[] {"TotallyANameThatYoullNeverPutToAMachine"}
+            }};
+
+            var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, typeof(GetOctopusMachine), parameters);
+            var results = powershell.Invoke<List<OutputOctopusMachine>>();
+
+            Assert.AreEqual(results[0].Count, 0);
+
+            Console.WriteLine("Hey I'm a test too!");
+        }
+
     }
 }
