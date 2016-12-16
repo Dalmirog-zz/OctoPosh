@@ -1,0 +1,25 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-104",
+  "RelatedDocumentIds": [
+    "Projects-1"
+  ],
+  "ProjectId": "Projects-1",
+  "EnvironmentId": null,
+  "TenantId": null,
+  "Category": "Created",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2016-12-16T05:25:05.5400452+00:00",
+  "Message": "Project TestProject was created",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Projects-1",
+      "StartIndex": 8,
+      "Length": 11
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "Session cookie"
+}

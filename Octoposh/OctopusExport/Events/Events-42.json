@@ -1,20 +1,22 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-42",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Machines-3"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
+  "Category": "MachineAdded",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2016-12-04T13:20:03.4615984-03:00",
-  "Message": "Environment Dev was created",
+  "Occurred": "2016-12-14T01:12:01.3568155-03:00",
+  "Message": "Machine OfflineTarget was created (domain-event)",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 12,
-      "Length": 3
+      "ReferencedDocumentId": "Machines-3",
+      "StartIndex": 8,
+      "Length": 13
     }
   ],
   "Comments": null,

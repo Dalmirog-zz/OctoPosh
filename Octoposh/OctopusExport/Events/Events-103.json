@@ -1,0 +1,25 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-103",
+  "RelatedDocumentIds": [
+    "ProjectGroups-21"
+  ],
+  "ProjectId": null,
+  "EnvironmentId": null,
+  "TenantId": null,
+  "Category": "Created",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2016-12-16T05:24:44.5435011+00:00",
+  "Message": "Project Group TestProjectGroup was created",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "ProjectGroups-21",
+      "StartIndex": 14,
+      "Length": 16
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "Session cookie"
+}
