@@ -75,7 +75,7 @@ namespace Octoposh.Cmdlets
         /// </summary>
         //todo: figure out how to print accepted values in help
         [Alias("Mode")]
-        [ValidateSet("Listening", "Polling", "SSH", "CloudRegion", "OfflineDrop")]
+        [ValidateSet("ListeningTentacle", "PollingTentacle", "SSHEndPoint", "CloudRegion", "OfflineDrop")]
         [Parameter(ValueFromPipeline = true, ParameterSetName = ByCommunicationStyle)]
         public string CommunicationStyle { get; set; }
 
