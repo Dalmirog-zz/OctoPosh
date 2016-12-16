@@ -55,7 +55,7 @@ namespace Octoposh.Model
                         break;
 
                     case "Octopus.Client.Model.Endpoints.SSHEndpointResource":
-                        communicationStyle = "PollingTentacle";
+                        communicationStyle = "SSHEndpoint";
                         break;
                 }
 
