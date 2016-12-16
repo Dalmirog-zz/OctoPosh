@@ -1,26 +1,17 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-101",
-  "RelatedDocumentIds": [
-    "Machines-21",
-    "Environments-1"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2016-12-10T21:49:49.1889424+00:00",
-  "Message": "Machine West was created",
-  "MessageReferences": [
-    {
-      "ReferencedDocumentId": "Machines-21",
-      "StartIndex": 8,
-      "Length": 4
-    }
-  ],
+  "Category": "Imported",
+  "UserId": "NY",
+  "Username": "dalmiro.granias",
+  "Occurred": "2016-12-14T03:40:32.0284784+00:00",
+  "Message": "Imported documents using Octopus migration tools",
+  "MessageReferences": [],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "Details": "  Created.........................................19\r\n    ServerTask....................................19\r\n  Unchanged.......................................273\r\n    ApiKey........................................1\r\n    Certificate...................................1\r\n    CommunityActionTemplate.......................203\r\n    DeploymentEnvironment.........................1\r\n    Event.........................................32\r\n    ExtensionConfiguration........................5\r\n    FeaturesConfiguration.........................1\r\n    License.......................................1\r\n    Lifecycle.....................................1\r\n    Machine.......................................3\r\n    MachinePolicy.................................1\r\n    NuGetFeed.....................................1\r\n    ProjectGroup..................................1\r\n    ServerConfiguration...........................1\r\n    ServerTask....................................5\r\n    SmtpConfiguration.............................1\r\n    Team..........................................2\r\n    User..........................................1\r\n    UserRole......................................10\r\n    WebPortalConfiguration........................1\r\n",
+  "IdentityEstablishedWith": "Command-line or tools"
 }
