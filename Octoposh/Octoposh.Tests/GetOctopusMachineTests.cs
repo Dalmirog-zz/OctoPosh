@@ -14,17 +14,18 @@ namespace Octoposh.Tests
     [TestFixture]
     public class GetOctopusMachineTests
     {
+        private static readonly string CmdletName = "Get-OctopusMachine";
+
         [Test]
         public void GetMachineBySingleName()
         {
-            var cmdletname = "Get-OctopusMachine";
             var parameters = new List<CmdletParameter> {new CmdletParameter()
             {
-                Name = "MachineName", Value = new[] {"North"}
+                Name = "MachineName", SingleValue = "North"
             }};
 
 
-            var powershell = new CmdletRunspace().CreatePowershellcmdlet(cmdletname, typeof(GetOctopusMachine), parameters);
+            var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, typeof(GetOctopusMachine), parameters);
             var results = powershell.Invoke<List<OutputOctopusMachine>>();
 
             Assert.AreEqual(results[0].Count, 1);
@@ -38,16 +39,15 @@ namespace Octoposh.Tests
         [Test]
         public void GetMachineByMultipleNames()
         {
-            var cmdletname = "Get-OctopusMachine";
             var parameters = new List<CmdletParameter> {new CmdletParameter()
             {
-                Name = "MachineName", Value = new[] {"North","South"}
+                Name = "MachineName", MultipleValue = new[] {"North","South"}
             }};
 
-            var powershell = new CmdletRunspace().CreatePowershellcmdlet(cmdletname, typeof(GetOctopusMachine),parameters);
+            var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, typeof(GetOctopusMachine), parameters);
             var results = powershell.Invoke<List<OutputOctopusMachine>>();
-            
-            Assert.AreEqual(results[0].Count,2);
+
+            Assert.AreEqual(results[0].Count, 2);
 
             Console.WriteLine("Items Found:");
             foreach (var item in results[0])
@@ -55,6 +55,53 @@ namespace Octoposh.Tests
                 Console.WriteLine(item.Name);
             }
         }
-            
+
+        [Test]
+        public void DontGetMachineIfNameDoesntMatch()
+        {
+            var machinename = "TotallyANameThatYoullNeverPutToAMachine";
+
+            var parameters = new List<CmdletParameter> {new CmdletParameter()
+            {
+                Name = "MachineName", SingleValue = machinename
+            }};
+
+            var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, typeof(GetOctopusMachine), parameters);
+            var results = powershell.Invoke<List<OutputOctopusMachine>>();
+
+            Assert.AreEqual(results[0].Count, 0);
+        }
+
+        [Test]
+        public void GetMachineByCommunicationStyle()
+        {
+            var communicationStyles = new string[] { "ListeningTentacle", "PollingTentacle", "SSHEndpoint", "CloudRegion", "OfflineDrop" };
+
+            foreach (var style in communicationStyles)
+            {
+                var parameters = new List<CmdletParameter> {new CmdletParameter()
+                {
+                    Name = "CommunicationStyle", SingleValue = style
+                }};
+
+                var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, typeof(GetOctopusMachine), parameters);
+                var results = powershell.Invoke<List<OutputOctopusMachine>>();
+
+                if (results != null)
+                {
+                    foreach (var result in results[0])
+                    {
+                        Assert.AreEqual(result.CommunicationStyle, style);
+                    }
+                }
+                else
+                {
+                    Assert.Inconclusive("No targets of the type [{0}] were found",style);
+                }
+            }
+
+
+        }
+
     }
 }
