@@ -9,6 +9,7 @@ namespace Octoposh.Tests
     class CmdletParameter
     {
         public string Name { get; set; }
-        public string[] Value { get; set; }
+        public string[] MultipleValue { get; set; }
+        public string SingleValue { get; set; }
     }
 }

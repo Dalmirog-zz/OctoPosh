@@ -35,7 +35,18 @@ namespace Octoposh.Tests
 
                 foreach (var parameter in parameters)
                 {
-                    command.Parameters.Add(new CommandParameter(parameter.Name,parameter.Value));
+                    if (parameter.MultipleValue != null)
+                    {
+                        command.Parameters.Add(new CommandParameter(parameter.Name, parameter.MultipleValue));
+                    }
+                    else if (parameter.SingleValue != null)
+                    {
+                        command.Parameters.Add(new CommandParameter(parameter.Name, parameter.SingleValue));
+                    }
+                    else
+                    {
+                        command.Parameters.Add(new CommandParameter(parameter.Name));
+                    }
                 }
 
                 powershell.Commands.AddCommand(command);
