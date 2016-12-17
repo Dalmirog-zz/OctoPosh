@@ -1,9 +1,9 @@
 {
   "$type": "Octopus.Core.Model.Projects.Project, Octopus.Core",
   "Id": "Projects-1",
-  "Name": "TestProject",
+  "Name": "TestProject1",
   "Description": "Test project that will be used for most unit-test-related things",
-  "Slug": "testproject",
+  "Slug": "testproject1",
   "IsDisabled": false,
   "VariableSetId": "variableset-Projects-1",
   "DeploymentProcessId": "deploymentprocess-Projects-1",
@@ -20,7 +20,7 @@
   },
   "Templates": [],
   "ReleaseCreationStrategy": {
-    "ReleaseCreationPackageStepId": null,
+    "ReleaseCreationPackageStepId": "",
     "ChannelId": null
   },
   "ProjectConnectivityPolicy": {

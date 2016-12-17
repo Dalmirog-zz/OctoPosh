@@ -49,11 +49,10 @@ namespace Octoposh.Cmdlets
         /// <summary>
         /// <para type="description">Name of the Project Group from which to get all the projects</para>
         /// </summary>
-        //todo: make public when team answers/fixes https://octopusdeploy.slack.com/archives/team-fire-and-motion/p1479596369000057
         [Alias("ProjectGroup")]
         [ValidateNotNullOrEmpty()]
         [Parameter(Position = 1, ValueFromPipeline = true, ParameterSetName = ByProjectGroup)]
-        private List<string> ProjectGroupName { get; set; }
+        public List<string> ProjectGroupName { get; set; }
 
         /// <summary>
         /// <para type="description">If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh output object</para>
