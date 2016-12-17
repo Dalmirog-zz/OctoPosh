@@ -101,22 +101,6 @@ namespace Octoposh.Tests
         }
 
         [Test]
-        public void DontGetEnvironmentsIfNameIsEmpty()
-        {
-            var resourceName = "";
-
-            var parameters = new List<CmdletParameter> {new CmdletParameter()
-            {
-                Name = "Name", SingleValue = resourceName
-            }};
-
-            var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusEnvironment>>();
-
-            Assert.AreEqual(results[0].Count, 0);
-        }
-
-        [Test]
         public void GetEnvironmentUsingResourceOnlyReturnsRawResource()
         {
             var parameters = new List<CmdletParameter>

@@ -18,6 +18,7 @@ namespace Octoposh.Cmdlets
         private const string All = "All";
 
         [Alias("Name")]
+        [ValidateNotNullOrEmpty()]
         [Parameter(Position = 1, ValueFromPipeline = true, ParameterSetName = ByName)]
         public List<string> EnvironmentName { get; set; }
 
