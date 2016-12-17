@@ -3,22 +3,15 @@
   "Id": "ServerTasks-8",
   "Name": "Health",
   "Arguments": {
-    "EnvironmentId": null,
-    "MachinePolicyId": null,
-    "MachineIds": [
-      "Machines-1"
-    ],
-    "Timeout": "00:05:00",
-    "MachineTimeout": "00:01:00",
-    "OnlyTestConnection": false
+    "MachinePolicyId": "MachinePolicies-1"
   },
-  "Description": "Test connectivity to ListeningTentacle",
-  "QueueTime": "2016-12-14T01:10:54.8816309-03:00",
+  "Description": "Check Tentacle health",
+  "QueueTime": "2016-12-16T01:53:35.5611223-03:00",
   "QueueTimeExpiry": "10675199.02:48:05.4775807",
   "ExecutionTimeExpiry": "00:00:00",
-  "StartTime": "2016-12-14T01:10:54.9006317-03:00",
-  "LastUpdatedTime": "2016-12-14T01:10:55.7463205-03:00",
-  "CompletedTime": "2016-12-14T01:10:55.7463205-03:00",
+  "StartTime": "2016-12-16T01:53:35.5961235-03:00",
+  "LastUpdatedTime": "2016-12-16T01:53:36.5967842-03:00",
+  "CompletedTime": "2016-12-16T01:53:36.5967842-03:00",
   "ErrorMessage": "The health check failed. One or more deployment targets were not available.",
   "ConcurrencyTag": null,
   "State": "Failed",
@@ -26,7 +19,7 @@
   "HasWarningsOrErrors": true,
   "ServerVersion": "3.7.4+Branch.master.Sha.403a70b03ab7c4b06d0bcb637b19afa44456c672",
   "ServerNode": "DEVBOX",
-  "LogDifferentiationToken": "5BLQFXN86B",
+  "LogDifferentiationToken": "MTUJ64D56W",
   "AdditionalDescription": null,
   "DurationSeconds": 1,
   "ProjectId": null,
