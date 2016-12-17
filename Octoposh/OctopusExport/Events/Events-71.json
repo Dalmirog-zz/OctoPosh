@@ -2,27 +2,21 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-71",
   "RelatedDocumentIds": [
-    "Users-1",
-    "teams-administrators"
+    "Users-1"
   ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Modified",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2016-12-09T01:38:30.5751636-03:00",
-  "Message": "User admin was added to Octopus Administrators using the admin command line",
+  "Occurred": "2016-12-09T01:38:30.4970469-03:00",
+  "Message": "User admin was created using the admin command line",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "Users-1",
       "StartIndex": 5,
       "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "teams-administrators",
-      "StartIndex": 24,
-      "Length": 22
     }
   ],
   "Comments": null,

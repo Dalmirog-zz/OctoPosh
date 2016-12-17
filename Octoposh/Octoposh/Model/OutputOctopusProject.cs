@@ -7,7 +7,7 @@ using Octopus.Client.Model;
 
 namespace Octoposh.Model
 {
-    class OutputOctopusProject
+    public class OutputOctopusProject
     {
         public string Name { get; set; }
         public string Id { get; set; }
