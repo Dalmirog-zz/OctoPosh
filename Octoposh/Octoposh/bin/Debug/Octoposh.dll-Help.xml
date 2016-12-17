@@ -194,7 +194,7 @@
       <!-- OutputType: List`1 -->
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Collections.Generic.List`1[[Octopus.Client.Model.EnvironmentResource, Octopus.Client, Version=4.0.5.0, Culture=neutral, PublicKeyToken=null]]</maml:name>
+          <maml:name>System.Collections.Generic.List`1[[Octopus.Client.Model.EnvironmentResource, Octopus.Client, Version=4.4.0.0, Culture=neutral, PublicKeyToken=null]]</maml:name>
           <maml:uri />
         </dev:type>
       </command:returnValue>
@@ -488,7 +488,7 @@
       <!-- OutputType: List`1 -->
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Collections.Generic.List`1[[Octopus.Client.Model.MachineResource, Octopus.Client, Version=4.0.5.0, Culture=neutral, PublicKeyToken=null]]</maml:name>
+          <maml:name>System.Collections.Generic.List`1[[Octopus.Client.Model.MachineResource, Octopus.Client, Version=4.4.0.0, Culture=neutral, PublicKeyToken=null]]</maml:name>
           <maml:uri />
         </dev:type>
       </command:returnValue>
@@ -589,6 +589,35 @@
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
       </command:syntaxItem>
+      <!-- Parameter set: ByProjectGroup -->
+      <command:syntaxItem>
+        <maml:name>Get-OctopusProject</maml:name>
+        <!-- Parameter: ProjectGroupName -->
+        <command:parameter required="false" globbing="false" pipelineInput="true (ByValue)" position="1" aliases="ProjectGroup">
+          <maml:name>ProjectGroupName</maml:name>
+          <maml:description>
+            <maml:para>Name of the Project Group from which to get all the projects</maml:para>
+          </maml:description>
+          <command:parameterValue required="true">List`1</command:parameterValue>
+          <dev:type>
+            <maml:name>System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</maml:name>
+            <maml:uri />
+          </dev:type>
+        </command:parameter>
+        <!-- Parameter: ResourceOnly -->
+        <command:parameter required="false" globbing="false" pipelineInput="false" position="named">
+          <maml:name>ResourceOnly</maml:name>
+          <maml:description>
+            <maml:para>If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh output object</maml:para>
+          </maml:description>
+          <command:parameterValue required="true">SwitchParameter</command:parameterValue>
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
     </command:syntax>
     <command:parameters>
       <!-- Parameter: ProjectName -->
@@ -608,6 +637,30 @@
         <maml:description>
           <maml:para>Name of the Project to filter by</maml:para>
           <maml:para>This is an alias of the ProjectName parameter.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true">List`1</command:parameterValue>
+        <dev:type>
+          <maml:name>System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</maml:name>
+          <maml:uri />
+        </dev:type>
+      </command:parameter>
+      <!-- Parameter: ProjectGroupName -->
+      <command:parameter required="false" globbing="false" pipelineInput="true (ByValue)" position="1" aliases="ProjectGroup">
+        <maml:name>ProjectGroupName</maml:name>
+        <maml:description>
+          <maml:para>Name of the Project Group from which to get all the projects</maml:para>
+        </maml:description>
+        <command:parameterValue required="true">List`1</command:parameterValue>
+        <dev:type>
+          <maml:name>System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</maml:name>
+          <maml:uri />
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" globbing="false" pipelineInput="true (ByValue)" position="1" aliases="ProjectGroup">
+        <maml:name>ProjectGroup</maml:name>
+        <maml:description>
+          <maml:para>Name of the Project Group from which to get all the projects</maml:para>
+          <maml:para>This is an alias of the ProjectGroupName parameter.</maml:para>
         </maml:description>
         <command:parameterValue required="true">List`1</command:parameterValue>
         <dev:type>
@@ -639,6 +692,15 @@
           <maml:para>Name of the Project to filter by</maml:para>
         </maml:description>
       </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <maml:name>System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <maml:description>
+          <maml:para>Name of the Project Group from which to get all the projects</maml:para>
+        </maml:description>
+      </command:inputType>
     </command:inputTypes>
     <command:returnValues>
       <!-- OutputType: List`1 -->
@@ -651,7 +713,7 @@
       <!-- OutputType: List`1 -->
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Collections.Generic.List`1[[Octopus.Client.Model.ProjectResource, Octopus.Client, Version=4.0.5.0, Culture=neutral, PublicKeyToken=null]]</maml:name>
+          <maml:name>System.Collections.Generic.List`1[[Octopus.Client.Model.ProjectResource, Octopus.Client, Version=4.4.0.0, Culture=neutral, PublicKeyToken=null]]</maml:name>
           <maml:uri />
         </dev:type>
       </command:returnValue>
