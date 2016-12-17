@@ -88,11 +88,11 @@ namespace Octoposh.Tests
         [Test]
         public void DontGetMachineIfNameDoesntMatch()
         {
-            var machinename = "TotallyANameThatYoullNeverPutToAResource";
+            var resourceName = "TotallyANameThatYoullNeverPutToAResource";
 
             var parameters = new List<CmdletParameter> {new CmdletParameter()
             {
-                Name = "Name", SingleValue = machinename
+                Name = "Name", SingleValue = resourceName
             }};
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
