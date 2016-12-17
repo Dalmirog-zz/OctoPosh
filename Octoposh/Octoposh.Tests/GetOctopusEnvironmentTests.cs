@@ -21,7 +21,7 @@ namespace Octoposh.Tests
             {
                 new CmdletParameter()
                 {
-                    Name = "EnvironmentName",
+                    Name = "Name",
                     SingleValue = "Dev"
                 }
             };
@@ -42,7 +42,7 @@ namespace Octoposh.Tests
         {
             var parameters = new List<CmdletParameter> {new CmdletParameter()
             {
-                Name = "EnvironmentName", MultipleValue = new[] {"Dev","Stage"}
+                Name = "Name", MultipleValue = new[] {"Dev","Stage"}
             }};
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
@@ -64,7 +64,7 @@ namespace Octoposh.Tests
 
             var parameters = new List<CmdletParameter> {new CmdletParameter()
             {
-                Name = "EnvironmentName", SingleValue = namePattern
+                Name = "Name", SingleValue = namePattern
             }};
 
             Console.WriteLine("Looking for resources with name pattern: {0}", namePattern);
@@ -91,7 +91,7 @@ namespace Octoposh.Tests
 
             var parameters = new List<CmdletParameter> {new CmdletParameter()
             {
-                Name = "EnvironmentName", SingleValue = resourceName
+                Name = "Name", SingleValue = resourceName
             }};
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
@@ -107,7 +107,7 @@ namespace Octoposh.Tests
 
             var parameters = new List<CmdletParameter> {new CmdletParameter()
             {
-                Name = "EnvironmentName", SingleValue = resourceName
+                Name = "Name", SingleValue = resourceName
             }};
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
@@ -117,7 +117,7 @@ namespace Octoposh.Tests
         }
 
         [Test]
-        public void GetEnvironmentResourceOnlyReturnsRawResource()
+        public void GetEnvironmentUsingResourceOnlyReturnsRawResource()
         {
             var parameters = new List<CmdletParameter>
             {

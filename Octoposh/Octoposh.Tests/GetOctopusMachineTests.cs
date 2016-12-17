@@ -8,6 +8,7 @@ using System.Management.Automation.Runspaces;
 using NUnit.Framework;
 using Octoposh.Cmdlets;
 using Octoposh.Model;
+using Octopus.Client.Model;
 
 namespace Octoposh.Tests
 {
@@ -15,17 +16,18 @@ namespace Octoposh.Tests
     public class GetOctopusMachineTests
     {
         private static readonly string CmdletName = "Get-OctopusMachine";
+        private static readonly Type CmdletType = typeof(GetOctopusMachine);
 
         [Test]
         public void GetMachineBySingleName()
         {
             var parameters = new List<CmdletParameter> {new CmdletParameter()
             {
-                Name = "MachineName", SingleValue = "North"
+                Name = "Name", SingleValue = "North"
             }};
 
 
-            var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, typeof(GetOctopusMachine), parameters);
+            var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
             var results = powershell.Invoke<List<OutputOctopusMachine>>();
 
             Assert.AreEqual(results[0].Count, 1);
@@ -41,10 +43,10 @@ namespace Octoposh.Tests
         {
             var parameters = new List<CmdletParameter> {new CmdletParameter()
             {
-                Name = "MachineName", MultipleValue = new[] {"North","South"}
+                Name = "Name", MultipleValue = new[] {"North","South"}
             }};
 
-            var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, typeof(GetOctopusMachine), parameters);
+            var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
             var results = powershell.Invoke<List<OutputOctopusMachine>>();
 
             Assert.AreEqual(results[0].Count, 2);
@@ -57,16 +59,43 @@ namespace Octoposh.Tests
         }
 
         [Test]
-        public void DontGetMachineIfNameDoesntMatch()
+        public void GetMachinesByNameUsingWildcard()
         {
-            var machinename = "TotallyANameThatYoullNeverPutToAMachine";
+            var namePattern = "S*";
 
             var parameters = new List<CmdletParameter> {new CmdletParameter()
             {
-                Name = "MachineName", SingleValue = machinename
+                Name = "Name", SingleValue = namePattern
             }};
 
-            var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, typeof(GetOctopusMachine), parameters);
+            Console.WriteLine("Looking for resources with name pattern: {0}", namePattern);
+
+            var pattern = new WildcardPattern(namePattern);
+
+            var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
+            var results = powershell.Invoke<List<OutputOctopusMachine>>();
+
+            Assert.Greater(results[0].Count, 0);
+            Console.WriteLine("Resources found: {0}", results[0].Count);
+
+            foreach (var item in results[0])
+            {
+                Console.WriteLine("Resource name: {0}", item.Name);
+                Assert.IsTrue(pattern.IsMatch(item.Name));
+            }
+        }
+
+        [Test]
+        public void DontGetMachineIfNameDoesntMatch()
+        {
+            var machinename = "TotallyANameThatYoullNeverPutToAResource";
+
+            var parameters = new List<CmdletParameter> {new CmdletParameter()
+            {
+                Name = "Name", SingleValue = machinename
+            }};
+
+            var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
             var results = powershell.Invoke<List<OutputOctopusMachine>>();
 
             Assert.AreEqual(results[0].Count, 0);
@@ -84,7 +113,7 @@ namespace Octoposh.Tests
                     Name = "CommunicationStyle", SingleValue = style
                 }};
 
-                var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, typeof(GetOctopusMachine), parameters);
+                var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
                 var results = powershell.Invoke<List<OutputOctopusMachine>>();
 
                 if (results != null)
@@ -101,6 +130,26 @@ namespace Octoposh.Tests
             }
 
 
+        }
+
+        [Test]
+        public void GetMachineUsingResourceOnlyReturnsRawResource()
+        {
+            var parameters = new List<CmdletParameter>
+            {
+                new CmdletParameter()
+                {
+                    Name = "resourceOnly"
+                }
+            };
+
+            var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
+
+            var results = powershell.Invoke<List<MachineResource>>();
+
+            //If [results] has at least one item, It'll be of the base resource type meaning the test was successful
+            Assert.Greater(results[0].Count, 0);
+            ;
         }
 
     }
