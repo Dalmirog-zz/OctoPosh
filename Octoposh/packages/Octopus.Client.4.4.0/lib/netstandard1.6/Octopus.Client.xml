@@ -120,6 +120,24 @@
             <param name="pathParameters">If the <c>path</c> is a URI template, parameters to use for substitution.</param>
             <returns>The collection of resources from the server.</returns>
         </member>
+        <member name="M:Octopus.Client.IOctopusAsyncClient.ListAll``1(System.String,System.Object)">
+            <summary>
+            Fetches a collection of resources from the server using the HTTP GET verb. All result pages will be retrieved.
+            </summary>
+            <exception cref="T:Octopus.Client.Exceptions.OctopusSecurityException">
+            HTTP 401 or 403: Thrown when the current user's API key was not valid, their
+            account is disabled, or they don't have permission to perform the specified action.
+            </exception>
+            <exception cref="T:Octopus.Client.Exceptions.OctopusServerException">
+            If any other error is successfully returned from the server (e.g., a 500
+            server error).
+            </exception>
+            <exception cref="T:Octopus.Client.Exceptions.OctopusValidationException">HTTP 400: If there was a problem with the request provided by the user.</exception>
+            <exception cref="T:Octopus.Client.Exceptions.OctopusResourceNotFoundException">HTTP 404: If the specified resource does not exist on the server.</exception>
+            <param name="path">The path from which to fetch the resources.</param>
+            <param name="pathParameters">If the <c>path</c> is a URI template, parameters to use for substitution.</param>
+            <returns>The collection of resources from the server.</returns>
+        </member>
         <member name="M:Octopus.Client.IOctopusAsyncClient.Paginate``1(System.String,System.Func{Octopus.Client.Model.ResourceCollection{``0},System.Boolean})">
             <summary>
             Fetches a collection of resources from the server one page at a time using the HTTP GET verb.
@@ -270,6 +288,22 @@
             <param name="path">The path to the container resource.</param>
             <param name="resource">The resource to create.</param>
         </member>
+        <member name="M:Octopus.Client.IOctopusAsyncClient.Put(System.String)">
+            <summary>
+            Sends a command to a resource at the given URI on the server using the PUT verb.
+            </summary>
+            <exception cref="T:Octopus.Client.Exceptions.OctopusSecurityException">
+            HTTP 401 or 403: Thrown when the current user's API key was not valid, their
+            account is disabled, or they don't have permission to perform the specified action.
+            </exception>
+            <exception cref="T:Octopus.Client.Exceptions.OctopusServerException">
+            If any other error is successfully returned from the server (e.g., a 500
+            server error).
+            </exception>
+            <exception cref="T:Octopus.Client.Exceptions.OctopusValidationException">HTTP 400: If there was a problem with the request provided by the user.</exception>
+            <exception cref="T:Octopus.Client.Exceptions.OctopusResourceNotFoundException">HTTP 404: If the specified resource does not exist on the server.</exception>
+            <param name="path">The path to the container resource.</param>
+        </member>
         <member name="M:Octopus.Client.IOctopusAsyncClient.Update``1(System.String,``0,System.Object)">
             <summary>
             Updates the resource at the given URI on the server using the PUT verb, then performs a fresh GET request to reload
@@ -371,13 +405,6 @@
             The Octopus Deploy RESTful HTTP API client.
             </summary>
         </member>
-        <member name="M:Octopus.Client.OctopusAsyncClient.#ctor(Octopus.Client.OctopusServerEndpoint,Octopus.Client.OctopusClientOptions)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Octopus.Client.OctopusAsyncClient" /> class.
-            </summary>
-            <param name="serverEndpoint">The server endpoint.</param>
-            <param name="options">The <see cref="T:Octopus.Client.OctopusClientOptions" /> used to configure the behavour of the client, may be null.</param>
-        </member>
         <member name="P:Octopus.Client.OctopusAsyncClient.RootDocument">
             <summary>
             Gets a document that identifies the Octopus server (from /api) and provides links to the resources available on the
@@ -423,6 +450,18 @@
             <summary>
             Fetches a collection of resources from the server using the HTTP GET verb. The collection itself will usually be
             limited in size (pagination) and links to the next page of data is available in the <see cref="P:Octopus.Client.Model.Resource.Links" />
+            property.
+            </summary>
+            <typeparam name="TResource"></typeparam>
+            <param name="path">The path from which to fetch the resources.</param>
+            <param name="pathParameters">If the <c>path</c> is a URI template, parameters to use for substitution.</param>
+            <returns>
+            The collection of resources from the server.
+            </returns>
+        </member>
+        <member name="M:Octopus.Client.OctopusAsyncClient.ListAll``1(System.String,System.Object)">
+            <summary>
+            Fetches a collection of resources from the server using the HTTP GET verb. All pages will be retrieved.
             property.
             </summary>
             <typeparam name="TResource"></typeparam>
@@ -510,6 +549,22 @@
             <param name="path">The path to the container resource.</param>
             <param name="resource">The resource to create.</param>
         </member>
+        <member name="M:Octopus.Client.OctopusAsyncClient.Put(System.String)">
+            <summary>
+            Sends a command to a resource at the given URI on the server using the PUT verb.
+            </summary>
+            <exception cref="T:Octopus.Client.Exceptions.OctopusSecurityException">
+            HTTP 401 or 403: Thrown when the current user's API key was not valid, their
+            account is disabled, or they don't have permission to perform the specified action.
+            </exception>
+            <exception cref="T:Octopus.Client.Exceptions.OctopusServerException">
+            If any other error is successfully returned from the server (e.g., a 500
+            server error).
+            </exception>
+            <exception cref="T:Octopus.Client.Exceptions.OctopusValidationException">HTTP 400: If there was a problem with the request provided by the user.</exception>
+            <exception cref="T:Octopus.Client.Exceptions.OctopusResourceNotFoundException">HTTP 404: If the specified resource does not exist on the server.</exception>
+            <param name="path">The path to the container resource.</param>
+        </member>
         <member name="M:Octopus.Client.OctopusAsyncClient.Delete(System.String,System.Object)">
             <summary>
             Deletes the resource at the given URI from the server using a the DELETE verb.
@@ -591,6 +646,16 @@
         <member name="T:Octopus.Client.OctopusClientOptions">
             <summary>
             Options used to change the behaviour of <see cref="T:Octopus.Client.OctopusAsyncClient" />
+            </summary>
+        </member>
+        <member name="P:Octopus.Client.OctopusClientOptions.SslProtocols">
+            <summary>
+            The allowed SSL Protocols
+            </summary>
+        </member>
+        <member name="P:Octopus.Client.OctopusClientOptions.IgnoreSslErrors">
+            <summary>
+            If true, SSL certificate errors are ignored
             </summary>
         </member>
         <member name="T:Octopus.Client.OctopusRequest">
