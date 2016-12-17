@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-63",
+  "Id": "CommunityActionTemplates-64",
   "Name": "HG - Get Changelog",
   "ExternalId": "1f76dc61-c7ec-47a8-bd27-fb135851e9c5",
   "Description": "Generate exact changelog from Mercurial commit history. It is stored in the output variable \"Changelog\".\n\nRequirement: each release must have been labeled in the repository as \"release-OctopusReleaseNumber\" (for instance using VCS labeling feature of TeamCity).\n\nSee http://hgbook.red-bean.com/read/customizing-the-output-of-mercurial.html for template format.",
@@ -41,6 +41,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-63",
+  "LogoAttachmentKey": "CommunityActionTemplates-64",
   "LogoAttachmentMimeType": "image/png"
 }

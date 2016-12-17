@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-68",
+  "Id": "CommunityActionTemplates-69",
   "Name": "HTTP - Post Form",
   "ExternalId": "3c7a59bd-d66e-4dc6-9509-895b4a5d98c8",
   "Description": "Execute a simple form POST via HTTP. The script will construct a body in \"application/x-www-form-urlencoded\" format by extracting Octopus variables with a specified prefix (from the \"HTTP.PostForm.Prefix\" parameter). Variable names and values are encoded accordingly.\n\nFor instance, if \"HTTP.PostForm.Prefix\" is \"foo.\", then the Octopus variable \"foo.Bar\"=\"baz\" will be translated to \"Bar=baz\" in the request body.",
@@ -36,6 +36,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-68",
+  "LogoAttachmentKey": "CommunityActionTemplates-69",
   "LogoAttachmentMimeType": "image/png"
 }
