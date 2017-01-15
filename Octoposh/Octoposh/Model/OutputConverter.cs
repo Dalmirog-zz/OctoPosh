@@ -119,7 +119,7 @@ namespace Octoposh.Model
             return list;
         }
 
-        public object GetOctopusProject(List<ProjectResource> baseResourceList)
+        public List<OutputOctopusProject> GetOctopusProject(List<ProjectResource> baseResourceList)
         {
             var list = new List<OutputOctopusProject>();
             var dashboard = _connection.Repository.Dashboards.GetDashboard();
@@ -166,6 +166,36 @@ namespace Octoposh.Model
                     LatestDeployments = deployments,
                     AutoCreateRelease = project.AutoCreateRelease,
                     Resource = project
+                });
+            }
+
+            return list;
+        }
+
+        public List<OutputOctopusProjectGroup> GetOctopusProjectGroup(List<ProjectGroupResource> baseResourceList)
+        {
+            var list = new List<OutputOctopusProjectGroup>();
+
+            foreach (var projectGroup in baseResourceList)
+            {
+                var projectNames = new List<string>();
+
+                var projects = _connection.Repository.ProjectGroups.GetProjects(projectGroup);
+
+                if (projects.Count > 0)
+                {
+                    foreach (var project in projects)
+                    {
+                        projectNames.Add(project.Name);
+                    }
+                }
+
+                list.Add(new OutputOctopusProjectGroup()
+                {
+                    Name = projectGroup.Name,
+                    Id = projectGroup.Id,
+                    Projects = projectNames,
+                    Resource = projectGroup
                 });
             }
 
