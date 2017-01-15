@@ -1,20 +1,20 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-77",
+  "Id": "CommunityActionTemplates-78",
   "Name": "IIS - List Sites",
   "ExternalId": "05e87da8-a9df-449f-bdbb-98fa44740b46",
   "Description": "List sites on the server.",
-  "Version": 0,
+  "Version": 1,
   "ActionType": "Octopus.Script",
-  "Author": "Severswoed",
+  "Author": "BrettJaner",
   "Website": "https://library.octopus.com/step-templates/05e87da8-a9df-449f-bdbb-98fa44740b46",
   "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/iis-list-sites.json",
   "Category": "IIS",
   "Properties": {
-    "Octopus.Action.Script.ScriptBody": "Get-WebSite",
+    "Octopus.Action.Script.ScriptBody": "try {\n\t$iisFeature = Get-WindowsFeature Web-WebServer -ErrorAction Stop\n\tif ($iisFeature -eq $null -or $iisFeature.Installed -eq $false) {\n\t\tWrite-Error \"It looks like IIS is not installed on this server and the deployment is likely to fail.\"\n\t\tWrite-Error \"Tip: You can use PowerShell to ensure IIS is installed: 'Install-WindowsFeature Web-WebServer'\"\n\t\tWrite-Error \"     You are likely to want more IIS features than just the web server. Run 'Get-WindowsFeature *web*' to see all of the features you can install.\"\n\t\texit 1\n\t}\n} catch {\n\tWrite-Verbose \"Call to `Get-WindowsFeature Web-WebServer` failed.\"\n\tWrite-Verbose \"Unable to determine if IIS is installed on this server but will optimistically continue.\"\n}\n\ntry {\n\tAdd-PSSnapin WebAdministration -ErrorAction Stop\n} catch {\n    try {\n\t\t Import-Module WebAdministration -ErrorAction Stop\n\t\t} catch {\n\t\t\tWrite-Warning \"We failed to load the WebAdministration module. This usually resolved by doing one of the following:\"\n\t\t\tWrite-Warning \"1. Install .NET Framework 3.5.1\"\n\t\t\tWrite-Warning \"2. Upgrade to PowerShell 3.0 (or greater)\"\n\t\t\tWrite-Warning \"3. On Windows 2008 you might need to install PowerShell SnapIn for IIS from http://www.iis.net/downloads/microsoft/powershell#additionalDownloads\"\n\t\t\tthrow ($error | Select-Object -First 1)\n    }\n}\n\nGet-WebSite",
     "Octopus.Action.Script.Syntax": "PowerShell"
   },
   "Parameters": [],
-  "LogoAttachmentKey": "CommunityActionTemplates-77",
+  "LogoAttachmentKey": "CommunityActionTemplates-78",
   "LogoAttachmentMimeType": "image/png"
 }

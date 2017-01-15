@@ -2,20 +2,20 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-26",
   "RelatedDocumentIds": [
-    "Environments-2"
+    "Machines-2"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-2",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
+  "Category": "MachineAdded",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2016-12-16T03:30:26.8403824-03:00",
-  "Message": "Environment Stage was created",
+  "Occurred": "2016-12-04T13:20:32.9523428-03:00",
+  "Message": "Machine North was created (domain-event)",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Environments-2",
-      "StartIndex": 12,
+      "ReferencedDocumentId": "Machines-2",
+      "StartIndex": 8,
       "Length": 5
     }
   ],

@@ -1,23 +1,20 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-48",
-  "RelatedDocumentIds": [
-    "Machines-1",
-    "Environments-1"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
+  "Category": "MachineDeleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2016-12-14T01:10:54.8776306-03:00",
-  "Message": "Machine ListeningTentacle was created",
+  "Occurred": "2016-12-17T00:15:39.0695217-03:00",
+  "Message": "Machine West was deleted (domain-event)",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Machines-1",
+      "ReferencedDocumentId": "NotFound",
       "StartIndex": 8,
-      "Length": 17
+      "Length": 4
     }
   ],
   "Comments": null,

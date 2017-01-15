@@ -1,0 +1,25 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-201",
+  "RelatedDocumentIds": [
+    "Users-21"
+  ],
+  "ProjectId": null,
+  "EnvironmentId": null,
+  "TenantId": null,
+  "Category": "Deleted",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-01-14T23:22:46.6009663+00:00",
+  "Message": "User stuff was deleted",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Users-21",
+      "StartIndex": 5,
+      "Length": 5
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "Session cookie"
+}

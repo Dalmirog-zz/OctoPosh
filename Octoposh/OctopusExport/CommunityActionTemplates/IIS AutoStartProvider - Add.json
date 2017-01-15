@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-88",
+  "Id": "CommunityActionTemplates-89",
   "Name": "IIS AutoStartProvider - Add",
   "ExternalId": "20b8c2fd-9194-47e3-948e-badc6c2a30d5",
   "Description": "Add autostartprovider entry so type can be used to warm up applicaiton. Final changes in applicationHost.config look like that:\n\n<serviceAutoStartProviders>\n    <add name=\"ApplicationPreload\" type=\"WebApplication1.ApplicationPreload, WebApplication1\" />\n</serviceAutoStartProviders>\n\nwhere name and type are taken from parameters.",
@@ -36,6 +36,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-88",
+  "LogoAttachmentKey": "CommunityActionTemplates-89",
   "LogoAttachmentMimeType": "image/png"
 }

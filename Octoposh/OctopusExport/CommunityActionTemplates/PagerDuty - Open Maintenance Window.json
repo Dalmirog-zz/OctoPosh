@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-110",
+  "Id": "CommunityActionTemplates-111",
   "Name": "PagerDuty - Open Maintenance Window",
   "ExternalId": "93a10982-f675-42cd-ac3a-46ef28a46afa",
   "Description": "Open a new maintenance window for the specified services.\n\nNo new incidents will be created for a service that is currently in maintenance.\n\nThis script sets an output variable **WindowId** that can be used in the _PagerDuty - Close Maintenance Window_ template.",
@@ -78,6 +78,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-110",
+  "LogoAttachmentKey": "CommunityActionTemplates-111",
   "LogoAttachmentMimeType": "image/png"
 }

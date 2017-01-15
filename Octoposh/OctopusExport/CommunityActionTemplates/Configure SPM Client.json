@@ -1,0 +1,76 @@
+{
+  "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
+  "Id": "CommunityActionTemplates-224",
+  "Name": "Configure SPM Client",
+  "ExternalId": "044392b0-5ee7-4f8d-b961-016f07ec6d50",
+  "Description": "This Step Template will Configure the SPM Client for Solr and Zookeeper",
+  "Version": 11,
+  "ActionType": "Octopus.Script",
+  "Author": "mani0070",
+  "Website": "https://library.octopus.com/step-templates/044392b0-5ee7-4f8d-b961-016f07ec6d50",
+  "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/configure-spm-client.json",
+  "Category": "Linux",
+  "Properties": {
+    "Octopus.Action.Script.Syntax": "Bash",
+    "Octopus.Action.Script.ScriptSource": "Inline",
+    "Octopus.Action.RunOnServer": "false",
+    "Octopus.Action.Script.ScriptBody": "APP_GUID=\"#{appguid}\"\nAPP_TYPE=\"#{applicationtype}\"\nAPP_MODE=\"#{applicationmode}\"\nJMXADDR=\"#{jmxhostaddress}\"\nJMXPORT=\"#{jmxhostport}\"\n\necho sudo bash /opt/spm/bin/spm-client-setup-conf.sh ${APP_GUID} ${APP_TYPE} ${APP_MODE} jmxhost:${JMXADDR} jmxport:${JMXPORT}\nsudo bash /opt/spm/bin/spm-client-setup-conf.sh ${APP_GUID} ${APP_TYPE} ${APP_MODE} jmxhost:${JMXADDR} jmxport:${JMXPORT}\nsudo service spm-monitor restart",
+    "Octopus.Action.Script.ScriptFileName": "",
+    "Octopus.Action.Package.FeedId": "",
+    "Octopus.Action.Package.PackageId": ""
+  },
+  "Parameters": [
+    {
+      "Id": null,
+      "Name": "appguid",
+      "Label": "SemaText Application GUID",
+      "HelpText": null,
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "applicationtype",
+      "Label": "Application Type",
+      "HelpText": "Value can be solr or zk",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "applicationmode",
+      "Label": "Application Mode",
+      "HelpText": "standalone",
+      "DefaultValue": "standalone",
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "jmxhostaddress",
+      "Label": "JMX Host Address",
+      "HelpText": "JMX Host Address",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "jmxhostport",
+      "Label": "JMX Host Port",
+      "HelpText": null,
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    }
+  ],
+  "LogoAttachmentKey": "CommunityActionTemplates-224",
+  "LogoAttachmentMimeType": "image/png"
+}
