@@ -43,6 +43,10 @@ namespace Octoposh.Tests
                     {
                         command.Parameters.Add(new CommandParameter(parameter.Name, parameter.SingleValue));
                     }
+                    else if (parameter.Resource != null)
+                    {
+                        command.Parameters.Add(new CommandParameter(parameter.Name, parameter.Resource));
+                    }
                     else
                     {
                         command.Parameters.Add(new CommandParameter(parameter.Name));
