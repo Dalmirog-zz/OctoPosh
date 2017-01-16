@@ -201,5 +201,13 @@ namespace Octoposh.Model
 
             return list;
         }
+
+        public List<OutputOctopusRelease> GetOctopusRelease(List<ReleaseResource> baseResourceList)
+        {
+            var list = new List<OutputOctopusRelease>();
+
+            return list;
+
+        }
     }
 }
