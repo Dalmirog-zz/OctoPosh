@@ -2,30 +2,25 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-22",
   "RelatedDocumentIds": [
-    "Users-1",
-    "teams-administrators"
+    "Machines-3",
+    "Environments-1"
   ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Modified",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2016-12-09T01:38:30.5751636-03:00",
-  "Message": "User admin was added to Octopus Administrators using the admin command line",
+  "Occurred": "2016-12-14T01:12:01.3468119-03:00",
+  "Message": "Machine OfflineTarget was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Users-1",
-      "StartIndex": 5,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "teams-administrators",
-      "StartIndex": 24,
-      "Length": 22
+      "ReferencedDocumentId": "Machines-3",
+      "StartIndex": 8,
+      "Length": 13
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Command-line or tools"
+  "IdentityEstablishedWith": "Session cookie"
 }

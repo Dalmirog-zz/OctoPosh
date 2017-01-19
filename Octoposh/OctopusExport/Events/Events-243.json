@@ -2,20 +2,20 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-243",
   "RelatedDocumentIds": [
-    "Lifecycles-26"
+    "Environments-21"
   ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-21",
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-15T20:30:53.3192804+00:00",
-  "Message": "Lifecycle 9K12I65HAKHNH1Y was deleted",
+  "Occurred": "2017-01-19T00:52:16.9704292+00:00",
+  "Message": "Environment WDWTO3ZMKNGOXO0 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Lifecycles-26",
-      "StartIndex": 10,
+      "ReferencedDocumentId": "Environments-21",
+      "StartIndex": 12,
       "Length": 15
     }
   ],

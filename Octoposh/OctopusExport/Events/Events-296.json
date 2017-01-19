@@ -2,21 +2,27 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-296",
   "RelatedDocumentIds": [
-    "Lifecycles-23"
+    "Projects-1",
+    "Releases-30"
   ],
-  "ProjectId": null,
+  "ProjectId": "Projects-1",
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-15T21:01:11.1902188+00:00",
-  "Message": "Lifecycle 7RP1FSM9E82B8AJ was deleted",
+  "Occurred": "2017-01-19T02:37:50.1696429+00:00",
+  "Message": "TestProject1 release 0.0.30 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Lifecycles-23",
-      "StartIndex": 10,
-      "Length": 15
+      "ReferencedDocumentId": "Projects-1",
+      "StartIndex": 0,
+      "Length": 12
+    },
+    {
+      "ReferencedDocumentId": "Releases-30",
+      "StartIndex": 21,
+      "Length": 6
     }
   ],
   "Comments": null,

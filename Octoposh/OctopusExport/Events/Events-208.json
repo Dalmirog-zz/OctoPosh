@@ -2,24 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-208",
   "RelatedDocumentIds": [
-    "Channels-24"
+    "Environments-2"
   ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-2",
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-14T23:51:06.5581096+00:00",
-  "Message": "Channel SRVC9OHUNZLU2G4 was deleted",
+  "Occurred": "2016-12-16T03:30:26.8403824-03:00",
+  "Message": "Environment Stage was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Channels-24",
-      "StartIndex": 8,
-      "Length": 15
+      "ReferencedDocumentId": "Environments-2",
+      "StartIndex": 12,
+      "Length": 5
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Session cookie"
 }

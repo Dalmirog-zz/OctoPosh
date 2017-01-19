@@ -1,25 +1,23 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-186",
-  "RelatedDocumentIds": [
-    "Environments-25"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
-  "EnvironmentId": "Environments-25",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "MachineDeleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-14T22:49:11.7360403+00:00",
-  "Message": "Environment 7RP1FSM9E82B8AJ was deleted",
+  "Occurred": "2016-12-17T00:15:39.0695217-03:00",
+  "Message": "Machine West was deleted (domain-event)",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Environments-25",
-      "StartIndex": 12,
-      "Length": 15
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 8,
+      "Length": 4
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Session cookie"
 }

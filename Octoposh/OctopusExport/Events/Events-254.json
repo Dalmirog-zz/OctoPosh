@@ -2,19 +2,19 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-254",
   "RelatedDocumentIds": [
-    "Channels-27"
+    "Machines-21"
   ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
+  "Category": "MachineAdded",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-15T20:31:39.9234608+00:00",
-  "Message": "Channel GSN6J532E925KVS was created",
+  "Occurred": "2017-01-19T00:52:20.5743823+00:00",
+  "Message": "Machine WDWTO3ZMKNGOXO0 was created (domain-event)",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Channels-27",
+      "ReferencedDocumentId": "Machines-21",
       "StartIndex": 8,
       "Length": 15
     }

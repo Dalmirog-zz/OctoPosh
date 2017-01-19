@@ -5,19 +5,13 @@
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "MachineDeleted",
+  "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2016-12-14T01:09:46.9208052-03:00",
-  "Message": "Machine West was deleted (domain-event)",
-  "MessageReferences": [
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 8,
-      "Length": 4
-    }
-  ],
+  "Occurred": "2017-01-14T20:34:41.8317267-03:00",
+  "Message": "Features configuration was changed.",
+  "MessageReferences": [],
   "Comments": null,
-  "Details": null,
+  "Details": "<span>{\r&para;<br>  \"Id\": \"features\",\r&para;<br>  \"IsMultiTenancyEnabled\": </span><del style=\"background:#ffe6e6;\">fals</del><ins style=\"background:#e6ffe6;\">tru</ins><span>e,\r&para;<br>  \"IsDockerEnabled\": false,\r&para;<br>  \"IsCommunityActionTemplatesEnabled\": true,\r&para;<br>  \"Name\": \"Features Configuration\"\r&para;<br>}</span>",
   "IdentityEstablishedWith": "Session cookie"
 }

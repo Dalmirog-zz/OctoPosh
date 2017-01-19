@@ -2,24 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-247",
   "RelatedDocumentIds": [
-    "Machines-22"
+    "Machines-3"
   ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "MachineDeleted",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-01-15T20:30:53.9282853+00:00",
-  "Message": "Machine 9K12I65HAKHNH1Y was deleted (domain-event)",
+  "Category": "MachineUnhealthy",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-01-19T00:52:18.7764053+00:00",
+  "Message": "Machine OfflineTarget became unhealthy",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Machines-22",
+      "ReferencedDocumentId": "Machines-3",
       "StartIndex": 8,
-      "Length": 15
+      "Length": 13
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Unknown"
 }

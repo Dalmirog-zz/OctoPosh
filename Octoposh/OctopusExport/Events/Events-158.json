@@ -1,21 +1,19 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-158",
-  "RelatedDocumentIds": [
-    "Environments-24"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
-  "EnvironmentId": "Environments-24",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
+  "Category": "Deleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-14T22:45:46.442167+00:00",
-  "Message": "Environment RFAJ2D3FT6WBS9C was created",
+  "Occurred": "2017-01-15T17:31:43.9949204-03:00",
+  "Message": "Project Group GSN6J532E925KVS was deleted",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Environments-24",
-      "StartIndex": 12,
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 14,
       "Length": 15
     }
   ],

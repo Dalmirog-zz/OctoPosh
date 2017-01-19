@@ -1,17 +1,31 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-130",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Users-1",
+    "teams-administrators"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Imported",
-  "UserId": "NY",
-  "Username": "dalmiro.granias",
-  "Occurred": "2017-01-14T21:32:52.3177062+00:00",
-  "Message": "Imported documents using Octopus migration tools",
-  "MessageReferences": [],
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2016-12-10T17:43:09.617204-03:00",
+  "Message": "User admin was added to Octopus Administrators using the admin command line",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Users-1",
+      "StartIndex": 5,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "teams-administrators",
+      "StartIndex": 24,
+      "Length": 22
+    }
+  ],
   "Comments": null,
-  "Details": "  Created.........................................361\r\n    ApiKey........................................1\r\n    Channel.......................................2\r\n    CommunityActionTemplate.......................208\r\n    DeploymentEnvironment.........................2\r\n    DeploymentProcess.............................2\r\n    Event.........................................109\r\n    ExtensionConfiguration........................2\r\n    Machine.......................................4\r\n    Project.......................................2\r\n    ProjectGroup..................................1\r\n    ServerTask....................................26\r\n    VariableSet...................................2\r\n  Skipped (key collision).........................4\r\n    Event.........................................1\r\n    ServerTask....................................3\r\n  Unchanged.......................................25\r\n    ExtensionConfiguration........................3\r\n    FeaturesConfiguration.........................1\r\n    License.......................................1\r\n    Lifecycle.....................................1\r\n    MachinePolicy.................................1\r\n    NuGetFeed.....................................1\r\n    ProjectGroup..................................1\r\n    ServerConfiguration...........................1\r\n    SmtpConfiguration.............................1\r\n    Team..........................................2\r\n    User..........................................1\r\n    UserRole......................................10\r\n    WebPortalConfiguration........................1\r\n  Updated.........................................1\r\n    Certificate...................................1\r\n",
+  "Details": null,
   "IdentityEstablishedWith": "Command-line or tools"
 }

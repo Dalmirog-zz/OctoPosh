@@ -2,7 +2,7 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-120",
   "RelatedDocumentIds": [
-    "Users-1"
+    "Machines-2"
   ],
   "ProjectId": null,
   "EnvironmentId": null,
@@ -10,16 +10,16 @@
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2016-12-09T01:38:30.4970469-03:00",
-  "Message": "User admin was created using the admin command line",
+  "Occurred": "2016-12-04T13:20:32.9223283-03:00",
+  "Message": "Machine North was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Users-1",
-      "StartIndex": 5,
+      "ReferencedDocumentId": "Machines-2",
+      "StartIndex": 8,
       "Length": 5
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Command-line or tools"
+  "IdentityEstablishedWith": "Session cookie"
 }

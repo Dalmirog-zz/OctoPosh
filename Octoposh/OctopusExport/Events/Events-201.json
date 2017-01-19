@@ -2,21 +2,21 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-201",
   "RelatedDocumentIds": [
-    "Users-21"
+    "Projects-2"
   ],
-  "ProjectId": null,
+  "ProjectId": "Projects-2",
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-14T23:22:46.6009663+00:00",
-  "Message": "User stuff was deleted",
+  "Occurred": "2016-12-17T00:15:27.3609809-03:00",
+  "Message": "Project TestProject2 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Users-21",
-      "StartIndex": 5,
-      "Length": 5
+      "ReferencedDocumentId": "Projects-2",
+      "StartIndex": 8,
+      "Length": 12
     }
   ],
   "Comments": null,

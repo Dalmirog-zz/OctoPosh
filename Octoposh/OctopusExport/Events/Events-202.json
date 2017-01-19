@@ -1,17 +1,25 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-202",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Environments-1"
+  ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Modified",
+  "Category": "Deleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-14T23:34:41.8317267+00:00",
-  "Message": "Features configuration was changed.",
-  "MessageReferences": [],
+  "Occurred": "2016-12-17T00:15:39.0575316-03:00",
+  "Message": "Machine West was deleted",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 8,
+      "Length": 4
+    }
+  ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"features\",\r&para;<br>  \"IsMultiTenancyEnabled\": </span><del style=\"background:#ffe6e6;\">fals</del><ins style=\"background:#e6ffe6;\">tru</ins><span>e,\r&para;<br>  \"IsDockerEnabled\": false,\r&para;<br>  \"IsCommunityActionTemplatesEnabled\": true,\r&para;<br>  \"Name\": \"Features Configuration\"\r&para;<br>}</span>",
+  "Details": null,
   "IdentityEstablishedWith": "Session cookie"
 }

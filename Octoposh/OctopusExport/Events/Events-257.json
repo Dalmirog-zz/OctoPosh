@@ -2,20 +2,20 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-257",
   "RelatedDocumentIds": [
-    "Environments-27"
+    "Machines-21"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-27",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "MachineDeleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-15T20:31:40.6824626+00:00",
-  "Message": "Environment GSN6J532E925KVS was deleted",
+  "Occurred": "2017-01-19T00:52:20.8883924+00:00",
+  "Message": "Machine WDWTO3ZMKNGOXO0 was deleted (domain-event)",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Environments-27",
-      "StartIndex": 12,
+      "ReferencedDocumentId": "Machines-21",
+      "StartIndex": 8,
       "Length": 15
     }
   ],

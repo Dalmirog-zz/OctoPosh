@@ -1,0 +1,37 @@
+{
+  "$type": "Octopus.Core.Model.Projects.DeploymentProcess, Octopus.Core",
+  "Id": "deploymentprocess-Projects-1-s-1-QXLTG",
+  "OwnerId": "Projects-1",
+  "IsFrozen": true,
+  "Version": 1,
+  "Steps": [
+    {
+      "Id": "471ca029-3ed5-4f37-881e-b319b6dc0707",
+      "Name": "Step1",
+      "Condition": "Success",
+      "StartTrigger": "StartAfterPrevious",
+      "RequiresPackagesToBeAcquired": false,
+      "Actions": [
+        {
+          "Id": "a6e41e73-8963-412e-a018-395df5b82e36",
+          "Name": "Step1",
+          "ActionType": "Octopus.Script",
+          "IsDisabled": false,
+          "Environments": [],
+          "Channels": [],
+          "TenantTags": [],
+          "Properties": {
+            "Octopus.Action.RunOnServer": "true",
+            "Octopus.Action.Script.Syntax": "PowerShell",
+            "Octopus.Action.Script.ScriptSource": "Inline",
+            "Octopus.Action.Script.ScriptBody": "\"Hello from $($OctopusParameters['Octopus.Step.Name'])\""
+          }
+        }
+      ],
+      "Properties": {
+        "Octopus.Action.TargetRoles": "WebServer"
+      }
+    }
+  ],
+  "RelatedDocumentIds": []
+}
