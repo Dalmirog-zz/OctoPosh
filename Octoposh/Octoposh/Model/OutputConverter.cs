@@ -123,7 +123,6 @@ namespace Octoposh.Model
         {
             var list = new List<OutputOctopusProject>();
             var dashboard = _connection.Repository.Dashboards.GetDashboard();
-            LifecycleResource lifecycle;
 
             foreach (var project in baseResourceList)
             {
@@ -147,6 +146,7 @@ namespace Octoposh.Model
                     });
                 }
 
+                LifecycleResource lifecycle;
                 if (_resourceCollector.IsResourceHereAlready(project.LifecycleId))
                 {
                     lifecycle = _resourceCollector.Lifecycles.First(x => x.Id == project.LifecycleId);
@@ -205,6 +205,27 @@ namespace Octoposh.Model
         public List<OutputOctopusRelease> GetOctopusRelease(List<ReleaseResource> baseResourceList)
         {
             var list = new List<OutputOctopusRelease>();
+
+            var allProjects = _connection.Repository.Projects.FindAll();
+
+            foreach (var release in baseResourceList)
+            {
+                var deployments = _connection.Repository.Releases.GetDeployments(release, 0).Items.ToList();
+
+                var releaseCreateEvent = _connection.Repository.Events.List(0, null, release.Id, true).Items.Last();
+
+                list.Add(new OutputOctopusRelease()
+                {
+                    ProjectName = allProjects.FirstOrDefault(x => x.Id == release.ProjectId)?.Name,
+                    Id = release.Id,
+                    ReleaseVersion = release.Version,
+                    ReleaseNotes = release.ReleaseNotes,
+                    CreationDate = release.Assembled.DateTime,
+                    CreatedBy = releaseCreateEvent?.Username,
+                    Deployments = deployments,
+                    Resource = release
+                });
+            }
 
             return list;
 
