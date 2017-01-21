@@ -55,6 +55,7 @@ namespace Octoposh.Cmdlets
         /// <para type="description">Get latest X releases</para>
         /// </summary>
         [ValidateNotNullOrEmpty()]
+        [ValidateRange(1,int.MaxValue)]
         [Parameter(ParameterSetName = ByLatest)]
         public int Latest { get; set; }
 
