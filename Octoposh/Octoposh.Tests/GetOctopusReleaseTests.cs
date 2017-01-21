@@ -99,6 +99,38 @@ namespace Octoposh.Tests
         }
 
         [Test]
+        public void GetReleaseByMultipleVersionsWithUnexisting()
+        {
+            var projectName = "TestProject1";
+
+            var goodVersion = "0.0.1";
+            var badVersion = "whatever";
+
+            var releaseVersions = new string[] { goodVersion, badVersion };
+
+            var parameters = new List<CmdletParameter>();
+
+            parameters.Add(new CmdletParameter()
+            {
+                Name = "ProjectName",
+                SingleValue = projectName
+            });
+
+            parameters.Add(new CmdletParameter()
+            {
+                Name = "ReleaseVersion",
+                MultipleValue = releaseVersions
+            });
+
+            var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
+            var results = powershell.Invoke<List<OutputOctopusRelease>>()[0];
+
+            Assert.IsTrue(results.Count == 1);
+
+            Assert.AreEqual(results[0].ReleaseVersion,goodVersion);
+        }
+
+        [Test]
         public void GetReleaseUsingLatestX()
         {
             var projectName = "TestProject1";
