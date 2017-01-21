@@ -1,21 +1,19 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-153",
-  "RelatedDocumentIds": [
-    "Environments-23"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
-  "EnvironmentId": "Environments-23",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "MachineDeleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-14T21:51:37.8309768+00:00",
-  "Message": "Environment XTD85XM8N814NO6 was deleted",
+  "Occurred": "2017-01-15T17:31:42.8827898-03:00",
+  "Message": "Machine GSN6J532E925KVS was deleted (domain-event)",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Environments-23",
-      "StartIndex": 12,
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 8,
       "Length": 15
     }
   ],

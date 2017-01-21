@@ -2,24 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-206",
   "RelatedDocumentIds": [
-    "Teams-1"
+    "ProjectGroups-21"
   ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-14T23:45:53.3139421+00:00",
-  "Message": "Team JJ4J1NH6OA5OVNU was deleted",
+  "Occurred": "2016-12-16T02:24:44.5435011-03:00",
+  "Message": "Project Group TestProjectGroup was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Teams-1",
-      "StartIndex": 5,
-      "Length": 15
+      "ReferencedDocumentId": "ProjectGroups-21",
+      "StartIndex": 14,
+      "Length": 16
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Session cookie"
 }

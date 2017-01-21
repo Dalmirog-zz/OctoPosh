@@ -1,21 +1,19 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-148",
-  "RelatedDocumentIds": [
-    "Environments-22"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
-  "EnvironmentId": "Environments-22",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-14T21:41:44.6036456+00:00",
-  "Message": "Environment T0AXX57PNHP4WWZ was deleted",
+  "Occurred": "2017-01-15T17:31:42.0694595-03:00",
+  "Message": "Lifecycle GSN6J532E925KVS was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Environments-22",
-      "StartIndex": 12,
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 10,
       "Length": 15
     }
   ],

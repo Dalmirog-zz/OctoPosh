@@ -2,21 +2,26 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-94",
   "RelatedDocumentIds": [
-    "Environments-1"
+    "teams-everyone"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
+  "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2016-12-10T18:49:49.1889424-03:00",
-  "Message": "Machine West was created",
+  "Occurred": "2017-01-14T20:22:40.8059516-03:00",
+  "Message": "User stuff was added to the team Everyone",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 8,
-      "Length": 4
+      "StartIndex": 5,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "teams-everyone",
+      "StartIndex": 33,
+      "Length": 8
     }
   ],
   "Comments": null,
