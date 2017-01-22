@@ -39,7 +39,7 @@ namespace Octoposh.Cmdlets
         private const string All = "All";
         
         /// <summary>
-        /// <para type="description">Name of the Project to filter by</para>
+        /// <para type="description">Project name</para>
         /// </summary>
         [Alias("Name")]
         [ValidateNotNullOrEmpty()]
@@ -47,7 +47,7 @@ namespace Octoposh.Cmdlets
         public List<string> ProjectName { get; set; }
 
         /// <summary>
-        /// <para type="description">Name of the Project Group from which to get all the projects</para>
+        /// <para type="description">Gets all projects inside a set of Project Groups</para>
         /// </summary>
         [Alias("ProjectGroup")]
         [ValidateNotNullOrEmpty()]

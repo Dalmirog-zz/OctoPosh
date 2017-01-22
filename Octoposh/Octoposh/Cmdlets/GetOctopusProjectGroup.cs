@@ -7,23 +7,22 @@ using System.Management.Automation;
 namespace Octoposh.Cmdlets
 {
     /// <summary>
-    /// <para type="synopsis">This cmdlet returns info about Octopus Projects</para>
+    /// <para type="synopsis">Gets information about Octopus Project Groups</para>
+    /// </summary>
+    /// <summary>
+    /// <para type="description">Gets information about Octopus Project Groups</para>
     /// </summary>
     /// <example>   
-    ///   <code>PS C:\> Get-OctopusProject</code>
-    ///   <para>Gets all the projects of the current Instance</para>    
+    ///   <code>PS C:\> Get-OctopusProjectGroup</code>
+    ///   <para>Gets all the Project Groups on the Octopus instance</para>    
     /// </example>
     /// <example>   
-    ///   <code>PS C:\> Get-OctopusProject -name MyProject</code>
-    ///   <para>Get the project named "MyProject"</para>    
+    ///   <code>PS C:\> Get-OctopusProjectGroup -name "MyProjects"</code>
+    ///   <para>Gets a Project Group named "MyProjects"</para>    
     /// </example>
     /// <example>   
-    ///   <code>PS C:\> Get-OctopusProject -name MyApp*</code>
-    ///   <para>Get all the projects whose name starts with the string "MyApp"</para>    
-    /// </example>
-    /// <example>   
-    ///   <code>PS C:\> Get-OctopusProject -ProjectGroupName "MyProduct"</code>
-    ///   <para>Gets all the projects inside of the Project Group "MyProduct"</para>    
+    ///   <code>PS C:\> Get-OctopusProjectGroup -name "*web*"</code>
+    ///   <para>Get all the projects whose name matches the pattern "*web*"</para>    
     /// </example>
     /// <para type="link" uri="http://Octoposh.net">WebSite: </para>
     /// <para type="link" uri="https://github.com/Dalmirog/OctoPosh/">Github Project: </para>
@@ -38,7 +37,7 @@ namespace Octoposh.Cmdlets
         private const string All = "All";
 
         /// <summary>
-        /// <para type="description">Name of the Project to filter by</para>
+        /// <para type="description">Project Group name</para>
         /// </summary>
         [Alias("Name")]
         [ValidateNotNullOrEmpty()]

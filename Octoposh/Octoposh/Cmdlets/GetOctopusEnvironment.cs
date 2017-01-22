@@ -9,6 +9,24 @@ using Octopus.Client.Model;
 
 namespace Octoposh.Cmdlets
 {
+    /// <summary>
+    /// <para type="synopsis">Gets information about Octopus Environments</para>
+    /// </summary>
+    /// <summary>
+    /// <para type="description">Gets information about Octopus Environments</para>
+    /// </summary>
+    /// <example>   
+    ///   <code>PS C:\> Get-OctopusEnvironment -name Production</code>
+    ///   <para>Gets info about the environment "Production"</para>    
+    /// </example>
+    /// <example>   
+    ///   <code>PS C:\> Get-OctopusEnvironment -name "FeatureTest*"</code>
+    ///   <para>Gets info about all the environments whose name matches the pattern "FeatureTest*"</para>    
+    /// </example>
+    /// <para type="link" uri="http://Octoposh.net">WebSite: </para>
+    /// <para type="link" uri="https://github.com/Dalmirog/OctoPosh/">Github Project: </para>
+    /// <para type="link" uri="https://github.com/Dalmirog/OctoPosh/wiki">Wiki: </para>
+    /// <para type="link" uri="https://gitter.im/Dalmirog/OctoPosh#initial">QA and Feature requests: </para>
     [Cmdlet("Get","OctopusEnvironment", DefaultParameterSetName = All)]
     [OutputType(typeof(List<OutputOctopusEnvironment>))]
     [OutputType(typeof(List<EnvironmentResource>))]
@@ -17,11 +35,17 @@ namespace Octoposh.Cmdlets
         private const string ByName = "ByName";
         private const string All = "All";
 
+        /// <summary>
+        /// <para type="description">Environment name</para>
+        /// </summary>
         [Alias("Name")]
         [ValidateNotNullOrEmpty()]
         [Parameter(Position = 1, ValueFromPipeline = true, ParameterSetName = ByName)]
         public List<string> EnvironmentName { get; set; }
 
+        /// <summary>
+        /// <para type="description">If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh output object</para>
+        /// </summary>
         [Parameter]
         public SwitchParameter ResourceOnly { get; set; }
 

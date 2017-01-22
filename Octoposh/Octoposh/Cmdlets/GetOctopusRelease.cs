@@ -10,6 +10,9 @@ namespace Octoposh.Cmdlets
     /// <summary>
     /// <para type="synopsis">Gets information about Octopus Releases</para>
     /// </summary>
+    /// <summary>
+    /// <para type="description">Gets information about Octopus Releases</para>
+    /// </summary>
     /// <example>   
     ///   <code>PS C:\> Get-OctopusRelease -ProjectName "MyProject"</code>
     ///   <para>Get all the realeases of the project "MyProject"</para>    

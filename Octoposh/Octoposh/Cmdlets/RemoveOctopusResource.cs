@@ -10,43 +10,36 @@ using Octopus.Client.Model;
 namespace Octoposh.Cmdlets
 {
     /// <summary>
-    /// <para type="synopsis">This cmdlet returns info about Octopus Targets (Tentacles, cloud regions, Offline deployment targets, SHH)</para>
+    /// <para type="synopsis">Deletes resources from an Octopus Instance</para>
+    /// </summary>
+    /// <summary>
+    /// <para type="description">Deletes resources from an Octopus Instance</para>
     /// </summary>
     /// <example>   
-    ///   <code>PS C:\> Get-OctopusMachine -name "Database_Prod"</code>
-    ///   <para>Gets the machine with the name "Database_Prod"</para>    
+    ///   <code>PS C:\> $ProjectResource = Get-OctopusProject -name "MyApp" ; Remove-OctopusResource -resource $ProjectResource</code>
+    ///   <para>Deletes the project called "MyApp" from the Octopus Instance</para>    
     /// </example>
     /// <example>   
-    ///   <code>PS C:\> Get-OctopusMachine -name "*_Prod"</code>
-    ///   <para>Gets all the machines which name is like "*_Prod"</para>    
-    /// </example>
-    /// <example>   
-    ///   <code>PS C:\> Get-OctopusMachine -EnvironmentName "Staging","UAT""</code>
-    ///   <para>Gets all the machines on the environments "Staging","UAT"</para>    
-    /// </example>
-    /// <example>   
-    ///   <code>PS C:\> Get-OctopusMachine -URL "*:10933"</code>
-    ///   <para>Gets all the machines with the string "*:10933" at the end of the URL</para>    
-    /// </example>
-    /// <example>   
-    ///   <code>PS Get-OctopusMachine -Mode Listening</code>
-    ///   <para>Gets all the machines registered in "Listening" mode. "Polling" is also a valid value</para>    
+    ///   <code>PS C:\> Get-OctopusProjectGroup -name "MyProjects" | select -ExpandProperty Projects | Remove-OctopusResource </code>
+    ///   <para>Deletes all the projects inside the Project Group "MyProjects"</para>    
     /// </example>
     /// <para type="link" uri="http://Octoposh.net">WebSite: </para>
     /// <para type="link" uri="https://github.com/Dalmirog/OctoPosh/">Github Project: </para>
     /// <para type="link" uri="https://github.com/Dalmirog/OctoPosh/wiki">Wiki: </para>
     /// <para type="link" uri="https://gitter.im/Dalmirog/OctoPosh#initial">QA and Feature requests: </para>
-    
+
     [Cmdlet("Remove", "OctopusResource")]
     [OutputType(typeof(bool))]
     public class RemoveOctopusResource : PSCmdlet
     {
         /// <summary>
-        /// <para type="description">Name of the Machine to filter by</para>
+        /// <para type="description">Resource Object to delete from the Octopus Server</para>
         /// </summary>
         [ValidateNotNullOrEmpty()]
         [Parameter(Position = 1, ValueFromPipeline = true)]
         public Resource[] Resource { get; set; }
+        
+        //todo Add -Force parameter
 
         private OctopusConnection _connection;
 
@@ -59,6 +52,7 @@ namespace Octoposh.Cmdlets
         {
             foreach (Resource r in Resource)
             {
+                
                 try
                 {
                     switch (r.GetType().ToString())

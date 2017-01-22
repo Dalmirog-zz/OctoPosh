@@ -10,33 +10,19 @@ using Octopus.Client.Model;
 namespace Octoposh.Cmdlets
 {
     /// <summary>
-    /// <para type="synopsis">This cmdlet returns info about Octopus Targets (Tentacles, cloud regions, Offline deployment targets, SHH)</para>
+    /// <para type="synopsis">Creates a new Octopus Resource. This is an advanced cmdlet and all its examples involve multiple lines of code. Please check the advanced examples for a better reference: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples </para>
+    /// </summary>
+    /// <summary>
+    /// <para type="description">Creates a new Octopus Resource. This is an advanced cmdlet and all its examples involve multiple lines of code. Please check the advanced examples for a better reference: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples </para>
     /// </summary>
     /// <example>   
-    ///   <code>PS C:\> Get-OctopusMachine -name "Database_Prod"</code>
-    ///   <para>Gets the machine with the name "Database_Prod"</para>    
-    /// </example>
-    /// <example>   
-    ///   <code>PS C:\> Get-OctopusMachine -name "*_Prod"</code>
-    ///   <para>Gets all the machines which name is like "*_Prod"</para>    
-    /// </example>
-    /// <example>   
-    ///   <code>PS C:\> Get-OctopusMachine -EnvironmentName "Staging","UAT""</code>
-    ///   <para>Gets all the machines on the environments "Staging","UAT"</para>    
-    /// </example>
-    /// <example>   
-    ///   <code>PS C:\> Get-OctopusMachine -URL "*:10933"</code>
-    ///   <para>Gets all the machines with the string "*:10933" at the end of the URL</para>    
-    /// </example>
-    /// <example>   
-    ///   <code>PS Get-OctopusMachine -Mode Listening</code>
-    ///   <para>Gets all the machines registered in "Listening" mode. "Polling" is also a valid value</para>    
+    ///   <code>PS C:\> $pg = Get-OctopusResourceModel -Resource ProjectGroup ; $pg.name = "NewProjectGroup" ; New-OctopusResource -Resource $pg </code>
+    ///   <para>Creates a new Project Group called "NewProjectGroup" on Octopus</para>    
     /// </example>
     /// <para type="link" uri="http://Octoposh.net">WebSite: </para>
     /// <para type="link" uri="https://github.com/Dalmirog/OctoPosh/">Github Project: </para>
     /// <para type="link" uri="https://github.com/Dalmirog/OctoPosh/wiki">Wiki: </para>
     /// <para type="link" uri="https://gitter.im/Dalmirog/OctoPosh#initial">QA and Feature requests: </para>
-    
     [Cmdlet("New", "OctopusResource")]
     [OutputType(typeof(EnvironmentResource))]
     [OutputType(typeof(ProjectResource))]
@@ -52,7 +38,7 @@ namespace Octoposh.Cmdlets
     public class NewOctopusResource : PSCmdlet
     {
         /// <summary>
-        /// <para type="description">Name of the Machine to filter by</para>
+        /// <para type="description">Resource Object</para>
         /// </summary>
         [ValidateNotNullOrEmpty()]
         [Parameter(Position = 1, ValueFromPipeline = true)]

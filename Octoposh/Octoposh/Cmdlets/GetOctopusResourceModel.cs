@@ -13,14 +13,6 @@ namespace Octoposh.Cmdlets
     ///   <code>PS C:\> $EnvironmentObj = Get-OctopusResourceModel -Resource Environment</code>
     ///   <para>Creates an Environment Resource object</para>    
     /// </example>
-    /// <example>   
-    ///   <code>PS C:\> $ProjectObj = Get-OctopusResourceModel -Resource Project</code>
-    ///   <para>Create Project resource object</para>    
-    /// </example>
-    /// <example>   
-    ///   <code>PS C:\> $ProjectGroup = Get-OctopusResourceModel -Resource ProjectGroup</code>
-    ///   <para>Create a Project Group resource object</para>    
-    /// </example>
     /// <para type="link" uri="http://Octoposh.net">WebSite: </para>
     /// <para type="link" uri="https://github.com/Dalmirog/OctoPosh/">Github Project: </para>
     /// <para type="link" uri="https://github.com/Dalmirog/OctoPosh/wiki">Wiki: </para>
