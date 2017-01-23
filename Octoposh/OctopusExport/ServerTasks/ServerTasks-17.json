@@ -1,24 +1,24 @@
 {
   "$type": "Octopus.Core.Model.ServerTasks.ServerTask, Octopus.Core",
-  "Id": "ServerTasks-22",
+  "Id": "ServerTasks-17",
   "Name": "Health",
   "Arguments": {
     "EnvironmentId": null,
     "MachinePolicyId": null,
     "MachineIds": [
-      "Machines-4"
+      null
     ],
     "Timeout": "00:05:00",
     "MachineTimeout": "00:01:00",
     "OnlyTestConnection": false
   },
-  "Description": "Test connectivity to South",
-  "QueueTime": "2016-12-09T02:10:36.7308081-03:00",
+  "Description": "Test connectivity to 9K12I65HAKHNH1Y",
+  "QueueTime": "2017-01-15T17:30:53.6612876-03:00",
   "QueueTimeExpiry": "10675199.02:48:05.4775807",
   "ExecutionTimeExpiry": "00:00:00",
-  "StartTime": "2016-12-09T02:10:36.7408076-03:00",
-  "LastUpdatedTime": "2016-12-09T02:10:36.7968036-03:00",
-  "CompletedTime": "2016-12-09T02:10:36.7968036-03:00",
+  "StartTime": "2017-01-15T17:30:53.6712837-03:00",
+  "LastUpdatedTime": "2017-01-15T17:30:53.9352867-03:00",
+  "CompletedTime": "2017-01-15T17:30:53.9352867-03:00",
   "ErrorMessage": "",
   "ConcurrencyTag": null,
   "State": "Success",
@@ -26,7 +26,7 @@
   "HasWarningsOrErrors": false,
   "ServerVersion": "3.7.4+Branch.master.Sha.403a70b03ab7c4b06d0bcb637b19afa44456c672",
   "ServerNode": "DEVBOX",
-  "LogDifferentiationToken": "FM38EZP37M",
+  "LogDifferentiationToken": "K4WFNTDNX4",
   "AdditionalDescription": null,
   "DurationSeconds": 0,
   "ProjectId": null,
