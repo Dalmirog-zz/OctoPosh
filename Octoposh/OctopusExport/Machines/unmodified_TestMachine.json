@@ -1,0 +1,18 @@
+{
+  "$type": "Octopus.Core.Model.Environments.Machine, Octopus.Core",
+  "Id": "Machines-42",
+  "Name": "unmodified_TestMachine",
+  "Endpoint": {
+    "$type": "Octopus.Core.Model.Environments.Endpoints.CloudRegionEndpoint, Octopus.Core"
+  },
+  "IsDisabled": false,
+  "Roles": [
+    "UnitTest"
+  ],
+  "EnvironmentIds": [
+    "Environments-42"
+  ],
+  "TenantIds": [],
+  "TenantTags": [],
+  "MachinePolicyId": "MachinePolicies-1"
+}
