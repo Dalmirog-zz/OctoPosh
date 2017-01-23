@@ -519,7 +519,7 @@ namespace Octoposh.Tests
             }
             #endregion
 
-            #region TeamDelete
+            #region ChannelDelete
             var removeParameters = new List<CmdletParameter>
             {
                 new CmdletParameter()
