@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,7 +26,9 @@ namespace Octoposh.Tests
         [Test]
         public void CreateAndRemoveEnvironment()
         {
-            var resource = new EnvironmentResource {Name = TestResourceName};
+            #region EnvironmentCreate
+
+            var resource = new EnvironmentResource { Name = TestResourceName };
 
             var createParameters = new List<CmdletParameter>
             {
@@ -44,9 +47,12 @@ namespace Octoposh.Tests
             if (createResult != null)
             {
                 Assert.AreEqual(createResult.Name, TestResourceName);
-                Console.WriteLine("Created resource [{0}] of type [{1}]",createResult.Name,createResult.GetType());
+                Console.WriteLine("Created resource [{0}] of type [{1}]", createResult.Name, createResult.GetType());
             }
 
+            #endregion
+
+            #region EnvironmentDelete
             var removeParameters = new List<CmdletParameter>
             {
                 new CmdletParameter()
@@ -62,7 +68,7 @@ namespace Octoposh.Tests
 
             Assert.IsTrue(removeResult);
             Console.WriteLine("Deleted resource [{0}] of type [{1}]", createResult.Name, createResult.GetType());
-
+            #endregion
         }
 
         [Test]

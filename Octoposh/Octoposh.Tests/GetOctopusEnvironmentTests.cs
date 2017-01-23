@@ -9,7 +9,7 @@ using Octopus.Client.Model;
 namespace Octoposh.Tests
 {
     [TestFixture]
-    public class GetOctopuEnvironmentTests
+    public class GetOctopusEnvironmentTests
     {
         private static readonly string CmdletName = "Get-OctopusEnvironment";
         private static readonly Type CmdletType = typeof(GetOctopusEnvironment);
