@@ -2,24 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-53",
   "RelatedDocumentIds": [
-    "Machines-3"
+    "Environments-2"
   ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-2",
   "TenantId": null,
-  "Category": "MachineUnhealthy",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-01-14T18:33:17.4943194-03:00",
-  "Message": "Machine OfflineTarget became unhealthy",
+  "Category": "Created",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2016-12-16T03:30:26.8403824-03:00",
+  "Message": "Environment Stage was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Machines-3",
-      "StartIndex": 8,
-      "Length": 13
+      "ReferencedDocumentId": "Environments-2",
+      "StartIndex": 12,
+      "Length": 5
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "IdentityEstablishedWith": "Session cookie"
 }

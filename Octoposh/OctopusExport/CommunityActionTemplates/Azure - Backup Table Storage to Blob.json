@@ -1,0 +1,86 @@
+{
+  "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
+  "Id": "CommunityActionTemplates-12",
+  "Name": "Azure - Backup Table Storage to Blob",
+  "ExternalId": "38791635-a3fc-4b26-bcd7-b65f0f6de5d2",
+  "Description": "This script allow to backup the specified azure table storage into the specified blob.",
+  "Version": 6,
+  "ActionType": "Octopus.Script",
+  "Author": "phuot",
+  "Website": "https://library.octopus.com/step-templates/38791635-a3fc-4b26-bcd7-b65f0f6de5d2",
+  "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/Azure-Backup-TableStorage-to-Blob.json",
+  "Category": "Azure",
+  "Properties": {
+    "Octopus.Action.Script.Syntax": "PowerShell",
+    "Octopus.Action.Script.ScriptSource": "Inline",
+    "Octopus.Action.Script.ScriptBody": "if($IsEnabled -eq \"True\")\n{\nWrite-Output \"Starting Backup the Azure table 'https://$sourceStorageAccountName.table.core.windows.net/$sourceTableName' to the Blob 'https://$destinationStorageAccountName.blob.core.windows.net/$sourceStorageAccountName-$sourceTableName'\"\n\n& \"${Env:ProgramFiles(x86)}\\Microsoft SDKs\\Azure\\AzCopy\\azCopy.exe\" `\n    /Source:https://$sourceStorageAccountName.table.core.windows.net/$sourceTableName/ `\n    /Dest:https://$destinationStorageAccountName.blob.core.windows.net/$sourceStorageAccountName-$sourceTableName/ `\n    /SourceKey:$sourceStorageAccountKey `\n    /Destkey:$destinationStorageAccountKey `\n    /y\n\nWrite-Output \"Backup Completed\"\n}\nelse\n{\n    Write-Output \"This Step is disabled\"\n}",
+    "Octopus.Action.Script.ScriptFileName": "",
+    "Octopus.Action.Package.NuGetFeedId": "",
+    "Octopus.Action.Package.NuGetPackageId": ""
+  },
+  "Parameters": [
+    {
+      "Id": null,
+      "Name": "sourceStorageAccountName",
+      "Label": "Source Storage Account Name",
+      "HelpText": "Name of the source storage account",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "sourceStorageAccountKey",
+      "Label": "Source Storage Account Key",
+      "HelpText": "Key of the source storage account",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "Sensitive"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "sourceTableName",
+      "Label": "Source Table Name",
+      "HelpText": "Name of the Source Azure Table",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "destinationStorageAccountName",
+      "Label": "Destination Storage Account Name",
+      "HelpText": "Name of the destination storage account",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "destinationStorageAccountKey",
+      "Label": "Destination Storage Account Key",
+      "HelpText": "Key of the destination storage account",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "Sensitive"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "IsEnabled",
+      "Label": "IsEnabled",
+      "HelpText": null,
+      "DefaultValue": "True",
+      "DisplaySettings": {
+        "Octopus.ControlType": "Select",
+        "Octopus.SelectOptions": "True\nFalse"
+      }
+    }
+  ],
+  "LogoAttachmentKey": "CommunityActionTemplates-12",
+  "LogoAttachmentMimeType": "image/png"
+}

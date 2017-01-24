@@ -1,0 +1,29 @@
+{
+  "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
+  "Id": "CommunityActionTemplates-204",
+  "Name": "Windows Scheduled Task - Disable",
+  "ExternalId": "1be30b21-ba58-4667-bff4-2d0ef9a806af",
+  "Description": "Disables a Windows Scheduled Task for both 2008 and 2012.",
+  "Version": 1,
+  "ActionType": "Octopus.Script",
+  "Author": "maohde",
+  "Website": "https://library.octopus.com/step-templates/1be30b21-ba58-4667-bff4-2d0ef9a806af",
+  "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/windows-scheduled-task-disable.json",
+  "Category": "Windows",
+  "Properties": {
+    "Octopus.Action.Script.ScriptBody": "$taskName = $OctopusParameters['TaskName']\r\rWrite-Output \"Disabling $taskName...\"\r\r#Check if 2008 Server\rif ((Get-WmiObject Win32_OperatingSystem).Name.Contains(\"2008\"))\r{\r    schtasks /Change /Disable /TN $taskName\r    do { \r        Start-Sleep -Milliseconds 200;\r        Write-Host \"Disabling\" $taskName;\r    }\r    until (((schtasks /TN $taskName) | Out-String).Contains(\"Disabled\"))\r}\relse\r{\r    $task = Get-ScheduledTask $taskName;\r    Disable-ScheduledTask $task;\r    do { \r        Start-Sleep -Milliseconds 200;\r        Write-Host \"Disabling\" $task.TaskName;\r    }\r    until ((Get-ScheduledTask $task.TaskName).State -eq 'Disabled')\r}",
+    "Octopus.Action.Script.Syntax": "PowerShell"
+  },
+  "Parameters": [
+    {
+      "Id": null,
+      "Name": "TaskName",
+      "Label": "Task Name",
+      "HelpText": "Name of the Windows Scheduled Task.",
+      "DefaultValue": null,
+      "DisplaySettings": {}
+    }
+  ],
+  "LogoAttachmentKey": "CommunityActionTemplates-204",
+  "LogoAttachmentMimeType": "image/png"
+}

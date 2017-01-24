@@ -2,20 +2,19 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-253",
   "RelatedDocumentIds": [
-    "Machines-21",
     "Environments-1"
   ],
   "ProjectId": null,
   "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Created",
+  "Category": "Deleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-19T00:52:20.547383+00:00",
-  "Message": "Machine WDWTO3ZMKNGOXO0 was created",
+  "Occurred": "2017-01-20T21:24:33.093627-03:00",
+  "Message": "Machine RFCVVZLYTFB5J9N was deleted",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Machines-21",
+      "ReferencedDocumentId": "NotFound",
       "StartIndex": 8,
       "Length": 15
     }

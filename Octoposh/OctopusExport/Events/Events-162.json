@@ -1,17 +1,25 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-162",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Users-1"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
   "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-15T17:58:56.6355929-03:00",
-  "Message": "Features configuration was changed.",
-  "MessageReferences": [],
+  "Occurred": "2016-12-16T01:52:57.8487135-03:00",
+  "Message": "User admin set password using the admin command line",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Users-1",
+      "StartIndex": 5,
+      "Length": 5
+    }
+  ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"features\",\r&para;<br>  \"IsMultiTenancyEnabled\": true,\r&para;<br>  \"IsDockerEnabled\": false,\r&para;<br>  \"IsCommunityActionTemplatesEnabled\": </span><del style=\"background:#ffe6e6;\">tru</del><ins style=\"background:#e6ffe6;\">fals</ins><span>e,\r&para;<br>  \"Name\": \"Features Configuration\"\r&para;<br>}</span>",
-  "IdentityEstablishedWith": "Session cookie"
+  "Details": null,
+  "IdentityEstablishedWith": "Command-line or tools"
 }

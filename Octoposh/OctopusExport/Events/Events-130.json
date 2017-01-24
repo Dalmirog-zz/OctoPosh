@@ -2,30 +2,30 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-130",
   "RelatedDocumentIds": [
-    "Users-1",
-    "teams-administrators"
+    "Projects-1",
+    "Releases-8"
   ],
-  "ProjectId": null,
+  "ProjectId": "Projects-1",
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Modified",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2016-12-10T17:43:09.617204-03:00",
-  "Message": "User admin was added to Octopus Administrators using the admin command line",
+  "Occurred": "2017-01-18T23:36:43.6052325-03:00",
+  "Message": "TestProject1 release 0.0.16 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Users-1",
-      "StartIndex": 5,
-      "Length": 5
+      "ReferencedDocumentId": "Projects-1",
+      "StartIndex": 0,
+      "Length": 12
     },
     {
-      "ReferencedDocumentId": "teams-administrators",
-      "StartIndex": 24,
-      "Length": 22
+      "ReferencedDocumentId": "Releases-8",
+      "StartIndex": 21,
+      "Length": 6
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Command-line or tools"
+  "IdentityEstablishedWith": "Session cookie"
 }

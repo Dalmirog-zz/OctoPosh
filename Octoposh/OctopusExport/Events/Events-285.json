@@ -1,31 +1,23 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-285",
-  "RelatedDocumentIds": [
-    "Projects-1",
-    "Releases-19"
-  ],
-  "ProjectId": "Projects-1",
+  "RelatedDocumentIds": [],
+  "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-01-19T02:36:58.3595295+00:00",
-  "Message": "TestProject1 release 0.0.19 was created",
+  "Category": "MachineHealthy",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-01-22T15:42:57.7520915-03:00",
+  "Message": "Machine I7716UCQNL5KR9H became healthy",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Projects-1",
-      "StartIndex": 0,
-      "Length": 12
-    },
-    {
-      "ReferencedDocumentId": "Releases-19",
-      "StartIndex": 21,
-      "Length": 6
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 8,
+      "Length": 15
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "IdentityEstablishedWith": "Unknown"
 }

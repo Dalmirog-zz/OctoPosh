@@ -1,0 +1,61 @@
+{
+  "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
+  "Id": "CommunityActionTemplates-174",
+  "Name": "Trigger TeamCity Build",
+  "ExternalId": "22483ce2-1444-4c02-861c-fb9533959e16",
+  "Description": "Trigger a specific Team City build from an Octopus Deploy process.",
+  "Version": 1,
+  "ActionType": "Octopus.Script",
+  "Author": "bjorgvino",
+  "Website": "https://library.octopus.com/step-templates/22483ce2-1444-4c02-861c-fb9533959e16",
+  "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/teamcity-trigger-build.json",
+  "Category": "TeamCity",
+  "Properties": {
+    "Octopus.Action.Script.ScriptBody": "$buildConfId = $OctopusParameters['BuildConfigurationId']\n\n$teamCityUrl = $OctopusParameters['TeamCityUrl']\n$teamCityUsername = $OctopusParameters['TeamCityUsername']\n$teamCityPassword = $OctopusParameters['TeamCityPassword']\n\n$url = $teamCityUrl + '/httpAuth/app/rest/buildQueue'\n$contentTemplate = '<build><buildType id=\"{0}\"/></build>'\n$content = $contentTemplate -f $buildConfId\n$encodedContent = [System.Text.Encoding]::UTF8.GetBytes($content)\n\nWrite-Host \"================================================================================\"\nWrite-Host \"Triggering build with Id $buildConfId in TeamCity. Server:\" $teamCityUrl \nWrite-Host \"================================================================================\"\n\n$req = [System.Net.WebRequest]::Create($url)\n$req.Credentials = new-object System.Net.NetworkCredential($teamCityUsername, $teamCityPassword)\n$req.Method =\"POST\"\n$req.ContentType = \"application/xml\"\n\n$req.ContentLength = $encodedContent.length\n$requestStream = $req.GetRequestStream()\n$requestStream.Write($encodedContent, 0, $encodedContent.length)\n$requestStream.Close()\n\n$resp = $req.GetResponse()\n$reader = new-object System.IO.StreamReader($resp.GetResponseStream())\n$reader.ReadToEnd() | Write-Host\n",
+    "Octopus.Action.Script.Syntax": "PowerShell"
+  },
+  "Parameters": [
+    {
+      "Id": null,
+      "Name": "BuildConfigurationId",
+      "Label": null,
+      "HelpText": "The Id of the build configuration to trigger.",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "TeamCityUrl",
+      "Label": null,
+      "HelpText": "The URL of the Team City server.\nE.g. `http://teamcity.example.com`.",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "TeamCityUsername",
+      "Label": null,
+      "HelpText": "The username to use for accessing TeamCity.",
+      "DefaultValue": "",
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "TeamCityPassword",
+      "Label": null,
+      "HelpText": "The password for the TeamCity user.",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "Sensitive"
+      }
+    }
+  ],
+  "LogoAttachmentKey": "CommunityActionTemplates-174",
+  "LogoAttachmentMimeType": "image/png"
+}

@@ -1,0 +1,101 @@
+{
+  "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
+  "Id": "CommunityActionTemplates-185",
+  "Name": "Web Deploy - Publish Website (MSDeploy)",
+  "ExternalId": "ba8581a6-c463-40fb-ab98-3800e761b6f4",
+  "Description": "Ensure that Web Deploy 3.5 is installed on the system. The installer is downloaded from http://www.iis.net/downloads/microsoft/web-deploy if required.",
+  "Version": 1,
+  "ActionType": "Octopus.Script",
+  "Author": "dalmiro",
+  "Website": "https://library.octopus.com/step-templates/ba8581a6-c463-40fb-ab98-3800e761b6f4",
+  "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/web-deploy-publish-website-msdeploy.json",
+  "Category": "Web Deploy",
+  "Properties": {
+    "Octopus.Action.Script.ScriptBody": "[System.Reflection.Assembly]::LoadWithPartialName(\"Microsoft.Web.Deployment\")\n\n# A collection of functions that can be used by script steps to determine where packages installed\n# by previous steps are located on the filesystem.\n \nfunction Find-InstallLocations {\n    $result = @()\n    $OctopusParameters.Keys | foreach {\n        if ($_.EndsWith('].Output.Package.InstallationDirectoryPath')) {\n            $result += $OctopusParameters[$_]\n        }\n    }\n    return $result\n}\n \nfunction Find-InstallLocation($stepName) {\n    $result = $OctopusParameters.Keys | where {\n        $_.Equals(\"Octopus.Action[$stepName].Output.Package.InstallationDirectoryPath\",  [System.StringComparison]::OrdinalIgnoreCase)\n    } | select -first 1\n \n    if ($result) {\n        return $OctopusParameters[$result]\n    }\n \n    throw \"No install location found for step: $stepName\"\n}\n \nfunction Find-SingleInstallLocation {\n    $all = @(Find-InstallLocations)\n    if ($all.Length -eq 1) {\n        return $all[0]\n    }\n    if ($all.Length -eq 0) {\n        throw \"No package steps found\"\n    }\n    throw \"Multiple package steps have run; please specify a single step\"\n}\n\nfunction Test-LastExit($cmd) {\n    if ($LastExitCode -ne 0) {\n        Write-Host \"##octopus[stderr-error]\"\n        write-error \"$cmd failed with exit code: $LastExitCode\"\n    }\n}\n\n$stepName = $OctopusParameters['WebDeployPackageStepName']\n\n$stepPath = \"\"\nif (-not [string]::IsNullOrEmpty($stepName)) {\n    Write-Host \"Finding path to package step: $stepName\"\n    $stepPath = Find-InstallLocation $stepName\n} else {\n    $stepPath = Find-SingleInstallLocation\n}\nWrite-Host \"Package was installed to: $stepPath\"\n\nWrite-Host \"##octopus[stderr-progress]\"\n \n$websiteName = $OctopusParameters['WebsiteName']\n$publishUrl = $OctopusParameters['PublishUrl']\n\n$destBaseOptions = new-object Microsoft.Web.Deployment.DeploymentBaseOptions\n$destBaseOptions.UserName = $OctopusParameters['Username']\n$destBaseOptions.Password = $OctopusParameters['Password']\n$destBaseOptions.ComputerName = \"https://$publishUrl/msdeploy.axd?site=$websiteName\"\n$destBaseOptions.AuthenticationType = \"Basic\"\n\n$syncOptions = new-object Microsoft.Web.Deployment.DeploymentSyncOptions\n$syncOptions.WhatIf = $false\n$syncOptions.UseChecksum = $true\n\n$enableAppOfflineRule = $OctopusParameters['EnableAppOfflineRule']\nif($enableAppOfflineRule -eq $true)\n{\n    $appOfflineRule = $null\n    $availableRules = [Microsoft.Web.Deployment.DeploymentSyncOptions]::GetAvailableRules()\n    if (!$availableRules.TryGetValue('AppOffline', [ref]$appOfflineRule))\n    {\n        throw \"Failed to find AppOffline Rule\"\n    }\n    else\n    {\n        $syncOptions.Rules.Add($appOfflineRule)\n        Write-Host \"Enabled AppOffline Rule\"\n    }\n}\n\n$preserveAppData = [boolean]::Parse($OctopusParameters['PreserveApp_Data'])\n\nif ($preserveAppData -eq $true) {\n    \n    Write-Host \"Skipping delete actions on App_Data\"\n    $skipAppDataFiles = new-object Microsoft.Web.Deployment.DeploymentSkipRule(\"appDataFiles\", \"Delete\", \"filePath\", \"\\App_Data\\.*\", $null)\n    $skipAppDataDirectories = new-object Microsoft.Web.Deployment.DeploymentSkipRule(\"appDataDirectories\", \"Delete\", \"dirPath\", \"\\App_Data(\\.*|$)\", $null)\n\n    $syncOptions.Rules.Add($skipAppDataFiles);\n    $syncOptions.Rules.Add($skipAppDataDirectories);\n}\n\n$SkipSyncPaths = $OctopusParameters['SkipSyncPaths']\nif ([string]::IsNullOrEmpty($SkipSyncPaths) -eq $false)\n{\n    $skipPaths = $SkipSyncPaths.Split(\";\", [System.StringSplitOptions]::RemoveEmptyEntries)\n    foreach($item in $skipPaths) {\n        $index = $skipPaths.IndexOf($item)\n        Write-Host \"Skipping sync of AbsolutePath: $item.\"\n        $name = \"SkipDirective$index\"\n        $value = \"absolutePath=$item\"\n        $skipDirective = new-object Microsoft.Web.Deployment.DeploymentSkipDirective($name, $value)\n        $destBaseOptions.SkipDirectives.Add($skipDirective)\n    }\n}\n\nif ($OctopusParameters['AllowUntrustedCertificate'] -eq $true) {\n    [System.Net.ServicePointManager]::ServerCertificateValidationCallback = { return $true; }\n}\n\nWrite-Host \"Publishing Website\"\n$deploymentObject = [Microsoft.Web.Deployment.DeploymentManager]::CreateObject(\"contentPath\", $stepPath)\n\n$changes = $deploymentObject.SyncTo(\"contentPath\", $websiteName, $destBaseOptions, $syncOptions)\n\n#Write out all the changes.\n$changes | Select-Object -Property *",
+    "Octopus.Action.Script.Syntax": "PowerShell"
+  },
+  "Parameters": [
+    {
+      "Id": null,
+      "Name": "PublishUrl",
+      "Label": "Publish Url",
+      "HelpText": "Publish url to use when publishing the website.",
+      "DefaultValue": null,
+      "DisplaySettings": {}
+    },
+    {
+      "Id": null,
+      "Name": "AllowUntrustedCertificate",
+      "Label": "Allow Untrusted Certificate",
+      "HelpText": "Allow untrusted certificate at the publish URL.",
+      "DefaultValue": "False",
+      "DisplaySettings": {
+        "Octopus.ControlType": "Checkbox"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "WebsiteName",
+      "Label": "Website Name",
+      "HelpText": "Website name to use when publishing the website.",
+      "DefaultValue": null,
+      "DisplaySettings": {}
+    },
+    {
+      "Id": null,
+      "Name": "Username",
+      "Label": "Username",
+      "HelpText": "Username to use when authenticating with the HTTPS server.",
+      "DefaultValue": null,
+      "DisplaySettings": {}
+    },
+    {
+      "Id": null,
+      "Name": "Password",
+      "Label": null,
+      "HelpText": "Password to use when authenticating with the HTTPS server. You should create a sensitive variable in your project variables, and then bind this value.",
+      "DefaultValue": null,
+      "DisplaySettings": {}
+    },
+    {
+      "Id": null,
+      "Name": "WebDeployPackageStepName",
+      "Label": "Package Step Name",
+      "HelpText": "Name of the previously-deployed package step that contains the files that you want to deploy.",
+      "DefaultValue": null,
+      "DisplaySettings": {}
+    },
+    {
+      "Id": null,
+      "Name": "EnableAppOfflineRule",
+      "Label": "Enable App Offline Rule",
+      "HelpText": "Enables the App Offline Rule. [See here for more details](http://www.iis.net/learn/publish/deploying-application-packages/taking-an-application-offline-before-publishing)",
+      "DefaultValue": "False",
+      "DisplaySettings": {
+        "Octopus.ControlType": "Checkbox"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "SkipSyncPaths",
+      "Label": "Skip Paths From Sync",
+      "HelpText": "Semi-colon separated, absolute reg-ex paths to skip/not-sync during deployment. Handy for folders that you don't want deleted etc. (Escape slashes)",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "PreserveApp_Data",
+      "Label": "Preserve App_Data",
+      "HelpText": "The App_Data and its files will not be deleted when this option is enabled",
+      "DefaultValue": "True",
+      "DisplaySettings": {
+        "Octopus.ControlType": "Checkbox"
+      }
+    }
+  ],
+  "LogoAttachmentKey": "CommunityActionTemplates-185",
+  "LogoAttachmentMimeType": "image/png"
+}

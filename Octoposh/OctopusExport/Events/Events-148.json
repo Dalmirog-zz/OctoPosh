@@ -1,23 +1,31 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-148",
-  "RelatedDocumentIds": [],
-  "ProjectId": null,
+  "RelatedDocumentIds": [
+    "Projects-1",
+    "Releases-25"
+  ],
+  "ProjectId": "Projects-1",
   "EnvironmentId": null,
   "TenantId": null,
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-15T17:31:42.0694595-03:00",
-  "Message": "Lifecycle GSN6J532E925KVS was created",
+  "Occurred": "2017-01-18T23:37:56.9356313-03:00",
+  "Message": "TestProject1 release 0.0.31 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 10,
-      "Length": 15
+      "ReferencedDocumentId": "Projects-1",
+      "StartIndex": 0,
+      "Length": 12
+    },
+    {
+      "ReferencedDocumentId": "Releases-25",
+      "StartIndex": 21,
+      "Length": 6
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Session cookie"
 }
