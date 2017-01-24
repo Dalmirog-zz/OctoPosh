@@ -2,20 +2,20 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-250",
   "RelatedDocumentIds": [
-    "LibraryVariableSets-1"
+    "Environments-1"
   ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-19T00:52:19.3484124+00:00",
-  "Message": "Library Variable Set WDWTO3ZMKNGOXO0 was deleted",
+  "Occurred": "2017-01-20T21:24:32.7198427-03:00",
+  "Message": "Machine RFCVVZLYTFB5J9N was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "LibraryVariableSets-1",
-      "StartIndex": 21,
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 8,
       "Length": 15
     }
   ],

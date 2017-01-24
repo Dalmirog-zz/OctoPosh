@@ -1,0 +1,35 @@
+{
+  "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
+  "Id": "CommunityActionTemplates-148",
+  "Name": "Sitecore - Settings & Variable Replacement",
+  "ExternalId": "382b9610-64c4-4c64-a31c-34d07f262ed4",
+  "Description": "The default [Configuration Variables](http://docs.octopusdeploy.com/display/OD/Configuration+files#Configurationfiles-ConfigurationVariables) functionality replaces **appSettings** and **connectionStrings** entries. This step template extends this functionality to the Sitecore configuration **settings** and **sc.variable** nodes within the configuration file(s) that you specify. Variables that are defined for the Octopus project will automatically replace those defined in the target Sitecore configuration file(s).",
+  "Version": 1,
+  "ActionType": "Octopus.Script",
+  "Author": "dthunziker",
+  "Website": "https://library.octopus.com/step-templates/382b9610-64c4-4c64-a31c-34d07f262ed4",
+  "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/sitecore-settings-variable-replacement.json",
+  "Category": "Sitecore",
+  "Properties": {
+    "Octopus.Action.Script.Syntax": "PowerShell",
+    "Octopus.Action.Script.ScriptSource": "Inline",
+    "Octopus.Action.Script.ScriptBody": "$ErrorActionPreference = \"Stop\" \n$configFiles = $OctopusParameters[\"Sitecore.ReplaceConfigFiles\"]\n\nif ([string]::IsNullOrEmpty($configFiles)) {\n    throw [System.ArgumentNullException] \"Sitecore.ReplaceConfigFiles\"\n}\n\n($configFiles -split '[\\r\\n]') | ForEach-Object {\n    \n    $configPath = $_\n\n    if ([string]::IsNullOrEmpty($configPath)) { \n        return\n    }\n    \n    $configPath = $configPath.Trim()\n\n    if (-not (Test-Path -LiteralPath $configPath)) {\n        Write-Host \"$configPath was not found.\"\n        return\n    }\n\n    Write-Host \"Searching Sitecore config file for replacement variables:\" $configPath\n        \n    $configXml = [xml](Get-Content $configPath)\n    $sitecoreNode = $configXml.sitecore\n    \n    # Look for sitecore node for versions prior to 8.1\n    if ($sitecoreNode -eq $null) {\n        $sitecoreNode = $configXml.configuration.sitecore\n    }\n    \n    # Ensure that we have a sitecore node to work from\n    if ($sitecoreNode -eq $null -or $sitecoreNode.settings -eq $null) {\n        Write-Host \"The sitecore settings node was not found in\" $configPath \". Skipping this file...\"\n        return\n    }\n    \n    foreach ($key in $OctopusParameters.Keys) {\n    \n        # Replace Sitecore settings\n        $setting = $sitecoreNode.settings.setting | where { $_.name -ceq $key }\n        if ($setting -ne $null) {\n            Write-Host $setting.name \"setting will be updated from\" $setting.value \"to\" $OctopusParameters[$key] \"in\" $configPath\n            $setting.value = $OctopusParameters[$key]\n        }\n    \n        # Replace Sitecore variables\n        $variable = $sitecoreNode.'sc.variable' | where { $_.name -ceq $key }\n        if ($variable -ne $null) {\n            Write-Host $variable.name \"Sitecore variable will be updated from\" $settingsNode.value \"to\" $OctopusParameters[$key] \"in\" $configPath\n            $variable.value = $OctopusParameters[$key]\n        }\n    \n    }\n    \n    $configXml.Save($configPath)\n}",
+    "Octopus.Action.Script.ScriptFileName": "",
+    "Octopus.Action.Package.NuGetFeedId": "",
+    "Octopus.Action.Package.NuGetPackageId": ""
+  },
+  "Parameters": [
+    {
+      "Id": null,
+      "Name": "Sitecore.ReplaceConfigFiles",
+      "Label": "Sitecore.ReplaceConfigFiles",
+      "HelpText": "Enter the full path to your Sitecore configuration file(s) that contains the **sitecore** node, one per line. For versions of Sitecore prior to 8.1, this should point to your primary Web.config at the root of your website, and for versions 8.1+, to the Sitecore.config file within your App_Config folder. Alternatively, this value can be left empty and defined within your Octopus project's variable collection using the variable name **Sitecore.ReplaceConfigFiles**.",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "MultiLineText"
+      }
+    }
+  ],
+  "LogoAttachmentKey": "CommunityActionTemplates-148",
+  "LogoAttachmentMimeType": "image/png"
+}

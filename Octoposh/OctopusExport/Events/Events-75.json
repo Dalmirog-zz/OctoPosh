@@ -1,23 +1,25 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-75",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Environments-1"
+  ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-14T19:45:48.4581777-03:00",
-  "Message": "Project RFAJ2D3FT6WBS9C was deleted",
+  "Occurred": "2016-12-10T18:49:49.1889424-03:00",
+  "Message": "Machine West was created",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",
       "StartIndex": 8,
-      "Length": 15
+      "Length": 4
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Session cookie"
 }

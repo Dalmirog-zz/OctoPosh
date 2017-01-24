@@ -1,0 +1,87 @@
+{
+  "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
+  "Id": "CommunityActionTemplates-169",
+  "Name": "StatusPage.io - Create Scheduled Maintenance Incident",
+  "ExternalId": "5f8dbdd9-e309-4aa7-b1d3-b090876a959a",
+  "Description": "Creates or updates a scheduled maintenance incident on StatusPage.io",
+  "Version": 5,
+  "ActionType": "Octopus.Script",
+  "Author": "nshenoy",
+  "Website": "https://library.octopus.com/step-templates/5f8dbdd9-e309-4aa7-b1d3-b090876a959a",
+  "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/statuspageio-create-scheduled-maintenance-incident.json",
+  "Category": "StatusPage",
+  "Properties": {
+    "Octopus.Action.Script.Syntax": "PowerShell",
+    "Octopus.Action.Script.ScriptSource": "Inline",
+    "Octopus.Action.RunOnServer": "false",
+    "Octopus.Action.Script.ScriptBody": "## --------------------------------------------------------------------------------------\n## Input\n## --------------------------------------------------------------------------------------\n$pageId = $OctopusParameters['PageId']\n$apiKey = $OctopusParameters['ApiKey']\n$incidentName = $OctopusParameters['IncidentName']\n$incidentStatus = $OctopusParameters['IncidentStatus']\n$incidentMessage = $OctopusParameters['IncidentMessage']\n$componentId = $OctopusParameters['ComponentId']\n\nfunction Validate-Parameter($parameterValue, $parameterName) {\n    if(!$parameterName -contains \"Key\") {\n        Write-Host \"${parameterName}: ${parameterValue}\"\n    }\n\n    if (! $parameterValue) {\n        throw \"$parameterName cannot be empty, please specify a value\"\n    }\n}\n\nfunction New-ScheduledIncident\n{\n    [CmdletBinding()]\n    Param(\n        [Parameter(Mandatory=$true)]\n        [string]$PageId,\n\n        [Parameter(Mandatory=$true)]\n        [string]$ApiKey,\n\n        [Parameter(Mandatory=$true)]\n        [string]$Name,\n\n        [Parameter(Mandatory=$true)]\n        [ValidateSet(\"scheduled\", \"in_progress\", \"verifying\", \"completed\")]\n        [string]$Status,\n        \n        [Parameter(Mandatory=$false)]\n        [string]$Message,\n\n        [Parameter(Mandatory=$false)]\n        [string]$Componentid\n    )\n\n    $date = [System.DateTime]::Now.ToString(\"o\")\n    $url = \"https://api.statuspage.io/v1/pages/$PageId/incidents.json\"\n    $headers = @{\"Authorization\"=\"OAuth $ApiKey\"}\n    $body = \"incident[name]=$Name&incident[status]=$Status&incident[scheduled_for]=$date&incident[scheduled_until]=$date\"\n\n    if($Message)\n    {\n        $body += \"&incident[message]=$Message\"\n    }\n\n    if($Componentid)\n    {\n        $body += \"&incident[component_ids][]=$Componentid\"\n    }\n\n    $response = iwr -UseBasicParsing -Uri $url -Headers $headers -Method POST -Body $body\n    $content = ConvertFrom-Json $response\n    $content.id\n}\n\nValidate-Parameter $pageId -parameterName 'PageId'\nValidate-Parameter $apiKey = -parameterName 'ApiKey'\nValidate-Parameter $incidentName = -parameterName 'IncidentName'\nValidate-Parameter $incidentStatus -parameterName 'IncidentStatus'\n\nWrite-Output \"Creating new scheduled maintenance incident `\"$incidentName`\" ...\"\nNew-ScheduledIncident -PageId $pageId -ApiKey $apiKey -Name $incidentName -Status $incidentStatus -Message $incidentMessage -ComponentId $componentId\n",
+    "Octopus.Action.Script.ScriptFileName": "",
+    "Octopus.Action.Package.FeedId": "",
+    "Octopus.Action.Package.PackageId": ""
+  },
+  "Parameters": [
+    {
+      "Id": null,
+      "Name": "IncidentName",
+      "Label": "Scheduled Maintenance Name",
+      "HelpText": "The name of the scheduled maintenance incident.",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "IncidentStatus",
+      "Label": "Status",
+      "HelpText": "The status of the incident, one of scheduled|in_progress|verifying|completed",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "Select",
+        "Octopus.SelectOptions": "scheduled|Scheduled\nin_progress|In Progress\nverifying|Verifying\ncompleted|Completed"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "IncidentMessage",
+      "Label": "Message",
+      "HelpText": "Optional message to add to scheduled maintenance incident.",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "ComponentId",
+      "Label": "ComponentId",
+      "HelpText": "Optional component id to reference for the scheduled maintenance incident. Talk to your StatusPage.io administrator for details.",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "PageId",
+      "Label": "StatusPage.io Page Id",
+      "HelpText": "StatusPage.io Organization or \"Page ID\". Visit the [API authentication docs](http://doers.statuspage.io/api/authentication/) for details.",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "ApiKey",
+      "Label": "StatusPage.io API Key",
+      "HelpText": "StatusPage.io API key for the organization. Visit the [API Authentication docs](http://doers.statuspage.io/api/authentication/) for details.",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "Sensitive"
+      }
+    }
+  ],
+  "LogoAttachmentKey": "CommunityActionTemplates-169",
+  "LogoAttachmentMimeType": "image/png"
+}

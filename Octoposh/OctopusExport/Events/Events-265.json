@@ -1,25 +1,23 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-265",
-  "RelatedDocumentIds": [
-    "Tenants-1"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
   "EnvironmentId": null,
-  "TenantId": "Tenants-1",
-  "Category": "Deleted",
+  "TenantId": null,
+  "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-19T00:52:24.7353342+00:00",
-  "Message": "Tenant WDWTO3ZMKNGOXO0 was deleted",
+  "Occurred": "2017-01-22T15:22:35.8695202-03:00",
+  "Message": "Project Group whatever was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Tenants-1",
-      "StartIndex": 7,
-      "Length": 15
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 14,
+      "Length": 8
     }
   ],
   "Comments": null,
-  "Details": null,
+  "Details": "<span>{\r&para;<br>  \"Id\": \"ProjectGroups-22\",\r&para;<br>  \"Name\": \"</span><del style=\"background:#ffe6e6;\">TestProjectGroup2</del><ins style=\"background:#e6ffe6;\">whatever</ins><span>\",\r&para;<br>  \"Description\": null\r&para;<br>}</span>",
   "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

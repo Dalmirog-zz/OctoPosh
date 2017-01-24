@@ -1,0 +1,36 @@
+{
+  "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
+  "Id": "CommunityActionTemplates-108",
+  "Name": "Install TopShelf service",
+  "ExternalId": "24189509-ae05-434b-9a28-080b81875e10",
+  "Description": null,
+  "Version": 1,
+  "ActionType": "Octopus.Script",
+  "Author": "georgiosd",
+  "Website": "https://library.octopus.com/step-templates/24189509-ae05-434b-9a28-080b81875e10",
+  "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/topshelf-install.json",
+  "Category": "Topshelf",
+  "Properties": {
+    "Octopus.Action.Script.Syntax": "PowerShell",
+    "Octopus.Action.Script.ScriptSource": "Inline",
+    "Octopus.Action.RunOnServer": "false",
+    "Octopus.Action.Script.ScriptBody": "$step = $OctopusParameters['Unpackage step']\n$exe = $OctopusParameters[\"Octopus.Action[$step].Package.NuGetPackageId\"] + \".exe\"\n\n$outputPath = $OctopusParameters[\"Octopus.Action[$step].Package.CustomInstallationDirectory\"]\nif(!$outputPath) \n{\n    $outputPath = $OctopusParameters[\"Octopus.Action[$step].Output.Package.InstallationDirectoryPath\"]\n}\n\n$path = Join-Path $outputPath $exe\nif(-not (Test-Path $path) )\n{\n    Throw \"$path was not found\"\n}\n\nWrite-Host \"Installing from: $path\"\n& $path install | Write-Host\n& $path start | Write-Host",
+    "Octopus.Action.Script.ScriptFileName": "",
+    "Octopus.Action.Package.FeedId": "",
+    "Octopus.Action.Package.PackageId": ""
+  },
+  "Parameters": [
+    {
+      "Id": null,
+      "Name": "Unpackage step",
+      "Label": "",
+      "HelpText": "The step where you unpack the topshelf service",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "StepName"
+      }
+    }
+  ],
+  "LogoAttachmentKey": "CommunityActionTemplates-108",
+  "LogoAttachmentMimeType": "image/png"
+}

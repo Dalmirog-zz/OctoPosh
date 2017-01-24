@@ -1,0 +1,29 @@
+{
+  "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
+  "Id": "CommunityActionTemplates-195",
+  "Name": "Windows - Get Processor Load",
+  "ExternalId": "072eda4e-eb5f-4603-b3af-e742f6431cd0",
+  "Description": "Get processor load from computer.",
+  "Version": 0,
+  "ActionType": "Octopus.Script",
+  "Author": "Severswoed",
+  "Website": "https://library.octopus.com/step-templates/072eda4e-eb5f-4603-b3af-e742f6431cd0",
+  "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/windows-get-processor-load.json",
+  "Category": "Windows",
+  "Properties": {
+    "Octopus.Action.Script.ScriptBody": "$prcInfo = gwmi win32_processor -computer $ComputerName -ErrorAction STOP\nTry{\n    $Name = \"Proc type: $($prcInfo.Name)\"\n    $Load = \"Proc load: $($prcInfo.LoadPercentage) %\"\n    $Freq = \"Proc frequency: $($prcInfo.CurrentClockSpeed) MHz\"\n    \"$Name `n$Load `n$Freq\"\n}\nCatch\n{\n    Write-Host \"Error getting processor load information.\"\n}",
+    "Octopus.Action.Script.Syntax": "PowerShell"
+  },
+  "Parameters": [
+    {
+      "Id": null,
+      "Name": "ComputerName",
+      "Label": "Computer name",
+      "HelpText": "Name of computer to get processor load from.",
+      "DefaultValue": null,
+      "DisplaySettings": {}
+    }
+  ],
+  "LogoAttachmentKey": "CommunityActionTemplates-195",
+  "LogoAttachmentMimeType": "image/png"
+}

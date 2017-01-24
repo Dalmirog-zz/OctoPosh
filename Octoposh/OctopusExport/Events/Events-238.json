@@ -1,0 +1,25 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-238",
+  "RelatedDocumentIds": [
+    "Machines-1"
+  ],
+  "ProjectId": null,
+  "EnvironmentId": null,
+  "TenantId": null,
+  "Category": "MachineUnavailable",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-01-20T21:23:14.8914471-03:00",
+  "Message": "Machine ListeningTentacle became unavailable",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Machines-1",
+      "StartIndex": 8,
+      "Length": 17
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "Unknown"
+}

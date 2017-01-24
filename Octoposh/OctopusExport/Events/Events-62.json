@@ -1,23 +1,25 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-62",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Users-1"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-14T18:41:45.632653-03:00",
-  "Message": "Project Group T0AXX57PNHP4WWZ was deleted",
+  "Occurred": "2016-12-14T00:41:55.1042719-03:00",
+  "Message": "User admin set password using the admin command line",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 14,
-      "Length": 15
+      "ReferencedDocumentId": "Users-1",
+      "StartIndex": 5,
+      "Length": 5
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Command-line or tools"
 }

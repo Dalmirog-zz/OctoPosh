@@ -1,23 +1,25 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-91",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Machines-1"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-01-14T20:14:11.2668752-03:00",
-  "Message": "Library Variable Set 100G2ASC3B7J5C2 was deleted",
+  "Category": "MachineUnavailable",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-01-18T21:52:18.7804062-03:00",
+  "Message": "Machine ListeningTentacle became unavailable",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 21,
-      "Length": 15
+      "ReferencedDocumentId": "Machines-1",
+      "StartIndex": 8,
+      "Length": 17
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Unknown"
 }
