@@ -55,7 +55,8 @@ Param(
     [string[]]$ScriptArgs,    
     [string]$Configfile = ".\DevEnvConfig.json",
 	[switch]$CreateOctopusInstance = $false,
-	[switch]$RemoveOctopusInstance = $false
+	[switch]$RemoveOctopusInstanceAtEnd = $false,
+	[switch]$RemoveOctopusInstanceAtBeggining = $false    
 )
 
 [Reflection.Assembly]::LoadWithPartialName("System.Security") | Out-Null
@@ -198,12 +199,17 @@ $CreateInstance = 0
 IF($CreateOctopusInstance){
 	$CreateInstance = 1
 }
-$Removeinstance = 0
-IF($RemoveOctopusInstance){
-	$Removeinstance = 1
+$RemoveInstanceAtBeggining = 0
+IF($RemoveOctopusInstanceAtBeggining){
+	$RemoveInstanceAtBeggining = 1
+}
+
+$RemoveInstanceAtEnd = 0
+IF($RemoveOctopusInstanceAtEnd){
+	$RemoveInstanceAtEnd = 1
 }
 
 # Start Cake
 Write-Host "Running build script..."
-Invoke-Expression "& `"$CAKE_EXE`" `"$Script`" -target=`"$Target`" -configuration=`"$Configuration`" -verbosity=`"$Verbosity`" $UseMono $UseDryRun $UseExperimental $ScriptArgs -CreateInstance=`"$CreateInstance`" -RemoveInstance=`"$RemoveInstance`" -ConfigFile=`"$ConfigFile`""
+Invoke-Expression "& `"$CAKE_EXE`" `"$Script`" -target=`"$Target`" -configuration=`"$Configuration`" -verbosity=`"$Verbosity`" $UseMono $UseDryRun $UseExperimental $ScriptArgs -CreateInstance=`"$CreateInstance`" -RemoveInstanceAtEnd=`"$RemoveInstanceAtEnd`" -ConfigFile=`"$ConfigFile`" -RemoveInstanceAtBeggining=`"$RemoveInstanceAtBeggining`""
 exit $LASTEXITCODE

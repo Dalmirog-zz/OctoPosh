@@ -4,11 +4,11 @@ Param(
 	[ValidateSet("StopService","StartService","ConfigFile","CreateInstance","RemoveInstance","ImportBackup","ExportBackup")]
 	[string]$Action, 
 
-	#To create an instance you need to pass the STRING "True" to this param and the string "CreateInstance" to the [Action] param. Couldn't figure out how to tell cake to avoid a task based on a param, so I'm always running the Action "CreateInstance" but only actually creating it if this is "True".
+	#To create an instance you need to set this to $True and the option "CreateInstance" to the $Action param. Only if these 2 are set that way the instance will be created. Couldn't figure out how to tell cake to avoid a task based on a param, so I'm always running the Action "CreateInstance" but only actually creating it if this param is $True.
 	[bool]$CreateInstance = $false, 
 	
 	#Same story as with $CreateInstance
-	[bool]$RemoveInstance = $false, 
+	[bool]$RemoveInstance = $false,
 
 	#Path of the config.json file to be used by this script which should hold connection strings, Octopus user/pass and all that.	
 	[string]$ConfigFile = ".\devenvconfig.json"
@@ -29,6 +29,7 @@ If(Test-Path HKLM:\SOFTWARE\Octopus\OctopusServer\){
     $OctopusServerexe = join-path $OctopusInstallPath "Octopus.Server.exe"
     $OctopusMigratorexe = join-path $OctopusInstallPath "Octopus.Migrator.exe"
 }
+
 else{
     Throw "VM [$($env:computername)] doesn't have the Octopus Server installed. It needs to be installed to run tests against it"
 }
@@ -45,7 +46,9 @@ function CreateOctopusInstance {
 
 #$OctopusExportDir = (Resolve-Path $PSScriptRoot\..\DataBackup\OctopusExport).path #Relative to the location of the .cake script, NOT to the location of this ps1 script.
 $OctopusExportDir = ".\OctopusExport"
+
 Write-Output "Using config file: $ConfigFile"
+
 $Config = Get-Content $ConfigFile | ConvertFrom-Json
 
 If($Action -eq "CreateInstance"){
@@ -64,6 +67,27 @@ If($Action -eq "CreateInstance"){
 		Write-Output "Not attempting to create Instance: $($Config.OctopusInstance)"
 	}
 }
+elseif ($Action -eq "RemoveInstance"){
+    If($RemoveInstance){
+        If(ValidateIfInstanceExists){
+            Write-Output "Removing Octopus Instance: $($Config.OctopusInstance)"
+            & $OctopusServerexe service --instance $Config.OctopusInstance --stop --uninstall
+            & $OctopusServerexe delete-instance --instance $Config.OctopusInstance
+        
+            $OctoposhDBExe = get-item ".\Octoposh.Database\bin\Release\Octoposh.Database.exe"
+
+            & $OctoposhDBExe "$($config.ConnectionString)"
+        }
+        else{
+            Write-Output "Not attempting to remove Instance: $($Config.OctopusInstance) because it does not exist on $($env:computername)"
+        }
+    }
+    
+    else
+    {
+        Write-Output "Not attempting to remove Instance: $($Config.OctopusInstance)"
+    }
+}
 else{
 	If(ValidateIfInstanceExists){
 		switch ($Action)
@@ -79,18 +103,6 @@ else{
 				}
 			"ExportBackup" {				
 				& $OctopusMigratorexe export --instance $config.OctopusInstance --directory $OctopusExportDir --password $config.OctopusPassword
-			}
-
-			"RemoveInstance" {
-				If($RemoveInstance){
-					Write-Output "Removing Octopus Instance: $($Config.OctopusInstance)"
-					& $OctopusServerexe service --instance $Config.OctopusInstance --stop --uninstall
-					& $OctopusServerexe delete-instance --instance $Config.OctopusInstance
-				}
-				else
-				{
-					Write-Output "Not attempting to remove Instance: $($Config.OctopusInstance)"
-				}				
 			}
 		}
 	}
