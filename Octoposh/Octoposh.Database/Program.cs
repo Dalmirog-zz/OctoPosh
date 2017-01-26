@@ -45,7 +45,7 @@ namespace Octoposh.Database
             }
 
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Success!");
+            Console.WriteLine("Success! Database [{0}] was deleted",databaseToDelete);
             Console.ResetColor();
             return 0;
         }
