@@ -29,6 +29,8 @@ namespace Octoposh.Database
                     .LogToConsole()
                     .Build();
 
+            Console.WriteLine("Deleting database [{0}]",databaseToDelete);
+
             var result = upgrader.PerformUpgrade();
 
             if (!result.Successful)
