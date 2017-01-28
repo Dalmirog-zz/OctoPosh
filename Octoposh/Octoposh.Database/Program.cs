@@ -13,9 +13,12 @@ namespace Octoposh.Database
 {
     class Program
     {
+        //This console takes the first argument passed to it, which should be a connection string, and feeds it to Scripts/dropDatabase.SQL to drop the DB referenced in the connection string (if it exists)
         static int Main(string[] args)
         {
             var connectionString = args.FirstOrDefault();
+
+            Console.WriteLine("Using connection string: \n {0} \n",connectionString);
 
             var builder = new SqlConnectionStringBuilder(connectionString);
             var databaseToDelete = builder.InitialCatalog;
@@ -38,9 +41,6 @@ namespace Octoposh.Database
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(result.Error);
                 Console.ResetColor();
-#if DEBUG
-                Console.ReadLine();
-#endif
                 return -1;
             }
 
