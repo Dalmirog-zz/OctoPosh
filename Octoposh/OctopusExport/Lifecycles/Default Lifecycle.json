@@ -3,7 +3,41 @@
   "Id": "Lifecycles-1",
   "Name": "Default Lifecycle",
   "Description": null,
-  "Phases": [],
+  "Phases": [
+    {
+      "Id": "0d38db58-b961-4c93-a6f2-520a33ecc185",
+      "Name": "Dev",
+      "AutomaticDeploymentTargets": [],
+      "OptionalDeploymentTargets": [
+        "Environments-1"
+      ],
+      "MinimumEnvironmentsBeforePromotion": 0,
+      "ReleaseRetentionPolicy": null,
+      "TentacleRetentionPolicy": null
+    },
+    {
+      "Id": "cb861a2f-979c-42c8-8aca-8854b28494db",
+      "Name": "Stage",
+      "AutomaticDeploymentTargets": [],
+      "OptionalDeploymentTargets": [
+        "Environments-2"
+      ],
+      "MinimumEnvironmentsBeforePromotion": 0,
+      "ReleaseRetentionPolicy": null,
+      "TentacleRetentionPolicy": null
+    },
+    {
+      "Id": "82aab0cc-6d5a-47f2-80f1-e5c0914162e2",
+      "Name": "Prod",
+      "AutomaticDeploymentTargets": [],
+      "OptionalDeploymentTargets": [
+        "Environments-22"
+      ],
+      "MinimumEnvironmentsBeforePromotion": 0,
+      "ReleaseRetentionPolicy": null,
+      "TentacleRetentionPolicy": null
+    }
+  ],
   "ReleaseRetentionPolicy": {
     "Unit": "Items",
     "QuantityToKeep": 0,

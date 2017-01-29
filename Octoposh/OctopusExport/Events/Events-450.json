@@ -1,22 +1,20 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-450",
-  "RelatedDocumentIds": [
-    "Teams-2"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
+  "Category": "MachineDeleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-23T05:32:57.4184421+00:00",
-  "Message": "Team unmodified_TestTeam was created",
+  "Occurred": "2016-12-14T01:09:46.9208052-03:00",
+  "Message": "Machine West was deleted (domain-event)",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Teams-2",
-      "StartIndex": 5,
-      "Length": 19
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 8,
+      "Length": 4
     }
   ],
   "Comments": null,

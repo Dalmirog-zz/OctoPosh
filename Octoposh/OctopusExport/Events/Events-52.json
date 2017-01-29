@@ -2,7 +2,8 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-52",
   "RelatedDocumentIds": [
-    "Projects-1"
+    "Projects-1",
+    "Releases-8"
   ],
   "ProjectId": "Projects-1",
   "EnvironmentId": null,
@@ -10,13 +11,18 @@
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2016-12-16T02:25:05.5400452-03:00",
-  "Message": "Project TestProject was created",
+  "Occurred": "2017-01-18T23:36:43.6052325-03:00",
+  "Message": "TestProject1 release 0.0.16 was created",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "Projects-1",
-      "StartIndex": 8,
-      "Length": 11
+      "StartIndex": 0,
+      "Length": 12
+    },
+    {
+      "ReferencedDocumentId": "Releases-8",
+      "StartIndex": 21,
+      "Length": 6
     }
   ],
   "Comments": null,

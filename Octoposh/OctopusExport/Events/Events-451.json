@@ -2,21 +2,22 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-451",
   "RelatedDocumentIds": [
-    "Users-21"
+    "Machines-1",
+    "Environments-1"
   ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-23T05:33:21.3105137+00:00",
-  "Message": "User unmodified_TestUser has been created ",
+  "Occurred": "2016-12-14T01:10:54.8776306-03:00",
+  "Message": "Machine ListeningTentacle was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Users-21",
-      "StartIndex": 5,
-      "Length": 19
+      "ReferencedDocumentId": "Machines-1",
+      "StartIndex": 8,
+      "Length": 17
     }
   ],
   "Comments": null,

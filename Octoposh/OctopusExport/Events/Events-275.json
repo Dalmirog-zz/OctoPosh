@@ -1,23 +1,25 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-275",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "LibraryVariableSets-1"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-22T15:42:56.4708664-03:00",
-  "Message": "Library Variable Set I7716UCQNL5KR9H was deleted",
+  "Occurred": "2017-01-22T23:52:35.9185213-03:00",
+  "Message": "Library Variable Set unmodified_LibraryVariableset was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
+      "ReferencedDocumentId": "LibraryVariableSets-1",
       "StartIndex": 21,
-      "Length": 15
+      "Length": 29
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Session cookie"
 }

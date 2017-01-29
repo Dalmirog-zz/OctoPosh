@@ -3,39 +3,37 @@
   "Id": "ServerTasks-33",
   "Name": "Health",
   "Arguments": {
-    "Timeout": "00:05:00",
+    "EnvironmentId": null,
+    "MachinePolicyId": null,
     "MachineIds": [
-      "Machines-3"
-    ]
+      null
+    ],
+    "Timeout": "00:05:00",
+    "MachineTimeout": "00:01:00",
+    "OnlyTestConnection": false
   },
-  "Description": "Check OfflineTarget health",
-  "QueueTime": "2017-01-22T00:13:09.4310536-03:00",
+  "Description": "Test connectivity to DGQQ2AP7CNQFEV3",
+  "QueueTime": "2017-01-23T02:31:04.8077398-03:00",
   "QueueTimeExpiry": "10675199.02:48:05.4775807",
   "ExecutionTimeExpiry": "00:00:00",
-  "StartTime": "2017-01-22T00:13:09.4960554-03:00",
-  "LastUpdatedTime": "2017-01-22T00:13:09.9430508-03:00",
-  "CompletedTime": "2017-01-22T00:13:09.9430508-03:00",
-  "ErrorMessage": "The health check failed. One or more deployment targets were not available.",
-  "ConcurrencyTag": "Health",
-  "State": "Failed",
+  "StartTime": "2017-01-23T02:31:04.8277415-03:00",
+  "LastUpdatedTime": "2017-01-23T02:31:05.0967421-03:00",
+  "CompletedTime": "2017-01-23T02:31:05.0967421-03:00",
+  "ErrorMessage": "",
+  "ConcurrencyTag": null,
+  "State": "Success",
   "HasPendingInterruptions": false,
-  "HasWarningsOrErrors": true,
+  "HasWarningsOrErrors": false,
   "ServerVersion": "3.7.4+Branch.master.Sha.403a70b03ab7c4b06d0bcb637b19afa44456c672",
   "ServerNode": "DEVBOX",
-  "LogDifferentiationToken": "LU28FE73EV",
+  "LogDifferentiationToken": "U24648SCC9",
   "AdditionalDescription": null,
   "DurationSeconds": 0,
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "EnvironmentId": null,
   "TenantId": null,
-  "ExtendedViewLogPermissions": [
-    "EnvironmentView",
-    "MachineView"
-  ],
-  "ExtendedCreatePermissions": [
-    "EnvironmentView",
-    "MachineEdit"
-  ],
+  "ExtendedViewLogPermissions": [],
+  "ExtendedCreatePermissions": [],
   "CanRerun": true,
   "Properties": {}
 }

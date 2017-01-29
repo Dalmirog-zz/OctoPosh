@@ -1,23 +1,25 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-394",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Users-21"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-15T17:31:44.2979168-03:00",
-  "Message": "Team GSN6J532E925KVS was created",
+  "Occurred": "2017-01-23T02:33:21.3105137-03:00",
+  "Message": "User unmodified_TestUser has been created ",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
+      "ReferencedDocumentId": "Users-21",
       "StartIndex": 5,
-      "Length": 15
+      "Length": 19
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Session cookie"
 }

@@ -1,0 +1,835 @@
+{
+  "$type": "Octopus.Core.Model.Variables.VariableSet, Octopus.Core",
+  "Id": "variableset-Deployments-30",
+  "OwnerId": "Deployments-30",
+  "IsFrozen": true,
+  "Variables": [
+    {
+      "Id": "66dae52c-21bd-4fcc-a319-49dc0afdbbbe",
+      "Name": "Octopus.Deployment.Id",
+      "Value": "Deployments-30"
+    },
+    {
+      "Id": "6ef514ff-a0fc-473e-a52e-07821405dff0",
+      "Name": "Octopus.Deployment.Name",
+      "Value": "Deploy to Dev"
+    },
+    {
+      "Id": "ce7fc0ab-399c-4016-936c-ba49e82a1906",
+      "Name": "Octopus.Deployment.Created",
+      "Value": "Sunday, January 29, 2017 5:10:19 AM"
+    },
+    {
+      "Id": "60eb8ee0-911c-4fd0-aa5e-376eeccc1a69",
+      "Name": "Octopus.Deployment.CreatedUtc",
+      "Value": "1/29/2017 8:10:19 AM +00:00"
+    },
+    {
+      "Id": "26661649-3df8-4c70-ae15-9f007962bbe2",
+      "Name": "Octopus.Deployment.Comments",
+      "Value": null
+    },
+    {
+      "Id": "e4791bc2-9285-4ba7-be02-7e5bb6bd717c",
+      "Name": "Octopus.Deployment.ForcePackageDownload",
+      "Value": "False"
+    },
+    {
+      "Id": "e040ce3a-4bf8-4210-92bc-b715247d6ee6",
+      "Name": "Octopus.Deployment.SpecificMachines",
+      "Value": null
+    },
+    {
+      "Id": "83fb8a7c-d046-47d8-8c54-414da46e0c6c",
+      "Name": "Octopus.Project.Id",
+      "Value": "Projects-2"
+    },
+    {
+      "Id": "ebe29994-e7c3-4d33-b2a9-95b9ebbb2e64",
+      "Name": "Octopus.Project.Name",
+      "Value": "TestProject2"
+    },
+    {
+      "Id": "7b37a379-f03c-4291-9be0-1ff24daa8d39",
+      "Name": "Octopus.ProjectGroup.Id",
+      "Value": "ProjectGroups-21"
+    },
+    {
+      "Id": "8bab95e2-b9e2-4ff3-9d20-b2e96622aa41",
+      "Name": "Octopus.ProjectGroup.Name",
+      "Value": "TestProjectGroup1"
+    },
+    {
+      "Id": "7bc82d30-62b9-42da-a626-22731d922e92",
+      "Name": "Octopus.Environment.Id",
+      "Value": "Environments-1"
+    },
+    {
+      "Id": "9b54a469-e85f-4635-8c6e-1486507939ee",
+      "Name": "Octopus.Environment.Name",
+      "Value": "Dev"
+    },
+    {
+      "Id": "a89cb388-cad0-4fbc-8b1f-790d97602718",
+      "Name": "Octopus.Environment.SortOrder",
+      "Value": "0"
+    },
+    {
+      "Id": "0bc9edf3-59f2-4373-8f77-ac0fa9e95e84",
+      "Name": "Octopus.Release.Number",
+      "Value": "0.0.3"
+    },
+    {
+      "Id": "b54f04f4-ffa5-4b83-9833-2aedca557ffb",
+      "Name": "Octopus.Release.Notes",
+      "Value": null
+    },
+    {
+      "Id": "283fdeb1-95ed-406d-b3f4-11674ee3227a",
+      "Name": "Octopus.Task.Id",
+      "Value": "ServerTasks-75"
+    },
+    {
+      "Id": "fd58445a-ea68-46bd-8e2a-a49c57b2b25a",
+      "Name": "Octopus.Task.Name",
+      "Value": "Deploy"
+    },
+    {
+      "Id": "6b886bf6-67b7-4698-869b-12b5b49c8b85",
+      "Name": "Octopus.Task.Argument[DeploymentId]",
+      "Value": "Deployments-30"
+    },
+    {
+      "Id": "9900642b-c778-4f0b-b794-5b3398b2b155",
+      "Name": "Octopus.Release.Channel.Id",
+      "Value": "Channels-2"
+    },
+    {
+      "Id": "3242c978-cee4-4faf-88c1-6e2091b8fac7",
+      "Name": "Octopus.Release.Channel.Name",
+      "Value": "Default"
+    },
+    {
+      "Id": "37f18632-c056-469e-8958-c361e50b7bbc",
+      "Name": "Octopus.Deployment.Machines",
+      "Value": "Machines-2,Machines-4"
+    },
+    {
+      "Id": "0598745d-8903-418c-92b7-ce40eeb73c53",
+      "Name": "Octopus.Environment.MachinesInRole[WebApps]",
+      "Value": "Machines-2,Machines-4"
+    },
+    {
+      "Id": "0cd79717-66e4-4545-a50e-5399d140cd91",
+      "Name": "Octopus.Web.BaseUrl",
+      "Value": "http://DEVBOX:82"
+    },
+    {
+      "Id": "1d8c2bc0-50f8-4917-ab1b-5602789022cd",
+      "Name": "Octopus.Web.DeploymentLink",
+      "Value": "/app#/deployments/Deployments-30"
+    },
+    {
+      "Id": "cc909c31-9062-4dbc-9a87-da5822c1f2a0",
+      "Name": "Octopus.Web.ReleaseLink",
+      "Value": "/app#/releases/Releases-44"
+    },
+    {
+      "Id": "f86d0982-b472-4b44-9020-03de386cba3b",
+      "Name": "Octopus.Web.ProjectLink",
+      "Value": "/app#/projects/Projects-2"
+    },
+    {
+      "Id": "8e5b6743-e1ce-491b-aedc-841795b71bb0",
+      "Name": "Octopus.Machine.Id",
+      "Value": "Machines-2",
+      "Scope": {
+        "Machine": [
+          "Machines-2"
+        ]
+      }
+    },
+    {
+      "Id": "42949693-bf7f-4dbb-9464-ecd025659418",
+      "Name": "Octopus.Machine.Name",
+      "Value": "North",
+      "Scope": {
+        "Machine": [
+          "Machines-2"
+        ]
+      }
+    },
+    {
+      "Id": "6746394b-571b-4369-b2e3-eef1bada7ef0",
+      "Name": "Octopus.Machine.Roles",
+      "Value": "WebApps",
+      "Scope": {
+        "Machine": [
+          "Machines-2"
+        ]
+      }
+    },
+    {
+      "Id": "9d44a851-3678-4827-9d4e-fc7085754c0e",
+      "Name": "Octopus.Tentacle.Agent.ApplicationDirectoryPath",
+      "Value": "#{env:TentacleApplications}",
+      "Scope": {
+        "Machine": [
+          "Machines-2"
+        ]
+      }
+    },
+    {
+      "Id": "a54df9a1-d20b-48f4-b5c0-7fd563774864",
+      "Name": "Octopus.Tentacle.Agent.InstanceName",
+      "Value": "#{env:TentacleInstanceName}",
+      "Scope": {
+        "Machine": [
+          "Machines-2"
+        ]
+      }
+    },
+    {
+      "Id": "b63cc8ed-81ed-4611-b8f1-9a6457d6fc42",
+      "Name": "Octopus.Tentacle.Agent.ProgramDirectoryPath",
+      "Value": "#{env:TentacleProgramDirectoryPath}",
+      "Scope": {
+        "Machine": [
+          "Machines-2"
+        ]
+      }
+    },
+    {
+      "Id": "5d5e6ceb-7169-4e83-930c-7ab436486e9e",
+      "Name": "Octopus.Machine.CommunicationStyle",
+      "Value": "None",
+      "Scope": {
+        "Machine": [
+          "Machines-2"
+        ]
+      }
+    },
+    {
+      "Id": "8428e0bb-b46e-429b-8326-a3cf8654de98",
+      "Name": "Octopus.Machine.Tags",
+      "Value": null,
+      "Scope": {
+        "Machine": [
+          "Machines-2"
+        ]
+      }
+    },
+    {
+      "Id": "7444dd19-2690-493c-88e4-1255a0da947d",
+      "Name": "Octopus.Machine.TenantIds",
+      "Value": null,
+      "Scope": {
+        "Machine": [
+          "Machines-2"
+        ]
+      }
+    },
+    {
+      "Id": "d04e702e-8d78-4b08-9ef1-aaa6fc04992a",
+      "Name": "Octopus.Machine.Id",
+      "Value": "Machines-4",
+      "Scope": {
+        "Machine": [
+          "Machines-4"
+        ]
+      }
+    },
+    {
+      "Id": "d54dcd37-ee3f-4546-a8ed-c84a8abdbadb",
+      "Name": "Octopus.Machine.Name",
+      "Value": "South",
+      "Scope": {
+        "Machine": [
+          "Machines-4"
+        ]
+      }
+    },
+    {
+      "Id": "4d964bf2-364e-4ae1-9e62-35e414e2b846",
+      "Name": "Octopus.Machine.Roles",
+      "Value": "WebApps",
+      "Scope": {
+        "Machine": [
+          "Machines-4"
+        ]
+      }
+    },
+    {
+      "Id": "547ab199-298a-4e67-a727-6f3993d82795",
+      "Name": "Octopus.Tentacle.Agent.ApplicationDirectoryPath",
+      "Value": "#{env:TentacleApplications}",
+      "Scope": {
+        "Machine": [
+          "Machines-4"
+        ]
+      }
+    },
+    {
+      "Id": "51693540-2a21-4c55-8d28-fb328e53970f",
+      "Name": "Octopus.Tentacle.Agent.InstanceName",
+      "Value": "#{env:TentacleInstanceName}",
+      "Scope": {
+        "Machine": [
+          "Machines-4"
+        ]
+      }
+    },
+    {
+      "Id": "284be204-e564-48e0-8cd6-e404e24a2b88",
+      "Name": "Octopus.Tentacle.Agent.ProgramDirectoryPath",
+      "Value": "#{env:TentacleProgramDirectoryPath}",
+      "Scope": {
+        "Machine": [
+          "Machines-4"
+        ]
+      }
+    },
+    {
+      "Id": "3ba4255a-87ff-46af-8641-6cde3073ccbe",
+      "Name": "Octopus.Machine.CommunicationStyle",
+      "Value": "None",
+      "Scope": {
+        "Machine": [
+          "Machines-4"
+        ]
+      }
+    },
+    {
+      "Id": "c55beb87-2f91-4068-960a-f925538dd0da",
+      "Name": "Octopus.Machine.Tags",
+      "Value": null,
+      "Scope": {
+        "Machine": [
+          "Machines-4"
+        ]
+      }
+    },
+    {
+      "Id": "b393c877-8b6a-4837-a47b-7bfd0b07b788",
+      "Name": "Octopus.Machine.TenantIds",
+      "Value": null,
+      "Scope": {
+        "Machine": [
+          "Machines-4"
+        ]
+      }
+    },
+    {
+      "Id": "538a6ab8-d577-48a8-85ac-268943c6ac89",
+      "Name": "Octopus.Action.Number",
+      "Value": "1",
+      "Scope": {
+        "Action": [
+          "f8d77354-c9c6-4a07-916e-0157397ce2dc"
+        ]
+      }
+    },
+    {
+      "Id": "1be06eb6-7aa3-4fac-844b-9121de335ab9",
+      "Name": "Octopus.Action.StepName",
+      "Value": "Step 1",
+      "Scope": {
+        "Action": [
+          "f8d77354-c9c6-4a07-916e-0157397ce2dc"
+        ]
+      }
+    },
+    {
+      "Id": "b230133e-084b-48b1-8b79-0d4c4fc9cfda",
+      "Name": "Octopus.Step.Number",
+      "Value": "1",
+      "Scope": {
+        "Action": [
+          "f8d77354-c9c6-4a07-916e-0157397ce2dc"
+        ]
+      }
+    },
+    {
+      "Id": "178e834d-9e46-48d9-b3ce-6ff48b2f15aa",
+      "Name": "Octopus.Step.Id",
+      "Value": "313297ff-02ef-4e52-84ab-9d78e3358725",
+      "Scope": {
+        "Action": [
+          "f8d77354-c9c6-4a07-916e-0157397ce2dc"
+        ]
+      }
+    },
+    {
+      "Id": "f55d0576-ae44-4acf-be8d-8e44b670db8d",
+      "Name": "Octopus.Step.Name",
+      "Value": "Step 1",
+      "Scope": {
+        "Action": [
+          "f8d77354-c9c6-4a07-916e-0157397ce2dc"
+        ]
+      }
+    },
+    {
+      "Id": "a83d561a-50cc-462e-ba09-9456517a4e61",
+      "Name": "Octopus.Action.TargetRoles",
+      "Value": "WebApps",
+      "Scope": {
+        "Action": [
+          "f8d77354-c9c6-4a07-916e-0157397ce2dc"
+        ]
+      }
+    },
+    {
+      "Id": "f78ddcdb-486f-404d-a9d1-3c4b08d1cca9",
+      "Name": "Octopus.Action.Id",
+      "Value": "f8d77354-c9c6-4a07-916e-0157397ce2dc",
+      "Scope": {
+        "Action": [
+          "f8d77354-c9c6-4a07-916e-0157397ce2dc"
+        ]
+      }
+    },
+    {
+      "Id": "65e9bf31-7f96-49dd-aae3-c8a6668161ce",
+      "Name": "Octopus.Action.Name",
+      "Value": "Step 1",
+      "Scope": {
+        "Action": [
+          "f8d77354-c9c6-4a07-916e-0157397ce2dc"
+        ]
+      }
+    },
+    {
+      "Id": "9b7e0cba-1aec-4e44-83bf-4abe990e4cad",
+      "Name": "Octopus.Action.RunOnServer",
+      "Value": "false",
+      "Scope": {
+        "Action": [
+          "f8d77354-c9c6-4a07-916e-0157397ce2dc"
+        ]
+      }
+    },
+    {
+      "Id": "7207c9c0-b6c3-401d-bd24-92eabef3729d",
+      "Name": "Octopus.Action.Script.Syntax",
+      "Value": "PowerShell",
+      "Scope": {
+        "Action": [
+          "f8d77354-c9c6-4a07-916e-0157397ce2dc"
+        ]
+      }
+    },
+    {
+      "Id": "9b12d549-d622-453c-87fe-23f4e30e4385",
+      "Name": "Octopus.Action.Script.ScriptSource",
+      "Value": "Inline",
+      "Scope": {
+        "Action": [
+          "f8d77354-c9c6-4a07-916e-0157397ce2dc"
+        ]
+      }
+    },
+    {
+      "Id": "46affdbd-0e89-4224-82ce-704503afa8e4",
+      "Name": "Octopus.Action.Script.ScriptBody",
+      "Value": "$project = $OctopusParameters['Octopus.Project.Name']\n$stepname = $OctopusParameters['Octopus.Step.Number']\n\n\"Hello from step [$stepname] of project [$Project]\"",
+      "Scope": {
+        "Action": [
+          "f8d77354-c9c6-4a07-916e-0157397ce2dc"
+        ]
+      }
+    },
+    {
+      "Id": "34ef33e3-80a9-4000-b835-5a6c0dbaf6bf",
+      "Name": "Octopus.Action[Step 1].Number",
+      "Value": "1"
+    },
+    {
+      "Id": "551c00fc-b54d-4eef-a8e5-66f8e0b7856e",
+      "Name": "Octopus.Action[Step 1].StepName",
+      "Value": "Step 1"
+    },
+    {
+      "Id": "b3f10946-46e8-48c7-aa7d-a8be58e9f22d",
+      "Name": "Octopus.Action[Step 1].TargetRoles",
+      "Value": "WebApps"
+    },
+    {
+      "Id": "de30d0a6-33b7-45ae-8c17-cb7b59f95cf6",
+      "Name": "Octopus.Action[Step 1].Id",
+      "Value": "f8d77354-c9c6-4a07-916e-0157397ce2dc"
+    },
+    {
+      "Id": "15d76bb8-a100-47bf-a419-eb5f6e45bdee",
+      "Name": "Octopus.Action[Step 1].Name",
+      "Value": "Step 1"
+    },
+    {
+      "Id": "3e737e30-4e24-4872-a90b-8c63d07bbbab",
+      "Name": "Octopus.Action[Step 1].RunOnServer",
+      "Value": "false"
+    },
+    {
+      "Id": "dc26f494-6de8-43d2-9a99-bf683f84f3a8",
+      "Name": "Octopus.Action[Step 1].Script.Syntax",
+      "Value": "PowerShell"
+    },
+    {
+      "Id": "416881f9-7f3f-4ea3-90c1-3aba1d872f64",
+      "Name": "Octopus.Action[Step 1].Script.ScriptSource",
+      "Value": "Inline"
+    },
+    {
+      "Id": "1c13174a-525f-4ca0-aa1d-f35f8b695f92",
+      "Name": "Octopus.Action[Step 1].Script.ScriptBody",
+      "Value": "$project = $OctopusParameters['Octopus.Project.Name']\n$stepname = $OctopusParameters['Octopus.Step.Number']\n\n\"Hello from step [$stepname] of project [$Project]\""
+    },
+    {
+      "Id": "1112681c-4870-4e1d-af2d-3b265e6e29de",
+      "Name": "Octopus.Step[Step 1].Number",
+      "Value": "1"
+    },
+    {
+      "Id": "3132e422-0782-4af4-92c3-89e201a62c7e",
+      "Name": "Octopus.Step[Step 1].Id",
+      "Value": "313297ff-02ef-4e52-84ab-9d78e3358725"
+    },
+    {
+      "Id": "b7c0195f-2f33-4855-8134-e509ab6e992b",
+      "Name": "Octopus.Step[Step 1].Name",
+      "Value": "Step 1"
+    },
+    {
+      "Id": "6ff66c4d-88b4-4321-9e4e-714e510c7bf2",
+      "Name": "Octopus.Action.Number",
+      "Value": "2",
+      "Scope": {
+        "Action": [
+          "4d3443c1-45cf-4be3-bc63-809384ad6141"
+        ]
+      }
+    },
+    {
+      "Id": "0a6752d6-71bb-4f52-b97f-f4d7e7856a18",
+      "Name": "Octopus.Action.StepName",
+      "Value": "Fail Step",
+      "Scope": {
+        "Action": [
+          "4d3443c1-45cf-4be3-bc63-809384ad6141"
+        ]
+      }
+    },
+    {
+      "Id": "c76cf9a7-2276-44f7-8340-1dd17e0747a3",
+      "Name": "Octopus.Step.Number",
+      "Value": "2",
+      "Scope": {
+        "Action": [
+          "4d3443c1-45cf-4be3-bc63-809384ad6141"
+        ]
+      }
+    },
+    {
+      "Id": "079087b0-7306-444c-80df-50cf34e6ecae",
+      "Name": "Octopus.Step.Id",
+      "Value": "ee5ceb23-6c98-4b9d-8503-02023936bd0b",
+      "Scope": {
+        "Action": [
+          "4d3443c1-45cf-4be3-bc63-809384ad6141"
+        ]
+      }
+    },
+    {
+      "Id": "443f1b44-adb0-4608-af6c-8e0af964aa32",
+      "Name": "Octopus.Step.Name",
+      "Value": "Fail Step",
+      "Scope": {
+        "Action": [
+          "4d3443c1-45cf-4be3-bc63-809384ad6141"
+        ]
+      }
+    },
+    {
+      "Id": "2db81c7f-b690-4246-a779-bd4727c15761",
+      "Name": "Octopus.Action.TargetRoles",
+      "Value": "WebApps",
+      "Scope": {
+        "Action": [
+          "4d3443c1-45cf-4be3-bc63-809384ad6141"
+        ]
+      }
+    },
+    {
+      "Id": "8119403a-d649-4971-a37d-3cffac4074f9",
+      "Name": "Octopus.Action.Id",
+      "Value": "4d3443c1-45cf-4be3-bc63-809384ad6141",
+      "Scope": {
+        "Action": [
+          "4d3443c1-45cf-4be3-bc63-809384ad6141"
+        ]
+      }
+    },
+    {
+      "Id": "d0d5116d-a1b1-4a0a-aa46-7ae38ca4dfa1",
+      "Name": "Octopus.Action.Name",
+      "Value": "Fail Step",
+      "Scope": {
+        "Action": [
+          "4d3443c1-45cf-4be3-bc63-809384ad6141"
+        ]
+      }
+    },
+    {
+      "Id": "22cc4957-e4ca-4a72-b32a-6f14e27f9458",
+      "Name": "Octopus.Action.RunOnServer",
+      "Value": "false",
+      "Scope": {
+        "Action": [
+          "4d3443c1-45cf-4be3-bc63-809384ad6141"
+        ]
+      }
+    },
+    {
+      "Id": "d8d0caa6-4d6f-4005-8b8a-bdba4aebee57",
+      "Name": "Octopus.Action.Script.Syntax",
+      "Value": "PowerShell",
+      "Scope": {
+        "Action": [
+          "4d3443c1-45cf-4be3-bc63-809384ad6141"
+        ]
+      }
+    },
+    {
+      "Id": "d2362ca0-788a-4e45-9a2a-a68a398c8f9f",
+      "Name": "Octopus.Action.Script.ScriptSource",
+      "Value": "Inline",
+      "Scope": {
+        "Action": [
+          "4d3443c1-45cf-4be3-bc63-809384ad6141"
+        ]
+      }
+    },
+    {
+      "Id": "3a65902a-563e-4976-98ca-92d0e74de999",
+      "Name": "Octopus.Action.Script.ScriptBody",
+      "Value": "if(\"Dev\" -eq $OctopusParameters['Octopus.Environment.Name']){\n    \n    throw 'failing to create test data'\n}",
+      "Scope": {
+        "Action": [
+          "4d3443c1-45cf-4be3-bc63-809384ad6141"
+        ]
+      }
+    },
+    {
+      "Id": "acdc3831-a409-4823-89fa-c3078f316471",
+      "Name": "Octopus.Action[Fail Step].Number",
+      "Value": "2"
+    },
+    {
+      "Id": "42575eac-688a-4d6a-b7b7-4d0bba909133",
+      "Name": "Octopus.Action[Fail Step].StepName",
+      "Value": "Fail Step"
+    },
+    {
+      "Id": "d66d2913-13a3-4e79-ad4b-2078bcf0d2c5",
+      "Name": "Octopus.Action[Fail Step].TargetRoles",
+      "Value": "WebApps"
+    },
+    {
+      "Id": "8fa8ad96-ae2e-4ccd-82c4-ceb755e479e2",
+      "Name": "Octopus.Action[Fail Step].Id",
+      "Value": "4d3443c1-45cf-4be3-bc63-809384ad6141"
+    },
+    {
+      "Id": "50fc3914-bc87-4821-8e1a-7a84bedbb960",
+      "Name": "Octopus.Action[Fail Step].Name",
+      "Value": "Fail Step"
+    },
+    {
+      "Id": "11d69394-c0d6-4d85-a999-50a05e2c843c",
+      "Name": "Octopus.Action[Fail Step].RunOnServer",
+      "Value": "false"
+    },
+    {
+      "Id": "a9f44619-3586-4656-8a71-f77403b3e865",
+      "Name": "Octopus.Action[Fail Step].Script.Syntax",
+      "Value": "PowerShell"
+    },
+    {
+      "Id": "02350695-0e41-4d7f-a4c6-f0b5d29d3870",
+      "Name": "Octopus.Action[Fail Step].Script.ScriptSource",
+      "Value": "Inline"
+    },
+    {
+      "Id": "d4deb03e-9d27-4839-86fe-0e4bde6bb927",
+      "Name": "Octopus.Action[Fail Step].Script.ScriptBody",
+      "Value": "if(\"Dev\" -eq $OctopusParameters['Octopus.Environment.Name']){\n    \n    throw 'failing to create test data'\n}"
+    },
+    {
+      "Id": "e852c964-fa18-4222-ad13-f2afda80ddfa",
+      "Name": "Octopus.Step[Fail Step].Number",
+      "Value": "2"
+    },
+    {
+      "Id": "cacbc915-d2a9-42bd-ba17-3965f6ae8f1b",
+      "Name": "Octopus.Step[Fail Step].Id",
+      "Value": "ee5ceb23-6c98-4b9d-8503-02023936bd0b"
+    },
+    {
+      "Id": "bbad7ed8-8d26-4b53-b958-eaae131b7500",
+      "Name": "Octopus.Step[Fail Step].Name",
+      "Value": "Fail Step"
+    },
+    {
+      "Id": "ae7c2f54-ccc6-41fe-b4bf-7c764fd62673",
+      "Name": "Octopus.Deployment.CreatedBy.Id",
+      "Value": "Users-1"
+    },
+    {
+      "Id": "9facf9a2-a853-49ad-87aa-665ab7d8122b",
+      "Name": "Octopus.Deployment.CreatedBy.Username",
+      "Value": "admin"
+    },
+    {
+      "Id": "63ad6a9b-5ca6-4903-9302-0d8a26dec72a",
+      "Name": "Octopus.Deployment.CreatedBy.DisplayName",
+      "Value": null
+    },
+    {
+      "Id": "b9d3b11d-20e1-47e1-88fd-2cb1cf4d7987",
+      "Name": "Octopus.Deployment.CreatedBy.EmailAddress",
+      "Value": null
+    },
+    {
+      "Id": "0da32eb0-2ae7-46c0-9991-baf7bdeab50f",
+      "Name": "Octopus.Tentacle.CurrentDeployment.RetentionPolicySubset",
+      "Value": "<default>"
+    },
+    {
+      "Id": "a041f29c-1fbc-47a3-a4cb-67fc5b704efb",
+      "Name": "OctopusRetentionPolicySet",
+      "Value": "#{if Octopus.Deployment.Tenant.Id}#{Octopus.Deployment.Tenant.Id}/#{/if}#{Octopus.Environment.Id}/#{Octopus.Project.Id}/Step-#{Octopus.Action.Name}/#{Octopus.Machine.Id}/#{Octopus.Tentacle.CurrentDeployment.RetentionPolicySubset}"
+    },
+    {
+      "Id": "42bbdc8d-279b-4571-8a92-6372b87e6728",
+      "Name": "OctopusUseGuidedFailure",
+      "Value": "False"
+    },
+    {
+      "Id": "73692848-fe2e-4acb-afe6-935b2abd55c0",
+      "Name": "Octopus.Release.Previous.Id",
+      "Value": "Releases-42"
+    },
+    {
+      "Id": "c9410162-6382-4220-90b6-4f67960f0c95",
+      "Name": "Octopus.Release.Previous.Number",
+      "Value": "0.0.2"
+    },
+    {
+      "Id": "37dfd454-322b-4eb3-b6bb-4d5ef185fa7f",
+      "Name": "Octopus.Release.PreviousForEnvironment.Id",
+      "Value": "Releases-42"
+    },
+    {
+      "Id": "353d3ef4-b638-4a9f-b82b-1cab1ca0e2b6",
+      "Name": "Octopus.Release.PreviousForEnvironment.Number",
+      "Value": "0.0.2"
+    },
+    {
+      "Id": "5859955b-05b9-4b39-bce0-e428e08b9953",
+      "Name": "Octopus.Release.CurrentForEnvironment.Id",
+      "Value": "Releases-42"
+    },
+    {
+      "Id": "d8c72984-8460-46ef-a735-0f46f2201eca",
+      "Name": "Octopus.Release.CurrentForEnvironment.Number",
+      "Value": "0.0.2"
+    },
+    {
+      "Id": "1762d2c5-afd9-4808-adc0-6c0579f764b6",
+      "Name": "Octopus.Deployment.PreviousSuccessful.Id",
+      "Value": "Deployments-27"
+    },
+    {
+      "Id": "369c6c39-69a5-4824-86a1-782d5bbe627f",
+      "Name": "Octopus.Step[Step 1].Status.Code",
+      "Value": "Succeeded",
+      "Scope": {
+        "Private": [
+          "True"
+        ]
+      }
+    },
+    {
+      "Id": "e58713c2-d370-4ff2-aaee-8902cf772324",
+      "Name": "Octopus.Step[Fail Step].Status.Code",
+      "Value": "Failed",
+      "Scope": {
+        "Private": [
+          "True"
+        ]
+      }
+    },
+    {
+      "Id": "1c8d7302-fd5a-4bfd-9a3c-80e2a93ddead",
+      "Name": "Octopus.Action[Fail Step].Status.ErrorDetail",
+      "Value": "Octopus.Shared.Tasks.ActivityFailedException: The remote script failed with exit code 1\r\n   at Octopus.Worker.Scripting.ScriptResult.EnsureSuccessful() in Z:\\buildAgent\\workDir\\eec88466c176b607\\source\\Octopus.Worker\\Scripting\\ScriptResult.cs:line 69\r\n   at Octopus.Server.Orchestration.Deploy.DeploymentTaskController.<>c__DisplayClass24_0.<ExecuteActionAndInitLoggingContext>b__0() in Z:\\buildAgent\\workDir\\eec88466c176b607\\source\\Octopus.Server\\Orchestration\\Deploy\\DeploymentTaskController.cs:line 281\r\n   at Octopus.Server.Orchestration.Deploy.DeploymentTaskController.ExecuteWithTransientErrorDetection(Action action, Machine machine) in Z:\\buildAgent\\workDir\\eec88466c176b607\\source\\Octopus.Server\\Orchestration\\Deploy\\DeploymentTaskController.cs:line 384\r\n   at Octopus.Server.Orchestration.Deploy.DeploymentTaskController.ExecuteActionAndInitLoggingContext(PlannedStep step, Machine machine, PlannedAction action) in Z:\\buildAgent\\workDir\\eec88466c176b607\\source\\Octopus.Server\\Orchestration\\Deploy\\DeploymentTaskController.cs:line 278",
+      "Scope": {
+        "Private": [
+          "True"
+        ]
+      }
+    },
+    {
+      "Id": "83252dba-884b-43d4-ae07-fef28e319092",
+      "Name": "Octopus.Action[Fail Step].Status.Error",
+      "Value": "The remote script failed with exit code 1",
+      "Scope": {
+        "Private": [
+          "True"
+        ]
+      }
+    },
+    {
+      "Id": "c19e4d0d-e85a-482a-92ea-9aa22006f963",
+      "Name": "OctopusFailureEncountered",
+      "Value": "True"
+    },
+    {
+      "Id": "64dde61d-d7a0-42b4-bb04-e951baf270d9",
+      "Name": "Octopus.Deployment.Error",
+      "Value": "Activity Fail Step on North failed with error 'The remote script failed with exit code 1'."
+    },
+    {
+      "Id": "93ba8561-9737-4297-ba1c-97dd84e8186a",
+      "Name": "Octopus.Deployment.ErrorDetail",
+      "Value": "Octopus.Shared.Tasks.ActivityFailedException: Activity Fail Step on North failed with error 'The remote script failed with exit code 1'. ---> System.AggregateException: One or more errors occurred. ---> Octopus.Shared.Tasks.ActionFailedException: Fail Step on North ---> Octopus.Shared.Tasks.ActivityFailedException: The remote script failed with exit code 1\r\n   at Octopus.Worker.Scripting.ScriptResult.EnsureSuccessful() in Z:\\buildAgent\\workDir\\eec88466c176b607\\source\\Octopus.Worker\\Scripting\\ScriptResult.cs:line 69\r\n   at Octopus.Server.Orchestration.Deploy.DeploymentTaskController.<>c__DisplayClass24_0.<ExecuteActionAndInitLoggingContext>b__0() in Z:\\buildAgent\\workDir\\eec88466c176b607\\source\\Octopus.Server\\Orchestration\\Deploy\\DeploymentTaskController.cs:line 281\r\n   at Octopus.Server.Orchestration.Deploy.DeploymentTaskController.ExecuteWithTransientErrorDetection(Action action, Machine machine) in Z:\\buildAgent\\workDir\\eec88466c176b607\\source\\Octopus.Server\\Orchestration\\Deploy\\DeploymentTaskController.cs:line 384\r\n   at Octopus.Server.Orchestration.Deploy.DeploymentTaskController.ExecuteActionAndInitLoggingContext(PlannedStep step, Machine machine, PlannedAction action) in Z:\\buildAgent\\workDir\\eec88466c176b607\\source\\Octopus.Server\\Orchestration\\Deploy\\DeploymentTaskController.cs:line 278\r\n   --- End of inner exception stack trace ---\r\n   at Octopus.Server.Orchestration.Deploy.DeploymentTaskController.ExecuteActionAndInitLoggingContext(PlannedStep step, Machine machine, PlannedAction action) in Z:\\buildAgent\\workDir\\eec88466c176b607\\source\\Octopus.Server\\Orchestration\\Deploy\\DeploymentTaskController.cs:line 287\r\n   at Octopus.Server.Orchestration.Deploy.DeploymentTaskController.ExecuteOneOrMoreActions(PlannedStep step, Machine machine) in Z:\\buildAgent\\workDir\\eec88466c176b607\\source\\Octopus.Server\\Orchestration\\Deploy\\DeploymentTaskController.cs:line 249\r\n   at Octopus.Shared.Tasks.OctoThreadClosure`1.Execute() in Z:\\buildAgent\\workDir\\eec88466c176b607\\source\\Octopus.Shared\\Tasks\\OctoThreadClosure.cs:line 26\r\n   --- End of inner exception stack trace ---\r\n   --- End of inner exception stack trace ---\r\n   at Octopus.Shared.Tasks.ParallelWorkOrder`1.AssertAllCompletedTasksThusFarAreSuccessful() in Z:\\buildAgent\\workDir\\eec88466c176b607\\source\\Octopus.Shared\\Tasks\\ParallelWorkOrder.cs:line 81\r\n   at Octopus.Shared.Tasks.ParallelWorkOrder`1.Execute() in Z:\\buildAgent\\workDir\\eec88466c176b607\\source\\Octopus.Shared\\Tasks\\ParallelWorkOrder.cs:line 33\r\n   at Octopus.Shared.Tasks.OctoParallel.ForEach[T](IEnumerable`1 workItems, Nullable`1 maxParallelism, Action`1 executeCallback, CancellationToken cancellation) in Z:\\buildAgent\\workDir\\eec88466c176b607\\source\\Octopus.Shared\\Tasks\\OctoParallel.cs:line 21\r\n   at Octopus.Server.Orchestration.Deploy.DeploymentTaskController.DistributeStepAcrossMachinesForOneOrMoreActions(PlannedStep step, MachineSelection selection, Nullable`1 parallelism, MachineCriteria machineCriteria) in Z:\\buildAgent\\workDir\\eec88466c176b607\\source\\Octopus.Server\\Orchestration\\Deploy\\DeploymentTaskController.cs:line 245\r\n   at Octopus.Server.Orchestration.Deploy.DeploymentTaskController.DistributeStepAcrossMachines(PlannedStep step) in Z:\\buildAgent\\workDir\\eec88466c176b607\\source\\Octopus.Server\\Orchestration\\Deploy\\DeploymentTaskController.cs:line 213\r\n   at Octopus.Server.Orchestration.Deploy.DeploymentTaskController.DispatchStep(PlannedStep step) in Z:\\buildAgent\\workDir\\eec88466c176b607\\source\\Octopus.Server\\Orchestration\\Deploy\\DeploymentTaskController.cs:line 105"
+    },
+    {
+      "Id": "e915cf29-2f37-4c76-ae74-a40038d8ed79",
+      "Name": "Octopus.Step[Fail Step].Status.ErrorDetail",
+      "Value": "Octopus.Shared.Tasks.ActivityFailedException: Activity Fail Step on North failed with error 'The remote script failed with exit code 1'. ---> System.AggregateException: One or more errors occurred. ---> Octopus.Shared.Tasks.ActionFailedException: Fail Step on North ---> Octopus.Shared.Tasks.ActivityFailedException: The remote script failed with exit code 1\r\n   at Octopus.Worker.Scripting.ScriptResult.EnsureSuccessful() in Z:\\buildAgent\\workDir\\eec88466c176b607\\source\\Octopus.Worker\\Scripting\\ScriptResult.cs:line 69\r\n   at Octopus.Server.Orchestration.Deploy.DeploymentTaskController.<>c__DisplayClass24_0.<ExecuteActionAndInitLoggingContext>b__0() in Z:\\buildAgent\\workDir\\eec88466c176b607\\source\\Octopus.Server\\Orchestration\\Deploy\\DeploymentTaskController.cs:line 281\r\n   at Octopus.Server.Orchestration.Deploy.DeploymentTaskController.ExecuteWithTransientErrorDetection(Action action, Machine machine) in Z:\\buildAgent\\workDir\\eec88466c176b607\\source\\Octopus.Server\\Orchestration\\Deploy\\DeploymentTaskController.cs:line 384\r\n   at Octopus.Server.Orchestration.Deploy.DeploymentTaskController.ExecuteActionAndInitLoggingContext(PlannedStep step, Machine machine, PlannedAction action) in Z:\\buildAgent\\workDir\\eec88466c176b607\\source\\Octopus.Server\\Orchestration\\Deploy\\DeploymentTaskController.cs:line 278\r\n   --- End of inner exception stack trace ---\r\n   at Octopus.Server.Orchestration.Deploy.DeploymentTaskController.ExecuteActionAndInitLoggingContext(PlannedStep step, Machine machine, PlannedAction action) in Z:\\buildAgent\\workDir\\eec88466c176b607\\source\\Octopus.Server\\Orchestration\\Deploy\\DeploymentTaskController.cs:line 287\r\n   at Octopus.Server.Orchestration.Deploy.DeploymentTaskController.ExecuteOneOrMoreActions(PlannedStep step, Machine machine) in Z:\\buildAgent\\workDir\\eec88466c176b607\\source\\Octopus.Server\\Orchestration\\Deploy\\DeploymentTaskController.cs:line 249\r\n   at Octopus.Shared.Tasks.OctoThreadClosure`1.Execute() in Z:\\buildAgent\\workDir\\eec88466c176b607\\source\\Octopus.Shared\\Tasks\\OctoThreadClosure.cs:line 26\r\n   --- End of inner exception stack trace ---\r\n   --- End of inner exception stack trace ---\r\n   at Octopus.Shared.Tasks.ParallelWorkOrder`1.AssertAllCompletedTasksThusFarAreSuccessful() in Z:\\buildAgent\\workDir\\eec88466c176b607\\source\\Octopus.Shared\\Tasks\\ParallelWorkOrder.cs:line 81\r\n   at Octopus.Shared.Tasks.ParallelWorkOrder`1.Execute() in Z:\\buildAgent\\workDir\\eec88466c176b607\\source\\Octopus.Shared\\Tasks\\ParallelWorkOrder.cs:line 33\r\n   at Octopus.Shared.Tasks.OctoParallel.ForEach[T](IEnumerable`1 workItems, Nullable`1 maxParallelism, Action`1 executeCallback, CancellationToken cancellation) in Z:\\buildAgent\\workDir\\eec88466c176b607\\source\\Octopus.Shared\\Tasks\\OctoParallel.cs:line 21\r\n   at Octopus.Server.Orchestration.Deploy.DeploymentTaskController.DistributeStepAcrossMachinesForOneOrMoreActions(PlannedStep step, MachineSelection selection, Nullable`1 parallelism, MachineCriteria machineCriteria) in Z:\\buildAgent\\workDir\\eec88466c176b607\\source\\Octopus.Server\\Orchestration\\Deploy\\DeploymentTaskController.cs:line 245\r\n   at Octopus.Server.Orchestration.Deploy.DeploymentTaskController.DistributeStepAcrossMachines(PlannedStep step) in Z:\\buildAgent\\workDir\\eec88466c176b607\\source\\Octopus.Server\\Orchestration\\Deploy\\DeploymentTaskController.cs:line 213\r\n   at Octopus.Server.Orchestration.Deploy.DeploymentTaskController.DispatchStep(PlannedStep step) in Z:\\buildAgent\\workDir\\eec88466c176b607\\source\\Octopus.Server\\Orchestration\\Deploy\\DeploymentTaskController.cs:line 105",
+      "Scope": {
+        "Private": [
+          "True"
+        ]
+      }
+    },
+    {
+      "Id": "455f1950-4679-4dba-aaaf-674fa72caaea",
+      "Name": "Octopus.Step[Fail Step].Status.Error",
+      "Value": "Activity Fail Step on North failed with error 'The remote script failed with exit code 1'.",
+      "Scope": {
+        "Private": [
+          "True"
+        ]
+      }
+    }
+  ],
+  "RelatedDocumentIds": [
+    "Machines-2",
+    "Machines-4",
+    "f8d77354-c9c6-4a07-916e-0157397ce2dc",
+    "4d3443c1-45cf-4be3-bc63-809384ad6141",
+    "True"
+  ]
+}

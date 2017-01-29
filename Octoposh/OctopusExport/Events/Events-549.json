@@ -1,0 +1,43 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-549",
+  "RelatedDocumentIds": [
+    "Deployments-26",
+    "Projects-2",
+    "Releases-41",
+    "Environments-2"
+  ],
+  "ProjectId": "Projects-2",
+  "EnvironmentId": "Environments-2",
+  "TenantId": null,
+  "Category": "DeploymentStarted",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-01-29T08:06:20.9598719+00:00",
+  "Message": "Deploy to Stage (#2) started  for TestProject2 release 0.0.1 to Stage",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Deployments-26",
+      "StartIndex": 0,
+      "Length": 20
+    },
+    {
+      "ReferencedDocumentId": "Projects-2",
+      "StartIndex": 34,
+      "Length": 12
+    },
+    {
+      "ReferencedDocumentId": "Releases-41",
+      "StartIndex": 55,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-2",
+      "StartIndex": 64,
+      "Length": 5
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "Unknown"
+}

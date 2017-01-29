@@ -1,17 +1,15 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-218",
-  "RelatedDocumentIds": [
-    "Environments-1"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "MachineDeleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-15T17:16:09.5907983-03:00",
-  "Message": "Machine FWJ4UP1DT6L2LKR was deleted",
+  "Occurred": "2017-01-22T15:42:57.7520915-03:00",
+  "Message": "Machine I7716UCQNL5KR9H was deleted (domain-event)",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",

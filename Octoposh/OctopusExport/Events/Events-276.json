@@ -1,23 +1,25 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-276",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Tenants-1"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
-  "TenantId": null,
+  "TenantId": "Tenants-1",
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-22T15:42:56.8614715-03:00",
-  "Message": "Lifecycle I7716UCQNL5KR9H was created",
+  "Occurred": "2017-01-22T23:52:53.1826717-03:00",
+  "Message": "Tenant unmodified_Tenant was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 10,
-      "Length": 15
+      "ReferencedDocumentId": "Tenants-1",
+      "StartIndex": 7,
+      "Length": 17
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Session cookie"
 }

@@ -1,23 +1,25 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-272",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Lifecycles-22"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-22T15:42:55.6870062-03:00",
-  "Message": "NuGetFeed I7716UCQNL5KR9H was created",
+  "Occurred": "2017-01-22T23:51:22.5127718-03:00",
+  "Message": "Lifecycle unmodified_Lifecycle was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
+      "ReferencedDocumentId": "Lifecycles-22",
       "StartIndex": 10,
-      "Length": 15
+      "Length": 20
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Session cookie"
 }

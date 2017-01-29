@@ -1,19 +1,21 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-377",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Environments-1"
+  ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Created",
+  "Category": "Deleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-15T17:31:41.5364608-03:00",
-  "Message": "Library Variable Set GSN6J532E925KVS was created",
+  "Occurred": "2017-01-23T02:31:05.1507417-03:00",
+  "Message": "Machine DGQQ2AP7CNQFEV3 was deleted",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 21,
+      "StartIndex": 8,
       "Length": 15
     }
   ],

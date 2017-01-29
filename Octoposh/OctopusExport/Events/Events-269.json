@@ -1,23 +1,25 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-269",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "ProjectGroups-23"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-22T15:42:54.7495106-03:00",
-  "Message": "Channel I7716UCQNL5KR9H was deleted",
+  "Occurred": "2017-01-22T23:50:19.7252124-03:00",
+  "Message": "Project Group unmodified_TestprojectGroup was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 8,
-      "Length": 15
+      "ReferencedDocumentId": "ProjectGroups-23",
+      "StartIndex": 14,
+      "Length": 27
     }
   ],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "Details": "<span>{\r&para;<br>  \"Id\": \"ProjectGroups-82\",\r&para;<br>  \"Name\": \"</span><ins style=\"background:#e6ffe6;\">un</ins><span>modified_TestprojectGroup\",\r&para;<br>  \"Description\": null\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "Session cookie"
 }

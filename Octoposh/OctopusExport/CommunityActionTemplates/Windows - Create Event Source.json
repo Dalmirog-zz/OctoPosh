@@ -4,14 +4,14 @@
   "Name": "Windows - Create Event Source",
   "ExternalId": "6047c2b5-95f7-46db-85b4-d970c1586f94",
   "Description": "Establishes the specified source name as a valid event source for writing entries to a log on the local computer. \n\nThis method can also create a new custom log on the local computer.",
-  "Version": 4,
+  "Version": 5,
   "ActionType": "Octopus.Script",
-  "Author": "ChrisEelmaa",
+  "Author": "HumanPrinter",
   "Website": "https://library.octopus.com/step-templates/6047c2b5-95f7-46db-85b4-d970c1586f94",
   "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/windows-create-eventsource.json",
   "Category": "Windows",
   "Properties": {
-    "Octopus.Action.Script.ScriptBody": "$sourceName = $OctopusParameters[\"EventSourceName\"]\n$logName = $OctopusParameters[\"EventLogName\"]\n\ntry\n{\n\t[System.Diagnostics.EventLog]::CreateEventSource($sourceName, $logName)\n\tWrite-Output \"Created event source: $sourceName, logName: $logName\"\n}\ncatch [System.ArgumentException]\n{\n\tif ($_.Exception.Message -match \"already exists\")\n\t{\n\t\tWrite-Output \"Event source $sourceName already exist.\"\n\t}\n\telse\n\t{\n\t\tthrow $_.Exception\n\t}\n}",
+    "Octopus.Action.Script.ScriptBody": "$sourceName = $OctopusParameters[\"EventSourceName\"]\n$logName = $OctopusParameters[\"EventLogName\"]\n\n$sourceExists = [System.Diagnostics.EventLog]::SourceExists($sourceName)\nif($sourceExists) {\n\tWrite-Output \"Event source $sourceName already exist.\"\n\treturn\n}\n\n[System.Diagnostics.EventLog]::CreateEventSource($sourceName, $logName)",
     "Octopus.Action.Script.Syntax": "PowerShell"
   },
   "Parameters": [

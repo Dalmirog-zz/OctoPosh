@@ -1,15 +1,17 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-285",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Environments-1"
+  ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "MachineHealthy",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-01-22T15:42:57.7520915-03:00",
-  "Message": "Machine I7716UCQNL5KR9H became healthy",
+  "Category": "Deleted",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-01-15T17:30:53.9252843-03:00",
+  "Message": "Machine 9K12I65HAKHNH1Y was deleted",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",
@@ -19,5 +21,5 @@
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

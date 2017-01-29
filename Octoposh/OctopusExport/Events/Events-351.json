@@ -2,22 +2,21 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-351",
   "RelatedDocumentIds": [
-    "Machines-5",
-    "Environments-3"
+    "Machines-4"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-3",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
+  "Category": "MachineAdded",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-23T02:19:48.9139282-03:00",
-  "Message": "Machine unmodified_TestMachine was created",
+  "Occurred": "2016-12-09T02:10:36.7338039-03:00",
+  "Message": "Machine South was created (domain-event)",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Machines-5",
+      "ReferencedDocumentId": "Machines-4",
       "StartIndex": 8,
-      "Length": 22
+      "Length": 5
     }
   ],
   "Comments": null,
