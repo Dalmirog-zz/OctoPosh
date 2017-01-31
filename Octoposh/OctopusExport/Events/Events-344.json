@@ -1,20 +1,22 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-344",
-  "RelatedDocumentIds": [],
-  "ProjectId": null,
+  "RelatedDocumentIds": [
+    "Projects-2"
+  ],
+  "ProjectId": "Projects-2",
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-15T18:01:17.5246742-03:00",
-  "Message": "Lifecycle WKHWDC9C4VMMEHU was deleted",
+  "Occurred": "2016-12-17T00:15:27.3609809-03:00",
+  "Message": "Project TestProject2 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 10,
-      "Length": 15
+      "ReferencedDocumentId": "Projects-2",
+      "StartIndex": 8,
+      "Length": 12
     }
   ],
   "Comments": null,

@@ -2,22 +2,21 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-193",
   "RelatedDocumentIds": [
-    "ServerTasks-27",
-    "Environments-1"
+    "ProjectGroups-23"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "EnvironmentId": null,
   "TenantId": null,
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-22T00:13:09.4590531-03:00",
-  "Message": "Ran task Check OfflineTarget health",
+  "Occurred": "2017-01-22T23:24:44.8504509-03:00",
+  "Message": "Project Group unmodified_TestProjectGroup was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "ServerTasks-27",
-      "StartIndex": 9,
-      "Length": 26
+      "ReferencedDocumentId": "ProjectGroups-23",
+      "StartIndex": 14,
+      "Length": 27
     }
   ],
   "Comments": null,

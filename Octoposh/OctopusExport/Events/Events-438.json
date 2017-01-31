@@ -1,26 +1,23 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-438",
-  "RelatedDocumentIds": [
-    "Machines-3",
-    "Environments-1"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "EnvironmentId": null,
   "TenantId": null,
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2016-12-14T01:12:01.3468119-03:00",
-  "Message": "Machine OfflineTarget was created",
+  "Occurred": "2017-01-29T04:50:24.8585848-03:00",
+  "Message": "Project AGF3BSAK1UT01RY was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Machines-3",
+      "ReferencedDocumentId": "NotFound",
       "StartIndex": 8,
-      "Length": 13
+      "Length": 15
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

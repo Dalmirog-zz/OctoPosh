@@ -1,17 +1,25 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-472",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Lifecycles-1"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Imported",
-  "UserId": "NY",
-  "Username": "dalmiro.granias",
-  "Occurred": "2017-01-29T07:49:43.1814381+00:00",
-  "Message": "Imported documents using Octopus migration tools",
-  "MessageReferences": [],
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-01-29T04:55:28.2439448-03:00",
+  "Message": "Lifecycle Default Lifecycle was modified",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Lifecycles-1",
+      "StartIndex": 10,
+      "Length": 17
+    }
+  ],
   "Comments": null,
-  "Details": "  Created.........................................782\r\n    ApiKey........................................1\r\n    Channel.......................................4\r\n    CommunityActionTemplate.......................217\r\n    Deployment....................................1\r\n    DeploymentEnvironment.........................3\r\n    DeploymentProcess.............................5\r\n    Event.........................................451\r\n    ExtensionConfiguration........................2\r\n    LibraryVariableSet............................1\r\n    Lifecycle.....................................2\r\n    Machine.......................................5\r\n    NuGetFeed.....................................1\r\n    Project.......................................3\r\n    ProjectGroup..................................3\r\n    Release.......................................32\r\n    ServerTask....................................43\r\n    Team..........................................1\r\n    Tenant........................................1\r\n    User..........................................1\r\n    VariableSet...................................5\r\n  Missing dependencies............................1\r\n    ServerTask....................................1\r\n  Property unchanged..............................2\r\n    Octopus.Action.Script.ScriptBody..............1\r\n    Octopus.Action.Script.Syntax..................1\r\n  Skipped (key collision).........................2\r\n    ServerTask....................................2\r\n  Unchanged.......................................85\r\n    DeploymentProcess.............................31\r\n    ExtensionConfiguration........................3\r\n    License.......................................1\r\n    Lifecycle.....................................1\r\n    MachinePolicy.................................1\r\n    NuGetFeed.....................................1\r\n    ProjectGroup..................................1\r\n    ServerConfiguration...........................1\r\n    SmtpConfiguration.............................1\r\n    Team..........................................1\r\n    User..........................................1\r\n    UserRole......................................10\r\n    VariableSet...................................31\r\n    WebPortalConfiguration........................1\r\n  Updated.........................................3\r\n    Certificate...................................1\r\n    FeaturesConfiguration.........................1\r\n    Team..........................................1\r\n",
-  "IdentityEstablishedWith": "Command-line or tools"
+  "Details": "<span>{\r&para;<br>  \"Id\": \"Lifecycles-1\",\r&para;<br>  \"Name\": \"Default Lifecycle\",\r&para;<br>  \"Description\": null,\r&para;<br>  \"Phases\": [</span><ins style=\"background:#e6ffe6;\">\r&para;<br>    {\r&para;<br>      \"Id\": \"0d38db58-b961-4c93-a6f2-520a33ecc185\",\r&para;<br>      \"Name\": \"Dev\",\r&para;<br>      \"AutomaticDeploymentTargets\": [],\r&para;<br>      \"OptionalDeploymentTargets\": [\r&para;<br>        \"Environments-1\"\r&para;<br>      ],\r&para;<br>      \"MinimumEnvironmentsBeforePromotion\": 0,\r&para;<br>      \"ReleaseRetentionPolicy\": null,\r&para;<br>      \"TentacleRetentionPolicy\": null\r&para;<br>    },\r&para;<br>    {\r&para;<br>      \"Id\": \"cb861a2f-979c-42c8-8aca-8854b28494db\",\r&para;<br>      \"Name\": \"Stage\",\r&para;<br>      \"AutomaticDeploymentTargets\": [],\r&para;<br>      \"OptionalDeploymentTargets\": [\r&para;<br>        \"Environments-2\"\r&para;<br>      ],\r&para;<br>      \"MinimumEnvironmentsBeforePromotion\": 0,\r&para;<br>      \"ReleaseRetentionPolicy\": null,\r&para;<br>      \"TentacleRetentionPolicy\": null\r&para;<br>    },\r&para;<br>    {\r&para;<br>      \"Id\": \"82aab0cc-6d5a-47f2-80f1-e5c0914162e2\",\r&para;<br>      \"Name\": \"Prod\",\r&para;<br>      \"AutomaticDeploymentTargets\": [],\r&para;<br>      \"OptionalDeploymentTargets\": [\r&para;<br>        \"Environments-22\"\r&para;<br>      ],\r&para;<br>      \"MinimumEnvironmentsBeforePromotion\": 0,\r&para;<br>      \"ReleaseRetentionPolicy\": null,\r&para;<br>      \"TentacleRetentionPolicy\": null\r&para;<br>    }\r&para;<br>  </ins><span>],\r&para;<br>  \"ReleaseRetentionPolicy\": {\r&para;<br>    \"Unit\": \"Items\",\r&para;<br>    \"QuantityToKeep\": 0,\r&para;<br>    \"ShouldKeepForever\": true\r&para;<br>  },\r&para;<br>  \"TentacleRetentionPolicy\": {\r&para;<br>    \"Unit\": \"Items\",\r&para;<br>    \"QuantityToKeep\": 0,\r&para;<br>    \"ShouldKeepForever\": true\r&para;<br>  }\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "Session cookie"
 }

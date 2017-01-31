@@ -1,0 +1,25 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-595",
+  "RelatedDocumentIds": [
+    "Machines-21"
+  ],
+  "ProjectId": null,
+  "EnvironmentId": null,
+  "TenantId": null,
+  "Category": "MachineHealthy",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-01-31T01:27:49.4532859+00:00",
+  "Message": "Machine G44KK3F6M2G2CJA became healthy",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Machines-21",
+      "StartIndex": 8,
+      "Length": 15
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "Unknown"
+}

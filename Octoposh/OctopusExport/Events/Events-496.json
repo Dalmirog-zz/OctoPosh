@@ -2,25 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-496",
   "RelatedDocumentIds": [
-    "Machines-21",
-    "Environments-1"
+    "ServerTasks-44"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "TaskCanceled",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-29T07:50:24.3495313+00:00",
-  "Message": "Machine AGF3BSAK1UT01RY was deleted",
+  "Occurred": "2017-01-29T05:06:23.5189252-03:00",
+  "Message": "Task Deploy TestProject2 release 0.0.1 to Stage #71 was canceled",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Machines-21",
-      "StartIndex": 8,
-      "Length": 15
+      "ReferencedDocumentId": "ServerTasks-44",
+      "StartIndex": 5,
+      "Length": 46
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Session cookie"
 }

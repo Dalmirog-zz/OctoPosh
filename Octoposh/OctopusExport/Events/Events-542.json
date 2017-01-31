@@ -1,38 +1,17 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-542",
-  "RelatedDocumentIds": [
-    "Deployments-24",
-    "Projects-2",
-    "Releases-41",
-    "Environments-2"
-  ],
-  "ProjectId": "Projects-2",
-  "EnvironmentId": "Environments-2",
+  "RelatedDocumentIds": [],
+  "ProjectId": null,
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentQueued",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-01-29T08:05:51.8366818+00:00",
-  "Message": "Deployed TestProject2 release 0.0.1 to Stage",
-  "MessageReferences": [
-    {
-      "ReferencedDocumentId": "Projects-2",
-      "StartIndex": 9,
-      "Length": 12
-    },
-    {
-      "ReferencedDocumentId": "Releases-41",
-      "StartIndex": 30,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-2",
-      "StartIndex": 39,
-      "Length": 5
-    }
-  ],
+  "Category": "Exported",
+  "UserId": "NY",
+  "Username": "dalmiro.granias",
+  "Occurred": "2017-01-19T01:58:14.5349887-03:00",
+  "Message": "Exported complete copy of configuration to C:\\github\\octoposh\\octoposh\\OctopusExport",
+  "MessageReferences": [],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "IdentityEstablishedWith": "Command-line or tools"
 }

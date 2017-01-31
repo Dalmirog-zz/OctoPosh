@@ -2,21 +2,27 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-274",
   "RelatedDocumentIds": [
-    "feeds-unmodified-feed"
+    "Projects-1",
+    "Releases-1"
   ],
-  "ProjectId": null,
+  "ProjectId": "Projects-1",
   "EnvironmentId": null,
   "TenantId": null,
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-22T23:51:56.20787-03:00",
-  "Message": "NuGetFeed unmodified_Feed was created",
+  "Occurred": "2017-01-18T23:19:54.5300743-03:00",
+  "Message": "TestProject1 release 0.0.1 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "feeds-unmodified-feed",
-      "StartIndex": 10,
-      "Length": 15
+      "ReferencedDocumentId": "Projects-1",
+      "StartIndex": 0,
+      "Length": 12
+    },
+    {
+      "ReferencedDocumentId": "Releases-1",
+      "StartIndex": 21,
+      "Length": 5
     }
   ],
   "Comments": null,

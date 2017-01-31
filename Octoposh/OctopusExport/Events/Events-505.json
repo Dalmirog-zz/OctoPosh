@@ -2,24 +2,42 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-505",
   "RelatedDocumentIds": [
-    "Tenants-21"
+    "Deployments-4",
+    "Projects-1",
+    "Releases-27",
+    "Environments-1"
   ],
-  "ProjectId": null,
-  "EnvironmentId": null,
-  "TenantId": "Tenants-21",
-  "Category": "Deleted",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-01-29T07:50:27.9169371+00:00",
-  "Message": "Tenant AGF3BSAK1UT01RY was deleted",
+  "ProjectId": "Projects-1",
+  "EnvironmentId": "Environments-1",
+  "TenantId": null,
+  "Category": "DeploymentStarted",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-01-29T05:08:35.0820762-03:00",
+  "Message": "Deploy to Dev started  for TestProject1 release 0.0.33 to Dev",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Tenants-21",
-      "StartIndex": 7,
-      "Length": 15
+      "ReferencedDocumentId": "Deployments-4",
+      "StartIndex": 0,
+      "Length": 13
+    },
+    {
+      "ReferencedDocumentId": "Projects-1",
+      "StartIndex": 27,
+      "Length": 12
+    },
+    {
+      "ReferencedDocumentId": "Releases-27",
+      "StartIndex": 48,
+      "Length": 6
+    },
+    {
+      "ReferencedDocumentId": "Environments-1",
+      "StartIndex": 58,
+      "Length": 3
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Unknown"
 }

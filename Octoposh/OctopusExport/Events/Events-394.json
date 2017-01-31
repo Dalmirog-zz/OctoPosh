@@ -2,21 +2,21 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-394",
   "RelatedDocumentIds": [
-    "Users-21"
+    "Machines-3"
   ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
+  "Category": "MachineAdded",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-23T02:33:21.3105137-03:00",
-  "Message": "User unmodified_TestUser has been created ",
+  "Occurred": "2016-12-14T01:12:01.3568155-03:00",
+  "Message": "Machine OfflineTarget was created (domain-event)",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Users-21",
-      "StartIndex": 5,
-      "Length": 19
+      "ReferencedDocumentId": "Machines-3",
+      "StartIndex": 8,
+      "Length": 13
     }
   ],
   "Comments": null,

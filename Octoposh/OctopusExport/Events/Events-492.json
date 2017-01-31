@@ -2,24 +2,42 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-492",
   "RelatedDocumentIds": [
-    "Lifecycles-41"
+    "Deployments-8",
+    "Projects-2",
+    "Releases-34",
+    "Environments-2"
   ],
-  "ProjectId": null,
-  "EnvironmentId": null,
+  "ProjectId": "Projects-2",
+  "EnvironmentId": "Environments-2",
   "TenantId": null,
-  "Category": "Deleted",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-01-29T07:50:23.3704363+00:00",
-  "Message": "Lifecycle AGF3BSAK1UT01RY was deleted",
+  "Category": "DeploymentSucceeded",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-01-29T05:06:05.3032079-03:00",
+  "Message": "Deploy to Prod succeeded  for TestProject2 release 0.0.1 to Prod",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Lifecycles-41",
-      "StartIndex": 10,
-      "Length": 15
+      "ReferencedDocumentId": "Deployments-8",
+      "StartIndex": 0,
+      "Length": 14
+    },
+    {
+      "ReferencedDocumentId": "Projects-2",
+      "StartIndex": 30,
+      "Length": 12
+    },
+    {
+      "ReferencedDocumentId": "Releases-34",
+      "StartIndex": 51,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-2",
+      "StartIndex": 60,
+      "Length": 4
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Unknown"
 }

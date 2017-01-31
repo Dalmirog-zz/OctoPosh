@@ -1,24 +1,16 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-410",
-  "RelatedDocumentIds": [
-    "Users-1"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2016-12-16T02:20:54.7405479-03:00",
-  "Message": "User admin was created using the admin command line",
-  "MessageReferences": [
-    {
-      "ReferencedDocumentId": "Users-1",
-      "StartIndex": 5,
-      "Length": 5
-    }
-  ],
+  "Category": "Exported",
+  "UserId": "NY",
+  "Username": "dalmiro.granias",
+  "Occurred": "2016-12-10T19:39:58.9857078-03:00",
+  "Message": "Exported complete copy of configuration to C:\\Github\\OctoPosh\\Octoposh\\OctopusExport",
+  "MessageReferences": [],
   "Comments": null,
   "Details": null,
   "IdentityEstablishedWith": "Command-line or tools"
