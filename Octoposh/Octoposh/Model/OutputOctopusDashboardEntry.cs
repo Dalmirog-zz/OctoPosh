@@ -2,7 +2,7 @@
 
 namespace Octoposh.Model
 {
-    class OutputOctopusDashboardEntry
+    public class OutputOctopusDashboardEntry
     {
         public string ProjectName { get; set; }
         public string EnvironmentName { get; set; }

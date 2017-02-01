@@ -21,6 +21,7 @@ namespace Octoposh.Cmdlets
     /// <para type="link" uri="https://github.com/Dalmirog/OctoPosh/wiki">Wiki: </para>
     /// <para type="link" uri="https://gitter.im/Dalmirog/OctoPosh#initial">QA and Feature requests: </para>
     [Cmdlet("Get", "OctopusDashboard")]
+    [OutputType(typeof(List<OutputOctopusDashboardEntry>))]
     public class GetOctopusDashboard : Cmdlet
     {
         /// <summary>
