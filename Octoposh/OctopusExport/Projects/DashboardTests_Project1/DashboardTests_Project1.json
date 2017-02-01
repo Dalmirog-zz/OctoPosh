@@ -1,0 +1,31 @@
+{
+  "$type": "Octopus.Core.Model.Projects.Project, Octopus.Core",
+  "Id": "Projects-22",
+  "Name": "DashboardTests_Project1",
+  "Description": "Resource created for unit testing purposes. Avoid touching it if possible.",
+  "Slug": "dashboardtests-project1",
+  "IsDisabled": false,
+  "VariableSetId": "variableset-Projects-22",
+  "DeploymentProcessId": "deploymentprocess-Projects-22",
+  "ProjectGroupId": "ProjectGroups-42",
+  "LifecycleId": "Lifecycles-1",
+  "AutoCreateRelease": false,
+  "IncludedLibraryVariableSetIds": [],
+  "UsedPackages": [],
+  "DefaultToSkipIfAlreadyInstalled": false,
+  "TenantedDeploymentMode": "Untenanted",
+  "VersioningStrategy": {
+    "DonorPackageStepId": null,
+    "Template": "#{Octopus.Version.LastMajor}.#{Octopus.Version.LastMinor}.#{Octopus.Version.NextPatch}"
+  },
+  "Templates": [],
+  "ReleaseCreationStrategy": {
+    "ReleaseCreationPackageStepId": null,
+    "ChannelId": null
+  },
+  "ProjectConnectivityPolicy": {
+    "SkipMachineBehavior": "None",
+    "TargetRoles": []
+  },
+  "AutoDeployReleaseOverrides": []
+}

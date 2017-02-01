@@ -1,19 +1,21 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-260",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Environments-1"
+  ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-20T21:24:35.0918128-03:00",
-  "Message": "Team RFCVVZLYTFB5J9N was created",
+  "Occurred": "2017-01-15T17:31:42.6197933-03:00",
+  "Message": "Machine GSN6J532E925KVS was created",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 5,
+      "StartIndex": 8,
       "Length": 15
     }
   ],

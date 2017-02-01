@@ -1,23 +1,25 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-214",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "ProjectGroups-23"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-14T19:49:14.3380499-03:00",
-  "Message": "Project Group 7RP1FSM9E82B8AJ was deleted",
+  "Occurred": "2017-01-23T02:18:21.6190935-03:00",
+  "Message": "Project Group unmodified_TestprojectGroup was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
+      "ReferencedDocumentId": "ProjectGroups-23",
       "StartIndex": 14,
-      "Length": 15
+      "Length": 27
     }
   ],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "Details": "<span>{\r&para;<br>  \"Id\": \"ProjectGroups-82\",\r&para;<br>  \"Name\": \"unmodified_TestprojectGroup\",\r&para;<br>  \"Description\": </span><del style=\"background:#ffe6e6;\">null</del><ins style=\"background:#e6ffe6;\">\"Resource created for unit testing purposes. Do not delete/edit\"</ins><span>\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "Session cookie"
 }

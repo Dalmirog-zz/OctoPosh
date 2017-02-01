@@ -2,21 +2,21 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-421",
   "RelatedDocumentIds": [
-    "Machines-3"
+    "Machines-1"
   ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "MachineUnhealthy",
+  "Category": "MachineUnavailable",
   "UserId": "users-system",
   "Username": "system",
-  "Occurred": "2017-01-23T05:30:53.4365569+00:00",
-  "Message": "Machine OfflineTarget became unhealthy",
+  "Occurred": "2017-01-29T04:50:06.9596351-03:00",
+  "Message": "Machine ListeningTentacle became unavailable",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Machines-3",
+      "ReferencedDocumentId": "Machines-1",
       "StartIndex": 8,
-      "Length": 13
+      "Length": 17
     }
   ],
   "Comments": null,

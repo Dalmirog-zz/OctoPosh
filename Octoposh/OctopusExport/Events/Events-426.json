@@ -1,21 +1,19 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-426",
-  "RelatedDocumentIds": [
-    "Environments-21"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
-  "EnvironmentId": "Environments-21",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-23T05:31:02.0915559+00:00",
-  "Message": "Environment DGQQ2AP7CNQFEV3 was deleted",
+  "Occurred": "2017-01-29T04:50:21.0011712-03:00",
+  "Message": "NuGetFeed AGF3BSAK1UT01RY was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Environments-21",
-      "StartIndex": 12,
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 10,
       "Length": 15
     }
   ],

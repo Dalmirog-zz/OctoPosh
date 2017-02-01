@@ -1,23 +1,25 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-370",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Users-1"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-15T17:31:39.9234608-03:00",
-  "Message": "Channel GSN6J532E925KVS was created",
+  "Occurred": "2017-01-14T18:32:35.2861627-03:00",
+  "Message": "User admin was created using the admin command line",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 8,
-      "Length": 15
+      "ReferencedDocumentId": "Users-1",
+      "StartIndex": 5,
+      "Length": 5
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Command-line or tools"
 }

@@ -2,24 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-350",
   "RelatedDocumentIds": [
-    "Environments-3"
+    "Users-1"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-3",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
+  "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-23T02:19:02.3299678-03:00",
-  "Message": "Environment unmodified_TestEnvironment was created",
+  "Occurred": "2016-12-17T00:13:39.1148424-03:00",
+  "Message": "User admin set password using the admin command line",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Environments-3",
-      "StartIndex": 12,
-      "Length": 26
+      "ReferencedDocumentId": "Users-1",
+      "StartIndex": 5,
+      "Length": 5
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "IdentityEstablishedWith": "Command-line or tools"
 }

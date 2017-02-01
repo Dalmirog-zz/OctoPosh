@@ -2,27 +2,22 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-112",
   "RelatedDocumentIds": [
-    "Projects-1",
-    "Releases-1"
+    "ServerTasks-18",
+    "Environments-1"
   ],
-  "ProjectId": "Projects-1",
-  "EnvironmentId": null,
+  "ProjectId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-18T23:19:54.5300743-03:00",
-  "Message": "TestProject1 release 0.0.1 was created",
+  "Occurred": "2017-01-22T00:13:09.4590531-03:00",
+  "Message": "Ran task Check OfflineTarget health",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Projects-1",
-      "StartIndex": 0,
-      "Length": 12
-    },
-    {
-      "ReferencedDocumentId": "Releases-1",
-      "StartIndex": 21,
-      "Length": 5
+      "ReferencedDocumentId": "ServerTasks-18",
+      "StartIndex": 9,
+      "Length": 26
     }
   ],
   "Comments": null,

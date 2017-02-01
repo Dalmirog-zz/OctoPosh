@@ -1,0 +1,25 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-557",
+  "RelatedDocumentIds": [
+    "Users-1"
+  ],
+  "ProjectId": null,
+  "EnvironmentId": null,
+  "TenantId": null,
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2016-12-09T01:48:27.3283076-03:00",
+  "Message": "User admin set password using the admin command line",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Users-1",
+      "StartIndex": 5,
+      "Length": 5
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "Command-line or tools"
+}

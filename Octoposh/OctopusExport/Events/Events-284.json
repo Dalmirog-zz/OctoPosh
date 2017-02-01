@@ -1,23 +1,26 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-284",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Machines-4",
+    "Environments-1"
+  ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-15T17:30:52.5882766-03:00",
-  "Message": "Library Variable Set 9K12I65HAKHNH1Y was created",
+  "Occurred": "2016-12-09T02:10:36.7288051-03:00",
+  "Message": "Machine South was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 21,
-      "Length": 15
+      "ReferencedDocumentId": "Machines-4",
+      "StartIndex": 8,
+      "Length": 5
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Session cookie"
 }

@@ -2,24 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-332",
   "RelatedDocumentIds": [
-    "ProjectGroups-23"
+    "Projects-1"
   ],
-  "ProjectId": null,
+  "ProjectId": "Projects-1",
   "EnvironmentId": null,
   "TenantId": null,
   "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-22T23:50:19.7252124-03:00",
-  "Message": "Project Group unmodified_TestprojectGroup was modified",
+  "Occurred": "2016-12-17T00:14:55.8908266-03:00",
+  "Message": "Project TestProject1 was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "ProjectGroups-23",
-      "StartIndex": 14,
-      "Length": 27
+      "ReferencedDocumentId": "Projects-1",
+      "StartIndex": 8,
+      "Length": 12
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"ProjectGroups-82\",\r&para;<br>  \"Name\": \"</span><ins style=\"background:#e6ffe6;\">un</ins><span>modified_TestprojectGroup\",\r&para;<br>  \"Description\": null\r&para;<br>}</span>",
+  "Details": "<span>{\r&para;<br>  \"Id\": \"Projects-1\",\r&para;<br>  \"Name\": \"TestProject</span><ins style=\"background:#e6ffe6;\">1</ins><span>\",\r&para;<br>  \"Description\": \"Test project that will be used for most unit-test-related things\",\r&para;<br>  \"Slug\": \"testproject</span><ins style=\"background:#e6ffe6;\">1</ins><span>\",\r&para;<br>  \"IsDisabled\": false,\r&para;<br>  \"VariableSetId\": \"variableset-Projects-1\",\r&para;<br>  \"DeploymentProcessId\": \"deploymentprocess-Projects-1\",\r&para;<br>  \"ProjectGroupId\": \"ProjectGroups-21\",\r&para;<br>  \"LifecycleId\": \"Lifecycles-1\",\r&para;<br>  \"AutoCreateRelease\": false,\r&para;<br>  \"IncludedLibraryVariableSetIds\": [],\r&para;<br>  \"UsedPackages\": [],\r&para;<br>  \"DefaultToSkipIfAlreadyInstalled\": false,\r&para;<br>  \"TenantedDeploymentMode\": \"Untenanted\",\r&para;<br>  \"VersioningStrategy\": {\r&para;<br>    \"DonorPackageStepId\": null,\r&para;<br>    \"Template\": \"#{Octopus.Version.LastMajor}.#{Octopus.Version.LastMinor}.#{Octopus.Version.NextPatch}\"\r&para;<br>  },\r&para;<br>  \"Templates\": [],\r&para;<br>  \"ReleaseCreationStrategy\": {\r&para;<br>    \"ReleaseCreationPackageStepId\": </span><del style=\"background:#ffe6e6;\">null</del><ins style=\"background:#e6ffe6;\">\"\"</ins><span>,\r&para;<br>    \"ChannelId\": null\r&para;<br>  },\r&para;<br>  \"ProjectConnectivityPolicy\": {\r&para;<br>    \"SkipMachineBehavior\": \"None\",\r&para;<br>    \"TargetRoles\": []\r&para;<br>  },\r&para;<br>  \"AutoDeployReleaseOverrides\": []\r&para;<br>}</span>",
   "IdentityEstablishedWith": "Session cookie"
 }

@@ -5,19 +5,13 @@
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-01-15T18:01:14.1756892-03:00",
-  "Message": "Lifecycle RFAJ2D3FT6WBS9C was deleted",
-  "MessageReferences": [
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 10,
-      "Length": 15
-    }
-  ],
+  "Category": "Imported",
+  "UserId": "NY",
+  "Username": "dalmiro.granias",
+  "Occurred": "2017-01-18T21:51:51.3755443-03:00",
+  "Message": "Imported documents using Octopus migration tools",
+  "MessageReferences": [],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "Details": "  Created.........................................481\r\n    ApiKey........................................1\r\n    Channel.......................................2\r\n    CommunityActionTemplate.......................217\r\n    DeploymentEnvironment.........................2\r\n    DeploymentProcess.............................2\r\n    Event.........................................212\r\n    ExtensionConfiguration........................2\r\n    Lifecycle.....................................1\r\n    Machine.......................................4\r\n    Project.......................................2\r\n    ProjectGroup..................................2\r\n    ServerTask....................................32\r\n    VariableSet...................................2\r\n  Missing dependencies............................3\r\n    ServerTask....................................3\r\n  Unchanged.......................................24\r\n    ExtensionConfiguration........................3\r\n    License.......................................1\r\n    Lifecycle.....................................1\r\n    MachinePolicy.................................1\r\n    NuGetFeed.....................................1\r\n    ProjectGroup..................................1\r\n    ServerConfiguration...........................1\r\n    SmtpConfiguration.............................1\r\n    Team..........................................2\r\n    User..........................................1\r\n    UserRole......................................10\r\n    WebPortalConfiguration........................1\r\n  Updated.........................................2\r\n    Certificate...................................1\r\n    FeaturesConfiguration.........................1\r\n",
+  "IdentityEstablishedWith": "Command-line or tools"
 }

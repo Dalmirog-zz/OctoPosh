@@ -27,7 +27,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cmdlets\GetOctopusConnectionInfo.cs" />
+    <Compile Include="Cmdlets\GetOctopusDashboard.cs" />
     <Compile Include="Cmdlets\GetOctopusEnvironment.cs" />
     <Compile Include="Cmdlets\GetOctopusMachine.cs" />
     <Compile Include="Cmdlets\GetOctopusProject.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="Model\OctopusConnectionInfo.cs" />
     <Compile Include="Model\OutputConverter.cs" />
     <Compile Include="Model\OutputDiscreteDeployment.cs" />
+    <Compile Include="Model\OutputOctopusDashboardEntry.cs" />
     <Compile Include="Model\OutputOctopusEnvironment.cs" />
     <Compile Include="Model\OutputOctopusMachine.cs" />
     <Compile Include="Model\OutputOctopusProjectGroup.cs" />

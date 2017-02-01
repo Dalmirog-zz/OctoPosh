@@ -1,23 +1,26 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-206",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "variableset-LibraryVariableSets-1",
+    "LibraryVariableSets-1"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
+  "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-14T19:45:48.8211812-03:00",
-  "Message": "Project Group RFAJ2D3FT6WBS9C was created",
+  "Occurred": "2017-01-23T02:16:54.1569137-03:00",
+  "Message": "Variables for unmodified_TestLibraryVariableset were changed",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
+      "ReferencedDocumentId": "LibraryVariableSets-1",
       "StartIndex": 14,
-      "Length": 15
+      "Length": 33
     }
   ],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "Details": "<span>{\r&para;<br>  \"Id\": \"variableset-LibraryVariableSets-22\",\r&para;<br>  \"OwnerId\": \"LibraryVariableSets-22\",\r&para;<br></span><ins style=\"background:#e6ffe6;\">  \"Version\": 1,\r&para;<br></ins><span>  \"Variables\": [],\r&para;<br>  \"RelatedDocumentIds\": []\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "Session cookie"
 }

@@ -2,25 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-157",
   "RelatedDocumentIds": [
-    "Machines-3",
-    "Environments-1"
+    "Machines-2"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Modified",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-19T01:39:21.7854107-03:00",
-  "Message": "Machine OfflineTarget was modified",
+  "Occurred": "2016-12-04T13:20:32.9223283-03:00",
+  "Message": "Machine North was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Machines-3",
+      "ReferencedDocumentId": "Machines-2",
       "StartIndex": 8,
-      "Length": 13
+      "Length": 5
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"Machines-3\",\r&para;<br>  \"Name\": \"OfflineTarget\",\r&para;<br>  \"Endpoint\": {\r&para;<br>    \"DropFolderPath\": \"\\\\\\\\whatever\",\r&para;<br>    \"SensitiveVariablesEncryptionPassword\": null,\r&para;<br>    \"ApplicationsDirectory\": \"c:\\\\whatever\",\r&para;<br>    \"OctopusWorkingDirectory\": \"c:\\\\whatever\"\r&para;<br>  },\r&para;<br>  \"IsDisabled\": false,\r&para;<br>  \"Roles\": [\r&para;<br>    \"WebServer\"\r&para;<br>  ],\r&para;<br>  \"EnvironmentIds\": [\r&para;<br>    \"Environments-1\"\r&para;<br>  ],\r&para;<br>  \"TenantIds\": [],\r&para;<br>  \"TenantTags\": [],\r&para;<br>  \"MachinePolicyId\": \"MachinePolicies-1\"\r&para;<br>}</span>",
+  "Details": null,
   "IdentityEstablishedWith": "Session cookie"
 }

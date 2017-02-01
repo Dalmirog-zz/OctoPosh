@@ -1,15 +1,17 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-98",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Environments-1"
+  ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "MachineAdded",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-18T21:52:20.5743823-03:00",
-  "Message": "Machine WDWTO3ZMKNGOXO0 was created (domain-event)",
+  "Occurred": "2017-01-20T21:24:32.7198427-03:00",
+  "Message": "Machine RFCVVZLYTFB5J9N was created",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",

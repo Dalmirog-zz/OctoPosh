@@ -1,0 +1,31 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-646",
+  "RelatedDocumentIds": [
+    "Projects-22",
+    "Releases-42"
+  ],
+  "ProjectId": "Projects-22",
+  "EnvironmentId": null,
+  "TenantId": null,
+  "Category": "Created",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-01-31T01:52:56.4690289+00:00",
+  "Message": "DashboardTests_Project1 release 0.0.2 was created",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Projects-22",
+      "StartIndex": 0,
+      "Length": 23
+    },
+    {
+      "ReferencedDocumentId": "Releases-42",
+      "StartIndex": 32,
+      "Length": 5
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "Session cookie"
+}

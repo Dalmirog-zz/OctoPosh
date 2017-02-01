@@ -1,0 +1,463 @@
+{
+  "$type": "Octopus.Core.Model.Variables.VariableSet, Octopus.Core",
+  "Id": "variableset-Deployments-22",
+  "OwnerId": "Deployments-22",
+  "IsFrozen": true,
+  "Variables": [
+    {
+      "Id": "377fc1e5-f627-40d1-8175-5c1259aba448",
+      "Name": "Octopus.Deployment.Id",
+      "Value": "Deployments-22"
+    },
+    {
+      "Id": "2a392e15-d9c6-423e-9370-e312d1cbe44f",
+      "Name": "Octopus.Deployment.Name",
+      "Value": "Deploy to Stage"
+    },
+    {
+      "Id": "4d3a074d-08cb-49ca-a879-213cf9a87207",
+      "Name": "Octopus.Deployment.Created",
+      "Value": "Monday, January 30, 2017 10:49:38 PM"
+    },
+    {
+      "Id": "b508f4a8-5cdc-461a-ae0b-c84c6542fe31",
+      "Name": "Octopus.Deployment.CreatedUtc",
+      "Value": "1/31/2017 1:49:38 AM +00:00"
+    },
+    {
+      "Id": "b0f781a1-2d96-46ce-8864-8fd68b08ac2b",
+      "Name": "Octopus.Deployment.Comments",
+      "Value": null
+    },
+    {
+      "Id": "d39d4ce7-3141-435c-888e-c21f60b28ee5",
+      "Name": "Octopus.Deployment.ForcePackageDownload",
+      "Value": "False"
+    },
+    {
+      "Id": "30f1e1fa-c6fc-4b48-8763-005fc826344b",
+      "Name": "Octopus.Deployment.SpecificMachines",
+      "Value": null
+    },
+    {
+      "Id": "9ac2d556-3d9d-46e2-ad2b-01ef8406a6ed",
+      "Name": "Octopus.Project.Id",
+      "Value": "Projects-22"
+    },
+    {
+      "Id": "abae0ea4-ed4e-4a59-8f92-8d3538c96652",
+      "Name": "Octopus.Project.Name",
+      "Value": "DashboardTests_Project1"
+    },
+    {
+      "Id": "4fd434d7-6106-460a-8841-18953bf5608d",
+      "Name": "Octopus.ProjectGroup.Id",
+      "Value": "ProjectGroups-42"
+    },
+    {
+      "Id": "de7e13fa-4e4c-4b06-b473-721fcde344ce",
+      "Name": "Octopus.ProjectGroup.Name",
+      "Value": "DashboardTests_ProjectGroup"
+    },
+    {
+      "Id": "c5780287-9ad8-4e8a-8b83-176656edf955",
+      "Name": "Octopus.Environment.Id",
+      "Value": "Environments-3"
+    },
+    {
+      "Id": "b46a615c-9c47-49e3-86aa-d456fbafb054",
+      "Name": "Octopus.Environment.Name",
+      "Value": "Stage"
+    },
+    {
+      "Id": "60730361-e5f4-46e9-8f19-c8a2d6fd018b",
+      "Name": "Octopus.Environment.SortOrder",
+      "Value": "1"
+    },
+    {
+      "Id": "422e58fb-9531-4096-a37f-f257d70c8193",
+      "Name": "Octopus.Release.Number",
+      "Value": "0.0.1"
+    },
+    {
+      "Id": "a87b7416-bc62-491b-a059-f100fbb5a8a8",
+      "Name": "Octopus.Release.Notes",
+      "Value": null
+    },
+    {
+      "Id": "b0d0072f-b989-406e-a321-cef90cdda7a5",
+      "Name": "Octopus.Task.Id",
+      "Value": "ServerTasks-67"
+    },
+    {
+      "Id": "2e3fe425-f9ad-4a54-8982-35f3d27bca72",
+      "Name": "Octopus.Task.Name",
+      "Value": "Deploy"
+    },
+    {
+      "Id": "f1ee13a7-6ca7-4fa1-9f68-a4cbb6ee23ce",
+      "Name": "Octopus.Task.Argument[DeploymentId]",
+      "Value": "Deployments-22"
+    },
+    {
+      "Id": "60b68717-d372-4a03-b92b-30c14f3deed7",
+      "Name": "Octopus.Release.Channel.Id",
+      "Value": "Channels-23"
+    },
+    {
+      "Id": "649cbafe-975a-486f-8e72-ab4c8d4d8db8",
+      "Name": "Octopus.Release.Channel.Name",
+      "Value": "Default"
+    },
+    {
+      "Id": "6676ae40-7320-4718-b07e-93da3858405f",
+      "Name": "Octopus.Deployment.Machines",
+      "Value": "Machines-2"
+    },
+    {
+      "Id": "02cea916-1c72-4230-b2e4-982e98ee98c3",
+      "Name": "Octopus.Environment.MachinesInRole[WebApps]",
+      "Value": "Machines-2"
+    },
+    {
+      "Id": "42de078d-3e42-4eab-9f27-73556b1ed68e",
+      "Name": "Octopus.Web.BaseUrl",
+      "Value": "http://DEVBOX:82"
+    },
+    {
+      "Id": "47c17afc-25cf-4e3b-9654-fc4fc3cb173c",
+      "Name": "Octopus.Web.DeploymentLink",
+      "Value": "/app#/deployments/Deployments-22"
+    },
+    {
+      "Id": "bd242dd6-c07e-46a7-ba03-eeb80ceb765e",
+      "Name": "Octopus.Web.ReleaseLink",
+      "Value": "/app#/releases/Releases-41"
+    },
+    {
+      "Id": "e5a080dd-966f-4519-bffb-7aec266cff25",
+      "Name": "Octopus.Web.ProjectLink",
+      "Value": "/app#/projects/Projects-22"
+    },
+    {
+      "Id": "100e0af2-ebb5-4189-8a7a-d422a2ab01ce",
+      "Name": "Octopus.Machine.Id",
+      "Value": "Machines-2",
+      "Scope": {
+        "Machine": [
+          "Machines-2"
+        ]
+      }
+    },
+    {
+      "Id": "5a5ebb0b-e790-4cf3-bc9f-41b2503179e9",
+      "Name": "Octopus.Machine.Name",
+      "Value": "North",
+      "Scope": {
+        "Machine": [
+          "Machines-2"
+        ]
+      }
+    },
+    {
+      "Id": "950e1eff-bad7-49f8-a31a-8f3462b56d85",
+      "Name": "Octopus.Machine.Roles",
+      "Value": "WebApps",
+      "Scope": {
+        "Machine": [
+          "Machines-2"
+        ]
+      }
+    },
+    {
+      "Id": "01031447-8fad-4263-b385-c18b1171c0d7",
+      "Name": "Octopus.Tentacle.Agent.ApplicationDirectoryPath",
+      "Value": "#{env:TentacleApplications}",
+      "Scope": {
+        "Machine": [
+          "Machines-2"
+        ]
+      }
+    },
+    {
+      "Id": "77352f61-c0ad-45e2-a02c-ebed2728e6b9",
+      "Name": "Octopus.Tentacle.Agent.InstanceName",
+      "Value": "#{env:TentacleInstanceName}",
+      "Scope": {
+        "Machine": [
+          "Machines-2"
+        ]
+      }
+    },
+    {
+      "Id": "12baa033-143f-44d7-80ba-5fb5f69b832a",
+      "Name": "Octopus.Tentacle.Agent.ProgramDirectoryPath",
+      "Value": "#{env:TentacleProgramDirectoryPath}",
+      "Scope": {
+        "Machine": [
+          "Machines-2"
+        ]
+      }
+    },
+    {
+      "Id": "a7dfa377-631e-4e04-b21d-c65fdb37a78b",
+      "Name": "Octopus.Machine.CommunicationStyle",
+      "Value": "None",
+      "Scope": {
+        "Machine": [
+          "Machines-2"
+        ]
+      }
+    },
+    {
+      "Id": "805df5dd-2b8d-4225-9cf1-e838ded6717b",
+      "Name": "Octopus.Machine.Tags",
+      "Value": null,
+      "Scope": {
+        "Machine": [
+          "Machines-2"
+        ]
+      }
+    },
+    {
+      "Id": "e2f2d305-cc1f-495e-af95-69cdfec63c38",
+      "Name": "Octopus.Machine.TenantIds",
+      "Value": null,
+      "Scope": {
+        "Machine": [
+          "Machines-2"
+        ]
+      }
+    },
+    {
+      "Id": "b8c21c38-5a0a-48cd-98ed-16991d86f28a",
+      "Name": "Octopus.Action.Number",
+      "Value": "1",
+      "Scope": {
+        "Action": [
+          "f5381ee6-8c5c-4226-8593-47c7694a2510"
+        ]
+      }
+    },
+    {
+      "Id": "ccca32a1-1ab1-4cbc-bd46-550d677cd0c5",
+      "Name": "Octopus.Action.StepName",
+      "Value": "Run script 1",
+      "Scope": {
+        "Action": [
+          "f5381ee6-8c5c-4226-8593-47c7694a2510"
+        ]
+      }
+    },
+    {
+      "Id": "efb38e40-bfa6-43e6-82ae-43a45b91e336",
+      "Name": "Octopus.Step.Number",
+      "Value": "1",
+      "Scope": {
+        "Action": [
+          "f5381ee6-8c5c-4226-8593-47c7694a2510"
+        ]
+      }
+    },
+    {
+      "Id": "43f9075a-81c5-4e5a-ac6a-959819c304fc",
+      "Name": "Octopus.Step.Id",
+      "Value": "43ce56a5-9680-42ae-b082-8ef9ab68af3f",
+      "Scope": {
+        "Action": [
+          "f5381ee6-8c5c-4226-8593-47c7694a2510"
+        ]
+      }
+    },
+    {
+      "Id": "ffc45fa7-0895-486c-b407-29952942f434",
+      "Name": "Octopus.Step.Name",
+      "Value": "Run script 1",
+      "Scope": {
+        "Action": [
+          "f5381ee6-8c5c-4226-8593-47c7694a2510"
+        ]
+      }
+    },
+    {
+      "Id": "da063473-86d2-4c20-bdcf-2112756208fc",
+      "Name": "Octopus.Action.TargetRoles",
+      "Value": "WebApps",
+      "Scope": {
+        "Action": [
+          "f5381ee6-8c5c-4226-8593-47c7694a2510"
+        ]
+      }
+    },
+    {
+      "Id": "d2edb58e-ad92-44c3-8bd7-7dd4ad46c449",
+      "Name": "Octopus.Action.Id",
+      "Value": "f5381ee6-8c5c-4226-8593-47c7694a2510",
+      "Scope": {
+        "Action": [
+          "f5381ee6-8c5c-4226-8593-47c7694a2510"
+        ]
+      }
+    },
+    {
+      "Id": "85771605-cc61-4584-9da8-943c11e18691",
+      "Name": "Octopus.Action.Name",
+      "Value": "Run script 1",
+      "Scope": {
+        "Action": [
+          "f5381ee6-8c5c-4226-8593-47c7694a2510"
+        ]
+      }
+    },
+    {
+      "Id": "355cec2a-1775-43b9-b6cd-fe1a1e7f2e44",
+      "Name": "Octopus.Action.RunOnServer",
+      "Value": "false",
+      "Scope": {
+        "Action": [
+          "f5381ee6-8c5c-4226-8593-47c7694a2510"
+        ]
+      }
+    },
+    {
+      "Id": "dc76918d-d4c6-4530-bba9-f8c5fa3ed026",
+      "Name": "Octopus.Action.Script.Syntax",
+      "Value": "PowerShell",
+      "Scope": {
+        "Action": [
+          "f5381ee6-8c5c-4226-8593-47c7694a2510"
+        ]
+      }
+    },
+    {
+      "Id": "8935296e-6b60-45c6-8cb8-a4d358b0604d",
+      "Name": "Octopus.Action.Script.ScriptSource",
+      "Value": "Inline",
+      "Scope": {
+        "Action": [
+          "f5381ee6-8c5c-4226-8593-47c7694a2510"
+        ]
+      }
+    },
+    {
+      "Id": "98c30cdc-6f9a-4c54-af10-2820dd632427",
+      "Name": "Octopus.Action.Script.ScriptBody",
+      "Value": "$StepName = $OctopusParameters['Octopus.Step.Name']\n$TargetName = $OctopusParameters['Octopus.Machine.Name']\n\"Hello from step [$StepName] on [$Targetname]\"",
+      "Scope": {
+        "Action": [
+          "f5381ee6-8c5c-4226-8593-47c7694a2510"
+        ]
+      }
+    },
+    {
+      "Id": "2eb19daa-e563-499e-b7bf-ed8e72d28003",
+      "Name": "Octopus.Action[Run script 1].Number",
+      "Value": "1"
+    },
+    {
+      "Id": "89022375-180c-4474-b7ee-73d6a15238e9",
+      "Name": "Octopus.Action[Run script 1].StepName",
+      "Value": "Run script 1"
+    },
+    {
+      "Id": "4255aac0-1f8a-42e3-89e1-aa97d75173c9",
+      "Name": "Octopus.Action[Run script 1].TargetRoles",
+      "Value": "WebApps"
+    },
+    {
+      "Id": "e1dce4fd-d38c-4a80-91e3-1d9278a392e8",
+      "Name": "Octopus.Action[Run script 1].Id",
+      "Value": "f5381ee6-8c5c-4226-8593-47c7694a2510"
+    },
+    {
+      "Id": "eeb11d4f-a2fb-4a35-a369-ecdfce028914",
+      "Name": "Octopus.Action[Run script 1].Name",
+      "Value": "Run script 1"
+    },
+    {
+      "Id": "588849e9-589f-4f83-820e-7666a8ce1a55",
+      "Name": "Octopus.Action[Run script 1].RunOnServer",
+      "Value": "false"
+    },
+    {
+      "Id": "e4ff6658-ce6e-46ef-a2fe-bc374c1d2421",
+      "Name": "Octopus.Action[Run script 1].Script.Syntax",
+      "Value": "PowerShell"
+    },
+    {
+      "Id": "a07ca267-389a-4079-a1ba-3da3a8910854",
+      "Name": "Octopus.Action[Run script 1].Script.ScriptSource",
+      "Value": "Inline"
+    },
+    {
+      "Id": "8e83c11d-a753-4a6d-a6b9-4e29def911be",
+      "Name": "Octopus.Action[Run script 1].Script.ScriptBody",
+      "Value": "$StepName = $OctopusParameters['Octopus.Step.Name']\n$TargetName = $OctopusParameters['Octopus.Machine.Name']\n\"Hello from step [$StepName] on [$Targetname]\""
+    },
+    {
+      "Id": "e36ebd96-8bf9-4d18-8b39-a1e6c538aeb3",
+      "Name": "Octopus.Step[Run script 1].Number",
+      "Value": "1"
+    },
+    {
+      "Id": "33b4f520-751d-44eb-915c-2806a172f5ed",
+      "Name": "Octopus.Step[Run script 1].Id",
+      "Value": "43ce56a5-9680-42ae-b082-8ef9ab68af3f"
+    },
+    {
+      "Id": "2818e6cb-32c4-4735-a64f-c351f83c94ff",
+      "Name": "Octopus.Step[Run script 1].Name",
+      "Value": "Run script 1"
+    },
+    {
+      "Id": "c0a5336d-9023-4dc0-8b7f-17db160ac1f3",
+      "Name": "Octopus.Deployment.CreatedBy.Id",
+      "Value": "Users-1"
+    },
+    {
+      "Id": "b48314bb-74fb-4f74-943d-1eadab6c8dc4",
+      "Name": "Octopus.Deployment.CreatedBy.Username",
+      "Value": "admin"
+    },
+    {
+      "Id": "c5158cf3-237c-4663-86c4-f64d191df860",
+      "Name": "Octopus.Deployment.CreatedBy.DisplayName",
+      "Value": null
+    },
+    {
+      "Id": "303ff200-69c1-4b81-8dbf-8627dd3d33ba",
+      "Name": "Octopus.Deployment.CreatedBy.EmailAddress",
+      "Value": null
+    },
+    {
+      "Id": "467255af-04e9-4d54-9cbd-e578c6bd4101",
+      "Name": "Octopus.Tentacle.CurrentDeployment.RetentionPolicySubset",
+      "Value": "<default>"
+    },
+    {
+      "Id": "5e3c06a3-e7a3-4a28-84bb-50e95358a5f9",
+      "Name": "OctopusRetentionPolicySet",
+      "Value": "#{if Octopus.Deployment.Tenant.Id}#{Octopus.Deployment.Tenant.Id}/#{/if}#{Octopus.Environment.Id}/#{Octopus.Project.Id}/Step-#{Octopus.Action.Name}/#{Octopus.Machine.Id}/#{Octopus.Tentacle.CurrentDeployment.RetentionPolicySubset}"
+    },
+    {
+      "Id": "903fd754-f89d-4ff8-b556-a7b403c2939e",
+      "Name": "OctopusUseGuidedFailure",
+      "Value": "False"
+    },
+    {
+      "Id": "ef945ac4-a8da-4a9e-9ea1-b1b1133411bf",
+      "Name": "Octopus.Step[Run script 1].Status.Code",
+      "Value": "Succeeded",
+      "Scope": {
+        "Private": [
+          "True"
+        ]
+      }
+    }
+  ],
+  "RelatedDocumentIds": [
+    "Machines-2",
+    "f5381ee6-8c5c-4226-8593-47c7694a2510",
+    "True"
+  ]
+}

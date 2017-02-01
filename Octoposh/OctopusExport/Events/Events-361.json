@@ -2,7 +2,7 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-361",
   "RelatedDocumentIds": [
-    "ProjectGroups-23"
+    "feeds-unmodified-feed"
   ],
   "ProjectId": null,
   "EnvironmentId": null,
@@ -10,16 +10,16 @@
   "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-23T02:21:18.5674333-03:00",
-  "Message": "Project Group unmodified_TestProjectGroup was modified",
+  "Occurred": "2017-01-23T03:27:29.5156356-03:00",
+  "Message": "NuGetFeed unmodified_TestFeed was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "ProjectGroups-23",
-      "StartIndex": 14,
-      "Length": 27
+      "ReferencedDocumentId": "feeds-unmodified-feed",
+      "StartIndex": 10,
+      "Length": 19
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"ProjectGroups-82\",\r&para;<br>  \"Name\": \"</span><ins style=\"background:#e6ffe6;\">un</ins><span>modified_Test</span><del style=\"background:#ffe6e6;\">p</del><ins style=\"background:#e6ffe6;\">P</ins><span>rojectGroup\",\r&para;<br>  \"Description\": \"Resource created for unit testing purposes. Do not delete/edit\"\r&para;<br>}</span>",
+  "Details": "<span>{\r&para;<br>  \"Id\": \"feeds-unmodified-feed\",\r&para;<br>  \"Name\": \"</span><ins style=\"background:#e6ffe6;\">un</ins><span>modified_TestFeed\",\r&para;<br>  \"FeedUri\": \"c:\\\\ackages\",\r&para;<br>  \"Username\": null,\r&para;<br>  \"Password\": null,\r&para;<br>  \"FeedType\": \"NuGet\"\r&para;<br>}</span>",
   "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

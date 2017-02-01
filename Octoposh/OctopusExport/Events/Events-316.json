@@ -1,17 +1,15 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-316",
-  "RelatedDocumentIds": [
-    "Environments-1"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
+  "Category": "MachineDeleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-22T15:45:22.7090097-03:00",
-  "Message": "Machine BTEF7UDD95UQISQ was created",
+  "Occurred": "2017-01-23T02:31:05.1547411-03:00",
+  "Message": "Machine DGQQ2AP7CNQFEV3 was deleted (domain-event)",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",

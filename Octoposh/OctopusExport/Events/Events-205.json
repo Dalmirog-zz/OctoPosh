@@ -1,23 +1,25 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-205",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "LibraryVariableSets-1"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-14T19:45:48.4581777-03:00",
-  "Message": "Project RFAJ2D3FT6WBS9C was deleted",
+  "Occurred": "2017-01-23T02:16:54.0019176-03:00",
+  "Message": "Library Variable Set unmodified_TestLibraryVariableset was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 8,
-      "Length": 15
+      "ReferencedDocumentId": "LibraryVariableSets-1",
+      "StartIndex": 21,
+      "Length": 33
     }
   ],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "Details": "<span>{\r&para;<br>  \"Id\": \"LibraryVariableSets-22\",\r&para;<br>  \"Name\": \"unmodified_</span><ins style=\"background:#e6ffe6;\">Test</ins><span>LibraryVariableset\",\r&para;<br>  \"Description\": \"\",\r&para;<br>  \"VariableSetId\": \"variableset-LibraryVariableSets-22\",\r&para;<br>  \"ContentType\": \"Variables\",\r&para;<br>  \"Templates\": []\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "Session cookie"
 }

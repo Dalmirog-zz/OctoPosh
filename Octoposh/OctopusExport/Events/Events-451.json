@@ -2,21 +2,27 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-451",
   "RelatedDocumentIds": [
-    "Users-21"
+    "Projects-1",
+    "Releases-7"
   ],
-  "ProjectId": null,
+  "ProjectId": "Projects-1",
   "EnvironmentId": null,
   "TenantId": null,
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-23T05:33:21.3105137+00:00",
-  "Message": "User unmodified_TestUser has been created ",
+  "Occurred": "2017-01-18T23:36:02.285443-03:00",
+  "Message": "TestProject1 release 0.0.15 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Users-21",
-      "StartIndex": 5,
-      "Length": 19
+      "ReferencedDocumentId": "Projects-1",
+      "StartIndex": 0,
+      "Length": 12
+    },
+    {
+      "ReferencedDocumentId": "Releases-7",
+      "StartIndex": 21,
+      "Length": 6
     }
   ],
   "Comments": null,

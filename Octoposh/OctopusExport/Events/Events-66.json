@@ -1,26 +1,17 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-66",
-  "RelatedDocumentIds": [
-    "Machines-3",
-    "Environments-1"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2016-12-14T01:12:01.3468119-03:00",
-  "Message": "Machine OfflineTarget was created",
-  "MessageReferences": [
-    {
-      "ReferencedDocumentId": "Machines-3",
-      "StartIndex": 8,
-      "Length": 13
-    }
-  ],
+  "Category": "Imported",
+  "UserId": "NY",
+  "Username": "dalmiro.granias",
+  "Occurred": "2016-12-10T17:47:00.5521985-03:00",
+  "Message": "Imported task logs using Octopus migration tools",
+  "MessageReferences": [],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "Details": "  Skipped (incomplete)............................3897\r\n    TaskLog file..................................3897\r\n  Skipped (no overwrite)..........................1464\r\n    TaskLog file..................................83\r\n    TaskLog line..................................1381\r\n",
+  "IdentityEstablishedWith": "Command-line or tools"
 }

@@ -2,7 +2,7 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-224",
   "RelatedDocumentIds": [
-    "Users-1"
+    "ProjectGroups-23"
   ],
   "ProjectId": null,
   "EnvironmentId": null,
@@ -10,16 +10,16 @@
   "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-14T18:32:35.3471616-03:00",
-  "Message": "User admin set password using the admin command line",
+  "Occurred": "2017-01-23T02:20:29.562845-03:00",
+  "Message": "Project Group unmodified_TestProjectGroup was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Users-1",
-      "StartIndex": 5,
-      "Length": 5
+      "ReferencedDocumentId": "ProjectGroups-23",
+      "StartIndex": 14,
+      "Length": 27
     }
   ],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "Command-line or tools"
+  "Details": "<span>{\r&para;<br>  \"Id\": \"ProjectGroups-82\",\r&para;<br>  \"Name\": \"</span><ins style=\"background:#e6ffe6;\">un</ins><span>modified_Test</span><del style=\"background:#ffe6e6;\">p</del><ins style=\"background:#e6ffe6;\">P</ins><span>rojectGroup\",\r&para;<br>  \"Description\": \"Resource created for unit testing purposes. Do not delete/edit\"\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }
