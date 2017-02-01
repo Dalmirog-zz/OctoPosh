@@ -1,28 +1,23 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-470",
-  "RelatedDocumentIds": [
-    "Machines-2",
-    "Environments-1",
-    "Environments-3",
-    "Environments-2"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Modified",
+  "Category": "Deleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-29T04:54:20.9163637-03:00",
-  "Message": "Machine North was modified",
+  "Occurred": "2017-01-14T19:45:49.0661838-03:00",
+  "Message": "Project Group RFAJ2D3FT6WBS9C was deleted",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Machines-2",
-      "StartIndex": 8,
-      "Length": 5
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 14,
+      "Length": 15
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"Machines-2\",\r&para;<br>  \"Name\": \"North\",\r&para;<br>  \"Endpoint\": {},\r&para;<br>  \"IsDisabled\": false,\r&para;<br>  \"Roles\": [\r&para;<br>    \"WebApps\"\r&para;<br>  ],\r&para;<br>  \"EnvironmentIds\": [\r&para;<br>    \"Environments-1\"</span><ins style=\"background:#e6ffe6;\">,\r&para;<br>    \"Environments-2\",\r&para;<br>    \"Environments-22\"</ins><span>\r&para;<br>  ],\r&para;<br>  \"TenantIds\": [],\r&para;<br>  \"TenantTags\": [],\r&para;<br>  \"MachinePolicyId\": \"MachinePolicies-1\"\r&para;<br>}</span>",
-  "IdentityEstablishedWith": "Session cookie"
+  "Details": null,
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

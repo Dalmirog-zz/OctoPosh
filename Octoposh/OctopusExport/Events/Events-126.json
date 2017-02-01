@@ -1,23 +1,25 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-126",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "LibraryVariableSets-1"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
+  "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-22T15:42:56.8614715-03:00",
-  "Message": "Lifecycle I7716UCQNL5KR9H was created",
+  "Occurred": "2017-01-23T02:16:54.0019176-03:00",
+  "Message": "Library Variable Set unmodified_TestLibraryVariableset was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 10,
-      "Length": 15
+      "ReferencedDocumentId": "LibraryVariableSets-1",
+      "StartIndex": 21,
+      "Length": 33
     }
   ],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "Details": "<span>{\r&para;<br>  \"Id\": \"LibraryVariableSets-22\",\r&para;<br>  \"Name\": \"unmodified_</span><ins style=\"background:#e6ffe6;\">Test</ins><span>LibraryVariableset\",\r&para;<br>  \"Description\": \"\",\r&para;<br>  \"VariableSetId\": \"variableset-LibraryVariableSets-22\",\r&para;<br>  \"ContentType\": \"Variables\",\r&para;<br>  \"Templates\": []\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "Session cookie"
 }

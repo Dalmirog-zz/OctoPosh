@@ -1,23 +1,25 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-174",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Machines-2"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "MachineAdded",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-18T21:52:22.0293646-03:00",
-  "Message": "Project WDWTO3ZMKNGOXO0 was deleted",
+  "Occurred": "2016-12-04T13:20:32.9523428-03:00",
+  "Message": "Machine North was created (domain-event)",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
+      "ReferencedDocumentId": "Machines-2",
       "StartIndex": 8,
-      "Length": 15
+      "Length": 5
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Session cookie"
 }

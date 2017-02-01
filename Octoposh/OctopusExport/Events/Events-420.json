@@ -2,24 +2,37 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-420",
   "RelatedDocumentIds": [
-    "Machines-3"
+    "Deployments-13",
+    "Projects-3",
+    "Releases-26",
+    "Environments-3"
   ],
-  "ProjectId": null,
-  "EnvironmentId": null,
+  "ProjectId": "Projects-3",
+  "EnvironmentId": "Environments-3",
   "TenantId": null,
-  "Category": "MachineUnhealthy",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-01-29T04:50:06.9186277-03:00",
-  "Message": "Machine OfflineTarget became unhealthy",
+  "Category": "DeploymentQueued",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-01-29T04:56:52.7978432-03:00",
+  "Message": "Deployed TestProject1 release 0.0.32 to Stage",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Machines-3",
-      "StartIndex": 8,
-      "Length": 13
+      "ReferencedDocumentId": "Projects-3",
+      "StartIndex": 9,
+      "Length": 12
+    },
+    {
+      "ReferencedDocumentId": "Releases-26",
+      "StartIndex": 30,
+      "Length": 6
+    },
+    {
+      "ReferencedDocumentId": "Environments-3",
+      "StartIndex": 40,
+      "Length": 5
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "IdentityEstablishedWith": "Session cookie"
 }

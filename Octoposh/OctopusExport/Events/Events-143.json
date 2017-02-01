@@ -1,20 +1,22 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-143",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Machines-5"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
+  "Category": "MachineAdded",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2016-12-20T03:09:52.7570325-03:00",
-  "Message": "Environment deleteme was created",
+  "Occurred": "2017-01-23T02:19:48.9329295-03:00",
+  "Message": "Machine unmodified_TestMachine was created (domain-event)",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 12,
-      "Length": 8
+      "ReferencedDocumentId": "Machines-5",
+      "StartIndex": 8,
+      "Length": 22
     }
   ],
   "Comments": null,

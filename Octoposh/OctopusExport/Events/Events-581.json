@@ -2,21 +2,38 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-581",
   "RelatedDocumentIds": [
-    "Machines-3"
+    "Deployments-3",
+    "Projects-1",
+    "Environments-2"
   ],
-  "ProjectId": null,
-  "EnvironmentId": null,
+  "ProjectId": "Projects-1",
+  "EnvironmentId": "Environments-2",
   "TenantId": null,
-  "Category": "MachineUnhealthy",
+  "Category": "DeploymentStarted",
   "UserId": "users-system",
   "Username": "system",
-  "Occurred": "2017-01-31T01:27:30.8561812+00:00",
-  "Message": "Machine OfflineTarget became unhealthy",
+  "Occurred": "2017-01-30T22:50:16.1223521-03:00",
+  "Message": "Deploy to Prod started  for DashboardTests_Project1 release 0.0.1 to Prod",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Machines-3",
-      "StartIndex": 8,
-      "Length": 13
+      "ReferencedDocumentId": "Deployments-3",
+      "StartIndex": 0,
+      "Length": 14
+    },
+    {
+      "ReferencedDocumentId": "Projects-1",
+      "StartIndex": 28,
+      "Length": 23
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 60,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-2",
+      "StartIndex": 69,
+      "Length": 4
     }
   ],
   "Comments": null,

@@ -2,27 +2,22 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-335",
   "RelatedDocumentIds": [
-    "Users-21",
-    "teams-everyone"
+    "Machines-1",
+    "Environments-1"
   ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Modified",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-23T02:33:21.3235123-03:00",
-  "Message": "User unmodified_TestUser was added to the team Everyone",
+  "Occurred": "2016-12-14T01:10:54.8776306-03:00",
+  "Message": "Machine ListeningTentacle was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Users-21",
-      "StartIndex": 5,
-      "Length": 19
-    },
-    {
-      "ReferencedDocumentId": "teams-everyone",
-      "StartIndex": 47,
-      "Length": 8
+      "ReferencedDocumentId": "Machines-1",
+      "StartIndex": 8,
+      "Length": 17
     }
   ],
   "Comments": null,

@@ -2,24 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-496",
   "RelatedDocumentIds": [
-    "ServerTasks-44"
+    "Users-1"
   ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "TaskCanceled",
+  "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-29T05:06:23.5189252-03:00",
-  "Message": "Task Deploy TestProject2 release 0.0.1 to Stage #71 was canceled",
+  "Occurred": "2016-12-10T20:05:29.7064859-03:00",
+  "Message": "User admin set password using the admin command line",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "ServerTasks-44",
+      "ReferencedDocumentId": "Users-1",
       "StartIndex": 5,
-      "Length": 46
+      "Length": 5
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "IdentityEstablishedWith": "Command-line or tools"
 }

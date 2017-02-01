@@ -1,0 +1,25 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-720",
+  "RelatedDocumentIds": [
+    "ServerTasks-88"
+  ],
+  "ProjectId": null,
+  "EnvironmentId": null,
+  "TenantId": null,
+  "Category": "TaskCanceled",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-02-01T03:17:06.3069369+00:00",
+  "Message": "Task Deploy DashboardTests_Project1 release 0.0.1 to Prod #88 was canceled",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "ServerTasks-88",
+      "StartIndex": 5,
+      "Length": 56
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "Session cookie"
+}

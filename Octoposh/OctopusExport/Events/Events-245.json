@@ -1,19 +1,21 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-245",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Environments-1"
+  ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Created",
+  "Category": "Deleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-15T17:31:40.4754593-03:00",
-  "Message": "Environment GSN6J532E925KVS was created",
+  "Occurred": "2017-01-23T02:31:05.1507417-03:00",
+  "Message": "Machine DGQQ2AP7CNQFEV3 was deleted",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 12,
+      "StartIndex": 8,
       "Length": 15
     }
   ],

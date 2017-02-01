@@ -1,23 +1,25 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-396",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "feeds-unmodified-feed"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "MachineDeleted",
+  "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2016-12-14T01:09:46.9208052-03:00",
-  "Message": "Machine West was deleted (domain-event)",
+  "Occurred": "2017-01-29T04:50:30.2783675-03:00",
+  "Message": "NuGetFeed modified_TestFeed was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 8,
-      "Length": 4
+      "ReferencedDocumentId": "feeds-unmodified-feed",
+      "StartIndex": 10,
+      "Length": 17
     }
   ],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "Details": "<span>{\r&para;<br>  \"Id\": \"feeds-unmodified-feed\",\r&para;<br>  \"Name\": \"</span><del style=\"background:#ffe6e6;\">un</del><span>modified_TestFeed\",\r&para;<br>  \"FeedUri\": \"c:\\\\ackages\",\r&para;<br>  \"Username\": null,\r&para;<br>  \"Password\": null,\r&para;<br>  \"FeedType\": \"NuGet\"\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

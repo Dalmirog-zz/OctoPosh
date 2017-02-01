@@ -1,43 +1,23 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-489",
-  "RelatedDocumentIds": [
-    "Deployments-7",
-    "Projects-2",
-    "Releases-34",
-    "Environments-3"
-  ],
-  "ProjectId": "Projects-2",
-  "EnvironmentId": "Environments-3",
+  "RelatedDocumentIds": [],
+  "ProjectId": null,
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentSucceeded",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-01-29T05:05:55.7653477-03:00",
-  "Message": "Deploy to Stage succeeded  for TestProject2 release 0.0.1 to Stage",
+  "Category": "Created",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-01-14T20:51:06.1731096-03:00",
+  "Message": "Channel SRVC9OHUNZLU2G4 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Deployments-7",
-      "StartIndex": 0,
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 8,
       "Length": 15
-    },
-    {
-      "ReferencedDocumentId": "Projects-2",
-      "StartIndex": 31,
-      "Length": 12
-    },
-    {
-      "ReferencedDocumentId": "Releases-34",
-      "StartIndex": 52,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-3",
-      "StartIndex": 61,
-      "Length": 5
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

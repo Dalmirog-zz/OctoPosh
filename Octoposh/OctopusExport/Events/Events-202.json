@@ -2,21 +2,27 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-202",
   "RelatedDocumentIds": [
-    "LibraryVariableSets-1"
+    "Projects-3",
+    "Releases-1"
   ],
-  "ProjectId": null,
+  "ProjectId": "Projects-3",
   "EnvironmentId": null,
   "TenantId": null,
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-22T23:52:35.9185213-03:00",
-  "Message": "Library Variable Set unmodified_LibraryVariableset was created",
+  "Occurred": "2017-01-18T23:19:54.5300743-03:00",
+  "Message": "TestProject1 release 0.0.1 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "LibraryVariableSets-1",
+      "ReferencedDocumentId": "Projects-3",
+      "StartIndex": 0,
+      "Length": 12
+    },
+    {
+      "ReferencedDocumentId": "Releases-1",
       "StartIndex": 21,
-      "Length": 29
+      "Length": 5
     }
   ],
   "Comments": null,

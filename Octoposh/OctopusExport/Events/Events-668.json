@@ -2,24 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-668",
   "RelatedDocumentIds": [
-    "ServerTasks-76"
+    "feeds-rutue08erec9igx"
   ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "TaskCanceled",
+  "Category": "Deleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-31T02:46:26.3083385+00:00",
-  "Message": "Task Deploy DashboardTests_Project2 release 0.0.1 to Stage #76 was canceled",
+  "Occurred": "2017-02-01T03:13:38.5069851+00:00",
+  "Message": "NuGetFeed RUTUE08EREC9IGX was deleted",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "ServerTasks-76",
-      "StartIndex": 5,
-      "Length": 57
+      "ReferencedDocumentId": "feeds-rutue08erec9igx",
+      "StartIndex": 10,
+      "Length": 15
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

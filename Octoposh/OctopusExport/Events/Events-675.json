@@ -2,39 +2,21 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-675",
   "RelatedDocumentIds": [
-    "Deployments-31",
-    "Projects-24",
-    "Releases-44",
-    "Environments-1"
+    "Machines-21"
   ],
-  "ProjectId": "Projects-24",
-  "EnvironmentId": "Environments-1",
+  "ProjectId": null,
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentFailed",
+  "Category": "MachineHealthy",
   "UserId": "users-system",
   "Username": "system",
-  "Occurred": "2017-01-31T02:47:25.0977004+00:00",
-  "Message": "Deploy to Dev failed  for DashboardTests_Project2 release 0.0.2 to Dev",
+  "Occurred": "2017-02-01T03:13:41.0674566+00:00",
+  "Message": "Machine RUTUE08EREC9IGX became healthy",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Deployments-31",
-      "StartIndex": 0,
-      "Length": 13
-    },
-    {
-      "ReferencedDocumentId": "Projects-24",
-      "StartIndex": 26,
-      "Length": 23
-    },
-    {
-      "ReferencedDocumentId": "Releases-44",
-      "StartIndex": 58,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-1",
-      "StartIndex": 67,
-      "Length": 3
+      "ReferencedDocumentId": "Machines-21",
+      "StartIndex": 8,
+      "Length": 15
     }
   ],
   "Comments": null,

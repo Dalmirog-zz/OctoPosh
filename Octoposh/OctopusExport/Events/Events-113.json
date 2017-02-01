@@ -1,23 +1,25 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-113",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "ProjectGroups-24"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Modified",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-22T15:22:35.8695202-03:00",
-  "Message": "Project Group whatever was modified",
+  "Occurred": "2017-01-22T23:24:44.8504509-03:00",
+  "Message": "Project Group unmodified_TestProjectGroup was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
+      "ReferencedDocumentId": "ProjectGroups-24",
       "StartIndex": 14,
-      "Length": 8
+      "Length": 27
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"ProjectGroups-22\",\r&para;<br>  \"Name\": \"</span><del style=\"background:#ffe6e6;\">TestProjectGroup2</del><ins style=\"background:#e6ffe6;\">whatever</ins><span>\",\r&para;<br>  \"Description\": null\r&para;<br>}</span>",
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "Details": null,
+  "IdentityEstablishedWith": "Session cookie"
 }

@@ -1,7 +1,7 @@
 {
   "$type": "Octopus.Core.Model.Projects.DeploymentProcess, Octopus.Core",
-  "Id": "deploymentprocess-Projects-1",
-  "OwnerId": "Projects-1",
+  "Id": "deploymentprocess-Projects-3",
+  "OwnerId": "Projects-3",
   "Version": 3,
   "Steps": [
     {
@@ -50,7 +50,7 @@
             "Octopus.Action.RunOnServer": "false",
             "Octopus.Action.Script.Syntax": "PowerShell",
             "Octopus.Action.Script.ScriptSource": "Inline",
-            "Octopus.Action.Script.ScriptBody": "if(\"Stage\" -eq $OctopusParameters['Octopus.Environment.Name']){\n    throw \"Failing step to create test data\"    \n\n}"
+            "Octopus.Action.Script.ScriptBody": "if(\"Stage\" -eq $OctopusParameters['Octopus.Environment.Name']){\r\n    throw \"Failing step to create test data\"    \r\n\r\n}"
           }
         }
       ],

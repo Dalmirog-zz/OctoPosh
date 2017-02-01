@@ -1,31 +1,17 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-516",
-  "RelatedDocumentIds": [
-    "Projects-1",
-    "Releases-13"
-  ],
-  "ProjectId": "Projects-1",
+  "RelatedDocumentIds": [],
+  "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-01-18T23:37:02.7314547-03:00",
-  "Message": "TestProject1 release 0.0.20 was created",
-  "MessageReferences": [
-    {
-      "ReferencedDocumentId": "Projects-1",
-      "StartIndex": 0,
-      "Length": 12
-    },
-    {
-      "ReferencedDocumentId": "Releases-13",
-      "StartIndex": 21,
-      "Length": 6
-    }
-  ],
+  "Category": "Imported",
+  "UserId": "NY",
+  "Username": "dalmiro.granias",
+  "Occurred": "2017-01-30T22:27:08.4286449-03:00",
+  "Message": "Imported task logs using Octopus migration tools",
+  "MessageReferences": [],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "Details": "",
+  "IdentityEstablishedWith": "Command-line or tools"
 }

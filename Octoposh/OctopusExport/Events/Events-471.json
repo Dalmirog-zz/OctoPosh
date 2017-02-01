@@ -2,21 +2,27 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-471",
   "RelatedDocumentIds": [
-    "Machines-2"
+    "Projects-3",
+    "Releases-16"
   ],
-  "ProjectId": null,
+  "ProjectId": "Projects-3",
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "MachineDeploymentRelatedPropertyWasUpdated",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-29T04:54:20.9473662-03:00",
-  "Message": "Machine North was modified (domain-event)",
+  "Occurred": "2017-01-18T23:37:20.5732893-03:00",
+  "Message": "TestProject1 release 0.0.23 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Machines-2",
-      "StartIndex": 8,
-      "Length": 5
+      "ReferencedDocumentId": "Projects-3",
+      "StartIndex": 0,
+      "Length": 12
+    },
+    {
+      "ReferencedDocumentId": "Releases-16",
+      "StartIndex": 21,
+      "Length": 6
     }
   ],
   "Comments": null,

@@ -1,7 +1,7 @@
 {
   "$type": "Octopus.Core.Model.Projects.DeploymentProcess, Octopus.Core",
-  "Id": "deploymentprocess-Projects-2",
-  "OwnerId": "Projects-2",
+  "Id": "deploymentprocess-Projects-4",
+  "OwnerId": "Projects-4",
   "Version": 2,
   "Steps": [
     {
@@ -23,7 +23,7 @@
             "Octopus.Action.RunOnServer": "false",
             "Octopus.Action.Script.Syntax": "PowerShell",
             "Octopus.Action.Script.ScriptSource": "Inline",
-            "Octopus.Action.Script.ScriptBody": "$project = $OctopusParameters['Octopus.Project.Name']\n$stepname = $OctopusParameters['Octopus.Step.Number']\n\n\"Hello from step [$stepname] of project [$Project]\""
+            "Octopus.Action.Script.ScriptBody": "$project = $OctopusParameters['Octopus.Project.Name']\r\n$stepname = $OctopusParameters['Octopus.Step.Number']\r\n\r\n\"Hello from step [$stepname] of project [$Project]\""
           }
         }
       ],
@@ -50,7 +50,7 @@
             "Octopus.Action.RunOnServer": "false",
             "Octopus.Action.Script.Syntax": "PowerShell",
             "Octopus.Action.Script.ScriptSource": "Inline",
-            "Octopus.Action.Script.ScriptBody": "if(\"Dev\" -eq $OctopusParameters['Octopus.Environment.Name']){\n    \n    throw 'failing to create test data'\n}"
+            "Octopus.Action.Script.ScriptBody": "if(\"Dev\" -eq $OctopusParameters['Octopus.Environment.Name']){\r\n    \r\n    throw 'failing to create test data'\r\n}"
           }
         }
       ],
