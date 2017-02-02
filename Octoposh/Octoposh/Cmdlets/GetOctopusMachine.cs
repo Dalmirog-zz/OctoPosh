@@ -11,7 +11,10 @@ namespace Octoposh.Cmdlets
     /// <summary>
     /// <para type="synopsis">This cmdlet returns info about Octopus Targets (Tentacles, cloud regions, Offline deployment targets, SHH)</para>
     /// </summary>
-    /// <example>   
+    /// <summary>
+    /// <para type="description">This cmdlet returns info about Octopus Targets (Tentacles, cloud regions, Offline deployment targets, SHH)</para>
+    /// </summary>
+    /// <example>
     ///   <code>PS C:\> Get-OctopusMachine -name "Database_Prod"</code>
     ///   <para>Gets the machine with the name "Database_Prod"</para>    
     /// </example>

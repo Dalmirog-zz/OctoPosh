@@ -292,5 +292,12 @@ namespace Octoposh.Model
 
             return list;
         }
+
+        public List<OutputOctopusDeployment> GetOctopusDeployment(List<DeploymentResource> baseResourceList, List<DashboardEnvironmentResource> environments, List<DashboardProjectResource> projects)
+        {
+            var list = new List<OutputOctopusDeployment>();
+
+            return list;
+        }
     }
 }
