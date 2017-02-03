@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using Octoposh.Cmdlets;
 using Octopus.Client.Model;
 
@@ -293,9 +294,70 @@ namespace Octoposh.Model
             return list;
         }
 
-        public List<OutputOctopusDeployment> GetOctopusDeployment(List<DeploymentResource> baseResourceList, List<DashboardEnvironmentResource> environments, List<DashboardProjectResource> projects)
+        public List<OutputOctopusDeployment> GetOctopusDeployment(List<DeploymentResource> baseResourceList, List<DashboardEnvironmentResource> environments, List<DashboardProjectResource> projects, List<ReleaseResource> releases)
         {
             var list = new List<OutputOctopusDeployment>();
+
+            foreach (var deployment in baseResourceList)
+            {
+                var project = projects.FirstOrDefault(p => p.Id == deployment.ProjectId);
+                var environment = environments.FirstOrDefault(e => e.Id == deployment.EnvironmentId);
+                var task = _connection.Repository.Tasks.Get(deployment.Links["Task"]);
+                var deploymentCreateEvent = _connection.Repository.Events.List(0, null, deployment.Id,true).Items.LastOrDefault();
+                var release = releases.FirstOrDefault(r => r.Id == deployment.ReleaseId);
+                var releaseCreateEvent = _connection.Repository.Events.List(0, null, release.Id, true).Items.LastOrDefault();
+                var deploymentProcess = _connection.Repository.DeploymentProcesses.Get(release.Links["ProjectDeploymentProcessSnapshot"]);
+
+                string duration;
+
+                if (task.CompletedTime != null)
+                {
+                    TimeSpan? durationSpan = task.CompletedTime.Value - deployment.Created;
+                    duration = string.Format("{0:D2}:{1:D2}:{2:D2}", durationSpan.Value.Hours,
+                        durationSpan.Value.Minutes, durationSpan.Value.Seconds);
+                }
+                else
+                {
+                    var endDate = DateTime.Now.Date;
+                    TimeSpan? durationSpan = endDate - deployment.Created;
+                    duration = string.Format("{0:D2}:{1:D2}:{2:D2}", durationSpan.Value.Hours,
+                        durationSpan.Value.Minutes, durationSpan.Value.Seconds);
+                }
+
+                var packages = new List<OutputDeploymentPackage>();
+
+                if(release.SelectedPackages.Count > 0) {
+                    foreach (var package in release.SelectedPackages)
+                    {
+                        var packageId =
+                            deploymentProcess.Steps.FirstOrDefault(s => s.Actions.Any(a => a.Name == package.StepName)).Actions.FirstOrDefault(a => a.Name == package.StepName).Properties["Octopus.Action.Package.PackageId"].Value;
+
+                        packages.Add(new OutputDeploymentPackage()
+                        {
+                            Id = packageId,
+                            Version = package.Version
+                        });
+                    }
+                }
+
+                list.Add(new OutputOctopusDeployment()
+                {
+                    ProjectName = project.Name,
+                    EnvironmentName = environment.Name,
+                    DeploymentStartTime = task.StartTime.Value.DateTime,
+                    DeploymentEndTime = task.CompletedTime.Value.DateTime,
+                    DeploymentStartedBy = deploymentCreateEvent?.Username,
+                    Id = deployment.Id,
+                    Duration = duration,
+                    Status = task.State.ToString(),
+                    ReleaseVersion = release.Version,
+                    ReleaseCreationDate = release.Assembled.DateTime,
+                    ReleaseNotes = release.ReleaseNotes,
+                    ReleaseCreatedBy = releaseCreateEvent.Username,
+                    Packages = packages,
+                    Resource = deployment,
+                });
+            }
 
             return list;
         }

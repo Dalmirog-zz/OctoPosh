@@ -202,23 +202,20 @@ namespace Octoposh.Cmdlets
                     else
                     {
                         //todo Handle this better
-                        var message = string.Format("Environment not found: {0}", name);
+                        var message = $"Environment not found: {name}";
                         WriteObject(message);
                     }
                 }
             }
 
+            var envIds = new HashSet<string>(environments.Select(e => e.Id));
+
             foreach (var release in releases)
             {
-                var deploymentsForRelease = _connection.Repository.Releases.GetDeployments(release).Items.ToList();
-
-                foreach (var environment in environments)
-                {
-                    baseResourceList.AddRange(deploymentsForRelease.Where(d => d.EnvironmentId == environment.Id));
-                }
+                baseResourceList.AddRange(_connection.Repository.Releases.GetDeployments(release).Items.Where(d => (d.Created > After) && (d.Created < Before) && (envIds.Contains(d.EnvironmentId))).ToList());
             }
 
-            ResourceOnly = true;
+            ResourceOnly = false;
 
             if (ResourceOnly)
             {
@@ -228,7 +225,7 @@ namespace Octoposh.Cmdlets
             else
             {
                 var converter = new OutputConverter();
-                var outputList = converter.GetOctopusDeployment(baseResourceList);
+                var outputList = converter.GetOctopusDeployment(baseResourceList,environments,projects,releases);
 
                 WriteObject(outputList);
             }
