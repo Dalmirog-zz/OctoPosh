@@ -1,0 +1,25 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-903",
+  "RelatedDocumentIds": [
+    "Machines-24"
+  ],
+  "ProjectId": null,
+  "EnvironmentId": null,
+  "TenantId": null,
+  "Category": "MachineDeleted",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-02-04T23:02:08.5186263+00:00",
+  "Message": "Machine ListeningTentacle3 was deleted (domain-event)",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Machines-24",
+      "StartIndex": 8,
+      "Length": 18
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "Session cookie"
+}

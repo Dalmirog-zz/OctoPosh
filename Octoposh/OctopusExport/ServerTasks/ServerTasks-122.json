@@ -1,0 +1,32 @@
+{
+  "$type": "Octopus.Core.Model.ServerTasks.ServerTask, Octopus.Core",
+  "Id": "ServerTasks-122",
+  "Name": "Health",
+  "Arguments": {
+    "MachinePolicyId": "MachinePolicies-1"
+  },
+  "Description": "Check Tentacle health",
+  "QueueTime": "2017-02-04T22:52:52.4726934+00:00",
+  "QueueTimeExpiry": "10675199.02:48:05.4775807",
+  "ExecutionTimeExpiry": "00:00:00",
+  "StartTime": "2017-02-04T22:52:52.5351843+00:00",
+  "LastUpdatedTime": "2017-02-04T22:52:59.9903009+00:00",
+  "CompletedTime": "2017-02-04T22:52:59.9903009+00:00",
+  "ErrorMessage": "The health check failed. One or more deployment targets were not available.",
+  "ConcurrencyTag": null,
+  "State": "Failed",
+  "HasPendingInterruptions": false,
+  "HasWarningsOrErrors": true,
+  "ServerVersion": "3.7.4+Branch.master.Sha.403a70b03ab7c4b06d0bcb637b19afa44456c672",
+  "ServerNode": "DEVBOX",
+  "LogDifferentiationToken": "PGCGQ8F7HN",
+  "AdditionalDescription": null,
+  "DurationSeconds": 7,
+  "ProjectId": null,
+  "EnvironmentId": null,
+  "TenantId": null,
+  "ExtendedViewLogPermissions": [],
+  "ExtendedCreatePermissions": [],
+  "CanRerun": true,
+  "Properties": {}
+}
