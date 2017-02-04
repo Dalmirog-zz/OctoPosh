@@ -1,25 +1,17 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-569",
-  "RelatedDocumentIds": [
-    "Projects-1"
-  ],
-  "ProjectId": "Projects-1",
+  "RelatedDocumentIds": [],
+  "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-01-30T22:31:29.0478774-03:00",
-  "Message": "Project DashboardTests_Project1 was created",
-  "MessageReferences": [
-    {
-      "ReferencedDocumentId": "Projects-1",
-      "StartIndex": 8,
-      "Length": 23
-    }
-  ],
+  "Category": "Imported",
+  "UserId": "NY",
+  "Username": "dalmiro.granias",
+  "Occurred": "2016-12-10T17:47:00.5521985-03:00",
+  "Message": "Imported task logs using Octopus migration tools",
+  "MessageReferences": [],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "Details": "  Skipped (incomplete)............................3897\r\n    TaskLog file..................................3897\r\n  Skipped (no overwrite)..........................1464\r\n    TaskLog file..................................83\r\n    TaskLog line..................................1381\r\n",
+  "IdentityEstablishedWith": "Command-line or tools"
 }

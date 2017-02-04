@@ -2,7 +2,7 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-265",
   "RelatedDocumentIds": [
-    "Teams-1"
+    "Users-1"
   ],
   "ProjectId": null,
   "EnvironmentId": null,
@@ -10,16 +10,16 @@
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-23T02:32:57.4184421-03:00",
-  "Message": "Team unmodified_TestTeam was created",
+  "Occurred": "2016-12-10T17:43:09.5511992-03:00",
+  "Message": "User admin was created using the admin command line",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Teams-1",
+      "ReferencedDocumentId": "Users-1",
       "StartIndex": 5,
-      "Length": 19
+      "Length": 5
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "IdentityEstablishedWith": "Command-line or tools"
 }

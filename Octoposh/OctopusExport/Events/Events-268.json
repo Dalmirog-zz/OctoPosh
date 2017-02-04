@@ -2,21 +2,21 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-268",
   "RelatedDocumentIds": [
-    "Channels-6"
+    "Environments-1"
   ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Created",
+  "Category": "Deleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-23T02:48:13.7701256-03:00",
-  "Message": "Channel unmodified_TestChannel was created",
+  "Occurred": "2016-12-14T01:09:46.8548081-03:00",
+  "Message": "Machine West was deleted",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Channels-6",
+      "ReferencedDocumentId": "NotFound",
       "StartIndex": 8,
-      "Length": 22
+      "Length": 4
     }
   ],
   "Comments": null,

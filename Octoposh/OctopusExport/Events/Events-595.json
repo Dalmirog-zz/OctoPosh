@@ -1,33 +1,19 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-595",
-  "RelatedDocumentIds": [
-    "Deployments-6",
-    "Projects-1",
-    "Environments-3"
-  ],
-  "ProjectId": "Projects-1",
-  "EnvironmentId": "Environments-3",
+  "RelatedDocumentIds": [],
+  "ProjectId": null,
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentQueued",
+  "Category": "Deleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-30T22:54:45.2880143-03:00",
-  "Message": "Deployed DashboardTests_Project1 release 0.0.2 to Stage",
+  "Occurred": "2017-01-14T20:22:46.6009663-03:00",
+  "Message": "User stuff was deleted",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Projects-1",
-      "StartIndex": 9,
-      "Length": 23
-    },
-    {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 41,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-3",
-      "StartIndex": 50,
+      "StartIndex": 5,
       "Length": 5
     }
   ],
