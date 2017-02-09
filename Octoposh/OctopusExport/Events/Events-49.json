@@ -1,23 +1,26 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-49",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "variableset-LibraryVariableSets-1",
+    "LibraryVariableSets-1"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-22T15:42:57.0958471-03:00",
-  "Message": "Lifecycle I7716UCQNL5KR9H was deleted",
+  "Occurred": "2017-01-23T02:16:54.1569137-03:00",
+  "Message": "Variables for unmodified_TestLibraryVariableset were changed",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 10,
-      "Length": 15
+      "ReferencedDocumentId": "LibraryVariableSets-1",
+      "StartIndex": 14,
+      "Length": 33
     }
   ],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "Details": "<span>{\r&para;<br>  \"Id\": \"variableset-LibraryVariableSets-22\",\r&para;<br>  \"OwnerId\": \"LibraryVariableSets-22\",\r&para;<br></span><ins style=\"background:#e6ffe6;\">  \"Version\": 1,\r&para;<br></ins><span>  \"Variables\": [],\r&para;<br>  \"RelatedDocumentIds\": []\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "Session cookie"
 }

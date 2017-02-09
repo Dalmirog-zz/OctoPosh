@@ -1,15 +1,17 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-489",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Environments-1"
+  ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-14T20:51:06.1731096-03:00",
-  "Message": "Channel SRVC9OHUNZLU2G4 was created",
+  "Occurred": "2017-01-30T22:27:49.0940626-03:00",
+  "Message": "Machine G44KK3F6M2G2CJA was created",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",

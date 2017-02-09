@@ -68,6 +68,7 @@
   <ItemGroup>
     <Compile Include="Cmdlets\GetOctopusConnectionInfo.cs" />
     <Compile Include="Cmdlets\GetOctopusDashboard.cs" />
+    <Compile Include="Cmdlets\GetOctopusDeployment.cs" />
     <Compile Include="Cmdlets\GetOctopusEnvironment.cs" />
     <Compile Include="Cmdlets\GetOctopusMachine.cs" />
     <Compile Include="Cmdlets\GetOctopusProject.cs" />
@@ -82,9 +83,11 @@
     <Compile Include="Model\OctoposhExceptions.cs" />
     <Compile Include="Model\OctopusConnection.cs" />
     <Compile Include="Model\OctopusConnectionInfo.cs" />
+    <Compile Include="Model\OutputDeploymentPackage.cs" />
     <Compile Include="Model\OutputConverter.cs" />
     <Compile Include="Model\OutputDiscreteDeployment.cs" />
     <Compile Include="Model\OutputOctopusDashboardEntry.cs" />
+    <Compile Include="Model\OutputOctopusDeployment.cs" />
     <Compile Include="Model\OutputOctopusEnvironment.cs" />
     <Compile Include="Model\OutputOctopusMachine.cs" />
     <Compile Include="Model\OutputOctopusProjectGroup.cs" />

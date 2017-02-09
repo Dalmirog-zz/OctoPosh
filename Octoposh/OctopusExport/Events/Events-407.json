@@ -3,29 +3,39 @@
   "Id": "Events-407",
   "RelatedDocumentIds": [
     "Projects-3",
-    "Releases-8"
+    "Environments-3"
   ],
   "ProjectId": "Projects-3",
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-3",
   "TenantId": null,
-  "Category": "Created",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-01-18T23:36:43.6052325-03:00",
-  "Message": "TestProject1 release 0.0.16 was created",
+  "Category": "DeploymentStarted",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-01-29T05:08:53.2386025-03:00",
+  "Message": "Deploy to Stage started  for TestProject1 release 0.0.33 to Stage",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Projects-3",
+      "ReferencedDocumentId": "NotFound",
       "StartIndex": 0,
+      "Length": 15
+    },
+    {
+      "ReferencedDocumentId": "Projects-3",
+      "StartIndex": 29,
       "Length": 12
     },
     {
-      "ReferencedDocumentId": "Releases-8",
-      "StartIndex": 21,
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 50,
       "Length": 6
+    },
+    {
+      "ReferencedDocumentId": "Environments-3",
+      "StartIndex": 60,
+      "Length": 5
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "IdentityEstablishedWith": "Unknown"
 }

@@ -1,0 +1,25 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-881",
+  "RelatedDocumentIds": [
+    "Machines-24"
+  ],
+  "ProjectId": null,
+  "EnvironmentId": null,
+  "TenantId": null,
+  "Category": "MachineHasWarnings",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-02-04T22:52:59.8498306+00:00",
+  "Message": "Machine ListeningTentacle3 became healthy but has warnings",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Machines-24",
+      "StartIndex": 8,
+      "Length": 18
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "Unknown"
+}

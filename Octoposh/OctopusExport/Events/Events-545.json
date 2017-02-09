@@ -1,19 +1,21 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-545",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Environments-1"
+  ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
   "Category": "Deleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-30T22:27:53.0316047-03:00",
-  "Message": "Tenant G44KK3F6M2G2CJA was deleted",
+  "Occurred": "2017-01-15T17:16:09.5907983-03:00",
+  "Message": "Machine FWJ4UP1DT6L2LKR was deleted",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 7,
+      "StartIndex": 8,
       "Length": 15
     }
   ],

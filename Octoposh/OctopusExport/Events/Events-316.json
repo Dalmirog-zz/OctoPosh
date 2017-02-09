@@ -1,19 +1,21 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-316",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Environments-1"
+  ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-14T18:51:37.8309768-03:00",
-  "Message": "Environment XTD85XM8N814NO6 was deleted",
+  "Occurred": "2017-01-29T04:50:23.960489-03:00",
+  "Message": "Machine AGF3BSAK1UT01RY was created",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 12,
+      "StartIndex": 8,
       "Length": 15
     }
   ],

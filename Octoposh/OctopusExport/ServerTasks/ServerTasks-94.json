@@ -1,34 +1,41 @@
 {
   "$type": "Octopus.Core.Model.ServerTasks.ServerTask, Octopus.Core",
   "Id": "ServerTasks-94",
-  "Name": "Deploy",
+  "Name": "Health",
   "Arguments": {
-    "DeploymentId": "Deployments-49"
+    "Timeout": "00:05:00",
+    "MachineIds": [
+      "Machines-22"
+    ]
   },
-  "Description": "Deploy DashboardTests_Project2 release 0.0.1 to Prod",
-  "QueueTime": "2017-02-01T03:39:54.1494553+00:00",
+  "Description": "Check ListeningTentacle health",
+  "QueueTime": "2017-02-04T04:03:45.5010032+00:00",
   "QueueTimeExpiry": "10675199.02:48:05.4775807",
   "ExecutionTimeExpiry": "00:00:00",
-  "StartTime": "2017-02-01T03:39:54.2394396+00:00",
-  "LastUpdatedTime": "2017-02-01T03:39:59.1414467+00:00",
-  "CompletedTime": "2017-02-01T03:39:59.1414467+00:00",
-  "ErrorMessage": "",
-  "ConcurrencyTag": "/Projects-2/Environments-2",
-  "State": "Success",
+  "StartTime": "2017-02-04T04:03:45.5668371+00:00",
+  "LastUpdatedTime": "2017-02-04T04:03:51.2768805+00:00",
+  "CompletedTime": "2017-02-04T04:03:51.2768805+00:00",
+  "ErrorMessage": "The health check failed. One or more deployment targets were not available.",
+  "ConcurrencyTag": "Health",
+  "State": "Failed",
   "HasPendingInterruptions": false,
-  "HasWarningsOrErrors": false,
+  "HasWarningsOrErrors": true,
   "ServerVersion": "3.7.4+Branch.master.Sha.403a70b03ab7c4b06d0bcb637b19afa44456c672",
   "ServerNode": "DEVBOX",
-  "LogDifferentiationToken": "3XQSKRMTCJ",
+  "LogDifferentiationToken": "YZQTRPX2T3",
   "AdditionalDescription": null,
-  "DurationSeconds": 5,
-  "ProjectId": "Projects-2",
-  "EnvironmentId": "Environments-2",
-  "TenantId": null,
-  "ExtendedViewLogPermissions": [],
-  "ExtendedCreatePermissions": [
-    "DeploymentCreate"
+  "DurationSeconds": 6,
+  "ProjectId": "projects-*",
+  "EnvironmentId": "Environments-1",
+  "TenantId": "tenants-*",
+  "ExtendedViewLogPermissions": [
+    "EnvironmentView",
+    "MachineView"
   ],
-  "CanRerun": false,
+  "ExtendedCreatePermissions": [
+    "EnvironmentView",
+    "MachineEdit"
+  ],
+  "CanRerun": true,
   "Properties": {}
 }

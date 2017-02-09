@@ -1,23 +1,25 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-61",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Environments-4"
+  ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-4",
   "TenantId": null,
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-22T15:42:58.1270885-03:00",
-  "Message": "Project I7716UCQNL5KR9H was created",
+  "Occurred": "2017-01-23T02:19:02.3299678-03:00",
+  "Message": "Environment unmodified_TestEnvironment was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 8,
-      "Length": 15
+      "ReferencedDocumentId": "Environments-4",
+      "StartIndex": 12,
+      "Length": 26
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Session cookie"
 }

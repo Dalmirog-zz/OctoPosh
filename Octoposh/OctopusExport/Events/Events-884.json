@@ -1,0 +1,25 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-884",
+  "RelatedDocumentIds": [
+    "ServerTasks-124"
+  ],
+  "ProjectId": null,
+  "EnvironmentId": null,
+  "TenantId": null,
+  "Category": "Created",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-02-04T22:55:00.3545724+00:00",
+  "Message": "Ran task Upgrade Tentacles in Dev",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "ServerTasks-124",
+      "StartIndex": 9,
+      "Length": 24
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "Session cookie"
+}

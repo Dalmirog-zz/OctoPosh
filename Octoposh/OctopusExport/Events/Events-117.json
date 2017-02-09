@@ -1,20 +1,22 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-117",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Environments-1"
+  ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-22T23:50:38.2763436-03:00",
-  "Message": "Project Group whatever was deleted",
+  "Occurred": "2016-12-09T02:09:58.4574448-03:00",
+  "Message": "Environment Dev was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 14,
-      "Length": 8
+      "ReferencedDocumentId": "Environments-1",
+      "StartIndex": 12,
+      "Length": 3
     }
   ],
   "Comments": null,
