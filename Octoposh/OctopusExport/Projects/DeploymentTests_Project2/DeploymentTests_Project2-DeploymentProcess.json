@@ -2,7 +2,7 @@
   "$type": "Octopus.Core.Model.Projects.DeploymentProcess, Octopus.Core",
   "Id": "deploymentprocess-Projects-24",
   "OwnerId": "Projects-24",
-  "Version": 1,
+  "Version": 3,
   "Steps": [
     {
       "Id": "f756910d-a38f-4d26-b80b-9c6bf4a04be8",
@@ -17,16 +17,15 @@
           "ActionType": "Octopus.TentaclePackage",
           "IsDisabled": false,
           "Environments": [],
+          "ExcludedEnvironments": [],
           "Channels": [],
           "TenantTags": [],
           "Properties": {
-            "Octopus.Action.Package.AutomaticallyRunConfigurationTransformationFiles": "False",
-            "Octopus.Action.Package.AutomaticallyUpdateAppSettingsAndConnectionStrings": "False",
             "Octopus.Action.EnabledFeatures": "Octopus.Features.CustomDirectory",
             "Octopus.Action.Package.DownloadOnTentacle": "False",
             "Octopus.Action.Package.FeedId": "feeds-local-folder",
             "Octopus.Action.Package.PackageId": "Testapp",
-            "Octopus.Action.Package.CustomInstallationDirectory": "C:\\Packages",
+            "Octopus.Action.Package.CustomInstallationDirectory": "C:\\deploy\\#{Octopus.Machine.Name}",
             "Octopus.Action.Package.CustomInstallationDirectoryShouldBePurgedBeforeDeployment": "True"
           }
         }

@@ -1,0 +1,38 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-1079",
+  "RelatedDocumentIds": [
+    "Deployments-94",
+    "Projects-24",
+    "Releases-92",
+    "Environments-2"
+  ],
+  "ProjectId": "Projects-24",
+  "EnvironmentId": "Environments-2",
+  "TenantId": null,
+  "Category": "DeploymentQueued",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-02-06T06:15:41.2057258+00:00",
+  "Message": "Deployed DeploymentTests_Project2 release 0.0.10 to Prod",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Projects-24",
+      "StartIndex": 9,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "Releases-92",
+      "StartIndex": 42,
+      "Length": 6
+    },
+    {
+      "ReferencedDocumentId": "Environments-2",
+      "StartIndex": 52,
+      "Length": 4
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+}
