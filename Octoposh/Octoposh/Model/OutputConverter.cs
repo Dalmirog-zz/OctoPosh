@@ -335,7 +335,8 @@ namespace Octoposh.Model
                         packages.Add(new OutputDeploymentPackage()
                         {
                             Id = packageId,
-                            Version = package.Version
+                            Version = package.Version,
+                            StepName = package.StepName
                         });
                     }
                 }

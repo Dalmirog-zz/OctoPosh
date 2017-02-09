@@ -51,15 +51,15 @@ namespace Octoposh.Cmdlets
         [Alias("Environment")]
         [ValidateNotNullOrEmpty()]
         [Parameter(ValueFromPipeline = true)]
-        public List<string> EnvironmentName { get; set; }
+        public List<string> EnvironmentName = new List<String>();
 
         /// <summary>
         /// <para type="description">Name of the Project to filter by</para>
         /// </summary>
         [Alias("Project")]
         [ValidateNotNullOrEmpty()]
-        [Parameter(Position = 1, ValueFromPipeline = true)]
-        public List<string> ProjectName { get; set; }
+        [Parameter(ValueFromPipeline = true)]
+        public List<string> ProjectName = new List<String>();
 
         /// <summary>
         /// <para type="description">Release version to filter by. The cmdlet will only return deployments that belong to these releases</para>
@@ -72,6 +72,7 @@ namespace Octoposh.Cmdlets
         /// <summary>
         /// <para type="description">Gets deployments by latest X releases</para>
         /// </summary>
+        [Alias("Latest")]
         [ValidateNotNullOrEmpty()]
         [ValidateRange(1, int.MaxValue)]
         [Parameter(ParameterSetName = ByLatest)]
