@@ -9,6 +9,9 @@ namespace Octoposh.Cmdlets
     /// <summary>
     /// <para type="synopsis">This cmdlet returns info about Octopus Projects</para>
     /// </summary>
+    /// <summary>
+    /// <para type="description">This cmdlet returns info about Octopus Projects</para>
+    /// </summary>
     /// <example>   
     ///   <code>PS C:\> Get-OctopusProject</code>
     ///   <para>Gets all the projects of the current Instance</para>    

@@ -490,7 +490,7 @@ namespace Octoposh.Tests
         {
             #region ChannelCreate
 
-            var projectId = "Projects-1";
+            var projectId = "Projects-5";
 
             var resource = new ChannelResource()
             {
