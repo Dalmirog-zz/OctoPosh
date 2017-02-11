@@ -36,7 +36,6 @@ namespace Octoposh.Model
 
                         environmentNames.Add((_resourceCollector.Environments.First(x => x.Id == environmentId)).Name);
                     }
-                    
                 }
 
                 var communicationStyle = "";
@@ -357,6 +356,56 @@ namespace Octoposh.Model
                     ReleaseCreatedBy = releaseCreateEvent.Username,
                     Packages = packages,
                     Resource = deployment,
+                });
+            }
+
+            return list;
+        }
+
+        public List<OutputOctopusTeam> GetOctopusTeam(List<TeamResource> baseResourceList)
+        {
+            var list = new List<OutputOctopusTeam>();
+
+            var dashboard = _connection.Repository.Dashboards.GetDashboard();
+            var allRoles = _connection.Repository.UserRoles.FindAll();
+
+            foreach (var team in baseResourceList)
+            {
+                var roles = allRoles.Where(r => team.UserRoleIds.Contains(r.Id)).Select(r => r.Name).ToList();
+                var projects = dashboard.Projects.Where(p => team.ProjectIds.Contains(p.Id)).Select(p => p.Name).ToList();
+                var environments = dashboard.Environments.Where(e => team.EnvironmentIds.Contains(e.Id)).Select(e => e.Name).ToList();
+                var projectGroups = new List<string>();
+                var tenants = new List<string>();
+
+                if(team.TenantIds.Count > 0) { 
+                    foreach (var tenantId in team.TenantIds)
+                    {
+                        if (_resourceCollector.Tenants.Any(x => x.Id == tenantId))
+                        {
+                            tenants.Add(
+                                (_resourceCollector.Tenants.First(x => x.Id == tenantId)).Name);
+                        }
+                        else
+                        {
+                            var tenant = _connection.Repository.Tenants.Get(tenantId);
+
+                            _resourceCollector.Tenants.Add(tenant);
+
+                            tenants.Add(tenant.Name);
+                        }
+                    }
+                }
+
+                list.Add(new OutputOctopusTeam()
+                {
+                    Name = team.Name,
+                    Id =  team.Id,
+                    Roles = roles,
+                    Projects = projects,
+                    Environments = environments,
+                    ProjectGroups = projectGroups,
+                    Tenants = tenants,
+                    Resource = team
                 });
             }
 
