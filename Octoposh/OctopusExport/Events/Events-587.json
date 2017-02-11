@@ -1,41 +1,17 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-587",
-  "RelatedDocumentIds": [
-    "Projects-2",
-    "Environments-1"
-  ],
-  "ProjectId": "Projects-2",
-  "EnvironmentId": "Environments-1",
+  "RelatedDocumentIds": [],
+  "ProjectId": null,
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentStarted",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-01-30T23:47:14.0059761-03:00",
-  "Message": "Deploy to Dev started  for DashboardTests_Project2 release 0.0.2 to Dev",
-  "MessageReferences": [
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 0,
-      "Length": 13
-    },
-    {
-      "ReferencedDocumentId": "Projects-2",
-      "StartIndex": 27,
-      "Length": 23
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 59,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-1",
-      "StartIndex": 68,
-      "Length": 3
-    }
-  ],
+  "Category": "Imported",
+  "UserId": "NY",
+  "Username": "dalmiro.granias",
+  "Occurred": "2016-12-14T00:40:32.0284784-03:00",
+  "Message": "Imported documents using Octopus migration tools",
+  "MessageReferences": [],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "Details": "  Created.........................................19\r\n    ServerTask....................................19\r\n  Unchanged.......................................273\r\n    ApiKey........................................1\r\n    Certificate...................................1\r\n    CommunityActionTemplate.......................203\r\n    DeploymentEnvironment.........................1\r\n    Event.........................................32\r\n    ExtensionConfiguration........................5\r\n    FeaturesConfiguration.........................1\r\n    License.......................................1\r\n    Lifecycle.....................................1\r\n    Machine.......................................3\r\n    MachinePolicy.................................1\r\n    NuGetFeed.....................................1\r\n    ProjectGroup..................................1\r\n    ServerConfiguration...........................1\r\n    ServerTask....................................5\r\n    SmtpConfiguration.............................1\r\n    Team..........................................2\r\n    User..........................................1\r\n    UserRole......................................10\r\n    WebPortalConfiguration........................1\r\n",
+  "IdentityEstablishedWith": "Command-line or tools"
 }

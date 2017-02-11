@@ -1,23 +1,42 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-421",
-  "RelatedDocumentIds": [],
-  "ProjectId": null,
-  "EnvironmentId": null,
+  "RelatedDocumentIds": [
+    "Deployments-52",
+    "Projects-3",
+    "Environments-1"
+  ],
+  "ProjectId": "Projects-3",
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Deleted",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-01-14T19:45:49.0661838-03:00",
-  "Message": "Project Group RFAJ2D3FT6WBS9C was deleted",
+  "Category": "DeploymentStarted",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-02-09T00:14:20.9973009-03:00",
+  "Message": "Deploy to Dev started  for DeploymentTests_Project1 release 0.0.15 to Dev",
   "MessageReferences": [
     {
+      "ReferencedDocumentId": "Deployments-52",
+      "StartIndex": 0,
+      "Length": 13
+    },
+    {
+      "ReferencedDocumentId": "Projects-3",
+      "StartIndex": 27,
+      "Length": 24
+    },
+    {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 14,
-      "Length": 15
+      "StartIndex": 60,
+      "Length": 6
+    },
+    {
+      "ReferencedDocumentId": "Environments-1",
+      "StartIndex": 70,
+      "Length": 3
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Unknown"
 }

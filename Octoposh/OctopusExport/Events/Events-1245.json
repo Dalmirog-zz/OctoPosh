@@ -2,24 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1245",
   "RelatedDocumentIds": [
-    "feeds-unmodified-feed"
+    "ServerTasks-10"
   ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Modified",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-08T05:22:32.547745+00:00",
-  "Message": "NuGetFeed modified_TestFeed was modified",
+  "Occurred": "2017-02-04T19:55:00.3545724-03:00",
+  "Message": "Ran task Upgrade Tentacles in Dev",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "feeds-unmodified-feed",
-      "StartIndex": 10,
-      "Length": 17
+      "ReferencedDocumentId": "ServerTasks-10",
+      "StartIndex": 9,
+      "Length": 24
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"feeds-unmodified-feed\",\r&para;<br>  \"Name\": \"</span><del style=\"background:#ffe6e6;\">un</del><span>modified_TestFeed\",\r&para;<br>  \"FeedUri\": \"c:\\\\packages\",\r&para;<br>  \"Username\": null,\r&para;<br>  \"Password\": null,\r&para;<br>  \"FeedType\": \"NuGet\"\r&para;<br>}</span>",
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "Details": null,
+  "IdentityEstablishedWith": "Session cookie"
 }

@@ -1,18 +1,18 @@
 {
   "$type": "Octopus.Core.Model.Projects.Project, Octopus.Core",
-  "Id": "Projects-24",
+  "Id": "Projects-44",
   "Name": "DeploymentTests_Project2",
-  "Description": "Resource created for unit tests. Do note delete or modify",
+  "Description": "",
   "Slug": "deploymenttests-project2",
   "IsDisabled": false,
-  "VariableSetId": "variableset-Projects-24",
-  "DeploymentProcessId": "deploymentprocess-Projects-24",
-  "ProjectGroupId": "ProjectGroups-42",
+  "VariableSetId": "variableset-Projects-44",
+  "DeploymentProcessId": "deploymentprocess-Projects-44",
+  "ProjectGroupId": "ProjectGroups-22",
   "LifecycleId": "Lifecycles-1",
   "AutoCreateRelease": false,
   "IncludedLibraryVariableSetIds": [],
   "UsedPackages": [
-    "Testapp"
+    "TestApp"
   ],
   "DefaultToSkipIfAlreadyInstalled": false,
   "TenantedDeploymentMode": "Untenanted",
@@ -22,7 +22,7 @@
   },
   "Templates": [],
   "ReleaseCreationStrategy": {
-    "ReleaseCreationPackageStepId": null,
+    "ReleaseCreationPackageStepId": "",
     "ChannelId": null
   },
   "ProjectConnectivityPolicy": {

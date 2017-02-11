@@ -2,21 +2,21 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-892",
   "RelatedDocumentIds": [
-    "Machines-3"
+    "Projects-1"
   ],
-  "ProjectId": null,
+  "ProjectId": "Projects-1",
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "MachineDeploymentRelatedPropertyWasUpdated",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-04T22:59:55.0846812+00:00",
-  "Message": "Machine OfflineTarget was modified (domain-event)",
+  "Occurred": "2017-01-30T22:31:29.0478774-03:00",
+  "Message": "Project DashboardTests_Project1 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Machines-3",
+      "ReferencedDocumentId": "Projects-1",
       "StartIndex": 8,
-      "Length": 13
+      "Length": 23
     }
   ],
   "Comments": null,

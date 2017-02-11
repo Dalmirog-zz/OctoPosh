@@ -2,27 +2,41 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-361",
   "RelatedDocumentIds": [
-    "Machines-2",
-    "Environments-1",
-    "Environments-3",
+    "Deployments-59",
+    "Projects-4",
     "Environments-2"
   ],
-  "ProjectId": null,
-  "EnvironmentId": null,
+  "ProjectId": "Projects-4",
+  "EnvironmentId": "Environments-2",
   "TenantId": null,
-  "Category": "Modified",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-01-29T04:54:20.9163637-03:00",
-  "Message": "Machine North was modified",
+  "Category": "DeploymentStarted",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-02-08T23:57:52.5808361-03:00",
+  "Message": "Deploy to Prod started  for DeploymentTests_Project2 release 0.0.12 to Prod",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Machines-2",
-      "StartIndex": 8,
-      "Length": 5
+      "ReferencedDocumentId": "Deployments-59",
+      "StartIndex": 0,
+      "Length": 14
+    },
+    {
+      "ReferencedDocumentId": "Projects-4",
+      "StartIndex": 28,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 61,
+      "Length": 6
+    },
+    {
+      "ReferencedDocumentId": "Environments-2",
+      "StartIndex": 71,
+      "Length": 4
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"Machines-2\",\r&para;<br>  \"Name\": \"North\",\r&para;<br>  \"Endpoint\": {},\r&para;<br>  \"IsDisabled\": false,\r&para;<br>  \"Roles\": [\r&para;<br>    \"WebApps\"\r&para;<br>  ],\r&para;<br>  \"EnvironmentIds\": [\r&para;<br>    \"Environments-1\"</span><ins style=\"background:#e6ffe6;\">,\r&para;<br>    \"Environments-2\",\r&para;<br>    \"Environments-22\"</ins><span>\r&para;<br>  ],\r&para;<br>  \"TenantIds\": [],\r&para;<br>  \"TenantTags\": [],\r&para;<br>  \"MachinePolicyId\": \"MachinePolicies-1\"\r&para;<br>}</span>",
-  "IdentityEstablishedWith": "Session cookie"
+  "Details": null,
+  "IdentityEstablishedWith": "Unknown"
 }

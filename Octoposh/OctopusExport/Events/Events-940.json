@@ -1,0 +1,41 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-940",
+  "RelatedDocumentIds": [
+    "Projects-2",
+    "Environments-3"
+  ],
+  "ProjectId": "Projects-2",
+  "EnvironmentId": "Environments-3",
+  "TenantId": null,
+  "Category": "DeploymentSucceeded",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-01-30T22:59:18.1932896-03:00",
+  "Message": "Deploy to Stage succeeded  for DashboardTests_Project2 release 0.0.1 to Stage",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 0,
+      "Length": 15
+    },
+    {
+      "ReferencedDocumentId": "Projects-2",
+      "StartIndex": 31,
+      "Length": 23
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 63,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-3",
+      "StartIndex": 72,
+      "Length": 5
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "Unknown"
+}

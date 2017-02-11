@@ -1,20 +1,34 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-106",
-  "RelatedDocumentIds": [],
-  "ProjectId": null,
-  "EnvironmentId": null,
+  "RelatedDocumentIds": [
+    "Deployments-97",
+    "Projects-4",
+    "Environments-3"
+  ],
+  "ProjectId": "Projects-4",
+  "EnvironmentId": "Environments-3",
   "TenantId": null,
-  "Category": "Created",
+  "Category": "DeploymentQueued",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-15T17:31:42.0694595-03:00",
-  "Message": "Lifecycle GSN6J532E925KVS was created",
+  "Occurred": "2017-02-06T03:15:29.0866826-03:00",
+  "Message": "Deployed DeploymentTests_Project2 release 0.0.10 to Stage",
   "MessageReferences": [
     {
+      "ReferencedDocumentId": "Projects-4",
+      "StartIndex": 9,
+      "Length": 24
+    },
+    {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 10,
-      "Length": 15
+      "StartIndex": 42,
+      "Length": 6
+    },
+    {
+      "ReferencedDocumentId": "Environments-3",
+      "StartIndex": 52,
+      "Length": 5
     }
   ],
   "Comments": null,

@@ -1,17 +1,42 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-145",
-  "RelatedDocumentIds": [],
-  "ProjectId": null,
-  "EnvironmentId": null,
+  "RelatedDocumentIds": [
+    "Deployments-15",
+    "Projects-3",
+    "Environments-2"
+  ],
+  "ProjectId": "Projects-3",
+  "EnvironmentId": "Environments-2",
   "TenantId": null,
-  "Category": "Imported",
-  "UserId": "NY",
-  "Username": "dalmiro.granias",
-  "Occurred": "2016-12-17T00:13:52.5220423-03:00",
-  "Message": "Imported documents using Octopus migration tools",
-  "MessageReferences": [],
+  "Category": "DeploymentSucceeded",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-02-06T03:21:20.2589819-03:00",
+  "Message": "Deploy to Prod succeeded  for DeploymentTests_Project1 release 0.0.2 to Prod",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Deployments-15",
+      "StartIndex": 0,
+      "Length": 14
+    },
+    {
+      "ReferencedDocumentId": "Projects-3",
+      "StartIndex": 30,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 63,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-2",
+      "StartIndex": 72,
+      "Length": 4
+    }
+  ],
   "Comments": null,
-  "Details": "  Created.........................................334\r\n    ApiKey........................................1\r\n    Channel.......................................1\r\n    CommunityActionTemplate.......................207\r\n    DeploymentEnvironment.........................2\r\n    DeploymentProcess.............................1\r\n    Event.........................................86\r\n    ExtensionConfiguration........................2\r\n    Machine.......................................5\r\n    Project.......................................1\r\n    ProjectGroup..................................1\r\n    ServerTask....................................26\r\n    VariableSet...................................1\r\n  Unchanged.......................................25\r\n    ExtensionConfiguration........................3\r\n    FeaturesConfiguration.........................1\r\n    License.......................................1\r\n    Lifecycle.....................................1\r\n    MachinePolicy.................................1\r\n    NuGetFeed.....................................1\r\n    ProjectGroup..................................1\r\n    ServerConfiguration...........................1\r\n    SmtpConfiguration.............................1\r\n    Team..........................................2\r\n    User..........................................1\r\n    UserRole......................................10\r\n    WebPortalConfiguration........................1\r\n  Updated.........................................1\r\n    Certificate...................................1\r\n",
-  "IdentityEstablishedWith": "Command-line or tools"
+  "Details": null,
+  "IdentityEstablishedWith": "Unknown"
 }

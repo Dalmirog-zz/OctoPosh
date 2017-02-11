@@ -2,24 +2,41 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-211",
   "RelatedDocumentIds": [
-    "Environments-1"
+    "Deployments-33",
+    "Projects-3",
+    "Environments-2"
   ],
-  "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "ProjectId": "Projects-3",
+  "EnvironmentId": "Environments-2",
   "TenantId": null,
-  "Category": "Deleted",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2016-12-17T00:15:39.0575316-03:00",
-  "Message": "Machine West was deleted",
+  "Category": "DeploymentSucceeded",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-02-06T03:24:58.5576567-03:00",
+  "Message": "Deploy to Prod succeeded  for DeploymentTests_Project1 release 0.0.8 to Prod",
   "MessageReferences": [
     {
+      "ReferencedDocumentId": "Deployments-33",
+      "StartIndex": 0,
+      "Length": 14
+    },
+    {
+      "ReferencedDocumentId": "Projects-3",
+      "StartIndex": 30,
+      "Length": 24
+    },
+    {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 8,
+      "StartIndex": 63,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-2",
+      "StartIndex": 72,
       "Length": 4
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "IdentityEstablishedWith": "Unknown"
 }

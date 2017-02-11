@@ -2,42 +2,27 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-711",
   "RelatedDocumentIds": [
-    "Deployments-8",
-    "Projects-2",
-    "Releases-3",
-    "Environments-3"
+    "Machines-3",
+    "Environments-1",
+    "Environments-3",
+    "Environments-2"
   ],
-  "ProjectId": "Projects-2",
-  "EnvironmentId": "Environments-3",
+  "ProjectId": null,
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentSucceeded",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-01T00:39:37.5979041-03:00",
-  "Message": "Deploy to Stage succeeded  for DashboardTests_Project2 release 0.0.1 to Stage",
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-01-29T04:54:20.9163637-03:00",
+  "Message": "Machine North was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Deployments-8",
-      "StartIndex": 0,
-      "Length": 15
-    },
-    {
-      "ReferencedDocumentId": "Projects-2",
-      "StartIndex": 31,
-      "Length": 23
-    },
-    {
-      "ReferencedDocumentId": "Releases-3",
-      "StartIndex": 63,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-3",
-      "StartIndex": 72,
+      "ReferencedDocumentId": "Machines-3",
+      "StartIndex": 8,
       "Length": 5
     }
   ],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "Details": "<span>{\r&para;<br>  \"Id\": \"Machines-2\",\r&para;<br>  \"Name\": \"North\",\r&para;<br>  \"Endpoint\": {},\r&para;<br>  \"IsDisabled\": false,\r&para;<br>  \"Roles\": [\r&para;<br>    \"WebApps\"\r&para;<br>  ],\r&para;<br>  \"EnvironmentIds\": [\r&para;<br>    \"Environments-1\"</span><ins style=\"background:#e6ffe6;\">,\r&para;<br>    \"Environments-2\",\r&para;<br>    \"Environments-22\"</ins><span>\r&para;<br>  ],\r&para;<br>  \"TenantIds\": [],\r&para;<br>  \"TenantTags\": [],\r&para;<br>  \"MachinePolicyId\": \"MachinePolicies-1\"\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "Session cookie"
 }

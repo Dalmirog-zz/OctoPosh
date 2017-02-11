@@ -2,42 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1184",
   "RelatedDocumentIds": [
-    "Deployments-125",
-    "Projects-22",
-    "Releases-103",
-    "Environments-1"
+    "Teams-1"
   ],
-  "ProjectId": "Projects-22",
-  "EnvironmentId": "Environments-1",
+  "ProjectId": null,
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentStarted",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-06T06:25:40.8697397+00:00",
-  "Message": "Deploy to Dev started  for DeploymentTests_Project1 release 0.0.10 to Dev",
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-02-03T23:33:49.6591811-03:00",
+  "Message": "Team modified_TestTeam was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Deployments-125",
-      "StartIndex": 0,
-      "Length": 13
-    },
-    {
-      "ReferencedDocumentId": "Projects-22",
-      "StartIndex": 27,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "Releases-103",
-      "StartIndex": 60,
-      "Length": 6
-    },
-    {
-      "ReferencedDocumentId": "Environments-1",
-      "StartIndex": 70,
-      "Length": 3
+      "ReferencedDocumentId": "Teams-1",
+      "StartIndex": 5,
+      "Length": 17
     }
   ],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "Details": "<span>{\r&para;<br>  \"Id\": \"Teams-1\",\r&para;<br>  \"Name\": \"</span><del style=\"background:#ffe6e6;\">un</del><span>modified_TestTeam\",\r&para;<br>  \"MemberUserIds\": [],\r&para;<br>  \"ExternalSecurityGroups\": [],\r&para;<br>  \"UserRoleIds\": [],\r&para;<br>  \"ProjectIds\": [],\r&para;<br>  \"EnvironmentIds\": [],\r&para;<br>  \"TenantIds\": [],\r&para;<br>  \"ProjectGroupIds\": [],\r&para;<br>  \"TenantTags\": []\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

@@ -1,0 +1,29 @@
+{
+  "$type": "Octopus.Core.Model.Projects.Deployment, Octopus.Core",
+  "Id": "Deployments-150",
+  "Name": "Deploy to Stage",
+  "Created": "2017-02-11T04:14:41.4461053+00:00",
+  "ForcePackageDownload": false,
+  "ForcePackageRedeployment": false,
+  "Comments": null,
+  "SkipActions": [],
+  "SpecificMachineIds": [],
+  "ExcludedMachineIds": [],
+  "UseGuidedFailure": false,
+  "TentacleRetentionPeriod": {
+    "Unit": "Items",
+    "QuantityToKeep": 0,
+    "ShouldKeepForever": true
+  },
+  "EnvironmentId": "Environments-3",
+  "TenantId": null,
+  "TaskId": "ServerTasks-235",
+  "ReleaseId": "Releases-63",
+  "ProjectId": "Projects-41",
+  "ChannelId": "Channels-41",
+  "DeploymentProcessId": "deploymentprocess-Projects-41-s-2-QUKSG",
+  "ManifestVariableSetId": "variableset-Deployments-150",
+  "ProjectGroupId": "ProjectGroups-21",
+  "DeployedBy": "admin",
+  "StateObject": null
+}

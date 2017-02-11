@@ -1,25 +1,23 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1237",
-  "RelatedDocumentIds": [
-    "Teams-41"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-02-08T05:22:29.1157004+00:00",
-  "Message": "Team 9OMM63HYQP3MLFR was created",
+  "Category": "MachineUnavailable",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-02-04T19:43:36.2702095-03:00",
+  "Message": "Machine ListeningTentacle3 became unavailable",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Teams-41",
-      "StartIndex": 5,
-      "Length": 15
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 8,
+      "Length": 18
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Unknown"
 }

@@ -1,18 +1,18 @@
 {
   "$type": "Octopus.Core.Model.Projects.DeploymentProcess, Octopus.Core",
-  "Id": "deploymentprocess-Projects-22",
-  "OwnerId": "Projects-22",
-  "Version": 5,
+  "Id": "deploymentprocess-Projects-45",
+  "OwnerId": "Projects-45",
+  "Version": 0,
   "Steps": [
     {
-      "Id": "c84c49cd-0ce9-471c-9001-6c3e8014a359",
+      "Id": "f756910d-a38f-4d26-b80b-9c6bf4a04be8",
       "Name": "Deploy package",
       "Condition": "Success",
       "StartTrigger": "StartAfterPrevious",
       "RequiresPackagesToBeAcquired": false,
       "Actions": [
         {
-          "Id": "1fc2ef47-2996-439a-a4f2-f80a77fbd084",
+          "Id": "c6c47f8a-212b-4d4a-91f6-755950ddaa21",
           "Name": "Deploy package",
           "ActionType": "Octopus.TentaclePackage",
           "IsDisabled": false,
@@ -21,8 +21,6 @@
           "Channels": [],
           "TenantTags": [],
           "Properties": {
-            "Octopus.Action.Package.AutomaticallyRunConfigurationTransformationFiles": "False",
-            "Octopus.Action.Package.AutomaticallyUpdateAppSettingsAndConnectionStrings": "False",
             "Octopus.Action.EnabledFeatures": "Octopus.Features.CustomDirectory",
             "Octopus.Action.Package.DownloadOnTentacle": "False",
             "Octopus.Action.Package.FeedId": "feeds-local-folder",

@@ -2,21 +2,21 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-981",
   "RelatedDocumentIds": [
-    "Machines-23"
+    "Environments-4"
   ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-4",
   "TenantId": null,
-  "Category": "MachineDisabled",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-06T06:02:04.0455094+00:00",
-  "Message": "Machine ListeningTentacle2 was disabled",
+  "Occurred": "2017-01-23T02:19:02.3299678-03:00",
+  "Message": "Environment unmodified_TestEnvironment was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Machines-23",
-      "StartIndex": 8,
-      "Length": 18
+      "ReferencedDocumentId": "Environments-4",
+      "StartIndex": 12,
+      "Length": 26
     }
   ],
   "Comments": null,

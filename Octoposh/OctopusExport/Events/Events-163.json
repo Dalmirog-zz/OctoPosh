@@ -1,17 +1,42 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-163",
-  "RelatedDocumentIds": [],
-  "ProjectId": null,
-  "EnvironmentId": null,
+  "RelatedDocumentIds": [
+    "Deployments-20",
+    "Projects-3",
+    "Environments-3"
+  ],
+  "ProjectId": "Projects-3",
+  "EnvironmentId": "Environments-3",
   "TenantId": null,
-  "Category": "Imported",
-  "UserId": "NY",
-  "Username": "dalmiro.granias",
-  "Occurred": "2016-12-16T01:50:43.0312156-03:00",
-  "Message": "Imported task logs using Octopus migration tools",
-  "MessageReferences": [],
+  "Category": "DeploymentSucceeded",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-02-06T03:22:19.9502805-03:00",
+  "Message": "Deploy to Stage succeeded  for DeploymentTests_Project1 release 0.0.4 to Stage",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Deployments-20",
+      "StartIndex": 0,
+      "Length": 15
+    },
+    {
+      "ReferencedDocumentId": "Projects-3",
+      "StartIndex": 31,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 64,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-3",
+      "StartIndex": 73,
+      "Length": 5
+    }
+  ],
   "Comments": null,
-  "Details": "",
-  "IdentityEstablishedWith": "Command-line or tools"
+  "Details": null,
+  "IdentityEstablishedWith": "Unknown"
 }

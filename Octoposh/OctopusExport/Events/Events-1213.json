@@ -2,27 +2,22 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1213",
   "RelatedDocumentIds": [
-    "Projects-22",
-    "Releases-106"
+    "Machines-1",
+    "Environments-1"
   ],
-  "ProjectId": "Projects-22",
-  "EnvironmentId": null,
+  "ProjectId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-08T01:11:18.219037+00:00",
-  "Message": "DeploymentTests_Project1 release 0.0.13 was deleted",
+  "Occurred": "2017-02-04T01:03:25.2855443-03:00",
+  "Message": "Machine ListeningTentacle was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Projects-22",
-      "StartIndex": 0,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "Releases-106",
-      "StartIndex": 33,
-      "Length": 6
+      "ReferencedDocumentId": "Machines-1",
+      "StartIndex": 8,
+      "Length": 17
     }
   ],
   "Comments": null,

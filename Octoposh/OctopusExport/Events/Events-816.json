@@ -2,27 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-816",
   "RelatedDocumentIds": [
-    "ServerTasks-88",
-    "projects-*",
-    "Environments-1",
-    "tenants-*"
+    "Users-1"
   ],
-  "ProjectId": "projects-*",
-  "EnvironmentId": "Environments-1",
-  "TenantId": "tenants-*",
+  "ProjectId": null,
+  "EnvironmentId": null,
+  "TenantId": null,
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-04T03:38:16.3142697+00:00",
-  "Message": "Ran task Check ListeningTentacle health",
+  "Occurred": "2017-01-20T21:22:32.0180058-03:00",
+  "Message": "User admin was created using the admin command line",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "ServerTasks-88",
-      "StartIndex": 9,
-      "Length": 30
+      "ReferencedDocumentId": "Users-1",
+      "StartIndex": 5,
+      "Length": 5
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "IdentityEstablishedWith": "Command-line or tools"
 }

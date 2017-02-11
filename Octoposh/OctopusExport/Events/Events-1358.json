@@ -2,42 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1358",
   "RelatedDocumentIds": [
-    "Deployments-151",
-    "Projects-22",
-    "Releases-112",
-    "Environments-2"
+    "Projects-21"
   ],
-  "ProjectId": "Projects-22",
-  "EnvironmentId": "Environments-2",
+  "ProjectId": "Projects-21",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentStarted",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-09T03:13:56.6166334+00:00",
-  "Message": "Deploy to Prod started  for DeploymentTests_Project1 release 0.0.14 to Prod",
+  "Category": "Created",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-02-11T03:48:39.716513+00:00",
+  "Message": "Project KDPKROC3P2UV5R1 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Deployments-151",
-      "StartIndex": 0,
-      "Length": 14
-    },
-    {
-      "ReferencedDocumentId": "Projects-22",
-      "StartIndex": 28,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "Releases-112",
-      "StartIndex": 61,
-      "Length": 6
-    },
-    {
-      "ReferencedDocumentId": "Environments-2",
-      "StartIndex": 71,
-      "Length": 4
+      "ReferencedDocumentId": "Projects-21",
+      "StartIndex": 8,
+      "Length": 15
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

@@ -1,23 +1,25 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-745",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "ServerTasks-91"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "TaskCanceled",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-22T15:45:21.6777632-03:00",
-  "Message": "Library Variable Set BTEF7UDD95UQISQ was deleted",
+  "Occurred": "2017-01-29T05:06:23.5189252-03:00",
+  "Message": "Task Deploy TestProject2 release 0.0.1 to Stage #71 was canceled",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 21,
-      "Length": 15
+      "ReferencedDocumentId": "ServerTasks-91",
+      "StartIndex": 5,
+      "Length": 46
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Session cookie"
 }

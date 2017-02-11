@@ -2,24 +2,25 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-882",
   "RelatedDocumentIds": [
-    "Machines-22"
+    "variableset-LibraryVariableSets-2",
+    "LibraryVariableSets-2"
   ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "MachineHasWarnings",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-04T22:52:59.9590578+00:00",
-  "Message": "Machine ListeningTentacle became healthy but has warnings",
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-01-23T02:17:17.591959-03:00",
+  "Message": "Variables for unmodified_TestLibraryVariableset were changed",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Machines-22",
-      "StartIndex": 8,
-      "Length": 17
+      "ReferencedDocumentId": "LibraryVariableSets-2",
+      "StartIndex": 14,
+      "Length": 33
     }
   ],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "Details": "<span>{\r&para;<br>  \"Id\": \"variableset-LibraryVariableSets-22\",\r&para;<br>  \"OwnerId\": \"LibraryVariableSets-22\",\r&para;<br>  \"Version\": </span><del style=\"background:#ffe6e6;\">1</del><ins style=\"background:#e6ffe6;\">2</ins><span>,\r&para;<br>  \"Variables\": [],\r&para;<br>  \"RelatedDocumentIds\": []\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "Session cookie"
 }

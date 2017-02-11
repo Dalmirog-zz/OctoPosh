@@ -2,24 +2,30 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-774",
   "RelatedDocumentIds": [
-    "Machines-21"
+    "Projects-5",
+    "Releases-15"
   ],
-  "ProjectId": null,
+  "ProjectId": "Projects-5",
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "MachineAdded",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-04T02:33:29.8525993+00:00",
-  "Message": "Machine 3WZLTGPPRYYS6DM was created (domain-event)",
+  "Occurred": "2017-01-18T23:37:16.6115592-03:00",
+  "Message": "TestProject1 release 0.0.22 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Machines-21",
-      "StartIndex": 8,
-      "Length": 15
+      "ReferencedDocumentId": "Projects-5",
+      "StartIndex": 0,
+      "Length": 12
+    },
+    {
+      "ReferencedDocumentId": "Releases-15",
+      "StartIndex": 21,
+      "Length": 6
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Session cookie"
 }

@@ -2,42 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1194",
   "RelatedDocumentIds": [
-    "Deployments-128",
-    "Projects-22",
-    "Releases-104",
-    "Environments-1"
+    "feeds-local-folder"
   ],
-  "ProjectId": "Projects-22",
-  "EnvironmentId": "Environments-1",
+  "ProjectId": null,
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentStarted",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-06T06:26:17.0197439+00:00",
-  "Message": "Deploy to Dev started  for DeploymentTests_Project1 release 0.0.11 to Dev",
+  "Category": "Created",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-02-04T00:01:59.5312158-03:00",
+  "Message": "NuGetFeed Local Folder was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Deployments-128",
-      "StartIndex": 0,
-      "Length": 13
-    },
-    {
-      "ReferencedDocumentId": "Projects-22",
-      "StartIndex": 27,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "Releases-104",
-      "StartIndex": 60,
-      "Length": 6
-    },
-    {
-      "ReferencedDocumentId": "Environments-1",
-      "StartIndex": 70,
-      "Length": 3
+      "ReferencedDocumentId": "feeds-local-folder",
+      "StartIndex": 10,
+      "Length": 12
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "IdentityEstablishedWith": "Session cookie"
 }

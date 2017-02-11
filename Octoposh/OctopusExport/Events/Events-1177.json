@@ -2,42 +2,25 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1177",
   "RelatedDocumentIds": [
-    "Deployments-123",
-    "Projects-22",
-    "Releases-102",
-    "Environments-3"
+    "Machines-6",
+    "Environments-4"
   ],
-  "ProjectId": "Projects-22",
-  "EnvironmentId": "Environments-3",
+  "ProjectId": null,
+  "EnvironmentId": "Environments-4",
   "TenantId": null,
-  "Category": "DeploymentStarted",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-06T06:25:16.4824156+00:00",
-  "Message": "Deploy to Stage started  for DeploymentTests_Project1 release 0.0.9 to Stage",
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-02-03T23:33:45.079691-03:00",
+  "Message": "Machine modified_TestMachine was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Deployments-123",
-      "StartIndex": 0,
-      "Length": 15
-    },
-    {
-      "ReferencedDocumentId": "Projects-22",
-      "StartIndex": 29,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "Releases-102",
-      "StartIndex": 62,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-3",
-      "StartIndex": 71,
-      "Length": 5
+      "ReferencedDocumentId": "Machines-6",
+      "StartIndex": 8,
+      "Length": 20
     }
   ],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "Details": "<span>{\r&para;<br>  \"Id\": \"Machines-5\",\r&para;<br>  \"Name\": \"</span><del style=\"background:#ffe6e6;\">un</del><span>modified_TestMachine\",\r&para;<br>  \"Endpoint\": {},\r&para;<br>  \"IsDisabled\": false,\r&para;<br>  \"Roles\": [\r&para;<br>    \"UnitTest\"\r&para;<br>  ],\r&para;<br>  \"EnvironmentIds\": [\r&para;<br>    \"Environments-4\"\r&para;<br>  ],\r&para;<br>  \"TenantIds\": [],\r&para;<br>  \"TenantTags\": [],\r&para;<br>  \"MachinePolicyId\": \"MachinePolicies-1\"\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

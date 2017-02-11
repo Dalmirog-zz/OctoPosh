@@ -2,24 +2,41 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-225",
   "RelatedDocumentIds": [
-    "feeds-unmodified-feed"
+    "Deployments-37",
+    "Projects-3",
+    "Environments-1"
   ],
-  "ProjectId": null,
-  "EnvironmentId": null,
+  "ProjectId": "Projects-3",
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Modified",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-01-23T03:27:13.7478831-03:00",
-  "Message": "NuGetFeed unmodified_TestFeed was modified",
+  "Category": "DeploymentStarted",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-02-06T03:25:40.8697397-03:00",
+  "Message": "Deploy to Dev started  for DeploymentTests_Project1 release 0.0.10 to Dev",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "feeds-unmodified-feed",
-      "StartIndex": 10,
-      "Length": 19
+      "ReferencedDocumentId": "Deployments-37",
+      "StartIndex": 0,
+      "Length": 13
+    },
+    {
+      "ReferencedDocumentId": "Projects-3",
+      "StartIndex": 27,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 60,
+      "Length": 6
+    },
+    {
+      "ReferencedDocumentId": "Environments-1",
+      "StartIndex": 70,
+      "Length": 3
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"feeds-unmodified-feed\",\r&para;<br>  \"Name\": \"unmodified_</span><ins style=\"background:#e6ffe6;\">Test</ins><span>Feed\",\r&para;<br>  \"FeedUri\": \"c:\\\\ackages\",\r&para;<br>  \"Username\": null,\r&para;<br>  \"Password\": null,\r&para;<br>  \"FeedType\": \"NuGet\"\r&para;<br>}</span>",
-  "IdentityEstablishedWith": "Session cookie"
+  "Details": null,
+  "IdentityEstablishedWith": "Unknown"
 }

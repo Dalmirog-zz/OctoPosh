@@ -1,23 +1,42 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-173",
-  "RelatedDocumentIds": [],
-  "ProjectId": null,
-  "EnvironmentId": null,
+  "RelatedDocumentIds": [
+    "Deployments-23",
+    "Projects-3",
+    "Environments-3"
+  ],
+  "ProjectId": "Projects-3",
+  "EnvironmentId": "Environments-3",
   "TenantId": null,
-  "Category": "MachineDeleted",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-01-23T02:31:05.1547411-03:00",
-  "Message": "Machine DGQQ2AP7CNQFEV3 was deleted (domain-event)",
+  "Category": "DeploymentStarted",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-02-06T03:22:49.9936824-03:00",
+  "Message": "Deploy to Stage started  for DeploymentTests_Project1 release 0.0.5 to Stage",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 8,
+      "ReferencedDocumentId": "Deployments-23",
+      "StartIndex": 0,
       "Length": 15
+    },
+    {
+      "ReferencedDocumentId": "Projects-3",
+      "StartIndex": 29,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 62,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-3",
+      "StartIndex": 71,
+      "Length": 5
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Unknown"
 }

@@ -2,24 +2,36 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-37",
   "RelatedDocumentIds": [
-    "ProjectGroups-24"
+    "Deployments-78",
+    "Projects-4",
+    "Environments-1"
   ],
-  "ProjectId": null,
-  "EnvironmentId": null,
+  "ProjectId": "Projects-4",
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Modified",
+  "Category": "DeploymentQueued",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-22T23:50:19.7252124-03:00",
-  "Message": "Project Group unmodified_TestprojectGroup was modified",
+  "Occurred": "2017-02-06T03:11:10.2806719-03:00",
+  "Message": "Deployed DeploymentTests_Project2 release 0.0.4 to Dev",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "ProjectGroups-24",
-      "StartIndex": 14,
-      "Length": 27
+      "ReferencedDocumentId": "Projects-4",
+      "StartIndex": 9,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 42,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-1",
+      "StartIndex": 51,
+      "Length": 3
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"ProjectGroups-82\",\r&para;<br>  \"Name\": \"</span><ins style=\"background:#e6ffe6;\">un</ins><span>modified_TestprojectGroup\",\r&para;<br>  \"Description\": null\r&para;<br>}</span>",
-  "IdentityEstablishedWith": "Session cookie"
+  "Details": null,
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

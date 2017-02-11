@@ -1,23 +1,30 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-747",
-  "RelatedDocumentIds": [],
-  "ProjectId": null,
+  "RelatedDocumentIds": [
+    "Projects-6"
+  ],
+  "ProjectId": "Projects-6",
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-15T17:30:53.3192804-03:00",
-  "Message": "Lifecycle 9K12I65HAKHNH1Y was deleted",
+  "Occurred": "2017-01-29T05:06:30.7137603-03:00",
+  "Message": "TestProject2 release 0.0.2 was created",
   "MessageReferences": [
     {
+      "ReferencedDocumentId": "Projects-6",
+      "StartIndex": 0,
+      "Length": 12
+    },
+    {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 10,
-      "Length": 15
+      "StartIndex": 21,
+      "Length": 5
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Session cookie"
 }

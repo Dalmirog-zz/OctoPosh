@@ -1,17 +1,42 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-89",
-  "RelatedDocumentIds": [],
-  "ProjectId": null,
-  "EnvironmentId": null,
+  "RelatedDocumentIds": [
+    "Deployments-92",
+    "Projects-4",
+    "Environments-2"
+  ],
+  "ProjectId": "Projects-4",
+  "EnvironmentId": "Environments-2",
   "TenantId": null,
-  "Category": "Imported",
-  "UserId": "NY",
-  "Username": "dalmiro.granias",
-  "Occurred": "2016-12-12T23:37:58.3819552-03:00",
-  "Message": "Imported documents using Octopus migration tools",
-  "MessageReferences": [],
+  "Category": "DeploymentStarted",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-02-06T03:14:22.3330052-03:00",
+  "Message": "Deploy to Prod started  for DeploymentTests_Project2 release 0.0.8 to Prod",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Deployments-92",
+      "StartIndex": 0,
+      "Length": 14
+    },
+    {
+      "ReferencedDocumentId": "Projects-4",
+      "StartIndex": 28,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 61,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-2",
+      "StartIndex": 70,
+      "Length": 4
+    }
+  ],
   "Comments": null,
-  "Details": "  Created.........................................13\r\n    Machine.......................................1\r\n    ServerTask....................................12\r\n  Unchanged.......................................279\r\n    ApiKey........................................1\r\n    Certificate...................................1\r\n    CommunityActionTemplate.......................203\r\n    DeploymentEnvironment.........................1\r\n    Event.........................................32\r\n    ExtensionConfiguration........................5\r\n    FeaturesConfiguration.........................1\r\n    License.......................................1\r\n    Lifecycle.....................................1\r\n    Machine.......................................2\r\n    MachinePolicy.................................1\r\n    NuGetFeed.....................................1\r\n    ProjectGroup..................................1\r\n    ServerConfiguration...........................1\r\n    ServerTask....................................12\r\n    SmtpConfiguration.............................1\r\n    Team..........................................2\r\n    User..........................................1\r\n    UserRole......................................10\r\n    WebPortalConfiguration........................1\r\n",
-  "IdentityEstablishedWith": "Command-line or tools"
+  "Details": null,
+  "IdentityEstablishedWith": "Unknown"
 }

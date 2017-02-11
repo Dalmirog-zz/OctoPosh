@@ -1,20 +1,34 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-26",
-  "RelatedDocumentIds": [],
-  "ProjectId": null,
-  "EnvironmentId": null,
+  "RelatedDocumentIds": [
+    "Deployments-75",
+    "Projects-4",
+    "Environments-1"
+  ],
+  "ProjectId": "Projects-4",
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Created",
+  "Category": "DeploymentQueued",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-22T15:45:24.164105-03:00",
-  "Message": "Project Group BTEF7UDD95UQISQ was created",
+  "Occurred": "2017-02-06T03:10:31.8006741-03:00",
+  "Message": "Deployed DeploymentTests_Project2 release 0.0.3 to Dev",
   "MessageReferences": [
     {
+      "ReferencedDocumentId": "Projects-4",
+      "StartIndex": 9,
+      "Length": 24
+    },
+    {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 14,
-      "Length": 15
+      "StartIndex": 42,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-1",
+      "StartIndex": 51,
+      "Length": 3
     }
   ],
   "Comments": null,
