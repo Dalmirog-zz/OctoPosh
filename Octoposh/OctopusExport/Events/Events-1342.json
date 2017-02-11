@@ -2,39 +2,21 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1342",
   "RelatedDocumentIds": [
-    "Deployments-146",
-    "Projects-22",
-    "Releases-111",
-    "Environments-1"
+    "Machines-1"
   ],
-  "ProjectId": "Projects-22",
-  "EnvironmentId": "Environments-1",
+  "ProjectId": null,
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentStarted",
+  "Category": "MachineUnavailable",
   "UserId": "users-system",
   "Username": "system",
-  "Occurred": "2017-02-09T03:10:13.7511263+00:00",
-  "Message": "Deploy to Dev started  for DeploymentTests_Project1 release 0.0.13 to Dev",
+  "Occurred": "2017-02-11T03:48:15.3569771+00:00",
+  "Message": "Machine ListeningTentacle1 became unavailable",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Deployments-146",
-      "StartIndex": 0,
-      "Length": 13
-    },
-    {
-      "ReferencedDocumentId": "Projects-22",
-      "StartIndex": 27,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "Releases-111",
-      "StartIndex": 60,
-      "Length": 6
-    },
-    {
-      "ReferencedDocumentId": "Environments-1",
-      "StartIndex": 70,
-      "Length": 3
+      "ReferencedDocumentId": "Machines-1",
+      "StartIndex": 8,
+      "Length": 18
     }
   ],
   "Comments": null,

@@ -2,25 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-891",
   "RelatedDocumentIds": [
-    "Machines-3",
-    "Environments-1"
+    "ProjectGroups-21"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Modified",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-04T22:59:55.0316774+00:00",
-  "Message": "Machine OfflineTarget was modified",
+  "Occurred": "2017-01-30T22:31:09.6399137-03:00",
+  "Message": "Project Group DashboardTests_ProjectGroup was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Machines-3",
-      "StartIndex": 8,
-      "Length": 13
+      "ReferencedDocumentId": "ProjectGroups-21",
+      "StartIndex": 14,
+      "Length": 27
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"Machines-3\",\r&para;<br>  \"Name\": \"OfflineTarget\",\r&para;<br>  \"Endpoint\": {\r&para;<br>    \"DropFolderPath\": \"\\\\\\\\whatever\",\r&para;<br>    \"SensitiveVariablesEncryptionPassword\": null,\r&para;<br>    \"ApplicationsDirectory\": \"c:\\\\whatever\",\r&para;<br>    \"OctopusWorkingDirectory\": \"c:\\\\whatever\"\r&para;<br>  },\r&para;<br>  \"IsDisabled\": false,\r&para;<br>  \"Roles\": [\r&para;<br>    \"</span><del style=\"background:#ffe6e6;\">WebServer</del><ins style=\"background:#e6ffe6;\">Offline</ins><span>\"\r&para;<br>  ],\r&para;<br>  \"EnvironmentIds\": [\r&para;<br>    \"Environments-1\"\r&para;<br>  ],\r&para;<br>  \"TenantIds\": [],\r&para;<br>  \"TenantTags\": [],\r&para;<br>  \"MachinePolicyId\": \"MachinePolicies-1\"\r&para;<br>}</span>",
+  "Details": null,
   "IdentityEstablishedWith": "Session cookie"
 }

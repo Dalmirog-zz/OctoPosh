@@ -1,41 +1,30 @@
 {
   "$type": "Octopus.Core.Model.ServerTasks.ServerTask, Octopus.Core",
   "Id": "ServerTasks-94",
-  "Name": "Health",
-  "Arguments": {
-    "Timeout": "00:05:00",
-    "MachineIds": [
-      "Machines-22"
-    ]
-  },
-  "Description": "Check ListeningTentacle health",
-  "QueueTime": "2017-02-04T04:03:45.5010032+00:00",
+  "Name": "SystemIntegrityCheck",
+  "Arguments": {},
+  "Description": "Check System Integrity",
+  "QueueTime": "2017-02-07T21:38:58.0168631-03:00",
   "QueueTimeExpiry": "10675199.02:48:05.4775807",
   "ExecutionTimeExpiry": "00:00:00",
-  "StartTime": "2017-02-04T04:03:45.5668371+00:00",
-  "LastUpdatedTime": "2017-02-04T04:03:51.2768805+00:00",
-  "CompletedTime": "2017-02-04T04:03:51.2768805+00:00",
-  "ErrorMessage": "The health check failed. One or more deployment targets were not available.",
-  "ConcurrencyTag": "Health",
-  "State": "Failed",
+  "StartTime": "2017-02-07T21:38:58.0809154-03:00",
+  "LastUpdatedTime": "2017-02-07T21:38:58.3039639-03:00",
+  "CompletedTime": "2017-02-07T21:38:58.3039639-03:00",
+  "ErrorMessage": "",
+  "ConcurrencyTag": null,
+  "State": "Success",
   "HasPendingInterruptions": false,
-  "HasWarningsOrErrors": true,
-  "ServerVersion": "3.7.4+Branch.master.Sha.403a70b03ab7c4b06d0bcb637b19afa44456c672",
+  "HasWarningsOrErrors": false,
+  "ServerVersion": "3.8.4+Branch.master.Sha.1b250ca4d7c1d42aa029771ed15851e6ed11ff83",
   "ServerNode": "DEVBOX",
-  "LogDifferentiationToken": "YZQTRPX2T3",
+  "LogDifferentiationToken": "CT3R52XZMP",
   "AdditionalDescription": null,
-  "DurationSeconds": 6,
-  "ProjectId": "projects-*",
-  "EnvironmentId": "Environments-1",
-  "TenantId": "tenants-*",
-  "ExtendedViewLogPermissions": [
-    "EnvironmentView",
-    "MachineView"
-  ],
-  "ExtendedCreatePermissions": [
-    "EnvironmentView",
-    "MachineEdit"
-  ],
+  "DurationSeconds": 0,
+  "ProjectId": null,
+  "EnvironmentId": null,
+  "TenantId": null,
+  "ExtendedViewLogPermissions": [],
+  "ExtendedCreatePermissions": [],
   "CanRerun": true,
   "Properties": {}
 }

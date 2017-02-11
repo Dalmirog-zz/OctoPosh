@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-156",
+  "Id": "CommunityActionTemplates-158",
   "Name": "SQL - Deploy DACPAC",
   "ExternalId": "58399364-4367-41d5-ad35-c2c6a8258536",
   "Description": "Calls the DacFX library to perform SSDT commands such as:\n * Deploy\n * Script\n * DeployReport\n\nIf selected the deploy script and deploy report will be loaded back into Octopus Deploy as an artefact. This allows you to put in place  manual intervention step if required. It is also useful for auditing purposes.",
@@ -161,6 +161,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-156",
+  "LogoAttachmentKey": "CommunityActionTemplates-158",
   "LogoAttachmentMimeType": "image/png"
 }

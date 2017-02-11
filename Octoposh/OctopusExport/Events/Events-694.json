@@ -2,42 +2,25 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-694",
   "RelatedDocumentIds": [
-    "Deployments-4",
-    "Projects-1",
-    "Releases-1",
-    "Environments-2"
+    "Machines-6",
+    "Environments-4"
   ],
-  "ProjectId": "Projects-1",
-  "EnvironmentId": "Environments-2",
+  "ProjectId": null,
+  "EnvironmentId": "Environments-4",
   "TenantId": null,
-  "Category": "DeploymentFailed",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-01T00:17:07.099953-03:00",
-  "Message": "Deploy to Prod (#2) failed  for DashboardTests_Project1 release 0.0.1 to Prod",
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-01-29T04:50:32.9916644-03:00",
+  "Message": "Machine modified_TestMachine was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Deployments-4",
-      "StartIndex": 0,
-      "Length": 19
-    },
-    {
-      "ReferencedDocumentId": "Projects-1",
-      "StartIndex": 32,
-      "Length": 23
-    },
-    {
-      "ReferencedDocumentId": "Releases-1",
-      "StartIndex": 64,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-2",
-      "StartIndex": 73,
-      "Length": 4
+      "ReferencedDocumentId": "Machines-6",
+      "StartIndex": 8,
+      "Length": 20
     }
   ],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "Details": "<span>{\r&para;<br>  \"Id\": \"Machines-5\",\r&para;<br>  \"Name\": \"</span><del style=\"background:#ffe6e6;\">un</del><span>modified_TestMachine\",\r&para;<br>  \"Endpoint\": {},\r&para;<br>  \"IsDisabled\": false,\r&para;<br>  \"Roles\": [\r&para;<br>    \"UnitTest\"\r&para;<br>  ],\r&para;<br>  \"EnvironmentIds\": [\r&para;<br>    \"Environments-3\"\r&para;<br>  ],\r&para;<br>  \"TenantIds\": [],\r&para;<br>  \"TenantTags\": [],\r&para;<br>  \"MachinePolicyId\": \"MachinePolicies-1\"\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

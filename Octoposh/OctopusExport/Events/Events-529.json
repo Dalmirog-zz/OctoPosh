@@ -2,21 +2,21 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-529",
   "RelatedDocumentIds": [
-    "Projects-1"
+    "Teams-1"
   ],
-  "ProjectId": "Projects-1",
+  "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-30T22:31:29.0478774-03:00",
-  "Message": "Project DashboardTests_Project1 was created",
+  "Occurred": "2017-01-23T02:32:57.4184421-03:00",
+  "Message": "Team unmodified_TestTeam was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Projects-1",
-      "StartIndex": 8,
-      "Length": 23
+      "ReferencedDocumentId": "Teams-1",
+      "StartIndex": 5,
+      "Length": 19
     }
   ],
   "Comments": null,

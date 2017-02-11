@@ -2,27 +2,22 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-429",
   "RelatedDocumentIds": [
-    "Projects-3",
-    "Releases-25"
+    "Machines-5",
+    "Environments-1"
   ],
-  "ProjectId": "Projects-3",
-  "EnvironmentId": null,
+  "ProjectId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-18T23:37:40.5590641-03:00",
-  "Message": "TestProject1 release 0.0.28 was created",
+  "Occurred": "2016-12-09T02:10:36.7288051-03:00",
+  "Message": "Machine South was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Projects-3",
-      "StartIndex": 0,
-      "Length": 12
-    },
-    {
-      "ReferencedDocumentId": "Releases-25",
-      "StartIndex": 21,
-      "Length": 6
+      "ReferencedDocumentId": "Machines-5",
+      "StartIndex": 8,
+      "Length": 5
     }
   ],
   "Comments": null,

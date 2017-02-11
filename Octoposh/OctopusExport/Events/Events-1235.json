@@ -2,24 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1235",
   "RelatedDocumentIds": [
-    "ProjectGroups-61"
+    "Environments-1"
   ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-08T05:22:28.3716949+00:00",
-  "Message": "Project Group 9OMM63HYQP3MLFR was created",
+  "Occurred": "2017-02-04T19:43:30.7625416-03:00",
+  "Message": "Machine ListeningTentacle3 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "ProjectGroups-61",
-      "StartIndex": 14,
-      "Length": 15
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 8,
+      "Length": 18
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Session cookie"
 }

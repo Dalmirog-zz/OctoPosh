@@ -2,24 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1272",
   "RelatedDocumentIds": [
-    "Lifecycles-62"
+    "Machines-1"
   ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
+  "Category": "MachineDeploymentRelatedPropertyWasUpdated",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-08T06:53:49.5540091+00:00",
-  "Message": "Lifecycle 3P0LLD44EKDSQWJ was created",
+  "Occurred": "2017-02-04T20:03:41.4576987-03:00",
+  "Message": "Machine ListeningTentacle1 was modified (domain-event)",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Lifecycles-62",
-      "StartIndex": 10,
-      "Length": 15
+      "ReferencedDocumentId": "Machines-1",
+      "StartIndex": 8,
+      "Length": 18
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Session cookie"
 }

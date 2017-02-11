@@ -1,20 +1,23 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-595",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Machines-4",
+    "Environments-1"
+  ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-14T20:22:46.6009663-03:00",
-  "Message": "User stuff was deleted",
+  "Occurred": "2016-12-14T01:12:01.3468119-03:00",
+  "Message": "Machine OfflineTarget was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 5,
-      "Length": 5
+      "ReferencedDocumentId": "Machines-4",
+      "StartIndex": 8,
+      "Length": 13
     }
   ],
   "Comments": null,

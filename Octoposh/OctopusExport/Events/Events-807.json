@@ -2,7 +2,7 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-807",
   "RelatedDocumentIds": [
-    "ProjectGroups-42"
+    "Users-1"
   ],
   "ProjectId": null,
   "EnvironmentId": null,
@@ -10,16 +10,16 @@
   "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-04T02:42:55.4117265+00:00",
-  "Message": "Project Group DeploymentsTests_ProjectGroup was modified",
+  "Occurred": "2016-12-10T20:05:29.7064859-03:00",
+  "Message": "User admin set password using the admin command line",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "ProjectGroups-42",
-      "StartIndex": 14,
-      "Length": 29
+      "ReferencedDocumentId": "Users-1",
+      "StartIndex": 5,
+      "Length": 5
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"ProjectGroups-42\",\r&para;<br>  \"Name\": \"DeploymentsTests_</span><del style=\"background:#ffe6e6;\">Test</del><span>Project</span><del style=\"background:#ffe6e6;\">1</del><ins style=\"background:#e6ffe6;\">Group</ins><span>\",\r&para;<br>  \"Description\": \"Resource created for unit tests</span><ins style=\"background:#e6ffe6;\">. Do note delete or modify</ins><span>\"\r&para;<br>}</span>",
-  "IdentityEstablishedWith": "Session cookie"
+  "Details": null,
+  "IdentityEstablishedWith": "Command-line or tools"
 }

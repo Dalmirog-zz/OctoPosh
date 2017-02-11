@@ -2,24 +2,25 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1233",
   "RelatedDocumentIds": [
-    "Projects-41"
+    "ServerTasks-4",
+    "Environments-1"
   ],
-  "ProjectId": "Projects-41",
-  "EnvironmentId": null,
+  "ProjectId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-08T05:22:27.5131527+00:00",
-  "Message": "Project 9OMM63HYQP3MLFR was created",
+  "Occurred": "2017-02-04T19:36:07.9144425-03:00",
+  "Message": "Ran task Check ListeningTentacle2 health",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Projects-41",
-      "StartIndex": 8,
-      "Length": 15
+      "ReferencedDocumentId": "ServerTasks-4",
+      "StartIndex": 9,
+      "Length": 31
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Session cookie"
 }

@@ -1,0 +1,25 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-1802",
+  "RelatedDocumentIds": [
+    "ProjectGroups-25"
+  ],
+  "ProjectId": null,
+  "EnvironmentId": null,
+  "TenantId": null,
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-02-11T08:05:14.2089488+00:00",
+  "Message": "Project Group modified_TestprojectGroup was modified",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "ProjectGroups-25",
+      "StartIndex": 14,
+      "Length": 25
+    }
+  ],
+  "Comments": null,
+  "Details": "<span>{\r&para;<br>  \"Id\": \"ProjectGroups-25\",\r&para;<br>  \"Name\": \"</span><del style=\"background:#ffe6e6;\">un</del><span>modified_Test</span><del style=\"background:#ffe6e6;\">P</del><ins style=\"background:#e6ffe6;\">p</ins><span>rojectGroup\",\r&para;<br>  \"Description\": \"Resource created for unit testing purposes. Do not delete/edit\"\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+}

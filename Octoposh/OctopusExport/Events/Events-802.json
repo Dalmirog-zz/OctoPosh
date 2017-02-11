@@ -2,24 +2,25 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-802",
   "RelatedDocumentIds": [
-    "Teams-1"
+    "Machines-4",
+    "Environments-1"
   ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
   "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-04T02:33:49.6591811+00:00",
-  "Message": "Team modified_TestTeam was modified",
+  "Occurred": "2017-01-19T01:39:21.7854107-03:00",
+  "Message": "Machine OfflineTarget was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Teams-1",
-      "StartIndex": 5,
-      "Length": 17
+      "ReferencedDocumentId": "Machines-4",
+      "StartIndex": 8,
+      "Length": 13
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"Teams-1\",\r&para;<br>  \"Name\": \"</span><del style=\"background:#ffe6e6;\">un</del><span>modified_TestTeam\",\r&para;<br>  \"MemberUserIds\": [],\r&para;<br>  \"ExternalSecurityGroups\": [],\r&para;<br>  \"UserRoleIds\": [],\r&para;<br>  \"ProjectIds\": [],\r&para;<br>  \"EnvironmentIds\": [],\r&para;<br>  \"TenantIds\": [],\r&para;<br>  \"ProjectGroupIds\": [],\r&para;<br>  \"TenantTags\": []\r&para;<br>}</span>",
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "Details": "<span>{\r&para;<br>  \"Id\": \"Machines-3\",\r&para;<br>  \"Name\": \"OfflineTarget\",\r&para;<br>  \"Endpoint\": {\r&para;<br>    \"DropFolderPath\": \"\\\\\\\\whatever\",\r&para;<br>    \"SensitiveVariablesEncryptionPassword\": null,\r&para;<br>    \"ApplicationsDirectory\": \"c:\\\\whatever\",\r&para;<br>    \"OctopusWorkingDirectory\": \"c:\\\\whatever\"\r&para;<br>  },\r&para;<br>  \"IsDisabled\": false,\r&para;<br>  \"Roles\": [\r&para;<br>    \"WebServer\"\r&para;<br>  ],\r&para;<br>  \"EnvironmentIds\": [\r&para;<br>    \"Environments-1\"\r&para;<br>  ],\r&para;<br>  \"TenantIds\": [],\r&para;<br>  \"TenantTags\": [],\r&para;<br>  \"MachinePolicyId\": \"MachinePolicies-1\"\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "Session cookie"
 }

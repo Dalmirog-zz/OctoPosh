@@ -1,21 +1,19 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1239",
-  "RelatedDocumentIds": [
-    "Tenants-41"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
   "EnvironmentId": null,
-  "TenantId": "Tenants-41",
-  "Category": "Created",
+  "TenantId": null,
+  "Category": "Deleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-08T05:22:29.9857118+00:00",
-  "Message": "Tenant 9OMM63HYQP3MLFR was created",
+  "Occurred": "2017-01-15T17:30:55.5947782-03:00",
+  "Message": "Team 9K12I65HAKHNH1Y was deleted",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Tenants-41",
-      "StartIndex": 7,
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 5,
       "Length": 15
     }
   ],

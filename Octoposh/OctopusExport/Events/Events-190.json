@@ -1,20 +1,27 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-190",
-  "RelatedDocumentIds": [],
-  "ProjectId": null,
+  "RelatedDocumentIds": [
+    "Projects-3"
+  ],
+  "ProjectId": "Projects-3",
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-14T18:41:44.6036456-03:00",
-  "Message": "Environment T0AXX57PNHP4WWZ was deleted",
+  "Occurred": "2017-02-06T03:23:51.214923-03:00",
+  "Message": "DeploymentTests_Project1 release 0.0.7 was created",
   "MessageReferences": [
     {
+      "ReferencedDocumentId": "Projects-3",
+      "StartIndex": 0,
+      "Length": 24
+    },
+    {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 12,
-      "Length": 15
+      "StartIndex": 33,
+      "Length": 5
     }
   ],
   "Comments": null,

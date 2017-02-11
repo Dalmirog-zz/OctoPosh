@@ -2,24 +2,29 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-36",
   "RelatedDocumentIds": [
-    "ProjectGroups-24"
+    "Projects-4"
   ],
-  "ProjectId": null,
+  "ProjectId": "Projects-4",
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Modified",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-22T23:39:05.4731114-03:00",
-  "Message": "Project Group modified_TestprojectGroup was modified",
+  "Occurred": "2017-02-06T03:11:08.7112177-03:00",
+  "Message": "DeploymentTests_Project2 release 0.0.4 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "ProjectGroups-24",
-      "StartIndex": 14,
-      "Length": 25
+      "ReferencedDocumentId": "Projects-4",
+      "StartIndex": 0,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 33,
+      "Length": 5
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"ProjectGroups-82\",\r&para;<br>  \"Name\": \"</span><del style=\"background:#ffe6e6;\">un</del><span>modified_Test</span><del style=\"background:#ffe6e6;\">P</del><ins style=\"background:#e6ffe6;\">p</ins><span>rojectGroup\",\r&para;<br>  \"Description\": null\r&para;<br>}</span>",
+  "Details": null,
   "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

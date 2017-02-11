@@ -1,0 +1,31 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-1413",
+  "RelatedDocumentIds": [
+    "Projects-41",
+    "Releases-61"
+  ],
+  "ProjectId": "Projects-41",
+  "EnvironmentId": null,
+  "TenantId": null,
+  "Category": "Deleted",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-02-11T04:12:10.0256427+00:00",
+  "Message": "DashboardTests_Project1 release 0.0.1 was deleted",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Projects-41",
+      "StartIndex": 0,
+      "Length": 23
+    },
+    {
+      "ReferencedDocumentId": "Releases-61",
+      "StartIndex": 32,
+      "Length": 5
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "Session cookie"
+}

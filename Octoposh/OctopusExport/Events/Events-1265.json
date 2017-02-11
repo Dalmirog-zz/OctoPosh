@@ -2,24 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1265",
   "RelatedDocumentIds": [
-    "Channels-43"
+    "Environments-1"
   ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
   "Category": "Deleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-08T06:53:47.6419965+00:00",
-  "Message": "Channel 3P0LLD44EKDSQWJ was deleted",
+  "Occurred": "2017-02-04T20:02:08.5016047-03:00",
+  "Message": "Machine ListeningTentacle3 was deleted",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Channels-43",
+      "ReferencedDocumentId": "NotFound",
       "StartIndex": 8,
-      "Length": 15
+      "Length": 18
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Session cookie"
 }

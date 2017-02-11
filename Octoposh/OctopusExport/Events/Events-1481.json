@@ -1,0 +1,25 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-1481",
+  "RelatedDocumentIds": [
+    "Projects-43"
+  ],
+  "ProjectId": "Projects-43",
+  "EnvironmentId": null,
+  "TenantId": null,
+  "Category": "Deleted",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-02-11T04:29:31.3478133+00:00",
+  "Message": "Project DeploymentTests_Project1 was deleted",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Projects-43",
+      "StartIndex": 8,
+      "Length": 24
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "Session cookie"
+}

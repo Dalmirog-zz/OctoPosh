@@ -1,0 +1,25 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-1473",
+  "RelatedDocumentIds": [
+    "Projects-44"
+  ],
+  "ProjectId": "Projects-44",
+  "EnvironmentId": null,
+  "TenantId": null,
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-02-11T04:26:52.186864+00:00",
+  "Message": "Project DeploymentTests_Project2 was modified",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Projects-44",
+      "StartIndex": 8,
+      "Length": 24
+    }
+  ],
+  "Comments": null,
+  "Details": "<span>{\r&para;<br>  \"Id\": \"Projects-44\",\r&para;<br>  \"Name\": \"Deployment</span><del style=\"background:#ffe6e6;\">s</del><span>Tests_Project2\",\r&para;<br>  \"Description\": \"\",\r&para;<br>  \"Slug\": \"deployment</span><del style=\"background:#ffe6e6;\">s</del><span>tests-project2\",\r&para;<br>  \"IsDisabled\": false,\r&para;<br>  \"VariableSetId\": \"variableset-Projects-44\",\r&para;<br>  \"DeploymentProcessId\": \"deploymentprocess-Projects-44\",\r&para;<br>  \"ProjectGroupId\": \"ProjectGroups-22\",\r&para;<br>  \"LifecycleId\": \"Lifecycles-1\",\r&para;<br>  \"AutoCreateRelease\": false,\r&para;<br>  \"IncludedLibraryVariableSetIds\": [],\r&para;<br>  \"UsedPackages\": [],\r&para;<br>  \"DefaultToSkipIfAlreadyInstalled\": false,\r&para;<br>  \"TenantedDeploymentMode\": \"Untenanted\",\r&para;<br>  \"VersioningStrategy\": {\r&para;<br>    \"DonorPackageStepId\": null,\r&para;<br>    \"Template\": \"#{Octopus.Version.LastMajor}.#{Octopus.Version.LastMinor}.#{Octopus.Version.NextPatch}\"\r&para;<br>  },\r&para;<br>  \"Templates\": [],\r&para;<br>  \"ReleaseCreationStrategy\": {\r&para;<br>    \"ReleaseCreationPackageStepId\": \"\",\r&para;<br>    \"ChannelId\": null\r&para;<br>  },\r&para;<br>  \"ProjectConnectivityPolicy\": {\r&para;<br>    \"SkipMachineBehavior\": \"None\",\r&para;<br>    \"TargetRoles\": []\r&para;<br>  },\r&para;<br>  \"AutoDeployReleaseOverrides\": []\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "Session cookie"
+}

@@ -2,39 +2,21 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1355",
   "RelatedDocumentIds": [
-    "Deployments-150",
-    "Projects-22",
-    "Releases-112",
-    "Environments-3"
+    "Machines-21"
   ],
-  "ProjectId": "Projects-22",
-  "EnvironmentId": "Environments-3",
+  "ProjectId": null,
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentStarted",
+  "Category": "MachineHealthy",
   "UserId": "users-system",
   "Username": "system",
-  "Occurred": "2017-02-09T03:13:35.2544253+00:00",
-  "Message": "Deploy to Stage started  for DeploymentTests_Project1 release 0.0.14 to Stage",
+  "Occurred": "2017-02-11T03:48:39.2925091+00:00",
+  "Message": "Machine KDPKROC3P2UV5R1 became healthy",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Deployments-150",
-      "StartIndex": 0,
+      "ReferencedDocumentId": "Machines-21",
+      "StartIndex": 8,
       "Length": 15
-    },
-    {
-      "ReferencedDocumentId": "Projects-22",
-      "StartIndex": 29,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "Releases-112",
-      "StartIndex": 62,
-      "Length": 6
-    },
-    {
-      "ReferencedDocumentId": "Environments-3",
-      "StartIndex": 72,
-      "Length": 5
     }
   ],
   "Comments": null,

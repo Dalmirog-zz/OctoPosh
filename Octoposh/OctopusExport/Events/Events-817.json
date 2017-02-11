@@ -1,31 +1,17 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-817",
-  "RelatedDocumentIds": [
-    "ServerTasks-89",
-    "ServerTasks-88"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-02-04T03:42:25.7265268+00:00",
-  "Message": "Task Check ListeningTentacle health #89 was created by re-running task Check ListeningTentacle health #88",
-  "MessageReferences": [
-    {
-      "ReferencedDocumentId": "ServerTasks-89",
-      "StartIndex": 5,
-      "Length": 34
-    },
-    {
-      "ReferencedDocumentId": "ServerTasks-88",
-      "StartIndex": 71,
-      "Length": 34
-    }
-  ],
+  "Category": "Imported",
+  "UserId": "NY",
+  "Username": "dalmiro.granias",
+  "Occurred": "2016-12-16T01:53:06.4117742-03:00",
+  "Message": "Imported task logs using Octopus migration tools",
+  "MessageReferences": [],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "Details": "",
+  "IdentityEstablishedWith": "Command-line or tools"
 }

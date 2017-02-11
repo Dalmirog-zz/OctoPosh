@@ -2,24 +2,25 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1220",
   "RelatedDocumentIds": [
-    "Environments-41"
+    "variableset-LibraryVariableSets-1",
+    "LibraryVariableSets-1"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-41",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
+  "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-08T05:22:23.4456892+00:00",
-  "Message": "Environment 9OMM63HYQP3MLFR was created",
+  "Occurred": "2017-02-04T17:47:46.1669594-03:00",
+  "Message": "Variables for mymodule were changed",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Environments-41",
-      "StartIndex": 12,
-      "Length": 15
+      "ReferencedDocumentId": "LibraryVariableSets-1",
+      "StartIndex": 14,
+      "Length": 8
     }
   ],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "Details": "<span>{\r&para;<br>  \"Id\": \"variableset-LibraryVariableSets-22\",\r&para;<br>  \"OwnerId\": \"LibraryVariableSets-22\",\r&para;<br>  \"V</span><del style=\"background:#ffe6e6;\">ariables\": [</del><ins style=\"background:#e6ffe6;\">ersion\": 1,\r&para;<br>  \"Variables\": [\r&para;<br>    {\r&para;<br>      \"Id\": \"88bf2acc-b87d-4fef-afe7-a9a50d029799\",\r&para;<br>      \"Name\": \"Octopus.Script.Module[mymodule]\",\r&para;<br>      \"Value\": \"function GetReleaseNumber()\\r\\n{\\r\\n    Write-Output $OctopusParameters['Octopus.Release.Number']\\r\\n}\\r\\n\"\r&para;<br>    }\r&para;<br>  </ins><span>],\r&para;<br>  \"RelatedDocumentIds\": []\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "Session cookie"
 }

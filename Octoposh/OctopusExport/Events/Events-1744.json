@@ -1,0 +1,43 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-1744",
+  "RelatedDocumentIds": [
+    "Deployments-235",
+    "Projects-44",
+    "Releases-103",
+    "Environments-2"
+  ],
+  "ProjectId": "Projects-44",
+  "EnvironmentId": "Environments-2",
+  "TenantId": null,
+  "Category": "DeploymentSucceeded",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-02-11T04:49:58.8842148+00:00",
+  "Message": "Deploy to Prod succeeded  for DeploymentTests_Project2 release 0.0.12 to Prod",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Deployments-235",
+      "StartIndex": 0,
+      "Length": 14
+    },
+    {
+      "ReferencedDocumentId": "Projects-44",
+      "StartIndex": 30,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "Releases-103",
+      "StartIndex": 63,
+      "Length": 6
+    },
+    {
+      "ReferencedDocumentId": "Environments-2",
+      "StartIndex": 73,
+      "Length": 4
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "Unknown"
+}

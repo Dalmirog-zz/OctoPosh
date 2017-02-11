@@ -1,0 +1,43 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-1445",
+  "RelatedDocumentIds": [
+    "Deployments-153",
+    "Projects-42",
+    "Releases-64",
+    "Environments-2"
+  ],
+  "ProjectId": "Projects-42",
+  "EnvironmentId": "Environments-2",
+  "TenantId": null,
+  "Category": "DeploymentStarted",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-02-11T04:16:08.6782025+00:00",
+  "Message": "Deploy to Prod started  for DashboardTests_Project2 release 0.0.1 to Prod",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Deployments-153",
+      "StartIndex": 0,
+      "Length": 14
+    },
+    {
+      "ReferencedDocumentId": "Projects-42",
+      "StartIndex": 28,
+      "Length": 23
+    },
+    {
+      "ReferencedDocumentId": "Releases-64",
+      "StartIndex": 60,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-2",
+      "StartIndex": 69,
+      "Length": 4
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "Unknown"
+}

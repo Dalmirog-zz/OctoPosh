@@ -2,21 +2,21 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-548",
   "RelatedDocumentIds": [
-    "ServerTasks-45"
+    "Environments-1"
   ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "TaskCanceled",
+  "Category": "Deleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-30T22:51:11.0130012-03:00",
-  "Message": "Task Deploy DashboardTests_Project1 release 0.0.1 to Prod #69 was canceled",
+  "Occurred": "2016-12-17T00:15:39.0575316-03:00",
+  "Message": "Machine West was deleted",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "ServerTasks-45",
-      "StartIndex": 5,
-      "Length": 56
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 8,
+      "Length": 4
     }
   ],
   "Comments": null,
