@@ -1,25 +1,17 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1810",
-  "RelatedDocumentIds": [
-    "Environments-42"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
-  "EnvironmentId": "Environments-42",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-02-11T08:08:06.2240041+00:00",
-  "Message": "Environment N8X9XSZX7UGW309 was created",
-  "MessageReferences": [
-    {
-      "ReferencedDocumentId": "Environments-42",
-      "StartIndex": 12,
-      "Length": 15
-    }
-  ],
+  "Category": "Imported",
+  "UserId": "NY",
+  "Username": "dalmiro.granias",
+  "Occurred": "2017-02-01T00:12:56.1711541-03:00",
+  "Message": "Imported task logs using Octopus migration tools",
+  "MessageReferences": [],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "Details": "",
+  "IdentityEstablishedWith": "Command-line or tools"
 }

@@ -2,41 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1089",
   "RelatedDocumentIds": [
-    "Deployments-10",
-    "Projects-2",
-    "Environments-3"
+    "feeds-unmodified-feed"
   ],
-  "ProjectId": "Projects-2",
-  "EnvironmentId": "Environments-3",
+  "ProjectId": null,
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentStarted",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-01T00:39:33.0186389-03:00",
-  "Message": "Deploy to Stage started  for DashboardTests_Project2 release 0.0.1 to Stage",
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-02-08T03:53:53.9710383-03:00",
+  "Message": "NuGetFeed modified_TestFeed was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Deployments-10",
-      "StartIndex": 0,
-      "Length": 15
-    },
-    {
-      "ReferencedDocumentId": "Projects-2",
-      "StartIndex": 29,
-      "Length": 23
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 61,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-3",
-      "StartIndex": 70,
-      "Length": 5
+      "ReferencedDocumentId": "feeds-unmodified-feed",
+      "StartIndex": 10,
+      "Length": 17
     }
   ],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "Details": "<span>{\r&para;<br>  \"Id\": \"feeds-unmodified-feed\",\r&para;<br>  \"Name\": \"</span><del style=\"background:#ffe6e6;\">un</del><span>modified_TestFeed\",\r&para;<br>  \"FeedUri\": \"c:\\\\packages\",\r&para;<br>  \"Username\": null,\r&para;<br>  \"Password\": null,\r&para;<br>  \"FeedType\": \"NuGet\"\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

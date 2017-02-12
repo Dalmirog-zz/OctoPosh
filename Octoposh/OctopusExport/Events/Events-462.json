@@ -2,21 +2,34 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-462",
   "RelatedDocumentIds": [
-    "Machines-5"
+    "Deployments-3",
+    "Projects-1",
+    "Releases-1",
+    "Environments-2"
   ],
-  "ProjectId": null,
-  "EnvironmentId": null,
+  "ProjectId": "Projects-1",
+  "EnvironmentId": "Environments-2",
   "TenantId": null,
-  "Category": "MachineAdded",
+  "Category": "DeploymentQueued",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2016-12-09T02:10:36.7338039-03:00",
-  "Message": "Machine South was created (domain-event)",
+  "Occurred": "2017-02-11T01:13:16.7244246-03:00",
+  "Message": "Deployed DashboardTests_Project1 release 0.0.1 to Prod",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Machines-5",
-      "StartIndex": 8,
+      "ReferencedDocumentId": "Projects-1",
+      "StartIndex": 9,
+      "Length": 23
+    },
+    {
+      "ReferencedDocumentId": "Releases-1",
+      "StartIndex": 41,
       "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-2",
+      "StartIndex": 50,
+      "Length": 4
     }
   ],
   "Comments": null,

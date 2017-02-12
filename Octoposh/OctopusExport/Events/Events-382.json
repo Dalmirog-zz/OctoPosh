@@ -1,37 +1,17 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-382",
-  "RelatedDocumentIds": [
-    "Deployments-65",
-    "Projects-4",
-    "Environments-2"
-  ],
-  "ProjectId": "Projects-4",
-  "EnvironmentId": "Environments-2",
+  "RelatedDocumentIds": [],
+  "ProjectId": null,
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentQueued",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-02-09T00:00:49.3059062-03:00",
-  "Message": "Deployed DeploymentTests_Project2 release 0.0.14 to Prod",
-  "MessageReferences": [
-    {
-      "ReferencedDocumentId": "Projects-4",
-      "StartIndex": 9,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 42,
-      "Length": 6
-    },
-    {
-      "ReferencedDocumentId": "Environments-2",
-      "StartIndex": 52,
-      "Length": 4
-    }
-  ],
+  "Category": "Imported",
+  "UserId": "NY",
+  "Username": "dalmiro.granias",
+  "Occurred": "2017-02-11T00:47:55.7586504-03:00",
+  "Message": "Imported task logs using Octopus migration tools",
+  "MessageReferences": [],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "Details": "",
+  "IdentityEstablishedWith": "Command-line or tools"
 }

@@ -2,21 +2,31 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1756",
   "RelatedDocumentIds": [
-    "Machines-41"
+    "Environments-3"
   ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-3",
   "TenantId": null,
-  "Category": "MachineAdded",
+  "Category": "DeploymentQueued",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-11T08:05:06.8189487+00:00",
-  "Message": "Machine YZK2U0SYC0YFHI6 was created (domain-event)",
+  "Occurred": "2017-02-06T03:14:49.0789161-03:00",
+  "Message": "Deployed DeploymentTests_Project2 release 0.0.9 to Stage",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Machines-41",
-      "StartIndex": 8,
-      "Length": 15
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 9,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 42,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-3",
+      "StartIndex": 51,
+      "Length": 5
     }
   ],
   "Comments": null,

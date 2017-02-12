@@ -1,22 +1,19 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1757",
-  "RelatedDocumentIds": [
-    "Machines-41",
-    "Environments-1"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "EnvironmentId": null,
   "TenantId": null,
   "Category": "Deleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-11T08:05:07.0869479+00:00",
-  "Message": "Machine YZK2U0SYC0YFHI6 was deleted",
+  "Occurred": "2017-01-14T20:08:06.8881169-03:00",
+  "Message": "NuGetFeed M9NVE15SAQ3A3DB was deleted",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Machines-41",
-      "StartIndex": 8,
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 10,
       "Length": 15
     }
   ],

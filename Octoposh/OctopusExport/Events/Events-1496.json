@@ -2,42 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1496",
   "RelatedDocumentIds": [
-    "Deployments-161",
-    "Projects-45",
-    "Releases-79",
-    "Environments-1"
+    "Lifecycles-1"
   ],
-  "ProjectId": "Projects-45",
-  "EnvironmentId": "Environments-1",
+  "ProjectId": null,
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentSucceeded",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-11T04:31:00.2396223+00:00",
-  "Message": "Deploy to Dev succeeded  for DeploymentTests_Project1 release 0.0.2 to Dev",
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-01-29T04:55:28.2439448-03:00",
+  "Message": "Lifecycle Default Lifecycle was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Deployments-161",
-      "StartIndex": 0,
-      "Length": 13
-    },
-    {
-      "ReferencedDocumentId": "Projects-45",
-      "StartIndex": 29,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "Releases-79",
-      "StartIndex": 62,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-1",
-      "StartIndex": 71,
-      "Length": 3
+      "ReferencedDocumentId": "Lifecycles-1",
+      "StartIndex": 10,
+      "Length": 17
     }
   ],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "Details": "<span>{\r&para;<br>  \"Id\": \"Lifecycles-1\",\r&para;<br>  \"Name\": \"Default Lifecycle\",\r&para;<br>  \"Description\": null,\r&para;<br>  \"Phases\": [</span><ins style=\"background:#e6ffe6;\">\r&para;<br>    {\r&para;<br>      \"Id\": \"0d38db58-b961-4c93-a6f2-520a33ecc185\",\r&para;<br>      \"Name\": \"Dev\",\r&para;<br>      \"AutomaticDeploymentTargets\": [],\r&para;<br>      \"OptionalDeploymentTargets\": [\r&para;<br>        \"Environments-1\"\r&para;<br>      ],\r&para;<br>      \"MinimumEnvironmentsBeforePromotion\": 0,\r&para;<br>      \"ReleaseRetentionPolicy\": null,\r&para;<br>      \"TentacleRetentionPolicy\": null\r&para;<br>    },\r&para;<br>    {\r&para;<br>      \"Id\": \"cb861a2f-979c-42c8-8aca-8854b28494db\",\r&para;<br>      \"Name\": \"Stage\",\r&para;<br>      \"AutomaticDeploymentTargets\": [],\r&para;<br>      \"OptionalDeploymentTargets\": [\r&para;<br>        \"Environments-2\"\r&para;<br>      ],\r&para;<br>      \"MinimumEnvironmentsBeforePromotion\": 0,\r&para;<br>      \"ReleaseRetentionPolicy\": null,\r&para;<br>      \"TentacleRetentionPolicy\": null\r&para;<br>    },\r&para;<br>    {\r&para;<br>      \"Id\": \"82aab0cc-6d5a-47f2-80f1-e5c0914162e2\",\r&para;<br>      \"Name\": \"Prod\",\r&para;<br>      \"AutomaticDeploymentTargets\": [],\r&para;<br>      \"OptionalDeploymentTargets\": [\r&para;<br>        \"Environments-22\"\r&para;<br>      ],\r&para;<br>      \"MinimumEnvironmentsBeforePromotion\": 0,\r&para;<br>      \"ReleaseRetentionPolicy\": null,\r&para;<br>      \"TentacleRetentionPolicy\": null\r&para;<br>    }\r&para;<br>  </ins><span>],\r&para;<br>  \"ReleaseRetentionPolicy\": {\r&para;<br>    \"Unit\": \"Items\",\r&para;<br>    \"QuantityToKeep\": 0,\r&para;<br>    \"ShouldKeepForever\": true\r&para;<br>  },\r&para;<br>  \"TentacleRetentionPolicy\": {\r&para;<br>    \"Unit\": \"Items\",\r&para;<br>    \"QuantityToKeep\": 0,\r&para;<br>    \"ShouldKeepForever\": true\r&para;<br>  }\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "Session cookie"
 }

@@ -2,36 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1322",
   "RelatedDocumentIds": [
-    "Deployments-72",
-    "Projects-4",
-    "Environments-1"
+    "LibraryVariableSets-2"
   ],
-  "ProjectId": "Projects-4",
-  "EnvironmentId": "Environments-1",
+  "ProjectId": null,
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentQueued",
+  "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-06T03:09:53.0909262-03:00",
-  "Message": "Deployed DeploymentTests_Project2 release 0.0.2 to Dev",
+  "Occurred": "2017-01-23T03:22:33.276187-03:00",
+  "Message": "Library Variable Set unmodified_TestLibraryVariableSet was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Projects-4",
-      "StartIndex": 9,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 42,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-1",
-      "StartIndex": 51,
-      "Length": 3
+      "ReferencedDocumentId": "LibraryVariableSets-2",
+      "StartIndex": 21,
+      "Length": 33
     }
   ],
   "Comments": null,
-  "Details": null,
+  "Details": "<span>{\r&para;<br>  \"Id\": \"LibraryVariableSets-1\",\r&para;<br>  \"Name\": \"</span><ins style=\"background:#e6ffe6;\">un</ins><span>modified_TestLibraryVariableSet\",\r&para;<br>  \"Description\": \"Resource created for unit testing purposes. Do not delete/edit\",\r&para;<br>  \"VariableSetId\": \"variableset-LibraryVariableSets-1\",\r&para;<br>  \"ContentType\": \"Variables\",\r&para;<br>  \"Templates\": []\r&para;<br>}</span>",
   "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

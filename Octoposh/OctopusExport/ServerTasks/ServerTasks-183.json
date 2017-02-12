@@ -1,41 +1,34 @@
 {
   "$type": "Octopus.Core.Model.ServerTasks.ServerTask, Octopus.Core",
   "Id": "ServerTasks-183",
-  "Name": "Health",
+  "Name": "Deploy",
   "Arguments": {
-    "Timeout": "00:05:00",
-    "MachineIds": [
-      "Machines-1"
-    ]
+    "DeploymentId": "Deployments-69"
   },
-  "Description": "Check ListeningTentacle health",
-  "QueueTime": "2017-02-04T01:03:45.5010032-03:00",
+  "Description": "Deploy DeploymentTests_Project2 release 0.0.8 to Stage",
+  "QueueTime": "2017-02-11T01:47:18.2228883-03:00",
   "QueueTimeExpiry": "10675199.02:48:05.4775807",
   "ExecutionTimeExpiry": "00:00:00",
-  "StartTime": "2017-02-04T01:03:45.5668371-03:00",
-  "LastUpdatedTime": "2017-02-04T01:03:51.2768805-03:00",
-  "CompletedTime": "2017-02-04T01:03:51.2768805-03:00",
-  "ErrorMessage": "The health check failed. One or more deployment targets were not available.",
-  "ConcurrencyTag": "Health",
-  "State": "Failed",
+  "StartTime": "2017-02-11T01:47:18.2728716-03:00",
+  "LastUpdatedTime": "2017-02-11T01:47:24.0187501-03:00",
+  "CompletedTime": "2017-02-11T01:47:24.0187501-03:00",
+  "ErrorMessage": "",
+  "ConcurrencyTag": "/Projects-44/Environments-3",
+  "State": "Success",
   "HasPendingInterruptions": false,
-  "HasWarningsOrErrors": true,
-  "ServerVersion": "3.7.4+Branch.master.Sha.403a70b03ab7c4b06d0bcb637b19afa44456c672",
+  "HasWarningsOrErrors": false,
+  "ServerVersion": "3.8.4+Branch.master.Sha.1b250ca4d7c1d42aa029771ed15851e6ed11ff83",
   "ServerNode": "DEVBOX",
-  "LogDifferentiationToken": "YZQTRPX2T3",
+  "LogDifferentiationToken": "34KK6TB99H",
   "AdditionalDescription": null,
   "DurationSeconds": 6,
-  "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "ProjectId": "Projects-4",
+  "EnvironmentId": "Environments-3",
   "TenantId": null,
-  "ExtendedViewLogPermissions": [
-    "EnvironmentView",
-    "MachineView"
-  ],
+  "ExtendedViewLogPermissions": [],
   "ExtendedCreatePermissions": [
-    "EnvironmentView",
-    "MachineEdit"
+    "DeploymentCreate"
   ],
-  "CanRerun": true,
+  "CanRerun": false,
   "Properties": {}
 }

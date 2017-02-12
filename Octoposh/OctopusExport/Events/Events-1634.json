@@ -2,42 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1634",
   "RelatedDocumentIds": [
-    "Deployments-202",
-    "Projects-44",
-    "Releases-92",
-    "Environments-2"
+    "LibraryVariableSets-2"
   ],
-  "ProjectId": "Projects-44",
-  "EnvironmentId": "Environments-2",
+  "ProjectId": null,
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentSucceeded",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-11T04:43:22.2948311+00:00",
-  "Message": "Deploy to Prod succeeded  for DeploymentTests_Project2 release 0.0.1 to Prod",
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-01-23T02:16:54.0019176-03:00",
+  "Message": "Library Variable Set unmodified_TestLibraryVariableset was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Deployments-202",
-      "StartIndex": 0,
-      "Length": 14
-    },
-    {
-      "ReferencedDocumentId": "Projects-44",
-      "StartIndex": 30,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "Releases-92",
-      "StartIndex": 63,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-2",
-      "StartIndex": 72,
-      "Length": 4
+      "ReferencedDocumentId": "LibraryVariableSets-2",
+      "StartIndex": 21,
+      "Length": 33
     }
   ],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "Details": "<span>{\r&para;<br>  \"Id\": \"LibraryVariableSets-22\",\r&para;<br>  \"Name\": \"unmodified_</span><ins style=\"background:#e6ffe6;\">Test</ins><span>LibraryVariableset\",\r&para;<br>  \"Description\": \"\",\r&para;<br>  \"VariableSetId\": \"variableset-LibraryVariableSets-22\",\r&para;<br>  \"ContentType\": \"Variables\",\r&para;<br>  \"Templates\": []\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "Session cookie"
 }

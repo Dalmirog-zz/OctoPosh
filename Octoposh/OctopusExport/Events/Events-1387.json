@@ -1,28 +1,20 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1387",
-  "RelatedDocumentIds": [
-    "ServerTasks-208",
-    "ServerTasks-207"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
+  "Category": "MachineDeleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-11T04:01:52.0601263+00:00",
-  "Message": "Task Check ListeningTentacle1 health #208 was created by re-running task Check ListeningTentacle1 health #207",
+  "Occurred": "2016-12-14T01:09:46.9208052-03:00",
+  "Message": "Machine West was deleted (domain-event)",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "ServerTasks-208",
-      "StartIndex": 5,
-      "Length": 36
-    },
-    {
-      "ReferencedDocumentId": "ServerTasks-207",
-      "StartIndex": 73,
-      "Length": 36
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 8,
+      "Length": 4
     }
   ],
   "Comments": null,

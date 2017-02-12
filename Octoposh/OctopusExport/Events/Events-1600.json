@@ -2,37 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1600",
   "RelatedDocumentIds": [
-    "Deployments-193",
-    "Projects-45",
-    "Releases-89",
-    "Environments-2"
+    "LibraryVariableSets-2"
   ],
-  "ProjectId": "Projects-45",
-  "EnvironmentId": "Environments-2",
+  "ProjectId": null,
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentQueued",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-11T04:40:05.2521296+00:00",
-  "Message": "Deployed DeploymentTests_Project1 release 0.0.12 to Prod",
+  "Occurred": "2017-01-22T23:52:35.9185213-03:00",
+  "Message": "Library Variable Set unmodified_LibraryVariableset was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Projects-45",
-      "StartIndex": 9,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "Releases-89",
-      "StartIndex": 42,
-      "Length": 6
-    },
-    {
-      "ReferencedDocumentId": "Environments-2",
-      "StartIndex": 52,
-      "Length": 4
+      "ReferencedDocumentId": "LibraryVariableSets-2",
+      "StartIndex": 21,
+      "Length": 29
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Session cookie"
 }

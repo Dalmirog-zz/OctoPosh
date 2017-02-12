@@ -2,25 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1199",
   "RelatedDocumentIds": [
-    "ServerTasks-177",
     "Environments-1"
   ],
   "ProjectId": null,
   "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Created",
+  "Category": "Deleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-04T00:38:16.3142697-03:00",
-  "Message": "Ran task Check ListeningTentacle health",
+  "Occurred": "2017-02-09T01:11:38.179981-03:00",
+  "Message": "Machine VJYNRMDF9FK6K62 was deleted",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "ServerTasks-177",
-      "StartIndex": 9,
-      "Length": 30
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 8,
+      "Length": 15
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

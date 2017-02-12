@@ -1,17 +1,25 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1307",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Channels-8"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Imported",
-  "UserId": "NY",
-  "Username": "dalmiro.granias",
-  "Occurred": "2017-01-14T18:32:52.3177062-03:00",
-  "Message": "Imported documents using Octopus migration tools",
-  "MessageReferences": [],
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-01-23T03:19:59.299593-03:00",
+  "Message": "Channel modified_TestChannel was modified",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Channels-8",
+      "StartIndex": 8,
+      "Length": 20
+    }
+  ],
   "Comments": null,
-  "Details": "  Created.........................................361\r\n    ApiKey........................................1\r\n    Channel.......................................2\r\n    CommunityActionTemplate.......................208\r\n    DeploymentEnvironment.........................2\r\n    DeploymentProcess.............................2\r\n    Event.........................................109\r\n    ExtensionConfiguration........................2\r\n    Machine.......................................4\r\n    Project.......................................2\r\n    ProjectGroup..................................1\r\n    ServerTask....................................26\r\n    VariableSet...................................2\r\n  Skipped (key collision).........................4\r\n    Event.........................................1\r\n    ServerTask....................................3\r\n  Unchanged.......................................25\r\n    ExtensionConfiguration........................3\r\n    FeaturesConfiguration.........................1\r\n    License.......................................1\r\n    Lifecycle.....................................1\r\n    MachinePolicy.................................1\r\n    NuGetFeed.....................................1\r\n    ProjectGroup..................................1\r\n    ServerConfiguration...........................1\r\n    SmtpConfiguration.............................1\r\n    Team..........................................2\r\n    User..........................................1\r\n    UserRole......................................10\r\n    WebPortalConfiguration........................1\r\n  Updated.........................................1\r\n    Certificate...................................1\r\n",
-  "IdentityEstablishedWith": "Command-line or tools"
+  "Details": "<span>{\r&para;<br>  \"Id\": \"Channels-23\",\r&para;<br>  \"Name\": \"</span><del style=\"background:#ffe6e6;\">un</del><span>modified_TestChannel\",\r&para;<br>  \"Description\": \"Resource created for unit testing purposes. Do not delete/edit\",\r&para;<br>  \"ProjectId\": \"Projects-3\",\r&para;<br>  \"LifecycleId\": null,\r&para;<br>  \"IsDefault\": false,\r&para;<br>  \"TenantTags\": [],\r&para;<br>  \"Rules\": []\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

@@ -2,21 +2,21 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1309",
   "RelatedDocumentIds": [
-    "Machines-2"
+    "Projects-6"
   ],
-  "ProjectId": null,
+  "ProjectId": "Projects-6",
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "MachineDisabled",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-06T03:02:04.0455094-03:00",
-  "Message": "Machine ListeningTentacle2 was disabled",
+  "Occurred": "2016-12-17T00:15:27.3609809-03:00",
+  "Message": "Project TestProject2 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Machines-2",
+      "ReferencedDocumentId": "Projects-6",
       "StartIndex": 8,
-      "Length": 18
+      "Length": 12
     }
   ],
   "Comments": null,
