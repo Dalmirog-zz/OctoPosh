@@ -33,8 +33,8 @@ namespace Octoposh.Cmdlets
     /// <para type="link" uri="https://github.com/Dalmirog/OctoPosh/wiki">Wiki: </para>
     /// <para type="link" uri="https://gitter.im/Dalmirog/OctoPosh#initial">QA and Feature requests: </para>
     [Cmdlet("Get", "OctopusTeam")]
-    [OutputType(typeof(List<OutputOctopusProject>))]
-    [OutputType(typeof(List<ProjectResource>))]
+    [OutputType(typeof(List<OutputOctopusTeam>))]
+    [OutputType(typeof(List<TeamResource>))]
     public class GetOctopusTeam : PSCmdlet
     {
         /// <summary>

@@ -138,11 +138,18 @@ namespace Octoposh.Tests
         [Test]
         public void GetTeamUsingResourceOnlyReturnsRawResource()
         {
+            var teamName = Team1;
+
             var parameters = new List<CmdletParameter>
             {
                 new CmdletParameter()
                 {
                     Name = "resourceOnly"
+                },
+                new CmdletParameter()
+                {
+                    Name = "TeamName",
+                    SingleValue = teamName
                 }
             };
 
