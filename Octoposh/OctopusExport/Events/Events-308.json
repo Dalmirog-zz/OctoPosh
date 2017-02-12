@@ -1,17 +1,40 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-308",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Environments-1"
+  ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Modified",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-01-15T17:58:56.6355929-03:00",
-  "Message": "Features configuration was changed.",
-  "MessageReferences": [],
+  "Category": "DeploymentStarted",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-02-04T20:01:35.66055-03:00",
+  "Message": "Deploy to Dev started  for DeploymentTests_Project1 release 0.0.1 to Dev",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 0,
+      "Length": 13
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 27,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 60,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-1",
+      "StartIndex": 69,
+      "Length": 3
+    }
+  ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"features\",\r&para;<br>  \"IsMultiTenancyEnabled\": true,\r&para;<br>  \"IsDockerEnabled\": false,\r&para;<br>  \"IsCommunityActionTemplatesEnabled\": </span><del style=\"background:#ffe6e6;\">tru</del><ins style=\"background:#e6ffe6;\">fals</ins><span>e,\r&para;<br>  \"Name\": \"Features Configuration\"\r&para;<br>}</span>",
-  "IdentityEstablishedWith": "Session cookie"
+  "Details": null,
+  "IdentityEstablishedWith": "Unknown"
 }

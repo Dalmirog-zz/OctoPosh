@@ -1,37 +1,17 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-142",
-  "RelatedDocumentIds": [
-    "Deployments-15",
-    "Projects-3",
-    "Environments-2"
-  ],
-  "ProjectId": "Projects-3",
-  "EnvironmentId": "Environments-2",
+  "RelatedDocumentIds": [],
+  "ProjectId": null,
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentQueued",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-02-06T03:21:13.5861754-03:00",
-  "Message": "Deployed DeploymentTests_Project1 release 0.0.2 to Prod",
-  "MessageReferences": [
-    {
-      "ReferencedDocumentId": "Projects-3",
-      "StartIndex": 9,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 42,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-2",
-      "StartIndex": 51,
-      "Length": 4
-    }
-  ],
+  "Category": "Exported",
+  "UserId": "NY",
+  "Username": "dalmiro.granias",
+  "Occurred": "2017-02-01T00:42:15.4768296-03:00",
+  "Message": "Exported complete copy of configuration to C:\\github\\octoposh\\octoposh\\OctopusExport",
+  "MessageReferences": [],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Command-line or tools"
 }

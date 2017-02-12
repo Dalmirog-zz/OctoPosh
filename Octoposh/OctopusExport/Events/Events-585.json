@@ -2,30 +2,30 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-585",
   "RelatedDocumentIds": [
-    "Users-1",
-    "teams-administrators"
+    "Projects-3",
+    "Releases-13"
   ],
-  "ProjectId": null,
+  "ProjectId": "Projects-3",
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Modified",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2016-12-17T00:13:39.1304671-03:00",
-  "Message": "User admin was added to Octopus Administrators using the admin command line",
+  "Occurred": "2017-02-11T01:33:16.0612847-03:00",
+  "Message": "DeploymentTests_Project1 release 0.0.6 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Users-1",
-      "StartIndex": 5,
-      "Length": 5
+      "ReferencedDocumentId": "Projects-3",
+      "StartIndex": 0,
+      "Length": 24
     },
     {
-      "ReferencedDocumentId": "teams-administrators",
-      "StartIndex": 24,
-      "Length": 22
+      "ReferencedDocumentId": "Releases-13",
+      "StartIndex": 33,
+      "Length": 5
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Command-line or tools"
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

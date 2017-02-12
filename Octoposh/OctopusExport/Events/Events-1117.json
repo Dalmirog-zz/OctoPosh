@@ -1,23 +1,40 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1117",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Environments-3"
+  ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-3",
   "TenantId": null,
-  "Category": "Created",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-01-22T15:45:19.209852-03:00",
-  "Message": "Channel BTEF7UDD95UQISQ was created",
+  "Category": "DeploymentStarted",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-02-08T23:59:20.3121171-03:00",
+  "Message": "Deploy to Stage started  for DeploymentTests_Project2 release 0.0.13 to Stage",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 8,
+      "StartIndex": 0,
       "Length": 15
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 29,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 62,
+      "Length": 6
+    },
+    {
+      "ReferencedDocumentId": "Environments-3",
+      "StartIndex": 72,
+      "Length": 5
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Unknown"
 }

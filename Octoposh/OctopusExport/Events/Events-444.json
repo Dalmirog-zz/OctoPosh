@@ -1,23 +1,25 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-444",
-  "RelatedDocumentIds": [],
-  "ProjectId": null,
+  "RelatedDocumentIds": [
+    "Projects-1"
+  ],
+  "ProjectId": "Projects-1",
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "MachineDeleted",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-09T01:11:38.1829825-03:00",
-  "Message": "Machine VJYNRMDF9FK6K62 was deleted (domain-event)",
+  "Occurred": "2017-02-11T01:08:07.980063-03:00",
+  "Message": "Project DashboardTests_Project3 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
+      "ReferencedDocumentId": "Projects-1",
       "StartIndex": 8,
-      "Length": 15
+      "Length": 23
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Session cookie"
 }

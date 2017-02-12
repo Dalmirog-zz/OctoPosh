@@ -2,17 +2,16 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-922",
   "RelatedDocumentIds": [
-    "Projects-1",
     "Environments-1"
   ],
-  "ProjectId": "Projects-1",
+  "ProjectId": null,
   "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "DeploymentSucceeded",
+  "Category": "DeploymentStarted",
   "UserId": "users-system",
   "Username": "system",
-  "Occurred": "2017-01-30T22:53:10.7371468-03:00",
-  "Message": "Deploy to Dev succeeded  for DashboardTests_Project1 release 0.0.2 to Dev",
+  "Occurred": "2017-02-06T03:23:52.5588776-03:00",
+  "Message": "Deploy to Dev started  for DeploymentTests_Project1 release 0.0.7 to Dev",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",
@@ -20,18 +19,18 @@
       "Length": 13
     },
     {
-      "ReferencedDocumentId": "Projects-1",
-      "StartIndex": 29,
-      "Length": 23
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 27,
+      "Length": 24
     },
     {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 61,
+      "StartIndex": 60,
       "Length": 5
     },
     {
       "ReferencedDocumentId": "Environments-1",
-      "StartIndex": 70,
+      "StartIndex": 69,
       "Length": 3
     }
   ],

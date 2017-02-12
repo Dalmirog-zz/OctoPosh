@@ -1,20 +1,32 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-437",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Environments-3"
+  ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-3",
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "DeploymentQueued",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-09T01:11:36.9409889-03:00",
-  "Message": "Library Variable Set VJYNRMDF9FK6K62 was deleted",
+  "Occurred": "2017-02-06T03:21:02.1876076-03:00",
+  "Message": "Deployed DeploymentTests_Project1 release 0.0.2 to Stage",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 21,
-      "Length": 15
+      "StartIndex": 9,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 42,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-3",
+      "StartIndex": 51,
+      "Length": 5
     }
   ],
   "Comments": null,

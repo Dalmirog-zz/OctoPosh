@@ -2,25 +2,42 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-465",
   "RelatedDocumentIds": [
-    "Machines-6",
-    "Environments-4"
+    "Deployments-3",
+    "Projects-1",
+    "Releases-1",
+    "Environments-2"
   ],
-  "ProjectId": null,
-  "EnvironmentId": "Environments-4",
+  "ProjectId": "Projects-1",
+  "EnvironmentId": "Environments-2",
   "TenantId": null,
-  "Category": "Modified",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-02-09T01:11:44.5240406-03:00",
-  "Message": "Machine modified_TestMachine was modified",
+  "Category": "DeploymentFailed",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-02-11T01:13:22.3244259-03:00",
+  "Message": "Deploy to Prod failed  for DashboardTests_Project1 release 0.0.1 to Prod",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Machines-6",
-      "StartIndex": 8,
-      "Length": 20
+      "ReferencedDocumentId": "Deployments-3",
+      "StartIndex": 0,
+      "Length": 14
+    },
+    {
+      "ReferencedDocumentId": "Projects-1",
+      "StartIndex": 27,
+      "Length": 23
+    },
+    {
+      "ReferencedDocumentId": "Releases-1",
+      "StartIndex": 59,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-2",
+      "StartIndex": 68,
+      "Length": 4
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"Machines-5\",\r&para;<br>  \"Name\": \"</span><del style=\"background:#ffe6e6;\">un</del><span>modified_TestMachine\",\r&para;<br>  \"Endpoint\": {},\r&para;<br>  \"IsDisabled\": false,\r&para;<br>  \"Roles\": [\r&para;<br>    \"UnitTest\"\r&para;<br>  ],\r&para;<br>  \"EnvironmentIds\": [\r&para;<br>    \"Environments-4\"\r&para;<br>  ],\r&para;<br>  \"TenantIds\": [],\r&para;<br>  \"TenantTags\": [],\r&para;<br>  \"MachinePolicyId\": \"MachinePolicies-1\"\r&para;<br>}</span>",
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "Details": null,
+  "IdentityEstablishedWith": "Unknown"
 }

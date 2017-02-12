@@ -2,20 +2,20 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1825",
   "RelatedDocumentIds": [
-    "ProjectGroups-62"
+    "Environments-21"
   ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-21",
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-11T08:08:10.4040028+00:00",
-  "Message": "Project Group N8X9XSZX7UGW309 was deleted",
+  "Occurred": "2017-02-12T05:56:25.3621427+00:00",
+  "Message": "Environment 1NZK42V6987W6PC was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "ProjectGroups-62",
-      "StartIndex": 14,
+      "ReferencedDocumentId": "Environments-21",
+      "StartIndex": 12,
       "Length": 15
     }
   ],

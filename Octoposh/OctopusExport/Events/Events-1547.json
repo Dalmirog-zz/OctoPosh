@@ -2,34 +2,31 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1547",
   "RelatedDocumentIds": [
-    "Deployments-177",
-    "Projects-45",
-    "Releases-84",
-    "Environments-3"
+    "Environments-2"
   ],
-  "ProjectId": "Projects-45",
-  "EnvironmentId": "Environments-3",
+  "ProjectId": null,
+  "EnvironmentId": "Environments-2",
   "TenantId": null,
   "Category": "DeploymentQueued",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-11T04:34:04.6879835+00:00",
-  "Message": "Deployed DeploymentTests_Project1 release 0.0.7 to Stage",
+  "Occurred": "2017-02-06T03:13:43.9735823-03:00",
+  "Message": "Deployed DeploymentTests_Project2 release 0.0.7 to Prod",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Projects-45",
+      "ReferencedDocumentId": "NotFound",
       "StartIndex": 9,
       "Length": 24
     },
     {
-      "ReferencedDocumentId": "Releases-84",
+      "ReferencedDocumentId": "NotFound",
       "StartIndex": 42,
       "Length": 5
     },
     {
-      "ReferencedDocumentId": "Environments-3",
+      "ReferencedDocumentId": "Environments-2",
       "StartIndex": 51,
-      "Length": 5
+      "Length": 4
     }
   ],
   "Comments": null,

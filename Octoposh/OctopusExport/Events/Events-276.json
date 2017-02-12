@@ -1,23 +1,26 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-276",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "ServerTasks-223",
+    "Environments-1"
+  ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "MachineHealthy",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-08T02:22:26.9736724-03:00",
-  "Message": "Machine 9OMM63HYQP3MLFR became healthy",
+  "Category": "Created",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-02-04T19:39:26.1442656-03:00",
+  "Message": "Ran task Check ListeningTentacle2 health",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 8,
-      "Length": 15
+      "ReferencedDocumentId": "ServerTasks-223",
+      "StartIndex": 9,
+      "Length": 31
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "IdentityEstablishedWith": "Session cookie"
 }

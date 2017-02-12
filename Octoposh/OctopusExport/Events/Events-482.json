@@ -1,17 +1,40 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-482",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Environments-2"
+  ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-2",
   "TenantId": null,
-  "Category": "Imported",
-  "UserId": "NY",
-  "Username": "dalmiro.granias",
-  "Occurred": "2016-12-10T17:46:25.1876676-03:00",
-  "Message": "Imported task logs using Octopus migration tools",
-  "MessageReferences": [],
+  "Category": "DeploymentStarted",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-02-06T03:21:13.7773111-03:00",
+  "Message": "Deploy to Prod started  for DeploymentTests_Project1 release 0.0.2 to Prod",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 0,
+      "Length": 14
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 28,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 61,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-2",
+      "StartIndex": 70,
+      "Length": 4
+    }
+  ],
   "Comments": null,
-  "Details": "  Created.........................................1464\r\n    TaskLog file..................................83\r\n    TaskLog line..................................1381\r\n  Skipped (incomplete)............................3897\r\n    TaskLog file..................................3897\r\n",
-  "IdentityEstablishedWith": "Command-line or tools"
+  "Details": null,
+  "IdentityEstablishedWith": "Unknown"
 }

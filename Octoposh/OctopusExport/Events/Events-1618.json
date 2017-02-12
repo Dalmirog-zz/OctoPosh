@@ -1,43 +1,23 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1618",
-  "RelatedDocumentIds": [
-    "Deployments-198",
-    "Projects-44",
-    "Releases-91",
-    "Environments-3"
-  ],
-  "ProjectId": "Projects-44",
-  "EnvironmentId": "Environments-3",
+  "RelatedDocumentIds": [],
+  "ProjectId": null,
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentStarted",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-11T04:42:00.0884602+00:00",
-  "Message": "Deploy to Stage started  for DeploymentTests_Project2 release 0.0.12 to Stage",
+  "Category": "Deleted",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-01-15T17:30:52.2902743-03:00",
+  "Message": "NuGetFeed 9K12I65HAKHNH1Y was deleted",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Deployments-198",
-      "StartIndex": 0,
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 10,
       "Length": 15
-    },
-    {
-      "ReferencedDocumentId": "Projects-44",
-      "StartIndex": 29,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "Releases-91",
-      "StartIndex": 62,
-      "Length": 6
-    },
-    {
-      "ReferencedDocumentId": "Environments-3",
-      "StartIndex": 72,
-      "Length": 5
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

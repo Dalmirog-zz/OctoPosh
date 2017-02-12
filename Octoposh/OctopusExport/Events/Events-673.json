@@ -1,20 +1,27 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-673",
-  "RelatedDocumentIds": [],
-  "ProjectId": null,
+  "RelatedDocumentIds": [
+    "Projects-4"
+  ],
+  "ProjectId": "Projects-4",
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-29T04:50:26.2237317-03:00",
-  "Message": "Project Group AGF3BSAK1UT01RY was deleted",
+  "Occurred": "2017-02-11T01:41:47.4018617-03:00",
+  "Message": "DeploymentTests_Project2 release 0.0.12 was created",
   "MessageReferences": [
     {
+      "ReferencedDocumentId": "Projects-4",
+      "StartIndex": 0,
+      "Length": 24
+    },
+    {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 14,
-      "Length": 15
+      "StartIndex": 33,
+      "Length": 6
     }
   ],
   "Comments": null,

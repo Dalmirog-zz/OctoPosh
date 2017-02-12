@@ -2,35 +2,30 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1296",
   "RelatedDocumentIds": [
-    "Projects-4",
-    "Environments-1"
+    "Users-21",
+    "teams-everyone"
   ],
-  "ProjectId": "Projects-4",
-  "EnvironmentId": "Environments-1",
+  "ProjectId": null,
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentQueued",
+  "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-06T02:41:49.5962391-03:00",
-  "Message": "Deployed DeploymentTests_Project2 release 0.0.1 to Dev",
+  "Occurred": "2017-01-23T02:33:21.3235123-03:00",
+  "Message": "User unmodified_TestUser was added to the team Everyone",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Projects-4",
-      "StartIndex": 9,
-      "Length": 24
+      "ReferencedDocumentId": "Users-21",
+      "StartIndex": 5,
+      "Length": 19
     },
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 42,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-1",
-      "StartIndex": 51,
-      "Length": 3
+      "ReferencedDocumentId": "teams-everyone",
+      "StartIndex": 47,
+      "Length": 8
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Session cookie"
 }

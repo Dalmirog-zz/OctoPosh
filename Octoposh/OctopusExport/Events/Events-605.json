@@ -1,23 +1,43 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-605",
-  "RelatedDocumentIds": [],
-  "ProjectId": null,
-  "EnvironmentId": null,
+  "RelatedDocumentIds": [
+    "Deployments-31",
+    "Projects-3",
+    "Releases-14",
+    "Environments-2"
+  ],
+  "ProjectId": "Projects-3",
+  "EnvironmentId": "Environments-2",
   "TenantId": null,
-  "Category": "Created",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-01-14T18:51:38.5459765-03:00",
-  "Message": "Project XTD85XM8N814NO6 was created",
+  "Category": "DeploymentStarted",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-02-11T01:34:16.0770628-03:00",
+  "Message": "Deploy to Prod started  for DeploymentTests_Project1 release 0.0.7 to Prod",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 8,
-      "Length": 15
+      "ReferencedDocumentId": "Deployments-31",
+      "StartIndex": 0,
+      "Length": 14
+    },
+    {
+      "ReferencedDocumentId": "Projects-3",
+      "StartIndex": 28,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "Releases-14",
+      "StartIndex": 61,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-2",
+      "StartIndex": 70,
+      "Length": 4
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Unknown"
 }

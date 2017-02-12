@@ -1,25 +1,17 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1235",
-  "RelatedDocumentIds": [
-    "Environments-1"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-02-04T19:43:30.7625416-03:00",
-  "Message": "Machine ListeningTentacle3 was created",
-  "MessageReferences": [
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 8,
-      "Length": 18
-    }
-  ],
+  "Category": "Exported",
+  "UserId": "NY",
+  "Username": "dalmiro.granias",
+  "Occurred": "2017-01-15T18:04:07.6491682-03:00",
+  "Message": "Exported complete copy of configuration to C:\\github\\octoposh\\octoposh\\OctopusExport",
+  "MessageReferences": [],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "IdentityEstablishedWith": "Command-line or tools"
 }

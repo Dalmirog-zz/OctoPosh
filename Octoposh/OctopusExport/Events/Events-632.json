@@ -1,23 +1,43 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-632",
-  "RelatedDocumentIds": [],
-  "ProjectId": null,
-  "EnvironmentId": null,
+  "RelatedDocumentIds": [
+    "Deployments-38",
+    "Projects-3",
+    "Releases-6",
+    "Environments-1"
+  ],
+  "ProjectId": "Projects-3",
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Modified",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-01-22T15:22:35.8695202-03:00",
-  "Message": "Project Group whatever was modified",
+  "Category": "DeploymentSucceeded",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-02-11T01:35:44.7646412-03:00",
+  "Message": "Deploy to Dev succeeded  for DeploymentTests_Project1 release 0.0.10 to Dev",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 14,
-      "Length": 8
+      "ReferencedDocumentId": "Deployments-38",
+      "StartIndex": 0,
+      "Length": 13
+    },
+    {
+      "ReferencedDocumentId": "Projects-3",
+      "StartIndex": 29,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "Releases-6",
+      "StartIndex": 62,
+      "Length": 6
+    },
+    {
+      "ReferencedDocumentId": "Environments-1",
+      "StartIndex": 72,
+      "Length": 3
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"ProjectGroups-22\",\r&para;<br>  \"Name\": \"</span><del style=\"background:#ffe6e6;\">TestProjectGroup2</del><ins style=\"background:#e6ffe6;\">whatever</ins><span>\",\r&para;<br>  \"Description\": null\r&para;<br>}</span>",
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "Details": null,
+  "IdentityEstablishedWith": "Unknown"
 }

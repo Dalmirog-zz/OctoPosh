@@ -2,24 +2,34 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-892",
   "RelatedDocumentIds": [
-    "Projects-1"
+    "Environments-3"
   ],
-  "ProjectId": "Projects-1",
-  "EnvironmentId": null,
+  "ProjectId": null,
+  "EnvironmentId": "Environments-3",
   "TenantId": null,
-  "Category": "Created",
+  "Category": "DeploymentQueued",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-30T22:31:29.0478774-03:00",
-  "Message": "Project DashboardTests_Project1 was created",
+  "Occurred": "2017-02-06T03:23:27.3961702-03:00",
+  "Message": "Deployed DeploymentTests_Project1 release 0.0.6 to Stage",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Projects-1",
-      "StartIndex": 8,
-      "Length": 23
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 9,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 42,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-3",
+      "StartIndex": 51,
+      "Length": 5
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

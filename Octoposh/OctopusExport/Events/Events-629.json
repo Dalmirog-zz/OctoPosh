@@ -1,20 +1,28 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-629",
-  "RelatedDocumentIds": [],
-  "ProjectId": null,
+  "RelatedDocumentIds": [
+    "Projects-3",
+    "Releases-6"
+  ],
+  "ProjectId": "Projects-3",
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-18T21:52:18.6634062-03:00",
-  "Message": "NuGetFeed WDWTO3ZMKNGOXO0 was deleted",
+  "Occurred": "2017-02-11T01:35:38.4311733-03:00",
+  "Message": "DeploymentTests_Project1 release 0.0.10 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 10,
-      "Length": 15
+      "ReferencedDocumentId": "Projects-3",
+      "StartIndex": 0,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "Releases-6",
+      "StartIndex": 33,
+      "Length": 6
     }
   ],
   "Comments": null,

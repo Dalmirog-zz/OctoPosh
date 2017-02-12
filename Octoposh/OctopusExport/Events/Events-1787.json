@@ -1,25 +1,23 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1787",
-  "RelatedDocumentIds": [
-    "Tenants-41"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
   "EnvironmentId": null,
-  "TenantId": "Tenants-41",
-  "Category": "Deleted",
+  "TenantId": null,
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-11T08:05:09.5089553+00:00",
-  "Message": "Tenant YZK2U0SYC0YFHI6 was deleted",
+  "Occurred": "2016-12-20T03:09:52.7570325-03:00",
+  "Message": "Environment deleteme was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Tenants-41",
-      "StartIndex": 7,
-      "Length": 15
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 12,
+      "Length": 8
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Session cookie"
 }

@@ -1,17 +1,38 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-723",
-  "RelatedDocumentIds": [],
-  "ProjectId": null,
-  "EnvironmentId": null,
+  "RelatedDocumentIds": [
+    "Deployments-57",
+    "Projects-4",
+    "Releases-23",
+    "Environments-3"
+  ],
+  "ProjectId": "Projects-4",
+  "EnvironmentId": "Environments-3",
   "TenantId": null,
-  "Category": "Exported",
-  "UserId": "NY",
-  "Username": "dalmiro.granias",
-  "Occurred": "2017-01-14T18:43:17.9985545-03:00",
-  "Message": "Exported complete copy of configuration to C:\\github\\octoposh\\octoposh\\OctopusExport",
-  "MessageReferences": [],
+  "Category": "DeploymentQueued",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-02-11T01:44:52.8709959-03:00",
+  "Message": "Deployed DeploymentTests_Project2 release 0.0.4 to Stage",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Projects-4",
+      "StartIndex": 9,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "Releases-23",
+      "StartIndex": 42,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-3",
+      "StartIndex": 51,
+      "Length": 5
+    }
+  ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Command-line or tools"
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

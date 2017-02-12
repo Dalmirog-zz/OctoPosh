@@ -411,5 +411,29 @@ namespace Octoposh.Model
 
             return list;
         }
+
+        public List<OutputOctopusUser> GetOctopusUser (List<UserResource> baseResourceList)
+        {
+            var list = new List<OutputOctopusUser>();
+
+            var allTeams = _connection.Repository.Teams.FindAll();
+
+            foreach (var user in baseResourceList)
+            {
+                var teams = allTeams.Where(t => t.MemberUserIds.Contains(user.Id)).Select(t => t.Name).ToList();
+                
+                list.Add(new OutputOctopusUser()
+                {
+                    UserName = user.Username,
+                    DisplayName = user.DisplayName,
+                    EmailAdress = user.EmailAddress,
+                    Teams = teams,
+                    IsService = user.IsService,
+                    Resource = user
+                });
+            }
+
+            return list;
+        }
     }
 }

@@ -2,24 +2,42 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-489",
   "RelatedDocumentIds": [
-    "Users-1"
+    "Deployments-8",
+    "Projects-2",
+    "Releases-3",
+    "Environments-2"
   ],
-  "ProjectId": null,
-  "EnvironmentId": null,
+  "ProjectId": "Projects-2",
+  "EnvironmentId": "Environments-2",
   "TenantId": null,
-  "Category": "Created",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2016-12-20T03:05:41.8513585-03:00",
-  "Message": "User admin was created using the admin command line",
+  "Category": "DeploymentSucceeded",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-02-11T01:16:14.2720253-03:00",
+  "Message": "Deploy to Prod succeeded  for DashboardTests_Project2 release 0.0.1 to Prod",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Users-1",
-      "StartIndex": 5,
+      "ReferencedDocumentId": "Deployments-8",
+      "StartIndex": 0,
+      "Length": 14
+    },
+    {
+      "ReferencedDocumentId": "Projects-2",
+      "StartIndex": 30,
+      "Length": 23
+    },
+    {
+      "ReferencedDocumentId": "Releases-3",
+      "StartIndex": 62,
       "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-2",
+      "StartIndex": 71,
+      "Length": 4
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Command-line or tools"
+  "IdentityEstablishedWith": "Unknown"
 }

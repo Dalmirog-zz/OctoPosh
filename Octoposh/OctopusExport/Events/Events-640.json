@@ -1,20 +1,28 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-640",
-  "RelatedDocumentIds": [],
-  "ProjectId": null,
+  "RelatedDocumentIds": [
+    "Projects-3",
+    "Releases-7"
+  ],
+  "ProjectId": "Projects-3",
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "MachineAdded",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-18T21:52:20.5743823-03:00",
-  "Message": "Machine WDWTO3ZMKNGOXO0 was created (domain-event)",
+  "Occurred": "2017-02-11T01:36:13.8386444-03:00",
+  "Message": "DeploymentTests_Project1 release 0.0.11 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 8,
-      "Length": 15
+      "ReferencedDocumentId": "Projects-3",
+      "StartIndex": 0,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "Releases-7",
+      "StartIndex": 33,
+      "Length": 6
     }
   ],
   "Comments": null,

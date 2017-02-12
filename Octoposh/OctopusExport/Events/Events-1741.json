@@ -1,43 +1,17 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1741",
-  "RelatedDocumentIds": [
-    "Deployments-234",
-    "Projects-44",
-    "Releases-103",
-    "Environments-3"
-  ],
-  "ProjectId": "Projects-44",
-  "EnvironmentId": "Environments-3",
+  "RelatedDocumentIds": [],
+  "ProjectId": null,
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentSucceeded",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-11T04:49:47.3726355+00:00",
-  "Message": "Deploy to Stage succeeded  for DeploymentTests_Project2 release 0.0.12 to Stage",
-  "MessageReferences": [
-    {
-      "ReferencedDocumentId": "Deployments-234",
-      "StartIndex": 0,
-      "Length": 15
-    },
-    {
-      "ReferencedDocumentId": "Projects-44",
-      "StartIndex": 31,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "Releases-103",
-      "StartIndex": 64,
-      "Length": 6
-    },
-    {
-      "ReferencedDocumentId": "Environments-3",
-      "StartIndex": 74,
-      "Length": 5
-    }
-  ],
+  "Category": "Imported",
+  "UserId": "NY",
+  "Username": "dalmiro.granias",
+  "Occurred": "2016-12-10T17:47:00.5521985-03:00",
+  "Message": "Imported task logs using Octopus migration tools",
+  "MessageReferences": [],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "Details": "  Skipped (incomplete)............................3897\r\n    TaskLog file..................................3897\r\n  Skipped (no overwrite)..........................1464\r\n    TaskLog file..................................83\r\n    TaskLog line..................................1381\r\n",
+  "IdentityEstablishedWith": "Command-line or tools"
 }

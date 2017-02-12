@@ -2,21 +2,26 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-662",
   "RelatedDocumentIds": [
-    "Environments-1"
+    "Projects-4"
   ],
-  "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "ProjectId": "Projects-4",
+  "EnvironmentId": null,
   "TenantId": null,
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-29T04:50:23.960489-03:00",
-  "Message": "Machine AGF3BSAK1UT01RY was created",
+  "Occurred": "2017-02-11T01:41:10.7331145-03:00",
+  "Message": "DeploymentTests_Project2 release 0.0.11 was created",
   "MessageReferences": [
     {
+      "ReferencedDocumentId": "Projects-4",
+      "StartIndex": 0,
+      "Length": 24
+    },
+    {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 8,
-      "Length": 15
+      "StartIndex": 33,
+      "Length": 6
     }
   ],
   "Comments": null,

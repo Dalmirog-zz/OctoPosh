@@ -2,24 +2,39 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1749",
   "RelatedDocumentIds": [
-    "feeds-yzk2u0syc0yfhi6"
+    "Environments-2"
   ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-2",
   "TenantId": null,
-  "Category": "Created",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-02-11T08:05:04.8569671+00:00",
-  "Message": "NuGetFeed YZK2U0SYC0YFHI6 was created",
+  "Category": "DeploymentStarted",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-01-30T23:45:54.3279369-03:00",
+  "Message": "Deploy to Prod started  for DashboardTests_Project2 release 0.0.1 to Prod",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "feeds-yzk2u0syc0yfhi6",
-      "StartIndex": 10,
-      "Length": 15
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 0,
+      "Length": 14
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 28,
+      "Length": 23
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 60,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-2",
+      "StartIndex": 69,
+      "Length": 4
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Unknown"
 }

@@ -1,20 +1,35 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-659",
-  "RelatedDocumentIds": [],
-  "ProjectId": null,
-  "EnvironmentId": null,
+  "RelatedDocumentIds": [
+    "Deployments-46",
+    "Projects-3",
+    "Releases-8",
+    "Environments-2"
+  ],
+  "ProjectId": "Projects-3",
+  "EnvironmentId": "Environments-2",
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "DeploymentQueued",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-29T04:50:22.3673284-03:00",
-  "Message": "Library Variable Set AGF3BSAK1UT01RY was deleted",
+  "Occurred": "2017-02-11T01:40:05.2521296-03:00",
+  "Message": "Deployed DeploymentTests_Project1 release 0.0.12 to Prod",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 21,
-      "Length": 15
+      "ReferencedDocumentId": "Projects-3",
+      "StartIndex": 9,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "Releases-8",
+      "StartIndex": 42,
+      "Length": 6
+    },
+    {
+      "ReferencedDocumentId": "Environments-2",
+      "StartIndex": 52,
+      "Length": 4
     }
   ],
   "Comments": null,

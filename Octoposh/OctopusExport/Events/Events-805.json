@@ -1,17 +1,43 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-805",
-  "RelatedDocumentIds": [],
-  "ProjectId": null,
-  "EnvironmentId": null,
+  "RelatedDocumentIds": [
+    "Deployments-79",
+    "Projects-4",
+    "Releases-19",
+    "Environments-2"
+  ],
+  "ProjectId": "Projects-4",
+  "EnvironmentId": "Environments-2",
   "TenantId": null,
-  "Category": "Imported",
-  "UserId": "NY",
-  "Username": "dalmiro.granias",
-  "Occurred": "2016-12-10T20:04:49.0275238-03:00",
-  "Message": "Imported task logs using Octopus migration tools",
-  "MessageReferences": [],
+  "Category": "DeploymentStarted",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-02-11T01:49:17.3054751-03:00",
+  "Message": "Deploy to Prod started  for DeploymentTests_Project2 release 0.0.11 to Prod",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Deployments-79",
+      "StartIndex": 0,
+      "Length": 14
+    },
+    {
+      "ReferencedDocumentId": "Projects-4",
+      "StartIndex": 28,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "Releases-19",
+      "StartIndex": 61,
+      "Length": 6
+    },
+    {
+      "ReferencedDocumentId": "Environments-2",
+      "StartIndex": 71,
+      "Length": 4
+    }
+  ],
   "Comments": null,
-  "Details": "",
-  "IdentityEstablishedWith": "Command-line or tools"
+  "Details": null,
+  "IdentityEstablishedWith": "Unknown"
 }

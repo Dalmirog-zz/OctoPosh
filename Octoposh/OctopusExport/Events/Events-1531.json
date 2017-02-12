@@ -2,42 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1531",
   "RelatedDocumentIds": [
-    "Deployments-172",
-    "Projects-45",
-    "Releases-82",
-    "Environments-2"
+    "ServerTasks-267"
   ],
-  "ProjectId": "Projects-45",
-  "EnvironmentId": "Environments-2",
+  "ProjectId": null,
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentStarted",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-11T04:33:04.2955851+00:00",
-  "Message": "Deploy to Prod started  for DeploymentTests_Project1 release 0.0.5 to Prod",
+  "Category": "TaskCanceled",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-01-29T05:06:23.5189252-03:00",
+  "Message": "Task Deploy TestProject2 release 0.0.1 to Stage #71 was canceled",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Deployments-172",
-      "StartIndex": 0,
-      "Length": 14
-    },
-    {
-      "ReferencedDocumentId": "Projects-45",
-      "StartIndex": 28,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "Releases-82",
-      "StartIndex": 61,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-2",
-      "StartIndex": 70,
-      "Length": 4
+      "ReferencedDocumentId": "ServerTasks-267",
+      "StartIndex": 5,
+      "Length": 46
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "IdentityEstablishedWith": "Session cookie"
 }

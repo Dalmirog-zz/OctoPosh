@@ -2,42 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1730",
   "RelatedDocumentIds": [
-    "Deployments-231",
-    "Projects-44",
-    "Releases-102",
-    "Environments-3"
+    "Projects-7"
   ],
-  "ProjectId": "Projects-44",
-  "EnvironmentId": "Environments-3",
+  "ProjectId": "Projects-7",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentStarted",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-11T04:49:05.811356+00:00",
-  "Message": "Deploy to Stage started  for DeploymentTests_Project2 release 0.0.11 to Stage",
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-01-23T02:18:09.9614371-03:00",
+  "Message": "Project unmodified_TestProject was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Deployments-231",
-      "StartIndex": 0,
-      "Length": 15
-    },
-    {
-      "ReferencedDocumentId": "Projects-44",
-      "StartIndex": 29,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "Releases-102",
-      "StartIndex": 62,
-      "Length": 6
-    },
-    {
-      "ReferencedDocumentId": "Environments-3",
-      "StartIndex": 72,
-      "Length": 5
+      "ReferencedDocumentId": "Projects-7",
+      "StartIndex": 8,
+      "Length": 22
     }
   ],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "Details": "<span>{\r&para;<br>  \"Id\": \"Projects-42\",\r&para;<br>  \"Name\": \"unmodified_TestProject\",\r&para;<br>  \"Description\": \"</span><ins style=\"background:#e6ffe6;\">Resource created for unit testing purposes. Do not delete/edit</ins><span>\",\r&para;<br>  \"Slug\": \"unmodified-testproject\",\r&para;<br>  \"IsDisabled\": false,\r&para;<br>  \"VariableSetId\": \"variableset-Projects-42\",\r&para;<br>  \"DeploymentProcessId\": \"deploymentprocess-Projects-42\",\r&para;<br>  \"ProjectGroupId\": \"ProjectGroups-82\",\r&para;<br>  \"LifecycleId\": \"Lifecycles-1\",\r&para;<br>  \"AutoCreateRelease\": false,\r&para;<br>  \"IncludedLibraryVariableSetIds\": [],\r&para;<br>  \"UsedPackages\": [],\r&para;<br>  \"DefaultToSkipIfAlreadyInstalled\": false,\r&para;<br>  \"TenantedDeploymentMode\": \"Untenanted\",\r&para;<br>  \"VersioningStrategy\": {\r&para;<br>    \"DonorPackageStepId\": null,\r&para;<br>    \"Template\": \"#{Octopus.Version.LastMajor}.#{Octopus.Version.LastMinor}.#{Octopus.Version.NextPatch}\"\r&para;<br>  },\r&para;<br>  \"Templates\": [],\r&para;<br>  \"ReleaseCreationStrategy\": {\r&para;<br>    \"ReleaseCreationPackageStepId\": \"\",\r&para;<br>    \"ChannelId\": null\r&para;<br>  },\r&para;<br>  \"ProjectConnectivityPolicy\": {\r&para;<br>    \"SkipMachineBehavior\": \"None\",\r&para;<br>    \"TargetRoles\": []\r&para;<br>  },\r&para;<br>  \"AutoDeployReleaseOverrides\": []\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "Session cookie"
 }

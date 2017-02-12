@@ -2,30 +2,35 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1543",
   "RelatedDocumentIds": [
-    "Projects-45",
-    "Releases-84"
+    "Projects-5",
+    "Environments-1"
   ],
-  "ProjectId": "Projects-45",
-  "EnvironmentId": null,
+  "ProjectId": "Projects-5",
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Created",
+  "Category": "DeploymentQueued",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-11T04:33:52.0833961+00:00",
-  "Message": "DeploymentTests_Project1 release 0.0.7 was created",
+  "Occurred": "2017-01-29T05:08:34.8930721-03:00",
+  "Message": "Deployed TestProject1 release 0.0.33 to Dev",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Projects-45",
-      "StartIndex": 0,
-      "Length": 24
+      "ReferencedDocumentId": "Projects-5",
+      "StartIndex": 9,
+      "Length": 12
     },
     {
-      "ReferencedDocumentId": "Releases-84",
-      "StartIndex": 33,
-      "Length": 5
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 30,
+      "Length": 6
+    },
+    {
+      "ReferencedDocumentId": "Environments-1",
+      "StartIndex": 40,
+      "Length": 3
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Session cookie"
 }

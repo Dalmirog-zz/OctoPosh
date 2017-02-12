@@ -1,23 +1,25 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1293",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Teams-3"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-15T17:31:41.2284599-03:00",
-  "Message": "NuGetFeed GSN6J532E925KVS was deleted",
+  "Occurred": "2017-01-23T02:32:57.4184421-03:00",
+  "Message": "Team unmodified_TestTeam was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 10,
-      "Length": 15
+      "ReferencedDocumentId": "Teams-3",
+      "StartIndex": 5,
+      "Length": 19
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Session cookie"
 }

@@ -2,37 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1617",
   "RelatedDocumentIds": [
-    "Deployments-198",
-    "Projects-44",
-    "Releases-91",
-    "Environments-3"
+    "Environments-1"
   ],
-  "ProjectId": "Projects-44",
-  "EnvironmentId": "Environments-3",
+  "ProjectId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "DeploymentQueued",
+  "Category": "Deleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-11T04:42:00.0177828+00:00",
-  "Message": "Deployed DeploymentTests_Project2 release 0.0.12 to Stage",
+  "Occurred": "2016-12-10T20:19:15.3051859-03:00",
+  "Message": "Machine West was deleted",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Projects-44",
-      "StartIndex": 9,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "Releases-91",
-      "StartIndex": 42,
-      "Length": 6
-    },
-    {
-      "ReferencedDocumentId": "Environments-3",
-      "StartIndex": 52,
-      "Length": 5
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 8,
+      "Length": 4
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Session cookie"
 }

@@ -2,24 +2,39 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-296",
   "RelatedDocumentIds": [
-    "Lifecycles-22"
+    "Environments-1"
   ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Modified",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-02-08T02:22:34.2237667-03:00",
-  "Message": "Lifecycle modified_TestLifecycle was modified",
+  "Category": "DeploymentFailed",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-02-04T19:59:31.1205758-03:00",
+  "Message": "Deploy to Dev failed  for DeploymentTests_Project1 release 0.0.1 to Dev",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Lifecycles-22",
-      "StartIndex": 10,
-      "Length": 22
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 0,
+      "Length": 13
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 26,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 59,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-1",
+      "StartIndex": 68,
+      "Length": 3
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"Lifecycles-22\",\r&para;<br>  \"Name\": \"</span><del style=\"background:#ffe6e6;\">un</del><span>modified_TestLifecycle\",\r&para;<br>  \"Description\": \"Resource created for unit testing purposes. Do not delete/edit\",\r&para;<br>  \"Phases\": [],\r&para;<br>  \"ReleaseRetentionPolicy\": {\r&para;<br>    \"Unit\": \"Items\",\r&para;<br>    \"QuantityToKeep\": 0,\r&para;<br>    \"ShouldKeepForever\": true\r&para;<br>  },\r&para;<br>  \"TentacleRetentionPolicy\": {\r&para;<br>    \"Unit\": \"Items\",\r&para;<br>    \"QuantityToKeep\": 0,\r&para;<br>    \"ShouldKeepForever\": true\r&para;<br>  }\r&para;<br>}</span>",
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "Details": null,
+  "IdentityEstablishedWith": "Unknown"
 }

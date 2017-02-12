@@ -2,24 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-849",
   "RelatedDocumentIds": [
-    "Environments-1"
+    "Environments-4"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "EnvironmentId": "Environments-4",
   "TenantId": null,
-  "Category": "Created",
+  "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-30T22:27:49.0940626-03:00",
-  "Message": "Machine G44KK3F6M2G2CJA was created",
+  "Occurred": "2017-02-11T05:05:10.549947-03:00",
+  "Message": "Environment modified_TestEnvironment was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 8,
-      "Length": 15
+      "ReferencedDocumentId": "Environments-4",
+      "StartIndex": 12,
+      "Length": 24
     }
   ],
   "Comments": null,
-  "Details": null,
+  "Details": "<span>{\r&para;<br>  \"Id\": \"Environments-4\",\r&para;<br>  \"Name\": \"</span><del style=\"background:#ffe6e6;\">un</del><span>modified_TestEnvironment\",\r&para;<br>  \"Description\": \"Resource created for unit testing purposes. Do not delete/edit\",\r&para;<br>  \"SortOrder\": 2,\r&para;<br>  \"UseGuidedFailure\": false\r&para;<br>}</span>",
   "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

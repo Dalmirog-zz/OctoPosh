@@ -2,42 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1599",
   "RelatedDocumentIds": [
-    "Deployments-192",
-    "Projects-45",
-    "Releases-89",
-    "Environments-3"
+    "Users-1"
   ],
-  "ProjectId": "Projects-45",
-  "EnvironmentId": "Environments-3",
+  "ProjectId": null,
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentSucceeded",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-11T04:39:59.1408039+00:00",
-  "Message": "Deploy to Stage succeeded  for DeploymentTests_Project1 release 0.0.12 to Stage",
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2016-12-10T20:05:29.7064859-03:00",
+  "Message": "User admin set password using the admin command line",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Deployments-192",
-      "StartIndex": 0,
-      "Length": 15
-    },
-    {
-      "ReferencedDocumentId": "Projects-45",
-      "StartIndex": 31,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "Releases-89",
-      "StartIndex": 64,
-      "Length": 6
-    },
-    {
-      "ReferencedDocumentId": "Environments-3",
-      "StartIndex": 74,
+      "ReferencedDocumentId": "Users-1",
+      "StartIndex": 5,
       "Length": 5
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "IdentityEstablishedWith": "Command-line or tools"
 }

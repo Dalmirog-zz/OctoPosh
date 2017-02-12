@@ -1,23 +1,28 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-317",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Machines-1",
+    "Environments-1",
+    "Environments-3",
+    "Environments-2"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
+  "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-08T03:53:48.5069868-03:00",
-  "Message": "NuGetFeed 3P0LLD44EKDSQWJ was created",
+  "Occurred": "2017-02-04T20:03:41.4206989-03:00",
+  "Message": "Machine ListeningTentacle1 was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 10,
-      "Length": 15
+      "ReferencedDocumentId": "Machines-1",
+      "StartIndex": 8,
+      "Length": 18
     }
   ],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "Details": "<span>{\r&para;<br>  \"Id\": \"Machines-22\",\r&para;<br>  \"Name\": \"ListeningTentacle1\",\r&para;<br>  \"Endpoint\": {\r&para;<br>    \"ProxyId\": null,\r&para;<br>    \"Thumbprint\": \"EA3135453CD4127FD8394E3A1236F4EFAC3BBAD6\",\r&para;<br>    \"Uri\": \"https://localhost:10933/\",\r&para;<br>    \"UpgradeLocked\": false\r&para;<br>  },\r&para;<br>  \"IsDisabled\": false,\r&para;<br>  \"Roles\": [\r&para;<br>    \"WebServer\"\r&para;<br>  ],\r&para;<br>  \"EnvironmentIds\": [\r&para;<br>    \"Environments-1\"</span><ins style=\"background:#e6ffe6;\">,\r&para;<br>    \"Environments-3\",\r&para;<br>    \"Environments-2\"</ins><span>\r&para;<br>  ],\r&para;<br>  \"TenantIds\": [],\r&para;<br>  \"TenantTags\": [],\r&para;<br>  \"MachinePolicyId\": \"MachinePolicies-1\"\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "Session cookie"
 }

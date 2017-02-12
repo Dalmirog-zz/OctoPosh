@@ -1,25 +1,17 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1245",
-  "RelatedDocumentIds": [
-    "ServerTasks-10"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-02-04T19:55:00.3545724-03:00",
-  "Message": "Ran task Upgrade Tentacles in Dev",
-  "MessageReferences": [
-    {
-      "ReferencedDocumentId": "ServerTasks-10",
-      "StartIndex": 9,
-      "Length": 24
-    }
-  ],
+  "Category": "Imported",
+  "UserId": "NY",
+  "Username": "dalmiro.granias",
+  "Occurred": "2017-01-23T02:30:29.395151-03:00",
+  "Message": "Imported task logs using Octopus migration tools",
+  "MessageReferences": [],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "Details": "",
+  "IdentityEstablishedWith": "Command-line or tools"
 }
