@@ -1,17 +1,15 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-38",
-  "RelatedDocumentIds": [
-    "Environments-1"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-02-01T00:13:40.7393202-03:00",
-  "Message": "Machine RUTUE08EREC9IGX was created",
+  "Category": "MachineHealthy",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-02-08T02:22:26.9736724-03:00",
+  "Message": "Machine 9OMM63HYQP3MLFR became healthy",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",
@@ -21,5 +19,5 @@
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Unknown"
 }

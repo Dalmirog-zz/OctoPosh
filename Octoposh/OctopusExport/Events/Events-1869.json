@@ -2,27 +2,39 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1869",
   "RelatedDocumentIds": [
-    "ServerTasks-288",
-    "projects-*",
-    "Environments-2",
-    "tenants-*"
+    "Environments-1"
   ],
-  "ProjectId": "projects-*",
-  "EnvironmentId": "Environments-2",
-  "TenantId": "tenants-*",
-  "Category": "Created",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-02-12T06:04:28.6962419+00:00",
-  "Message": "Ran task Check ListeningTentacle1 health",
+  "ProjectId": null,
+  "EnvironmentId": "Environments-1",
+  "TenantId": null,
+  "Category": "DeploymentStarted",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-02-07T22:08:55.6418304-03:00",
+  "Message": "Deploy to Dev started  for DeploymentTests_Project1 release 0.0.12 to Dev",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "ServerTasks-288",
-      "StartIndex": 9,
-      "Length": 31
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 0,
+      "Length": 13
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 27,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 60,
+      "Length": 6
+    },
+    {
+      "ReferencedDocumentId": "Environments-1",
+      "StartIndex": 70,
+      "Length": 3
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "IdentityEstablishedWith": "Unknown"
 }

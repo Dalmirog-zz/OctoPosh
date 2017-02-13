@@ -2,24 +2,34 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1871",
   "RelatedDocumentIds": [
-    "Machines-1"
+    "Environments-3"
   ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-3",
   "TenantId": null,
-  "Category": "MachineHasWarnings",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-12T06:05:26.9716658+00:00",
-  "Message": "Machine ListeningTentacle1 became healthy but has warnings",
+  "Category": "DeploymentQueued",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-02-07T22:09:12.8337631-03:00",
+  "Message": "Deployed DeploymentTests_Project1 release 0.0.12 to Stage",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Machines-1",
-      "StartIndex": 8,
-      "Length": 18
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 9,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 42,
+      "Length": 6
+    },
+    {
+      "ReferencedDocumentId": "Environments-3",
+      "StartIndex": 52,
+      "Length": 5
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "IdentityEstablishedWith": "Session cookie"
 }

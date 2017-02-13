@@ -2,42 +2,30 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-646",
   "RelatedDocumentIds": [
-    "Deployments-42",
-    "Projects-3",
-    "Releases-7",
-    "Environments-3"
+    "Projects-5",
+    "Releases-46"
   ],
-  "ProjectId": "Projects-3",
-  "EnvironmentId": "Environments-3",
+  "ProjectId": "Projects-5",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentSucceeded",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-11T01:36:32.3712176-03:00",
-  "Message": "Deploy to Stage succeeded  for DeploymentTests_Project1 release 0.0.11 to Stage",
+  "Category": "Created",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-01-18T23:37:20.5732893-03:00",
+  "Message": "TestProject1 release 0.0.23 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Deployments-42",
+      "ReferencedDocumentId": "Projects-5",
       "StartIndex": 0,
-      "Length": 15
+      "Length": 12
     },
     {
-      "ReferencedDocumentId": "Projects-3",
-      "StartIndex": 31,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "Releases-7",
-      "StartIndex": 64,
+      "ReferencedDocumentId": "Releases-46",
+      "StartIndex": 21,
       "Length": 6
-    },
-    {
-      "ReferencedDocumentId": "Environments-3",
-      "StartIndex": 74,
-      "Length": 5
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "IdentityEstablishedWith": "Session cookie"
 }

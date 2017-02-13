@@ -2,42 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-442",
   "RelatedDocumentIds": [
-    "Deployments-86",
-    "Projects-5",
-    "Releases-54",
-    "Environments-2"
+    "Environments-1"
   ],
-  "ProjectId": "Projects-5",
-  "EnvironmentId": "Environments-2",
+  "ProjectId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "DeploymentStarted",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-11T01:07:12.2518519-03:00",
-  "Message": "Deploy to Prod (#2) started  for TestProject1 release 0.0.32 to Prod",
+  "Category": "Created",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2016-12-10T18:49:49.1889424-03:00",
+  "Message": "Machine West was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Deployments-86",
-      "StartIndex": 0,
-      "Length": 19
-    },
-    {
-      "ReferencedDocumentId": "Projects-5",
-      "StartIndex": 33,
-      "Length": 12
-    },
-    {
-      "ReferencedDocumentId": "Releases-54",
-      "StartIndex": 54,
-      "Length": 6
-    },
-    {
-      "ReferencedDocumentId": "Environments-2",
-      "StartIndex": 64,
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 8,
       "Length": 4
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "IdentityEstablishedWith": "Session cookie"
 }

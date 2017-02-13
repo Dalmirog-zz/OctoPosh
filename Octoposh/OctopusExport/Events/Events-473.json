@@ -1,23 +1,31 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-473",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Users-1",
+    "teams-administrators"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-11T01:14:22.5776636-03:00",
-  "Message": "Project DashboardTests_Project2 was deleted",
+  "Occurred": "2017-01-23T02:30:14.1733961-03:00",
+  "Message": "User admin was added to Octopus Administrators using the admin command line",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 8,
-      "Length": 23
+      "ReferencedDocumentId": "Users-1",
+      "StartIndex": 5,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "teams-administrators",
+      "StartIndex": 24,
+      "Length": 22
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "IdentityEstablishedWith": "Command-line or tools"
 }

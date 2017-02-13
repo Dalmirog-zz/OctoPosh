@@ -2,42 +2,25 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-632",
   "RelatedDocumentIds": [
-    "Deployments-38",
-    "Projects-3",
-    "Releases-6",
-    "Environments-1"
+    "deploymentprocess-Projects-6",
+    "Projects-6"
   ],
-  "ProjectId": "Projects-3",
-  "EnvironmentId": "Environments-1",
+  "ProjectId": "Projects-6",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentSucceeded",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-11T01:35:44.7646412-03:00",
-  "Message": "Deploy to Dev succeeded  for DeploymentTests_Project1 release 0.0.10 to Dev",
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-01-29T05:09:57.3083752-03:00",
+  "Message": "Deployment process for TestProject2 was changed",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Deployments-38",
-      "StartIndex": 0,
-      "Length": 13
-    },
-    {
-      "ReferencedDocumentId": "Projects-3",
-      "StartIndex": 29,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "Releases-6",
-      "StartIndex": 62,
-      "Length": 6
-    },
-    {
-      "ReferencedDocumentId": "Environments-1",
-      "StartIndex": 72,
-      "Length": 3
+      "ReferencedDocumentId": "Projects-6",
+      "StartIndex": 23,
+      "Length": 12
     }
   ],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "Details": "<span>{\r&para;<br>  \"Id\": \"deploymentprocess-Projects-2\",\r&para;<br>  \"OwnerId\": \"Projects-2\",\r&para;<br>  \"Version\": </span><del style=\"background:#ffe6e6;\">1</del><ins style=\"background:#e6ffe6;\">2</ins><span>,\r&para;<br>  \"Steps\": [\r&para;<br>    {\r&para;<br>      \"Id\": \"313297ff-02ef-4e52-84ab-9d78e3358725\",\r&para;<br>      \"Name\": \"Step 1\",\r&para;<br>      \"Condition\": \"Success\",\r&para;<br>      \"StartTrigger\": \"StartAfterPrevious\",\r&para;<br>      \"RequiresPackagesToBeAcquired\": false,\r&para;<br>      \"Actions\": [\r&para;<br>        {\r&para;<br>          \"Id\": \"f8d77354-c9c6-4a07-916e-0157397ce2dc\",\r&para;<br>          \"Name\": \"Step 1\",\r&para;<br>          \"ActionType\": \"Octopus.Script\",\r&para;<br>          \"IsDisabled\": false,\r&para;<br>          \"Environments\": [],\r&para;<br>          \"Channels\": [],\r&para;<br>          \"TenantTags\": [],\r&para;<br>          \"Properties\": {\r&para;<br>            \"Octopus.Action.RunOnServer\": \"false\",\r&para;<br>            \"Octopus.Action.Script.Syntax\": \"PowerShell\",\r&para;<br>            \"Octopus.Action.Script.ScriptSource\": \"Inline\",\r&para;<br></span><del style=\"background:#ffe6e6;\"></del><span>            \"Octopus.Action.Script.ScriptBody\": \"$project = $OctopusParameters['Octopus.Project.Name']\\n$stepname = $OctopusParameters['Octopus.Step.Number']\\n\\n\\\"Hello from step [$stepname] of project [$Project]\\\"\"\r&para;<br>          }\r&para;<br>        }\r&para;<br>      ],\r&para;<br>      \"Properties\": {\r&para;<br>        \"Octopus.Action.TargetRoles\": \"WebApps\"\r&para;<br>      }\r&para;<br></span><ins style=\"background:#e6ffe6;\">    },\r&para;<br>    {\r&para;<br>      \"Id\": \"ee5ceb23-6c98-4b9d-8503-02023936bd0b\",\r&para;<br>      \"Name\": \"Fail Step\",\r&para;<br>      \"Condition\": \"Success\",\r&para;<br>      \"StartTrigger\": \"StartAfterPrevious\",\r&para;<br>      \"RequiresPackagesToBeAcquired\": false,\r&para;<br>      \"Actions\": [\r&para;<br>        {\r&para;<br>          \"Id\": \"4d3443c1-45cf-4be3-bc63-809384ad6141\",\r&para;<br>          \"Name\": \"Fail Step\",\r&para;<br>          \"ActionType\": \"Octopus.Script\",\r&para;<br>          \"IsDisabled\": false,\r&para;<br>          \"Environments\": [],\r&para;<br>          \"Channels\": [],\r&para;<br>          \"TenantTags\": [],\r&para;<br>          \"Properties\": {\r&para;<br>            \"Octopus.Action.RunOnServer\": \"false\",\r&para;<br>            \"Octopus.Action.Script.Syntax\": \"PowerShell\",\r&para;<br>            \"Octopus.Action.Script.ScriptSource\": \"Inline\",\r&para;<br>            \"Octopus.Action.Script.ScriptBody\": \"if(\\\"Dev\\\" -eq $OctopusParameters['Octopus.Environment.Name']){\\n    \\n    throw 'failing to create test data'\\n}\"\r&para;<br>          }\r&para;<br>        }\r&para;<br>      ],\r&para;<br>      \"Properties\": {\r&para;<br>        \"Octopus.Action.TargetRoles\": \"WebApps\"\r&para;<br>      }\r&para;<br></ins><span>    }\r&para;<br>  ],\r&para;<br>  \"RelatedDocumentIds\": []\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "Session cookie"
 }

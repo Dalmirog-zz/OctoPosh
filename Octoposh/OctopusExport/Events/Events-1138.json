@@ -2,39 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1138",
   "RelatedDocumentIds": [
-    "Environments-1"
+    "Machines-1"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentStarted",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-09T00:02:00.9932624-03:00",
-  "Message": "Deploy to Dev started  for DeploymentTests_Project2 release 0.0.15 to Dev",
+  "Category": "MachineDeploymentRelatedPropertyWasUpdated",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-02-04T20:03:41.4576987-03:00",
+  "Message": "Machine ListeningTentacle1 was modified (domain-event)",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 0,
-      "Length": 13
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 27,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 60,
-      "Length": 6
-    },
-    {
-      "ReferencedDocumentId": "Environments-1",
-      "StartIndex": 70,
-      "Length": 3
+      "ReferencedDocumentId": "Machines-1",
+      "StartIndex": 8,
+      "Length": 18
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "IdentityEstablishedWith": "Session cookie"
 }

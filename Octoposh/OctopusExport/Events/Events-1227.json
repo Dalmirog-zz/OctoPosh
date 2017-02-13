@@ -1,25 +1,23 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1227",
-  "RelatedDocumentIds": [
-    "ProjectGroups-25"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Modified",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-02-09T01:11:45.880031-03:00",
-  "Message": "Project Group modified_TestprojectGroup was modified",
+  "Category": "MachineHealthy",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-02-11T00:48:39.2925091-03:00",
+  "Message": "Machine KDPKROC3P2UV5R1 became healthy",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "ProjectGroups-25",
-      "StartIndex": 14,
-      "Length": 25
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 8,
+      "Length": 15
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"ProjectGroups-24\",\r&para;<br>  \"Name\": \"</span><del style=\"background:#ffe6e6;\">un</del><span>modified_Test</span><del style=\"background:#ffe6e6;\">P</del><ins style=\"background:#e6ffe6;\">p</ins><span>rojectGroup\",\r&para;<br>  \"Description\": \"Resource created for unit testing purposes. Do not delete/edit\"\r&para;<br>}</span>",
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "Details": null,
+  "IdentityEstablishedWith": "Unknown"
 }

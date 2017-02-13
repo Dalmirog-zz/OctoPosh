@@ -1,40 +1,23 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-105",
-  "RelatedDocumentIds": [
-    "Environments-1"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentSucceeded",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-01T00:17:41.8563429-03:00",
-  "Message": "Deploy to Dev succeeded  for DashboardTests_Project1 release 0.0.2 to Dev",
+  "Category": "Deleted",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-01-15T18:01:14.1756892-03:00",
+  "Message": "Lifecycle RFAJ2D3FT6WBS9C was deleted",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 0,
-      "Length": 13
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 29,
-      "Length": 23
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 61,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-1",
-      "StartIndex": 70,
-      "Length": 3
+      "StartIndex": 10,
+      "Length": 15
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "IdentityEstablishedWith": "Session cookie"
 }

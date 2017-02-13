@@ -1,20 +1,35 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1429",
-  "RelatedDocumentIds": [],
-  "ProjectId": null,
-  "EnvironmentId": null,
+  "RelatedDocumentIds": [
+    "Deployments-29",
+    "Projects-3",
+    "Releases-13",
+    "Environments-2"
+  ],
+  "ProjectId": "Projects-3",
+  "EnvironmentId": "Environments-2",
   "TenantId": null,
-  "Category": "Created",
+  "Category": "DeploymentQueued",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-29T04:50:21.0011712-03:00",
-  "Message": "NuGetFeed AGF3BSAK1UT01RY was created",
+  "Occurred": "2017-02-11T01:33:04.2326016-03:00",
+  "Message": "Deployed DeploymentTests_Project1 release 0.0.5 to Prod",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 10,
-      "Length": 15
+      "ReferencedDocumentId": "Projects-3",
+      "StartIndex": 9,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "Releases-13",
+      "StartIndex": 42,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-2",
+      "StartIndex": 51,
+      "Length": 4
     }
   ],
   "Comments": null,

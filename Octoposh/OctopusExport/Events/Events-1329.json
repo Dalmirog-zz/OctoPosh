@@ -2,24 +2,42 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1329",
   "RelatedDocumentIds": [
-    "Lifecycles-22"
+    "Deployments-10",
+    "Projects-2",
+    "Releases-3",
+    "Environments-3"
   ],
-  "ProjectId": null,
-  "EnvironmentId": null,
+  "ProjectId": "Projects-2",
+  "EnvironmentId": "Environments-3",
   "TenantId": null,
-  "Category": "Modified",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-01-23T03:25:49.7828314-03:00",
-  "Message": "Lifecycle modified_TestLifecycle was modified",
+  "Category": "DeploymentStarted",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-02-11T01:16:28.0132007-03:00",
+  "Message": "Deploy to Stage (#2) started  for DashboardTests_Project2 release 0.0.1 to Stage",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Lifecycles-22",
-      "StartIndex": 10,
-      "Length": 22
+      "ReferencedDocumentId": "Deployments-10",
+      "StartIndex": 0,
+      "Length": 20
+    },
+    {
+      "ReferencedDocumentId": "Projects-2",
+      "StartIndex": 34,
+      "Length": 23
+    },
+    {
+      "ReferencedDocumentId": "Releases-3",
+      "StartIndex": 66,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-3",
+      "StartIndex": 75,
+      "Length": 5
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"Lifecycles-22\",\r&para;<br>  \"Name\": \"</span><del style=\"background:#ffe6e6;\">un</del><span>modified_TestLifecycle\",\r&para;<br>  \"Description\": \"Resource created for unit testing purposes. Do not delete/edit\",\r&para;<br>  \"Phases\": [],\r&para;<br>  \"ReleaseRetentionPolicy\": {\r&para;<br>    \"Unit\": \"Items\",\r&para;<br>    \"QuantityToKeep\": 0,\r&para;<br>    \"ShouldKeepForever\": true\r&para;<br>  },\r&para;<br>  \"TentacleRetentionPolicy\": {\r&para;<br>    \"Unit\": \"Items\",\r&para;<br>    \"QuantityToKeep\": 0,\r&para;<br>    \"ShouldKeepForever\": true\r&para;<br>  }\r&para;<br>}</span>",
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "Details": null,
+  "IdentityEstablishedWith": "Unknown"
 }

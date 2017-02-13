@@ -2,27 +2,37 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1494",
   "RelatedDocumentIds": [
-    "Machines-3",
-    "Environments-1",
-    "Environments-3",
-    "Environments-2"
+    "Deployments-45",
+    "Projects-3",
+    "Releases-7",
+    "Environments-1"
   ],
-  "ProjectId": null,
-  "EnvironmentId": null,
+  "ProjectId": "Projects-3",
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Modified",
+  "Category": "DeploymentQueued",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-29T04:54:20.9163637-03:00",
-  "Message": "Machine North was modified",
+  "Occurred": "2017-02-11T01:36:14.7853084-03:00",
+  "Message": "Deployed DeploymentTests_Project1 release 0.0.11 to Dev",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Machines-3",
-      "StartIndex": 8,
-      "Length": 5
+      "ReferencedDocumentId": "Projects-3",
+      "StartIndex": 9,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "Releases-7",
+      "StartIndex": 42,
+      "Length": 6
+    },
+    {
+      "ReferencedDocumentId": "Environments-1",
+      "StartIndex": 52,
+      "Length": 3
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"Machines-2\",\r&para;<br>  \"Name\": \"North\",\r&para;<br>  \"Endpoint\": {},\r&para;<br>  \"IsDisabled\": false,\r&para;<br>  \"Roles\": [\r&para;<br>    \"WebApps\"\r&para;<br>  ],\r&para;<br>  \"EnvironmentIds\": [\r&para;<br>    \"Environments-1\"</span><ins style=\"background:#e6ffe6;\">,\r&para;<br>    \"Environments-2\",\r&para;<br>    \"Environments-22\"</ins><span>\r&para;<br>  ],\r&para;<br>  \"TenantIds\": [],\r&para;<br>  \"TenantTags\": [],\r&para;<br>  \"MachinePolicyId\": \"MachinePolicies-1\"\r&para;<br>}</span>",
-  "IdentityEstablishedWith": "Session cookie"
+  "Details": null,
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

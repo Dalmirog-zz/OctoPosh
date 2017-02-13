@@ -1,23 +1,25 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1073",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Machines-1"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
+  "Category": "MachineAdded",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-08T03:53:50.6640001-03:00",
-  "Message": "Project 3P0LLD44EKDSQWJ was created",
+  "Occurred": "2017-02-04T01:03:25.3343955-03:00",
+  "Message": "Machine ListeningTentacle was created (domain-event)",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
+      "ReferencedDocumentId": "Machines-1",
       "StartIndex": 8,
-      "Length": 15
+      "Length": 17
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Session cookie"
 }

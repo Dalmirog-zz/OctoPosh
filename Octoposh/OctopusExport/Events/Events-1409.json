@@ -2,21 +2,34 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1409",
   "RelatedDocumentIds": [
+    "Deployments-24",
+    "Projects-3",
+    "Releases-12",
     "Environments-1"
   ],
-  "ProjectId": null,
+  "ProjectId": "Projects-3",
   "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Created",
+  "Category": "DeploymentQueued",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-15T17:30:53.6592819-03:00",
-  "Message": "Machine 9K12I65HAKHNH1Y was created",
+  "Occurred": "2017-02-11T01:32:05.1718495-03:00",
+  "Message": "Deployed DeploymentTests_Project1 release 0.0.4 to Dev",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 8,
-      "Length": 15
+      "ReferencedDocumentId": "Projects-3",
+      "StartIndex": 9,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "Releases-12",
+      "StartIndex": 42,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-1",
+      "StartIndex": 51,
+      "Length": 3
     }
   ],
   "Comments": null,

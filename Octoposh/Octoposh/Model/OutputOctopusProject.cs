@@ -13,6 +13,7 @@ namespace Octoposh.Model
         public string Id { get; set; }
         public string ProjectGroupName { get; set; }
         public string LifecycleName { get; set; }
+        //todo add channels info maybe?
         public List<OutputDiscreteDeployment> LatestDeployments { get; set; }
         public bool AutoCreateRelease { get; set; }
         public ProjectResource Resource { get; set; }

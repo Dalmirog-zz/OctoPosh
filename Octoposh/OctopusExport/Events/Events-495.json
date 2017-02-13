@@ -2,25 +2,39 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-495",
   "RelatedDocumentIds": [
-    "deploymentprocess-Projects-2",
-    "Projects-2"
+    "Environments-2"
   ],
-  "ProjectId": "Projects-2",
-  "EnvironmentId": null,
+  "ProjectId": null,
+  "EnvironmentId": "Environments-2",
   "TenantId": null,
-  "Category": "Modified",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-02-11T01:16:39.5785067-03:00",
-  "Message": "Deployment process for DashboardTests_Project2 was changed",
+  "Category": "DeploymentStarted",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-02-06T03:15:41.3464655-03:00",
+  "Message": "Deploy to Prod started  for DeploymentTests_Project2 release 0.0.10 to Prod",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Projects-2",
-      "StartIndex": 23,
-      "Length": 23
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 0,
+      "Length": 14
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 28,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 61,
+      "Length": 6
+    },
+    {
+      "ReferencedDocumentId": "Environments-2",
+      "StartIndex": 71,
+      "Length": 4
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"deploymentprocess-Projects-42\",\r&para;<br>  \"OwnerId\": \"Projects-42\",\r&para;<br>  \"Version\": </span><del style=\"background:#ffe6e6;\">1</del><ins style=\"background:#e6ffe6;\">2</ins><span>,\r&para;<br>  \"Steps\": [\r&para;<br>    {\r&para;<br>      \"Id\": \"43ce56a5-9680-42ae-b082-8ef9ab68af3f\",\r&para;<br>      \"Name\": \"Run script 1\",\r&para;<br>      \"Condition\": \"Success\",\r&para;<br>      \"StartTrigger\": \"StartAfterPrevious\",\r&para;<br>      \"RequiresPackagesToBeAcquired\": false,\r&para;<br>      \"Actions\": [\r&para;<br>        {\r&para;<br>          \"Id\": \"f5381ee6-8c5c-4226-8593-47c7694a2510\",\r&para;<br>          \"Name\": \"Run script 1\",\r&para;<br>          \"ActionType\": \"Octopus.Script\",\r&para;<br>          \"IsDisabled\": false,\r&para;<br>          \"Environments\": [],\r&para;<br>          \"ExcludedEnvironments\": [],\r&para;<br>          \"Channels\": [],\r&para;<br>          \"TenantTags\": [],\r&para;<br>          \"Properties\": {\r&para;<br>            \"Octopus.Action.RunOnServer\": \"false\",\r&para;<br>            \"Octopus.Action.Script.Syntax\": \"PowerShell\",\r&para;<br>            \"Octopus.Action.Script.ScriptSource\": \"Inline\",\r&para;<br>            \"Octopus.Action.Script.ScriptBody\": \"$StepName = $OctopusParameters['Octopus.Step.Name']\\r\\n$TargetName = $OctopusParameters['Octopus.Machine.Name']\\r\\n\\\"Hello from step [$StepName] on [$Targetname]\\\"\"\r&para;<br>          }\r&para;<br>        }\r&para;<br>      ],\r&para;<br>      \"Properties\": {\r&para;<br>        \"Octopus.Action.TargetRoles\": \"WebApps\"\r&para;<br>      }\r&para;<br>    },\r&para;<br>    {\r&para;<br>      \"Id\": \"c11cba5b-206f-474d-b2dd-d29bfbce4170\",\r&para;<br>      \"Name\": \"Run script 2\",\r&para;<br>      \"Condition\": \"Success\",\r&para;<br>      \"StartTrigger\": \"StartAfterPrevious\",\r&para;<br>      \"RequiresPackagesToBeAcquired\": false,\r&para;<br>      \"Actions\": [\r&para;<br>        {\r&para;<br>          \"Id\": \"f60025da-c744-43d3-bc08-392c96b31dea\",\r&para;<br>          \"Name\": \"Run script 2\",\r&para;<br>          \"ActionType\": \"Octopus.Script\",\r&para;<br>          \"IsDisabled\": false,\r&para;<br>          \"Environments\": [],\r&para;<br>          \"ExcludedEnvironments\": [],\r&para;<br>          \"Channels\": [],\r&para;<br>          \"TenantTags\": [],\r&para;<br>          \"Properties\": {\r&para;<br>            \"Octopus.Action.RunOnServer\": \"false\",\r&para;<br>            \"Octopus.Action.Script.Syntax\": \"PowerShell\",\r&para;<br>            \"Octopus.Action.Script.ScriptSource\": \"Inline\",\r&para;<br>            \"Octopus.Action.Script.ScriptBody\": \"if(\\\"Dev\\\" -eq $OctopusParameters['Octopus.Environment.Name']){\\r\\n    \\r\\n    </span><del style=\"background:#ffe6e6;\">#</del><span>throw \\\"Fail on purpose!\\\"\\r\\n}\\r\\n\\r\\n$stepName = $OctopusParameters['Octopus.Step.Name']\\r\\n$targetName = $OctopusParameters['Octopus.Action.TargetRoles']\\r\\n\\r\\n\\\"Hello from step [$StepName] on target [$target]\\\"\"\r&para;<br>          }\r&para;<br>        }\r&para;<br>      ],\r&para;<br>      \"Properties\": {\r&para;<br>        \"Octopus.Action.TargetRoles\": \"WebApps\"\r&para;<br>      }\r&para;<br>    }\r&para;<br>  ],\r&para;<br>  \"RelatedDocumentIds\": []\r&para;<br>}</span>",
-  "IdentityEstablishedWith": "Session cookie"
+  "Details": null,
+  "IdentityEstablishedWith": "Unknown"
 }

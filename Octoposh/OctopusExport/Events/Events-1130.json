@@ -2,39 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1130",
   "RelatedDocumentIds": [
-    "Environments-3"
+    "Environments-1"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-3",
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "DeploymentStarted",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-09T00:00:35.493425-03:00",
-  "Message": "Deploy to Stage started  for DeploymentTests_Project2 release 0.0.14 to Stage",
+  "Category": "Deleted",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-02-04T20:02:08.5016047-03:00",
+  "Message": "Machine ListeningTentacle3 was deleted",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 0,
-      "Length": 15
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 29,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 62,
-      "Length": 6
-    },
-    {
-      "ReferencedDocumentId": "Environments-3",
-      "StartIndex": 72,
-      "Length": 5
+      "StartIndex": 8,
+      "Length": 18
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "IdentityEstablishedWith": "Session cookie"
 }

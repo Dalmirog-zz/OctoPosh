@@ -2,42 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-477",
   "RelatedDocumentIds": [
-    "Deployments-5",
-    "Projects-1",
-    "Releases-2",
-    "Environments-3"
+    "Environments-1"
   ],
-  "ProjectId": "Projects-1",
-  "EnvironmentId": "Environments-3",
+  "ProjectId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "DeploymentFailed",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-11T01:14:47.5321469-03:00",
-  "Message": "Deploy to Stage failed  for DashboardTests_Project1 release 0.0.2 to Stage",
+  "Category": "Created",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-01-18T21:52:20.547383-03:00",
+  "Message": "Machine WDWTO3ZMKNGOXO0 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Deployments-5",
-      "StartIndex": 0,
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 8,
       "Length": 15
-    },
-    {
-      "ReferencedDocumentId": "Projects-1",
-      "StartIndex": 28,
-      "Length": 23
-    },
-    {
-      "ReferencedDocumentId": "Releases-2",
-      "StartIndex": 60,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-3",
-      "StartIndex": 69,
-      "Length": 5
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

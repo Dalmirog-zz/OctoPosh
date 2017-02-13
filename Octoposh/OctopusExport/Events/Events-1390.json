@@ -1,17 +1,43 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1390",
-  "RelatedDocumentIds": [],
-  "ProjectId": null,
-  "EnvironmentId": null,
+  "RelatedDocumentIds": [
+    "Deployments-19",
+    "Projects-3",
+    "Releases-10",
+    "Environments-3"
+  ],
+  "ProjectId": "Projects-3",
+  "EnvironmentId": "Environments-3",
   "TenantId": null,
-  "Category": "Imported",
-  "UserId": "NY",
-  "Username": "dalmiro.granias",
-  "Occurred": "2017-01-18T21:51:51.3755443-03:00",
-  "Message": "Imported documents using Octopus migration tools",
-  "MessageReferences": [],
+  "Category": "DeploymentSucceeded",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-02-11T01:31:11.194399-03:00",
+  "Message": "Deploy to Stage succeeded  for DeploymentTests_Project1 release 0.0.2 to Stage",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Deployments-19",
+      "StartIndex": 0,
+      "Length": 15
+    },
+    {
+      "ReferencedDocumentId": "Projects-3",
+      "StartIndex": 31,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "Releases-10",
+      "StartIndex": 64,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-3",
+      "StartIndex": 73,
+      "Length": 5
+    }
+  ],
   "Comments": null,
-  "Details": "  Created.........................................481\r\n    ApiKey........................................1\r\n    Channel.......................................2\r\n    CommunityActionTemplate.......................217\r\n    DeploymentEnvironment.........................2\r\n    DeploymentProcess.............................2\r\n    Event.........................................212\r\n    ExtensionConfiguration........................2\r\n    Lifecycle.....................................1\r\n    Machine.......................................4\r\n    Project.......................................2\r\n    ProjectGroup..................................2\r\n    ServerTask....................................32\r\n    VariableSet...................................2\r\n  Missing dependencies............................3\r\n    ServerTask....................................3\r\n  Unchanged.......................................24\r\n    ExtensionConfiguration........................3\r\n    License.......................................1\r\n    Lifecycle.....................................1\r\n    MachinePolicy.................................1\r\n    NuGetFeed.....................................1\r\n    ProjectGroup..................................1\r\n    ServerConfiguration...........................1\r\n    SmtpConfiguration.............................1\r\n    Team..........................................2\r\n    User..........................................1\r\n    UserRole......................................10\r\n    WebPortalConfiguration........................1\r\n  Updated.........................................2\r\n    Certificate...................................1\r\n    FeaturesConfiguration.........................1\r\n",
-  "IdentityEstablishedWith": "Command-line or tools"
+  "Details": null,
+  "IdentityEstablishedWith": "Unknown"
 }

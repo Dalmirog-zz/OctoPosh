@@ -2,39 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-139",
   "RelatedDocumentIds": [
-    "Environments-1"
+    "Tenants-1"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
-  "TenantId": null,
-  "Category": "DeploymentStarted",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-01T00:41:45.0905902-03:00",
-  "Message": "Deploy to Dev started  for DashboardTests_Project2 release 0.0.2 to Dev",
+  "EnvironmentId": null,
+  "TenantId": "Tenants-1",
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-02-08T03:53:58.2420631-03:00",
+  "Message": "Tenant unmodified_TestTenant was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 0,
-      "Length": 13
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 27,
-      "Length": 23
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 59,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-1",
-      "StartIndex": 68,
-      "Length": 3
+      "ReferencedDocumentId": "Tenants-1",
+      "StartIndex": 7,
+      "Length": 21
     }
   ],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "Details": "<span>{\r&para;<br>  \"Id\": \"Tenants-1\",\r&para;<br>  \"Name\": \"</span><ins style=\"background:#e6ffe6;\">un</ins><span>modified_TestTenant\",\r&para;<br>  \"ProjectIds\": [],\r&para;<br>  \"ProjectEnvironments\": {},\r&para;<br>  \"TenantTags\": []\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

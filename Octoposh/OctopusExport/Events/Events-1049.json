@@ -2,24 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1049",
   "RelatedDocumentIds": [
-    "Tenants-1"
+    "feeds-local-folder"
   ],
   "ProjectId": null,
   "EnvironmentId": null,
-  "TenantId": "Tenants-1",
-  "Category": "Modified",
+  "TenantId": null,
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-08T02:22:38.6158225-03:00",
-  "Message": "Tenant modified_TestTenant was modified",
+  "Occurred": "2017-02-04T00:01:59.5312158-03:00",
+  "Message": "NuGetFeed Local Folder was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Tenants-1",
-      "StartIndex": 7,
-      "Length": 19
+      "ReferencedDocumentId": "feeds-local-folder",
+      "StartIndex": 10,
+      "Length": 12
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"Tenants-1\",\r&para;<br>  \"Name\": \"</span><del style=\"background:#ffe6e6;\">un</del><span>modified_TestTenant\",\r&para;<br>  \"ProjectIds\": [],\r&para;<br>  \"ProjectEnvironments\": {},\r&para;<br>  \"TenantTags\": []\r&para;<br>}</span>",
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "Details": null,
+  "IdentityEstablishedWith": "Session cookie"
 }

@@ -2,30 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1273",
   "RelatedDocumentIds": [
-    "Projects-5",
-    "Releases-55"
+    "Machines-1"
   ],
-  "ProjectId": "Projects-5",
+  "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-01-18T23:34:32.0337089-03:00",
-  "Message": "TestProject1 release 0.0.4 was created",
+  "Category": "MachineUnavailable",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-02-11T01:04:46.613265-03:00",
+  "Message": "Machine ListeningTentacle1 became unavailable",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Projects-5",
-      "StartIndex": 0,
-      "Length": 12
-    },
-    {
-      "ReferencedDocumentId": "Releases-55",
-      "StartIndex": 21,
-      "Length": 5
+      "ReferencedDocumentId": "Machines-1",
+      "StartIndex": 8,
+      "Length": 18
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "IdentityEstablishedWith": "Unknown"
 }

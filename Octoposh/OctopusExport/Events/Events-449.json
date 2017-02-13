@@ -2,39 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-449",
   "RelatedDocumentIds": [
-    "Environments-3"
+    "Environments-1"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-3",
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "DeploymentSucceeded",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-06T03:21:08.1893794-03:00",
-  "Message": "Deploy to Stage succeeded  for DeploymentTests_Project1 release 0.0.2 to Stage",
+  "Category": "Created",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2016-12-14T01:10:54.8776306-03:00",
+  "Message": "Machine ListeningTentacle was created",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 0,
-      "Length": 15
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 31,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 64,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-3",
-      "StartIndex": 73,
-      "Length": 5
+      "StartIndex": 8,
+      "Length": 17
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "IdentityEstablishedWith": "Session cookie"
 }

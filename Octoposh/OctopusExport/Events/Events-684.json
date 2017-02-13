@@ -2,29 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-684",
   "RelatedDocumentIds": [
-    "Projects-4"
+    "Users-1"
   ],
-  "ProjectId": "Projects-4",
+  "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-11T01:42:21.9147019-03:00",
-  "Message": "DeploymentTests_Project2 release 0.0.11 was deleted",
+  "Occurred": "2016-12-16T01:52:57.8487135-03:00",
+  "Message": "User admin set password using the admin command line",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Projects-4",
-      "StartIndex": 0,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 33,
-      "Length": 6
+      "ReferencedDocumentId": "Users-1",
+      "StartIndex": 5,
+      "Length": 5
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "IdentityEstablishedWith": "Command-line or tools"
 }

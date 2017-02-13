@@ -1,40 +1,17 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-680",
-  "RelatedDocumentIds": [
-    "Environments-3"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
-  "EnvironmentId": "Environments-3",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentStarted",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-06T03:22:14.1370288-03:00",
-  "Message": "Deploy to Stage started  for DeploymentTests_Project1 release 0.0.4 to Stage",
-  "MessageReferences": [
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 0,
-      "Length": 15
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 29,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 62,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-3",
-      "StartIndex": 71,
-      "Length": 5
-    }
-  ],
+  "Category": "Exported",
+  "UserId": "NY",
+  "Username": "dalmiro.granias",
+  "Occurred": "2017-01-19T01:58:14.5349887-03:00",
+  "Message": "Exported complete copy of configuration to C:\\github\\octoposh\\octoposh\\OctopusExport",
+  "MessageReferences": [],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "IdentityEstablishedWith": "Command-line or tools"
 }

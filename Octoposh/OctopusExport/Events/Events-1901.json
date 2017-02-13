@@ -1,17 +1,25 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1901",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Machines-4"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Exported",
-  "UserId": "NY",
-  "Username": "dalmiro.granias",
-  "Occurred": "2017-02-12T07:49:00.9341078+00:00",
-  "Message": "Exported complete copy of configuration to C:\\github\\octoposh\\octoposh\\OctopusExport",
-  "MessageReferences": [],
+  "Category": "MachineUnhealthy",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-02-13T02:42:54.1286112+00:00",
+  "Message": "Machine OfflineTarget became unhealthy",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Machines-4",
+      "StartIndex": 8,
+      "Length": 13
+    }
+  ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Command-line or tools"
+  "IdentityEstablishedWith": "Unknown"
 }

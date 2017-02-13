@@ -2,24 +2,30 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1616",
   "RelatedDocumentIds": [
-    "Users-1"
+    "Projects-4",
+    "Releases-28"
   ],
-  "ProjectId": null,
+  "ProjectId": "Projects-4",
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Modified",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2016-12-09T01:38:30.5595266-03:00",
-  "Message": "User admin set password using the admin command line",
+  "Occurred": "2017-02-11T01:46:28.6907634-03:00",
+  "Message": "DeploymentTests_Project2 release 0.0.7 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Users-1",
-      "StartIndex": 5,
+      "ReferencedDocumentId": "Projects-4",
+      "StartIndex": 0,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "Releases-28",
+      "StartIndex": 33,
       "Length": 5
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Command-line or tools"
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

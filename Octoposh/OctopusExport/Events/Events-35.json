@@ -1,19 +1,21 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-35",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Environments-1"
+  ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-01T00:13:39.8955184-03:00",
-  "Message": "Lifecycle RUTUE08EREC9IGX was created",
+  "Occurred": "2017-02-08T02:22:26.645687-03:00",
+  "Message": "Machine 9OMM63HYQP3MLFR was created",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 10,
+      "StartIndex": 8,
       "Length": 15
     }
   ],

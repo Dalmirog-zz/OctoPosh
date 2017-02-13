@@ -1,20 +1,32 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1391",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Environments-3"
+  ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-3",
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "DeploymentQueued",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-14T18:51:39.0999949-03:00",
-  "Message": "Project XTD85XM8N814NO6 was deleted",
+  "Occurred": "2017-02-06T03:21:38.1123633-03:00",
+  "Message": "Deployed DeploymentTests_Project1 release 0.0.3 to Stage",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 8,
-      "Length": 15
+      "StartIndex": 9,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 42,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-3",
+      "StartIndex": 51,
+      "Length": 5
     }
   ],
   "Comments": null,

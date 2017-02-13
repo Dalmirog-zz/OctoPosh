@@ -1,23 +1,26 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1065",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "ServerTasks-269",
+    "Environments-1"
+  ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-08T03:53:49.2329902-03:00",
-  "Message": "Library Variable Set 3P0LLD44EKDSQWJ was deleted",
+  "Occurred": "2017-02-04T00:59:12.9117552-03:00",
+  "Message": "Ran task Check ListeningTentacle health",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 21,
-      "Length": 15
+      "ReferencedDocumentId": "ServerTasks-269",
+      "StartIndex": 9,
+      "Length": 30
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Session cookie"
 }

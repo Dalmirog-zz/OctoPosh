@@ -2,24 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1267",
   "RelatedDocumentIds": [
-    "Environments-1"
+    "Machines-1"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-01-23T02:31:04.7977403-03:00",
-  "Message": "Machine DGQQ2AP7CNQFEV3 was created",
+  "Category": "MachineHasWarnings",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-02-11T01:01:54.2181412-03:00",
+  "Message": "Machine ListeningTentacle1 became healthy but has warnings",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
+      "ReferencedDocumentId": "Machines-1",
       "StartIndex": 8,
-      "Length": 15
+      "Length": 18
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Unknown"
 }

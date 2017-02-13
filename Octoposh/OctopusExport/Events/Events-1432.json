@@ -1,20 +1,28 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1432",
-  "RelatedDocumentIds": [],
-  "ProjectId": null,
+  "RelatedDocumentIds": [
+    "Projects-3",
+    "Releases-14"
+  ],
+  "ProjectId": "Projects-3",
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-22T15:45:25.0859917-03:00",
-  "Message": "Team BTEF7UDD95UQISQ was deleted",
+  "Occurred": "2017-02-11T01:33:16.0612847-03:00",
+  "Message": "DeploymentTests_Project1 release 0.0.6 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 5,
-      "Length": 15
+      "ReferencedDocumentId": "Projects-3",
+      "StartIndex": 0,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "Releases-14",
+      "StartIndex": 33,
+      "Length": 5
     }
   ],
   "Comments": null,

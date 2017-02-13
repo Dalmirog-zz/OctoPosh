@@ -2,24 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1742",
   "RelatedDocumentIds": [
-    "Environments-1"
+    "Tenants-1"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
-  "TenantId": null,
-  "Category": "Deleted",
+  "EnvironmentId": null,
+  "TenantId": "Tenants-1",
+  "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-15T17:30:53.9252843-03:00",
-  "Message": "Machine 9K12I65HAKHNH1Y was deleted",
+  "Occurred": "2017-02-11T05:05:15.740962-03:00",
+  "Message": "Tenant unmodified_TestTenant was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 8,
-      "Length": 15
+      "ReferencedDocumentId": "Tenants-1",
+      "StartIndex": 7,
+      "Length": 21
     }
   ],
   "Comments": null,
-  "Details": null,
+  "Details": "<span>{\r&para;<br>  \"Id\": \"Tenants-1\",\r&para;<br>  \"Name\": \"</span><ins style=\"background:#e6ffe6;\">un</ins><span>modified_TestTenant\",\r&para;<br>  \"ProjectIds\": [],\r&para;<br>  \"ProjectEnvironments\": {},\r&para;<br>  \"TenantTags\": []\r&para;<br>}</span>",
   "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

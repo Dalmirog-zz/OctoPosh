@@ -2,34 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-361",
   "RelatedDocumentIds": [
-    "Environments-1"
+    "Channels-8"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentQueued",
+  "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-06T03:02:20.5455115-03:00",
-  "Message": "Deployed DeploymentTests_Project2 release 0.0.1 to Dev",
+  "Occurred": "2017-01-23T03:19:59.7735974-03:00",
+  "Message": "Channel unmodified_TestChannel was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 9,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 42,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-1",
-      "StartIndex": 51,
-      "Length": 3
+      "ReferencedDocumentId": "Channels-8",
+      "StartIndex": 8,
+      "Length": 22
     }
   ],
   "Comments": null,
-  "Details": null,
+  "Details": "<span>{\r&para;<br>  \"Id\": \"Channels-23\",\r&para;<br>  \"Name\": \"</span><ins style=\"background:#e6ffe6;\">un</ins><span>modified_TestChannel\",\r&para;<br>  \"Description\": \"Resource created for unit testing purposes. Do not delete/edit\",\r&para;<br>  \"ProjectId\": \"Projects-3\",\r&para;<br>  \"LifecycleId\": null,\r&para;<br>  \"IsDefault\": false,\r&para;<br>  \"TenantTags\": [],\r&para;<br>  \"Rules\": []\r&para;<br>}</span>",
   "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

@@ -1,40 +1,23 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-154",
-  "RelatedDocumentIds": [
-    "Environments-2"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
-  "EnvironmentId": "Environments-2",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentSucceeded",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-06T03:15:49.4376083-03:00",
-  "Message": "Deploy to Prod succeeded  for DeploymentTests_Project2 release 0.0.10 to Prod",
+  "Category": "MachineDeleted",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-01-18T21:52:20.8883924-03:00",
+  "Message": "Machine WDWTO3ZMKNGOXO0 was deleted (domain-event)",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 0,
-      "Length": 14
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 30,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 63,
-      "Length": 6
-    },
-    {
-      "ReferencedDocumentId": "Environments-2",
-      "StartIndex": 73,
-      "Length": 4
+      "StartIndex": 8,
+      "Length": 15
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

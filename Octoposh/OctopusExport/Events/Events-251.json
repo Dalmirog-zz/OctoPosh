@@ -1,26 +1,17 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-251",
-  "RelatedDocumentIds": [
-    "ServerTasks-82",
-    "Environments-1"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-02-04T01:02:30.8883233-03:00",
-  "Message": "Ran task Check ListeningTentacle health",
-  "MessageReferences": [
-    {
-      "ReferencedDocumentId": "ServerTasks-82",
-      "StartIndex": 9,
-      "Length": 30
-    }
-  ],
+  "Category": "Exported",
+  "UserId": "NY",
+  "Username": "dalmiro.granias",
+  "Occurred": "2017-01-15T17:59:08.3291783-03:00",
+  "Message": "Exported complete copy of configuration to C:\\github\\octoposh\\octoposh\\OctopusExport",
+  "MessageReferences": [],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "IdentityEstablishedWith": "Command-line or tools"
 }

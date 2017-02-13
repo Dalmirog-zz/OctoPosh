@@ -2,42 +2,30 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-787",
   "RelatedDocumentIds": [
-    "Deployments-74",
-    "Projects-4",
-    "Releases-18",
-    "Environments-1"
+    "Users-1",
+    "teams-administrators"
   ],
-  "ProjectId": "Projects-4",
-  "EnvironmentId": "Environments-1",
+  "ProjectId": null,
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentStarted",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-11T01:48:18.4118567-03:00",
-  "Message": "Deploy to Dev started  for DeploymentTests_Project2 release 0.0.10 to Dev",
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2016-12-09T01:38:30.5751636-03:00",
+  "Message": "User admin was added to Octopus Administrators using the admin command line",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Deployments-74",
-      "StartIndex": 0,
-      "Length": 13
+      "ReferencedDocumentId": "Users-1",
+      "StartIndex": 5,
+      "Length": 5
     },
     {
-      "ReferencedDocumentId": "Projects-4",
-      "StartIndex": 27,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "Releases-18",
-      "StartIndex": 60,
-      "Length": 6
-    },
-    {
-      "ReferencedDocumentId": "Environments-1",
-      "StartIndex": 70,
-      "Length": 3
+      "ReferencedDocumentId": "teams-administrators",
+      "StartIndex": 24,
+      "Length": 22
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "IdentityEstablishedWith": "Command-line or tools"
 }

@@ -1,25 +1,17 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1088",
-  "RelatedDocumentIds": [
-    "Environments-4"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
-  "EnvironmentId": "Environments-4",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Modified",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-02-08T03:53:53.6600191-03:00",
-  "Message": "Environment unmodified_TestEnvironment was modified",
-  "MessageReferences": [
-    {
-      "ReferencedDocumentId": "Environments-4",
-      "StartIndex": 12,
-      "Length": 26
-    }
-  ],
+  "Category": "Imported",
+  "UserId": "NY",
+  "Username": "dalmiro.granias",
+  "Occurred": "2016-12-04T13:19:49.5848464-03:00",
+  "Message": "Imported task logs using Octopus migration tools",
+  "MessageReferences": [],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"Environments-4\",\r&para;<br>  \"Name\": \"</span><ins style=\"background:#e6ffe6;\">un</ins><span>modified_TestEnvironment\",\r&para;<br>  \"Description\": \"Resource created for unit testing purposes. Do not delete/edit\",\r&para;<br>  \"SortOrder\": 2,\r&para;<br>  \"UseGuidedFailure\": false\r&para;<br>}</span>",
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "Details": "  Created.........................................7\r\n    TaskLog file..................................1\r\n    TaskLog line..................................6\r\n  Skipped (incomplete)............................141\r\n    TaskLog file..................................141\r\n  Skipped (no overwrite)..........................135\r\n    TaskLog file..................................18\r\n    TaskLog line..................................117\r\n",
+  "IdentityEstablishedWith": "Command-line or tools"
 }

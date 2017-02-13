@@ -2,24 +2,42 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1293",
   "RelatedDocumentIds": [
-    "Teams-3"
+    "Deployments-2",
+    "Projects-1",
+    "Releases-1",
+    "Environments-3"
   ],
-  "ProjectId": null,
-  "EnvironmentId": null,
+  "ProjectId": "Projects-1",
+  "EnvironmentId": "Environments-3",
   "TenantId": null,
-  "Category": "Created",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-01-23T02:32:57.4184421-03:00",
-  "Message": "Team unmodified_TestTeam was created",
+  "Category": "DeploymentStarted",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-02-11T01:13:04.199143-03:00",
+  "Message": "Deploy to Stage started  for DashboardTests_Project1 release 0.0.1 to Stage",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Teams-3",
-      "StartIndex": 5,
-      "Length": 19
+      "ReferencedDocumentId": "Deployments-2",
+      "StartIndex": 0,
+      "Length": 15
+    },
+    {
+      "ReferencedDocumentId": "Projects-1",
+      "StartIndex": 29,
+      "Length": 23
+    },
+    {
+      "ReferencedDocumentId": "Releases-1",
+      "StartIndex": 61,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-3",
+      "StartIndex": 70,
+      "Length": 5
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "IdentityEstablishedWith": "Unknown"
 }

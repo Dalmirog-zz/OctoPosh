@@ -1,22 +1,25 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1827",
-  "RelatedDocumentIds": [
-    "feeds-1nzk42v6987w6pc"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-12T05:56:26.4002634+00:00",
-  "Message": "NuGetFeed 1NZK42V6987W6PC was created",
+  "Occurred": "2017-02-06T03:25:03.6427819-03:00",
+  "Message": "DeploymentTests_Project1 release 0.0.9 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "feeds-1nzk42v6987w6pc",
-      "StartIndex": 10,
-      "Length": 15
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 0,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 33,
+      "Length": 5
     }
   ],
   "Comments": null,
