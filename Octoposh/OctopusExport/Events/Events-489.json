@@ -1,43 +1,23 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-489",
-  "RelatedDocumentIds": [
-    "Deployments-8",
-    "Projects-2",
-    "Releases-3",
-    "Environments-2"
-  ],
-  "ProjectId": "Projects-2",
-  "EnvironmentId": "Environments-2",
+  "RelatedDocumentIds": [],
+  "ProjectId": null,
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentSucceeded",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-11T01:16:14.2720253-03:00",
-  "Message": "Deploy to Prod succeeded  for DashboardTests_Project2 release 0.0.1 to Prod",
+  "Category": "Created",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-01-29T04:50:19.1009535-03:00",
+  "Message": "Channel AGF3BSAK1UT01RY was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Deployments-8",
-      "StartIndex": 0,
-      "Length": 14
-    },
-    {
-      "ReferencedDocumentId": "Projects-2",
-      "StartIndex": 30,
-      "Length": 23
-    },
-    {
-      "ReferencedDocumentId": "Releases-3",
-      "StartIndex": 62,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-2",
-      "StartIndex": 71,
-      "Length": 4
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 8,
+      "Length": 15
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

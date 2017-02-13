@@ -1,21 +1,19 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1836",
-  "RelatedDocumentIds": [
-    "Machines-21"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "MachineDeleted",
+  "Category": "Deleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-12T05:56:29.000261+00:00",
-  "Message": "Machine 1NZK42V6987W6PC was deleted (domain-event)",
+  "Occurred": "2017-01-18T21:52:24.7353342-03:00",
+  "Message": "Tenant WDWTO3ZMKNGOXO0 was deleted",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Machines-21",
-      "StartIndex": 8,
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 7,
       "Length": 15
     }
   ],

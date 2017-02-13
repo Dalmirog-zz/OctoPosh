@@ -2,42 +2,25 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-456",
   "RelatedDocumentIds": [
-    "Deployments-1",
-    "Projects-1",
-    "Releases-1",
+    "ServerTasks-253",
     "Environments-1"
   ],
-  "ProjectId": "Projects-1",
+  "ProjectId": null,
   "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "DeploymentStarted",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-11T01:12:20.2119977-03:00",
-  "Message": "Deploy to Dev started  for DashboardTests_Project1 release 0.0.1 to Dev",
+  "Category": "Created",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-01-22T00:13:09.4590531-03:00",
+  "Message": "Ran task Check OfflineTarget health",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Deployments-1",
-      "StartIndex": 0,
-      "Length": 13
-    },
-    {
-      "ReferencedDocumentId": "Projects-1",
-      "StartIndex": 27,
-      "Length": 23
-    },
-    {
-      "ReferencedDocumentId": "Releases-1",
-      "StartIndex": 59,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-1",
-      "StartIndex": 68,
-      "Length": 3
+      "ReferencedDocumentId": "ServerTasks-253",
+      "StartIndex": 9,
+      "Length": 26
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "IdentityEstablishedWith": "Session cookie"
 }

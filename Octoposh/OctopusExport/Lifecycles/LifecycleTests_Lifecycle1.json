@@ -1,0 +1,17 @@
+{
+  "$type": "Octopus.Core.Model.Lifecycles.Lifecycle, Octopus.Core",
+  "Id": "Lifecycles-42",
+  "Name": "LifecycleTests_Lifecycle1",
+  "Description": "Resource created for unit testing purposes. Avoid touching it if possible.",
+  "Phases": [],
+  "ReleaseRetentionPolicy": {
+    "Unit": "Items",
+    "QuantityToKeep": 0,
+    "ShouldKeepForever": true
+  },
+  "TentacleRetentionPolicy": {
+    "Unit": "Items",
+    "QuantityToKeep": 0,
+    "ShouldKeepForever": true
+  }
+}

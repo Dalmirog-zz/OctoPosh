@@ -1,20 +1,23 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1099",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "ServerTasks-163",
+    "Environments-1"
+  ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-15T18:01:17.5246742-03:00",
-  "Message": "Lifecycle WKHWDC9C4VMMEHU was deleted",
+  "Occurred": "2017-02-04T19:43:38.2861308-03:00",
+  "Message": "Ran task Check ListeningTentacle3 health",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 10,
-      "Length": 15
+      "ReferencedDocumentId": "ServerTasks-163",
+      "StartIndex": 9,
+      "Length": 31
     }
   ],
   "Comments": null,

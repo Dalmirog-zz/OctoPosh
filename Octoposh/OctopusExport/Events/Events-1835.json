@@ -2,22 +2,31 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1835",
   "RelatedDocumentIds": [
-    "Machines-21",
-    "Environments-1"
+    "Environments-2"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "EnvironmentId": "Environments-2",
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "DeploymentQueued",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-12T05:56:28.99526+00:00",
-  "Message": "Machine 1NZK42V6987W6PC was deleted",
+  "Occurred": "2017-02-06T03:25:27.8602187-03:00",
+  "Message": "Deployed DeploymentTests_Project1 release 0.0.9 to Prod",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Machines-21",
-      "StartIndex": 8,
-      "Length": 15
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 9,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 42,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-2",
+      "StartIndex": 51,
+      "Length": 4
     }
   ],
   "Comments": null,

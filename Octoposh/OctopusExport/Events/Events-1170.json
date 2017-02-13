@@ -1,40 +1,23 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1170",
-  "RelatedDocumentIds": [
-    "Environments-2"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
-  "EnvironmentId": "Environments-2",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentSucceeded",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-09T00:14:04.0643447-03:00",
-  "Message": "Deploy to Prod succeeded  for DeploymentTests_Project1 release 0.0.14 to Prod",
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-02-06T02:44:04.6500192-03:00",
+  "Message": "Deployment process for DeploymentTests_Project2 was changed",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 0,
-      "Length": 14
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 30,
+      "StartIndex": 23,
       "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 63,
-      "Length": 6
-    },
-    {
-      "ReferencedDocumentId": "Environments-2",
-      "StartIndex": 73,
-      "Length": 4
     }
   ],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "Details": "<span>{\r&para;<br>  \"Id\": \"deploymentprocess-Projects-24\",\r&para;<br>  \"OwnerId\": \"Projects-24\",\r&para;<br>  \"Version\": </span><del style=\"background:#ffe6e6;\">1</del><ins style=\"background:#e6ffe6;\">2</ins><span>,\r&para;<br>  \"Steps\": [\r&para;<br>    {\r&para;<br>      \"Id\": \"f756910d-a38f-4d26-b80b-9c6bf4a04be8\",\r&para;<br>      \"Name\": \"Deploy package\",\r&para;<br>      \"Condition\": \"Success\",\r&para;<br>      \"StartTrigger\": \"StartAfterPrevious\",\r&para;<br>      \"RequiresPackagesToBeAcquired\": false,\r&para;<br>      \"Actions\": [\r&para;<br>        {\r&para;<br>          \"Id\": \"c6c47f8a-212b-4d4a-91f6-755950ddaa21\",\r&para;<br>          \"Name\": \"Deploy package\",\r&para;<br>          \"ActionType\": \"Octopus.TentaclePackage\",\r&para;<br>          \"IsDisabled\": false,\r&para;<br>          \"Environments\": [],\r&para;<br>          \"ExcludedEnvironments\": [],\r&para;<br>          \"Channels\": [],\r&para;<br>          \"TenantTags\": [],\r&para;<br>          \"Properties\": {\r&para;<br></span><del style=\"background:#ffe6e6;\">            \"Octopus.Action.Package.AutomaticallyRunConfigurationTransformationFiles\": \"False\",\r&para;<br>            \"Octopus.Action.Package.AutomaticallyUpdateAppSettingsAndConnectionStrings\": \"False\",\r&para;<br></del><span>            \"Octopus.Action.EnabledFeatures\": \"Octopus.Features.CustomDirectory\",\r&para;<br>            \"Octopus.Action.Package.DownloadOnTentacle\": \"False\",\r&para;<br>            \"Octopus.Action.Package.FeedId\": \"feeds-local-folder\",\r&para;<br>            \"Octopus.Action.Package.PackageId\": \"Testapp\",\r&para;<br>            \"Octopus.Action.Package.CustomInstallationDirectory\": \"C:\\\\</span><del style=\"background:#ffe6e6;\">Packages</del><ins style=\"background:#e6ffe6;\">Deploy\\\\#{Octopus.Step.Name}</ins><span>\",\r&para;<br>            \"Octopus.Action.Package.CustomInstallationDirectoryShouldBePurgedBeforeDeployment\": \"True\"\r&para;<br>          }\r&para;<br>        }\r&para;<br>      ],\r&para;<br>      \"Properties\": {\r&para;<br>        \"Octopus.Action.TargetRoles\": \"WebServer\"\r&para;<br>      }\r&para;<br>    }\r&para;<br>  ],\r&para;<br>  \"RelatedDocumentIds\": []\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "Session cookie"
 }

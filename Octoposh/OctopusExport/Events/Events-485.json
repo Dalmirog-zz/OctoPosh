@@ -2,42 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-485",
   "RelatedDocumentIds": [
-    "Deployments-7",
-    "Projects-2",
-    "Releases-3",
-    "Environments-3"
+    "Projects-6"
   ],
-  "ProjectId": "Projects-2",
-  "EnvironmentId": "Environments-3",
+  "ProjectId": "Projects-6",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentStarted",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-11T01:15:59.8774676-03:00",
-  "Message": "Deploy to Stage started  for DashboardTests_Project2 release 0.0.1 to Stage",
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-01-22T15:24:02.9971585-03:00",
+  "Message": "Project TestProject2 was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Deployments-7",
-      "StartIndex": 0,
-      "Length": 15
-    },
-    {
-      "ReferencedDocumentId": "Projects-2",
-      "StartIndex": 29,
-      "Length": 23
-    },
-    {
-      "ReferencedDocumentId": "Releases-3",
-      "StartIndex": 61,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-3",
-      "StartIndex": 70,
-      "Length": 5
+      "ReferencedDocumentId": "Projects-6",
+      "StartIndex": 8,
+      "Length": 12
     }
   ],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "Details": "<span>{\r&para;<br>  \"Id\": \"Projects-2\",\r&para;<br>  \"Name\": \"TestProject2\",\r&para;<br>  \"Description\": \"\",\r&para;<br>  \"Slug\": \"testproject2\",\r&para;<br>  \"IsDisabled\": false,\r&para;<br>  \"VariableSetId\": \"variableset-Projects-2\",\r&para;<br>  \"DeploymentProcessId\": \"deploymentprocess-Projects-2\",\r&para;<br>  \"ProjectGroupId\": \"ProjectGroups-2</span><del style=\"background:#ffe6e6;\">1</del><ins style=\"background:#e6ffe6;\">2</ins><span>\",\r&para;<br>  \"LifecycleId\": \"Lifecycles-1\",\r&para;<br>  \"AutoCreateRelease\": false,\r&para;<br>  \"IncludedLibraryVariableSetIds\": [],\r&para;<br>  \"UsedPackages\": [],\r&para;<br>  \"DefaultToSkipIfAlreadyInstalled\": false,\r&para;<br>  \"TenantedDeploymentMode\": \"Untenanted\",\r&para;<br>  \"VersioningStrategy\": {\r&para;<br>    \"DonorPackageStepId\": null,\r&para;<br>    \"Template\": \"#{Octopus.Version.LastMajor}.#{Octopus.Version.LastMinor}.#{Octopus.Version.NextPatch}\"\r&para;<br>  },\r&para;<br>  \"Templates\": [],\r&para;<br>  \"ReleaseCreationStrategy\": {\r&para;<br>    \"ReleaseCreationPackageStepId\": \"\",\r&para;<br>    \"ChannelId\": null\r&para;<br>  },\r&para;<br>  \"ProjectConnectivityPolicy\": {\r&para;<br>    \"SkipMachineBehavior\": \"None\",\r&para;<br>    \"TargetRoles\": []\r&para;<br>  },\r&para;<br>  \"AutoDeployReleaseOverrides\": []\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

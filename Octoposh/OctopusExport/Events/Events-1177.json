@@ -2,30 +2,20 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1177",
   "RelatedDocumentIds": [
-    "Environments-3"
+    "Machines-3"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-3",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentQueued",
+  "Category": "MachineAdded",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-09T00:15:02.6874502-03:00",
-  "Message": "Deployed DeploymentTests_Project1 release 0.0.15 to Stage",
+  "Occurred": "2016-12-04T13:20:32.9523428-03:00",
+  "Message": "Machine North was created (domain-event)",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 9,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 42,
-      "Length": 6
-    },
-    {
-      "ReferencedDocumentId": "Environments-3",
-      "StartIndex": 52,
+      "ReferencedDocumentId": "Machines-3",
+      "StartIndex": 8,
       "Length": 5
     }
   ],

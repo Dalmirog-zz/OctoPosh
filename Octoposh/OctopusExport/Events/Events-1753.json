@@ -1,25 +1,23 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1753",
-  "RelatedDocumentIds": [
-    "ServerTasks-54"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "TaskCanceled",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-30T23:46:26.3083385-03:00",
-  "Message": "Task Deploy DashboardTests_Project2 release 0.0.1 to Stage #76 was canceled",
+  "Occurred": "2017-02-11T05:08:08.1370026-03:00",
+  "Message": "Lifecycle N8X9XSZX7UGW309 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "ServerTasks-54",
-      "StartIndex": 5,
-      "Length": 57
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 10,
+      "Length": 15
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

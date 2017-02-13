@@ -1,25 +1,23 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1046",
-  "RelatedDocumentIds": [
-    "ProjectGroups-25"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Modified",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-08T02:22:37.2528058-03:00",
-  "Message": "Project Group unmodified_TestProjectGroup was modified",
+  "Occurred": "2017-02-03T23:45:10.2730448-03:00",
+  "Message": "Project DeploymentTests_Project2 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "ProjectGroups-25",
-      "StartIndex": 14,
-      "Length": 27
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 8,
+      "Length": 24
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"ProjectGroups-24\",\r&para;<br>  \"Name\": \"</span><ins style=\"background:#e6ffe6;\">un</ins><span>modified_Test</span><del style=\"background:#ffe6e6;\">p</del><ins style=\"background:#e6ffe6;\">P</ins><span>rojectGroup\",\r&para;<br>  \"Description\": \"Resource created for unit testing purposes. Do not delete/edit\"\r&para;<br>}</span>",
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "Details": null,
+  "IdentityEstablishedWith": "Session cookie"
 }

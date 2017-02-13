@@ -2,22 +2,22 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1366",
   "RelatedDocumentIds": [
-    "Machines-4",
-    "Environments-1"
+    "ServerTasks-21",
+    "Environments-2"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "EnvironmentId": "Environments-2",
   "TenantId": null,
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2016-12-14T01:12:01.3468119-03:00",
-  "Message": "Machine OfflineTarget was created",
+  "Occurred": "2017-02-11T01:29:19.5501578-03:00",
+  "Message": "Ran task Check ListeningTentacle1 health",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Machines-4",
-      "StartIndex": 8,
-      "Length": 13
+      "ReferencedDocumentId": "ServerTasks-21",
+      "StartIndex": 9,
+      "Length": 31
     }
   ],
   "Comments": null,

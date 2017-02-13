@@ -2,24 +2,34 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1844",
   "RelatedDocumentIds": [
-    "Tenants-21"
+    "Environments-2"
   ],
   "ProjectId": null,
-  "EnvironmentId": null,
-  "TenantId": "Tenants-21",
-  "Category": "Deleted",
+  "EnvironmentId": "Environments-2",
+  "TenantId": null,
+  "Category": "DeploymentQueued",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-12T05:56:31.407144+00:00",
-  "Message": "Tenant 1NZK42V6987W6PC was deleted",
+  "Occurred": "2017-02-01T00:17:04.0458944-03:00",
+  "Message": "Deployed DashboardTests_Project1 release 0.0.1 to Prod (#2)",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Tenants-21",
-      "StartIndex": 7,
-      "Length": 15
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 9,
+      "Length": 23
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 41,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-2",
+      "StartIndex": 50,
+      "Length": 9
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Session cookie"
 }
