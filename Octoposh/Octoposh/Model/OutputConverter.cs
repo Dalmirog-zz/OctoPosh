@@ -435,5 +435,28 @@ namespace Octoposh.Model
 
             return list;
         }
+
+        public List<OutputOctopusLifecycle> GetOctopusLifecycle(List<LifecycleResource> baseResourceList)
+        {
+            var list = new List<OutputOctopusLifecycle>();
+
+            foreach (var lifecycle in baseResourceList)
+            {
+                list.Add(new OutputOctopusLifecycle()
+                {
+                    Name = lifecycle.Name,
+                    Id = lifecycle.Id,
+                    Description = lifecycle.Description,
+                    Phases = lifecycle.Phases,
+                    ReleaseRetentionPolicy = lifecycle.ReleaseRetentionPolicy,
+                    TentacleRetentionPolicy = lifecycle.TentacleRetentionPolicy,
+                    LastModifiedOn = lifecycle.LastModifiedOn?.DateTime,
+                    LastModifiedBy = lifecycle.LastModifiedBy,
+                    Resource = lifecycle
+                });
+            }
+
+            return list;
+        }
     }
 }
