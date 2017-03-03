@@ -1,0 +1,25 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-1953",
+  "RelatedDocumentIds": [
+    "ServerTasks-310"
+  ],
+  "ProjectId": null,
+  "EnvironmentId": null,
+  "TenantId": null,
+  "Category": "TaskCanceled",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-02-13T05:55:44.2943651+00:00",
+  "Message": "Task Deploy DeploymentTests_Project1 release 0.0.14 to Dev #310 was canceled",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "ServerTasks-310",
+      "StartIndex": 5,
+      "Length": 58
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "Session cookie"
+}

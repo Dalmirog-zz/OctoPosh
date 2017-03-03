@@ -458,5 +458,25 @@ namespace Octoposh.Model
 
             return list;
         }
+
+        public List<OutputOctopusFeed> GetOctopusFeed(List<FeedResource> baseResourceList)
+        {
+            var list = new List<OutputOctopusFeed>();
+
+            foreach (var feed in baseResourceList)
+            {
+                list.Add(new OutputOctopusFeed()
+                {
+                    Name = feed.Name,
+                    FeedURI = feed.FeedUri,
+                    FeedType = feed.FeedType,
+                    LoginUser = feed.Username,
+                    Id = feed.Id,
+                    Resource = feed
+                });
+            }
+
+            return list;
+        }
     }
 }

@@ -1,0 +1,40 @@
+{
+  "$type": "Octopus.Core.Model.Projects.DeploymentProcess, Octopus.Core",
+  "Id": "deploymentprocess-Projects-6-s-5-SPVXX",
+  "OwnerId": "Projects-6",
+  "IsFrozen": true,
+  "Version": 5,
+  "Steps": [
+    {
+      "Id": "9d23e5ff-80f0-4a80-bb5e-87c77b0e6249",
+      "Name": "Deploy my package",
+      "Condition": "Success",
+      "StartTrigger": "StartAfterPrevious",
+      "RequiresPackagesToBeAcquired": false,
+      "Actions": [
+        {
+          "Id": "839537a0-6bd7-49f7-b7ef-c109c60b00e6",
+          "Name": "Deploy my package",
+          "ActionType": "Octopus.TentaclePackage",
+          "IsDisabled": false,
+          "Environments": [],
+          "ExcludedEnvironments": [],
+          "Channels": [],
+          "TenantTags": [],
+          "Properties": {
+            "Octopus.Action.EnabledFeatures": "Octopus.Features.CustomDirectory",
+            "Octopus.Action.Package.DownloadOnTentacle": "False",
+            "Octopus.Action.Package.FeedId": "feeds-local-folder",
+            "Octopus.Action.Package.PackageId": "TestApp",
+            "Octopus.Action.Package.CustomInstallationDirectory": "c:\\deploy",
+            "Octopus.Action.Package.CustomInstallationDirectoryShouldBePurgedBeforeDeployment": "True"
+          }
+        }
+      ],
+      "Properties": {
+        "Octopus.Action.TargetRoles": "WebServer"
+      }
+    }
+  ],
+  "RelatedDocumentIds": []
+}
