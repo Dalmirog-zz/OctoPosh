@@ -1,0 +1,31 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-1988",
+  "RelatedDocumentIds": [
+    "Projects-4",
+    "Releases-82"
+  ],
+  "ProjectId": "Projects-4",
+  "EnvironmentId": null,
+  "TenantId": null,
+  "Category": "Created",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-02-13T05:58:50.9954414+00:00",
+  "Message": "DeploymentTests_Project2 release 0.0.14 was created",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Projects-4",
+      "StartIndex": 0,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "Releases-82",
+      "StartIndex": 33,
+      "Length": 6
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "Session cookie"
+}

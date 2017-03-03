@@ -1,0 +1,17 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-2250",
+  "RelatedDocumentIds": [],
+  "ProjectId": null,
+  "EnvironmentId": null,
+  "TenantId": null,
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-03-03T20:33:23.2142975+00:00",
+  "Message": "Features configuration was changed.",
+  "MessageReferences": [],
+  "Comments": null,
+  "Details": "<span>{\r&para;<br>  \"Id\": \"features\",\r&para;<br>  \"IsMultiTenancyEnabled\": true,\r&para;<br>  \"IsDockerEnabled\": </span><del style=\"background:#ffe6e6;\">fals</del><ins style=\"background:#e6ffe6;\">tru</ins><span>e,\r&para;<br>  \"IsCommunityActionTemplatesEnabled\": false,\r&para;<br>  \"IsBuiltInRepoSyncEnabled\": true,\r&para;<br>  \"Name\": \"Features Configuration\"\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "Session cookie"
+}
