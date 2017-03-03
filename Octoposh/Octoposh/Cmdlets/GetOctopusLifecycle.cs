@@ -7,10 +7,10 @@ using System.Management.Automation;
 namespace Octoposh.Cmdlets
 {
     /// <summary>
-    /// <para type="synopsis">This cmdlet returns Octopus Lifecycles</para>
+    /// <para type="synopsis">This cmdlet returns information about Octopus Lifecycles</para>
     /// </summary>
     /// <summary>
-    /// <para type="description">This cmdlet returns Octopus Lifecycles</para>
+    /// <para type="description">This cmdlet returns information about Octopus Lifecycles</para>
     /// </summary>
     /// <example>   
     ///   <code>PS C:\> Get-OctopusLifecycle</code>

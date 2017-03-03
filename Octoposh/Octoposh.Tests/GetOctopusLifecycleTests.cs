@@ -15,7 +15,7 @@ namespace Octoposh.Tests
     [TestFixture]
     public class GetOctopusLifecycleTests
     {
-        private static readonly string CmdletName = "Get-Lifecycle";
+        private static readonly string CmdletName = "Get-OctopusLifecycle";
         private static readonly Type CmdletType = typeof(GetOctopusLifecycle);
         private static readonly string Lifecycle1 = "LifecycleTests_Lifecycle1";
         private static readonly string Lifecycle2 = "LifecycleTests_Lifecycle2";
