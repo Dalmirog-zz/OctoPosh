@@ -12,6 +12,7 @@ var CreateInstance = Argument("CreateInstance","");
 var RemoveInstanceAtBeggining = Argument("RemoveInstanceAtBeggining","");
 var RemoveInstanceAtEnd = Argument("RemoveInstanceAtEnd","");
 var ConfigFile = Argument("ConfigFile","");
+var ModuleVersion = Argument("ModuleVersion","");
 
 //////////////////////////////////////////////////////////////////////
 // PREPARATION
@@ -19,6 +20,7 @@ var ConfigFile = Argument("ConfigFile","");
 
 // Define directories.
 var buildDir = Directory("./Octoposh/bin/") + Directory(configuration);
+var ManifestPath = Directory(buildDir) + Directory("Octoposh.psd1");
 
 //////////////////////////////////////////////////////////////////////
 // TASKS
@@ -61,8 +63,23 @@ Task("Build")
 
     });
 
-Task("Remove-Octopus-Instance-At-Beggining")    
+Task("Update-Module-Manifest")
     .IsDependentOn("Build")
+    .Description("Updates the module mainfest")   
+    .Does(() =>
+{
+    StartPowershellFile("Scripts/UpdateModuleManifest.ps1", new PowershellSettings()
+        .SetFormatOutput()
+        .SetLogOutput()
+        .WithArguments(args=>
+        {
+            args.Append("Version",ModuleVersion);
+            args.Append("ManifestPath",ManifestPath);            
+        }));
+});
+
+Task("Remove-Octopus-Instance-At-Beggining")    
+    .IsDependentOn("Update-Module-Manifest")
     .Description("Removes the Octopus Test instance")   
     .Does(() =>
 {

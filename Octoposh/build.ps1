@@ -56,7 +56,8 @@ Param(
     [string]$Configfile = ".\DevEnvConfig.json",
 	[switch]$CreateOctopusInstance = $false,
 	[switch]$RemoveOctopusInstanceAtEnd = $false,
-	[switch]$RemoveOctopusInstanceAtBeggining = $false    
+	[switch]$RemoveOctopusInstanceAtBeggining = $false,
+    [string]$ModuleVersion   
 )
 
 [Reflection.Assembly]::LoadWithPartialName("System.Security") | Out-Null
@@ -209,7 +210,17 @@ IF($RemoveOctopusInstanceAtEnd){
 	$RemoveInstanceAtEnd = 1
 }
 
+if($Version -eq $null){
+    $Version = "0.0.0.0"
+}
+
 # Start Cake
 Write-Host "Running build script..."
-Invoke-Expression "& `"$CAKE_EXE`" `"$Script`" -target=`"$Target`" -configuration=`"$Configuration`" -verbosity=`"$Verbosity`" $UseMono $UseDryRun $UseExperimental $ScriptArgs -CreateInstance=`"$CreateInstance`" -RemoveInstanceAtEnd=`"$RemoveInstanceAtEnd`" -ConfigFile=`"$ConfigFile`" -RemoveInstanceAtBeggining=`"$RemoveInstanceAtBeggining`""
+
+$expression = "& `"$CAKE_EXE`" `"$Script`" -target=`"$Target`" -configuration=`"$Configuration`" -verbosity=`"$Verbosity`" $UseMono $UseDryRun $UseExperimental $ScriptArgs -CreateInstance=`"$CreateInstance`" -RemoveInstanceAtEnd=`"$RemoveInstanceAtEnd`" -ConfigFile=`"$ConfigFile`" -RemoveInstanceAtBeggining=`"$RemoveInstanceAtBeggining`" -ModuleVersion=`"$ModuleVersion`" " #-ManifestPath=`"$ManifestPath`" 
+
+Write-Verbose "About to run [$expression]"
+
+Invoke-Expression $expression
+
 exit $LASTEXITCODE
