@@ -4,7 +4,7 @@
 RootModule = 'OctoPosh.psm1'
 
 # Version number of this module.
-ModuleVersion = '9.0.0'
+ModuleVersion = '0.0.0.0'
 
 # Author of this module
 Author = 'Dalmiro Granias ; http://about.me/dalmiro.granias'
