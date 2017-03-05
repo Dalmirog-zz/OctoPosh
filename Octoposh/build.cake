@@ -19,7 +19,7 @@ var ModuleVersion = Argument("ModuleVersion","");
 //////////////////////////////////////////////////////////////////////
 
 // Define directories.
-var buildDir = Directory("./Octoposh/bin/") + Directory(configuration);
+var buildDir = Directory("./Octoposh/bin/") + Directory(configuration) + Directory("Octoposh");
 var ManifestPath = Directory(buildDir) + Directory("Octoposh.psd1");
 
 //////////////////////////////////////////////////////////////////////

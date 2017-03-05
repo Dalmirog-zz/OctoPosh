@@ -9,12 +9,8 @@ namespace Octoposh.Github
 {
     class Program
     {
-        static async Task Main(string[] args)
+        static void Main(string[] args)
         {
-            var github = new GitHubClient(new ProductHeaderValue("MyAmazingApp"));
-            var user = await github.User.Get("half-ogre");
-            Console.WriteLine(user.Followers + " folks love the half ogre!");
-            Console.ReadLine();
         }
     }
 }

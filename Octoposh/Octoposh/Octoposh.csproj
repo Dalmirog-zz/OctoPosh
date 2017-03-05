@@ -19,20 +19,20 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\Debug\Octoposh\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\Octoposh.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\Octoposh\Octoposh.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>bin\Release\Octoposh\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\Octoposh.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\Octoposh\Octoposh.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
@@ -121,6 +121,6 @@
   </Target>
   <Import Project="..\packages\XmlDoc2CmdletDoc.0.2.5\build\XmlDoc2CmdletDoc.targets" Condition="Exists('..\packages\XmlDoc2CmdletDoc.0.2.5\build\XmlDoc2CmdletDoc.targets')" />
   <PropertyGroup>
-    <PostBuildEvent>..\..\..\packages\XmlDoc2CmdletDoc.0.2.5\tools\XmlDoc2CmdletDoc.exe Octoposh.dll</PostBuildEvent>
+    <PostBuildEvent>..\..\..\..\packages\XmlDoc2CmdletDoc.0.2.5\tools\XmlDoc2CmdletDoc.exe Octoposh.dll</PostBuildEvent>
   </PropertyGroup>
 </Project>

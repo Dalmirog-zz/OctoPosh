@@ -1,7 +1,7 @@
 @{
 #
 # Script module or binary module file associated with this manifest.
-RootModule = 'OctoPosh.psm1'
+RootModule = 'OctoPosh.dll'
 
 # Version number of this module.
 ModuleVersion = '0.0.0.0'
@@ -22,8 +22,7 @@ FunctionsToExport = '*'
 GUID = 'd0a9150d-b6a4-4b17-a325-e3a24fed0aa9'
 
 # Cmdlets to export from this module.
-# This is being handled by on the psm1 file
-# CmdletsToExport = '*'
+
 
 # Assemblies that must be loaded prior to importing this module
 # RequiredAssemblies = @()
@@ -34,7 +33,7 @@ PrivateData = @{
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries.
-         Tags = @('OctopusDeploy','Deployment')
+         Tags = @('OctopusDeploy','Deployment','Octopus')
 
         # A URL to the license for this module.
         # LicenseUri = ''
