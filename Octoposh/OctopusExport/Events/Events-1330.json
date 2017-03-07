@@ -2,21 +2,34 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1330",
   "RelatedDocumentIds": [
-    "ServerTasks-17"
+    "Deployments-13",
+    "Projects-5",
+    "Releases-30",
+    "Environments-1"
   ],
-  "ProjectId": null,
-  "EnvironmentId": null,
+  "ProjectId": "Projects-5",
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "TaskCanceled",
+  "Category": "DeploymentQueued",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-11T01:16:29.4392031-03:00",
-  "Message": "Task Deploy DashboardTests_Project2 release 0.0.1 to Stage #239 was canceled",
+  "Occurred": "2017-03-06T20:45:32.8329811-03:00",
+  "Message": "Deployed TestProject1 release 0.0.32 to Dev (#2)",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "ServerTasks-17",
-      "StartIndex": 5,
-      "Length": 58
+      "ReferencedDocumentId": "Projects-5",
+      "StartIndex": 9,
+      "Length": 12
+    },
+    {
+      "ReferencedDocumentId": "Releases-30",
+      "StartIndex": 30,
+      "Length": 6
+    },
+    {
+      "ReferencedDocumentId": "Environments-1",
+      "StartIndex": 40,
+      "Length": 8
     }
   ],
   "Comments": null,

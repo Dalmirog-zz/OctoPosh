@@ -2,25 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1080",
   "RelatedDocumentIds": [
-    "variableset-LibraryVariableSets-1",
-    "LibraryVariableSets-1"
+    "Environments-1"
   ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Modified",
+  "Category": "Deleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-04T17:47:46.1669594-03:00",
-  "Message": "Variables for mymodule were changed",
+  "Occurred": "2017-01-15T17:30:53.9252843-03:00",
+  "Message": "Machine 9K12I65HAKHNH1Y was deleted",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "LibraryVariableSets-1",
-      "StartIndex": 14,
-      "Length": 8
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 8,
+      "Length": 15
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"variableset-LibraryVariableSets-22\",\r&para;<br>  \"OwnerId\": \"LibraryVariableSets-22\",\r&para;<br>  \"V</span><del style=\"background:#ffe6e6;\">ariables\": [</del><ins style=\"background:#e6ffe6;\">ersion\": 1,\r&para;<br>  \"Variables\": [\r&para;<br>    {\r&para;<br>      \"Id\": \"88bf2acc-b87d-4fef-afe7-a9a50d029799\",\r&para;<br>      \"Name\": \"Octopus.Script.Module[mymodule]\",\r&para;<br>      \"Value\": \"function GetReleaseNumber()\\r\\n{\\r\\n    Write-Output $OctopusParameters['Octopus.Release.Number']\\r\\n}\\r\\n\"\r&para;<br>    }\r&para;<br>  </ins><span>],\r&para;<br>  \"RelatedDocumentIds\": []\r&para;<br>}</span>",
-  "IdentityEstablishedWith": "Session cookie"
+  "Details": null,
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

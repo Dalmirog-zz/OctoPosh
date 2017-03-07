@@ -1,0 +1,36 @@
+{
+  "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
+  "Id": "CommunityActionTemplates-396",
+  "Name": "Service - Check Running (Bash)",
+  "ExternalId": "2617b82a-c5f8-4a66-a9eb-e99b37e127d8",
+  "Description": "Check if any given service or list of services is/are running (uses `ps` command)",
+  "Version": 1,
+  "ActionType": "Octopus.Script",
+  "Author": "cjuroz",
+  "Website": "https://library.octopus.com/step-templates/2617b82a-c5f8-4a66-a9eb-e99b37e127d8",
+  "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/bash-service-check-running.json",
+  "Category": "Bash",
+  "Properties": {
+    "Octopus.Action.Script.Syntax": "Bash",
+    "Octopus.Action.Script.ScriptSource": "Inline",
+    "Octopus.Action.RunOnServer": "false",
+    "Octopus.Action.Script.ScriptBody": "services=$(get_octopusvariable \"services\")\nfailed=false\n\n# required arguments checking\nif [[ $services == \"Unrecognized variable\"* ]]\nthen\n    echo \"[ERROR]: Missing required argument. Exit!\"\n    exit 1;\nfi\n\nfor service in ${services//,/ }\ndo\n    if (( $(ps -ef | grep -v grep | grep $service | wc -l) > 0 ))\n    then\n        echo \"$service is running!!!\"\n    else\n        echo \"$service is not running!!!\"\n        failed=true\n    fi\ndone\n\nif $failed; then\n    echo \"At least one service is not running!!!\"\n    exit 1\nfi\n",
+    "Octopus.Action.Script.ScriptFileName": "",
+    "Octopus.Action.Package.FeedId": "",
+    "Octopus.Action.Package.PackageId": ""
+  },
+  "Parameters": [
+    {
+      "Id": null,
+      "Name": "services",
+      "Label": "Service names",
+      "HelpText": "The set of service names as should be listed by `ps` command. This can be either a single service or a comma separated list of services to check.\n- Example 1: httpd\n- Example 2: httpd, sshd, memcached",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "MultiLineText"
+      }
+    }
+  ],
+  "LogoAttachmentKey": "CommunityActionTemplates-396",
+  "LogoAttachmentMimeType": "image/png"
+}

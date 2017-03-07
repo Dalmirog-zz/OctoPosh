@@ -1,25 +1,22 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-418",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "ServerTasks-57"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-01T00:41:38.1114871-03:00",
-  "Message": "DashboardTests_Project2 release 0.0.2 was created",
+  "Occurred": "2017-02-04T19:55:00.3545724-03:00",
+  "Message": "Ran task Upgrade Tentacles in Dev",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 0,
-      "Length": 23
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 32,
-      "Length": 5
+      "ReferencedDocumentId": "ServerTasks-57",
+      "StartIndex": 9,
+      "Length": 24
     }
   ],
   "Comments": null,

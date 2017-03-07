@@ -1,17 +1,25 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-550",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Machines-4"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Imported",
-  "UserId": "NY",
-  "Username": "dalmiro.granias",
-  "Occurred": "2017-01-22T15:44:52.5777976-03:00",
-  "Message": "Imported task logs using Octopus migration tools",
-  "MessageReferences": [],
+  "Category": "MachineDeploymentRelatedPropertyWasUpdated",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-02-04T19:59:55.0846812-03:00",
+  "Message": "Machine OfflineTarget was modified (domain-event)",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Machines-4",
+      "StartIndex": 8,
+      "Length": 13
+    }
+  ],
   "Comments": null,
-  "Details": "",
-  "IdentityEstablishedWith": "Command-line or tools"
+  "Details": null,
+  "IdentityEstablishedWith": "Session cookie"
 }

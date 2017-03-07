@@ -1,4 +1,4 @@
-if("Dev" -eq $OctopusParameters['Octopus.Environment.Name']){
+if("Prod" -eq $OctopusParameters['Octopus.Environment.Name']){
     
     throw "Fail on purpose!"
 }

@@ -1,25 +1,28 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1053",
-  "RelatedDocumentIds": [
-    "Environments-1"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Modified",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-04T00:38:09.0452747-03:00",
-  "Message": "Machine ListeningTentacle was modified",
+  "Occurred": "2017-01-30T22:52:56.4690289-03:00",
+  "Message": "DashboardTests_Project1 release 0.0.2 was created",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 8,
-      "Length": 17
+      "StartIndex": 0,
+      "Length": 23
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 32,
+      "Length": 5
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"Machines-1\",\r&para;<br>  \"Name\": \"ListeningTentacle\",\r&para;<br>  \"Endpoint\": {\r&para;<br>    \"ProxyId\": null,\r&para;<br>    \"Thumbprint\": \"</span><del style=\"background:#ffe6e6;\">42EBB22B28AC5D59E97DC937FEE301ACB82A84AF</del><ins style=\"background:#e6ffe6;\">5AE0B64787F7FD66D139ED0E22AF887011811363</ins><span>\",\r&para;<br>    \"Uri\": \"https://localhost:10933</span><ins style=\"background:#e6ffe6;\">/</ins><span>\",\r&para;<br>    \"UpgradeLocked\": false\r&para;<br>  },\r&para;<br>  \"IsDisabled\": false,\r&para;<br>  \"Roles\": [\r&para;<br>    \"WebServer\"\r&para;<br>  ],\r&para;<br>  \"EnvironmentIds\": [\r&para;<br>    \"Environments-1\"\r&para;<br>  ],\r&para;<br>  \"TenantIds\": [],\r&para;<br>  \"TenantTags\": [],\r&para;<br>  \"MachinePolicyId\": \"MachinePolicies-1\"\r&para;<br>}</span>",
+  "Details": null,
   "IdentityEstablishedWith": "Session cookie"
 }

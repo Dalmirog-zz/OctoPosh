@@ -2,22 +2,21 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1095",
   "RelatedDocumentIds": [
-    "ServerTasks-139",
-    "Environments-1"
+    "ServerTasks-54"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
+  "Category": "TaskCanceled",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-04T19:39:26.1442656-03:00",
-  "Message": "Ran task Check ListeningTentacle2 health",
+  "Occurred": "2017-01-30T23:46:26.3083385-03:00",
+  "Message": "Task Deploy DashboardTests_Project2 release 0.0.1 to Stage #76 was canceled",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "ServerTasks-139",
-      "StartIndex": 9,
-      "Length": 31
+      "ReferencedDocumentId": "ServerTasks-54",
+      "StartIndex": 5,
+      "Length": 57
     }
   ],
   "Comments": null,

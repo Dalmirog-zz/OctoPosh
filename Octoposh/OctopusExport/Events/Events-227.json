@@ -1,20 +1,33 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-227",
-  "RelatedDocumentIds": [],
-  "ProjectId": null,
-  "EnvironmentId": null,
+  "RelatedDocumentIds": [
+    "Projects-6",
+    "Environments-1"
+  ],
+  "ProjectId": "Projects-6",
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "DeploymentQueued",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-09T01:11:35.2019623-03:00",
-  "Message": "Channel VJYNRMDF9FK6K62 was deleted",
+  "Occurred": "2017-02-14T07:22:07.5103603-03:00",
+  "Message": "Deployed TestProject2 release 90.0.0 to Dev",
   "MessageReferences": [
     {
+      "ReferencedDocumentId": "Projects-6",
+      "StartIndex": 9,
+      "Length": 12
+    },
+    {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 8,
-      "Length": 15
+      "StartIndex": 30,
+      "Length": 6
+    },
+    {
+      "ReferencedDocumentId": "Environments-1",
+      "StartIndex": 40,
+      "Length": 3
     }
   ],
   "Comments": null,

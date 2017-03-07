@@ -1,22 +1,20 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-607",
-  "RelatedDocumentIds": [
-    "ServerTasks-187"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "TaskCanceled",
+  "Category": "MachineDeleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-29T05:06:23.5189252-03:00",
-  "Message": "Task Deploy TestProject2 release 0.0.1 to Stage #71 was canceled",
+  "Occurred": "2016-12-14T01:09:46.9208052-03:00",
+  "Message": "Machine West was deleted (domain-event)",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "ServerTasks-187",
-      "StartIndex": 5,
-      "Length": 46
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 8,
+      "Length": 4
     }
   ],
   "Comments": null,

@@ -1,0 +1,56 @@
+{
+  "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
+  "Id": "CommunityActionTemplates-318",
+  "Name": "HTTP - Test URL (Bash)",
+  "ExternalId": "17092e2b-7fae-4aae-b8df-bb1c7ec76ff9",
+  "Description": "Makes a GET request to a HTTP(S) end point and verifies that a particular status code is returned within a specified period of time",
+  "Version": 1,
+  "ActionType": "Octopus.Script",
+  "Author": "cjuroz",
+  "Website": "https://library.octopus.com/step-templates/17092e2b-7fae-4aae-b8df-bb1c7ec76ff9",
+  "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/bash-http-test-url.json",
+  "Category": "Bash",
+  "Properties": {
+    "Octopus.Action.Script.Syntax": "Bash",
+    "Octopus.Action.Script.ScriptSource": "Inline",
+    "Octopus.Action.RunOnServer": "false",
+    "Octopus.Action.Script.ScriptBody": "uri=$(get_octopusvariable \"uri\")\nexpectedCode=$(get_octopusvariable \"expectedCode\")\ntimeout=$(get_octopusvariable \"timeout\")\nsuccess=false\n\n# required arguments checking\nif [[ $expectedCode == \"Unrecognized variable\"* ]] || [[ $uri == \"Unrecognized variable\"* ]] || [[ $timeout == \"Unrecognized variable\"* ]]\nthen\n    echo \"[ERROR]: Missing required argument. Exit!\"\n    exit 1;\nfi\n\necho \"Starting verification request to $uri\"\necho \"Expecting response code $expectedCode\"\n\nend=$((SECONDS+$timeout))\n\nuntil $success || [ $SECONDS -ge $end ];\ndo\n    code=$(curl --write-out %{http_code} --silent --output /dev/null $uri)\n    echo \"Recieved response code: $code\"\n    \n    if [ $code -eq $expectedCode ]\n    then\n        echo \"Sucesss! Found status code $expectedCode\"\n        success=true\n        exit 0\n    else\n        echo \"Trying again in 5 seconds...\"\n        sleep 5\n    fi\ndone\n\nif ! $success\nthen\n    echo \"Verification failed - giving up.\"\n    exit 1\nfi",
+    "Octopus.Action.Script.ScriptFileName": "",
+    "Octopus.Action.Package.FeedId": "",
+    "Octopus.Action.Package.PackageId": ""
+  },
+  "Parameters": [
+    {
+      "Id": null,
+      "Name": "uri",
+      "Label": "URI",
+      "HelpText": "The full Uri of the endpoint",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "expectedCode",
+      "Label": "Expected code",
+      "HelpText": "The expected HTTP status code",
+      "DefaultValue": "200",
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "timeout",
+      "Label": "Timeout (seconds)",
+      "HelpText": "The number of seconds before the step fails and times out",
+      "DefaultValue": "30",
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    }
+  ],
+  "LogoAttachmentKey": "CommunityActionTemplates-318",
+  "LogoAttachmentMimeType": "image/png"
+}

@@ -2,24 +2,34 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1042",
   "RelatedDocumentIds": [
-    "ProjectGroups-22"
+    "Environments-2"
   ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-2",
   "TenantId": null,
-  "Category": "Modified",
+  "Category": "DeploymentQueued",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-03T23:42:55.4117265-03:00",
-  "Message": "Project Group DeploymentsTests_ProjectGroup was modified",
+  "Occurred": "2017-01-30T22:51:09.0380714-03:00",
+  "Message": "Deployed DashboardTests_Project1 release 0.0.1 to Prod (#2)",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "ProjectGroups-22",
-      "StartIndex": 14,
-      "Length": 29
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 9,
+      "Length": 23
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 41,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-2",
+      "StartIndex": 50,
+      "Length": 9
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"ProjectGroups-42\",\r&para;<br>  \"Name\": \"DeploymentsTests_</span><del style=\"background:#ffe6e6;\">Test</del><span>Project</span><del style=\"background:#ffe6e6;\">1</del><ins style=\"background:#e6ffe6;\">Group</ins><span>\",\r&para;<br>  \"Description\": \"Resource created for unit tests</span><ins style=\"background:#e6ffe6;\">. Do note delete or modify</ins><span>\"\r&para;<br>}</span>",
+  "Details": null,
   "IdentityEstablishedWith": "Session cookie"
 }

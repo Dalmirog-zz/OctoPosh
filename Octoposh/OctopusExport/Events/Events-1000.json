@@ -2,7 +2,8 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1000",
   "RelatedDocumentIds": [
-    "Teams-2"
+    "variableset-LibraryVariableSets-2",
+    "LibraryVariableSets-2"
   ],
   "ProjectId": null,
   "EnvironmentId": null,
@@ -10,16 +11,16 @@
   "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-12T03:15:38.9727901-03:00",
-  "Message": "Team TeamTests_Team2 was modified",
+  "Occurred": "2017-01-23T02:17:17.591959-03:00",
+  "Message": "Variables for unmodified_TestLibraryVariableset were changed",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Teams-2",
-      "StartIndex": 5,
-      "Length": 15
+      "ReferencedDocumentId": "LibraryVariableSets-2",
+      "StartIndex": 14,
+      "Length": 33
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"Teams-2\",\r&para;<br>  \"Name\": \"TeamTests_Team2\",\r&para;<br>  \"MemberUserIds\": [</span><ins style=\"background:#e6ffe6;\">\r&para;<br>    \"Users-42\"\r&para;<br>  </ins><span>],\r&para;<br>  \"ExternalSecurityGroups\": [],\r&para;<br>  \"UserRoleIds\": [],\r&para;<br>  \"ProjectIds\": [],\r&para;<br>  \"EnvironmentIds\": [],\r&para;<br>  \"TenantIds\": [],\r&para;<br>  \"ProjectGroupIds\": [],\r&para;<br>  \"TenantTags\": []\r&para;<br>}</span>",
+  "Details": "<span>{\r&para;<br>  \"Id\": \"variableset-LibraryVariableSets-22\",\r&para;<br>  \"OwnerId\": \"LibraryVariableSets-22\",\r&para;<br>  \"Version\": </span><del style=\"background:#ffe6e6;\">1</del><ins style=\"background:#e6ffe6;\">2</ins><span>,\r&para;<br>  \"Variables\": [],\r&para;<br>  \"RelatedDocumentIds\": []\r&para;<br>}</span>",
   "IdentityEstablishedWith": "Session cookie"
 }

@@ -2,34 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-88",
   "RelatedDocumentIds": [
-    "Environments-3"
+    "LibraryVariableSets-1"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-3",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentQueued",
+  "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-01T00:17:54.3301434-03:00",
-  "Message": "Deployed DashboardTests_Project1 release 0.0.2 to Stage",
+  "Occurred": "2017-02-04T17:47:45.8719613-03:00",
+  "Message": "Library Variable Set mymodule was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 9,
-      "Length": 23
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 41,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-3",
-      "StartIndex": 50,
-      "Length": 5
+      "ReferencedDocumentId": "LibraryVariableSets-1",
+      "StartIndex": 21,
+      "Length": 8
     }
   ],
   "Comments": null,
-  "Details": null,
+  "Details": "<span>{\r&para;<br>  \"Id\": \"LibraryVariableSets-22\",\r&para;<br>  \"Name\": \"mymodule\",\r&para;<br>  \"Description\": \"\",\r&para;<br>  \"VariableSetId\": \"variableset-LibraryVariableSets-22\",\r&para;<br>  \"ContentType\": \"ScriptModule\",\r&para;<br>  \"Templates\": []\r&para;<br>}</span>",
   "IdentityEstablishedWith": "Session cookie"
 }

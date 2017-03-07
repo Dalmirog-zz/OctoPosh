@@ -1,0 +1,25 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-2537",
+  "RelatedDocumentIds": [
+    "Channels-21"
+  ],
+  "ProjectId": null,
+  "EnvironmentId": null,
+  "TenantId": null,
+  "Category": "Created",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-03-07T01:20:06.5948465+00:00",
+  "Message": "Channel TestChannel_Channel1 was created",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Channels-21",
+      "StartIndex": 8,
+      "Length": 20
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "Session cookie"
+}

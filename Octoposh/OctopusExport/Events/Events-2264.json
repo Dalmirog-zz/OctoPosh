@@ -1,0 +1,28 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-2264",
+  "RelatedDocumentIds": [
+    "ServerTasks-345",
+    "projects-*",
+    "Environments-1",
+    "tenants-*"
+  ],
+  "ProjectId": "projects-*",
+  "EnvironmentId": "Environments-1",
+  "TenantId": "tenants-*",
+  "Category": "Created",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-03-07T00:37:41.4053356+00:00",
+  "Message": "Ran task Check OfflineTarget health",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "ServerTasks-345",
+      "StartIndex": 9,
+      "Length": 26
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "Session cookie"
+}

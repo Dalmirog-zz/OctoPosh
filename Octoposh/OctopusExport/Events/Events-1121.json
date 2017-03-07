@@ -1,23 +1,20 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1121",
-  "RelatedDocumentIds": [
-    "ServerTasks-267",
-    "Environments-1"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
+  "Category": "Deleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-04T20:00:47.5271979-03:00",
-  "Message": "Ran task Check ListeningTentacle health",
+  "Occurred": "2017-01-14T20:22:46.6009663-03:00",
+  "Message": "User stuff was deleted",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "ServerTasks-267",
-      "StartIndex": 9,
-      "Length": 30
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 5,
+      "Length": 5
     }
   ],
   "Comments": null,

@@ -1,34 +1,36 @@
 {
   "$type": "Octopus.Core.Model.ServerTasks.ServerTask, Octopus.Core",
   "Id": "ServerTasks-258",
-  "Name": "Deploy",
+  "Name": "Upgrade",
   "Arguments": {
-    "DeploymentId": null
+    "EnvironmentId": "Environments-1"
   },
-  "Description": "Deploy DashboardTests_Project2 release 0.0.1 to Stage",
-  "QueueTime": "2017-02-01T00:39:32.7696562-03:00",
+  "Description": "Upgrade Tentacles in Dev",
+  "QueueTime": "2017-03-06T20:53:31.2269901-03:00",
   "QueueTimeExpiry": "10675199.02:48:05.4775807",
   "ExecutionTimeExpiry": "00:00:00",
-  "StartTime": "2017-02-01T00:39:32.8586399-03:00",
-  "LastUpdatedTime": "2017-02-01T00:39:37.6289065-03:00",
-  "CompletedTime": "2017-02-01T00:39:37.6289065-03:00",
+  "StartTime": "2017-03-06T20:53:31.2519883-03:00",
+  "LastUpdatedTime": "2017-03-06T20:54:00.8919802-03:00",
+  "CompletedTime": "2017-03-06T20:54:00.8919802-03:00",
   "ErrorMessage": "",
-  "ConcurrencyTag": "/Projects-2/Environments-3",
+  "ConcurrencyTag": "Upgrade",
   "State": "Success",
   "HasPendingInterruptions": false,
-  "HasWarningsOrErrors": false,
-  "ServerVersion": "3.7.4+Branch.master.Sha.403a70b03ab7c4b06d0bcb637b19afa44456c672",
+  "HasWarningsOrErrors": true,
+  "ServerVersion": "3.8.4+Branch.master.Sha.1b250ca4d7c1d42aa029771ed15851e6ed11ff83",
   "ServerNode": "DEVBOX",
-  "LogDifferentiationToken": "CH7R4668SQ",
+  "LogDifferentiationToken": "G766SFV3H8",
   "AdditionalDescription": null,
-  "DurationSeconds": 5,
+  "DurationSeconds": 30,
   "ProjectId": null,
-  "EnvironmentId": "Environments-3",
+  "EnvironmentId": null,
   "TenantId": null,
-  "ExtendedViewLogPermissions": [],
-  "ExtendedCreatePermissions": [
-    "DeploymentCreate"
+  "ExtendedViewLogPermissions": [
+    "AdministerSystem"
   ],
-  "CanRerun": false,
+  "ExtendedCreatePermissions": [
+    "AdministerSystem"
+  ],
+  "CanRerun": true,
   "Properties": {}
 }

@@ -1,19 +1,21 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1354",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "ServerTasks-258"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-11T01:25:45.6268785-03:00",
-  "Message": "Project DeploymentTests_Project1 was deleted",
+  "Occurred": "2017-03-06T20:53:31.2329895-03:00",
+  "Message": "Ran task Upgrade Tentacles in Dev",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 8,
+      "ReferencedDocumentId": "ServerTasks-258",
+      "StartIndex": 9,
       "Length": 24
     }
   ],

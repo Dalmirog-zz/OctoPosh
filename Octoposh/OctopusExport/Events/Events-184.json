@@ -2,17 +2,16 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-184",
   "RelatedDocumentIds": [
-    "Machines-3",
-    "Environments-1"
+    "Machines-3"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
+  "Category": "MachineAdded",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2016-12-09T02:10:21.231287-03:00",
-  "Message": "Machine North was created",
+  "Occurred": "2016-12-09T02:10:21.2732878-03:00",
+  "Message": "Machine North was created (domain-event)",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "Machines-3",

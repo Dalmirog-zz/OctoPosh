@@ -1,22 +1,25 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-2183",
-  "RelatedDocumentIds": [
-    "Environments-41"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
-  "EnvironmentId": "Environments-41",
+  "EnvironmentId": null,
   "TenantId": null,
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-03-03T20:18:37.5900918+00:00",
-  "Message": "Environment 9KWKGH1TTO7NZFI was created",
+  "Occurred": "2017-02-06T03:25:39.635375-03:00",
+  "Message": "DeploymentTests_Project1 release 0.0.10 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Environments-41",
-      "StartIndex": 12,
-      "Length": 15
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 0,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 33,
+      "Length": 6
     }
   ],
   "Comments": null,

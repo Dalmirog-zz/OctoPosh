@@ -1,43 +1,23 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1623",
-  "RelatedDocumentIds": [
-    "Deployments-73",
-    "Projects-4",
-    "Releases-28",
-    "Environments-3"
-  ],
-  "ProjectId": "Projects-4",
-  "EnvironmentId": "Environments-3",
+  "RelatedDocumentIds": [],
+  "ProjectId": null,
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentSucceeded",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-11T01:46:47.5296614-03:00",
-  "Message": "Deploy to Stage succeeded  for DeploymentTests_Project2 release 0.0.7 to Stage",
+  "Category": "MachineDeleted",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-02-08T03:53:50.3701341-03:00",
+  "Message": "Machine 3P0LLD44EKDSQWJ was deleted (domain-event)",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Deployments-73",
-      "StartIndex": 0,
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 8,
       "Length": 15
-    },
-    {
-      "ReferencedDocumentId": "Projects-4",
-      "StartIndex": 31,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "Releases-28",
-      "StartIndex": 64,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-3",
-      "StartIndex": 73,
-      "Length": 5
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }
