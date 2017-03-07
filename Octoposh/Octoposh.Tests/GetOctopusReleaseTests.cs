@@ -14,11 +14,12 @@ namespace Octoposh.Tests
     {
         private static readonly string CmdletName = "Get-OctopusRelease";
         private static readonly Type CmdletType = typeof(GetOctopusRelease);
+        private static readonly string Project1 = "ProjectTests_Project1";
 
         [Test]
         public void GetReleaseByProject()
         {
-            var projectName = "TestProject1";
+            var projectName = Project1;
 
             var parameters = new List<CmdletParameter>
             {
@@ -43,7 +44,7 @@ namespace Octoposh.Tests
         [Test]
         public void GetReleaseBySingleVersion()
         {
-            var projectName = "TestProject1";
+            var projectName = Project1;
             var ReleaseVersion = "0.0.1";
 
             var parameters = new List<CmdletParameter>();
@@ -70,7 +71,7 @@ namespace Octoposh.Tests
         [Test]
         public void GetReleaseByMultipleVersions()
         {
-            var projectName = "TestProject1";
+            var projectName = Project1;
             var releaseVersions = new string[]{"0.0.1","0.0.2"};
 
             var parameters = new List<CmdletParameter>();
@@ -101,7 +102,7 @@ namespace Octoposh.Tests
         [Test]
         public void GetReleaseByMultipleVersionsWithUnexisting()
         {
-            var projectName = "TestProject1";
+            var projectName = Project1;
 
             var goodVersion = "0.0.1";
             var badVersion = "whatever";
@@ -133,7 +134,7 @@ namespace Octoposh.Tests
         [Test]
         public void GetReleaseUsingLatestX()
         {
-            var projectName = "TestProject1";
+            var projectName = Project1;
             var randomMax = 31; //Setting 31 as the max cause in that particular case It'll force Octopus to paginate
             var latest = new Random().Next(1, randomMax);
 
@@ -160,7 +161,7 @@ namespace Octoposh.Tests
         [Test]
         public void GetReleaseUsingResourceOnlyReturnsRawResource()
         {
-            var projectName = "TestProject1";
+            var projectName = Project1;
             var latest = 1;
 
             var parameters = new List<CmdletParameter>();

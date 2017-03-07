@@ -17,13 +17,15 @@ namespace Octoposh.Tests
     {
         private static readonly string CmdletName = "Get-OctopusProject";
         private static readonly Type CmdletType = typeof(GetOctopusProject);
+        private static readonly string Project1 = "ProjectTests_Project1";
+        private static readonly string Project2 = "ProjectTests_Project2";
 
         [Test]
         public void GetProjectBySingleName()
         {
             var parameters = new List<CmdletParameter> {new CmdletParameter()
             {
-                Name = "Name", SingleValue = "TestProject1"
+                Name = "Name", SingleValue = Project1
             }};
 
 
@@ -43,12 +45,13 @@ namespace Octoposh.Tests
         {
             var parameters = new List<CmdletParameter> {new CmdletParameter()
             {
-                Name = "Name", MultipleValue = new[] {"TestProject1","TestProject2"}
+                Name = "Name", MultipleValue = new[] {Project1,Project2}
             }};
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
             var results = powershell.Invoke<List<OutputOctopusProject>>();
 
+            //todo this test sucks
             Assert.AreEqual(results[0].Count, 2);
 
             Console.WriteLine("Items Found:");
@@ -113,7 +116,7 @@ namespace Octoposh.Tests
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
             var results = powershell.Invoke<List<OutputOctopusProject>>();
-            
+
             foreach (var result in results[0])
             {
                 Assert.AreEqual(result.ProjectGroupName, projectGroupName);

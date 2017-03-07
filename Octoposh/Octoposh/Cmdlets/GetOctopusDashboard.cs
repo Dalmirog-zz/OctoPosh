@@ -6,6 +6,7 @@ using Octoposh.Model;
 
 namespace Octoposh.Cmdlets
 {
+    //Todo Fix help
     /// <summary>
     /// <para type="synopsis">Sets the current Octopus connection info (URL and API Key). Highly recommended to call this function from $profile to avoid having to re-configure this on every session.</para>
     /// </summary>
