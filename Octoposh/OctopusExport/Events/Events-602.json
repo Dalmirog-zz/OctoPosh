@@ -2,32 +2,21 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-602",
   "RelatedDocumentIds": [
-    "Projects-6",
-    "Environments-3"
+    "Environments-1"
   ],
-  "ProjectId": "Projects-6",
-  "EnvironmentId": "Environments-3",
+  "ProjectId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "DeploymentQueued",
+  "Category": "Deleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-29T05:06:20.8308703-03:00",
-  "Message": "Deployed TestProject2 release 0.0.1 to Stage (#2)",
+  "Occurred": "2016-12-14T01:09:46.8548081-03:00",
+  "Message": "Machine West was deleted",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Projects-6",
-      "StartIndex": 9,
-      "Length": 12
-    },
-    {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 30,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-3",
-      "StartIndex": 39,
-      "Length": 10
+      "StartIndex": 8,
+      "Length": 4
     }
   ],
   "Comments": null,

@@ -2,25 +2,30 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-734",
   "RelatedDocumentIds": [
-    "variableset-LibraryVariableSets-2",
-    "LibraryVariableSets-2"
+    "Projects-5",
+    "Releases-12"
   ],
-  "ProjectId": null,
+  "ProjectId": "Projects-5",
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Modified",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-23T02:16:54.1569137-03:00",
-  "Message": "Variables for unmodified_TestLibraryVariableset were changed",
+  "Occurred": "2017-01-18T23:36:43.6052325-03:00",
+  "Message": "TestProject1 release 0.0.16 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "LibraryVariableSets-2",
-      "StartIndex": 14,
-      "Length": 33
+      "ReferencedDocumentId": "Projects-5",
+      "StartIndex": 0,
+      "Length": 12
+    },
+    {
+      "ReferencedDocumentId": "Releases-12",
+      "StartIndex": 21,
+      "Length": 6
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"variableset-LibraryVariableSets-22\",\r&para;<br>  \"OwnerId\": \"LibraryVariableSets-22\",\r&para;<br></span><ins style=\"background:#e6ffe6;\">  \"Version\": 1,\r&para;<br></ins><span>  \"Variables\": [],\r&para;<br>  \"RelatedDocumentIds\": []\r&para;<br>}</span>",
+  "Details": null,
   "IdentityEstablishedWith": "Session cookie"
 }

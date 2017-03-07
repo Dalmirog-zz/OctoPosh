@@ -1,25 +1,17 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1138",
-  "RelatedDocumentIds": [
-    "Machines-1"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "MachineDeploymentRelatedPropertyWasUpdated",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-02-04T20:03:41.4576987-03:00",
-  "Message": "Machine ListeningTentacle1 was modified (domain-event)",
-  "MessageReferences": [
-    {
-      "ReferencedDocumentId": "Machines-1",
-      "StartIndex": 8,
-      "Length": 18
-    }
-  ],
+  "Category": "Imported",
+  "UserId": "NY",
+  "Username": "dalmiro.granias",
+  "Occurred": "2017-01-20T21:22:51.3342744-03:00",
+  "Message": "Imported task logs using Octopus migration tools",
+  "MessageReferences": [],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "Details": "",
+  "IdentityEstablishedWith": "Command-line or tools"
 }

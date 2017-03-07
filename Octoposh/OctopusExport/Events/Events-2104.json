@@ -2,24 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-2104",
   "RelatedDocumentIds": [
-    "LibraryVariableSets-22"
+    "feeds-unmodified-feed"
   ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
+  "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-14T06:33:13.2173884+00:00",
-  "Message": "Library Variable Set K20DWAGSNSX9QZB was created",
+  "Occurred": "2017-02-11T05:08:13.3550216-03:00",
+  "Message": "NuGetFeed modified_TestFeed was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "LibraryVariableSets-22",
-      "StartIndex": 21,
-      "Length": 15
+      "ReferencedDocumentId": "feeds-unmodified-feed",
+      "StartIndex": 10,
+      "Length": 17
     }
   ],
   "Comments": null,
-  "Details": null,
+  "Details": "<span>{\r&para;<br>  \"Id\": \"feeds-unmodified-feed\",\r&para;<br>  \"Name\": \"</span><del style=\"background:#ffe6e6;\">un</del><span>modified_TestFeed\",\r&para;<br>  \"FeedUri\": \"c:\\\\packages\",\r&para;<br>  \"Username\": null,\r&para;<br>  \"Password\": null,\r&para;<br>  \"FeedType\": \"NuGet\"\r&para;<br>}</span>",
   "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

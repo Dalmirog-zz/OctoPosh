@@ -1,20 +1,22 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-703",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Machines-3"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "MachineDeleted",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2016-12-10T20:19:15.3771878-03:00",
-  "Message": "Machine West was deleted (domain-event)",
+  "Occurred": "2016-12-04T13:20:32.9223283-03:00",
+  "Message": "Machine North was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
+      "ReferencedDocumentId": "Machines-3",
       "StartIndex": 8,
-      "Length": 4
+      "Length": 5
     }
   ],
   "Comments": null,

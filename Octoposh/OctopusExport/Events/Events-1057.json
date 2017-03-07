@@ -2,30 +2,39 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1057",
   "RelatedDocumentIds": [
-    "ServerTasks-265",
-    "ServerTasks-264"
+    "Environments-3"
   ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-3",
   "TenantId": null,
-  "Category": "Created",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-02-04T00:42:25.7265268-03:00",
-  "Message": "Task Check ListeningTentacle health #89 was created by re-running task Check ListeningTentacle health #88",
+  "Category": "DeploymentStarted",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-02-08T03:35:31.376813-03:00",
+  "Message": "Deploy to Stage started  for DeploymentTests_Project2 release 0.0.12 to Stage",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "ServerTasks-265",
-      "StartIndex": 5,
-      "Length": 34
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 0,
+      "Length": 15
     },
     {
-      "ReferencedDocumentId": "ServerTasks-264",
-      "StartIndex": 71,
-      "Length": 34
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 29,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 62,
+      "Length": 6
+    },
+    {
+      "ReferencedDocumentId": "Environments-3",
+      "StartIndex": 72,
+      "Length": 5
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "IdentityEstablishedWith": "Unknown"
 }

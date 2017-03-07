@@ -1,25 +1,17 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-577",
-  "RelatedDocumentIds": [
-    "ProjectGroups-25"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Modified",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-01-22T23:50:19.7252124-03:00",
-  "Message": "Project Group unmodified_TestprojectGroup was modified",
-  "MessageReferences": [
-    {
-      "ReferencedDocumentId": "ProjectGroups-25",
-      "StartIndex": 14,
-      "Length": 27
-    }
-  ],
+  "Category": "Imported",
+  "UserId": "NY",
+  "Username": "dalmiro.granias",
+  "Occurred": "2016-12-14T00:42:08.1036724-03:00",
+  "Message": "Imported task logs using Octopus migration tools",
+  "MessageReferences": [],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"ProjectGroups-82\",\r&para;<br>  \"Name\": \"</span><ins style=\"background:#e6ffe6;\">un</ins><span>modified_TestprojectGroup\",\r&para;<br>  \"Description\": null\r&para;<br>}</span>",
-  "IdentityEstablishedWith": "Session cookie"
+  "Details": "",
+  "IdentityEstablishedWith": "Command-line or tools"
 }

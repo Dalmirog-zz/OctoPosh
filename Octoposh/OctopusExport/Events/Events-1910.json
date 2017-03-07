@@ -2,24 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1910",
   "RelatedDocumentIds": [
-    "LibraryVariableSets-21"
+    "Teams-3"
   ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-13T02:43:29.9627039+00:00",
-  "Message": "Library Variable Set 8N30LH6795S7DKL was deleted",
+  "Occurred": "2017-02-01T00:13:53.4640336-03:00",
+  "Message": "Team modified_TestTeam was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "LibraryVariableSets-21",
-      "StartIndex": 21,
-      "Length": 15
+      "ReferencedDocumentId": "Teams-3",
+      "StartIndex": 5,
+      "Length": 17
     }
   ],
   "Comments": null,
-  "Details": null,
+  "Details": "<span>{\r&para;<br>  \"Id\": \"Teams-1\",\r&para;<br>  \"Name\": \"</span><del style=\"background:#ffe6e6;\">un</del><span>modified_TestTeam\",\r&para;<br>  \"MemberUserIds\": [],\r&para;<br>  \"ExternalSecurityGroups\": [],\r&para;<br>  \"UserRoleIds\": [],\r&para;<br>  \"ProjectIds\": [],\r&para;<br>  \"EnvironmentIds\": [],\r&para;<br>  \"TenantIds\": [],\r&para;<br>  \"ProjectGroupIds\": [],\r&para;<br>  \"TenantTags\": []\r&para;<br>}</span>",
   "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

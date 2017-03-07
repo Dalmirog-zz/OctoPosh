@@ -1,25 +1,17 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-2251",
-  "RelatedDocumentIds": [
-    "feeds-somedockerregistry"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-03-03T20:33:56.2721361+00:00",
-  "Message": "DockerFeed SomeDockerRegistry was created",
-  "MessageReferences": [
-    {
-      "ReferencedDocumentId": "feeds-somedockerregistry",
-      "StartIndex": 11,
-      "Length": 18
-    }
-  ],
+  "Category": "Imported",
+  "UserId": "NY",
+  "Username": "dalmiro.granias",
+  "Occurred": "2017-03-07T00:34:20.7550285+00:00",
+  "Message": "Imported task logs using Octopus migration tools",
+  "MessageReferences": [],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "Details": "",
+  "IdentityEstablishedWith": "Command-line or tools"
 }

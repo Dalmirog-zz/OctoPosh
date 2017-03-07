@@ -2,21 +2,31 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-2185",
   "RelatedDocumentIds": [
-    "feeds-9kwkgh1tto7nzfi"
+    "Environments-1"
   ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Created",
+  "Category": "DeploymentQueued",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-03-03T20:18:38.2130878+00:00",
-  "Message": "NuGetFeed 9KWKGH1TTO7NZFI was created",
+  "Occurred": "2017-02-06T03:25:40.8072375-03:00",
+  "Message": "Deployed DeploymentTests_Project1 release 0.0.10 to Dev",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "feeds-9kwkgh1tto7nzfi",
-      "StartIndex": 10,
-      "Length": 15
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 9,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 42,
+      "Length": 6
+    },
+    {
+      "ReferencedDocumentId": "Environments-1",
+      "StartIndex": 52,
+      "Length": 3
     }
   ],
   "Comments": null,

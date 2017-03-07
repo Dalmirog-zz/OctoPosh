@@ -210,8 +210,8 @@ IF($RemoveOctopusInstanceAtEnd){
 	$RemoveInstanceAtEnd = 1
 }
 
-if($Version -eq $null){
-    $Version = "0.0.0.0"
+if([string]::IsNullOrWhiteSpace($ModuleVersion)){
+    $ModuleVersion = "0.0.0.0"
 }
 
 # Start Cake

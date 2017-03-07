@@ -2,24 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-2102",
   "RelatedDocumentIds": [
-    "feeds-k20dwagsnsx9qzb"
+    "Environments-4"
   ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-4",
   "TenantId": null,
-  "Category": "Created",
+  "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-14T06:33:12.6223845+00:00",
-  "Message": "NuGetFeed K20DWAGSNSX9QZB was created",
+  "Occurred": "2017-02-11T05:08:12.7620017-03:00",
+  "Message": "Environment modified_TestEnvironment was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "feeds-k20dwagsnsx9qzb",
-      "StartIndex": 10,
-      "Length": 15
+      "ReferencedDocumentId": "Environments-4",
+      "StartIndex": 12,
+      "Length": 24
     }
   ],
   "Comments": null,
-  "Details": null,
+  "Details": "<span>{\r&para;<br>  \"Id\": \"Environments-4\",\r&para;<br>  \"Name\": \"</span><del style=\"background:#ffe6e6;\">un</del><span>modified_TestEnvironment\",\r&para;<br>  \"Description\": \"Resource created for unit testing purposes. Do not delete/edit\",\r&para;<br>  \"SortOrder\": 2,\r&para;<br>  \"UseGuidedFailure\": false\r&para;<br>}</span>",
   "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

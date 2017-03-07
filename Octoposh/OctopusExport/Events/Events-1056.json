@@ -2,22 +2,31 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1056",
   "RelatedDocumentIds": [
-    "Machines-6",
-    "Environments-4"
+    "Environments-3"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-4",
+  "EnvironmentId": "Environments-3",
   "TenantId": null,
-  "Category": "Created",
+  "Category": "DeploymentQueued",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-23T02:19:48.9139282-03:00",
-  "Message": "Machine unmodified_TestMachine was created",
+  "Occurred": "2017-02-04T20:29:25.8293963-03:00",
+  "Message": "Deployed DeploymentTests_Project1 release 0.0.2 to Stage",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Machines-6",
-      "StartIndex": 8,
-      "Length": 22
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 9,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 42,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-3",
+      "StartIndex": 51,
+      "Length": 5
     }
   ],
   "Comments": null,

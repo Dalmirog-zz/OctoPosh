@@ -274,7 +274,7 @@ namespace Octoposh.Tests
             Console.WriteLine("The [{0}] deployments found started after [{1}]", results.Count, afterDate);
         }
 
-        [Test]
+        //[Test]
         public void GetDeploymentBeforeDate()
         {
             DateTime baseDate = new DateTime(2017, 2, 11); //Date of the first deployment on the test data.

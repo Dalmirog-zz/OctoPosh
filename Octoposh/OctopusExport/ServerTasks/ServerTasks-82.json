@@ -3,37 +3,39 @@
   "Id": "ServerTasks-82",
   "Name": "Health",
   "Arguments": {
-    "EnvironmentId": null,
-    "MachinePolicyId": null,
-    "MachineIds": [
-      "Machines-2"
-    ],
     "Timeout": "00:05:00",
-    "MachineTimeout": "00:01:00",
-    "OnlyTestConnection": false
+    "MachineIds": [
+      null
+    ]
   },
-  "Description": "Test connectivity to ListeningTentacle2",
-  "QueueTime": "2017-02-04T19:36:02.1250481-03:00",
+  "Description": "Check ListeningTentacle health",
+  "QueueTime": "2017-02-04T00:30:28.4608678-03:00",
   "QueueTimeExpiry": "10675199.02:48:05.4775807",
   "ExecutionTimeExpiry": "00:00:00",
-  "StartTime": "2017-02-04T19:36:02.1640469-03:00",
-  "LastUpdatedTime": "2017-02-04T19:36:07.8404438-03:00",
-  "CompletedTime": "2017-02-04T19:36:07.8404438-03:00",
+  "StartTime": "2017-02-04T00:30:28.5498695-03:00",
+  "LastUpdatedTime": "2017-02-04T00:30:29.1098682-03:00",
+  "CompletedTime": "2017-02-04T00:30:29.1098682-03:00",
   "ErrorMessage": "The health check failed. One or more deployment targets were not available.",
-  "ConcurrencyTag": null,
+  "ConcurrencyTag": "Health",
   "State": "Failed",
   "HasPendingInterruptions": false,
   "HasWarningsOrErrors": true,
   "ServerVersion": "3.7.4+Branch.master.Sha.403a70b03ab7c4b06d0bcb637b19afa44456c672",
   "ServerNode": "DEVBOX",
-  "LogDifferentiationToken": "KR45BWMNXB",
+  "LogDifferentiationToken": "4TSXJQHRMX",
   "AdditionalDescription": null,
-  "DurationSeconds": 6,
+  "DurationSeconds": 1,
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "ExtendedViewLogPermissions": [],
-  "ExtendedCreatePermissions": [],
+  "ExtendedViewLogPermissions": [
+    "EnvironmentView",
+    "MachineView"
+  ],
+  "ExtendedCreatePermissions": [
+    "EnvironmentView",
+    "MachineEdit"
+  ],
   "CanRerun": true,
   "Properties": {}
 }

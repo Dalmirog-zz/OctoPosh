@@ -1,22 +1,25 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1904",
-  "RelatedDocumentIds": [
-    "Channels-21"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-13T02:43:27.7432242+00:00",
-  "Message": "Channel 8N30LH6795S7DKL was deleted",
+  "Occurred": "2017-02-06T03:22:37.3910399-03:00",
+  "Message": "DeploymentTests_Project1 release 0.0.5 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Channels-21",
-      "StartIndex": 8,
-      "Length": 15
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 0,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 33,
+      "Length": 5
     }
   ],
   "Comments": null,

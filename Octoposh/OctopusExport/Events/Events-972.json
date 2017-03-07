@@ -2,30 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-972",
   "RelatedDocumentIds": [
-    "ServerTasks-205",
-    "ServerTasks-204"
+    "Teams-3"
   ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
+  "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-12T03:05:25.0146092-03:00",
-  "Message": "Task Check ListeningTentacle1 health #289 was created by re-running task Check ListeningTentacle1 health #288",
+  "Occurred": "2017-02-08T02:22:38.1618179-03:00",
+  "Message": "Team unmodified_TestTeam was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "ServerTasks-205",
+      "ReferencedDocumentId": "Teams-3",
       "StartIndex": 5,
-      "Length": 36
-    },
-    {
-      "ReferencedDocumentId": "ServerTasks-204",
-      "StartIndex": 73,
-      "Length": 36
+      "Length": 19
     }
   ],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "Details": "<span>{\r&para;<br>  \"Id\": \"Teams-1\",\r&para;<br>  \"Name\": \"</span><ins style=\"background:#e6ffe6;\">un</ins><span>modified_TestTeam\",\r&para;<br>  \"MemberUserIds\": [],\r&para;<br>  \"ExternalSecurityGroups\": [],\r&para;<br>  \"UserRoleIds\": [],\r&para;<br>  \"ProjectIds\": [],\r&para;<br>  \"EnvironmentIds\": [],\r&para;<br>  \"TenantIds\": [],\r&para;<br>  \"ProjectGroupIds\": [],\r&para;<br>  \"TenantTags\": []\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }
