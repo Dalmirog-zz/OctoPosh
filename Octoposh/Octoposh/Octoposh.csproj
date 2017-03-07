@@ -66,6 +66,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cmdlets\GetOctopusChannel.cs" />
     <Compile Include="Cmdlets\GetOctopusConnectionInfo.cs" />
     <Compile Include="Cmdlets\GetOctopusDashboard.cs" />
     <Compile Include="Cmdlets\GetOctopusDeployment.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Model\OutputDeploymentPackage.cs" />
     <Compile Include="Model\OutputConverter.cs" />
     <Compile Include="Model\OutputDiscreteDeployment.cs" />
+    <Compile Include="Model\OutputOctopusChannel.cs" />
     <Compile Include="Model\OutputOctopusDashboardEntry.cs" />
     <Compile Include="Model\OutputOctopusDeployment.cs" />
     <Compile Include="Model\OutputOctopusEnvironment.cs" />

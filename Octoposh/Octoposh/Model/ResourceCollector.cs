@@ -12,6 +12,7 @@ namespace Octoposh.Model
         public List<EnvironmentResource> Environments = new List<EnvironmentResource>();
         public List<LifecycleResource> Lifecycles = new List<LifecycleResource>();
         public List<TenantResource> Tenants = new List<TenantResource>();
+        public List<ProjectResource> Projects = new List<ProjectResource>();
 
         public bool IsResourceHereAlready(string resourceId)
         {
@@ -23,6 +24,8 @@ namespace Octoposh.Model
                     return Lifecycles.Count != 0 && Lifecycles.Exists(x => x.Id == resourceId);
                 case "Tenants":
                     return Tenants.Count != 0 && Tenants.Exists(x => x.Id == resourceId);
+                case "Projects":
+                    return Projects.Count != 0 && Projects.Exists(x => x.Id == resourceId);
                 default:
                     return false;
             }

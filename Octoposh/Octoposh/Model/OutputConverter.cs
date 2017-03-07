@@ -478,5 +478,66 @@ namespace Octoposh.Model
 
             return list;
         }
+
+        public List<OutputOctopusChannel> GetOctopusChannel(List<ChannelResource> baseResourceList)
+        {
+            var list = new List<OutputOctopusChannel>();
+
+            foreach (var channel in baseResourceList)
+            {
+
+                ProjectResource project;
+                LifecycleResource lifecycleName;
+
+                if (_resourceCollector.Projects.Any(x => x.Id == channel.ProjectId))
+                {
+                    project = _resourceCollector.Projects.First(x => x.Id == channel.ProjectId);
+                }
+                else
+                {
+                    _resourceCollector.Projects.Add(_connection.Repository.Projects.Get(channel.ProjectId));
+
+                    project = _resourceCollector.Projects.First(x => x.Id == channel.ProjectId);
+                }
+
+                string lifecycleId = null;
+
+                if (channel.LifecycleId == null)
+                {
+                    lifecycleId = project.LifecycleId;
+                }
+                else
+                {
+                    lifecycleId = channel.LifecycleId;
+                }
+
+                if (_resourceCollector.Lifecycles.Any(x => x.Id == lifecycleId))
+                {
+                    lifecycleName = _resourceCollector.Lifecycles.First(x => x.Id == lifecycleId);
+                }
+                else
+                {
+                    _resourceCollector.Lifecycles.Add(_connection.Repository.Lifecycles.Get(lifecycleId));
+
+                    lifecycleName = _resourceCollector.Lifecycles.First(x => x.Id == lifecycleId);
+                }
+
+                list.Add(new OutputOctopusChannel()
+                {
+                    Name   = channel.Name,
+                    Id = channel.Id,
+                    Description = channel.Description,
+                    ProjectName = project.Name,
+                    LifecycleName = lifecycleName.Name,
+                    IsDefault = channel.IsDefault,
+                    TenantTags = channel.TenantTags,
+                    Rules = channel.Rules,
+                    Resource = channel,
+                    
+                });
+            }
+
+            return list;
+        }
     }
 }
