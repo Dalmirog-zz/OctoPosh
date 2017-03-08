@@ -17,21 +17,30 @@ namespace Octoposh.Tests
     {
         private static readonly string CmdletName = "Get-OctopusMachine";
         private static readonly Type CmdletType = typeof(GetOctopusMachine);
+        private static readonly string Machine1 = "MachineTests_Machine1";
+        private static readonly string Machine2 = "MachineTests_Machine2";
 
         [Test]
         public void GetMachineBySingleName()
         {
-            var parameters = new List<CmdletParameter> {new CmdletParameter()
-            {
-                Name = "Name", SingleValue = "North"
-            }};
+            var name = Machine1;
 
+            var parameters = new List<CmdletParameter>
+            {
+                new CmdletParameter()
+                {
+                    Name = "Name",
+                    SingleValue = name
+                }};
+
+            Console.WriteLine("Looking for resource with name [{0}]",name);
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
             var results = powershell.Invoke<List<OutputOctopusMachine>>();
 
-            Assert.AreEqual(results[0].Count, 1);
-            Console.WriteLine("Items Found:");
+            Assert.AreEqual(1, results[0].Count);
+
+            Console.WriteLine("Found [{0}]");
             foreach (var item in results[0])
             {
                 Console.WriteLine(item.Name);
@@ -41,27 +50,34 @@ namespace Octoposh.Tests
         [Test]
         public void GetMachineByMultipleNames()
         {
+
+            var names = new[] {Machine1,Machine2};
+
             var parameters = new List<CmdletParameter> {new CmdletParameter()
             {
-                Name = "Name", MultipleValue = new[] {"North","South"}
+                Name = "Name",
+                MultipleValue = names
             }};
 
+            Console.WriteLine("Looking for [{0}] machines with the names [{1}]",names.Length,names);
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusMachine>>();
+            var results = powershell.Invoke<List<OutputOctopusMachine>>()[0];
 
-            Assert.AreEqual(results[0].Count, 2);
+            Console.WriteLine("Found [{0}] resources", results.Count);
+            Assert.AreEqual(2,results.Count);
 
-            Console.WriteLine("Items Found:");
-            foreach (var item in results[0])
+            foreach (var item in results)
             {
-                Console.WriteLine(item.Name);
+                Console.WriteLine("Resource name: {0}", item.Name);
+                Assert.IsTrue(names.Contains(item.Name));
             }
+            Console.WriteLine("The [{0}] resources have the expected names",names.Length);
         }
 
         [Test]
         public void GetMachinesByNameUsingWildcard()
         {
-            var namePattern = "S*";
+            var namePattern = "MachineTests_*";
 
             var parameters = new List<CmdletParameter> {new CmdletParameter()
             {
@@ -73,32 +89,35 @@ namespace Octoposh.Tests
             var pattern = new WildcardPattern(namePattern);
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusMachine>>();
+            var results = powershell.Invoke<List<OutputOctopusMachine>>()[0];
 
-            Assert.Greater(results[0].Count, 0);
-            Console.WriteLine("Resources found: {0}", results[0].Count);
+            Console.WriteLine("Resources found: {0}", results.Count);
+            Assert.Greater(results.Count, 0);
 
-            foreach (var item in results[0])
+            foreach (var item in results)
             {
                 Console.WriteLine("Resource name: {0}", item.Name);
                 Assert.IsTrue(pattern.IsMatch(item.Name));
             }
+            Console.WriteLine("All resources found match the pattern [{0}]",namePattern);
         }
 
         [Test]
         public void DontGetMachineIfNameDoesntMatch()
         {
-            var resourceName = "TotallyANameThatYoullNeverPutToAResource";
+            var name = "TotallyANameThatYoullNeverPutToAResource";
 
             var parameters = new List<CmdletParameter> {new CmdletParameter()
             {
-                Name = "Name", SingleValue = resourceName
+                Name = "Name", SingleValue = name
             }};
 
+            Console.WriteLine("Looking for a machine with the name [{0}]",name);
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusMachine>>();
+            var results = powershell.Invoke<List<OutputOctopusMachine>>()[0];
 
-            Assert.AreEqual(results[0].Count, 0);
+            Assert.AreEqual(results.Count, 0);
+            Console.WriteLine("Machine with name [{0}] not found", name);
         }
 
         [Test]
@@ -128,8 +147,6 @@ namespace Octoposh.Tests
                     Assert.Inconclusive("No targets of the type [{0}] were found",style);
                 }
             }
-
-
         }
 
         [Test]
