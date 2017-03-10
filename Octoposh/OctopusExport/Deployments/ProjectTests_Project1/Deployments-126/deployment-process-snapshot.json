@@ -1,0 +1,66 @@
+{
+  "$type": "Octopus.Core.Model.Projects.DeploymentProcess, Octopus.Core",
+  "Id": "deploymentprocess-Projects-5-s-3-E8U9D",
+  "OwnerId": "Projects-5",
+  "IsFrozen": true,
+  "Version": 3,
+  "Steps": [
+    {
+      "Id": "471ca029-3ed5-4f37-881e-b319b6dc0707",
+      "Name": "Step1",
+      "Condition": "Success",
+      "StartTrigger": "StartAfterPrevious",
+      "RequiresPackagesToBeAcquired": false,
+      "Actions": [
+        {
+          "Id": "a6e41e73-8963-412e-a018-395df5b82e36",
+          "Name": "Step1",
+          "ActionType": "Octopus.Script",
+          "IsDisabled": false,
+          "Environments": [],
+          "ExcludedEnvironments": [],
+          "Channels": [],
+          "TenantTags": [],
+          "Properties": {
+            "Octopus.Action.RunOnServer": "true",
+            "Octopus.Action.Script.Syntax": "PowerShell",
+            "Octopus.Action.Script.ScriptSource": "Inline",
+            "Octopus.Action.Script.ScriptBody": "\"Hello from $($OctopusParameters['Octopus.Step.Name'])\""
+          }
+        }
+      ],
+      "Properties": {
+        "Octopus.Action.TargetRoles": "WebServer,WebApps"
+      }
+    },
+    {
+      "Id": "750afcb5-96e6-4eef-81ff-e3c649bd404a",
+      "Name": "Step to fail on stage",
+      "Condition": "Success",
+      "StartTrigger": "StartAfterPrevious",
+      "RequiresPackagesToBeAcquired": false,
+      "Actions": [
+        {
+          "Id": "81a18102-a136-4355-a366-2367bd306f82",
+          "Name": "Step to fail on stage",
+          "ActionType": "Octopus.Script",
+          "IsDisabled": false,
+          "Environments": [],
+          "ExcludedEnvironments": [],
+          "Channels": [],
+          "TenantTags": [],
+          "Properties": {
+            "Octopus.Action.RunOnServer": "false",
+            "Octopus.Action.Script.Syntax": "PowerShell",
+            "Octopus.Action.Script.ScriptSource": "Inline",
+            "Octopus.Action.Script.ScriptBody": "if(\"Stage\" -eq $OctopusParameters['Octopus.Environment.Name']){\r\n    throw \"Failing step to create test data\"    \r\n\r\n}"
+          }
+        }
+      ],
+      "Properties": {
+        "Octopus.Action.TargetRoles": "WebApps"
+      }
+    }
+  ],
+  "RelatedDocumentIds": []
+}
