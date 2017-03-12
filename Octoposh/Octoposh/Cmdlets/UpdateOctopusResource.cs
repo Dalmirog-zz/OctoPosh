@@ -39,6 +39,7 @@ namespace Octoposh.Cmdlets
     [OutputType(typeof(UserResource))]
     [OutputType(typeof(ChannelResource))]
     [OutputType(typeof(TenantResource))]
+    [OutputType(typeof(TagSetResource))]
     public class UpdateOctopusResource : PSCmdlet
     {
         /// <summary>
@@ -114,6 +115,11 @@ namespace Octoposh.Cmdlets
                 case "Octopus.Client.Model.TenantResource":
                     var tenant = (TenantResource)Resource;
                     outputResource = _connection.Repository.Tenants.Modify(tenant);
+                    break;
+
+                case "Octopus.Client.Model.TagSetResource":
+                    var tagset = (TagSetResource)Resource;
+                    outputResource = _connection.Repository.TagSets.Modify(tagset);
                     break;
 
                 default:

@@ -52,7 +52,6 @@ namespace Octoposh.Cmdlets
         {
             foreach (Resource r in Resource)
             {
-                
                 try
                 {
                     switch (r.GetType().ToString())
@@ -120,6 +119,11 @@ namespace Octoposh.Cmdlets
                         case "Octopus.Client.Model.TenantResource":
                             var tenant = (TenantResource)r;
                             _connection.Repository.Tenants.Delete(tenant);
+                            WriteObject(true);
+                            break;
+                        case "Octopus.Client.Model.TagSetResource":
+                            var tagset = (TagSetResource)r;
+                            _connection.Repository.TagSets.Delete(tagset);
                             WriteObject(true);
                             break;
 

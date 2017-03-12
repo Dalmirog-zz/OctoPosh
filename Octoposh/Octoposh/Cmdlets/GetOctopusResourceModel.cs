@@ -29,12 +29,13 @@ namespace Octoposh.Cmdlets
     [OutputType(typeof(UserResource))]
     [OutputType(typeof(ChannelResource))]
     [OutputType(typeof(TenantResource))]
+    [OutputType(typeof(TagSetResource))]
     public class GetOctopusResourceModel : PSCmdlet
     {
         /// <summary>
         /// <para type="description">Resource object model</para>
         /// </summary>
-        [ValidateSet("Environment", "Project", "ProjectGroup", "NugetFeed","ExternalFeed", "LibraryVariableSet", "Machine","Target", "Lifecycle", "Team", "User","Channel","Tenant")]
+        [ValidateSet("Environment", "Project", "ProjectGroup", "NugetFeed","ExternalFeed", "LibraryVariableSet", "Machine","Target", "Lifecycle", "Team", "User","Channel","Tenant","TagSet")]
         [Parameter(Mandatory = true)]
         public string Resource { get; set; }
 
@@ -85,6 +86,9 @@ namespace Octoposh.Cmdlets
                     break;
                 case "Tenant":
                     baseresource = new TenantResource();
+                    break;
+                case "TagSet":
+                    baseresource = new TagSetResource();
                     break;
             }
 
