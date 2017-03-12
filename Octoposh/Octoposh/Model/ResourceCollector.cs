@@ -7,6 +7,10 @@ using Octopus.Client.Model;
 
 namespace Octoposh.Model
 {
+    /// <summary>
+    /// Collects Octopus resources in type-specific lists so they can be re-used during the object conversion by the OutputConverter class methods.
+    /// Check OutputConverter.GetOctopusMachine() for an example of its usage.
+    /// </summary>
     internal class ResourceCollector
     {
         public List<EnvironmentResource> Environments = new List<EnvironmentResource>();
