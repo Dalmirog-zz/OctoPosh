@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 namespace Octoposh.Cmdlets
 {
     /// <summary>
-    /// <para type="synopsis">Gets information about Octopus Channels</para>
+    /// <para type="Description">Gets information about Octopus Channels</para>
     /// </summary>
     /// <summary>
     /// <para type="synopsis">Gets information about Octopus Channels</para>
@@ -30,7 +30,7 @@ namespace Octoposh.Cmdlets
     ///   <para>Gets the Channels with the names "Hotfix_Website" and "Hotfix_WebService" of the project "MyFinantialApp"</para>
     /// </example>
     /// <example>   
-    ///   <code>PS C:\> Get-Channel -name "Hotfix_*" -Project "MyFinantialApp"</code>
+    ///   <code>PS C:\> Get-OctopusChannel -name "Hotfix_*" -Project "MyFinantialApp"</code>
     ///   <para>Gets all the Channels whose name starts with "Hotfix_" of the project "MyFinantialApp"</para>    
     /// </example>
     /// <para type="link" uri="http://Octoposh.net">WebSite: </para>

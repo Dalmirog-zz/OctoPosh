@@ -13,7 +13,7 @@
   "IncludedLibraryVariableSetIds": [],
   "UsedPackages": [],
   "DefaultToSkipIfAlreadyInstalled": false,
-  "TenantedDeploymentMode": "Untenanted",
+  "TenantedDeploymentMode": "TenantedOrUntenanted",
   "VersioningStrategy": {
     "DonorPackageStepId": null,
     "Template": "#{Octopus.Version.LastMajor}.#{Octopus.Version.LastMinor}.#{Octopus.Version.NextPatch}"

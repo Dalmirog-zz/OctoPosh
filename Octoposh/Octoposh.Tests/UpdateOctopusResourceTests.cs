@@ -287,6 +287,44 @@ namespace Octoposh.Tests
         }
 
         [Test]
+        public void UpdateTagSet()
+        {
+            var unmodifiedName = "unmodified_TestTagSet";
+            var modifiedName = "modified_TestTagSet";
+
+            var baseresource = Repository.TagSets.FindByName(unmodifiedName);
+
+            baseresource.Name = modifiedName;
+
+            var parameters = new List<CmdletParameter>
+            {
+                new CmdletParameter()
+                {
+                    Name = "Resource",
+                    Resource = baseresource
+                }
+            };
+            //Changing the name from Unmodified_* => Modified_*
+            var powershell1 = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
+            var results1 = powershell1.Invoke<List<TagSetResource>>()[0];
+
+            Assert.AreEqual(1, results1.Count);
+            Assert.AreEqual(modifiedName, results1[0].Name);
+
+            // Changing the name back from Modified_* => Unmodified_* for the sake of being able to re-run tests without having to reload test data
+            baseresource.Name = unmodifiedName;
+            parameters[0].Resource = baseresource;
+
+            var powershell2 = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
+            var results2 = powershell2.Invoke<List<TagSetResource>>()[0];
+
+            Assert.AreEqual(results2.Count, 1);
+            Assert.AreEqual(results2[0].Name, unmodifiedName);
+
+            Console.WriteLine("Resource name changed from {0} to {1} and back to {0}", unmodifiedName, modifiedName);
+        }
+
+        [Test]
         public void UpdateLifecycle()
         {
             var unmodifiedName = "unmodified_TestLifecycle";
@@ -399,5 +437,7 @@ namespace Octoposh.Tests
 
             Console.WriteLine("Resource name changed from {0} to {1} and back to {0}", unmodifiedName, modifiedName);
         }
+
+        //todo add tests for Tag Sets
     }
 }

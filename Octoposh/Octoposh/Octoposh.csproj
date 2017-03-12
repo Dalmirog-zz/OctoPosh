@@ -78,7 +78,9 @@
     <Compile Include="Cmdlets\GetOctopusProjectGroup.cs" />
     <Compile Include="Cmdlets\GetOctopusRelease.cs" />
     <Compile Include="Cmdlets\GetOctopusResourceModel.cs" />
+    <Compile Include="Cmdlets\GetOctopusTagSet.cs" />
     <Compile Include="Cmdlets\GetOctopusTeam.cs" />
+    <Compile Include="Cmdlets\GetOctopusTenant.cs" />
     <Compile Include="Cmdlets\GetOctopusUser.cs" />
     <Compile Include="Cmdlets\NewOctopusConnection.cs" />
     <Compile Include="Cmdlets\RemoveOctopusResource.cs" />
@@ -101,9 +103,12 @@
     <Compile Include="Model\OutputOctopusProjectGroup.cs" />
     <Compile Include="Model\OutputOctopusProject.cs" />
     <Compile Include="Model\OutputOctopusRelease.cs" />
+    <Compile Include="Model\OutputOctopusTagSet.cs" />
     <Compile Include="Model\OutputOctopusTeam.cs" />
+    <Compile Include="Model\OutputOctopusTenant.cs" />
     <Compile Include="Model\OutputOctopusUser.cs" />
     <Compile Include="Model\ResourceCollector.cs" />
+    <Compile Include="Model\ResourceCollector2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

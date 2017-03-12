@@ -1,0 +1,26 @@
+{
+  "$type": "Octopus.Core.Model.Tenants.Tenant, Octopus.Core",
+  "Id": "Tenants-23",
+  "Name": "TenantTests_Tenant1",
+  "ProjectIds": [
+    "Projects-5",
+    "Projects-6"
+  ],
+  "ProjectEnvironments": {
+    "Projects-5": [
+      "Environments-1",
+      "Environments-3"
+    ],
+    "Projects-6": [
+      "Environments-3",
+      "Environments-2"
+    ]
+  },
+  "TenantTags": [
+    "TagSets-1/Tags-1",
+    "TagSets-3/Tags-3",
+    "TagSets-3/Tags-4"
+  ],
+  "LogoAttachmentKey": "Tenants-23",
+  "LogoAttachmentMimeType": "image/png"
+}

@@ -7,12 +7,18 @@ using Octopus.Client.Model;
 
 namespace Octoposh.Model
 {
-    class OutputConverter
+    /// <summary>
+    /// This class converts regular Octopus objects into human-friendly Octoposh objects. This class contains 1 public method per GET-* cmdlet with the same name as the cmdlet.
+    /// </summary>
+    internal class OutputConverter
     {
+
+        private static readonly OctopusConnection _connection = new NewOctopusConnection().Invoke<OctopusConnection>().ToList()[0];
 
         private readonly ResourceCollector _resourceCollector = new ResourceCollector();
 
-        private readonly OctopusConnection _connection = new NewOctopusConnection().Invoke<OctopusConnection>().ToList()[0];
+        //todo figure out how to make this work in a more generic way
+        //private readonly ResourceCollector2 _resourceCollector2 = new ResourceCollector2(_connection);
 
         public List<OutputOctopusMachine> GetOctopusMachine (List<MachineResource> baseResources)
         {
@@ -261,16 +267,14 @@ namespace Octoposh.Model
                         if (deployment.CompletedTime != null)
                         {
                             TimeSpan? durationSpan = deployment.CompletedTime - deployment.Created;
-                            duration = string.Format("{0:D2}:{1:D2}:{2:D2}", durationSpan.Value.Hours,
-                                durationSpan.Value.Minutes, durationSpan.Value.Seconds);
+                            duration = string.Format("{0:D2}:{1:D2}:{2:D2}", durationSpan.Value.Hours,durationSpan.Value.Minutes, durationSpan.Value.Seconds);
                             endDate = deployment.CompletedTime.Value.DateTime;
                         }
                         else
                         {
                             endDate = DateTime.Now.Date;
                             TimeSpan? durationSpan = endDate - deployment.Created;
-                            duration = string.Format("{0:D2}:{1:D2}:{2:D2}", durationSpan.Value.Hours,
-                                durationSpan.Value.Minutes, durationSpan.Value.Seconds);
+                            duration = string.Format("{0:D2}:{1:D2}:{2:D2}", durationSpan.Value.Hours,durationSpan.Value.Minutes, durationSpan.Value.Seconds);
                         }
 
                         list.Add(new OutputOctopusDashboardEntry()
@@ -502,14 +506,7 @@ namespace Octoposh.Model
 
                 string lifecycleId = null;
 
-                if (channel.LifecycleId == null)
-                {
-                    lifecycleId = project.LifecycleId;
-                }
-                else
-                {
-                    lifecycleId = channel.LifecycleId;
-                }
+                lifecycleId = channel.LifecycleId ?? project.LifecycleId;
 
                 if (_resourceCollector.Lifecycles.Any(x => x.Id == lifecycleId))
                 {
@@ -537,6 +534,90 @@ namespace Octoposh.Model
                 });
             }
 
+            return list;
+        }
+
+        public List<OutputOctopusTenant> GetOctopusTenant(List<TenantResource> baseResourceList)
+        {
+            var list = new List<OutputOctopusTenant>();
+
+            var dashboard = _connection.Repository.Dashboards.GetDashboard();
+
+            foreach (var tenant in baseResourceList)
+            {
+                list.Add(new OutputOctopusTenant()
+                {
+                    Name = tenant.Name,
+                    Id = tenant.Id,
+                    TagSets = ToFriendlyTags(tenant.TenantTags),
+                    ProjectEnvironments = ToFriendlyProjectEnvironments(tenant.ProjectEnvironments,dashboard),
+                    Resource = tenant
+                });
+            }
+
+            return list;
+        }
+
+        private IDictionary<string, List<string>> ToFriendlyProjectEnvironments(IDictionary<string, ReferenceCollection> tenantProjectEnvironments, DashboardResource dashboardResource)
+        {
+            var friendlyProjectEnvironments = new Dictionary<string, List<string>>();
+
+            var dashboard = dashboardResource;
+
+            foreach (var tPE in tenantProjectEnvironments)
+            {
+                var projectName = dashboard.Projects.FirstOrDefault(x => x.Id == tPE.Key)?.Name;
+                var environmentNames = new List<string>();
+
+                environmentNames.AddRange(dashboard.Environments.Where(e => tPE.Value.Contains(e.Id)).Select(e => e.Name).ToList());
+
+                friendlyProjectEnvironments.Add(projectName,environmentNames);
+            }
+
+            return friendlyProjectEnvironments;
+        }
+
+        private IDictionary<string, List<string>> ToFriendlyTags(ReferenceCollection tenantTags)
+        {
+            var tagSets = new Dictionary<string, List<string>>();
+
+            foreach (var rawTag in tenantTags)
+            {
+                // rawTags come in strings like "MyTagSet/MyTag". So we are splitting them here to get the separated values.
+                //[0] will be the TagSet and [1] will be the tag
+                var splitTag = rawTag.Split('/');
+                var tagset = splitTag[0];
+                var tag = splitTag[1];
+
+                if (!tagSets.ContainsKey(tagset))
+                {
+                    tagSets.Add(tagset, new List<string>() {tag});
+                }
+                else
+                {
+                    tagSets[tagset].Add(tag);
+                }
+            }
+
+            return tagSets;
+        }
+
+        public List<OutputOctopusTagSet> GetOctopusTagSet(List<TagSetResource> baseResourceList)
+        {
+            var list = new List<OutputOctopusTagSet>();
+
+            foreach (var tagSet in baseResourceList)
+            {
+                list.Add(new OutputOctopusTagSet()
+                {
+                    Name = tagSet.Name,
+                    Id = tagSet.Id,
+                    Description = tagSet.Description,
+                    SortOrder = tagSet.SortOrder,
+                    Tags = tagSet.Tags,
+                    Resource = tagSet
+                });
+            }
             return list;
         }
     }
