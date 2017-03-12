@@ -2,7 +2,13 @@
   "$type": "Octopus.Core.Model.Tenants.Tenant, Octopus.Core",
   "Id": "Tenants-1",
   "Name": "unmodified_TestTenant",
-  "ProjectIds": [],
-  "ProjectEnvironments": {},
+  "ProjectIds": [
+    "Projects-5"
+  ],
+  "ProjectEnvironments": {
+    "Projects-5": [
+      "Environments-1"
+    ]
+  },
   "TenantTags": []
 }
