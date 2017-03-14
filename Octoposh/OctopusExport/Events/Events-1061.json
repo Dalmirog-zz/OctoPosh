@@ -2,31 +2,21 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1061",
   "RelatedDocumentIds": [
-    "Environments-3"
+    "TagSets-2"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-3",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentQueued",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-30T22:54:45.2880143-03:00",
-  "Message": "Deployed DashboardTests_Project1 release 0.0.2 to Stage",
+  "Occurred": "2017-03-11T03:31:11.174066-03:00",
+  "Message": "TagSet TenantTagSetTests_Set2 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 9,
-      "Length": 23
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 41,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-3",
-      "StartIndex": 50,
-      "Length": 5
+      "ReferencedDocumentId": "TagSets-2",
+      "StartIndex": 7,
+      "Length": 22
     }
   ],
   "Comments": null,

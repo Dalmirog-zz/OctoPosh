@@ -2,21 +2,26 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-514",
   "RelatedDocumentIds": [
-    "Machines-5"
+    "Projects-6"
   ],
-  "ProjectId": null,
+  "ProjectId": "Projects-6",
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
+  "Category": "Deleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2016-12-04T13:20:49.1707063-03:00",
-  "Message": "Machine South was created",
+  "Occurred": "2017-02-14T07:23:55.3935146-03:00",
+  "Message": "TestProject2 release 90.0.0 was deleted",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Machines-5",
-      "StartIndex": 8,
-      "Length": 5
+      "ReferencedDocumentId": "Projects-6",
+      "StartIndex": 0,
+      "Length": 12
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 21,
+      "Length": 6
     }
   ],
   "Comments": null,

@@ -2,21 +2,21 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-319",
   "RelatedDocumentIds": [
-    "Environments-1"
+    "ServerTasks-329"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
+  "Category": "TaskCanceled",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-04T19:43:30.7625416-03:00",
-  "Message": "Machine ListeningTentacle3 was created",
+  "Occurred": "2017-01-30T23:46:26.3083385-03:00",
+  "Message": "Task Deploy DashboardTests_Project2 release 0.0.1 to Stage #76 was canceled",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 8,
-      "Length": 18
+      "ReferencedDocumentId": "ServerTasks-329",
+      "StartIndex": 5,
+      "Length": 57
     }
   ],
   "Comments": null,

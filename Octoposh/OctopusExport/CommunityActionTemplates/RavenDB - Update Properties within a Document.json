@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-133",
+  "Id": "CommunityActionTemplates-142",
   "Name": "RavenDB - Update Properties within a Document",
   "ExternalId": "89806198-6216-4034-a934-6de6a3f445b0",
   "Description": "Retrieves the specified document by a Raven Query, updates selected variables with values from octopus Variables. Replaces the current document with the newly created document with the updated values.\n**IMPORTANT**: Any variable that is being updated **MUST** have an Octopus Variable that has exactly the same name (including capitals, any special characters, etc.) prefixed with “Property_”. This is the case of **BOTH** document variables and Metadata variables. I.E. if you wanted TestMode change, you **MUST** have an Octopus Variable named Property_TestMode (same name, and capitals, etc.).\n",
@@ -86,6 +86,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-133",
+  "LogoAttachmentKey": "CommunityActionTemplates-142",
   "LogoAttachmentMimeType": "image/png"
 }

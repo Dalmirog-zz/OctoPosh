@@ -2,39 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1077",
   "RelatedDocumentIds": [
-    "Environments-1"
+    "Tenants-2"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
-  "TenantId": null,
-  "Category": "DeploymentSucceeded",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-01-30T22:56:17.8931019-03:00",
-  "Message": "Deploy to Dev succeeded  for DashboardTests_Project2 release 0.0.1 to Dev",
+  "EnvironmentId": null,
+  "TenantId": "Tenants-2",
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-03-11T13:38:27.4841211-03:00",
+  "Message": "Tenant TenantTests_Tenant2 was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 0,
-      "Length": 13
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 29,
-      "Length": 23
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 61,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-1",
-      "StartIndex": 70,
-      "Length": 3
+      "ReferencedDocumentId": "Tenants-2",
+      "StartIndex": 7,
+      "Length": 19
     }
   ],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "Details": "<span>{\r&para;<br>  \"Id\": \"Tenants-24\",\r&para;<br>  \"Name\": \"TenantTests_Tenant2\",\r&para;<br>  \"ProjectIds\": [\r&para;<br>    \"Projects-6\",\r&para;<br>    \"Projects-5\"\r&para;<br>  ],\r&para;<br>  \"ProjectEnvironments\": {\r&para;<br>    \"Projects-6\": [\r&para;<br>      \"Environments-3\"\r&para;<br>    ],\r&para;<br>    \"Projects-5\": [\r&para;<br>      \"Environments-1\"\r&para;<br>    ]\r&para;<br>  },\r&para;<br>  \"TenantTags\": [</span><ins style=\"background:#e6ffe6;\">\r&para;<br>    \"TagSets-1/Tags-2\",\r&para;<br>    \"TagSets-3/Tags-4\"\r&para;<br>  </ins><span>],\r&para;<br>  \"LogoAttachmentKey\": \"Tenants-24\",\r&para;<br>  \"LogoAttachmentMimeType\": \"image/png\"\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "Session cookie"
 }

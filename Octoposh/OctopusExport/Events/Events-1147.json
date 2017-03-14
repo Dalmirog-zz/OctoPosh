@@ -1,22 +1,20 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1147",
-  "RelatedDocumentIds": [
-    "Environments-4"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
-  "EnvironmentId": "Environments-4",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
+  "Category": "Deleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-23T02:19:02.3299678-03:00",
-  "Message": "Environment unmodified_TestEnvironment was created",
+  "Occurred": "2017-03-12T16:40:35.2627867-03:00",
+  "Message": "TagSet SomeNewTag was deleted",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Environments-4",
-      "StartIndex": 12,
-      "Length": 26
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 7,
+      "Length": 10
     }
   ],
   "Comments": null,

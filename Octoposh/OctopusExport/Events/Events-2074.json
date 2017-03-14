@@ -2,27 +2,31 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-2074",
   "RelatedDocumentIds": [
-    "ServerTasks-84",
-    "ServerTasks-83"
+    "Environments-1"
   ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Created",
+  "Category": "DeploymentQueued",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-04T00:42:25.7265268-03:00",
-  "Message": "Task Check ListeningTentacle health #89 was created by re-running task Check ListeningTentacle health #88",
+  "Occurred": "2017-02-12T03:05:36.8088341-03:00",
+  "Message": "Deployed DeploymentTests_Project1 release 0.0.13 to Dev (#2)",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "ServerTasks-84",
-      "StartIndex": 5,
-      "Length": 34
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 9,
+      "Length": 24
     },
     {
-      "ReferencedDocumentId": "ServerTasks-83",
-      "StartIndex": 71,
-      "Length": 34
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 42,
+      "Length": 6
+    },
+    {
+      "ReferencedDocumentId": "Environments-1",
+      "StartIndex": 52,
+      "Length": 8
     }
   ],
   "Comments": null,

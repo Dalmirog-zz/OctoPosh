@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-15",
+  "Id": "CommunityActionTemplates-16",
   "Name": "Azure - Sync Instance Count",
   "ExternalId": "8a0a75da-4960-40ca-b641-5ed2305fa655",
   "Description": "This step template is useful when you want to have the instance count matched just before the VIP swap. It takes the source slot (usually Production slot) and match with the current deployment slot (normally Staging). Note: This will be helpful in scenario when 15 instances in Production and 4 instance in staging. This step template should only be used when a production slot already exists.",
@@ -26,6 +26,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-15",
+  "LogoAttachmentKey": "CommunityActionTemplates-16",
   "LogoAttachmentMimeType": "image/png"
 }

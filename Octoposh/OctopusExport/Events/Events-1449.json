@@ -1,15 +1,17 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1449",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Environments-1"
+  ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "MachineDeleted",
+  "Category": "Deleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-11T00:48:39.3505107-03:00",
-  "Message": "Machine KDPKROC3P2UV5R1 was deleted (domain-event)",
+  "Occurred": "2017-02-08T02:22:26.9976769-03:00",
+  "Message": "Machine 9OMM63HYQP3MLFR was deleted",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",

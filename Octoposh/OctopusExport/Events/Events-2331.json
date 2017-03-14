@@ -1,35 +1,20 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-2331",
-  "RelatedDocumentIds": [
-    "Deployments-40",
-    "Projects-3",
-    "Releases-46",
-    "Environments-3"
-  ],
-  "ProjectId": "Projects-3",
-  "EnvironmentId": "Environments-3",
+  "RelatedDocumentIds": [],
+  "ProjectId": null,
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentQueued",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-03-07T00:44:55.1777822+00:00",
-  "Message": "Deployed DeploymentTests_Project1 release 0.0.5 to Stage",
+  "Occurred": "2017-02-11T00:48:40.3005152-03:00",
+  "Message": "Project Group KDPKROC3P2UV5R1 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Projects-3",
-      "StartIndex": 9,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "Releases-46",
-      "StartIndex": 42,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-3",
-      "StartIndex": 51,
-      "Length": 5
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 14,
+      "Length": 15
     }
   ],
   "Comments": null,

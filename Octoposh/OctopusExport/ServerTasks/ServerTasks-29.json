@@ -1,34 +1,39 @@
 {
   "$type": "Octopus.Core.Model.ServerTasks.ServerTask, Octopus.Core",
   "Id": "ServerTasks-29",
-  "Name": "Deploy",
+  "Name": "Health",
   "Arguments": {
-    "DeploymentId": null
+    "EnvironmentId": null,
+    "MachinePolicyId": null,
+    "MachineIds": [
+      null
+    ],
+    "Timeout": "00:05:00",
+    "MachineTimeout": "00:01:00",
+    "OnlyTestConnection": false
   },
-  "Description": "Deploy DeploymentTests_Project1 release 0.0.1 to Dev",
-  "QueueTime": "2017-02-11T01:30:19.30195-03:00",
+  "Description": "Test connectivity to 9OMM63HYQP3MLFR",
+  "QueueTime": "2017-02-08T02:22:26.6546707-03:00",
   "QueueTimeExpiry": "10675199.02:48:05.4775807",
   "ExecutionTimeExpiry": "00:00:00",
-  "StartTime": "2017-02-11T01:30:19.3529487-03:00",
-  "LastUpdatedTime": "2017-02-11T01:30:24.6739285-03:00",
-  "CompletedTime": "2017-02-11T01:30:24.6739285-03:00",
+  "StartTime": "2017-02-08T02:22:26.6726721-03:00",
+  "LastUpdatedTime": "2017-02-08T02:22:26.9796741-03:00",
+  "CompletedTime": "2017-02-08T02:22:26.9796741-03:00",
   "ErrorMessage": "",
-  "ConcurrencyTag": "/Projects-45/Environments-1",
+  "ConcurrencyTag": null,
   "State": "Success",
   "HasPendingInterruptions": false,
   "HasWarningsOrErrors": false,
   "ServerVersion": "3.8.4+Branch.master.Sha.1b250ca4d7c1d42aa029771ed15851e6ed11ff83",
   "ServerNode": "DEVBOX",
-  "LogDifferentiationToken": "ZZ3HXBMKDV",
+  "LogDifferentiationToken": "PSZ5PZZNGN",
   "AdditionalDescription": null,
-  "DurationSeconds": 5,
+  "DurationSeconds": 0,
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "EnvironmentId": null,
   "TenantId": null,
   "ExtendedViewLogPermissions": [],
-  "ExtendedCreatePermissions": [
-    "DeploymentCreate"
-  ],
-  "CanRerun": false,
+  "ExtendedCreatePermissions": [],
+  "CanRerun": true,
   "Properties": {}
 }

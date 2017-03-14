@@ -2,24 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-2184",
   "RelatedDocumentIds": [
-    "Environments-1"
+    "ServerTasks-62"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Modified",
+  "Category": "TaskCanceled",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-04T01:02:19.7264277-03:00",
-  "Message": "Machine ListeningTentacle was modified",
+  "Occurred": "2017-03-06T20:45:40.2451796-03:00",
+  "Message": "Task Deploy TestProject1 release 0.0.32 to Dev #349 was canceled",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 8,
-      "Length": 17
+      "ReferencedDocumentId": "ServerTasks-62",
+      "StartIndex": 5,
+      "Length": 46
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"Machines-1\",\r&para;<br>  \"Name\": \"ListeningTentacle\",\r&para;<br>  \"Endpoint\": {\r&para;<br>    \"ProxyId\": null,\r&para;<br>    \"Thumbprint\": \"</span><del style=\"background:#ffe6e6;\">5AE0B64787F7FD66D139ED0E22AF887011811363</del><ins style=\"background:#e6ffe6;\">EA3135453CD4127FD8394E3A1236F4EFAC3BBAD6</ins><span>\",\r&para;<br>    \"Uri\": \"https://localhost:10933/\",\r&para;<br>    \"UpgradeLocked\": false\r&para;<br>  },\r&para;<br>  \"IsDisabled\": false,\r&para;<br>  \"Roles\": [\r&para;<br>    \"WebServer\"\r&para;<br>  ],\r&para;<br>  \"EnvironmentIds\": [\r&para;<br>    \"Environments-1\"\r&para;<br>  ],\r&para;<br>  \"TenantIds\": [],\r&para;<br>  \"TenantTags\": [],\r&para;<br>  \"MachinePolicyId\": \"MachinePolicies-1\"\r&para;<br>}</span>",
+  "Details": null,
   "IdentityEstablishedWith": "Session cookie"
 }

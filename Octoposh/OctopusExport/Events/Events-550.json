@@ -1,25 +1,17 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-550",
-  "RelatedDocumentIds": [
-    "Machines-4"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "MachineDeploymentRelatedPropertyWasUpdated",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-02-04T19:59:55.0846812-03:00",
-  "Message": "Machine OfflineTarget was modified (domain-event)",
-  "MessageReferences": [
-    {
-      "ReferencedDocumentId": "Machines-4",
-      "StartIndex": 8,
-      "Length": 13
-    }
-  ],
+  "Category": "Exported",
+  "UserId": "NY",
+  "Username": "dalmiro.granias",
+  "Occurred": "2017-01-30T23:47:57.6635072-03:00",
+  "Message": "Exported complete copy of configuration to C:\\github\\octoposh\\octoposh\\OctopusExport",
+  "MessageReferences": [],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "IdentityEstablishedWith": "Command-line or tools"
 }

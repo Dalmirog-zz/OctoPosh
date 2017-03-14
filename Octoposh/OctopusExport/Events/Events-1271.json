@@ -1,31 +1,23 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1271",
-  "RelatedDocumentIds": [
-    "Users-23",
-    "teams-everyone"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Modified",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-12T03:15:02.4546763-03:00",
-  "Message": "User UserTests_User2 was added to the team Everyone",
+  "Occurred": "2017-02-12T23:43:34.0284325-03:00",
+  "Message": "Team 8N30LH6795S7DKL was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Users-23",
+      "ReferencedDocumentId": "NotFound",
       "StartIndex": 5,
       "Length": 15
-    },
-    {
-      "ReferencedDocumentId": "teams-everyone",
-      "StartIndex": 43,
-      "Length": 8
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

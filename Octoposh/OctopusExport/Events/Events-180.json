@@ -1,19 +1,21 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-180",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Environments-1"
+  ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Created",
+  "Category": "Deleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-14T03:33:13.7583905-03:00",
-  "Message": "Lifecycle K20DWAGSNSX9QZB was created",
+  "Occurred": "2017-02-11T05:05:07.0869479-03:00",
+  "Message": "Machine YZK2U0SYC0YFHI6 was deleted",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 10,
+      "StartIndex": 8,
       "Length": 15
     }
   ],

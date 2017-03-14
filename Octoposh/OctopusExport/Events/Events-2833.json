@@ -2,24 +2,30 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-2833",
   "RelatedDocumentIds": [
-    "Tenants-23"
+    "Users-1",
+    "teams-administrators"
   ],
   "ProjectId": null,
   "EnvironmentId": null,
-  "TenantId": "Tenants-23",
+  "TenantId": null,
   "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-03-12T02:00:27.722834+00:00",
-  "Message": "Tenant TenantTests_Tenant1 was modified",
+  "Occurred": "2017-01-14T18:32:35.3621781-03:00",
+  "Message": "User admin was added to Octopus Administrators using the admin command line",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Tenants-23",
-      "StartIndex": 7,
-      "Length": 19
+      "ReferencedDocumentId": "Users-1",
+      "StartIndex": 5,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "teams-administrators",
+      "StartIndex": 24,
+      "Length": 22
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"Tenants-23\",\r&para;<br>  \"Name\": \"TenantTests_Tenant1\",\r&para;<br>  \"ProjectIds\": [\r&para;<br>    \"Projects-5\",\r&para;<br>    \"Projects-6\"\r&para;<br>  ],\r&para;<br>  \"ProjectEnvironments\": {\r&para;<br>    \"Projects-5\": [\r&para;<br>      \"Environments-1\"</span><ins style=\"background:#e6ffe6;\">,\r&para;<br>      \"Environments-3\"</ins><span>\r&para;<br>    ],\r&para;<br>    \"Projects-6\": [\r&para;<br>      \"Environments-3\"</span><ins style=\"background:#e6ffe6;\">,\r&para;<br>      \"Environments-2\"</ins><span>\r&para;<br>    ]\r&para;<br>  },\r&para;<br>  \"TenantTags\": [\r&para;<br>    \"TagSets-1/Tags-1\",\r&para;<br>    \"TagSets-3/Tags-3\",\r&para;<br>    \"TagSets-3/Tags-4\"\r&para;<br>  ],\r&para;<br>  \"LogoAttachmentKey\": \"Tenants-23\",\r&para;<br>  \"LogoAttachmentMimeType\": \"image/png\"\r&para;<br>}</span>",
-  "IdentityEstablishedWith": "Session cookie"
+  "Details": null,
+  "IdentityEstablishedWith": "Command-line or tools"
 }

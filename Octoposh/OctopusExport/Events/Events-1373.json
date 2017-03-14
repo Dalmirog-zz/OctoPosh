@@ -2,42 +2,34 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1373",
   "RelatedDocumentIds": [
-    "Deployments-4",
-    "Projects-1",
-    "Releases-2",
     "Environments-1"
   ],
-  "ProjectId": "Projects-1",
+  "ProjectId": null,
   "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "DeploymentStarted",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-03-06T20:59:20.9115339-03:00",
-  "Message": "Deploy to Dev started  for DashboardTests_Project1 release 0.0.2 to Dev",
+  "Category": "DeploymentQueued",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-02-04T19:59:24.3444482-03:00",
+  "Message": "Deployed DeploymentTests_Project1 release 0.0.1 to Dev",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Deployments-4",
-      "StartIndex": 0,
-      "Length": 13
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 9,
+      "Length": 24
     },
     {
-      "ReferencedDocumentId": "Projects-1",
-      "StartIndex": 27,
-      "Length": 23
-    },
-    {
-      "ReferencedDocumentId": "Releases-2",
-      "StartIndex": 59,
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 42,
       "Length": 5
     },
     {
       "ReferencedDocumentId": "Environments-1",
-      "StartIndex": 68,
+      "StartIndex": 51,
       "Length": 3
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "IdentityEstablishedWith": "Session cookie"
 }

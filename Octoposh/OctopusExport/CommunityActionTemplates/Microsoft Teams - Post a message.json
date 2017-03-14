@@ -1,10 +1,10 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-112",
+  "Id": "CommunityActionTemplates-119",
   "Name": "Microsoft Teams - Post a message",
   "ExternalId": "110a8b1e-4da4-498a-9209-ef8929c31168",
   "Description": "Posts a message to Microsoft Teams using a general webhook.",
-  "Version": 11,
+  "Version": 12,
   "ActionType": "Octopus.Script",
   "Author": "HumanPrinter",
   "Website": "https://library.octopus.com/step-templates/110a8b1e-4da4-498a-9209-ef8929c31168",
@@ -12,7 +12,7 @@
   "Category": "Microsoft Teams",
   "Properties": {
     "Octopus.Action.Script.Syntax": "PowerShell",
-    "Octopus.Action.Script.ScriptBody": "[int]$timeoutSec = $null\nif(-not [int]::TryParse($Timeout, [ref]$timeoutSec)) { $timeoutSec = 60 }\n$json = ConvertTo-Json -Compress -InputObject @{\"title\" = $Title; \"text\" = $Body; }\nInvoke-WebRequest -Method Post -Uri $Url -Body $json -ContentType \"application/json; charset=utf-8\" -UseBasicParsing -TimeoutSec $Timeout "
+    "Octopus.Action.Script.ScriptBody": "[int]$timeoutSec = $null\nif(-not [int]::TryParse($Timeout, [ref]$timeoutSec)) { $timeoutSec = 60 }\n$json = ConvertTo-Json -Compress -InputObject @{\"title\" = $Title; \"text\" = $Body; }\nInvoke-WebRequest -Method Post -Uri $Url -Body $json -ContentType \"application/json; charset=utf-8\" -UseBasicParsing -TimeoutSec $timeoutSec "
   },
   "Parameters": [
     {
@@ -56,6 +56,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-112",
+  "LogoAttachmentKey": "CommunityActionTemplates-119",
   "LogoAttachmentMimeType": "image/png"
 }

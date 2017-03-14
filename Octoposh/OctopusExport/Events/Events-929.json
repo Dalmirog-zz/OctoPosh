@@ -1,15 +1,17 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-929",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Environments-1"
+  ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
   "Category": "Deleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-14T19:49:13.592046-03:00",
-  "Message": "Project 7RP1FSM9E82B8AJ was deleted",
+  "Occurred": "2017-03-07T02:21:11.9420113-03:00",
+  "Message": "Machine 59U7TXBICAC6G8O was deleted",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",

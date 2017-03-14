@@ -1,25 +1,23 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-2261",
-  "RelatedDocumentIds": [
-    "Machines-4"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "MachineUnhealthy",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-03-07T00:34:36.3921228+00:00",
-  "Message": "Machine OfflineTarget became unhealthy",
+  "Category": "Deleted",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-03-06T21:09:51.4262441-03:00",
+  "Message": "Project DeploymentTests_Project2 was deleted",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Machines-4",
+      "ReferencedDocumentId": "NotFound",
       "StartIndex": 8,
-      "Length": 13
+      "Length": 24
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "IdentityEstablishedWith": "Session cookie"
 }

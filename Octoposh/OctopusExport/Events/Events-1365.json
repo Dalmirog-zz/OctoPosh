@@ -1,38 +1,23 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1365",
-  "RelatedDocumentIds": [
-    "Deployments-3",
-    "Projects-1",
-    "Releases-1",
-    "Environments-2"
-  ],
-  "ProjectId": "Projects-1",
-  "EnvironmentId": "Environments-2",
+  "RelatedDocumentIds": [],
+  "ProjectId": null,
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentQueued",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-03-06T20:58:54.0726812-03:00",
-  "Message": "Deployed DashboardTests_Project1 release 0.0.1 to Prod",
+  "Occurred": "2017-01-23T02:31:07.1457394-03:00",
+  "Message": "Team DGQQ2AP7CNQFEV3 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Projects-1",
-      "StartIndex": 9,
-      "Length": 23
-    },
-    {
-      "ReferencedDocumentId": "Releases-1",
-      "StartIndex": 41,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-2",
-      "StartIndex": 50,
-      "Length": 4
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 5,
+      "Length": 15
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

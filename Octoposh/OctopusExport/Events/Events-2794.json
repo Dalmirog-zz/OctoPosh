@@ -2,24 +2,34 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-2794",
   "RelatedDocumentIds": [
-    "Tenants-24"
+    "Environments-2"
   ],
   "ProjectId": null,
-  "EnvironmentId": null,
-  "TenantId": "Tenants-24",
-  "Category": "Modified",
+  "EnvironmentId": "Environments-2",
+  "TenantId": null,
+  "Category": "DeploymentQueued",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-03-11T06:23:42.2780373+00:00",
-  "Message": "Tenant TenantTests_Tenant2 was modified",
+  "Occurred": "2017-02-11T01:43:17.2343503-03:00",
+  "Message": "Deployed DeploymentTests_Project2 release 0.0.1 to Prod",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Tenants-24",
-      "StartIndex": 7,
-      "Length": 19
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 9,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 42,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-2",
+      "StartIndex": 51,
+      "Length": 4
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"Tenants-24\",\r&para;<br>  \"Name\": \"TenantTests_Tenant2\",\r&para;<br>  \"ProjectIds\": [</span><ins style=\"background:#e6ffe6;\">\r&para;<br>    \"Projects-6\"\r&para;<br>  </ins><span>],\r&para;<br>  \"ProjectEnvironments\": {</span><ins style=\"background:#e6ffe6;\">\r&para;<br>    \"Projects-6\": []\r&para;<br>  </ins><span>},\r&para;<br>  \"TenantTags\": []\r&para;<br>}</span>",
-  "IdentityEstablishedWith": "Session cookie"
+  "Details": null,
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

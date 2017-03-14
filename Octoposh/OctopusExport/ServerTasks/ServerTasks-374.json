@@ -1,34 +1,41 @@
 {
   "$type": "Octopus.Core.Model.ServerTasks.ServerTask, Octopus.Core",
   "Id": "ServerTasks-374",
-  "Name": "Deploy",
+  "Name": "Health",
   "Arguments": {
-    "DeploymentId": "Deployments-47"
+    "Timeout": "00:05:00",
+    "MachineIds": [
+      null
+    ]
   },
-  "Description": "Deploy DeploymentTests_Project1 release 0.0.7 to Prod",
-  "QueueTime": "2017-03-07T00:46:35.8300299+00:00",
+  "Description": "Check ListeningTentacle health",
+  "QueueTime": "2017-02-04T00:59:12.9047537-03:00",
   "QueueTimeExpiry": "10675199.02:48:05.4775807",
   "ExecutionTimeExpiry": "00:00:00",
-  "StartTime": "2017-03-07T00:46:35.8797992+00:00",
-  "LastUpdatedTime": "2017-03-07T00:46:43.2041215+00:00",
-  "CompletedTime": "2017-03-07T00:46:43.2041215+00:00",
-  "ErrorMessage": "",
-  "ConcurrencyTag": "/Projects-3/Environments-2",
-  "State": "Success",
+  "StartTime": "2017-02-04T00:59:12.9667843-03:00",
+  "LastUpdatedTime": "2017-02-04T00:59:18.851564-03:00",
+  "CompletedTime": "2017-02-04T00:59:18.851564-03:00",
+  "ErrorMessage": "The health check failed. One or more deployment targets were not available.",
+  "ConcurrencyTag": "Health",
+  "State": "Failed",
   "HasPendingInterruptions": false,
-  "HasWarningsOrErrors": false,
-  "ServerVersion": "3.8.4+Branch.master.Sha.1b250ca4d7c1d42aa029771ed15851e6ed11ff83",
+  "HasWarningsOrErrors": true,
+  "ServerVersion": "3.7.4+Branch.master.Sha.403a70b03ab7c4b06d0bcb637b19afa44456c672",
   "ServerNode": "DEVBOX",
-  "LogDifferentiationToken": "C33TXKCP3G",
+  "LogDifferentiationToken": "6V6SBYZY7F",
   "AdditionalDescription": null,
-  "DurationSeconds": 7,
-  "ProjectId": "Projects-3",
-  "EnvironmentId": "Environments-2",
+  "DurationSeconds": 6,
+  "ProjectId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "ExtendedViewLogPermissions": [],
-  "ExtendedCreatePermissions": [
-    "DeploymentCreate"
+  "ExtendedViewLogPermissions": [
+    "EnvironmentView",
+    "MachineView"
   ],
-  "CanRerun": false,
+  "ExtendedCreatePermissions": [
+    "EnvironmentView",
+    "MachineEdit"
+  ],
+  "CanRerun": true,
   "Properties": {}
 }

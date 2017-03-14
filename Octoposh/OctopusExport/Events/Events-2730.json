@@ -2,21 +2,31 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-2730",
   "RelatedDocumentIds": [
-    "feeds-81mssapnbmqgjmw"
+    "Environments-3"
   ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-3",
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "DeploymentQueued",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-03-11T00:33:49.5260325+00:00",
-  "Message": "NuGetFeed 81MSSAPNBMQGJMW was deleted",
+  "Occurred": "2017-02-11T01:39:53.7654487-03:00",
+  "Message": "Deployed DeploymentTests_Project1 release 0.0.12 to Stage",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "feeds-81mssapnbmqgjmw",
-      "StartIndex": 10,
-      "Length": 15
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 9,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 42,
+      "Length": 6
+    },
+    {
+      "ReferencedDocumentId": "Environments-3",
+      "StartIndex": 52,
+      "Length": 5
     }
   ],
   "Comments": null,

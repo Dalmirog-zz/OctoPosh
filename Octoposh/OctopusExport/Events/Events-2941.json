@@ -2,24 +2,37 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-2941",
   "RelatedDocumentIds": [
-    "TagSets-4"
+    "Deployments-17",
+    "Projects-3",
+    "Releases-26",
+    "Environments-3"
   ],
-  "ProjectId": null,
-  "EnvironmentId": null,
+  "ProjectId": "Projects-3",
+  "EnvironmentId": "Environments-3",
   "TenantId": null,
-  "Category": "Modified",
+  "Category": "DeploymentQueued",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-03-12T19:47:43.6083268+00:00",
-  "Message": "TagSet modified_TestTagSet was modified",
+  "Occurred": "2017-03-14T01:10:10.53482+00:00",
+  "Message": "Deployed DeploymentTests_Project1 release 0.0.3 to Stage",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "TagSets-4",
-      "StartIndex": 7,
-      "Length": 19
+      "ReferencedDocumentId": "Projects-3",
+      "StartIndex": 9,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "Releases-26",
+      "StartIndex": 42,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-3",
+      "StartIndex": 51,
+      "Length": 5
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"TagSets-4\",\r&para;<br>  \"Name\": \"</span><del style=\"background:#ffe6e6;\">un</del><span>modified_TestTagSet\",\r&para;<br>  \"Description\": \"Resource created for unit testing. Do not delete\",\r&para;<br>  \"SortOrder\": 2,\r&para;<br>  \"Tags\": [\r&para;<br>    {\r&para;<br>      \"Id\": \"TagSets-4/Tags-5\",\r&para;<br>      \"Name\": \"Tag1\",\r&para;<br>      \"Description\": null,\r&para;<br>      \"Color\": \"#6e6e6e\",\r&para;<br>      \"SortOrder\": 0\r&para;<br>    },\r&para;<br>    {\r&para;<br>      \"Id\": \"TagSets-4/Tags-6\",\r&para;<br>      \"Name\": \"Tag2\",\r&para;<br>      \"Description\": null,\r&para;<br>      \"Color\": \"#6e6e6e\",\r&para;<br>      \"SortOrder\": 1\r&para;<br>    }\r&para;<br>  ]\r&para;<br>}</span>",
+  "Details": null,
   "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

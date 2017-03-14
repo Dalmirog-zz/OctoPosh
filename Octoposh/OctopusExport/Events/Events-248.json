@@ -1,23 +1,31 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-248",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "ServerTasks-370",
+    "ServerTasks-369"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-03-03T17:18:38.2130878-03:00",
-  "Message": "NuGetFeed 9KWKGH1TTO7NZFI was created",
+  "Occurred": "2017-02-04T00:42:25.7265268-03:00",
+  "Message": "Task Check ListeningTentacle health #89 was created by re-running task Check ListeningTentacle health #88",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 10,
-      "Length": 15
+      "ReferencedDocumentId": "ServerTasks-370",
+      "StartIndex": 5,
+      "Length": 34
+    },
+    {
+      "ReferencedDocumentId": "ServerTasks-369",
+      "StartIndex": 71,
+      "Length": 34
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Session cookie"
 }

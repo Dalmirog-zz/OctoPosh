@@ -2,34 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1082",
   "RelatedDocumentIds": [
-    "Environments-3"
+    "TagSets-2"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-3",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentQueued",
+  "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-30T22:59:13.7963329-03:00",
-  "Message": "Deployed DashboardTests_Project2 release 0.0.1 to Stage",
+  "Occurred": "2017-03-12T16:04:37.773926-03:00",
+  "Message": "TagSet TagSetTests_TagSet2 was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 9,
-      "Length": 23
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 41,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-3",
-      "StartIndex": 50,
-      "Length": 5
+      "ReferencedDocumentId": "TagSets-2",
+      "StartIndex": 7,
+      "Length": 19
     }
   ],
   "Comments": null,
-  "Details": null,
+  "Details": "<span>{\r&para;<br>  \"Id\": \"TagSets-3\",\r&para;<br>  \"Name\": \"TagSetTests_</span><ins style=\"background:#e6ffe6;\">Tag</ins><span>Set2\",\r&para;<br>  \"Description\": \"Resource created for unit tests. Do not delete\",\r&para;<br>  \"SortOrder\": 1,\r&para;<br>  \"Tags\": [\r&para;<br>    {\r&para;<br>      \"Id\": \"TagSets-3/Tags-3\",\r&para;<br>      \"Name\": \"Set2_Tag1\",\r&para;<br>      \"Description\": \"Tag 1 of set 2\",\r&para;<br>      \"Color\": \"#6e6e6e\",\r&para;<br>      \"SortOrder\": 0\r&para;<br>    },\r&para;<br>    {\r&para;<br>      \"Id\": \"TagSets-3/Tags-4\",\r&para;<br>      \"Name\": \"Set2_Tag2\",\r&para;<br>      \"Description\": \"Tag 2 of set 2\",\r&para;<br>      \"Color\": \"#6e6e6e\",\r&para;<br>      \"SortOrder\": 1\r&para;<br>    }\r&para;<br>  ]\r&para;<br>}</span>",
   "IdentityEstablishedWith": "Session cookie"
 }

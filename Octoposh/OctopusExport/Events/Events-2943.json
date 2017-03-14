@@ -2,24 +2,42 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-2943",
   "RelatedDocumentIds": [
-    "TagSets-6"
+    "Deployments-16",
+    "Projects-1",
+    "Releases-25",
+    "Environments-3"
   ],
-  "ProjectId": null,
-  "EnvironmentId": null,
+  "ProjectId": "Projects-1",
+  "EnvironmentId": "Environments-3",
   "TenantId": null,
-  "Category": "Created",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-03-12T19:51:25.6983212+00:00",
-  "Message": "TagSet 7OM83IL3SSKEHR1 was created",
+  "Category": "DeploymentSucceeded",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-03-14T01:10:12.2486008+00:00",
+  "Message": "Deploy to Stage succeeded  for DashboardTests_Project1 release 0.0.1 to Stage",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "TagSets-6",
-      "StartIndex": 7,
+      "ReferencedDocumentId": "Deployments-16",
+      "StartIndex": 0,
       "Length": 15
+    },
+    {
+      "ReferencedDocumentId": "Projects-1",
+      "StartIndex": 31,
+      "Length": 23
+    },
+    {
+      "ReferencedDocumentId": "Releases-25",
+      "StartIndex": 63,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-3",
+      "StartIndex": 72,
+      "Length": 5
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Unknown"
 }

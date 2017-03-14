@@ -2,24 +2,34 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-2823",
   "RelatedDocumentIds": [
-    "TagSets-1"
+    "Environments-3"
   ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-3",
   "TenantId": null,
-  "Category": "Modified",
+  "Category": "DeploymentQueued",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-03-11T06:57:22.8714817+00:00",
-  "Message": "TagSet TagSetTests_Set1 was modified",
+  "Occurred": "2017-02-11T01:44:17.2158224-03:00",
+  "Message": "Deployed DeploymentTests_Project2 release 0.0.3 to Stage",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "TagSets-1",
-      "StartIndex": 7,
-      "Length": 16
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 9,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 42,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-3",
+      "StartIndex": 51,
+      "Length": 5
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"TagSets-1\",\r&para;<br>  \"Name\": \"</span><del style=\"background:#ffe6e6;\">Tenant</del><span>TagSetTests_Set1\",\r&para;<br>  \"Description\": \"Resource created for unit tests. Do not delete.\",\r&para;<br>  \"SortOrder\": 0,\r&para;<br>  \"Tags\": [\r&para;<br>    {\r&para;<br>      \"Id\": \"TagSets-1/Tags-1\",\r&para;<br>      \"Name\": \"Set1_Tag1\",\r&para;<br>      \"Description\": \"Tag 1 of set 1\",\r&para;<br>      \"Color\": \"#6e6e6e\",\r&para;<br>      \"SortOrder\": 0\r&para;<br>    },\r&para;<br>    {\r&para;<br>      \"Id\": \"TagSets-1/Tags-2\",\r&para;<br>      \"Name\": \"Set1_Tag2\",\r&para;<br>      \"Description\": \"Tag 2 of set 1\",\r&para;<br>      \"Color\": \"#6e6e6e\",\r&para;<br>      \"SortOrder\": 1\r&para;<br>    }\r&para;<br>  ]\r&para;<br>}</span>",
-  "IdentityEstablishedWith": "Session cookie"
+  "Details": null,
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

@@ -2,38 +2,35 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-2614",
   "RelatedDocumentIds": [
-    "Deployments-116",
-    "Projects-4",
-    "Releases-71",
     "Environments-2"
   ],
-  "ProjectId": "Projects-4",
+  "ProjectId": null,
   "EnvironmentId": "Environments-2",
   "TenantId": null,
   "Category": "DeploymentStarted",
   "UserId": "users-system",
   "Username": "system",
-  "Occurred": "2017-03-07T04:41:47.8688175+00:00",
-  "Message": "Deploy to Prod started  for DeploymentTests_Project2 release 0.0.13 to Prod",
+  "Occurred": "2017-02-11T01:33:04.2955851-03:00",
+  "Message": "Deploy to Prod started  for DeploymentTests_Project1 release 0.0.5 to Prod",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Deployments-116",
+      "ReferencedDocumentId": "NotFound",
       "StartIndex": 0,
       "Length": 14
     },
     {
-      "ReferencedDocumentId": "Projects-4",
+      "ReferencedDocumentId": "NotFound",
       "StartIndex": 28,
       "Length": 24
     },
     {
-      "ReferencedDocumentId": "Releases-71",
+      "ReferencedDocumentId": "NotFound",
       "StartIndex": 61,
-      "Length": 6
+      "Length": 5
     },
     {
       "ReferencedDocumentId": "Environments-2",
-      "StartIndex": 71,
+      "StartIndex": 70,
       "Length": 4
     }
   ],

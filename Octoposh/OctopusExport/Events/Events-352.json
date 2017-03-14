@@ -2,25 +2,34 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-352",
   "RelatedDocumentIds": [
-    "ServerTasks-301",
-    "Environments-1"
+    "Environments-3"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "EnvironmentId": "Environments-3",
   "TenantId": null,
-  "Category": "Created",
+  "Category": "DeploymentQueued",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-04T19:43:38.2861308-03:00",
-  "Message": "Ran task Check ListeningTentacle3 health",
+  "Occurred": "2017-02-06T03:14:49.0789161-03:00",
+  "Message": "Deployed DeploymentTests_Project2 release 0.0.9 to Stage",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "ServerTasks-301",
+      "ReferencedDocumentId": "NotFound",
       "StartIndex": 9,
-      "Length": 31
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 42,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-3",
+      "StartIndex": 51,
+      "Length": 5
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

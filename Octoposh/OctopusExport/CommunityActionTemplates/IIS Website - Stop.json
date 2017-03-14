@@ -1,18 +1,22 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-104",
+  "Id": "CommunityActionTemplates-111",
   "Name": "IIS Website - Stop",
   "ExternalId": "9eb40453-ac5d-4cb0-8666-046ff6305a3a",
   "Description": "Stops a website in IIS.",
-  "Version": 6,
+  "Version": 7,
   "ActionType": "Octopus.Script",
-  "Author": "pascaln2",
+  "Author": "novascreen",
   "Website": "https://library.octopus.com/step-templates/9eb40453-ac5d-4cb0-8666-046ff6305a3a",
   "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/iis-website-stop.json",
   "Category": "IIS",
   "Properties": {
-    "Octopus.Action.Script.ScriptBody": "# Load IIS module:\nImport-Module WebAdministration\n\n# Set a name of the site we want to stop\n$webSiteName = $OctopusParameters['webSiteName']\n\n# Get web site object\n$webSite = Get-Item \"IIS:\\Sites\\$webSiteName\"\n\nWrite-Output \"Stopping IIS web site $webSiteName\"\n$webSite.Stop()",
-    "Octopus.Action.Script.Syntax": "PowerShell"
+    "Octopus.Action.Script.ScriptBody": "# Load IIS module:\nImport-Module WebAdministration\n\n# Get WebSite Name\n$webSiteName = $OctopusParameters['webSiteName']\n# Get the number of retries\n$retries = $OctopusParameters['webSiteCheckRetries']\n# Get the number of attempts\n$delay = $OctopusParameters['webSiteCheckDelay']\n\n# Check if exists\nif(Test-Path IIS:\\Sites\\$webSiteName) {\n\n    # Stop Website if not already stopped\n    if ((Get-WebSiteState $webSiteName).Value -ne \"Stopped\") {\n        Write-Output \"Stopping IIS Website $webSiteName\"\n        Stop-WebSite $webSiteName\n    \n        $state = (Get-WebSiteState $webSiteName).Value\n        $counter = 1\n        \n        # Wait for the Website to the \"Stopped\" before proceeding\n        do{ \n            $state = (Get-WebSiteState $webSiteName).Value\n            Write-Output \"$counter/$retries Waiting for IIS Website $webSiteName to shut down completely. Current status: $state\"\n            $counter++\n            Start-Sleep -Milliseconds $delay\n        }\n        while($state -ne \"Stopped\" -and $counter -le $retries)  \n        \n        # Throw an error if the Website is not stopped\n        if($counter -gt $retries) { \n            throw \"Could not shut down IIS Website $webSiteName. `nTry to increase the number of retries ($retries) or delay between attempts ($delay milliseconds).\" }\n    }\n}\nelse {\n    Write-Output \"IIS Website $webSiteName doesn't exist\"\n}",
+    "Octopus.Action.Script.Syntax": "PowerShell",
+    "Octopus.Action.Script.ScriptSource": "Inline",
+    "Octopus.Action.Script.ScriptFileName": "",
+    "Octopus.Action.Package.NuGetFeedId": "",
+    "Octopus.Action.Package.NuGetPackageId": ""
   },
   "Parameters": [
     {
@@ -22,8 +26,28 @@
       "HelpText": "The name of the site in IIS",
       "DefaultValue": null,
       "DisplaySettings": {}
+    },
+    {
+      "Id": null,
+      "Name": "WebSiteCheckDelay",
+      "Label": "Status check interval",
+      "HelpText": "The delay, in milliseconds, between each attempt to query the website to see if its status is \"Stopped\"",
+      "DefaultValue": "500",
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "WebSiteCheckRetries",
+      "Label": "Status check retries",
+      "HelpText": "The number of retries before an error is thrown.",
+      "DefaultValue": "20",
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-104",
+  "LogoAttachmentKey": "CommunityActionTemplates-111",
   "LogoAttachmentMimeType": "image/png"
 }

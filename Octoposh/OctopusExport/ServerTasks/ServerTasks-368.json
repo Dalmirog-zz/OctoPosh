@@ -1,34 +1,41 @@
 {
   "$type": "Octopus.Core.Model.ServerTasks.ServerTask, Octopus.Core",
   "Id": "ServerTasks-368",
-  "Name": "Deploy",
+  "Name": "Health",
   "Arguments": {
-    "DeploymentId": "Deployments-41"
+    "Timeout": "00:05:00",
+    "MachineIds": [
+      null
+    ]
   },
-  "Description": "Deploy DeploymentTests_Project1 release 0.0.5 to Prod",
-  "QueueTime": "2017-03-07T00:45:06.3218849+00:00",
+  "Description": "Check ListeningTentacle health",
+  "QueueTime": "2017-02-04T00:30:28.4608678-03:00",
   "QueueTimeExpiry": "10675199.02:48:05.4775807",
   "ExecutionTimeExpiry": "00:00:00",
-  "StartTime": "2017-03-07T00:45:06.3738822+00:00",
-  "LastUpdatedTime": "2017-03-07T00:45:11.0210315+00:00",
-  "CompletedTime": "2017-03-07T00:45:11.0210315+00:00",
-  "ErrorMessage": "",
-  "ConcurrencyTag": "/Projects-3/Environments-2",
-  "State": "Success",
+  "StartTime": "2017-02-04T00:30:28.5498695-03:00",
+  "LastUpdatedTime": "2017-02-04T00:30:29.1098682-03:00",
+  "CompletedTime": "2017-02-04T00:30:29.1098682-03:00",
+  "ErrorMessage": "The health check failed. One or more deployment targets were not available.",
+  "ConcurrencyTag": "Health",
+  "State": "Failed",
   "HasPendingInterruptions": false,
-  "HasWarningsOrErrors": false,
-  "ServerVersion": "3.8.4+Branch.master.Sha.1b250ca4d7c1d42aa029771ed15851e6ed11ff83",
+  "HasWarningsOrErrors": true,
+  "ServerVersion": "3.7.4+Branch.master.Sha.403a70b03ab7c4b06d0bcb637b19afa44456c672",
   "ServerNode": "DEVBOX",
-  "LogDifferentiationToken": "ED636M2E2C",
+  "LogDifferentiationToken": "4TSXJQHRMX",
   "AdditionalDescription": null,
-  "DurationSeconds": 5,
-  "ProjectId": "Projects-3",
-  "EnvironmentId": "Environments-2",
+  "DurationSeconds": 1,
+  "ProjectId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "ExtendedViewLogPermissions": [],
-  "ExtendedCreatePermissions": [
-    "DeploymentCreate"
+  "ExtendedViewLogPermissions": [
+    "EnvironmentView",
+    "MachineView"
   ],
-  "CanRerun": false,
+  "ExtendedCreatePermissions": [
+    "EnvironmentView",
+    "MachineEdit"
+  ],
+  "CanRerun": true,
   "Properties": {}
 }

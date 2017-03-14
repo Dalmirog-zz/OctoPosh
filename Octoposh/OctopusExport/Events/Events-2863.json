@@ -1,0 +1,31 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-2863",
+  "RelatedDocumentIds": [
+    "ServerTasks-466",
+    "ServerTasks-465"
+  ],
+  "ProjectId": null,
+  "EnvironmentId": null,
+  "TenantId": null,
+  "Category": "Created",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-03-14T01:05:57.0617483+00:00",
+  "Message": "Task Check ListeningTentacle1 health #466 was created by re-running task Check ListeningTentacle1 health #465",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "ServerTasks-466",
+      "StartIndex": 5,
+      "Length": 36
+    },
+    {
+      "ReferencedDocumentId": "ServerTasks-465",
+      "StartIndex": 73,
+      "Length": 36
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "Session cookie"
+}

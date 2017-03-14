@@ -7,34 +7,29 @@
   "ProjectId": null,
   "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "DeploymentFailed",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-04T20:00:19.9547828-03:00",
-  "Message": "Deploy to Dev (#2) failed  for DeploymentTests_Project1 release 0.0.1 to Dev",
+  "Category": "DeploymentQueued",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-02-09T00:13:13.5490691-03:00",
+  "Message": "Deployed DeploymentTests_Project1 release 0.0.14 to Dev",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 0,
-      "Length": 18
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 31,
+      "StartIndex": 9,
       "Length": 24
     },
     {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 64,
-      "Length": 5
+      "StartIndex": 42,
+      "Length": 6
     },
     {
       "ReferencedDocumentId": "Environments-1",
-      "StartIndex": 73,
+      "StartIndex": 52,
       "Length": 3
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "IdentityEstablishedWith": "Session cookie"
 }
