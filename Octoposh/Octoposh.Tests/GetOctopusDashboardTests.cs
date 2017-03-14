@@ -270,7 +270,7 @@ namespace Octoposh.Tests
         [Test]
         public void GetDashboardByEnvironmentAndStatus()
         {
-            var deploymentStatus = "Failed";
+            var deploymentStatus = "Canceled";
             var environmentName = "Dev";
 
             var parameters = new List<CmdletParameter>

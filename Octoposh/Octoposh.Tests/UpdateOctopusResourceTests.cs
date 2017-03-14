@@ -289,8 +289,8 @@ namespace Octoposh.Tests
         [Test]
         public void UpdateTagSet()
         {
-            var unmodifiedName = "unmodified_TestTagSet";
-            var modifiedName = "modified_TestTagSet";
+            var unmodifiedName = "Unmodified_TestTagSet";
+            var modifiedName = "Modified_TestTagSet";
 
             var baseresource = Repository.TagSets.FindByName(unmodifiedName);
 
