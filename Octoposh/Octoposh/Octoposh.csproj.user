@@ -3,7 +3,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <StartAction>Program</StartAction>
     <StartProgram>C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe</StartProgram>
-    <StartArguments>-NoProfile -NoExit -Command "Import-Module .\Octoposh -verbose  %3b set-OctopusconnectionInfo -server %27http://Devbox:82%27 -apikey %27API-B3ZK7BTFAKSKRTCHQFKAZNPT5Y%27"</StartArguments>
+    <StartArguments>-NoProfile -NoExit -WindowStyle Maximized -Command "Import-Module .\Octoposh -verbose  %3b set-OctopusconnectionInfo -server %27http://Devbox:82%27 -apikey %27API-B3ZK7BTFAKSKRTCHQFKAZNPT5Y%27 %3b %24c = New-OctopusConnection "</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <StartAction>Program</StartAction>
