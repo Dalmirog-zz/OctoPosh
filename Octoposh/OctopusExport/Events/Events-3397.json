@@ -1,0 +1,31 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-3397",
+  "RelatedDocumentIds": [
+    "Projects-24",
+    "Releases-83"
+  ],
+  "ProjectId": "Projects-24",
+  "EnvironmentId": null,
+  "TenantId": null,
+  "Category": "Created",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-03-15T00:37:18.1474381+00:00",
+  "Message": "Unblocked issue: Second block for project ReleaseTests_Project1 release 0.0.1.",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Projects-24",
+      "StartIndex": 42,
+      "Length": 21
+    },
+    {
+      "ReferencedDocumentId": "Releases-83",
+      "StartIndex": 72,
+      "Length": 5
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+}

@@ -1,0 +1,31 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-3389",
+  "RelatedDocumentIds": [
+    "Releases-28",
+    "Projects-1"
+  ],
+  "ProjectId": "Projects-1",
+  "EnvironmentId": null,
+  "TenantId": null,
+  "Category": "Created",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-03-14T22:57:22.4329893+00:00",
+  "Message": "Release 0.0.2 for project DashboardTests_Project1 blocked with reason: Testing defects repo",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Releases-28",
+      "StartIndex": 8,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Projects-1",
+      "StartIndex": 26,
+      "Length": 23
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "Session cookie"
+}
