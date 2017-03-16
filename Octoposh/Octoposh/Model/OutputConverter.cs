@@ -620,5 +620,10 @@ namespace Octoposh.Model
             }
             return list;
         }
+
+        public List<OutputOctopusVariableSet> GetOctopusVariableSet(List<VariableSetResource> baseResourceList)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
