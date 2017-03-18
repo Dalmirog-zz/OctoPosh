@@ -21,6 +21,10 @@ namespace Octoposh.Cmdlets
     ///   <para>Gets the Variable Set of the Library Variable Set with the name "Stands_SC"</para>    
     /// </example>
     /// <example>   
+    ///   <code>PS C:\> Get-OctopusVariableSet -LibrarySetName "Stands_SC" -IncludeUsage</code>
+    ///   <para>Gets the Variable Set of the Library Variable Set "Stands_SC" and it also populates the output object property "Usage" with the list of projects that are currently using the set</para>    
+    /// </example>
+    /// <example>   
     ///   <code>PS C:\> Get-OctopusVariableSet -LibrarySetName "Stands_SC","Stands_DII"</code>
     ///   <para>Gets the LibraryVariableSets with the names "Stands_SC" and "Stands_DII"</para>
     /// </example>
@@ -67,7 +71,7 @@ namespace Octoposh.Cmdlets
         /// <para type="description">If set to TRUE the list of Projects on which each Library Variable Set is being used will be displayer</para>
         /// </summary>
         [Parameter]
-        public SwitchParameter IncludeLibrarySetUsage { get; set; }
+        public SwitchParameter IncludeUsage { get; set; }
 
         /// <summary>
         /// <para type="description">If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh output object</para>
@@ -122,16 +126,13 @@ namespace Octoposh.Cmdlets
                     {
                         projectList.AddRange(_connection.Repository.Projects.FindMany(t => ProjectName.Contains(t.Name.ToLower())));
                     }
-
-                    variableSetIDs.AddRange(projectList.Select(p => p.VariableSetId));
+                    
                 }
                 #endregion
 
                 #region Getting Library variable sets
                 if (LibrarySetName != null)
                 {
-                    
-
                     //Getting variable set ids from LibraryVariableSets
 
                     //Multiple values but one of them is wildcarded, which is not an accepted scenario (I.e -MachineName WebServer*, Database1)
@@ -150,10 +151,13 @@ namespace Octoposh.Cmdlets
                     {
                         libraryVariableSetList.AddRange(_connection.Repository.LibraryVariableSets.FindMany(t => LibrarySetName.Contains(t.Name.ToLower())));
                     }
-                    variableSetIDs.AddRange(libraryVariableSetList.Select(v => v.VariableSetId));
+                    
                 }
                 #endregion
             }
+
+            variableSetIDs.AddRange(libraryVariableSetList.Select(v => v.VariableSetId));
+            variableSetIDs.AddRange(projectList.Select(p => p.VariableSetId));
 
             //This works
             foreach (var id in variableSetIDs)
@@ -162,9 +166,8 @@ namespace Octoposh.Cmdlets
             }
 
             //This doesn't work and throws: [Exception thrown: 'Octopus.Client.Exceptions.OctopusResourceNotFoundException' in Octopus.Client.dll]
+            //Github issue for this https://github.com/OctopusDeploy/Issues/issues/3307
             //baseResourceList.AddRange(_connection.Repository.VariableSets.Get(variableSetIDs.ToArray()));
-
-            ResourceOnly = true;
 
             if (ResourceOnly)
             {
@@ -174,7 +177,7 @@ namespace Octoposh.Cmdlets
             else
             {
                 var converter = new OutputConverter();
-                List<OutputOctopusVariableSet> outputList = converter.GetOctopusVariableSet(baseResourceList);
+                List<OutputOctopusVariableSet> outputList = converter.GetOctopusVariableSet(baseResourceList,projectList,libraryVariableSetList,IncludeUsage);
 
                 WriteObject(outputList);
             }
