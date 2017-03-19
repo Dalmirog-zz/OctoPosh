@@ -1,3 +1,5 @@
+**PLEASE read this before submitting your issue**
+
 Thanks for taking the time to log an issue.
 
 However, I want the backlog to reflect things I'm committed to add/fix in the future. So when you reach the Project's Issues page, you wont have to swim through tons of issues created by many users, but instead only of things that you know are going to happen.
