@@ -1,0 +1,55 @@
+{
+  "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
+  "Id": "CommunityActionTemplates-52",
+  "Name": "Explicitly Add IIS WindowsAuthentication Providers",
+  "ExternalId": "f3cf7831-d47c-4b5f-8f76-6bc649d59dd9",
+  "Description": "Clears the WindowsAuthentication Providers, and explicitly adds the ones provided.",
+  "Version": 1,
+  "ActionType": "Octopus.Script",
+  "Author": "KShanafelt",
+  "Website": "https://library.octopus.com/step-templates/f3cf7831-d47c-4b5f-8f76-6bc649d59dd9",
+  "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/iis-website-add-windows-auth-providers.json",
+  "Category": "IIS",
+  "Properties": {
+    "Octopus.Action.Script.Syntax": "PowerShell",
+    "Octopus.Action.Script.ScriptSource": "Inline",
+    "Octopus.Action.Script.ScriptBody": "## --------------------------------------------------------------------------------------\n## Configuration\n## --------------------------------------------------------------------------------------\n\n$isEnabled = $OctopusParameters[\"add-windows-authentication-providers.is-enabled\"]\nif (!$isEnabled -or ![boolean]::Parse($isEnabled))\n{\n   exit 0\n}\n\ntry {\n    Add-PSSnapin WebAdministration\n} catch {\n    try {\n        Import-Module WebAdministration\n    } catch {\n\t\tWrite-Warning \"We failed to load the WebAdministration module. This usually resolved by doing one of the following:\"\n\t\tWrite-Warning \"1. Install .NET Framework 3.5.1\"\n\t\tWrite-Warning \"2. Upgrade to PowerShell 3.0 (or greater)\"\n        throw ($error | Select-Object -First 1)\n    }\n}\n\n$webSiteName = $OctopusParameters[\"add-windows-authentication-providers.website-name\"]\n$providersString = $OctopusParameters[\"add-windows-authentication-providers.providers\"]\n$providers = ($providersString.Split(\"`r`n,\") | % {$_.Trim() } | ? {$_})\n\n## --------------------------------------------------------------------------------------\n## Helpers\n## --------------------------------------------------------------------------------------\n$maxFailures = 5\n$sleepBetweenFailures = Get-Random -minimum 1 -maximum 4\nfunction Execute-WithRetry([ScriptBlock] $command) {\n    $attemptCount = 0\n    $operationIncomplete = $true\n\n    while ($operationIncomplete -and $attemptCount -lt $maxFailures) {\n        $attemptCount = ($attemptCount + 1)\n\n        if ($attemptCount -ge 2) {\n            Write-Output \"Waiting for $sleepBetweenFailures seconds before retrying...\"\n            Start-Sleep -s $sleepBetweenFailures\n            Write-Output \"Retrying...\"\n        }\n\n        try {\n            & $command\n\n            $operationIncomplete = $false\n        } catch [System.Exception] {\n            if ($attemptCount -lt ($maxFailures)) {\n                Write-Output (\"Attempt $attemptCount of $maxFailures failed: \" + $_.Exception.Message)\n            }\n            else {\n                throw \"Failed to execute command\"\n            }\n        }\n    }\n}\n\n## --------------------------------------------------------------------------------------\n## Run\n## --------------------------------------------------------------------------------------\nExecute-WithRetry { \n    Write-Host \"Clearing Windows Authentication Providers for $webSiteName\"\n    Remove-WebConfigurationProperty -PSPath IIS:\\ -Location \"$webSiteName\" -filter system.webServer/security/authentication/windowsAuthentication/providers -name \".\"\n}\n\n$providersPrintedString = $providers -join \", \"\nWrite-Host \"Providers to add: $providersPrintedString\"\nforeach ($provider in $providers) {\n    Write-Host \"Windows Authentication Provider $provider\"\n    Execute-WithRetry { \n        Add-WebConfiguration -Filter system.webServer/security/authentication/windowsAuthentication/providers -PSPath IIS:\\ -Location \"$webSiteName\" -Value \"$provider\"\n    }\n}",
+    "Octopus.Action.Script.ScriptFileName": "",
+    "Octopus.Action.Package.NuGetFeedId": "",
+    "Octopus.Action.Package.NuGetPackageId": ""
+  },
+  "Parameters": [
+    {
+      "Id": null,
+      "Name": "add-windows-authentication-providers.is-enabled",
+      "Label": "Add Windows Authentication Providers",
+      "HelpText": "If enabled, This step will clear the Windows Authentication Providers, and then add the ones listed in the\n    Windows Authentication Providers\nfield.",
+      "DefaultValue": "True",
+      "DisplaySettings": {
+        "Octopus.ControlType": "Checkbox"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "add-windows-authentication-providers.website-name",
+      "Label": "Web Site name",
+      "HelpText": "The display name of the IIS web site to add Windows Authentication providers to.",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "add-windows-authentication-providers.providers",
+      "Label": "Windows Authentication Providers",
+      "HelpText": "A comma- or newline-separated list of Windows Authentication Providers to add.",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "MultiLineText"
+      }
+    }
+  ],
+  "LogoAttachmentKey": "CommunityActionTemplates-52",
+  "LogoAttachmentMimeType": "image/png"
+}

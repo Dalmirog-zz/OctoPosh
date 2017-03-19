@@ -1,0 +1,33 @@
+{
+  "$type": "Octopus.Core.Model.Projects.Project, Octopus.Core",
+  "Id": "Projects-3",
+  "Name": "DeploymentTests_Project1",
+  "Description": "",
+  "Slug": "deploymenttests-project1",
+  "IsDisabled": false,
+  "VariableSetId": "variableset-Projects-3",
+  "DeploymentProcessId": "deploymentprocess-Projects-3",
+  "ProjectGroupId": "ProjectGroups-22",
+  "LifecycleId": "Lifecycles-1",
+  "AutoCreateRelease": false,
+  "IncludedLibraryVariableSetIds": [],
+  "UsedPackages": [
+    "TestApp"
+  ],
+  "DefaultToSkipIfAlreadyInstalled": false,
+  "TenantedDeploymentMode": "Untenanted",
+  "VersioningStrategy": {
+    "DonorPackageStepId": null,
+    "Template": "#{Octopus.Version.LastMajor}.#{Octopus.Version.LastMinor}.#{Octopus.Version.NextPatch}"
+  },
+  "Templates": [],
+  "ReleaseCreationStrategy": {
+    "ReleaseCreationPackageStepId": "",
+    "ChannelId": null
+  },
+  "ProjectConnectivityPolicy": {
+    "SkipMachineBehavior": "None",
+    "TargetRoles": []
+  },
+  "AutoDeployReleaseOverrides": []
+}

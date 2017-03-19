@@ -1,0 +1,29 @@
+{
+  "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
+  "Id": "CommunityActionTemplates-178",
+  "Name": "SQL - Test Connection String",
+  "ExternalId": "7e43cab7-e56c-4c37-a471-f4d552815169",
+  "Description": "Tests a SQL Server connection string by attempting to connect to the database.",
+  "Version": 4,
+  "ActionType": "Octopus.Script",
+  "Author": "dazinator",
+  "Website": "https://library.octopus.com/step-templates/7e43cab7-e56c-4c37-a471-f4d552815169",
+  "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/sql-test-connection-string.json",
+  "Category": "SQL Server",
+  "Properties": {
+    "Octopus.Action.Script.ScriptBody": "#Create SQL Connection\n$con = new-object \"System.data.sqlclient.SQLconnection\"\nWrite-Host \"Opening SQL connection to $ConnectionString\"\n\n$con.ConnectionString =(\"$ConnectionString\")\ntry {\n    $con.Open()\n    Write-Host \"Successfully opened connection to the database\"\n}\ncatch {\n    $error[0]\n    exit 1\n}\nfinally{\n    Write-Host \"Closing SQL connection\"\n    $con.Close()\n    $con.Dispose()\n    Write-Host \"Connection closed.\"\n}",
+    "Octopus.Action.Script.Syntax": "PowerShell"
+  },
+  "Parameters": [
+    {
+      "Id": null,
+      "Name": "ConnectionString",
+      "Label": "Connection string",
+      "HelpText": "The connection string. For example:\n\n> Data Source=MyServer;Initial Catalog=MyDatabase;User Id=admin; Password=supersecretpassword;",
+      "DefaultValue": null,
+      "DisplaySettings": {}
+    }
+  ],
+  "LogoAttachmentKey": "CommunityActionTemplates-178",
+  "LogoAttachmentMimeType": "image/png"
+}

@@ -1,0 +1,25 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-1333",
+  "RelatedDocumentIds": [
+    "Machines-2"
+  ],
+  "ProjectId": null,
+  "EnvironmentId": null,
+  "TenantId": null,
+  "Category": "MachineDisabled",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-02-06T03:02:04.0455094-03:00",
+  "Message": "Machine ListeningTentacle2 was disabled",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Machines-2",
+      "StartIndex": 8,
+      "Length": 18
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "Session cookie"
+}

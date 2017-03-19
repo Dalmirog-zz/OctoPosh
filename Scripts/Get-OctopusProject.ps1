@@ -8,9 +8,9 @@
 
    This command gets all the projects of the current Instance
 .EXAMPLE
-   Get-OctopusProject -name MyProject
+   Get-OctopusProject -name MyAwesomeProject
 
-   Get the project named "MyProject"
+   Get the project named "MyAwesomeProject"
 .EXAMPLE
    Get-OctopusProject -name MyApp*
 
@@ -24,6 +24,7 @@
 
    Get all the projects inside of the Project Group "MyProjects" and then delete them from the database
 .LINK
+   WebSite: http://Octoposh.net
    Github project: https://github.com/Dalmirog/Octoposh
    Wiki: https://github.com/Dalmirog/OctoPosh/wiki
    QA and Cmdlet request: https://gitter.im/Dalmirog/OctoPosh#initial

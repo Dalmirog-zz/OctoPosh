@@ -1,0 +1,29 @@
+{
+  "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
+  "Id": "CommunityActionTemplates-95",
+  "Name": "IIS AppPool - Start",
+  "ExternalId": "9db77671-0fe3-4aef-a014-551bf1e5e7ab",
+  "Description": "Starts an IIS Application Pool",
+  "Version": 3,
+  "ActionType": "Octopus.Script",
+  "Author": "pascaln2",
+  "Website": "https://library.octopus.com/step-templates/9db77671-0fe3-4aef-a014-551bf1e5e7ab",
+  "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/iis-apppool-start.json",
+  "Category": "IIS",
+  "Properties": {
+    "Octopus.Action.Script.ScriptBody": "# Load IIS module:\nImport-Module WebAdministration\n\n# Get AppPool Name\n$appPoolName = $OctopusParameters['appPoolName']\n\nWrite-Output \"Starting IIS app pool $appPoolName\"\nStart-WebAppPool $appPoolName\n\n\n",
+    "Octopus.Action.Script.Syntax": "PowerShell"
+  },
+  "Parameters": [
+    {
+      "Id": null,
+      "Name": "AppPoolName",
+      "Label": "Application pool name",
+      "HelpText": "The name of the application pool in IIS.",
+      "DefaultValue": null,
+      "DisplaySettings": {}
+    }
+  ],
+  "LogoAttachmentKey": "CommunityActionTemplates-95",
+  "LogoAttachmentMimeType": "image/png"
+}

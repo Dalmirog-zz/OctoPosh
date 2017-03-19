@@ -1,0 +1,25 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-446",
+  "RelatedDocumentIds": [
+    "Teams-3"
+  ],
+  "ProjectId": null,
+  "EnvironmentId": null,
+  "TenantId": null,
+  "Category": "Created",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-01-23T02:32:57.4184421-03:00",
+  "Message": "Team unmodified_TestTeam was created",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Teams-3",
+      "StartIndex": 5,
+      "Length": 19
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "Session cookie"
+}

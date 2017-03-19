@@ -1,0 +1,41 @@
+{
+  "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
+  "Id": "CommunityActionTemplates-158",
+  "Name": "Seq - Log Deployment",
+  "ExternalId": "a55a825b-8e8b-4995-8143-0f9dd7b6bcfa",
+  "Description": "Post details of the deployment to a [Seq](https://getseq.net) log server. Add this as the last step in a process, and ensure it is set to run always (on success and failure).",
+  "Version": 20,
+  "ActionType": "Octopus.Script",
+  "Author": "nblumhardt",
+  "Website": "https://library.octopus.com/step-templates/a55a825b-8e8b-4995-8143-0f9dd7b6bcfa",
+  "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/seq-log-deployment.json",
+  "Category": "Seq",
+  "Properties": {
+    "Octopus.Action.Script.Syntax": "PowerShell",
+    "Octopus.Action.Script.ScriptBody": "function Open-Seq ([string] $url, [string] $apiKey, $properties = @{})\n{\n  return @{ Url = $url; ApiKey = $apiKey; Properties = $properties.Clone() }\n}\n  \nfunction Send-SeqEvent (\n    $seq,\n    [string] $text,\n    [string] $level,\n    $properties = @{},\n    [string] $exception = $null,\n    [switch] $template)\n{\n  if (-not $level) {\n    $level = 'Information'\n  }\n   \n  if (@('Verbose', 'Debug', 'Information', 'Warning', 'Error', 'Fatal') -notcontains $level) {\n    $level = 'Information'\n  }\n  \n  $allProperties = $seq[\"Properties\"].Clone()\n  $allProperties += $properties\n  \n  $messageTemplate = \"{Text}\"\n  \n  if ($template) {\n    $messageTemplate = $text;\n  } else {\n    $allProperties += @{ Text = $text; }\n  }\n  \n  $exceptionProperty = \"\"\n  if ($exception) {\n      $exceptionProperty = \"\"\"Exception\"\": $($exception | ConvertTo-Json),\"\n  }\n  \n  $body = \"{\"\"Events\"\": [ {\n    \"\"Timestamp\"\": \"\"$([System.DateTimeOffset]::Now.ToString('o'))\"\",\n    \"\"Level\"\": \"\"$level\"\",\n    $exceptionProperty\n    \"\"MessageTemplate\"\": $($messageTemplate | ConvertTo-Json),\n    \"\"Properties\"\": $($allProperties | ConvertTo-Json) }]}\"\n  \n  $target = \"$($seq[\"Url\"])/api/events/raw?apiKey=$($seq[\"ApiKey\"])\"\n  \n  Invoke-RestMethod -Uri $target -Body $body -ContentType \"application/json\" -Method POST\n}\n\nWrite-Output \"Logging the deployment result to Seq at $SeqServerUrl...\"\n\n$seq = Open-Seq $SeqServerUrl -apiKey $SeqApiKey\n\n$properties = @{\n    ProjectName = $OctopusParameters['Octopus.Project.Name'];\n    ReleaseNumber = $OctopusParameters['Octopus.Release.Number'];\n    Result = \"succeeded\";\n    EnvironmentName = $OctopusParameters['Octopus.Environment.Name'];\n    DeploymentName = $OctopusParameters['Octopus.Deployment.Name'];\n    Channel = $OctopusParameters['Octopus.Release.Channel.Name'];\n    DeploymentLink = $OctopusParameters['Octopus.Web.BaseUrl'] + $OctopusParameters['Octopus.Web.DeploymentLink']\n}\n\n$level = \"Information\"\n$exception = $null\nif ($OctopusParameters['Octopus.Deployment.Error']) {\n    $level = \"Error\"\n    $properties[\"Result\"] = \"failed\"\n    $properties[\"Error\"] = $OctopusParameters['Octopus.Deployment.Error']\n    $exception = $OctopusParameters['Octopus.Deployment.ErrorDetail']\n}\n\ntry {\n    Send-SeqEvent $seq \"A deployment of {ProjectName} release {ReleaseNumber} {Result} in {EnvironmentName}\" -level $level -template -properties $properties -exception $exception\n} catch [Exception] {\n    [System.Console]::Error.WriteLine(\"Unable to write deployment details to Seq\")\n    $_.Exception | format-list -force\n}\n"
+  },
+  "Parameters": [
+    {
+      "Id": null,
+      "Name": "SeqServerUrl",
+      "Label": "Seq server URL",
+      "HelpText": "The URL of the Seq server.",
+      "DefaultValue": "http://localhost:5341",
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "SeqApiKey",
+      "Label": "Seq API key",
+      "HelpText": "If an [API key](http://docs.getseq.net/docs/api-keys) is required for writing events, specify it here.",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "Sensitive"
+      }
+    }
+  ],
+  "LogoAttachmentKey": "CommunityActionTemplates-158",
+  "LogoAttachmentMimeType": "image/png"
+}

@@ -1,0 +1,25 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-702",
+  "RelatedDocumentIds": [
+    "Machines-4"
+  ],
+  "ProjectId": null,
+  "EnvironmentId": null,
+  "TenantId": null,
+  "Category": "MachineAdded",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2016-12-04T13:20:49.1746926-03:00",
+  "Message": "Machine South was created (domain-event)",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Machines-4",
+      "StartIndex": 8,
+      "Length": 5
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "Session cookie"
+}

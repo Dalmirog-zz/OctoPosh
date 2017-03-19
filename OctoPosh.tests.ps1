@@ -117,15 +117,20 @@ function Create-TentacleInstance
     }
     Process
     {
+        Try{
         $TentacleExe = Join-Path (Get-ItemProperty HKLM:\SOFTWARE\Octopus\Tentacle).InstallLocation "Tentacle.exe"
         
         & $TentacleExe create-instance --instance $name --config "C:\Octopus\$Name\Tentacle-$name.config"
         & $TentacleExe new-certificate --instance $Name --if-blank
         & $TentacleExe configure --instance $name --reset-trust
-        & $TentacleExe configure --instance $name --home "C:\Octopus\$name" --app "C:\Octopus\Applications\$name" --port $Port --noListen "False"
+        & $TentacleExe configure --instance $name --home "C:\Octopus\$name" --app "C:\Octopus\Applications\$name" --port 11000 --noListen "False"
         & $TentacleExe configure --instance $name --trust $ServerThumbprint
-        & "netsh" advfirewall firewall add rule "name=Octopus Deploy Tentacle" dir=in action=allow protocol=TCP localport=$Port
+        & "netsh" advfirewall firewall add rule "name=Octopus Deploy Tentacle" dir=in action=allow protocol=TCP localport=11000
         & $TentacleExe service --instance $name --install --start
+        }
+        Catch{
+            throw $_
+        }
     }
     End
     {
@@ -153,17 +158,22 @@ function Delete-TentacleInstance
     }
     Process
     {
-        $TentacleExe = Join-Path (Get-ItemProperty HKLM:\SOFTWARE\Octopus\Tentacle).InstallLocation "Tentacle.exe"
+        Try{
+            $TentacleExe = Join-Path (Get-ItemProperty HKLM:\SOFTWARE\Octopus\Tentacle).InstallLocation "Tentacle.exe"
         
-        & $TentacleExe service --instance $name --stop --uninstall
-        & $TentacleExe delete-instance --instance $name
+            & $TentacleExe service --instance $name --stop --uninstall
+            & $TentacleExe delete-instance --instance $name
 
-        If(Test-Path C:\Octopus\$name){
-            Remove-Item C:\Octopus\$name -Recurse -Force
+            If(Test-Path C:\Octopus\$name){
+                Remove-Item C:\Octopus\$name -Recurse -Force
+            }
+
+            If(Test-Path C:\Octopus\Applications\$name){
+                Remove-Item C:\Octopus\Applications\$name -Recurse -Force
+            }
         }
-
-        If(Test-Path C:\Octopus\Applications\$name){
-            Remove-Item C:\Octopus\Applications\$name -Recurse -Force
+        Catch{
+            throw $_
         }
     }
     End
@@ -174,13 +184,20 @@ function Delete-TentacleInstance
 #endregion
 
 #region Tests
-Describe 'Test Environment'{
+
+#Tests to check if the VM is in condition to run the module tests. All of these must pass for the rest of the tests to work.
+Describe 'Test VM check'{
+    It 'Checks that a Tentacle Instance with a default name is running on the VM running the tests'{
+        $service = Get-Service -Name "OctopusDeploy Tentacle"
+        $service.Status | should be "Running"
+    }
     It 'Check that the Active Directory Powershell Module is installed on the VM running the tests'{
         Import-Module ActiveDirectory
         (Get-Module ActiveDirectory).count | Should be 1
     }
 }
 
+#Octoposh Tests
 Describe 'Octoposh' {
 
     $TestName = new-testname
@@ -741,7 +758,6 @@ Describe 'Octoposh' {
         $ProjectName = Get-RandomObject $dashboard.ProjectNAme
         Get-OctopusDashboard -ProjectName $Projectname | select -ExpandProperty ProjectName | should be $ProjectName
     }
-
     It '[Remove-OctopusResource] deletes teams' {
         $testname1 = $TestName
         $testname2 = $TestName + "2"
@@ -863,31 +879,18 @@ Describe 'Octoposh' {
     }
     It '[Get-OctopusTargetDiscoveryInfo] gets a Target info'{
        
-       Try{
-           $Port = Get-Random -Minimum 11000 -Maximum 12000
+            $TentacleConfig = (Get-ItemProperty HKLM:\SOFTWARE\Octopus\Tentacle\Tentacle).ConfigurationFilePath
 
-           Create-TentacleInstance -Name $TestName -Port $port -ServerThumbprint (Get-OctopusServerThumbPrint)
-       
-           $count = 0
-           do{
-                $service = Get-Service -Name "OctopusDeploy Tentacle: $TestName"
-                If($service.Status -eq "Running"){
-                    $discovery = Get-OctopusTargetDiscoveryInfo -ComputerName $env:computername -Port $port -CommunicationStyle Listening
+            [xml]$Config = Get-Content $TentacleConfig
 
-                    [string]::IsNullOrEmpty($discovery.thumbprint) | should be $false
-                }
-                $count++
-           }
+            $Port = ($Config.'octopus-settings'.ChildNodes | ?{$_.key -eq "Tentacle.Services.PortNumber"}).'#text'
 
-           While(($service.Status -ne "Running") -or ($count -eq 10))
-       }
-
-       Catch{}
-
-       Finally{
-        Delete-TentacleInstance -Name $TestName
-       }
-    }
+            $discovery = Get-OctopusTargetDiscoveryInfo -ComputerName $env:computername -Port $port -CommunicationStyle Listening
+            
+            $thumbprintFromConfig = ($Config.'octopus-settings'.ChildNodes | ?{$_.key -eq "Tentacle.CertificateThumbprint"}).'#text'
+            
+            $discovery.thumbprint | should be $thumbprintFromConfig       
+        }
     It '[Get-OctopusTargetDiscoveryInfo] Throws if it cant find a valid Target'{
         {Get-OctopusMachineDiscoveryInfo -ComputerName whatever -Port (get-random) -CommunicationStyle Listening} | should throw
     }

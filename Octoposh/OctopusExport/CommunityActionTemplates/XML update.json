@@ -1,0 +1,81 @@
+{
+  "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
+  "Id": "CommunityActionTemplates-230",
+  "Name": "XML update",
+  "ExternalId": "170a9b93-96f2-470b-81ca-e0ff53fa7c3d",
+  "Description": null,
+  "Version": 0,
+  "ActionType": "Octopus.Script",
+  "Author": "pitrew",
+  "Website": "https://library.octopus.com/step-templates/170a9b93-96f2-470b-81ca-e0ff53fa7c3d",
+  "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/xml-attribute-update.json",
+  "Category": "XML",
+  "Properties": {
+    "Octopus.Action.Script.ScriptBody": "[xml]$xml = Get-Content $path \n$ns = new-object Xml.XmlNamespaceManager $xml.NameTable\n$ns.AddNamespace($nsKey, $nsValue)\n\n$xml.SelectNodes($xmlPath, $ns) | % {\n\tif ($_.key -eq $key)\n\t{\n\t\t$_.value = $value\n\t}\n}\n\n$xml.Save($path)",
+    "Octopus.Action.Script.Syntax": "PowerShell"
+  },
+  "Parameters": [
+    {
+      "Id": null,
+      "Name": "path",
+      "Label": "XML file path",
+      "HelpText": null,
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "xmlPath",
+      "Label": "XPath",
+      "HelpText": "XPath element with namespace //b:setting",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "key",
+      "Label": "Key",
+      "HelpText": "Key to change",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "value",
+      "Label": "Value",
+      "HelpText": "New value",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "nsKey",
+      "Label": "NS key",
+      "HelpText": "Namespace key",
+      "DefaultValue": "B",
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "nsValue",
+      "Label": "NS Value",
+      "HelpText": "Namespace value",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    }
+  ],
+  "LogoAttachmentKey": "CommunityActionTemplates-230",
+  "LogoAttachmentMimeType": "image/png"
+}

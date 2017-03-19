@@ -1,0 +1,31 @@
+{
+  "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
+  "Id": "CommunityActionTemplates-38",
+  "Name": "Create Azure Website Staging Slot. Requires Azure PowerShell to be installed on Tentacle machine",
+  "ExternalId": "2f763d9e-81e1-4ce2-a897-3fe2c72ab9f0",
+  "Description": "Creates a staging slot for Azure Website. \n\nProvides Azure publish url as variable:\n\n     #{Octopus.Action[Create Staging Slot Step Name].Output.AzurePublishUrl}\n\nAnd Username/Password for publishing:\n\n    #{Octopus.Action[Create Staging Slot Step Name].Output.AzureUsername}\n    #{Octopus.Action[Create Staging Slot Step Name].Output.AzurePassword}",
+  "Version": 5,
+  "ActionType": "Octopus.Script",
+  "Author": "trailmax",
+  "Website": "https://library.octopus.com/step-templates/2f763d9e-81e1-4ce2-a897-3fe2c72ab9f0",
+  "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/create-azure-website-staging-slot.json",
+  "Category": "Azure",
+  "Properties": {
+    "Octopus.Action.Script.ScriptBody": "# Check if Windows Azure Powershell is avaiable \ntry{ \n    Import-Module Azure -ErrorAction Stop\n}catch{\n    throw \"Windows Azure Powershell not found! Please make sure to install them from http://www.windowsazure.com/en-us/downloads/#cmd-line-tools\" \n}\n\n\n$stagingWebsite = Get-AzureWebsite -Name $AzureWebSite -Slot staging -ErrorAction SilentlyContinue\n\n\nif($stagingWebsite -eq $null)\n{\n    Write-Host \"Creating staging slot\"\n    $stagingWebsite = New-AzureWebsite -Name $AzureWebSite -Slot staging -Location $Location\n}\n\n\nSet-OctopusVariable -name \"AzurePassword\" -value $stagingWebsite.PublishingPassword\nSet-OctopusVariable -name \"AzureUsername\" -value $stagingWebsite.PublishingUsername\n\n$urlString = ($stagingWebsite.SiteProperties.Properties | ?{ $_.Name -eq \"RepositoryURI\" }).Value.ToString()\n$url = [System.Uri]$urlString\n\n\nSet-OctopusVariable -Name \"AzurePublishUrl\" -value $url.Host",
+    "Octopus.Action.Script.Syntax": "PowerShell"
+  },
+  "Parameters": [
+    {
+      "Id": null,
+      "Name": "AzureWebSite",
+      "Label": "Azure Web Site Name",
+      "HelpText": "Name of the web-site in Azure",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    }
+  ],
+  "LogoAttachmentKey": "CommunityActionTemplates-38",
+  "LogoAttachmentMimeType": "image/png"
+}

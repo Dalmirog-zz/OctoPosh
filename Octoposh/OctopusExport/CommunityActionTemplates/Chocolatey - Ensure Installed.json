@@ -1,0 +1,20 @@
+{
+  "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
+  "Id": "CommunityActionTemplates-23",
+  "Name": "Chocolatey - Ensure Installed",
+  "ExternalId": "c364b0a5-a0b7-48f8-a1a4-35e9f54a82d3",
+  "Description": "Ensures that the Chocolatey package manager is installed on the system. The installer is downloaded from https://chocolatey.org if required.",
+  "Version": 5,
+  "ActionType": "Octopus.Script",
+  "Author": "joewaid",
+  "Website": "https://library.octopus.com/step-templates/c364b0a5-a0b7-48f8-a1a4-35e9f54a82d3",
+  "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/chocolatey-ensure-installed.json",
+  "Category": "Chocolatey",
+  "Properties": {
+    "Octopus.Action.Script.ScriptBody": "Write-Output \"Ensuring the Chocolatey package manager is installed...\"\n\n$chocolateyBin = [Environment]::GetEnvironmentVariable(\"ChocolateyInstall\", \"Machine\") + \"\\bin\"\n$chocInstalled = Test-Path \"$chocolateyBin\\cinst.exe\"\n\nif (-not $chocInstalled) {\n    Write-Output \"Chocolatey not found, installing...\"\n    \n    $installPs1 = ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))\n    Invoke-Expression $installPs1\n    \n    Write-Output \"Chocolatey installation complete.\"\n} else {\n    Write-Output \"Chocolatey was found at $chocolateyBin and won't be reinstalled.\"\n}\n",
+    "Octopus.Action.Script.Syntax": "PowerShell"
+  },
+  "Parameters": [],
+  "LogoAttachmentKey": "CommunityActionTemplates-23",
+  "LogoAttachmentMimeType": "image/png"
+}

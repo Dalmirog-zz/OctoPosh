@@ -1,0 +1,49 @@
+{
+  "$type": "Octopus.Core.Model.ServerTasks.ServerTask, Octopus.Core",
+  "Id": "ServerTasks-285",
+  "Name": "Health",
+  "Arguments": {
+    "Timeout": "00:05:00",
+    "MachineIds": [
+      "Machines-1"
+    ]
+  },
+  "Description": "Check ListeningTentacle1 health",
+  "QueueTime": "2017-02-11T01:27:36.7650677-03:00",
+  "QueueTimeExpiry": "10675199.02:48:05.4775807",
+  "ExecutionTimeExpiry": "00:00:00",
+  "StartTime": "2017-02-11T01:27:36.7980688-03:00",
+  "LastUpdatedTime": "2017-02-11T01:27:42.2610086-03:00",
+  "CompletedTime": "2017-02-11T01:27:42.2610086-03:00",
+  "ErrorMessage": "The health check failed. One or more deployment targets were not available.",
+  "ConcurrencyTag": "Health",
+  "State": "Failed",
+  "HasPendingInterruptions": false,
+  "HasWarningsOrErrors": true,
+  "ServerVersion": "3.8.4+Branch.master.Sha.1b250ca4d7c1d42aa029771ed15851e6ed11ff83",
+  "ServerNode": "DEVBOX",
+  "LogDifferentiationToken": "JG9BZSRK6W",
+  "AdditionalDescription": null,
+  "DurationSeconds": 5,
+  "ProjectId": null,
+  "EnvironmentId": "Environments-2",
+  "TenantId": null,
+  "ExtendedViewLogPermissions": [
+    "EnvironmentView",
+    "MachineView",
+    "EnvironmentView",
+    "MachineView",
+    "EnvironmentView",
+    "MachineView"
+  ],
+  "ExtendedCreatePermissions": [
+    "EnvironmentView",
+    "MachineEdit",
+    "EnvironmentView",
+    "MachineEdit",
+    "EnvironmentView",
+    "MachineEdit"
+  ],
+  "CanRerun": true,
+  "Properties": {}
+}

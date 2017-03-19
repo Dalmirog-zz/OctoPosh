@@ -1,0 +1,41 @@
+{
+  "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
+  "Id": "CommunityActionTemplates-78",
+  "Name": "HTTP - Post Form",
+  "ExternalId": "3c7a59bd-d66e-4dc6-9509-895b4a5d98c8",
+  "Description": "Execute a simple form POST via HTTP. The script will construct a body in \"application/x-www-form-urlencoded\" format by extracting Octopus variables with a specified prefix (from the \"HTTP.PostForm.Prefix\" parameter). Variable names and values are encoded accordingly.\n\nFor instance, if \"HTTP.PostForm.Prefix\" is \"foo.\", then the Octopus variable \"foo.Bar\"=\"baz\" will be translated to \"Bar=baz\" in the request body.",
+  "Version": 2,
+  "ActionType": "Octopus.Script",
+  "Author": "kburdett",
+  "Website": "https://library.octopus.com/step-templates/3c7a59bd-d66e-4dc6-9509-895b4a5d98c8",
+  "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/http-post-form.json",
+  "Category": "HTTP",
+  "Properties": {
+    "Octopus.Action.Script.ScriptBody": "try {\r    $uri = $OctopusParameters[\"HTTP.PostForm.URI\"]\r    $prefix = $OctopusParameters[\"HTTP.PostForm.Prefix\"]\r    $body = \"\"\r\r    # Ensure URI is populated\r    if ([string]::IsNullOrEmpty($uri)) {\r        Write-Error \"HTTP.PostForm.URI is required and cannot be empty\"\r        return\r    }\r\r    # Construct the body\r    if (![string]::IsNullOrEmpty($prefix)) {\r        $params = $OctopusParameters.Keys |\r            Where-Object { $_.StartsWith($prefix) } |\r            Foreach-Object {\r                $key = [uri]::EscapeDataString($_.Substring($prefix.Length))\r                $val = [uri]::EscapeDataString($OctopusParameters[$_])\r                Write-Verbose \"Found parameter ${key}=${val}\"\r                \"${key}=${val}\"\r            }\r    \r        if ($params.Length -gt 0) {\r            $body = $params -join \"&\"\r        }\r    }\r    \r    # Execute the request\r    Write-Host \"Executing trigger: ${uri}\"\r    Write-Host \"Body: ${body}\"\r    Invoke-WebRequest -Method Post -Uri $uri -Body $body -ContentType \"application/x-www-form-urlencoded\"\r} catch {\r    $ErrorMessage = $_.Exception.Message\r    Write-Error $ErrorMessage\r}",
+    "Octopus.Action.Script.Syntax": "PowerShell"
+  },
+  "Parameters": [
+    {
+      "Id": null,
+      "Name": "HTTP.PostForm.URI",
+      "Label": "URI",
+      "HelpText": "Specifies the destination of the POST.",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "HTTP.PostForm.Prefix",
+      "Label": "Prefix",
+      "HelpText": "Specifies the variable prefix for composing the body of the POST. Any variables in the current context that begin with this prefix will be extracted and added to the body.",
+      "DefaultValue": "HTTP.Parameter.",
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    }
+  ],
+  "LogoAttachmentKey": "CommunityActionTemplates-78",
+  "LogoAttachmentMimeType": "image/png"
+}

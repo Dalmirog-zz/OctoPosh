@@ -1,0 +1,45 @@
+{
+  "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
+  "Id": "CommunityActionTemplates-83",
+  "Name": "IIS - Bind SSL Certificate with SNI Enabled",
+  "ExternalId": "4827a205-ff46-4109-a0aa-7c59a8688f7e",
+  "Description": "Applies a https binding, with SNI enabled.",
+  "Version": 9,
+  "ActionType": "Octopus.Script",
+  "Author": "Base33",
+  "Website": "https://library.octopus.com/step-templates/4827a205-ff46-4109-a0aa-7c59a8688f7e",
+  "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/iis-bind-ssl-certificate-with-sni-enabled.json",
+  "Category": "IIS",
+  "Properties": {
+    "Octopus.Action.Script.ScriptBody": "$WebsiteName = $OctopusParameters['WebsiteName']\n$SSLBindingHost = $OctopusParameters['SSLBindingHost']\n$CertificateThumbPrint = $OctopusParameters['CertificateThumbPrint']\n\nnew-webbinding -Name $WebsiteName -Protocol \"https\" -Port 443 -HostHeader $SSLBindingHost -SslFlags 1\nnetsh http add sslcert hostnameport=$($SSLBindingHost):443 certhash=$CertificateThumbPrint appid='{58ee6009-4e61-400b-80cf-dedc242faf63}' certstorename=MY\n",
+    "Octopus.Action.Script.Syntax": "PowerShell"
+  },
+  "Parameters": [
+    {
+      "Id": null,
+      "Name": "WebsiteName",
+      "Label": "Website Name",
+      "HelpText": "Name of the web site in IIS",
+      "DefaultValue": null,
+      "DisplaySettings": {}
+    },
+    {
+      "Id": null,
+      "Name": "SSLBindingHost",
+      "Label": "SSL Binding Host",
+      "HelpText": "The host name to bind (www.pancreaticcancer.org.uk)",
+      "DefaultValue": null,
+      "DisplaySettings": {}
+    },
+    {
+      "Id": null,
+      "Name": "CertificateThumbPrint",
+      "Label": "Certificate Thumbprint",
+      "HelpText": "The SSL Thumbprint for the certificate.  Do not include spaces",
+      "DefaultValue": null,
+      "DisplaySettings": {}
+    }
+  ],
+  "LogoAttachmentKey": "CommunityActionTemplates-83",
+  "LogoAttachmentMimeType": "image/png"
+}

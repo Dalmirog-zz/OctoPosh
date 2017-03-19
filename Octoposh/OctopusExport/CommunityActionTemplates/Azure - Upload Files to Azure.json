@@ -1,0 +1,86 @@
+{
+  "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
+  "Id": "CommunityActionTemplates-17",
+  "Name": "Azure - Upload Files to Azure",
+  "ExternalId": "bc18b460-06a7-412f-850f-44098f1b497a",
+  "Description": "Uploads files and folders to an Azure container from a specified location.\n\n**IMPORTANT:** Azure PowerShell must be installed on the tentacle server for this step to work. This can be downloaded from http://bit.ly/AzurePowershellDownload",
+  "Version": 8,
+  "ActionType": "Octopus.Script",
+  "Author": "kemyke",
+  "Website": "https://library.octopus.com/step-templates/bc18b460-06a7-412f-850f-44098f1b497a",
+  "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/azure-upload-files.json",
+  "Category": "Azure",
+  "Properties": {
+    "Octopus.Action.Script.Syntax": "PowerShell",
+    "Octopus.Action.Script.ScriptBody": "#Sets the Permissions to public if the selection is true\nif ([boolean]::Parse($doRecurse)) \n{\n    \n\t$recurse = \"-Recurse\"\n\n}\n\nif ([boolean]::Parse($doForce)) \n{\n    \n\t$force = \"-Force\"\n\n}\n\n#--------------------------------------------------------------------\n#Checking to see if Azure is installed on the computer\n$name = 'Azure'\n\nWrite-Output \"Checking if Azure Powershell is installed\"\n\nif(Get-Module -ListAvailable | Where-Object {$_.name -eq $name})\n{\n\t(Get-Module -ListAvailable | Where-Object{ $_.Name -eq $name}) |\n\tSelect Version, Name, Author, PowerShellVersion | Format-List;\n\tWrite-Output \"Azure Powershell is installed\"\n}\nelse\n{\n\t#Provides the link to install Azure Powershell, if it is not installed\n\tWrite-Warning \"Please install Azure Powershell. To install Azure Powershell go to http://bit.ly/AzurePowershellDownload\"\n\tExit 1\n}\n\n\n\n#--------------------------------------------------------------------\n\n#Initialises the Azure Credentials based on the Storage Account Name and the Storage Account Key, \n#so that we can invoke the APIs further down. \n$storageContext = New-AzureStorageContext -StorageAccountName $storageAccountName -StorageAccountKey $storageAccountKey\n\n#--------------------------------------------------------------------\n\nGet-ChildItem -Path $localFolder -File $recurse | Set-AzureStorageBlobContent -Container $containerName -Blob $blobName -Context $storageContext $force\n\nWrite-Output \"All files in $localFolder uploaded to $containerName!\"\n",
+    "Octopus.Action.Script.ScriptSource": "Inline",
+    "Octopus.Action.RunOnServer": "false",
+    "Octopus.Action.Script.ScriptFileName": "",
+    "Octopus.Action.Package.FeedId": "",
+    "Octopus.Action.Package.PackageId": ""
+  },
+  "Parameters": [
+    {
+      "Id": null,
+      "Name": "storageAccountName",
+      "Label": "Azure Storage Account Name",
+      "HelpText": "Name of the account that the files and folders will be uploaded to.",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "storageAccountKey",
+      "Label": "Azure Storage Account Key",
+      "HelpText": "The key that is used to log into the account.",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "Sensitive"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "containerName",
+      "Label": "Azure Container Name",
+      "HelpText": "The name of the container the files and folder will be uploaded to.",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "localFolder",
+      "Label": "Name of the Parent Folder",
+      "HelpText": "Name of the Parent Folder being uploaded",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "doRecurse",
+      "Label": "Recursive",
+      "HelpText": null,
+      "DefaultValue": "True",
+      "DisplaySettings": {
+        "Octopus.ControlType": "Checkbox"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "doForce",
+      "Label": "Force",
+      "HelpText": "Override is enabled or not",
+      "DefaultValue": "False",
+      "DisplaySettings": {
+        "Octopus.ControlType": "Checkbox"
+      }
+    }
+  ],
+  "LogoAttachmentKey": "CommunityActionTemplates-17",
+  "LogoAttachmentMimeType": "image/png"
+}

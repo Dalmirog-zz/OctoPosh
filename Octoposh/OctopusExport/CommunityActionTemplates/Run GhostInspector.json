@@ -1,0 +1,73 @@
+{
+  "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
+  "Id": "CommunityActionTemplates-155",
+  "Name": "Run GhostInspector",
+  "ExternalId": "8b84e760-a6ca-412c-9b83-1129ca239f32",
+  "Description": "Runs GhostInspector smoke tests asynchronously, returning immediately",
+  "Version": 7,
+  "ActionType": "Octopus.Script",
+  "Author": "daniel-simpson",
+  "Website": "https://library.octopus.com/step-templates/8b84e760-a6ca-412c-9b83-1129ca239f32",
+  "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/ghostinspector-runsuite.json",
+  "Category": "Ghost Inspector",
+  "Properties": {
+    "Octopus.Action.Script.Syntax": "PowerShell",
+    "Octopus.Action.Script.ScriptBody": "\n$ErrorActionPreference = \"Stop\" \n\nfunction Get-Param($Name, [switch]$Required, $Default) {\n    $result = $null\n\n    if ($OctopusParameters -ne $null) {\n        $result = $OctopusParameters[$Name]\n    }\n\n    if ($result -eq $null) {\n        $variable = Get-Variable $Name -EA SilentlyContinue   \n        if ($variable -ne $null) {\n            $result = $variable.Value\n        }\n    }\n\n    if ($result -eq $null -or $result -eq \"\") {\n        if ($Required) {\n            throw \"Missing parameter value $Name\"\n        } else {\n            $result = $Default\n        }\n    }\n\n    return $result\n}\n\n& {\n    param(\n\t\t[string]$suiteId,\n\t\t[string]$apiKey,\n\t\t[string]$siteUrl,\n\t\t[string]$httpAuthUser,\n\t\t[string]$httpAuthPass\n    ) \n\n\t$apiUrl = \"https://api.ghostinspector.com/v1/suites/$suiteId/execute/?immediate=1&apiKey=\" + $apiKey\n\n\tif(-! ([string]::IsNullOrEmpty($siteUrl)))\n\t{\n\t\t$apiUrl = $apiUrl + '&startUrl=' + $siteUrl\n\t}\n\t\n\tif(-! ([string]::IsNullOrEmpty($httpAuthUser) -and [string]::IsNullOrEmpty($httpAuthPass)))\n\t{\n\t\t$apiUrl = $apiUrl + '&httpAuthUsername=' + $httpAuthUser + '&httpAuthPassword=' + $httpAuthPass\n\t}\n\n\tWrite-Output \"Invoking API url: $apiUrl\" \n\t\n    try {\n\t\tInvoke-WebRequest $apiUrl -UseBasicParsing\n    } catch [Exception] {\n        Write-Host \"There was a problem invoking Url\"\n        Write-Host $_.Exception|format-list -force;\n    }\n    Write-Output $(\"Test Output can be viewed here: https://app.ghostinspector.com/suites/{0} -f $suiteId\")\n\n } `\n (Get-Param 'suiteId' -Required) `\n (Get-Param 'apiKey' - Required) `\n (Get-Param 'siteUrl') `\n (Get-Param 'httpAuthUser') `\n (Get-Param 'httpAuthPass')",
+    "Octopus.Action.Script.ScriptSource": "Inline",
+    "Octopus.Action.Script.ScriptFileName": "",
+    "Octopus.Action.Package.NuGetFeedId": "",
+    "Octopus.Action.Package.NuGetPackageId": ""
+  },
+  "Parameters": [
+    {
+      "Id": null,
+      "Name": "suiteId",
+      "Label": "Suite ID",
+      "HelpText": "Suite ID from Ghostinspector.  Can be found in the suite's URL e.g.: \nhttps://app.ghostinspector.com/suites/<suiteID>",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "siteUrl",
+      "Label": "Site Base URL",
+      "HelpText": "The site's base URL.  All smoke tests will be run starting from this page.",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "httpAuthUser",
+      "Label": "Username",
+      "HelpText": "The username for use with HTTP Auth (can be left blank for open sites)",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "httpAuthPass",
+      "Label": "Password",
+      "HelpText": "The password for use with HTTP Auth (can be left blank for open sites)",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "Sensitive"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "apiKey",
+      "Label": "GhostInspector API Key",
+      "HelpText": "GhostInspector API key.  Can be found here: https://app.ghostinspector.com/account",
+      "DefaultValue": null,
+      "DisplaySettings": {}
+    }
+  ],
+  "LogoAttachmentKey": "CommunityActionTemplates-155",
+  "LogoAttachmentMimeType": "image/png"
+}

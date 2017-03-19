@@ -1,0 +1,20 @@
+{
+  "$type": "Octopus.Core.Model.Environments.Machine, Octopus.Core",
+  "Id": "Machines-3",
+  "Name": "MachineTests_Machine1",
+  "Endpoint": {
+    "$type": "Octopus.Core.Model.Environments.Endpoints.CloudRegionEndpoint, Octopus.Core"
+  },
+  "IsDisabled": false,
+  "Roles": [
+    "WebApps"
+  ],
+  "EnvironmentIds": [
+    "Environments-1",
+    "Environments-3",
+    "Environments-2"
+  ],
+  "TenantIds": [],
+  "TenantTags": [],
+  "MachinePolicyId": "MachinePolicies-1"
+}

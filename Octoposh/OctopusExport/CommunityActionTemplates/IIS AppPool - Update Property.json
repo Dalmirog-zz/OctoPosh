@@ -1,0 +1,51 @@
+{
+  "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
+  "Id": "CommunityActionTemplates-97",
+  "Name": "IIS AppPool - Update Property",
+  "ExternalId": "183c1676-cb8e-44e8-a348-bbcb2b77536e",
+  "Description": "Updates property for specified AppPool, useful for example to change startMode to AlwaysRunning.",
+  "Version": 4,
+  "ActionType": "Octopus.Script",
+  "Author": "jmalczak",
+  "Website": "https://library.octopus.com/step-templates/183c1676-cb8e-44e8-a348-bbcb2b77536e",
+  "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/iis-apppool-update-property.json",
+  "Category": "IIS",
+  "Properties": {
+    "Octopus.Action.Script.ScriptBody": "# Running outside octopus\nparam(\n    [string]$appPoolName,\n    [string]$propertyName,\n    [object]$propertyValue,\n    [switch]$whatIf\n) \n\n$ErrorActionPreference = \"Stop\" \n\nfunction Get-Param($Name, [switch]$Required, $Default) {\n    $result = $null\n\n    if ($OctopusParameters -ne $null) {\n        $result = $OctopusParameters[$Name]\n    }\n\n    if ($result -eq $null) {\n        $variable = Get-Variable $Name -EA SilentlyContinue   \n        if ($variable -ne $null) {\n            $result = $variable.Value\n        }\n    }\n\n    if ($result -eq $null -or $result -eq \"\") {\n        if ($Required) {\n            throw \"Missing parameter value $Name\"\n        } else {\n            $result = $Default\n        }\n    }\n\n    return $result\n}\n\n& {\n    param(\n        [string]$appPoolName,\n        [string]$propertyName,\n        [object]$propertyValue\n    ) \n\n    Write-Host \"Setting $appPoolName property $propertyName to $propertyValue\"\n\n    try {\n         Add-PSSnapin WebAdministration -ErrorAction SilentlyContinue\n         Import-Module WebAdministration -ErrorAction SilentlyContinue\n         \n         $oldValue = Get-ItemProperty \"IIS:\\AppPools\\$appPoolName\" -Name $propertyName \n         $oldValueString = \"\"\n\n         if ($oldValue.GetType() -eq [Microsoft.IIs.PowerShell.Framework.ConfigurationAttribute])\n         {\n             $oldValueString = ($oldValue | Select-Object -ExpandProperty \"Value\");\n         }\n         else \n         {\n             $oldValueString = $oldValue\n         }\n\n         Write-Host \"Old value $oldValueString\"\n         Set-ItemProperty \"IIS:\\AppPools\\$appPoolName\" -Name $propertyName -Value $propertyValue\n         Write-Host \"New value $propertyValue\"\n         Write-Host \"Done\"\n    } catch {\n        Write-Host $_.Exception|format-list -force\n        Write-Host \"There was a problem setting property\"    \n    }\n\n } `\n (Get-Param 'appPoolName' -Required) (Get-Param 'propertyName' -Required) (Get-Param 'propertyValue' -Required)\n",
+    "Octopus.Action.Script.Syntax": "PowerShell"
+  },
+  "Parameters": [
+    {
+      "Id": null,
+      "Name": "appPoolName",
+      "Label": "Application pool name",
+      "HelpText": null,
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "propertyName",
+      "Label": "Name of the property to set",
+      "HelpText": "",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "propertyValue",
+      "Label": "Value of the property to set",
+      "HelpText": null,
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    }
+  ],
+  "LogoAttachmentKey": "CommunityActionTemplates-97",
+  "LogoAttachmentMimeType": "image/png"
+}

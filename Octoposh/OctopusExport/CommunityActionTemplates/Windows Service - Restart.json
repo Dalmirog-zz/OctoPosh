@@ -1,0 +1,29 @@
+{
+  "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
+  "Id": "CommunityActionTemplates-223",
+  "Name": "Windows Service - Restart",
+  "ExternalId": "d1df734a-c0da-4022-9e70-8e1931b083da",
+  "Description": "Restarts a Windows Service.",
+  "Version": 2,
+  "ActionType": "Octopus.Script",
+  "Author": "nblumhardt",
+  "Website": "https://library.octopus.com/step-templates/d1df734a-c0da-4022-9e70-8e1931b083da",
+  "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/windows-service-restart.json",
+  "Category": "Windows",
+  "Properties": {
+    "Octopus.Action.Script.ScriptBody": "$serviceName = $OctopusParameters['ServiceName']\nWrite-Output \"Restarting $serviceName, stopping...\"\n$serviceInstance = Get-Service $serviceName\nrestart-service -InputObject $serviceName -Force\n$serviceInstance.WaitForStatus('Running','00:01:00')\nWrite-Output \"Service $serviceName started.\"\r",
+    "Octopus.Action.Script.Syntax": "PowerShell"
+  },
+  "Parameters": [
+    {
+      "Id": null,
+      "Name": "ServiceName",
+      "Label": "Service Name",
+      "HelpText": "Name of the Windows Service (this is not always the display name).",
+      "DefaultValue": null,
+      "DisplaySettings": {}
+    }
+  ],
+  "LogoAttachmentKey": "CommunityActionTemplates-223",
+  "LogoAttachmentMimeType": "image/png"
+}

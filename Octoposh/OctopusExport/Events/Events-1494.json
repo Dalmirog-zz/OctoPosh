@@ -1,0 +1,26 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-1494",
+  "RelatedDocumentIds": [
+    "deploymentprocess-Projects-6",
+    "Projects-6"
+  ],
+  "ProjectId": "Projects-6",
+  "EnvironmentId": null,
+  "TenantId": null,
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-02-14T02:13:24.6123266-03:00",
+  "Message": "Deployment process for TestProject2 was changed",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Projects-6",
+      "StartIndex": 23,
+      "Length": 12
+    }
+  ],
+  "Comments": null,
+  "Details": "<span>{\r&para;<br>  \"Id\": \"deploymentprocess-Projects-6\",\r&para;<br>  \"OwnerId\": \"Projects-6\",\r&para;<br>  \"Version\": </span><del style=\"background:#ffe6e6;\">4,\r&para;<br>  \"Steps\": [</del><ins style=\"background:#e6ffe6;\">5,\r&para;<br>  \"Steps\": [\r&para;<br>    {\r&para;<br>      \"Id\": \"9d23e5ff-80f0-4a80-bb5e-87c77b0e6249\",\r&para;<br>      \"Name\": \"Deploy my package\",\r&para;<br>      \"Condition\": \"Success\",\r&para;<br>      \"StartTrigger\": \"StartAfterPrevious\",\r&para;<br>      \"RequiresPackagesToBeAcquired\": false,\r&para;<br>      \"Actions\": [\r&para;<br>        {\r&para;<br>          \"Id\": \"839537a0-6bd7-49f7-b7ef-c109c60b00e6\",\r&para;<br>          \"Name\": \"Deploy my package\",\r&para;<br>          \"ActionType\": \"Octopus.TentaclePackage\",\r&para;<br>          \"IsDisabled\": false,\r&para;<br>          \"Environments\": [],\r&para;<br>          \"ExcludedEnvironments\": [],\r&para;<br>          \"Channels\": [],\r&para;<br>          \"TenantTags\": [],\r&para;<br>          \"Properties\": {\r&para;<br>            \"Octopus.Action.EnabledFeatures\": \"Octopus.Features.CustomDirectory\",\r&para;<br>            \"Octopus.Action.Package.DownloadOnTentacle\": \"False\",\r&para;<br>            \"Octopus.Action.Package.FeedId\": \"feeds-local-folder\",\r&para;<br>            \"Octopus.Action.Package.PackageId\": \"TestApp\",\r&para;<br>            \"Octopus.Action.Package.CustomInstallationDirectory\": \"c:\\\\deploy\",\r&para;<br>            \"Octopus.Action.Package.CustomInstallationDirectoryShouldBePurgedBeforeDeployment\": \"True\"\r&para;<br>          }\r&para;<br>        }\r&para;<br>      ],\r&para;<br>      \"Properties\": {\r&para;<br>        \"Octopus.Action.TargetRoles\": \"WebServer\"\r&para;<br>      }\r&para;<br>    }\r&para;<br>  </ins><span>],\r&para;<br>  \"RelatedDocumentIds\": []\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "Session cookie"
+}

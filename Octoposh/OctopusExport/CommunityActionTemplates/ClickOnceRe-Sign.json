@@ -1,0 +1,61 @@
+{
+  "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
+  "Id": "CommunityActionTemplates-31",
+  "Name": "ClickOnceRe-Sign",
+  "ExternalId": "a9e5843e-d382-44fd-84dd-d999dab54993",
+  "Description": "This Template will help to re-sign the .application and manifest files. Finally add .deploy extenstion to the files",
+  "Version": 6,
+  "ActionType": "Octopus.Script",
+  "Author": "mani0070",
+  "Website": "https://library.octopus.com/step-templates/a9e5843e-d382-44fd-84dd-d999dab54993",
+  "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/clickonce-re-sign.json",
+  "Category": "ClickOnce",
+  "Properties": {
+    "Octopus.Action.Script.Syntax": "PowerShell",
+    "Octopus.Action.Script.ScriptBody": "$xml = [xml](Get-Content \"$baseDeployPath\\$AppName.application\")\n$manifestpath = $xml.assembly.dependency.dependentAssembly.codebase\n$ApplicationWithVersion = $manifestpath.Split('\\\\')[1]\n\n#Manifest Resign\n& \"C:\\Program Files (x86)\\Microsoft SDKs\\Windows\\v8.0A\\bin\\NETFX 4.0 Tools\\mage.exe\" -Update \"$baseDeployPath\\$manifestpath\" -FromDirectory \"$baseDeployPath\\Application Files\\$ApplicationWithVersion\"\n& \"C:\\Program Files (x86)\\Microsoft SDKs\\Windows\\v8.0A\\bin\\NETFX 4.0 Tools\\mage.exe\" -Sign \"$baseDeployPath\\$manifestpath\" -CertFile $signcertpath -Password $signCertPass\n\n#Application Resign\n& \"C:\\Program Files (x86)\\Microsoft SDKs\\Windows\\v7.0A\\Bin\\mage.exe\" -Update \"$baseDeployPath\\$AppName.application\" -AppManifest \"$baseDeployPath\\$manifestpath\"\n& \"C:\\Program Files (x86)\\Microsoft SDKs\\Windows\\v7.0A\\Bin\\mage.exe\" -Sign \"$baseDeployPath\\$AppName.application\" -CertFile $signcertpath -Password $signCertPass\n\n#Rename files back to the .deploy extension, skipping the files that shouldn't be renamed\nGet-ChildItem -Path \"$baseDeployPath\\Application Files\\*\"  -Recurse | Where-Object {!$_.PSIsContainer -and $_.Name -notlike \"*.manifest\" -and $_.Name -notlike \"*.vsto\"} | Rename-Item -NewName {$_.Name + \".deploy\"} "
+  },
+  "Parameters": [
+    {
+      "Id": null,
+      "Name": "signcertpath",
+      "Label": "Signing Certificate Path",
+      "HelpText": null,
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "signCertPass",
+      "Label": "Signing Certificate Password",
+      "HelpText": null,
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "baseDeployPath",
+      "Label": "Deployment Path",
+      "HelpText": null,
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "AppName",
+      "Label": "Application Name",
+      "HelpText": null,
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    }
+  ],
+  "LogoAttachmentKey": "CommunityActionTemplates-31",
+  "LogoAttachmentMimeType": "image/png"
+}

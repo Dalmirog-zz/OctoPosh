@@ -1,0 +1,42 @@
+{
+  "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
+  "Id": "CommunityActionTemplates-224",
+  "Name": "Windows Service - Set Startup Type",
+  "ExternalId": "361926f3-8c53-4d19-bb3b-337a531e4448",
+  "Description": "Sets the Startup Type of a Windows Service",
+  "Version": 1,
+  "ActionType": "Octopus.Script",
+  "Author": "caioproiete",
+  "Website": "https://library.octopus.com/step-templates/361926f3-8c53-4d19-bb3b-337a531e4448",
+  "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/windows-service-set-startup-type.json",
+  "Category": "Windows",
+  "Properties": {
+    "Octopus.Action.Script.ScriptBody": "$serviceName = $OctopusParameters['ServiceName']\n$startupType = $OctopusParameters['StartupType']\n\nif (!$serviceName)\n{\n    Write-Error \"No service name was specified. Please specify the name of the service to set the 'Startup Type'.\"\n    exit -2\n}\n\nWrite-Output \"Setting Startup Type for $serviceName...\"\n\nsc.exe config $serviceName start= $startupType\n\nWrite-Output \"Startup Type for $serviceName set to $startupType.\"\n",
+    "Octopus.Action.Script.Syntax": "PowerShell"
+  },
+  "Parameters": [
+    {
+      "Id": null,
+      "Name": "ServiceName",
+      "Label": "Service Name",
+      "HelpText": "Name of the Windows Service (this is not always the display name).",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "StartupType",
+      "Label": "Startup Type",
+      "HelpText": "Startup type of the Windows Service.",
+      "DefaultValue": "auto",
+      "DisplaySettings": {
+        "Octopus.ControlType": "Select",
+        "Octopus.SelectOptions": "delayed-auto|Automatic (Delayed Start)\nauto|Automatic\ndemand|Manual\ndisabled|Disabled"
+      }
+    }
+  ],
+  "LogoAttachmentKey": "CommunityActionTemplates-224",
+  "LogoAttachmentMimeType": "image/png"
+}

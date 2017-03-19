@@ -68,7 +68,7 @@ function Start-OctopusHealthCheck
 
                 $Machines.name | %{Write-Verbose $_}
 
-                $EnvironmentID = $Machines[0].environmentIDs[0]
+                $environmentId = (Get-OctopusEnvironment -EnvironmentName $environment).Id
 
                 $Task = $c.repository.Tasks.ExecuteHealthCheck($Message,5,5,$environmentId,$Machines.Id)        
 

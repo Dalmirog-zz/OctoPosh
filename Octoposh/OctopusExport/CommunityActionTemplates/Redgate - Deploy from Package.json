@@ -1,0 +1,122 @@
+{
+  "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
+  "Id": "CommunityActionTemplates-148",
+  "Name": "Redgate - Deploy from Package",
+  "ExternalId": "19f750fb-2ce8-4361-859e-2dfcdf08a952",
+  "Description": "Uses Redgate's [DLM Automation](http://www.red-gate.com/dlma/productpage) to deploy a package containing a database schema (created by Redgate's DLM tools) to a SQL Server database, without a review step.\r\n\r\nRequires DLM Automation version 1.5.0.0 or later.\r\n\r\n*Version date: 16th July, 2016*",
+  "Version": 5,
+  "ActionType": "Octopus.Script",
+  "Author": "DLMAutomationSupport@red-gate.com",
+  "Website": "https://library.octopus.com/step-templates/19f750fb-2ce8-4361-859e-2dfcdf08a952",
+  "HistoryUrl": "https://github.com/OctopusDeploy/Library/commits/master/step-templates/redgate-deploy-from-package.json",
+  "Category": "Redgate",
+  "Properties": {
+    "Octopus.Action.Script.ScriptBody": "# Version date: 16th July, 2015\n$ErrorActionPreference = 'Stop'\n$VerbosePreference = 'Continue'\n\n# Set process level FUR environment\n$env:REDGATE_FUR_ENVIRONMENT = \"Octopus Step Templates\"\n\n# Check if DLM Automation is installed.\n$dlmAutomationModule = Get-Module -ListAvailable -Name DLMAutomation\nif ($dlmAutomationModule -eq $null) { \n    throw \"Cannot find DLM Automation on your Octopus Tentacle. If DLM Automation is installed, try restarting the Tentacle service for it to be detected.\"\n}\n$currentVersion = $dlmAutomationModule.Version\n$minimumRequiredVersion = [version] '1.5.0.0'\nif ($currentVersion -lt $minimumRequiredVersion) { \n    throw \"This step requires DLM Automation version $minimumRequiredVersion or later. The current version is $currentVersion. The latest version can be found at http://www.red-gate.com/dlmas/download\"\n}\n\n# Check the parameters.\nif ([string]::IsNullOrWhiteSpace($DLMAutomationTargetDatabaseName)) { throw \"You must enter a value for 'Target database name'.\" }\nif ([string]::IsNullOrWhiteSpace($DLMAutomationTargetDatabaseServer)) { throw \"You must enter a value for 'Target SQL Server instance'.\" } \nif ([string]::IsNullOrWhiteSpace($DLMAutomationNuGetDbPackageDownloadStepName)) { throw \"You must enter a value for 'Database package step'.\" } \nif ([string]::IsNullOrWhiteSpace($DLMAutomationFilterPath)) { $DLMAutomationFilterPath = $null } \nif ([string]::IsNullOrWhiteSpace($DLMAutomationCompareOptions)) { $DLMAutomationCompareOptions = $null } \n\n$queryBatchTimeout = 30\nif (![string]::IsNullOrWhiteSpace($DLMAutomationQueryBatchTimeout)) {\n    if (![int32]::TryParse($DLMAutomationQueryBatchTimeout , [ref]$queryBatchTimeout )) {\n        throw 'The query batch timeout must be a numerical value (in seconds).'\n    }\n    if ($queryBatchTimeout -lt 0) {\n        throw \"The query batch timeout can't be negative.\"\n    }\n}\n\n# Get the NuGet package installation directory path.\n$packageExtractPath = $OctopusParameters[\"Octopus.Action[$DLMAutomationNuGetDbPackageDownloadStepName].Output.Package.InstallationDirectoryPath\"]\nif($packageExtractPath -eq $null) {\n    throw \"The 'Database package download step' is not a 'Deploy a NuGet package' step: '$DLMAutomationNuGetDbPackageDownloadStepName'\"\n}\n\n# Directory containing the extracted database package.\n$databaseStatePath = Join-Path -path $packageExtractPath -childPath \"db\\state\" \n\n$targetDB = New-DlmDatabaseConnection -ServerInstance $DLMAutomationTargetDatabaseServer -Database $DLMAutomationTargetDatabaseName -Username $DLMAutomationTargetUsername -Password $DLMAutomationTargetPassword | Test-DlmDatabaseConnection\n$ignoreStaticData = $DLMAutomationIgnoreStaticData -eq \"True\"\n\n# Create database deployment resources from the NuGet package to the database\n\n$release = New-DlmDatabaseRelease  -Target $targetDB `\n                                -Source $databaseStatePath `\n                                -TransactionIsolationLevel $DLMAutomationTransactionIsolationLevel `\n                                -IgnoreStaticData:$ignoreStaticData `\n                                -FilterPath $DLMAutomationFilterPath `\n                                -SQLCompareOptions $DLMAutomationCompareOptions\n\n# Deploy the source schema to the target database.\nWrite-Host \"Timeout = $queryBatchTimeout\"\n$release | Use-DlmDatabaseRelease -DeployTo $targetDB -SkipPreUpdateSchemaCheck -QueryBatchTimeout $queryBatchTimeout\n\n",
+    "Octopus.Action.Script.Syntax": "PowerShell"
+  },
+  "Parameters": [
+    {
+      "Id": null,
+      "Name": "DLMAutomationNuGetDbPackageDownloadStepName",
+      "Label": "Database package step",
+      "HelpText": "Select the step in this project which downloads the database package.",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "StepName"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "DLMAutomationTargetDatabaseServer",
+      "Label": "Target SQL Server instance",
+      "HelpText": "The fully qualified SQL Server instance name for the target database.",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "DLMAutomationTargetDatabaseName",
+      "Label": "Target database name",
+      "HelpText": "The name of the database to deploy changes to. This must be an existing database.",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "DLMAutomationTargetUsername",
+      "Label": "Username (optional)",
+      "HelpText": "The SQL Server username used to connect to the database. If you leave this field and 'Password' blank, Windows authentication will be used to connect instead, using the account that runs the Tentacle service.",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "DLMAutomationTargetPassword",
+      "Label": "Password (optional)",
+      "HelpText": "You must enter a password if you entered a username.",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "Sensitive"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "DLMAutomationFilterPath",
+      "Label": "Filter path (optional)",
+      "HelpText": "Specify the location of a SQL Compare filter file (.scpf), which defines objects to include/exclude in the schema comparison. Filter files are generated by SQL Source Control.\n\nFor more help see [Using SQL Compare filters in DLM Automation](http://documentation.red-gate.com/display/SR1/Using+SQL+Compare+filters+in+SQL+Release).",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "DLMAutomationCompareOptions",
+      "Label": "SQL Compare options (optional)",
+      "HelpText": "Enter SQL Compare options to apply when generating the update script. Use a comma-separated list to enter multiple values. For more help see [Using SQL Compare options in DLM Automation](http://documentation.red-gate.com/display/SR1/Using+SQL+Compare+options+in+SQL+Release).",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "DLMAutomationTransactionIsolationLevel",
+      "Label": "Transaction isolation level (optional)",
+      "HelpText": "Select the transaction isolation level to be used in deployment scripts.",
+      "DefaultValue": "Serializable",
+      "DisplaySettings": {
+        "Octopus.ControlType": "Select",
+        "Octopus.SelectOptions": "Serializable\nSnapshot\nRepeatableRead\nReadCommitted\nReadUncommitted"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "DLMAutomationIgnoreStaticData",
+      "Label": "Ignore static data",
+      "HelpText": "Exclude changes to static data when generating the deployment resources.",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "Checkbox"
+      }
+    },
+    {
+      "Id": null,
+      "Name": "DLMAutomationQueryBatchTimeout",
+      "Label": "Query batch timeout (in seconds)",
+      "HelpText": "The execution timeout, in seconds, for each batch of queries in the update script. The default value is 30 seconds. A value of zero indicates no execution timeout.",
+      "DefaultValue": "30",
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    }
+  ],
+  "LogoAttachmentKey": "CommunityActionTemplates-148",
+  "LogoAttachmentMimeType": "image/png"
+}
