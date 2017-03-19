@@ -8,7 +8,7 @@
 
    Blocks release 1.0.0 of the project "MyProduct.WebApp"
 .EXAMPLE
-   Get-OctopusRelease -Project "MyProduct.Webapp" -version 1.0.1 | Block-OctopusRelease -Reason "Because of reasons"
+   Get-OctopusRelease -Project "MyProduct.Webapp" -version 1.0.1 | Block-OctopusRelease -Description "Because of reasons"
 
    Blocks the release 1.0.1 of the project "MyProduct.Webapp" with a custom reason text
 .LINK

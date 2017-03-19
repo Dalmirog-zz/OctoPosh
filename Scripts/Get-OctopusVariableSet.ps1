@@ -105,23 +105,7 @@ function Get-OctopusVariableSet
             Write-Progress -Activity "Getting info from variable set : $($vs.id)" -status "$i of $($variablesetids.count)" -percentComplete ($i / $variablesetids.count*100)
             Write-Verbose "[$($MyInvocation.MyCommand)] Getting info from variable set : $($vs.id)"                
 
-            $vars = @()           
-
-            foreach ($var in $vs.variables){
-
-                $scope = Get-OctopusVariableScopeValue -Resource $vs -VariableName $var.name
-                
-                $obj = [PSCustomObject]@{
-                    Name = $var.name
-                    Value = $var.value
-                    Scope = $scope
-                    IsSensitive = $var.IsSensitive
-                    IsEditable = $var.IsEditable
-                    Prompt = $var.Prompt                    
-                }
-
-                $vars += $obj
-            }
+            $vars = New-OctopusVariable -Resource $vs.variables -ScopeValues $vs.ScopeValues
 
             If($vs.ownerID -in $Projects.id){
                 $Pname = $Projects | ?{$_.id -eq $vs.ownerid} | select -ExpandProperty name
