@@ -2,36 +2,36 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1396",
   "RelatedDocumentIds": [
-    "Environments-3"
+    "Environments-1"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-3",
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "DeploymentFailed",
+  "Category": "DeploymentSucceeded",
   "UserId": "users-system",
   "Username": "system",
-  "Occurred": "2017-02-01T00:40:30.1429628-03:00",
-  "Message": "Deploy to Stage (#2) failed  for DashboardTests_Project2 release 0.0.1 to Stage",
+  "Occurred": "2017-02-01T00:15:46.2608051-03:00",
+  "Message": "Deploy to Dev succeeded  for DashboardTests_Project1 release 0.0.1 to Dev",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",
       "StartIndex": 0,
-      "Length": 20
+      "Length": 13
     },
     {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 33,
+      "StartIndex": 29,
       "Length": 23
     },
     {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 65,
+      "StartIndex": 61,
       "Length": 5
     },
     {
-      "ReferencedDocumentId": "Environments-3",
-      "StartIndex": 74,
-      "Length": 5
+      "ReferencedDocumentId": "Environments-1",
+      "StartIndex": 70,
+      "Length": 3
     }
   ],
   "Comments": null,

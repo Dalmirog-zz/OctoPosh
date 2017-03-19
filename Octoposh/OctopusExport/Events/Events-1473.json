@@ -1,15 +1,17 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1473",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Environments-1"
+  ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-22T15:45:23.4433945-03:00",
-  "Message": "Project BTEF7UDD95UQISQ was created",
+  "Occurred": "2017-02-11T00:48:38.9925179-03:00",
+  "Message": "Machine KDPKROC3P2UV5R1 was created",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",

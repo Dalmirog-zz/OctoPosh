@@ -2,25 +2,39 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1560",
   "RelatedDocumentIds": [
-    "ServerTasks-372",
     "Environments-1"
   ],
   "ProjectId": null,
   "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Created",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-02-04T20:00:47.5271979-03:00",
-  "Message": "Ran task Check ListeningTentacle health",
+  "Category": "DeploymentFailed",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-02-11T01:08:22.8377853-03:00",
+  "Message": "Deploy to Dev failed  for DashboardTests_Project3 release 0.0.1 to Dev",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "ServerTasks-372",
-      "StartIndex": 9,
-      "Length": 30
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 0,
+      "Length": 13
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 26,
+      "Length": 23
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 58,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-1",
+      "StartIndex": 67,
+      "Length": 3
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "IdentityEstablishedWith": "Unknown"
 }

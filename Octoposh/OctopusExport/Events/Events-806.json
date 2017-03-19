@@ -2,24 +2,27 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-806",
   "RelatedDocumentIds": [
-    "Channels-8"
+    "Machines-3",
+    "Environments-1",
+    "Environments-3",
+    "Environments-2"
   ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
+  "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-03-06T22:20:34.4549262-03:00",
-  "Message": "Channel ChannelTests_Channel1 was created",
+  "Occurred": "2017-01-29T04:54:20.9163637-03:00",
+  "Message": "Machine North was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Channels-8",
+      "ReferencedDocumentId": "Machines-3",
       "StartIndex": 8,
-      "Length": 21
+      "Length": 5
     }
   ],
   "Comments": null,
-  "Details": null,
+  "Details": "<span>{\r&para;<br>  \"Id\": \"Machines-2\",\r&para;<br>  \"Name\": \"North\",\r&para;<br>  \"Endpoint\": {},\r&para;<br>  \"IsDisabled\": false,\r&para;<br>  \"Roles\": [\r&para;<br>    \"WebApps\"\r&para;<br>  ],\r&para;<br>  \"EnvironmentIds\": [\r&para;<br>    \"Environments-1\"</span><ins style=\"background:#e6ffe6;\">,\r&para;<br>    \"Environments-2\",\r&para;<br>    \"Environments-22\"</ins><span>\r&para;<br>  ],\r&para;<br>  \"TenantIds\": [],\r&para;<br>  \"TenantTags\": [],\r&para;<br>  \"MachinePolicyId\": \"MachinePolicies-1\"\r&para;<br>}</span>",
   "IdentityEstablishedWith": "Session cookie"
 }

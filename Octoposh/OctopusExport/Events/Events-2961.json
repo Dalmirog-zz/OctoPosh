@@ -2,9 +2,7 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-2961",
   "RelatedDocumentIds": [
-    "Deployments-22",
     "Projects-3",
-    "Releases-27",
     "Environments-2"
   ],
   "ProjectId": "Projects-3",
@@ -13,11 +11,11 @@
   "Category": "DeploymentSucceeded",
   "UserId": "users-system",
   "Username": "system",
-  "Occurred": "2017-03-14T01:11:09.0349507+00:00",
-  "Message": "Deploy to Prod succeeded  for DeploymentTests_Project1 release 0.0.4 to Prod",
+  "Occurred": "2017-03-06T21:47:17.7250064-03:00",
+  "Message": "Deploy to Prod succeeded  for DeploymentTests_Project1 release 0.0.8 to Prod",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Deployments-22",
+      "ReferencedDocumentId": "NotFound",
       "StartIndex": 0,
       "Length": 14
     },
@@ -27,7 +25,7 @@
       "Length": 24
     },
     {
-      "ReferencedDocumentId": "Releases-27",
+      "ReferencedDocumentId": "NotFound",
       "StartIndex": 63,
       "Length": 5
     },

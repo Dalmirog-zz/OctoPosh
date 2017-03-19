@@ -1,37 +1,20 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-2647",
-  "RelatedDocumentIds": [
-    "Environments-2"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
-  "EnvironmentId": "Environments-2",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentStarted",
+  "Category": "MachineHealthy",
   "UserId": "users-system",
   "Username": "system",
-  "Occurred": "2017-02-06T03:21:49.7831435-03:00",
-  "Message": "Deploy to Prod started  for DeploymentTests_Project1 release 0.0.3 to Prod",
+  "Occurred": "2017-03-14T21:54:22.5293559-03:00",
+  "Message": "Machine H2TVF9M859U5DF5 became healthy",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 0,
-      "Length": 14
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 28,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 61,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-2",
-      "StartIndex": 70,
-      "Length": 4
+      "StartIndex": 8,
+      "Length": 15
     }
   ],
   "Comments": null,

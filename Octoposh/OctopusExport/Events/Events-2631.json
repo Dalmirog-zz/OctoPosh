@@ -2,25 +2,30 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-2631",
   "RelatedDocumentIds": [
-    "deploymentprocess-Projects-5",
-    "Projects-5"
+    "Projects-7",
+    "Releases-63"
   ],
-  "ProjectId": "Projects-5",
+  "ProjectId": "Projects-7",
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Modified",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-18T22:05:47.1035348-03:00",
-  "Message": "Deployment process for TestProject1 was changed",
+  "Occurred": "2017-03-14T21:46:08.0151554-03:00",
+  "Message": "Unblocked issue: Raising defect from unit tests on [3/14/2017 9:45:43 PM] for project ReleaseTests_Project1 release 0.0.1.",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Projects-5",
-      "StartIndex": 23,
-      "Length": 12
+      "ReferencedDocumentId": "Projects-7",
+      "StartIndex": 86,
+      "Length": 21
+    },
+    {
+      "ReferencedDocumentId": "Releases-63",
+      "StartIndex": 116,
+      "Length": 5
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"deploymentprocess-Projects-1\",\r&para;<br>  \"OwnerId\": \"Projects-1\",\r&para;<br>  \"Version\": </span><del style=\"background:#ffe6e6;\">0,\r&para;<br>  \"Steps\": [</del><ins style=\"background:#e6ffe6;\">1,\r&para;<br>  \"Steps\": [\r&para;<br>    {\r&para;<br>      \"Id\": \"471ca029-3ed5-4f37-881e-b319b6dc0707\",\r&para;<br>      \"Name\": \"Step1\",\r&para;<br>      \"Condition\": \"Success\",\r&para;<br>      \"StartTrigger\": \"StartAfterPrevious\",\r&para;<br>      \"RequiresPackagesToBeAcquired\": false,\r&para;<br>      \"Actions\": [\r&para;<br>        {\r&para;<br>          \"Id\": \"a6e41e73-8963-412e-a018-395df5b82e36\",\r&para;<br>          \"Name\": \"Step1\",\r&para;<br>          \"ActionType\": \"Octopus.Script\",\r&para;<br>          \"IsDisabled\": false,\r&para;<br>          \"Environments\": [],\r&para;<br>          \"Channels\": [],\r&para;<br>          \"TenantTags\": [],\r&para;<br>          \"Properties\": {\r&para;<br>            \"Octopus.Action.RunOnServer\": \"true\",\r&para;<br>            \"Octopus.Action.Script.Syntax\": \"PowerShell\",\r&para;<br>            \"Octopus.Action.Script.ScriptSource\": \"Inline\",\r&para;<br>            \"Octopus.Action.Script.ScriptBody\": \"\\\"Hello from $($OctopusParameters['Octopus.Step.Name'])\\\"\"\r&para;<br>          }\r&para;<br>        }\r&para;<br>      ],\r&para;<br>      \"Properties\": {\r&para;<br>        \"Octopus.Action.TargetRoles\": \"WebServer\"\r&para;<br>      }\r&para;<br>    }\r&para;<br>  </ins><span>],\r&para;<br>  \"RelatedDocumentIds\": []\r&para;<br>}</span>",
+  "Details": null,
   "IdentityEstablishedWith": "Session cookie"
 }

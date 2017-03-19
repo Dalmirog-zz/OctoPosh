@@ -2,21 +2,26 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-3205",
   "RelatedDocumentIds": [
-    "Projects-21"
+    "Projects-3"
   ],
-  "ProjectId": "Projects-21",
+  "ProjectId": "Projects-3",
   "EnvironmentId": null,
   "TenantId": null,
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-03-14T05:28:37.96237+00:00",
-  "Message": "Project KAN1BG5ZM02ZBQD was created",
+  "Occurred": "2017-03-07T01:39:05.5061675-03:00",
+  "Message": "DeploymentTests_Project1 release 0.0.13 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Projects-21",
-      "StartIndex": 8,
-      "Length": 15
+      "ReferencedDocumentId": "Projects-3",
+      "StartIndex": 0,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 33,
+      "Length": 6
     }
   ],
   "Comments": null,

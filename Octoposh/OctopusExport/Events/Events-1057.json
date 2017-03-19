@@ -2,24 +2,34 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1057",
   "RelatedDocumentIds": [
-    "TagSets-1"
+    "Environments-3"
   ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-3",
   "TenantId": null,
-  "Category": "Modified",
+  "Category": "DeploymentQueued",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-03-11T03:30:24.5222216-03:00",
-  "Message": "TagSet TenantTagSetTests_Set1 was modified",
+  "Occurred": "2017-02-06T03:14:09.595043-03:00",
+  "Message": "Deployed DeploymentTests_Project2 release 0.0.8 to Stage",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "TagSets-1",
-      "StartIndex": 7,
-      "Length": 22
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 9,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 42,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-3",
+      "StartIndex": 51,
+      "Length": 5
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"TagSets-1\",\r&para;<br>  \"Name\": \"TenantTagSetTests_Set1\",\r&para;<br>  \"Description\": \"Resource created for unit tests. Do not delete.\",\r&para;<br>  \"SortOrder\": 0,\r&para;<br>  \"Tags\": [</span><ins style=\"background:#e6ffe6;\">\r&para;<br>    {\r&para;<br>      \"Id\": null,\r&para;<br>      \"Name\": \"Set1_Tag1\",\r&para;<br>      \"Description\": null,\r&para;<br>      \"Color\": \"#6e6e6e\",\r&para;<br>      \"SortOrder\": 0\r&para;<br>    }\r&para;<br>  </ins><span>]\r&para;<br>}</span>",
-  "IdentityEstablishedWith": "Session cookie"
+  "Details": null,
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

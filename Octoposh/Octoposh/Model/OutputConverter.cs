@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Management.Automation;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using Octoposh.Cmdlets;
 using Octopus.Client.Model;
@@ -219,7 +220,7 @@ namespace Octoposh.Model
             {
                 var deployments = _connection.Repository.Releases.GetDeployments(release, 0).Items.ToList();
 
-                var releaseCreateEvent = _connection.Repository.Events.List(0, null, release.Id, true).Items.Last();
+                var releaseCreateEvent = GetCreateEvent(release.Id);
 
                 list.Add(new OutputOctopusRelease()
                 {
@@ -306,9 +307,9 @@ namespace Octoposh.Model
                 var project = projects.FirstOrDefault(p => p.Id == deployment.ProjectId);
                 var environment = environments.FirstOrDefault(e => e.Id == deployment.EnvironmentId);
                 var task = _connection.Repository.Tasks.Get(deployment.Links["Task"]);
-                var deploymentCreateEvent = _connection.Repository.Events.List(0, null, deployment.Id,true).Items.LastOrDefault();
+                var deploymentCreateEvent = GetCreateEvent(deployment.Id);
                 var release = releases.FirstOrDefault(r => r.Id == deployment.ReleaseId);
-                var releaseCreateEvent = _connection.Repository.Events.List(0, null, release.Id, true).Items.LastOrDefault();
+                var releaseCreateEvent = GetCreateEvent(release.Id);
                 var deploymentProcess = _connection.Repository.DeploymentProcesses.Get(release.Links["ProjectDeploymentProcessSnapshot"]);
 
                 string duration;
@@ -558,6 +559,76 @@ namespace Octoposh.Model
             return list;
         }
 
+        public List<OutputOctopusTagSet> GetOctopusTagSet(List<TagSetResource> baseResourceList)
+        {
+            var list = new List<OutputOctopusTagSet>();
+
+            foreach (var tagSet in baseResourceList)
+            {
+                list.Add(new OutputOctopusTagSet()
+                {
+                    Name = tagSet.Name,
+                    Id = tagSet.Id,
+                    Description = tagSet.Description,
+                    SortOrder = tagSet.SortOrder,
+                    Tags = tagSet.Tags,
+                    Resource = tagSet
+                });
+            }
+            return list;
+        }
+        
+        public List<OutputOctopusVariableSet> GetOctopusVariableSet(List<VariableSetResource> baseResourceList, List<ProjectResource> projectList, List<LibraryVariableSetResource> libraryVariableSetList, SwitchParameter includeUsage)
+        {
+            var list =  new List<OutputOctopusVariableSet>();
+            var allProjects = new List<ProjectResource>();
+
+            if (includeUsage)
+            {
+                allProjects = _connection.Repository.Projects.FindAll();
+            }
+
+            foreach (var variableSet in baseResourceList)
+            {
+
+                var friendlyVariables = ToFriendlyVariables(variableSet.Variables, variableSet.ScopeValues);
+
+                var variableSetOwner = new VariableSetOwner();
+                var usage = new List<string>();
+
+                switch (variableSet.OwnerId.Split('-')[0])
+                {
+                    case "Projects":
+                        variableSetOwner.Type = OwnerType.Project;
+                        variableSetOwner.Name = projectList.FirstOrDefault(p => variableSet.OwnerId == p.Id)?.Name;
+                        break;
+                    case "LibraryVariableSets":
+                        variableSetOwner.Type = OwnerType.LibraryVariableSet;
+                        variableSetOwner.Name = libraryVariableSetList.FirstOrDefault(lvs => variableSet.OwnerId == lvs.Id)?.Name;
+                        break;
+                }
+
+                if (includeUsage && variableSetOwner.Type == OwnerType.LibraryVariableSet)
+                {
+                    usage.AddRange(allProjects.Where(p => p.IncludedLibraryVariableSetIds.Contains(variableSet.OwnerId)).Select(p => p.Name).ToList());
+                }
+
+                list.Add(new OutputOctopusVariableSet()
+                {
+                    ProjectName = (variableSetOwner.Type == OwnerType.Project) ? variableSetOwner.Name : null,
+                    LibraryVariableSetName = (variableSetOwner.Type == OwnerType.LibraryVariableSet) ? variableSetOwner.Name : null,
+                    Usage = usage,
+                    ID = variableSet.Id,
+                    Variables = friendlyVariables,
+                    LastModifiedOn = variableSet.LastModifiedOn.GetValueOrDefault().DateTime,
+                    LastModifiedBy = variableSet.LastModifiedBy,
+                    Resource = variableSet
+                }); 
+            }
+
+            return list;
+        }
+
         private IDictionary<string, List<string>> ToFriendlyProjectEnvironments(IDictionary<string, ReferenceCollection> tenantProjectEnvironments, DashboardResource dashboardResource)
         {
             var friendlyProjectEnvironments = new Dictionary<string, List<string>>();
@@ -571,7 +642,7 @@ namespace Octoposh.Model
 
                 environmentNames.AddRange(dashboard.Environments.Where(e => tPE.Value.Contains(e.Id)).Select(e => e.Name).ToList());
 
-                friendlyProjectEnvironments.Add(projectName,environmentNames);
+                friendlyProjectEnvironments.Add(projectName, environmentNames);
             }
 
             return friendlyProjectEnvironments;
@@ -591,7 +662,7 @@ namespace Octoposh.Model
 
                 if (!tagSets.ContainsKey(tagset))
                 {
-                    tagSets.Add(tagset, new List<string>() {tag});
+                    tagSets.Add(tagset, new List<string>() { tag });
                 }
                 else
                 {
@@ -602,23 +673,60 @@ namespace Octoposh.Model
             return tagSets;
         }
 
-        public List<OutputOctopusTagSet> GetOctopusTagSet(List<TagSetResource> baseResourceList)
+        private List<FriendlyVariable> ToFriendlyVariables(IList<VariableResource> Variables, VariableScopeValues ScopeValues)
         {
-            var list = new List<OutputOctopusTagSet>();
+            var list = new List<FriendlyVariable>();
 
-            foreach (var tagSet in baseResourceList)
+            foreach (var variable in Variables)
             {
-                list.Add(new OutputOctopusTagSet()
+                var scope = ToFriendlyScopeCollection(variable.Scope, ScopeValues);
+
+                list.Add(new FriendlyVariable()
                 {
-                    Name = tagSet.Name,
-                    Id = tagSet.Id,
-                    Description = tagSet.Description,
-                    SortOrder = tagSet.SortOrder,
-                    Tags = tagSet.Tags,
-                    Resource = tagSet
+                    Name = variable.Name,
+                    Value = variable.Name,
+                    IsEditable = variable.IsEditable,
+                    IsSensitive = variable.IsSensitive,
+                    Scope = scope,
+                    Prompt = variable.Prompt
                 });
             }
+
             return list;
+        }
+
+        private FriendlyScopeCollection ToFriendlyScopeCollection(ScopeSpecification variableScope, VariableScopeValues scopeValues)
+        {
+            var scopeCollection = new FriendlyScopeCollection();
+            
+            foreach (var scope in variableScope)
+            {
+                switch (scope.Key.ToString())
+                {
+                    case "Machine":
+                        scopeCollection.Machines = scopeValues.Machines.Where(m => scope.Value.Contains(m.Id)).Select(m => m.Name).ToList();
+                        break;
+                    case "Environment":
+                        scopeCollection.Environments = scopeValues.Environments.Where(e => scope.Value.Contains(e.Id)).Select(e => e.Name).ToList();
+                        break;
+                    case "Action":
+                        scopeCollection.Actions = scopeValues.Actions.Where(a => scope.Value.Contains(a.Id)).Select(a => a.Name).ToList();
+                        break;
+                    case "Role":
+                        scopeCollection.Roles = scopeValues.Roles.Where(r => scope.Value.Contains(r.Id)).Select(r => r.Name).ToList();
+                        break;
+                    case "Channel":
+                        scopeCollection.Channels = scopeValues.Channels.Where(c => scope.Value.Contains(c.Id)).Select(c => c.Name).ToList();
+                        break;
+                }
+            }
+
+            return scopeCollection;
+        }
+
+        private EventResource GetCreateEvent(string resourceId)
+        {
+            return _connection.Repository.Events.List(0, null, resourceId, true).Items.LastOrDefault();
         }
     }
 }

@@ -2,34 +2,26 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-2996",
   "RelatedDocumentIds": [
-    "Deployments-33",
-    "Projects-1",
-    "Releases-25",
-    "Environments-2"
+    "teams-everyone"
   ],
-  "ProjectId": "Projects-1",
-  "EnvironmentId": "Environments-2",
+  "ProjectId": null,
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentQueued",
+  "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-03-14T01:12:46.4841718+00:00",
-  "Message": "Deployed DashboardTests_Project1 release 0.0.1 to Prod (#2)",
+  "Occurred": "2017-01-14T20:22:40.8059516-03:00",
+  "Message": "User stuff was added to the team Everyone",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Projects-1",
-      "StartIndex": 9,
-      "Length": 23
-    },
-    {
-      "ReferencedDocumentId": "Releases-25",
-      "StartIndex": 41,
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 5,
       "Length": 5
     },
     {
-      "ReferencedDocumentId": "Environments-2",
-      "StartIndex": 50,
-      "Length": 9
+      "ReferencedDocumentId": "teams-everyone",
+      "StartIndex": 33,
+      "Length": 8
     }
   ],
   "Comments": null,

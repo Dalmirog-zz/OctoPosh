@@ -1,25 +1,17 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1041",
-  "RelatedDocumentIds": [
-    "Teams-3"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Modified",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-03-10T21:34:02.7364505-03:00",
-  "Message": "Team unmodified_TestTeam was modified",
-  "MessageReferences": [
-    {
-      "ReferencedDocumentId": "Teams-3",
-      "StartIndex": 5,
-      "Length": 19
-    }
-  ],
+  "Category": "Imported",
+  "UserId": "NY",
+  "Username": "dalmiro.granias",
+  "Occurred": "2017-01-30T22:27:08.3661695-03:00",
+  "Message": "Imported documents using Octopus migration tools",
+  "MessageReferences": [],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"Teams-3\",\r&para;<br>  \"Name\": \"</span><ins style=\"background:#e6ffe6;\">un</ins><span>modified_TestTeam\",\r&para;<br>  \"MemberUserIds\": [],\r&para;<br>  \"ExternalSecurityGroups\": [],\r&para;<br>  \"UserRoleIds\": [],\r&para;<br>  \"ProjectIds\": [],\r&para;<br>  \"EnvironmentIds\": [],\r&para;<br>  \"TenantIds\": [],\r&para;<br>  \"ProjectGroupIds\": [],\r&para;<br>  \"TenantTags\": []\r&para;<br>}</span>",
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "Details": "  Created.........................................896\r\n    ApiKey........................................1\r\n    Channel.......................................4\r\n    CommunityActionTemplate.......................217\r\n    Deployment....................................11\r\n    DeploymentEnvironment.........................4\r\n    DeploymentProcess.............................8\r\n    Event.........................................539\r\n    ExtensionConfiguration........................2\r\n    LibraryVariableSet............................1\r\n    Lifecycle.....................................2\r\n    Machine.......................................5\r\n    NuGetFeed.....................................1\r\n    Project.......................................3\r\n    ProjectGroup..................................3\r\n    Release.......................................36\r\n    ServerTask....................................50\r\n    Team..........................................1\r\n    Tenant........................................1\r\n    User..........................................1\r\n    VariableSet...................................6\r\n  Missing dependencies............................1\r\n    ServerTask....................................1\r\n  Property unchanged..............................8\r\n    Octopus.Action.Script.ScriptBody..............4\r\n    Octopus.Action.Script.Syntax..................4\r\n  Unchanged.......................................98\r\n    DeploymentProcess.............................42\r\n    ExtensionConfiguration........................3\r\n    License.......................................1\r\n    MachinePolicy.................................1\r\n    NuGetFeed.....................................1\r\n    ProjectGroup..................................1\r\n    ServerConfiguration...........................1\r\n    SmtpConfiguration.............................1\r\n    Team..........................................1\r\n    User..........................................1\r\n    UserRole......................................10\r\n    VariableSet...................................34\r\n    WebPortalConfiguration........................1\r\n  Updated.........................................4\r\n    Certificate...................................1\r\n    FeaturesConfiguration.........................1\r\n    Lifecycle.....................................1\r\n    Team..........................................1\r\n",
+  "IdentityEstablishedWith": "Command-line or tools"
 }

@@ -2,21 +2,32 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-3390",
   "RelatedDocumentIds": [
-    "ProjectGroups-44"
+    "Projects-3",
+    "Environments-2"
   ],
-  "ProjectId": null,
-  "EnvironmentId": null,
+  "ProjectId": "Projects-3",
+  "EnvironmentId": "Environments-2",
   "TenantId": null,
-  "Category": "Created",
+  "Category": "DeploymentQueued",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-03-14T23:27:53.0230947+00:00",
-  "Message": "Project Group ReleaseTests_ProjectGroup was created",
+  "Occurred": "2017-03-10T03:42:41.5763926-03:00",
+  "Message": "Deployed DeploymentTests_Project1 release 0.0.17 to Prod",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "ProjectGroups-44",
-      "StartIndex": 14,
-      "Length": 25
+      "ReferencedDocumentId": "Projects-3",
+      "StartIndex": 9,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 42,
+      "Length": 6
+    },
+    {
+      "ReferencedDocumentId": "Environments-2",
+      "StartIndex": 52,
+      "Length": 4
     }
   ],
   "Comments": null,

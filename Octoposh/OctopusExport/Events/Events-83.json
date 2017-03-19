@@ -2,39 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-83",
   "RelatedDocumentIds": [
-    "Environments-2"
+    "TagSets-1"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-2",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentStarted",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-11T01:47:29.8460187-03:00",
-  "Message": "Deploy to Prod started  for DeploymentTests_Project2 release 0.0.8 to Prod",
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-03-11T03:30:10.5989786-03:00",
+  "Message": "TagSet TenantTagSetTests_Set1 was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 0,
-      "Length": 14
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 28,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 61,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-2",
-      "StartIndex": 70,
-      "Length": 4
+      "ReferencedDocumentId": "TagSets-1",
+      "StartIndex": 7,
+      "Length": 22
     }
   ],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "Details": "<span>{\r&para;<br>  \"Id\": \"TagSets-1\",\r&para;<br>  \"Name\": \"TenantTagSetTests_</span><del style=\"background:#ffe6e6;\">TenantTag</del><span>Set1\",\r&para;<br>  \"Description\": \"Resource created for unit tests. Do not delete.\",\r&para;<br>  \"SortOrder\": 0,\r&para;<br>  \"Tags\": []\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "Session cookie"
 }

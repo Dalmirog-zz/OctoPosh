@@ -1,20 +1,33 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1549",
-  "RelatedDocumentIds": [],
-  "ProjectId": null,
-  "EnvironmentId": null,
+  "RelatedDocumentIds": [
+    "Projects-5",
+    "Environments-2"
+  ],
+  "ProjectId": "Projects-5",
+  "EnvironmentId": "Environments-2",
   "TenantId": null,
-  "Category": "MachineAdded",
+  "Category": "DeploymentQueued",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2016-12-10T18:49:49.3049644-03:00",
-  "Message": "Machine West was created (domain-event)",
+  "Occurred": "2017-02-11T01:07:12.0488575-03:00",
+  "Message": "Deployed TestProject1 release 0.0.32 to Prod (#2)",
   "MessageReferences": [
     {
+      "ReferencedDocumentId": "Projects-5",
+      "StartIndex": 9,
+      "Length": 12
+    },
+    {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 8,
-      "Length": 4
+      "StartIndex": 30,
+      "Length": 6
+    },
+    {
+      "ReferencedDocumentId": "Environments-2",
+      "StartIndex": 40,
+      "Length": 9
     }
   ],
   "Comments": null,

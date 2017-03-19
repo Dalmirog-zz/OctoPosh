@@ -2,39 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-81",
   "RelatedDocumentIds": [
-    "Environments-3"
+    "Tenants-2"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-3",
-  "TenantId": null,
-  "Category": "DeploymentSucceeded",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-11T01:47:23.9727569-03:00",
-  "Message": "Deploy to Stage succeeded  for DeploymentTests_Project2 release 0.0.8 to Stage",
+  "EnvironmentId": null,
+  "TenantId": "Tenants-2",
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-03-11T03:28:01.0336856-03:00",
+  "Message": "Tenant TenantTests_Tenant2 was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 0,
-      "Length": 15
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 31,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 64,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-3",
-      "StartIndex": 73,
-      "Length": 5
+      "ReferencedDocumentId": "Tenants-2",
+      "StartIndex": 7,
+      "Length": 19
     }
   ],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "Details": "<span>{\r&para;<br>  \"Id\": \"Tenants-24\",\r&para;<br>  \"Name\": \"TenantTests_Tenant2\",\r&para;<br>  \"ProjectIds\": [\r&para;<br>    \"Projects-6\"</span><ins style=\"background:#e6ffe6;\">,\r&para;<br>    \"Projects-5\"</ins><span>\r&para;<br>  ],\r&para;<br>  \"ProjectEnvironments\": {\r&para;<br>    \"Projects-6\": [</span><ins style=\"background:#e6ffe6;\">\r&para;<br>      \"Environments-1\"\r&para;<br>    ],\r&para;<br>    \"Projects-5\": [\r&para;<br>      \"Environments-3\"\r&para;<br>    </ins><span>]\r&para;<br>  },\r&para;<br>  \"TenantTags\": []\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "Session cookie"
 }

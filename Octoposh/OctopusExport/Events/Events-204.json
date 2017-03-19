@@ -2,24 +2,30 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-204",
   "RelatedDocumentIds": [
-    "Channels-12"
+    "ServerTasks-364",
+    "ServerTasks-363"
   ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Modified",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-11T05:05:10.1959617-03:00",
-  "Message": "Channel unmodified_TestChannel was modified",
+  "Occurred": "2017-03-03T17:27:39.3369818-03:00",
+  "Message": "Task Check ListeningTentacle1 health #575 was created by re-running task Check ListeningTentacle1 health #574",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Channels-12",
-      "StartIndex": 8,
-      "Length": 22
+      "ReferencedDocumentId": "ServerTasks-364",
+      "StartIndex": 5,
+      "Length": 36
+    },
+    {
+      "ReferencedDocumentId": "ServerTasks-363",
+      "StartIndex": 73,
+      "Length": 36
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"Channels-8\",\r&para;<br>  \"Name\": \"</span><ins style=\"background:#e6ffe6;\">un</ins><span>modified_TestChannel\",\r&para;<br>  \"Description\": \"Resource created for unit testing purposes. Do not delete/edit\",\r&para;<br>  \"ProjectId\": \"Projects-7\",\r&para;<br>  \"LifecycleId\": null,\r&para;<br>  \"IsDefault\": false,\r&para;<br>  \"TenantTags\": [],\r&para;<br>  \"Rules\": []\r&para;<br>}</span>",
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "Details": null,
+  "IdentityEstablishedWith": "Session cookie"
 }

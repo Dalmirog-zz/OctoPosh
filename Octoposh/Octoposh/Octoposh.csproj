@@ -73,6 +73,7 @@
     <Compile Include="Cmdlets\GetOctopusDeployment.cs" />
     <Compile Include="Cmdlets\GetOctopusEnvironment.cs" />
     <Compile Include="Cmdlets\GetOctopusFeed.cs" />
+    <Compile Include="Cmdlets\GetOctopusVariableSet.cs" />
     <Compile Include="Cmdlets\GetOctopusLifecycle.cs" />
     <Compile Include="Cmdlets\GetOctopusMachine.cs" />
     <Compile Include="Cmdlets\GetOctopusProject.cs" />
@@ -89,6 +90,8 @@
     <Compile Include="Cmdlets\SetOctopusConnectionInfo.cs" />
     <Compile Include="Cmdlets\SetOctopusReleaseStatus.cs" />
     <Compile Include="Cmdlets\UpdateOctopusResource.cs" />
+    <Compile Include="Model\FriendlyScopeCollection.cs" />
+    <Compile Include="Model\FriendlyVariable.cs" />
     <Compile Include="Model\OctoposhExceptions.cs" />
     <Compile Include="Model\OctopusConnection.cs" />
     <Compile Include="Model\OctopusConnectionInfo.cs" />
@@ -109,16 +112,22 @@
     <Compile Include="Model\OutputOctopusTeam.cs" />
     <Compile Include="Model\OutputOctopusTenant.cs" />
     <Compile Include="Model\OutputOctopusUser.cs" />
+    <Compile Include="Model\OutputOctopusVariableSet.cs" />
     <Compile Include="Model\ResourceCollector.cs" />
     <Compile Include="Model\ResourceCollector2.cs" />
+    <Compile Include="Model\VariableSetOwner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="Octoposh.psd1">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

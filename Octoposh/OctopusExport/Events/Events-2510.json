@@ -2,24 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-2510",
   "RelatedDocumentIds": [
-    "Environments-4"
+    "TagSets-3"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-4",
+  "EnvironmentId": null,
   "TenantId": null,
   "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-03T23:33:40.0443996-03:00",
-  "Message": "Environment unmodified_TestEnvironment was modified",
+  "Occurred": "2017-03-14T02:41:12.8748256-03:00",
+  "Message": "TagSet Unmodified_TestTagSet was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Environments-4",
-      "StartIndex": 12,
-      "Length": 26
+      "ReferencedDocumentId": "TagSets-3",
+      "StartIndex": 7,
+      "Length": 21
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"Environments-4\",\r&para;<br>  \"Name\": \"</span><ins style=\"background:#e6ffe6;\">un</ins><span>modified_TestEnvironment\",\r&para;<br>  \"Description\": \"Resource created for unit testing purposes. Do not delete/edit\",\r&para;<br>  \"SortOrder\": 2,\r&para;<br>  \"UseGuidedFailure\": false\r&para;<br>}</span>",
+  "Details": "<span>{\r&para;<br>  \"Id\": \"TagSets-22\",\r&para;<br>  \"Name\": \"</span><del style=\"background:#ffe6e6;\">M</del><ins style=\"background:#e6ffe6;\">Unm</ins><span>odified_TestTagSet\",\r&para;<br>  \"Description\": \"Resource created for unit testing. Do not delete.\",\r&para;<br>  \"SortOrder\": 2,\r&para;<br>  \"Tags\": []\r&para;<br>}</span>",
   "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

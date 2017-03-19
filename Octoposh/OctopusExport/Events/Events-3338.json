@@ -1,21 +1,19 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-3338",
-  "RelatedDocumentIds": [
-    "Projects-23"
-  ],
-  "ProjectId": "Projects-23",
+  "RelatedDocumentIds": [],
+  "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-03-14T06:46:26.8800296+00:00",
-  "Message": "Project YPF1YGOEF4XHOYE was deleted",
+  "Occurred": "2017-03-07T02:21:13.8980118-03:00",
+  "Message": "Tenant 59U7TXBICAC6G8O was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Projects-23",
-      "StartIndex": 8,
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 7,
       "Length": 15
     }
   ],

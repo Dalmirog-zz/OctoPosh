@@ -2,24 +2,25 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-34",
   "RelatedDocumentIds": [
-    "ProjectGroups-22"
+    "Machines-2",
+    "Environments-1"
   ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Modified",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-03T23:42:55.4117265-03:00",
-  "Message": "Project Group DeploymentsTests_ProjectGroup was modified",
+  "Occurred": "2017-02-04T19:36:02.1120472-03:00",
+  "Message": "Machine ListeningTentacle2 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "ProjectGroups-22",
-      "StartIndex": 14,
-      "Length": 29
+      "ReferencedDocumentId": "Machines-2",
+      "StartIndex": 8,
+      "Length": 18
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"ProjectGroups-42\",\r&para;<br>  \"Name\": \"DeploymentsTests_</span><del style=\"background:#ffe6e6;\">Test</del><span>Project</span><del style=\"background:#ffe6e6;\">1</del><ins style=\"background:#e6ffe6;\">Group</ins><span>\",\r&para;<br>  \"Description\": \"Resource created for unit tests</span><ins style=\"background:#e6ffe6;\">. Do note delete or modify</ins><span>\"\r&para;<br>}</span>",
+  "Details": null,
   "IdentityEstablishedWith": "Session cookie"
 }

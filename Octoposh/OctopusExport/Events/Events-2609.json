@@ -1,17 +1,25 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-2609",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "ProjectGroups-26"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Imported",
-  "UserId": "NY",
-  "Username": "dalmiro.granias",
-  "Occurred": "2017-01-15T17:30:34.3132805-03:00",
-  "Message": "Imported documents using Octopus migration tools",
-  "MessageReferences": [],
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-03-14T03:46:33.809965-03:00",
+  "Message": "Project Group unmodified_TestProjectGroup was modified",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "ProjectGroups-26",
+      "StartIndex": 14,
+      "Length": 27
+    }
+  ],
   "Comments": null,
-  "Details": "  Created.........................................6\r\n    ServerTask....................................6\r\n  Unchanged.......................................400\r\n    ApiKey........................................1\r\n    Certificate...................................1\r\n    Channel.......................................2\r\n    CommunityActionTemplate.......................217\r\n    DeploymentEnvironment.........................2\r\n    DeploymentProcess.............................2\r\n    Event.........................................118\r\n    ExtensionConfiguration........................5\r\n    License.......................................1\r\n    Lifecycle.....................................2\r\n    Machine.......................................4\r\n    MachinePolicy.................................1\r\n    NuGetFeed.....................................1\r\n    Project.......................................2\r\n    ProjectGroup..................................2\r\n    ServerConfiguration...........................1\r\n    ServerTask....................................21\r\n    SmtpConfiguration.............................1\r\n    Team..........................................2\r\n    User..........................................1\r\n    UserRole......................................10\r\n    VariableSet...................................2\r\n    WebPortalConfiguration........................1\r\n  Updated.........................................1\r\n    FeaturesConfiguration.........................1\r\n",
-  "IdentityEstablishedWith": "Command-line or tools"
+  "Details": "<span>{\r&para;<br>  \"Id\": \"ProjectGroups-25\",\r&para;<br>  \"Name\": \"</span><ins style=\"background:#e6ffe6;\">un</ins><span>modified_Test</span><del style=\"background:#ffe6e6;\">p</del><ins style=\"background:#e6ffe6;\">P</ins><span>rojectGroup\",\r&para;<br>  \"Description\": \"Resource created for unit testing purposes. Do not delete/edit\"\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

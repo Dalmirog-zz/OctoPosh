@@ -1,25 +1,23 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-3322",
-  "RelatedDocumentIds": [
-    "Tenants-3"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
   "EnvironmentId": null,
-  "TenantId": "Tenants-3",
-  "Category": "Modified",
+  "TenantId": null,
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-03-14T05:43:47.9287958+00:00",
-  "Message": "Tenant unmodified_TestTenant was modified",
+  "Occurred": "2017-03-07T02:21:11.0410118-03:00",
+  "Message": "Lifecycle 59U7TXBICAC6G8O was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Tenants-3",
-      "StartIndex": 7,
-      "Length": 21
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 10,
+      "Length": 15
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"Tenants-3\",\r&para;<br>  \"Name\": \"</span><ins style=\"background:#e6ffe6;\">un</ins><span>modified_TestTenant\",\r&para;<br>  \"ProjectIds\": [\r&para;<br>    \"Projects-5\"\r&para;<br>  ],\r&para;<br>  \"ProjectEnvironments\": {\r&para;<br>    \"Projects-5\": [\r&para;<br>      \"Environments-1\"\r&para;<br>    ]\r&para;<br>  },\r&para;<br>  \"TenantTags\": []\r&para;<br>}</span>",
+  "Details": null,
   "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

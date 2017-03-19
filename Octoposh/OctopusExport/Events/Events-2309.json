@@ -1,20 +1,28 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-2309",
-  "RelatedDocumentIds": [],
-  "ProjectId": null,
+  "RelatedDocumentIds": [
+    "Projects-4",
+    "Releases-24"
+  ],
+  "ProjectId": "Projects-4",
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "MachineDeleted",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-03T23:33:30.4686026-03:00",
-  "Message": "Machine 3WZLTGPPRYYS6DM was deleted (domain-event)",
+  "Occurred": "2017-03-13T22:22:51.7984873-03:00",
+  "Message": "DeploymentTests_Project2 release 0.0.4 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 8,
-      "Length": 15
+      "ReferencedDocumentId": "Projects-4",
+      "StartIndex": 0,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "Releases-24",
+      "StartIndex": 33,
+      "Length": 5
     }
   ],
   "Comments": null,

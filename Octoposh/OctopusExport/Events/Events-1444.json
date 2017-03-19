@@ -1,19 +1,21 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1444",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Environments-1"
+  ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-08T03:53:49.0260109-03:00",
-  "Message": "Library Variable Set 3P0LLD44EKDSQWJ was created",
+  "Occurred": "2017-02-01T00:13:40.7393202-03:00",
+  "Message": "Machine RUTUE08EREC9IGX was created",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 21,
+      "StartIndex": 8,
       "Length": 15
     }
   ],

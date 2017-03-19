@@ -2,22 +2,22 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1180",
   "RelatedDocumentIds": [
-    "Machines-4",
-    "Environments-1"
+    "ServerTasks-269",
+    "Environments-2"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "EnvironmentId": "Environments-2",
   "TenantId": null,
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2016-12-09T02:10:36.7288051-03:00",
-  "Message": "Machine South was created",
+  "Occurred": "2017-02-12T03:04:28.6962419-03:00",
+  "Message": "Ran task Check ListeningTentacle1 health",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Machines-4",
-      "StartIndex": 8,
-      "Length": 5
+      "ReferencedDocumentId": "ServerTasks-269",
+      "StartIndex": 9,
+      "Length": 31
     }
   ],
   "Comments": null,

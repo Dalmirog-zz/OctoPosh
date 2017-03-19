@@ -1,23 +1,25 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1146",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Machines-5"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-03-12T16:40:23.3818432-03:00",
-  "Message": "TagSet SomeNewTag was created",
+  "Category": "MachineHealthy",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-03-13T00:26:59.8447793-03:00",
+  "Message": "Machine OfflineTarget became healthy",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 7,
-      "Length": 10
+      "ReferencedDocumentId": "Machines-5",
+      "StartIndex": 8,
+      "Length": 13
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Unknown"
 }

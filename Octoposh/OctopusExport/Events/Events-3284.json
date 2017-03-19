@@ -2,21 +2,26 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-3284",
   "RelatedDocumentIds": [
-    "LibraryVariableSets-22"
+    "Projects-4"
   ],
-  "ProjectId": null,
+  "ProjectId": "Projects-4",
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-03-14T05:43:37.1198245+00:00",
-  "Message": "Library Variable Set 772OLYYK6HHLWLJ was deleted",
+  "Occurred": "2017-03-07T01:42:33.8599788-03:00",
+  "Message": "DeploymentTests_Project2 release 0.0.15 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "LibraryVariableSets-22",
-      "StartIndex": 21,
-      "Length": 15
+      "ReferencedDocumentId": "Projects-4",
+      "StartIndex": 0,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 33,
+      "Length": 6
     }
   ],
   "Comments": null,

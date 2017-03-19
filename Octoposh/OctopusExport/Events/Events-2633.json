@@ -2,39 +2,30 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-2633",
   "RelatedDocumentIds": [
-    "Environments-2"
+    "Projects-7",
+    "Releases-63"
   ],
-  "ProjectId": null,
-  "EnvironmentId": "Environments-2",
+  "ProjectId": "Projects-7",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentStarted",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-11T01:33:40.329245-03:00",
-  "Message": "Deploy to Prod started  for DeploymentTests_Project1 release 0.0.6 to Prod",
+  "Category": "Created",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-03-14T21:46:27.9156845-03:00",
+  "Message": "Unblocked issue: Raising defect from unit tests on [3/14/2017 9:46:19 PM] for project ReleaseTests_Project1 release 0.0.1.",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 0,
-      "Length": 14
+      "ReferencedDocumentId": "Projects-7",
+      "StartIndex": 86,
+      "Length": 21
     },
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 28,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 61,
+      "ReferencedDocumentId": "Releases-63",
+      "StartIndex": 116,
       "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-2",
-      "StartIndex": 70,
-      "Length": 4
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

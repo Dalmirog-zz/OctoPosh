@@ -2,25 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-3201",
   "RelatedDocumentIds": [
-    "Machines-21",
-    "Environments-1"
+    "Channels-6"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
+  "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-03-14T05:28:36.9988899+00:00",
-  "Message": "Machine KAN1BG5ZM02ZBQD was created",
+  "Occurred": "2017-03-06T22:21:04.0772024-03:00",
+  "Message": "Channel ChannelTests_Channel2 was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Machines-21",
+      "ReferencedDocumentId": "Channels-6",
       "StartIndex": 8,
-      "Length": 15
+      "Length": 21
     }
   ],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "Details": "<span>{\r&para;<br>  \"Id\": \"Channels-22\",\r&para;<br>  \"Name\": \"</span><del style=\"background:#ffe6e6;\">Test</del><span>Channel</span><ins style=\"background:#e6ffe6;\">Tests</ins><span>_Channel2\",\r&para;<br>  \"Description\": null,\r&para;<br>  \"ProjectId\": \"Projects-5\",\r&para;<br>  \"LifecycleId\": null,\r&para;<br>  \"IsDefault\": false,\r&para;<br>  \"TenantTags\": [],\r&para;<br>  \"Rules\": []\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "Session cookie"
 }

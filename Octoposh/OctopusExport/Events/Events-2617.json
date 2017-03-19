@@ -1,17 +1,25 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-2617",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Users-1"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Imported",
-  "UserId": "NY",
-  "Username": "dalmiro.granias",
-  "Occurred": "2017-02-14T03:31:59.8012871-03:00",
-  "Message": "Imported documents using Octopus migration tools",
-  "MessageReferences": [],
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-02-11T00:47:30.8297455-03:00",
+  "Message": "User admin set password using the admin command line",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Users-1",
+      "StartIndex": 5,
+      "Length": 5
+    }
+  ],
   "Comments": null,
-  "Details": "  Created.........................................1\r\n    ServerTask....................................1\r\n  Property unchanged..............................16\r\n    Octopus.Action.Script.ScriptBody..............8\r\n    Octopus.Action.Script.Syntax..................8\r\n  Unchanged.......................................2983\r\n    ApiKey........................................1\r\n    Certificate...................................1\r\n    Channel.......................................8\r\n    CommunityActionTemplate.......................221\r\n    Deployment....................................93\r\n    DeploymentEnvironment.........................4\r\n    DeploymentProcess.............................178\r\n    Event.........................................1974\r\n    ExtensionConfiguration........................5\r\n    FeaturesConfiguration.........................1\r\n    LibraryVariableSet............................2\r\n    License.......................................1\r\n    Lifecycle.....................................5\r\n    Machine.......................................6\r\n    MachinePolicy.................................1\r\n    NuGetFeed.....................................3\r\n    Project.......................................6\r\n    ProjectGroup..................................6\r\n    Release.......................................66\r\n    ServerConfiguration...........................1\r\n    ServerTask....................................303\r\n    SmtpConfiguration.............................1\r\n    Team..........................................5\r\n    Tenant........................................1\r\n    User..........................................4\r\n    UserRole......................................10\r\n    VariableSet...................................75\r\n    WebPortalConfiguration........................1\r\n  Updated.........................................15\r\n    Deployment....................................13\r\n    DeploymentProcess.............................1\r\n    Project.......................................1\r\n",
+  "Details": null,
   "IdentityEstablishedWith": "Command-line or tools"
 }

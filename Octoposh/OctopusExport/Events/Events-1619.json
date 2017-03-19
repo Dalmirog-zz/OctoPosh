@@ -1,19 +1,21 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1619",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Environments-1"
+  ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Created",
+  "Category": "Deleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-29T04:50:22.9293696-03:00",
-  "Message": "Lifecycle AGF3BSAK1UT01RY was created",
+  "Occurred": "2017-01-22T15:45:23.0215151-03:00",
+  "Message": "Machine BTEF7UDD95UQISQ was deleted",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 10,
+      "StartIndex": 8,
       "Length": 15
     }
   ],

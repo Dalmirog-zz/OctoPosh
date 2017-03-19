@@ -2,24 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1410",
   "RelatedDocumentIds": [
-    "Projects-6"
+    "Projects-3"
   ],
-  "ProjectId": "Projects-6",
+  "ProjectId": "Projects-3",
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
+  "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2016-12-17T00:15:27.3609809-03:00",
-  "Message": "Project TestProject2 was created",
+  "Occurred": "2017-03-06T21:10:08.8800022-03:00",
+  "Message": "Project DeploymentTests_Project1 was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Projects-6",
+      "ReferencedDocumentId": "Projects-3",
       "StartIndex": 8,
-      "Length": 12
+      "Length": 24
     }
   ],
   "Comments": null,
-  "Details": null,
+  "Details": "<span>{\r&para;<br>  \"Id\": \"Projects-44\",\r&para;<br>  \"Name\": \"DeploymentTests_Project</span><del style=\"background:#ffe6e6;\">3</del><ins style=\"background:#e6ffe6;\">1</ins><span>\",\r&para;<br>  \"Description\": \"\",\r&para;<br>  \"Slug\": \"deploymenttests-project</span><del style=\"background:#ffe6e6;\">3</del><ins style=\"background:#e6ffe6;\">1</ins><span>\",\r&para;<br>  \"IsDisabled\": false,\r&para;<br>  \"VariableSetId\": \"variableset-Projects-44\",\r&para;<br>  \"DeploymentProcessId\": \"deploymentprocess-Projects-44\",\r&para;<br>  \"ProjectGroupId\": \"ProjectGroups-22\",\r&para;<br>  \"LifecycleId\": \"Lifecycles-1\",\r&para;<br>  \"AutoCreateRelease\": false,\r&para;<br>  \"IncludedLibraryVariableSetIds\": [],\r&para;<br>  \"UsedPackages\": [],\r&para;<br>  \"DefaultToSkipIfAlreadyInstalled\": false,\r&para;<br>  \"TenantedDeploymentMode\": \"Untenanted\",\r&para;<br>  \"VersioningStrategy\": {\r&para;<br>    \"DonorPackageStepId\": null,\r&para;<br>    \"Template\": \"#{Octopus.Version.LastMajor}.#{Octopus.Version.LastMinor}.#{Octopus.Version.NextPatch}\"\r&para;<br>  },\r&para;<br>  \"Templates\": [],\r&para;<br>  \"ReleaseCreationStrategy\": {\r&para;<br>    \"ReleaseCreationPackageStepId\": \"\",\r&para;<br>    \"ChannelId\": null\r&para;<br>  },\r&para;<br>  \"ProjectConnectivityPolicy\": {\r&para;<br>    \"SkipMachineBehavior\": \"None\",\r&para;<br>    \"TargetRoles\": []\r&para;<br>  },\r&para;<br>  \"AutoDeployReleaseOverrides\": []\r&para;<br>}</span>",
   "IdentityEstablishedWith": "Session cookie"
 }
