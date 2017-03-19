@@ -1,23 +1,26 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-196",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "ServerTasks-376",
+    "Environments-1"
+  ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-11T05:05:08.3129627-03:00",
-  "Message": "Project Group YZK2U0SYC0YFHI6 was deleted",
+  "Occurred": "2017-02-04T19:36:07.9144425-03:00",
+  "Message": "Ran task Check ListeningTentacle2 health",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 14,
-      "Length": 15
+      "ReferencedDocumentId": "ServerTasks-376",
+      "StartIndex": 9,
+      "Length": 31
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Session cookie"
 }

@@ -1,23 +1,25 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1536",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Tenants-3"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
-  "TenantId": null,
-  "Category": "MachineDeleted",
+  "TenantId": "Tenants-3",
+  "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2016-12-14T01:09:46.9208052-03:00",
-  "Message": "Machine West was deleted (domain-event)",
+  "Occurred": "2017-02-11T00:48:49.1895722-03:00",
+  "Message": "Tenant unmodified_TestTenant was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 8,
-      "Length": 4
+      "ReferencedDocumentId": "Tenants-3",
+      "StartIndex": 7,
+      "Length": 21
     }
   ],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "Details": "<span>{\r&para;<br>  \"Id\": \"Tenants-1\",\r&para;<br>  \"Name\": \"</span><ins style=\"background:#e6ffe6;\">un</ins><span>modified_TestTenant\",\r&para;<br>  \"ProjectIds\": [],\r&para;<br>  \"ProjectEnvironments\": {},\r&para;<br>  \"TenantTags\": []\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

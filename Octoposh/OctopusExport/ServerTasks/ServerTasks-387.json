@@ -1,34 +1,49 @@
 {
   "$type": "Octopus.Core.Model.ServerTasks.ServerTask, Octopus.Core",
   "Id": "ServerTasks-387",
-  "Name": "Deploy",
+  "Name": "Health",
   "Arguments": {
-    "DeploymentId": null
+    "Timeout": "00:05:00",
+    "MachineIds": [
+      "Machines-1"
+    ]
   },
-  "Description": "Deploy DeploymentTests_Project1 release 0.0.4 to Prod",
-  "QueueTime": "2017-02-11T01:32:28.0638916-03:00",
+  "Description": "Check ListeningTentacle1 health",
+  "QueueTime": "2017-03-13T22:05:18.1269103-03:00",
   "QueueTimeExpiry": "10675199.02:48:05.4775807",
   "ExecutionTimeExpiry": "00:00:00",
-  "StartTime": "2017-02-11T01:32:28.1178693-03:00",
-  "LastUpdatedTime": "2017-02-11T01:32:35.1832363-03:00",
-  "CompletedTime": "2017-02-11T01:32:35.1832363-03:00",
-  "ErrorMessage": "",
-  "ConcurrencyTag": "/Projects-45/Environments-2",
-  "State": "Success",
+  "StartTime": "2017-03-13T22:05:18.2648653-03:00",
+  "LastUpdatedTime": "2017-03-13T22:05:23.8659351-03:00",
+  "CompletedTime": "2017-03-13T22:05:23.8659351-03:00",
+  "ErrorMessage": "The health check failed. One or more deployment targets were not available.",
+  "ConcurrencyTag": "Health",
+  "State": "Failed",
   "HasPendingInterruptions": false,
-  "HasWarningsOrErrors": false,
+  "HasWarningsOrErrors": true,
   "ServerVersion": "3.8.4+Branch.master.Sha.1b250ca4d7c1d42aa029771ed15851e6ed11ff83",
   "ServerNode": "DEVBOX",
-  "LogDifferentiationToken": "7YSUCWMBUC",
+  "LogDifferentiationToken": "TWXW6UVXXU",
   "AdditionalDescription": null,
-  "DurationSeconds": 7,
+  "DurationSeconds": 6,
   "ProjectId": null,
   "EnvironmentId": "Environments-2",
   "TenantId": null,
-  "ExtendedViewLogPermissions": [],
-  "ExtendedCreatePermissions": [
-    "DeploymentCreate"
+  "ExtendedViewLogPermissions": [
+    "EnvironmentView",
+    "MachineView",
+    "EnvironmentView",
+    "MachineView",
+    "EnvironmentView",
+    "MachineView"
   ],
-  "CanRerun": false,
+  "ExtendedCreatePermissions": [
+    "EnvironmentView",
+    "MachineEdit",
+    "EnvironmentView",
+    "MachineEdit",
+    "EnvironmentView",
+    "MachineEdit"
+  ],
+  "CanRerun": true,
   "Properties": {}
 }

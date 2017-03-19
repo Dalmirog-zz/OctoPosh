@@ -2,34 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1194",
   "RelatedDocumentIds": [
-    "Environments-2"
+    "ProjectGroups-26"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-2",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentQueued",
+  "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-06T03:11:36.9677087-03:00",
-  "Message": "Deployed DeploymentTests_Project2 release 0.0.4 to Prod",
+  "Occurred": "2017-03-13T00:27:37.5295431-03:00",
+  "Message": "Project Group modified_TestprojectGroup was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 9,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 42,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-2",
-      "StartIndex": 51,
-      "Length": 4
+      "ReferencedDocumentId": "ProjectGroups-26",
+      "StartIndex": 14,
+      "Length": 25
     }
   ],
   "Comments": null,
-  "Details": null,
+  "Details": "<span>{\r&para;<br>  \"Id\": \"ProjectGroups-25\",\r&para;<br>  \"Name\": \"</span><del style=\"background:#ffe6e6;\">un</del><span>modified_Test</span><del style=\"background:#ffe6e6;\">P</del><ins style=\"background:#e6ffe6;\">p</ins><span>rojectGroup\",\r&para;<br>  \"Description\": \"Resource created for unit testing purposes. Do not delete/edit\"\r&para;<br>}</span>",
   "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

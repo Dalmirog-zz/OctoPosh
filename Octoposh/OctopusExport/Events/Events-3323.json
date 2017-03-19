@@ -1,21 +1,19 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-3323",
-  "RelatedDocumentIds": [
-    "Channels-25"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
+  "Category": "Deleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-03-14T06:46:23.2720566+00:00",
-  "Message": "Channel YPF1YGOEF4XHOYE was created",
+  "Occurred": "2017-01-15T17:31:41.2284599-03:00",
+  "Message": "NuGetFeed GSN6J532E925KVS was deleted",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Channels-25",
-      "StartIndex": 8,
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 10,
       "Length": 15
     }
   ],

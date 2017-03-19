@@ -2,36 +2,21 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-2398",
   "RelatedDocumentIds": [
-    "Environments-1"
+    "Machines-5"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentFailed",
+  "Category": "MachineHealthy",
   "UserId": "users-system",
   "Username": "system",
-  "Occurred": "2017-02-11T01:08:22.8377853-03:00",
-  "Message": "Deploy to Dev failed  for DashboardTests_Project3 release 0.0.1 to Dev",
+  "Occurred": "2017-03-13T23:51:30.6601081-03:00",
+  "Message": "Machine OfflineTarget became healthy",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 0,
+      "ReferencedDocumentId": "Machines-5",
+      "StartIndex": 8,
       "Length": 13
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 26,
-      "Length": 23
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 58,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-1",
-      "StartIndex": 67,
-      "Length": 3
     }
   ],
   "Comments": null,

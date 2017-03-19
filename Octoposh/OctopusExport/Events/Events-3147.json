@@ -2,9 +2,7 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-3147",
   "RelatedDocumentIds": [
-    "Deployments-78",
     "Projects-4",
-    "Releases-45",
     "Environments-2"
   ],
   "ProjectId": "Projects-4",
@@ -13,7 +11,7 @@
   "Category": "DeploymentQueued",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-03-14T01:26:11.1231897+00:00",
+  "Occurred": "2017-03-06T21:55:25.7017484-03:00",
   "Message": "Deployed DeploymentTests_Project2 release 0.0.9 to Prod",
   "MessageReferences": [
     {
@@ -22,7 +20,7 @@
       "Length": 24
     },
     {
-      "ReferencedDocumentId": "Releases-45",
+      "ReferencedDocumentId": "NotFound",
       "StartIndex": 42,
       "Length": 5
     },

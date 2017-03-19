@@ -1,17 +1,41 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-982",
-  "RelatedDocumentIds": [],
-  "ProjectId": null,
-  "EnvironmentId": null,
+  "RelatedDocumentIds": [
+    "Projects-5",
+    "Environments-1"
+  ],
+  "ProjectId": "Projects-5",
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Exported",
-  "UserId": "NY",
-  "Username": "dalmiro.granias",
-  "Occurred": "2017-03-07T02:24:51.7184824-03:00",
-  "Message": "Exported complete copy of configuration to C:\\github\\octoposh\\octoposh\\OctopusExport",
-  "MessageReferences": [],
+  "Category": "DeploymentSucceeded",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-01-19T01:38:43.6317101-03:00",
+  "Message": "Deploy to Dev succeeded  for TestProject1 release 0.0.32 to Dev",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 0,
+      "Length": 13
+    },
+    {
+      "ReferencedDocumentId": "Projects-5",
+      "StartIndex": 29,
+      "Length": 12
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 50,
+      "Length": 6
+    },
+    {
+      "ReferencedDocumentId": "Environments-1",
+      "StartIndex": 60,
+      "Length": 3
+    }
+  ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Command-line or tools"
+  "IdentityEstablishedWith": "Unknown"
 }

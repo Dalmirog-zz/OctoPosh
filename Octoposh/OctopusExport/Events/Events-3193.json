@@ -2,24 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-3193",
   "RelatedDocumentIds": [
-    "Environments-21"
+    "Channels-8"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-21",
+  "EnvironmentId": null,
   "TenantId": null,
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-03-14T05:28:34.6091736+00:00",
-  "Message": "Environment KAN1BG5ZM02ZBQD was created",
+  "Occurred": "2017-03-06T22:20:34.4549262-03:00",
+  "Message": "Channel ChannelTests_Channel1 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Environments-21",
-      "StartIndex": 12,
-      "Length": 15
+      "ReferencedDocumentId": "Channels-8",
+      "StartIndex": 8,
+      "Length": 21
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Session cookie"
 }

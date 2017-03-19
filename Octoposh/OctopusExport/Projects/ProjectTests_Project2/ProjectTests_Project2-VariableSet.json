@@ -2,6 +2,36 @@
   "$type": "Octopus.Core.Model.Variables.VariableSet, Octopus.Core",
   "Id": "variableset-Projects-6",
   "OwnerId": "Projects-6",
-  "Variables": [],
-  "RelatedDocumentIds": []
+  "Version": 1,
+  "Variables": [
+    {
+      "Id": "1a8b0511-93b4-5da2-20a0-1afd078093df",
+      "Name": "var",
+      "Value": "foo",
+      "Scope": {
+        "Environment": [
+          "Environments-1"
+        ],
+        "Machine": [
+          "Machines-1"
+        ],
+        "Action": [
+          "2aa5a731-c4f3-4e14-87be-7d81edf364cd"
+        ],
+        "Role": [
+          "WebServer"
+        ],
+        "Channel": [
+          "Channels-10"
+        ]
+      }
+    }
+  ],
+  "RelatedDocumentIds": [
+    "Environments-1",
+    "Machines-1",
+    "2aa5a731-c4f3-4e14-87be-7d81edf364cd",
+    "WebServer",
+    "Channels-10"
+  ]
 }

@@ -2,39 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-94",
   "RelatedDocumentIds": [
-    "Environments-1"
+    "TagSets-2"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentSucceeded",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-06T03:22:43.8394467-03:00",
-  "Message": "Deploy to Dev succeeded  for DeploymentTests_Project1 release 0.0.5 to Dev",
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-03-11T03:31:47.8630459-03:00",
+  "Message": "TagSet TenantTagSetTests_Set2 was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 0,
-      "Length": 13
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 29,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 62,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-1",
-      "StartIndex": 71,
-      "Length": 3
+      "ReferencedDocumentId": "TagSets-2",
+      "StartIndex": 7,
+      "Length": 22
     }
   ],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "Details": "<span>{\r&para;<br>  \"Id\": \"TagSets-3\",\r&para;<br>  \"Name\": \"TenantTagSetTests_Set2\",\r&para;<br>  \"Description\": \"Resource created for unit tests. Do not delete\",\r&para;<br>  \"SortOrder\": 1,\r&para;<br>  \"Tags\": [</span><ins style=\"background:#e6ffe6;\">\r&para;<br>    {\r&para;<br>      \"Id\": null,\r&para;<br>      \"Name\": \"Set2_Tag1\",\r&para;<br>      \"Description\": \"Tag 1 of set 2\",\r&para;<br>      \"Color\": \"#6e6e6e\",\r&para;<br>      \"SortOrder\": 0\r&para;<br>    }\r&para;<br>  </ins><span>]\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "Session cookie"
 }

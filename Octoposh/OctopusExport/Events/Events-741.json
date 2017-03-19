@@ -2,40 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-741",
   "RelatedDocumentIds": [
-    "Projects-4",
-    "Environments-2"
+    "Machines-3"
   ],
-  "ProjectId": "Projects-4",
-  "EnvironmentId": "Environments-2",
+  "ProjectId": null,
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentSucceeded",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-03-06T21:54:21.1707138-03:00",
-  "Message": "Deploy to Prod succeeded  for DeploymentTests_Project2 release 0.0.7 to Prod",
+  "Category": "Created",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2016-12-04T13:20:32.9223283-03:00",
+  "Message": "Machine North was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 0,
-      "Length": 14
-    },
-    {
-      "ReferencedDocumentId": "Projects-4",
-      "StartIndex": 30,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 63,
+      "ReferencedDocumentId": "Machines-3",
+      "StartIndex": 8,
       "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-2",
-      "StartIndex": 72,
-      "Length": 4
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "IdentityEstablishedWith": "Session cookie"
 }

@@ -2,24 +2,35 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-2918",
   "RelatedDocumentIds": [
-    "ServerTasks-476"
+    "Projects-3",
+    "Environments-2"
   ],
-  "ProjectId": null,
-  "EnvironmentId": null,
+  "ProjectId": "Projects-3",
+  "EnvironmentId": "Environments-2",
   "TenantId": null,
-  "Category": "TaskCanceled",
+  "Category": "DeploymentQueued",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-03-14T01:09:06.7151419+00:00",
-  "Message": "Task Deploy DashboardTests_Project2 release 0.0.1 to Dev #476 was canceled",
+  "Occurred": "2017-03-06T21:45:06.3618985-03:00",
+  "Message": "Deployed DeploymentTests_Project1 release 0.0.5 to Prod",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "ServerTasks-476",
-      "StartIndex": 5,
-      "Length": 56
+      "ReferencedDocumentId": "Projects-3",
+      "StartIndex": 9,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 42,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-2",
+      "StartIndex": 51,
+      "Length": 4
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

@@ -2,7 +2,8 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1203",
   "RelatedDocumentIds": [
-    "feeds-feedtests-feed2"
+    "ServerTasks-65",
+    "ServerTasks-269"
   ],
   "ProjectId": null,
   "EnvironmentId": null,
@@ -10,13 +11,18 @@
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-03-03T17:41:21.5454596-03:00",
-  "Message": "NuGetFeed FeedTests_Feed2 was created",
+  "Occurred": "2017-02-12T03:05:25.0146092-03:00",
+  "Message": "Task Check ListeningTentacle1 health #289 was created by re-running task Check ListeningTentacle1 health #288",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "feeds-feedtests-feed2",
-      "StartIndex": 10,
-      "Length": 15
+      "ReferencedDocumentId": "ServerTasks-65",
+      "StartIndex": 5,
+      "Length": 36
+    },
+    {
+      "ReferencedDocumentId": "ServerTasks-269",
+      "StartIndex": 73,
+      "Length": 36
     }
   ],
   "Comments": null,

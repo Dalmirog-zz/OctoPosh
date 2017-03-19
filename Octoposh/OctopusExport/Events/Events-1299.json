@@ -1,17 +1,25 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1299",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Lifecycles-24"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Imported",
-  "UserId": "NY",
-  "Username": "dalmiro.granias",
-  "Occurred": "2016-12-10T17:46:24.9476689-03:00",
-  "Message": "Imported documents using Octopus migration tools",
-  "MessageReferences": [],
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-03-06T20:17:53.4497225-03:00",
+  "Message": "Lifecycle unmodified_TestLifecycle was modified",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Lifecycles-24",
+      "StartIndex": 10,
+      "Length": 24
+    }
+  ],
   "Comments": null,
-  "Details": "  Created.........................................45\r\n    ApiKey........................................1\r\n    DeploymentEnvironment.........................1\r\n    Event.........................................18\r\n    Machine.......................................2\r\n    ServerTask....................................23\r\n  Unchanged.......................................22\r\n    FeaturesConfiguration.........................1\r\n    License.......................................1\r\n    Lifecycle.....................................1\r\n    MachinePolicy.................................1\r\n    NuGetFeed.....................................1\r\n    ProjectGroup..................................1\r\n    ServerConfiguration...........................1\r\n    SmtpConfiguration.............................1\r\n    Team..........................................2\r\n    User..........................................1\r\n    UserRole......................................10\r\n    WebPortalConfiguration........................1\r\n  Updated.........................................1\r\n    Certificate...................................1\r\n",
-  "IdentityEstablishedWith": "Command-line or tools"
+  "Details": "<span>{\r&para;<br>  \"Id\": \"Lifecycles-24\",\r&para;<br>  \"Name\": \"</span><ins style=\"background:#e6ffe6;\">un</ins><span>modified_TestLifecycle\",\r&para;<br>  \"Description\": \"Resource created for unit testing purposes. Do not delete/edit\",\r&para;<br>  \"Phases\": [],\r&para;<br>  \"ReleaseRetentionPolicy\": {\r&para;<br>    \"Unit\": \"Items\",\r&para;<br>    \"QuantityToKeep\": 0,\r&para;<br>    \"ShouldKeepForever\": true\r&para;<br>  },\r&para;<br>  \"TentacleRetentionPolicy\": {\r&para;<br>    \"Unit\": \"Items\",\r&para;<br>    \"QuantityToKeep\": 0,\r&para;<br>    \"ShouldKeepForever\": true\r&para;<br>  }\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

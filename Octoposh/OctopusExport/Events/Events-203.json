@@ -1,25 +1,23 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-203",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "ServerTasks-363",
+    "Environments-2"
+  ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-2",
   "TenantId": null,
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-09T00:01:55.3565994-03:00",
-  "Message": "DeploymentTests_Project2 release 0.0.15 was created",
+  "Occurred": "2017-03-03T17:26:27.0527849-03:00",
+  "Message": "Ran task Check ListeningTentacle1 health",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 0,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 33,
-      "Length": 6
+      "ReferencedDocumentId": "ServerTasks-363",
+      "StartIndex": 9,
+      "Length": 31
     }
   ],
   "Comments": null,

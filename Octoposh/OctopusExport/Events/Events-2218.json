@@ -1,17 +1,43 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-2218",
-  "RelatedDocumentIds": [],
-  "ProjectId": null,
-  "EnvironmentId": null,
+  "RelatedDocumentIds": [
+    "Deployments-8",
+    "Projects-1",
+    "Releases-2",
+    "Environments-1"
+  ],
+  "ProjectId": "Projects-1",
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Exported",
-  "UserId": "NY",
-  "Username": "dalmiro.granias",
-  "Occurred": "2016-12-10T20:19:31.9216478-03:00",
-  "Message": "Exported complete copy of configuration to C:\\Github\\OctoPosh\\Octoposh\\OctopusExport",
-  "MessageReferences": [],
+  "Category": "DeploymentStarted",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-03-13T22:13:20.0660097-03:00",
+  "Message": "Deploy to Dev (#3) started  for DashboardTests_Project1 release 0.0.2 to Dev",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Deployments-8",
+      "StartIndex": 0,
+      "Length": 18
+    },
+    {
+      "ReferencedDocumentId": "Projects-1",
+      "StartIndex": 32,
+      "Length": 23
+    },
+    {
+      "ReferencedDocumentId": "Releases-2",
+      "StartIndex": 64,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-1",
+      "StartIndex": 73,
+      "Length": 3
+    }
+  ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Command-line or tools"
+  "IdentityEstablishedWith": "Unknown"
 }

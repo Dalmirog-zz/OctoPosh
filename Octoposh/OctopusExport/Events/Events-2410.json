@@ -2,25 +2,30 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-2410",
   "RelatedDocumentIds": [
-    "Machines-6",
-    "Environments-4"
+    "Projects-4",
+    "Releases-21"
   ],
-  "ProjectId": null,
-  "EnvironmentId": "Environments-4",
+  "ProjectId": "Projects-4",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Modified",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-08T03:53:55.9080493-03:00",
-  "Message": "Machine unmodified_TestMachine was modified",
+  "Occurred": "2017-03-13T23:53:06.1150339-03:00",
+  "Message": "DeploymentTests_Project2 release 0.0.12 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Machines-6",
-      "StartIndex": 8,
-      "Length": 22
+      "ReferencedDocumentId": "Projects-4",
+      "StartIndex": 0,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "Releases-21",
+      "StartIndex": 33,
+      "Length": 6
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"Machines-5\",\r&para;<br>  \"Name\": \"</span><ins style=\"background:#e6ffe6;\">un</ins><span>modified_TestMachine\",\r&para;<br>  \"Endpoint\": {},\r&para;<br>  \"IsDisabled\": false,\r&para;<br>  \"Roles\": [\r&para;<br>    \"UnitTest\"\r&para;<br>  ],\r&para;<br>  \"EnvironmentIds\": [\r&para;<br>    \"Environments-4\"\r&para;<br>  ],\r&para;<br>  \"TenantIds\": [],\r&para;<br>  \"TenantTags\": [],\r&para;<br>  \"MachinePolicyId\": \"MachinePolicies-1\"\r&para;<br>}</span>",
+  "Details": null,
   "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

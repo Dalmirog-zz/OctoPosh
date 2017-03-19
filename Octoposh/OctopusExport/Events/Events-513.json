@@ -1,23 +1,25 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-513",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "feeds-unmodified-feed"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-12T23:43:29.1026049-03:00",
-  "Message": "NuGetFeed 8N30LH6795S7DKL was deleted",
+  "Occurred": "2017-01-23T03:27:13.7478831-03:00",
+  "Message": "NuGetFeed unmodified_TestFeed was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
+      "ReferencedDocumentId": "feeds-unmodified-feed",
       "StartIndex": 10,
-      "Length": 15
+      "Length": 19
     }
   ],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "Details": "<span>{\r&para;<br>  \"Id\": \"feeds-unmodified-feed\",\r&para;<br>  \"Name\": \"unmodified_</span><ins style=\"background:#e6ffe6;\">Test</ins><span>Feed\",\r&para;<br>  \"FeedUri\": \"c:\\\\ackages\",\r&para;<br>  \"Username\": null,\r&para;<br>  \"Password\": null,\r&para;<br>  \"FeedType\": \"NuGet\"\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "Session cookie"
 }

@@ -2,24 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-315",
   "RelatedDocumentIds": [
-    "Environments-1"
+    "Machines-4"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Modified",
+  "Category": "MachineAdded",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-04T00:59:05.0362913-03:00",
-  "Message": "Machine ListeningTentacle was modified",
+  "Occurred": "2016-12-09T02:10:36.7338039-03:00",
+  "Message": "Machine South was created (domain-event)",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
+      "ReferencedDocumentId": "Machines-4",
       "StartIndex": 8,
-      "Length": 17
+      "Length": 5
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"Machines-1\",\r&para;<br>  \"Name\": \"ListeningTentacle\",\r&para;<br>  \"Endpoint\": {\r&para;<br>    \"ProxyId\": null,\r&para;<br>    \"Thumbprint\": \"5AE0B64787F7FD66D139ED0E22AF887011811363\",\r&para;<br>    \"Uri\": \"https://localhost:10933/\",\r&para;<br>    \"UpgradeLocked\": false\r&para;<br>  },\r&para;<br>  \"IsDisabled\": false,\r&para;<br>  \"Roles\": [\r&para;<br>    \"WebServer\"\r&para;<br>  ],\r&para;<br>  \"EnvironmentIds\": [\r&para;<br>    \"Environments-1\"\r&para;<br>  ],\r&para;<br>  \"TenantIds\": [],\r&para;<br>  \"TenantTags\": [],\r&para;<br>  \"MachinePolicyId\": \"MachinePolicies-1\"\r&para;<br>}</span>",
+  "Details": null,
   "IdentityEstablishedWith": "Session cookie"
 }

@@ -3,25 +3,30 @@
   "Id": "Events-3009",
   "RelatedDocumentIds": [
     "Projects-3",
-    "Releases-32"
+    "Environments-3"
   ],
   "ProjectId": "Projects-3",
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-3",
   "TenantId": null,
-  "Category": "Created",
+  "Category": "DeploymentQueued",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-03-14T01:13:32.9250253+00:00",
-  "Message": "DeploymentTests_Project1 release 0.0.8 was created",
+  "Occurred": "2017-03-06T21:49:23.2544817-03:00",
+  "Message": "Deployed DeploymentTests_Project1 release 0.0.12 to Stage",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "Projects-3",
-      "StartIndex": 0,
+      "StartIndex": 9,
       "Length": 24
     },
     {
-      "ReferencedDocumentId": "Releases-32",
-      "StartIndex": 33,
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 42,
+      "Length": 6
+    },
+    {
+      "ReferencedDocumentId": "Environments-3",
+      "StartIndex": 52,
       "Length": 5
     }
   ],

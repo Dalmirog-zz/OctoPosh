@@ -2,21 +2,27 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-2505",
   "RelatedDocumentIds": [
-    "Environments-1"
+    "Projects-5",
+    "Releases-56"
   ],
-  "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "ProjectId": "Projects-5",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-15T17:16:09.5907983-03:00",
-  "Message": "Machine FWJ4UP1DT6L2LKR was deleted",
+  "Occurred": "2017-03-14T02:32:53.8860822-03:00",
+  "Message": "ProjectTests_Project1 release 0.0.33 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 8,
-      "Length": 15
+      "ReferencedDocumentId": "Projects-5",
+      "StartIndex": 0,
+      "Length": 21
+    },
+    {
+      "ReferencedDocumentId": "Releases-56",
+      "StartIndex": 30,
+      "Length": 6
     }
   ],
   "Comments": null,

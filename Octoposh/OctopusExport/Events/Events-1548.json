@@ -2,25 +2,29 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1548",
   "RelatedDocumentIds": [
-    "ServerTasks-353",
-    "Environments-1"
+    "Projects-6"
   ],
-  "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "ProjectId": "Projects-6",
+  "EnvironmentId": null,
   "TenantId": null,
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-22T00:13:09.4590531-03:00",
-  "Message": "Ran task Check OfflineTarget health",
+  "Occurred": "2017-02-14T02:40:13.2939877-03:00",
+  "Message": "TestProject2 release 0.0.3 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "ServerTasks-353",
-      "StartIndex": 9,
-      "Length": 26
+      "ReferencedDocumentId": "Projects-6",
+      "StartIndex": 0,
+      "Length": 12
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 21,
+      "Length": 5
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

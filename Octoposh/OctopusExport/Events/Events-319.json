@@ -2,21 +2,21 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-319",
   "RelatedDocumentIds": [
-    "ServerTasks-329"
+    "feeds-local-folder"
   ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "TaskCanceled",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-30T23:46:26.3083385-03:00",
-  "Message": "Task Deploy DashboardTests_Project2 release 0.0.1 to Stage #76 was canceled",
+  "Occurred": "2017-02-04T00:01:59.5312158-03:00",
+  "Message": "NuGetFeed Local Folder was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "ServerTasks-329",
-      "StartIndex": 5,
-      "Length": 57
+      "ReferencedDocumentId": "feeds-local-folder",
+      "StartIndex": 10,
+      "Length": 12
     }
   ],
   "Comments": null,

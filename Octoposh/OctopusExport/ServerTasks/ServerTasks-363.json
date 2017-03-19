@@ -3,37 +3,47 @@
   "Id": "ServerTasks-363",
   "Name": "Health",
   "Arguments": {
-    "EnvironmentId": null,
-    "MachinePolicyId": null,
-    "MachineIds": [
-      null
-    ],
     "Timeout": "00:05:00",
-    "MachineTimeout": "00:01:00",
-    "OnlyTestConnection": false
+    "MachineIds": [
+      "Machines-1"
+    ]
   },
-  "Description": "Test connectivity to YZK2U0SYC0YFHI6",
-  "QueueTime": "2017-02-11T05:05:06.8099662-03:00",
+  "Description": "Check ListeningTentacle1 health",
+  "QueueTime": "2017-03-03T17:26:27.0377816-03:00",
   "QueueTimeExpiry": "10675199.02:48:05.4775807",
   "ExecutionTimeExpiry": "00:00:00",
-  "StartTime": "2017-02-11T05:05:06.8239465-03:00",
-  "LastUpdatedTime": "2017-02-11T05:05:07.1049455-03:00",
-  "CompletedTime": "2017-02-11T05:05:07.1049455-03:00",
-  "ErrorMessage": "",
-  "ConcurrencyTag": null,
-  "State": "Success",
+  "StartTime": "2017-03-03T17:26:27.0777893-03:00",
+  "LastUpdatedTime": "2017-03-03T17:26:32.4894153-03:00",
+  "CompletedTime": "2017-03-03T17:26:32.4894153-03:00",
+  "ErrorMessage": "The health check failed. One or more deployment targets were not available.",
+  "ConcurrencyTag": "Health",
+  "State": "Failed",
   "HasPendingInterruptions": false,
-  "HasWarningsOrErrors": false,
+  "HasWarningsOrErrors": true,
   "ServerVersion": "3.8.4+Branch.master.Sha.1b250ca4d7c1d42aa029771ed15851e6ed11ff83",
   "ServerNode": "DEVBOX",
-  "LogDifferentiationToken": "H7SN2H7PU5",
+  "LogDifferentiationToken": "T5735EP2N8",
   "AdditionalDescription": null,
-  "DurationSeconds": 0,
+  "DurationSeconds": 5,
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-2",
   "TenantId": null,
-  "ExtendedViewLogPermissions": [],
-  "ExtendedCreatePermissions": [],
+  "ExtendedViewLogPermissions": [
+    "EnvironmentView",
+    "MachineView",
+    "EnvironmentView",
+    "MachineView",
+    "EnvironmentView",
+    "MachineView"
+  ],
+  "ExtendedCreatePermissions": [
+    "EnvironmentView",
+    "MachineEdit",
+    "EnvironmentView",
+    "MachineEdit",
+    "EnvironmentView",
+    "MachineEdit"
+  ],
   "CanRerun": true,
   "Properties": {}
 }

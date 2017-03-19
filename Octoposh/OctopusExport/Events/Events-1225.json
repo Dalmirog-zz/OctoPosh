@@ -1,26 +1,23 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1225",
-  "RelatedDocumentIds": [
-    "ServerTasks-121",
-    "Environments-1"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "EnvironmentId": null,
   "TenantId": null,
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-04T19:43:38.2861308-03:00",
-  "Message": "Ran task Check ListeningTentacle3 health",
+  "Occurred": "2017-02-01T00:13:39.8955184-03:00",
+  "Message": "Lifecycle RUTUE08EREC9IGX was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "ServerTasks-121",
-      "StartIndex": 9,
-      "Length": 31
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 10,
+      "Length": 15
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

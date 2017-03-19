@@ -2,7 +2,7 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1055",
   "RelatedDocumentIds": [
-    "TagSets-1"
+    "LibraryVariableSets-2"
   ],
   "ProjectId": null,
   "EnvironmentId": null,
@@ -10,16 +10,16 @@
   "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-03-11T03:30:10.5989786-03:00",
-  "Message": "TagSet TenantTagSetTests_Set1 was modified",
+  "Occurred": "2017-01-23T02:16:54.0019176-03:00",
+  "Message": "Library Variable Set unmodified_TestLibraryVariableset was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "TagSets-1",
-      "StartIndex": 7,
-      "Length": 22
+      "ReferencedDocumentId": "LibraryVariableSets-2",
+      "StartIndex": 21,
+      "Length": 33
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"TagSets-1\",\r&para;<br>  \"Name\": \"TenantTagSetTests_</span><del style=\"background:#ffe6e6;\">TenantTag</del><span>Set1\",\r&para;<br>  \"Description\": \"Resource created for unit tests. Do not delete.\",\r&para;<br>  \"SortOrder\": 0,\r&para;<br>  \"Tags\": []\r&para;<br>}</span>",
+  "Details": "<span>{\r&para;<br>  \"Id\": \"LibraryVariableSets-22\",\r&para;<br>  \"Name\": \"unmodified_</span><ins style=\"background:#e6ffe6;\">Test</ins><span>LibraryVariableset\",\r&para;<br>  \"Description\": \"\",\r&para;<br>  \"VariableSetId\": \"variableset-LibraryVariableSets-22\",\r&para;<br>  \"ContentType\": \"Variables\",\r&para;<br>  \"Templates\": []\r&para;<br>}</span>",
   "IdentityEstablishedWith": "Session cookie"
 }

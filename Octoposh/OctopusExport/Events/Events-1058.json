@@ -1,25 +1,23 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1058",
-  "RelatedDocumentIds": [
-    "TagSets-1"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Modified",
+  "Category": "Deleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-03-11T03:30:50.4759129-03:00",
-  "Message": "TagSet TenantTagSetTests_Set1 was modified",
+  "Occurred": "2017-01-30T22:27:45.9066181-03:00",
+  "Message": "Environment G44KK3F6M2G2CJA was deleted",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "TagSets-1",
-      "StartIndex": 7,
-      "Length": 22
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 12,
+      "Length": 15
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"TagSets-1\",\r&para;<br>  \"Name\": \"TenantTagSetTests_Set1\",\r&para;<br>  \"Description\": \"Resource created for unit tests. Do not delete.\",\r&para;<br>  \"SortOrder\": 0,\r&para;<br>  \"Tags\": [\r&para;<br>    {\r&para;<br>      \"Id\": \"TagSets-1/Tags-1\",\r&para;<br>      \"Name\": \"Set1_Tag1\",\r&para;<br>      \"Description\": </span><del style=\"background:#ffe6e6;\">null</del><ins style=\"background:#e6ffe6;\">\"Tag 1 of set 1\",\r&para;<br>      \"Color\": \"#6e6e6e\",\r&para;<br>      \"SortOrder\": 0\r&para;<br>    },\r&para;<br>    {\r&para;<br>      \"Id\": null,\r&para;<br>      \"Name\": \"Set1_Tag2\",\r&para;<br>      \"Description\": \"Tag 2 of set 1\"</ins><span>,\r&para;<br>      \"Color\": \"#6e6e6e\",\r&para;<br>      \"SortOrder\": </span><del style=\"background:#ffe6e6;\">0</del><ins style=\"background:#e6ffe6;\">1</ins><span>\r&para;<br>    }\r&para;<br>  ]\r&para;<br>}</span>",
-  "IdentityEstablishedWith": "Session cookie"
+  "Details": null,
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

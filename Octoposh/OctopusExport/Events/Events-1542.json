@@ -1,17 +1,35 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1542",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Environments-3"
+  ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-3",
   "TenantId": null,
-  "Category": "Imported",
-  "UserId": "NY",
-  "Username": "dalmiro.granias",
-  "Occurred": "2017-01-18T21:51:51.3755443-03:00",
-  "Message": "Imported documents using Octopus migration tools",
-  "MessageReferences": [],
+  "Category": "DeploymentQueued",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-02-06T03:21:02.1876076-03:00",
+  "Message": "Deployed DeploymentTests_Project1 release 0.0.2 to Stage",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 9,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 42,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-3",
+      "StartIndex": 51,
+      "Length": 5
+    }
+  ],
   "Comments": null,
-  "Details": "  Created.........................................481\r\n    ApiKey........................................1\r\n    Channel.......................................2\r\n    CommunityActionTemplate.......................217\r\n    DeploymentEnvironment.........................2\r\n    DeploymentProcess.............................2\r\n    Event.........................................212\r\n    ExtensionConfiguration........................2\r\n    Lifecycle.....................................1\r\n    Machine.......................................4\r\n    Project.......................................2\r\n    ProjectGroup..................................2\r\n    ServerTask....................................32\r\n    VariableSet...................................2\r\n  Missing dependencies............................3\r\n    ServerTask....................................3\r\n  Unchanged.......................................24\r\n    ExtensionConfiguration........................3\r\n    License.......................................1\r\n    Lifecycle.....................................1\r\n    MachinePolicy.................................1\r\n    NuGetFeed.....................................1\r\n    ProjectGroup..................................1\r\n    ServerConfiguration...........................1\r\n    SmtpConfiguration.............................1\r\n    Team..........................................2\r\n    User..........................................1\r\n    UserRole......................................10\r\n    WebPortalConfiguration........................1\r\n  Updated.........................................2\r\n    Certificate...................................1\r\n    FeaturesConfiguration.........................1\r\n",
-  "IdentityEstablishedWith": "Command-line or tools"
+  "Details": null,
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

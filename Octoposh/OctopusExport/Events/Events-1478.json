@@ -1,19 +1,21 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1478",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Environments-1"
+  ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
   "Category": "Deleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-12T02:56:28.3612621-03:00",
-  "Message": "Lifecycle 1NZK42V6987W6PC was deleted",
+  "Occurred": "2017-02-11T00:48:39.325511-03:00",
+  "Message": "Machine KDPKROC3P2UV5R1 was deleted",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 10,
+      "StartIndex": 8,
       "Length": 15
     }
   ],

@@ -2,24 +2,29 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-3218",
   "RelatedDocumentIds": [
-    "Environments-4"
+    "Projects-3"
   ],
-  "ProjectId": null,
-  "EnvironmentId": "Environments-4",
+  "ProjectId": "Projects-3",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Modified",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-03-14T05:28:41.9842134+00:00",
-  "Message": "Environment unmodified_TestEnvironment was modified",
+  "Occurred": "2017-03-07T01:39:40.4817608-03:00",
+  "Message": "DeploymentTests_Project1 release 0.0.14 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Environments-4",
-      "StartIndex": 12,
-      "Length": 26
+      "ReferencedDocumentId": "Projects-3",
+      "StartIndex": 0,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 33,
+      "Length": 6
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"Environments-4\",\r&para;<br>  \"Name\": \"</span><ins style=\"background:#e6ffe6;\">un</ins><span>modified_TestEnvironment\",\r&para;<br>  \"Description\": \"Resource created for unit testing purposes. Do not delete/edit\",\r&para;<br>  \"SortOrder\": 2,\r&para;<br>  \"UseGuidedFailure\": false\r&para;<br>}</span>",
+  "Details": null,
   "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

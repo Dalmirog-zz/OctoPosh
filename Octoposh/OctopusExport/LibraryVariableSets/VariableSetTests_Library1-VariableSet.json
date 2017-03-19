@@ -1,0 +1,29 @@
+{
+  "$type": "Octopus.Core.Model.Variables.VariableSet, Octopus.Core",
+  "Id": "variableset-LibraryVariableSets-21",
+  "OwnerId": "LibraryVariableSets-21",
+  "Version": 1,
+  "Variables": [
+    {
+      "Id": "e016795e-1ce1-109b-470f-9f611ba3fd03",
+      "Name": "var",
+      "Value": "foo",
+      "Scope": {
+        "Environment": [
+          "Environments-1"
+        ],
+        "Machine": [
+          "Machines-1"
+        ],
+        "Role": [
+          "WebServer"
+        ]
+      }
+    }
+  ],
+  "RelatedDocumentIds": [
+    "Environments-1",
+    "Machines-1",
+    "WebServer"
+  ]
+}

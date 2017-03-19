@@ -1,20 +1,18 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-3277",
-  "RelatedDocumentIds": [
-    "Channels-23"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
+  "Category": "Deleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-03-14T05:43:35.0820329+00:00",
-  "Message": "Channel 772OLYYK6HHLWLJ was created",
+  "Occurred": "2017-03-03T17:18:41.3960684-03:00",
+  "Message": "Project 9KWKGH1TTO7NZFI was deleted",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Channels-23",
+      "ReferencedDocumentId": "NotFound",
       "StartIndex": 8,
       "Length": 15
     }

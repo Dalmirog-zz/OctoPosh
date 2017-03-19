@@ -1,20 +1,27 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1628",
-  "RelatedDocumentIds": [],
-  "ProjectId": null,
+  "RelatedDocumentIds": [
+    "Projects-6"
+  ],
+  "ProjectId": "Projects-6",
   "EnvironmentId": null,
   "TenantId": null,
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-15T17:31:39.9234608-03:00",
-  "Message": "Channel GSN6J532E925KVS was created",
+  "Occurred": "2017-02-14T03:19:49.4689901-03:00",
+  "Message": "TestProject2 release 0.0.4 was created",
   "MessageReferences": [
     {
+      "ReferencedDocumentId": "Projects-6",
+      "StartIndex": 0,
+      "Length": 12
+    },
+    {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 8,
-      "Length": 15
+      "StartIndex": 21,
+      "Length": 5
     }
   ],
   "Comments": null,

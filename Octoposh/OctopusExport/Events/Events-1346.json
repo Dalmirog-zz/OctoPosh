@@ -2,21 +2,31 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1346",
   "RelatedDocumentIds": [
-    "Environments-1"
+    "Environments-2"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-1",
+  "EnvironmentId": "Environments-2",
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "DeploymentQueued",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-23T02:31:05.1507417-03:00",
-  "Message": "Machine DGQQ2AP7CNQFEV3 was deleted",
+  "Occurred": "2017-02-06T03:20:37.400991-03:00",
+  "Message": "Deployed DeploymentTests_Project1 release 0.0.1 to Prod",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 8,
-      "Length": 15
+      "StartIndex": 9,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 42,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-2",
+      "StartIndex": 51,
+      "Length": 4
     }
   ],
   "Comments": null,

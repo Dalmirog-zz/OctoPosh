@@ -2,25 +2,34 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-623",
   "RelatedDocumentIds": [
-    "deploymentprocess-Projects-6",
-    "Projects-6"
+    "Environments-3"
   ],
-  "ProjectId": "Projects-6",
-  "EnvironmentId": null,
+  "ProjectId": null,
+  "EnvironmentId": "Environments-3",
   "TenantId": null,
-  "Category": "Modified",
+  "Category": "DeploymentQueued",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-24T13:51:43.1165933-03:00",
-  "Message": "Deployment process for TestProject2 was changed",
+  "Occurred": "2017-02-06T03:12:54.3968993-03:00",
+  "Message": "Deployed DeploymentTests_Project2 release 0.0.6 to Stage",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Projects-6",
-      "StartIndex": 23,
-      "Length": 12
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 9,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 42,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-3",
+      "StartIndex": 51,
+      "Length": 5
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"deploymentprocess-Projects-6\",\r&para;<br>  \"OwnerId\": \"Projects-6\",\r&para;<br>  \"Version\": </span><del style=\"background:#ffe6e6;\">5</del><ins style=\"background:#e6ffe6;\">6</ins><span>,\r&para;<br>  \"Steps\": [\r&para;<br>    {\r&para;<br>      \"Id\": \"aed308c4-6b08-48ae-bfa4-069a3d077f42\",\r&para;<br>      \"Name\": \"Deploy a package\",\r&para;<br>      \"Condition\": \"Success\",\r&para;<br>      \"StartTrigger\": \"StartAfterPrevious\",\r&para;<br>      \"RequiresPackagesToBeAcquired\": false,\r&para;<br>      \"Actions\": [\r&para;<br>        {\r&para;<br>          \"Id\": \"2aa5a731-c4f3-4e14-87be-7d81edf364cd\",\r&para;<br>          \"Name\": \"Deploy a package\",\r&para;<br>          \"ActionType\": \"Octopus.TentaclePackage\",\r&para;<br>          \"IsDisabled\": false,\r&para;<br>          \"Environments\": [],\r&para;<br>          \"ExcludedEnvironments\": [],\r&para;<br>          \"Channels\": [],\r&para;<br>          \"TenantTags\": [],\r&para;<br>          \"Properties\": {\r&para;<br>            \"Octopus.Action.EnabledFeatures\": \"Octopus.Features.CustomDirectory\",\r&para;<br>            \"Octopus.Action.Package.DownloadOnTentacle\": \"False\",\r&para;<br>            \"Octopus.Action.Package.FeedId\": \"feeds-local-folder\",\r&para;<br>            \"Octopus.Action.Package.PackageId\": \"Test</span><del style=\"background:#ffe6e6;\">App</del><ins style=\"background:#e6ffe6;\">Config\",\r&para;<br>            \"Octopus.Action.Package.CustomInstallationDirectory\": \"c:\\\\deploy\",\r&para;<br>            \"Octopus.Action.Package.CustomInstallationDirectoryShouldBePurgedBeforeDeployment\": \"True</ins><span>\"\r&para;<br>          }\r&para;<br>        }\r&para;<br>      ],\r&para;<br>      \"Properties\": {\r&para;<br>        \"Octopus.Action.TargetRoles\": \"WebServer\"\r&para;<br>      }\r&para;<br>    }\r&para;<br>  ],\r&para;<br>  \"RelatedDocumentIds\": []\r&para;<br>}</span>",
-  "IdentityEstablishedWith": "Session cookie"
+  "Details": null,
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

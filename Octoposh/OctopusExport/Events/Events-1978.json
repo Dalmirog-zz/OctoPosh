@@ -1,19 +1,21 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-1978",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Environments-1"
+  ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-30T22:27:51.8128583-03:00",
-  "Message": "Team G44KK3F6M2G2CJA was created",
+  "Occurred": "2017-02-14T03:33:14.3473943-03:00",
+  "Message": "Machine K20DWAGSNSX9QZB was created",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 5,
+      "StartIndex": 8,
       "Length": 15
     }
   ],

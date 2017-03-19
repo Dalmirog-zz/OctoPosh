@@ -2,30 +2,39 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-3394",
   "RelatedDocumentIds": [
-    "Releases-83",
-    "Projects-24"
+    "Environments-1"
   ],
-  "ProjectId": "Projects-24",
-  "EnvironmentId": null,
+  "ProjectId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Created",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-03-15T00:01:04.0748872+00:00",
-  "Message": "Release 0.0.1 for project ReleaseTests_Project1 blocked with reason: First Block",
+  "Category": "DeploymentSucceeded",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-01-30T22:56:17.8931019-03:00",
+  "Message": "Deploy to Dev succeeded  for DashboardTests_Project2 release 0.0.1 to Dev",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Releases-83",
-      "StartIndex": 8,
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 0,
+      "Length": 13
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 29,
+      "Length": 23
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 61,
       "Length": 5
     },
     {
-      "ReferencedDocumentId": "Projects-24",
-      "StartIndex": 26,
-      "Length": 21
+      "ReferencedDocumentId": "Environments-1",
+      "StartIndex": 70,
+      "Length": 3
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "IdentityEstablishedWith": "Unknown"
 }

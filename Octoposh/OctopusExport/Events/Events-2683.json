@@ -1,23 +1,25 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-2683",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "TagSets-3"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
+  "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-08T03:53:50.6640001-03:00",
-  "Message": "Project 3P0LLD44EKDSQWJ was created",
+  "Occurred": "2017-03-14T21:54:33.571355-03:00",
+  "Message": "TagSet Modified_TestTagSet was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 8,
-      "Length": 15
+      "ReferencedDocumentId": "TagSets-3",
+      "StartIndex": 7,
+      "Length": 19
     }
   ],
   "Comments": null,
-  "Details": null,
+  "Details": "<span>{\r&para;<br>  \"Id\": \"TagSets-22\",\r&para;<br>  \"Name\": \"</span><del style=\"background:#ffe6e6;\">Unm</del><ins style=\"background:#e6ffe6;\">M</ins><span>odified_TestTagSet\",\r&para;<br>  \"Description\": \"Resource created for unit testing. Do not delete.\",\r&para;<br>  \"SortOrder\": 2,\r&para;<br>  \"Tags\": []\r&para;<br>}</span>",
   "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

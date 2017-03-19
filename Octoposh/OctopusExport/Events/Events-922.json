@@ -1,23 +1,30 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-922",
-  "RelatedDocumentIds": [],
-  "ProjectId": null,
+  "RelatedDocumentIds": [
+    "Projects-5"
+  ],
+  "ProjectId": "Projects-5",
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-03-07T02:21:10.7300165-03:00",
-  "Message": "Library Variable Set 59U7TXBICAC6G8O was deleted",
+  "Occurred": "2017-01-18T23:37:02.7314547-03:00",
+  "Message": "TestProject1 release 0.0.20 was created",
   "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Projects-5",
+      "StartIndex": 0,
+      "Length": 12
+    },
     {
       "ReferencedDocumentId": "NotFound",
       "StartIndex": 21,
-      "Length": 15
+      "Length": 6
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Session cookie"
 }
