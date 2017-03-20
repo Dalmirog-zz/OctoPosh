@@ -291,5 +291,14 @@ namespace Octoposh.Tests
                 Assert.AreEqual(item.DeploymentStatus, deploymentStatus);
             }
         }
+
+        [Test]
+        public void GetDashboardWithoutParametersReturnsValues()
+        {
+            var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType);
+            var results = powershell.Invoke<List<OutputOctopusDashboardEntry>>()[0];
+
+            Assert.Greater(results.Count, 0);
+        }
     }
 }
