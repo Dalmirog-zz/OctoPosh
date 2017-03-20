@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
@@ -245,9 +246,9 @@ namespace Octoposh.Model
             var environments = new List<DashboardEnvironmentResource>();
             var projects = new List<DashboardProjectResource>();
 
-            environments = environmentName.Count > 0 ? rawDashboard.Environments.Where(e => environmentName.Contains(e.Name)).ToList() : rawDashboard.Environments;
+            environments = environmentName.Count > 0 ? rawDashboard.Environments.Where(e => environmentName.Any(en => String.Equals(en, e.Name, StringComparison.CurrentCultureIgnoreCase))).ToList() : rawDashboard.Environments;
 
-            projects = projectName.Count > 0 ? rawDashboard.Projects.Where(p => projectName.Contains(p.Name)).ToList() : rawDashboard.Projects;
+            projects = projectName.Count > 0 ? rawDashboard.Projects.Where(p => projectName.Any(pn => String.Equals(pn, p.Name, StringComparison.CurrentCultureIgnoreCase))).ToList() : rawDashboard.Projects;
             
             foreach (var deployment in rawDashboard.Items)
             {
