@@ -41,7 +41,7 @@ namespace Octoposh.Cmdlets
         [Alias("Name")]
         [ValidateNotNullOrEmpty()]
         [Parameter(Position = 1, ValueFromPipeline = true, ParameterSetName = ByName)]
-        public List<string> EnvironmentName { get; set; }
+        public string[] EnvironmentName { get; set; }
 
         /// <summary>
         /// <para type="description">If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh output object</para>
@@ -54,12 +54,12 @@ namespace Octoposh.Cmdlets
         protected override void BeginProcessing()
         {
             _connection = new NewOctopusConnection().Invoke<OctopusConnection>().ToList()[0];
-            EnvironmentName = EnvironmentName?.ConvertAll(s => s.ToLower());
         }
 
         protected override void ProcessRecord()
         {
             var baseResourceList = new List<EnvironmentResource>();
+            var environmentNameList = EnvironmentName?.ToList().ConvertAll(s => s.ToLower());
 
             switch (this.ParameterSetName)
             {
@@ -69,20 +69,20 @@ namespace Octoposh.Cmdlets
 
                 case ByName:
                     //Multiple values but one of them is wildcarded, which is not an accepted scenario (I.e -MachineName WebServer*, Database1)
-                    if (EnvironmentName.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && EnvironmentName.Count > 1))
+                    if (environmentNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && environmentNameList.Count > 1))
                     {
                         throw OctoposhExceptions.ParameterCollectionHasRegularAndWildcardItem("EnvironmentName");
                     }
                     //Only 1 wildcarded value (ie -MachineName WebServer*)
-                    else if (EnvironmentName.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && EnvironmentName.Count == 1))
+                    else if (environmentNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && environmentNameList.Count == 1))
                     {
-                        var pattern = new WildcardPattern(EnvironmentName.First().ToLower());
+                        var pattern = new WildcardPattern(environmentNameList.First().ToLower());
                         baseResourceList = _connection.Repository.Environments.FindMany(x => pattern.IsMatch(x.Name.ToLower()));
                     }
                     //multiple non-wildcared values (i.e. -MachineName WebServer1,Database1)
-                    else if (!EnvironmentName.Any(item => WildcardPattern.ContainsWildcardCharacters(item)))
+                    else if (!environmentNameList.Any(WildcardPattern.ContainsWildcardCharacters))
                     {
-                        baseResourceList = _connection.Repository.Environments.FindMany(x => EnvironmentName.Contains(x.Name.ToLower()));
+                        baseResourceList = _connection.Repository.Environments.FindMany(x => environmentNameList.Contains(x.Name.ToLower()));
                     }
                     break;
             }

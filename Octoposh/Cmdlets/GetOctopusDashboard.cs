@@ -29,20 +29,20 @@ namespace Octoposh.Cmdlets
         /// <para type="description">Name of the Project to filter for.</para>
         /// </summary>
         [Parameter]
-        public List<string> ProjectName { get; set; } = new List<string>();
+        public string[] ProjectName { get; set; }
 
         /// <summary>
         /// <para type="description">Name of the Project to filter for.</para>
         /// </summary>
         [Parameter]
-        public List<string> EnvironmentName { get; set; } = new List<string>();
+        public string[] EnvironmentName { get; set; }
 
         /// <summary>
         /// <para type="description">Target communication style to filter by</para>
         /// </summary>
         [Parameter]
         [ValidateSet("Success", "Failed", "Executing", "Canceled",IgnoreCase = true)]
-        public List<string> DeploymentStatus { get; set; } = new List<string>(){"Success","Failed","Executing","Canceled"};
+        public string[] DeploymentStatus { get; set; }
 
         private OctopusConnection _connection;
 
@@ -54,10 +54,9 @@ namespace Octoposh.Cmdlets
         protected override void ProcessRecord()
         {
             var rawDashboard = _connection.Repository.Dashboards.GetDashboard();
-            //WriteObject("whatever");
+            
             var converter = new OutputConverter();
-            //WriteObject(converter);
-
+            
             var outputList = converter.GetOctopusDashboard(rawDashboard, ProjectName, EnvironmentName, DeploymentStatus);
             WriteObject(outputList);
         }

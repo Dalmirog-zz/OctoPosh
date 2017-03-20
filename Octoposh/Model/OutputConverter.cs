@@ -240,22 +240,22 @@ namespace Octoposh.Model
 
         }
 
-        public List<OutputOctopusDashboardEntry> GetOctopusDashboard(DashboardResource rawDashboard, List<string> projectName, List<string> environmentName, List<string> deploymentStatus)
+        public List<OutputOctopusDashboardEntry> GetOctopusDashboard(DashboardResource rawDashboard, string[] projectName, string[] environmentName, string[] deploymentStatus)
         {
             var list = new List<OutputOctopusDashboardEntry>();
             var environments = new List<DashboardEnvironmentResource>();
             var projects = new List<DashboardProjectResource>();
 
-            environments = environmentName.Count > 0 ? rawDashboard.Environments.Where(e => environmentName.Any(en => String.Equals(en, e.Name, StringComparison.CurrentCultureIgnoreCase))).ToList() : rawDashboard.Environments;
+            environments = environmentName != null ? rawDashboard.Environments.Where(e => environmentName.Any(en => String.Equals(en, e.Name, StringComparison.CurrentCultureIgnoreCase))).ToList() : rawDashboard.Environments;
 
-            projects = projectName.Count > 0 ? rawDashboard.Projects.Where(p => projectName.Any(pn => String.Equals(pn, p.Name, StringComparison.CurrentCultureIgnoreCase))).ToList() : rawDashboard.Projects;
+            projects = projectName != null ? rawDashboard.Projects.Where(p => projectName.Any(pn => String.Equals(pn, p.Name, StringComparison.CurrentCultureIgnoreCase))).ToList() : rawDashboard.Projects;
             
             foreach (var deployment in rawDashboard.Items)
             {
                 var project = projects.FirstOrDefault(p => p.Id == deployment.ProjectId);
                 var environment = environments.FirstOrDefault(e => e.Id == deployment.EnvironmentId);
 
-                if (deploymentStatus.Count > 0 && !deploymentStatus.Contains(deployment.State.ToString()))
+                if (deploymentStatus != null && !deploymentStatus.Contains(deployment.State.ToString()))
                 {
                     continue;
                 }

@@ -58,14 +58,14 @@ namespace Octoposh.Cmdlets
         /// </summary>
         [ValidateNotNullOrEmpty()]
         [Parameter(Position = 1, ValueFromPipeline = true)]
-        public List<string> LibrarySetName { get; set; }
+        public string[] LibrarySetName { get; set; }
 
         /// <summary>
         /// <para type="description">Project name</para>
         /// </summary>
         [ValidateNotNullOrEmpty()]
         [Parameter(Position = 1, ValueFromPipeline = true)]
-        public List<string> ProjectName { get; set; }
+        public string[] ProjectName { get; set; }
 
         /// <summary>
         /// <para type="description">If set to TRUE the list of Projects on which each Library Variable Set is being used will be displayer</para>
@@ -84,8 +84,6 @@ namespace Octoposh.Cmdlets
         protected override void BeginProcessing()
         {
             _connection = new NewOctopusConnection().Invoke<OctopusConnection>().ToList()[0];
-            LibrarySetName = LibrarySetName?.ConvertAll(s => s.ToLower());
-            ProjectName = ProjectName?.ConvertAll(s => s.ToLower());
         }
 
         protected override void ProcessRecord()
@@ -96,8 +94,12 @@ namespace Octoposh.Cmdlets
             var projectList = new List<ProjectResource>();
             var libraryVariableSetList = new List<LibraryVariableSetResource>();
 
+            var librarySetNameList = LibrarySetName?.ToList().ConvertAll(s => s.ToLower());
+
+            var projectNameList = ProjectName?.ToList().ConvertAll(s => s.ToLower());
+
             //If no Project and Library set is declared, return all the things.
-            if (ProjectName == null && LibrarySetName == null)
+            if (projectNameList == null && librarySetNameList == null)
             {
                 projectList.AddRange(_connection.Repository.Projects.FindAll());
                 libraryVariableSetList.AddRange(_connection.Repository.LibraryVariableSets.FindAll());
@@ -109,47 +111,47 @@ namespace Octoposh.Cmdlets
                 #region Getting projects
                 //Getting variable set ids from projects
                 
-                if(ProjectName != null) { 
+                if(projectNameList != null) { 
                     //Multiple values but one of them is wildcarded, which is not an accepted scenario (I.e -MachineName WebServer*, Database1)
-                    if (ProjectName.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && ProjectName.Count > 1))
+                    if (projectNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && projectNameList.Count > 1))
                     {
                         throw OctoposhExceptions.ParameterCollectionHasRegularAndWildcardItem("ProjectName");
                     }
                     //Only 1 wildcarded value (ie -MachineName WebServer*)
-                    else if (ProjectName.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && ProjectName.Count == 1))
+                    else if (projectNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && projectNameList.Count == 1))
                     {
-                        var pattern = new WildcardPattern(ProjectName.First());
+                        var pattern = new WildcardPattern(projectNameList.First());
                         projectList.AddRange(_connection.Repository.Projects.FindMany(t => pattern.IsMatch(t.Name.ToLower())));
                     }
                     //multiple non-wildcared values (i.e. -MachineName WebServer1,Database1)
-                    else if (!ProjectName.Any(WildcardPattern.ContainsWildcardCharacters))
+                    else if (!projectNameList.Any(WildcardPattern.ContainsWildcardCharacters))
                     {
-                        projectList.AddRange(_connection.Repository.Projects.FindMany(t => ProjectName.Contains(t.Name.ToLower())));
+                        projectList.AddRange(_connection.Repository.Projects.FindMany(t => projectNameList.Contains(t.Name.ToLower())));
                     }
                     
                 }
                 #endregion
 
                 #region Getting Library variable sets
-                if (LibrarySetName != null)
+                if (librarySetNameList != null)
                 {
                     //Getting variable set ids from LibraryVariableSets
 
                     //Multiple values but one of them is wildcarded, which is not an accepted scenario (I.e -MachineName WebServer*, Database1)
-                    if (LibrarySetName.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && LibrarySetName.Count > 1))
+                    if (librarySetNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && librarySetNameList.Count > 1))
                     {
                         throw OctoposhExceptions.ParameterCollectionHasRegularAndWildcardItem("LibrarySetName");
                     }
                     //Only 1 wildcarded value (ie -MachineName WebServer*)
-                    else if (LibrarySetName.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && LibrarySetName.Count == 1))
+                    else if (librarySetNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && librarySetNameList.Count == 1))
                     {
-                        var pattern = new WildcardPattern(LibrarySetName.First());
+                        var pattern = new WildcardPattern(librarySetNameList.First());
                         libraryVariableSetList.AddRange(_connection.Repository.LibraryVariableSets.FindMany(t => pattern.IsMatch(t.Name.ToLower())));
                     }
                     //multiple non-wildcared values (i.e. -MachineName WebServer1,Database1)
-                    else if (!LibrarySetName.Any(WildcardPattern.ContainsWildcardCharacters))
+                    else if (!librarySetNameList.Any(WildcardPattern.ContainsWildcardCharacters))
                     {
-                        libraryVariableSetList.AddRange(_connection.Repository.LibraryVariableSets.FindMany(t => LibrarySetName.Contains(t.Name.ToLower())));
+                        libraryVariableSetList.AddRange(_connection.Repository.LibraryVariableSets.FindMany(t => librarySetNameList.Contains(t.Name.ToLower())));
                     }
                     
                 }

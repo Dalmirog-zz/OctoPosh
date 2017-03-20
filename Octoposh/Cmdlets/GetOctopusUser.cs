@@ -45,7 +45,7 @@ namespace Octoposh.Cmdlets
         [Alias("Name")]
         [ValidateNotNullOrEmpty()]
         [Parameter(Position = 1, ValueFromPipeline = true)]
-        public List<string> UserName { get; set; }
+        public string[] UserName { get; set; }
 
         /// <summary>
         /// <para type="description">If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh output object</para>
@@ -63,29 +63,30 @@ namespace Octoposh.Cmdlets
         protected override void ProcessRecord()
         {
             var baseResourceList = new List<UserResource>();
-            if (UserName == null)
+
+            var userNameList = UserName?.ToList().ConvertAll(s => s.ToLower());
+
+            if (userNameList == null)
             {
                 baseResourceList = _connection.Repository.Users.FindAll();
             }
             else
             {
-                UserName = UserName?.ConvertAll(s => s.ToLower());
-
                 //Multiple values but one of them is wildcarded, which is not an accepted scenario (I.e -MachineName WebServer*, Database1)
-                if (UserName.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && UserName.Count > 1))
+                if (userNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && userNameList.Count > 1))
                 {
                     throw OctoposhExceptions.ParameterCollectionHasRegularAndWildcardItem("UserName");
                 }
                 //Only 1 wildcarded value (ie -MachineName WebServer*)
-                else if (UserName.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && UserName.Count == 1))
+                else if (userNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && userNameList.Count == 1))
                 {
-                    var pattern = new WildcardPattern(UserName.First());
+                    var pattern = new WildcardPattern(userNameList.First());
                     baseResourceList = _connection.Repository.Users.FindMany(u => pattern.IsMatch(u.Username.ToLower()));
                 }
                 //multiple non-wildcared values (i.e. -MachineName WebServer1,Database1)
-                else if (!UserName.Any(WildcardPattern.ContainsWildcardCharacters))
+                else if (!userNameList.Any(WildcardPattern.ContainsWildcardCharacters))
                 {
-                    baseResourceList = _connection.Repository.Users.FindMany(u => UserName.Contains(u.Username.ToLower()));
+                    baseResourceList = _connection.Repository.Users.FindMany(u => userNameList.Contains(u.Username.ToLower()));
                 }
             }
 

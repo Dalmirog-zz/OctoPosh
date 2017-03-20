@@ -51,7 +51,7 @@ namespace Octoposh.Cmdlets
         [Alias("Environment")]
         [ValidateNotNullOrEmpty()]
         [Parameter(ValueFromPipeline = true)]
-        public List<string> EnvironmentName = new List<String>();
+        public string[] EnvironmentName;
 
         /// <summary>
         /// <para type="description">Name of the Project to filter by</para>
@@ -59,7 +59,7 @@ namespace Octoposh.Cmdlets
         [Alias("Project")]
         [ValidateNotNullOrEmpty()]
         [Parameter(ValueFromPipeline = true)]
-        public List<string> ProjectName = new List<String>();
+        public string[] ProjectName;
 
         /// <summary>
         /// <para type="description">Release version to filter by. The cmdlet will only return deployments that belong to these releases</para>
@@ -114,7 +114,7 @@ namespace Octoposh.Cmdlets
             //Using the dashboard for this because it involves only 1 API call VS calling Projects/Environmnets.FindByName() plenty of times.
             var rawDashboard = _connection.Repository.Dashboards.GetDashboard();
 
-            if (ProjectName.Count == 0)
+            if (ProjectName == null)
             {
                 projects.AddRange(rawDashboard.Projects);
             }
@@ -187,7 +187,7 @@ namespace Octoposh.Cmdlets
                 }
             }
 
-            if (EnvironmentName.Count == 0)
+            if (EnvironmentName == null)
             {
                 environments = rawDashboard.Environments;
             }

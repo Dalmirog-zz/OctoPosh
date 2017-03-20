@@ -43,7 +43,7 @@ namespace Octoposh.Cmdlets
         [Alias("Name")]
         [ValidateNotNullOrEmpty()]
         [Parameter(Position = 1, ValueFromPipeline = true)]
-        public List<string> LifecycleName { get; set; }
+        public string[] LifecycleName { get; set; }
 
         /// <summary>
         /// <para type="description">If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh output object</para>
@@ -56,33 +56,34 @@ namespace Octoposh.Cmdlets
         protected override void BeginProcessing()
         {
             _connection = new NewOctopusConnection().Invoke<OctopusConnection>().ToList()[0];
-            LifecycleName = LifecycleName?.ConvertAll(s => s.ToLower());
         }
 
         protected override void ProcessRecord()
         {
+            var lifecycleNameList = LifecycleName?.ToList().ConvertAll(s => s.ToLower());
+
             var baseResourceList = new List<LifecycleResource>();
-            if (LifecycleName == null)
+            if (lifecycleNameList == null)
             {
                 baseResourceList = _connection.Repository.Lifecycles.FindAll();
             }
             else
             {
                 //Multiple values but one of them is wildcarded, which is not an accepted scenario (I.e -MachineName WebServer*, Database1)
-                if (LifecycleName.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && LifecycleName.Count > 1))
+                if (lifecycleNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && lifecycleNameList.Count > 1))
                 {
                     throw OctoposhExceptions.ParameterCollectionHasRegularAndWildcardItem("Lifecycle");
                 }
                 //Only 1 wildcarded value (ie -MachineName WebServer*)
-                else if (LifecycleName.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && LifecycleName.Count == 1))
+                else if (lifecycleNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && lifecycleNameList.Count == 1))
                 {
-                    var pattern = new WildcardPattern(LifecycleName.First());
+                    var pattern = new WildcardPattern(lifecycleNameList.First());
                     baseResourceList = _connection.Repository.Lifecycles.FindMany(t => pattern.IsMatch(t.Name.ToLower()));
                 }
                 //multiple non-wildcared values (i.e. -MachineName WebServer1,Database1)
-                else if (!LifecycleName.Any(WildcardPattern.ContainsWildcardCharacters))
+                else if (!lifecycleNameList.Any(WildcardPattern.ContainsWildcardCharacters))
                 {
-                    baseResourceList = _connection.Repository.Lifecycles.FindMany(t => LifecycleName.Contains(t.Name.ToLower()));
+                    baseResourceList = _connection.Repository.Lifecycles.FindMany(t => lifecycleNameList.Contains(t.Name.ToLower()));
                 }
             }
 
