@@ -14,6 +14,9 @@
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <StartAction>Program</StartAction>
+    <StartProgram>C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe</StartProgram>
+    <StartArguments>-noexit -noprofile -Command "import-module .\Octoposh -verbose%3b Set-OctopusConnectionInfo -apikey %27API-B3ZK7BTFAKSKRTCHQFKAZNPT5Y%27 -server %27http://localhost:82%27 "</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
