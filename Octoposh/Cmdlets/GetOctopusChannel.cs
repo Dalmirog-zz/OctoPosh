@@ -48,7 +48,7 @@ namespace Octoposh.Cmdlets
         [Alias("Name")]
         [ValidateNotNullOrEmpty()]
         [Parameter(Position = 1, ValueFromPipeline = true)]
-        public List<string> ChannelName { get; set; }
+        public string[] ChannelName { get; set; }
 
         /// <summary>
         /// <para type="description">Project name</para>
@@ -56,7 +56,7 @@ namespace Octoposh.Cmdlets
         [Alias("Project")]
         [ValidateNotNullOrEmpty()]
         [Parameter(Position = 1, ValueFromPipeline = true)]
-        public List<string> ProjectName { get; set; }
+        public string[] ProjectName { get; set; }
 
         /// <summary>
         /// <para type="description">If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh output object</para>
@@ -65,35 +65,38 @@ namespace Octoposh.Cmdlets
         public SwitchParameter ResourceOnly { get; set; }
 
         private OctopusConnection _connection;
+        private List<string> _channelNameList;
+        private List<string> _projectNameList;
+
 
         protected override void BeginProcessing()
         {
             _connection = new NewOctopusConnection().Invoke<OctopusConnection>().ToList()[0];
-            ChannelName = ChannelName?.ConvertAll(s => s.ToLower());
-            ProjectName = ProjectName?.ConvertAll(s => s.ToLower());
+            _channelNameList = ChannelName?.ToList().ConvertAll(s => s.ToLower());
+            _projectNameList = ProjectName?.ToList().ConvertAll(s => s.ToLower());
         }
 
         protected override void ProcessRecord()
         {
             var baseResourceList = new List<ChannelResource>();
-            if (ProjectName == null)
+            if (_projectNameList == null)
             {
                 var allProjects = _connection.Repository.Projects.FindAll();
 
-                if (ChannelName == null)
+                if (_channelNameList == null)
                 {
                     allProjects.ForEach(p => baseResourceList.AddRange(_connection.Repository.Projects.GetChannels(p).Items.ToList()));
                 }
                 else
                 {
-                    allProjects.ForEach(p => baseResourceList.AddRange(_connection.Repository.Projects.GetChannels(p).Items.Where(c => ChannelName.Contains(c.Name.ToLower())).ToList()));
+                    allProjects.ForEach(p => baseResourceList.AddRange(_connection.Repository.Projects.GetChannels(p).Items.Where(c => _channelNameList.Contains(c.Name.ToLower())).ToList()));
                 }
             }
             else
             {
                 var projects = new List<ProjectResource>();
 
-                foreach (var name in ProjectName)
+                foreach (var name in _projectNameList)
                 {
                     var project = _connection.Repository.Projects.FindByName(name);
 
@@ -108,7 +111,7 @@ namespace Octoposh.Cmdlets
 
                 foreach (var project in projects)
                 {
-                    if (ChannelName == null)
+                    if (_channelNameList == null)
                     {
                         baseResourceList.AddRange(_connection.Repository.Projects.GetChannels(project).Items.ToList());
                     }
@@ -116,20 +119,20 @@ namespace Octoposh.Cmdlets
                     else
                     {
                         //Multiple values but one of them is wildcarded, which is not an accepted scenario (I.e -MachineName WebServer*, Database1)
-                        if (ChannelName.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && ChannelName.Count > 1))
+                        if (_channelNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && _channelNameList.Count > 1))
                         {
                             throw OctoposhExceptions.ParameterCollectionHasRegularAndWildcardItem("ChannelName");
                         }
                         //Only 1 wildcarded value (ie -MachineName WebServer*)
-                        else if (ChannelName.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && ChannelName.Count == 1))
+                        else if (_channelNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && _channelNameList.Count == 1))
                         {
-                            var pattern = new WildcardPattern(ChannelName.First());
+                            var pattern = new WildcardPattern(_channelNameList.First());
                             baseResourceList.AddRange(_connection.Repository.Projects.GetChannels(project).Items.Where(t => pattern.IsMatch(t.Name.ToLower())).ToList());
                         }
                         //multiple non-wildcared values (i.e. -MachineName WebServer1,Database1)
-                        else if (!ChannelName.Any(WildcardPattern.ContainsWildcardCharacters))
+                        else if (!_channelNameList.Any(WildcardPattern.ContainsWildcardCharacters))
                         {
-                            baseResourceList.AddRange(_connection.Repository.Projects.GetChannels(project).Items.Where(t => ChannelName.Contains(t.Name.ToLower())).ToList());
+                            baseResourceList.AddRange(_connection.Repository.Projects.GetChannels(project).Items.Where(t => _channelNameList.Contains(t.Name.ToLower())).ToList());
                         }
                     }
                 }

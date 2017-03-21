@@ -47,7 +47,7 @@ namespace Octoposh.Cmdlets
         [Alias("Name")]
         [ValidateNotNullOrEmpty()]
         [Parameter(Position = 1, ValueFromPipeline = true, ParameterSetName = ByName)]
-        public List<string> ProjectName { get; set; }
+        public string[] ProjectName { get; set; }
 
         /// <summary>
         /// <para type="description">Gets all projects inside a set of Project Groups</para>
@@ -55,7 +55,7 @@ namespace Octoposh.Cmdlets
         [Alias("ProjectGroup")]
         [ValidateNotNullOrEmpty()]
         [Parameter(Position = 1, ValueFromPipeline = true, ParameterSetName = ByProjectGroup)]
-        public List<string> ProjectGroupName { get; set; }
+        public string[] ProjectGroupName { get; set; }
 
         /// <summary>
         /// <para type="description">If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh output object</para>
@@ -81,35 +81,35 @@ namespace Octoposh.Cmdlets
                     break;
 
                 case ByName:
-                    ProjectName = ProjectName.ConvertAll(s => s.ToLower());
+                    var projectNameList = ProjectName?.ToList().ConvertAll(s => s.ToLower());
                     //Multiple values but one of them is wildcarded, which is not an accepted scenario (I.e -MachineName WebServer*, Database1)
-                    if (ProjectName.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && ProjectName.Count > 1))
+                    if (projectNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && projectNameList.Count > 1))
                     {
                         throw OctoposhExceptions.ParameterCollectionHasRegularAndWildcardItem("ProjectName");
                     }
                     //Only 1 wildcarded value (ie -MachineName WebServer*)
-                    else if (ProjectName.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && ProjectName.Count == 1))
+                    else if (projectNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && projectNameList.Count == 1))
                     {
-                        var pattern = new WildcardPattern(ProjectName.First());
+                        var pattern = new WildcardPattern(projectNameList.First());
                         baseResourceList = _connection.Repository.Projects.FindMany(x => pattern.IsMatch(x.Name.ToLower()));
                     }
                     //multiple non-wildcared values (i.e. -MachineName WebServer1,Database1)
-                    else if (!ProjectName.Any(item => WildcardPattern.ContainsWildcardCharacters(item)))
+                    else if (!projectNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item)))
                     {
-                        baseResourceList = _connection.Repository.Projects.FindMany(x => ProjectName.Contains(x.Name.ToLower()));
+                        baseResourceList = _connection.Repository.Projects.FindMany(x => projectNameList.Contains(x.Name.ToLower()));
                     }
                     break;
                 case ByProjectGroup:
-                    ProjectGroupName = ProjectGroupName.ConvertAll(s => s.ToLower());
+                    var projectGroupNameList = ProjectGroupName?.ToList().ConvertAll(s => s.ToLower());
                     //Multiple values but one of them is wildcarded, which is not an accepted scenario (I.e -MachineName WebServer*, Database1)
-                    if (ProjectGroupName.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && ProjectGroupName.Count > 1))
+                    if (projectGroupNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && projectGroupNameList.Count > 1))
                     {
                         throw OctoposhExceptions.ParameterCollectionHasRegularAndWildcardItem("ProjectGroupName");
                     }
                     //Only 1 wildcarded value (ie -MachineName WebServer*)
-                    else if (ProjectGroupName.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && ProjectGroupName.Count == 1))
+                    else if (projectGroupNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && projectGroupNameList.Count == 1))
                     {
-                        var pattern = new WildcardPattern(ProjectGroupName.First());
+                        var pattern = new WildcardPattern(projectGroupNameList.First());
                         var projectGroups = _connection.Repository.ProjectGroups.FindMany(x => pattern.IsMatch(x.Name.ToLower()));
 
                         if (projectGroups.Count != 0)
@@ -121,9 +121,9 @@ namespace Octoposh.Cmdlets
                         }
                     }
                     //multiple non-wildcared values (i.e. -MachineName WebServer1,Database1)
-                    else if (!ProjectGroupName.Any(item => WildcardPattern.ContainsWildcardCharacters(item)))
+                    else if (!projectGroupNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item)))
                     {
-                        var projectGroups = _connection.Repository.ProjectGroups.FindMany(x => ProjectGroupName.Contains(x.Name.ToLower()));
+                        var projectGroups = _connection.Repository.ProjectGroups.FindMany(x => projectGroupNameList.Contains(x.Name.ToLower()));
 
                         if (projectGroups.Count != 0)
                         {

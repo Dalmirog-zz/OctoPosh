@@ -44,7 +44,7 @@ namespace Octoposh.Cmdlets
         [Alias("Name")]
         [ValidateNotNullOrEmpty()]
         [Parameter(Position = 1, ValueFromPipeline = true, ParameterSetName = ByName)]
-        public List<string> FeedName { get; set; }
+        public string[] FeedName { get; set; }
 
         /// <summary>
         /// <para type="description">Feed URL/Path </para>
@@ -52,7 +52,7 @@ namespace Octoposh.Cmdlets
         [Alias("URI")]
         [ValidateNotNullOrEmpty()]
         [Parameter(Position = 1, ValueFromPipeline = true, ParameterSetName = ByUrl)]
-        public List<string> URL { get; set; }
+        public string[] URL { get; set; }
 
         /// <summary>
         /// <para type="description">If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh output object</para>
@@ -61,11 +61,14 @@ namespace Octoposh.Cmdlets
         public SwitchParameter ResourceOnly { get; set; }
 
         private OctopusConnection _connection;
+        private List<string> _feedNameList;
+        private List<string> _urlList;
 
         protected override void BeginProcessing()
         {
             _connection = new NewOctopusConnection().Invoke<OctopusConnection>().ToList()[0];
-            FeedName = FeedName?.ConvertAll(s => s.ToLower());
+            _feedNameList = FeedName?.ToList().ConvertAll(s => s.ToLower());
+            _urlList = URL?.ToList().ConvertAll(s => s.ToLower());
         }
 
         protected override void ProcessRecord()
@@ -79,38 +82,38 @@ namespace Octoposh.Cmdlets
                     break;
                 case ByName:
                     //Multiple values but one of them is wildcarded, which is not an accepted scenario (I.e -MachineName WebServer*, Database1)
-                    if (FeedName.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && FeedName.Count > 1))
+                    if (_feedNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && _feedNameList.Count > 1))
                     {
                         throw OctoposhExceptions.ParameterCollectionHasRegularAndWildcardItem("FeedName");
                     }
                     //Only 1 wildcarded value (ie -MachineName WebServer*)
-                    else if (FeedName.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && FeedName.Count == 1))
+                    else if (_feedNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && _feedNameList.Count == 1))
                     {
-                        var pattern = new WildcardPattern(FeedName.First());
+                        var pattern = new WildcardPattern(_feedNameList.First());
                         baseResourceList = _connection.Repository.Feeds.FindMany(t => pattern.IsMatch(t.Name.ToLower()));
                     }
                     //multiple non-wildcared values (i.e. -MachineName WebServer1,Database1)
-                    else if (!FeedName.Any(WildcardPattern.ContainsWildcardCharacters))
+                    else if (!_feedNameList.Any(WildcardPattern.ContainsWildcardCharacters))
                     {
-                        baseResourceList = _connection.Repository.Feeds.FindMany(t => FeedName.Contains(t.Name.ToLower()));
+                        baseResourceList = _connection.Repository.Feeds.FindMany(t => _feedNameList.Contains(t.Name.ToLower()));
                     }
                     break;
                 case ByUrl:
                     //Multiple values but one of them is wildcarded, which is not an accepted scenario (I.e -MachineName WebServer*, Database1)
-                    if (URL.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && URL.Count > 1))
+                    if (_urlList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && _urlList.Count > 1))
                     {
                         throw OctoposhExceptions.ParameterCollectionHasRegularAndWildcardItem("URL");
                     }
                     //Only 1 wildcarded value (ie -MachineName WebServer*)
-                    else if (URL.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && URL.Count == 1))
+                    else if (_urlList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && _urlList.Count == 1))
                     {
-                        var pattern = new WildcardPattern(URL.First());
+                        var pattern = new WildcardPattern(_urlList.First());
                         baseResourceList = _connection.Repository.Feeds.FindMany(t => pattern.IsMatch(t.FeedUri.ToLower()));
                     }
                     //multiple non-wildcared values (i.e. -MachineName WebServer1,Database1)
-                    else if (!URL.Any(WildcardPattern.ContainsWildcardCharacters))
+                    else if (!_urlList.Any(WildcardPattern.ContainsWildcardCharacters))
                     {
-                        baseResourceList = _connection.Repository.Feeds.FindMany(t => URL.Contains(t.Name.ToLower()));
+                        baseResourceList = _connection.Repository.Feeds.FindMany(t => _urlList.Contains(t.Name.ToLower()));
                     }
                     
                     break;

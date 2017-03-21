@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
@@ -239,62 +240,67 @@ namespace Octoposh.Model
 
         }
 
-        public List<OutputOctopusDashboardEntry> GetOctopusDashboard(DashboardResource rawDashboard, List<string> projectName, List<string> environmentName, List<string> deploymentStatus)
+        public List<OutputOctopusDashboardEntry> GetOctopusDashboard(DashboardResource rawDashboard, string[] projectName, string[] environmentName, string[] deploymentStatus)
         {
             var list = new List<OutputOctopusDashboardEntry>();
+            var environments = new List<DashboardEnvironmentResource>();
+            var projects = new List<DashboardProjectResource>();
 
-            if(environmentName.Count > 0) { 
-                rawDashboard.Environments = rawDashboard.Environments.Where(e => environmentName.Contains(e.Name)).ToList();
-            }
+            environments = environmentName != null ? rawDashboard.Environments.Where(e => environmentName.Any(en => String.Equals(en, e.Name, StringComparison.CurrentCultureIgnoreCase))).ToList() : rawDashboard.Environments;
 
-            if(projectName.Count > 0) { 
-                rawDashboard.Projects = rawDashboard.Projects.Where(p => projectName.Contains(p.Name)).ToList();
-            }
-
+            projects = projectName != null ? rawDashboard.Projects.Where(p => projectName.Any(pn => String.Equals(pn, p.Name, StringComparison.CurrentCultureIgnoreCase))).ToList() : rawDashboard.Projects;
+            
             foreach (var deployment in rawDashboard.Items)
             {
-                //filtering by deployment status
-                if (deploymentStatus.Contains(deployment.State.ToString()))
+                var project = projects.FirstOrDefault(p => p.Id == deployment.ProjectId);
+                var environment = environments.FirstOrDefault(e => e.Id == deployment.EnvironmentId);
+
+                if (deploymentStatus != null && !deploymentStatus.Contains(deployment.State.ToString()))
                 {
-                    var project = rawDashboard.Projects.FirstOrDefault(p => p.Id == deployment.ProjectId);
-                    var environment = rawDashboard.Environments.FirstOrDefault(e => e.Id == deployment.EnvironmentId);
-
-                    //filtering by project and environment
-                    if (project != null && environment != null)
-                    {
-                        DateTime endDate;
-                        string duration;
-
-                        if (deployment.CompletedTime != null)
-                        {
-                            TimeSpan? durationSpan = deployment.CompletedTime - deployment.Created;
-                            duration = string.Format("{0:D2}:{1:D2}:{2:D2}", durationSpan.Value.Hours,durationSpan.Value.Minutes, durationSpan.Value.Seconds);
-                            endDate = deployment.CompletedTime.Value.DateTime;
-                        }
-                        else
-                        {
-                            endDate = DateTime.Now.Date;
-                            TimeSpan? durationSpan = endDate - deployment.Created;
-                            duration = string.Format("{0:D2}:{1:D2}:{2:D2}", durationSpan.Value.Hours,durationSpan.Value.Minutes, durationSpan.Value.Seconds);
-                        }
-
-                        list.Add(new OutputOctopusDashboardEntry()
-                        {
-                            ProjectName = project.Name,
-                            EnvironmentName = environment.Name,
-                            ReleaseVersion = deployment.ReleaseVersion,
-                            DeploymentStatus = deployment.State.ToString(),
-                            StartDate = deployment.QueueTime.DateTime,
-                            EndDate = endDate,
-                            Duration = duration,
-                            IsCompleted = deployment.IsCompleted,
-                            HasPendingInterruptions = deployment.HasPendingInterruptions,
-                            HasWarninsOrErrors = deployment.HasWarningsOrErrors
-                        });
-                    }
+                    continue;
                 }
-            }
+                
+                if (projects.All(p => p.Id != deployment.ProjectId))
+                {
+                    continue;
+                }
+                
+                if (environments.All(e => e.Id != deployment.EnvironmentId))
+                {
+                    continue;
+                }
 
+                DateTime endDate;
+                string duration;
+
+                if (deployment.CompletedTime != null)
+                {
+                    TimeSpan? durationSpan = deployment.CompletedTime - deployment.Created;
+                    duration = string.Format("{0:D2}:{1:D2}:{2:D2}", durationSpan.Value.Hours,durationSpan.Value.Minutes, durationSpan.Value.Seconds);
+                    endDate = deployment.CompletedTime.Value.DateTime;
+                }
+                else
+                {
+                    endDate = DateTime.Now.Date;
+                    TimeSpan? durationSpan = endDate - deployment.Created;
+                    duration = string.Format("{0:D2}:{1:D2}:{2:D2}", durationSpan.Value.Hours,durationSpan.Value.Minutes, durationSpan.Value.Seconds);
+                }
+
+                list.Add(new OutputOctopusDashboardEntry()
+                {
+                    ProjectName = project.Name,
+                    EnvironmentName = environment.Name,
+                    ReleaseVersion = deployment.ReleaseVersion,
+                    DeploymentStatus = deployment.State.ToString(),
+                    StartDate = deployment.QueueTime.DateTime,
+                    EndDate = endDate,
+                    Duration = duration,
+                    IsCompleted = deployment.IsCompleted,
+                    HasPendingInterruptions = deployment.HasPendingInterruptions,
+                    HasWarninsOrErrors = deployment.HasWarningsOrErrors
+                });
+
+            }
             return list;
         }
 

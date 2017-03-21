@@ -43,7 +43,7 @@ namespace Octoposh.Cmdlets
         [Alias("Name")]
         [ValidateNotNullOrEmpty()]
         [Parameter(Position = 1, ValueFromPipeline = true)]
-        public List<string> TagSetName { get; set; }
+        public string[] TagSetName { get; set; }
 
         /// <summary>
         /// <para type="description">If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh output object</para>
@@ -56,14 +56,15 @@ namespace Octoposh.Cmdlets
         protected override void BeginProcessing()
         {
             _connection = new NewOctopusConnection().Invoke<OctopusConnection>().ToList()[0];
-            TagSetName = TagSetName?.ConvertAll(s => s.ToLower());
         }
 
         protected override void ProcessRecord()
         {
+            var TagSetNameList = TagSetName?.ToList().ConvertAll(s => s.ToLower());
+
             var baseResourceList = new List<TagSetResource>();
 
-            if (TagSetName == null)
+            if (TagSetNameList == null)
             {
                 baseResourceList.AddRange(_connection.Repository.TagSets.FindAll());
             }
@@ -71,20 +72,20 @@ namespace Octoposh.Cmdlets
             else
             {
                 //Multiple values but one of them is wildcarded, which is not an accepted scenario (I.e -MachineName WebServer*, Database1)
-                if (TagSetName.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && TagSetName.Count > 1))
+                if (TagSetNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && TagSetNameList.Count > 1))
                 {
                     throw OctoposhExceptions.ParameterCollectionHasRegularAndWildcardItem("TagSetName");
                 }
                 //Only 1 wildcarded value (ie -MachineName WebServer*)
-                else if (TagSetName.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && TagSetName.Count == 1))
+                else if (TagSetNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && TagSetNameList.Count == 1))
                 {
-                    var pattern = new WildcardPattern(TagSetName.First());
+                    var pattern = new WildcardPattern(TagSetNameList.First());
                     baseResourceList.AddRange(_connection.Repository.TagSets.FindMany(t => pattern.IsMatch(t.Name.ToLower())));
                 }
                 //multiple non-wildcared values (i.e. -MachineName WebServer1,Database1)
-                else if (!TagSetName.Any(WildcardPattern.ContainsWildcardCharacters))
+                else if (!TagSetNameList.Any(WildcardPattern.ContainsWildcardCharacters))
                 {
-                    baseResourceList.AddRange(_connection.Repository.TagSets.FindMany(t => TagSetName.Contains(t.Name.ToLower())));
+                    baseResourceList.AddRange(_connection.Repository.TagSets.FindMany(t => TagSetNameList.Contains(t.Name.ToLower())));
                 }
             }
 
