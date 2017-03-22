@@ -141,7 +141,6 @@ namespace Octoposh.Model
                 foreach (var item in dashboardItems)
                 {
                     var deploymentevent = _connection.Repository.Events.List(regardingDocumentId: item.Id).Items.First();
-                    var task = _connection.Repository.Tasks.Get(item.TaskId);
 
                     deployments.Add(new OutputDiscreteDeployment
                     {
@@ -150,8 +149,8 @@ namespace Octoposh.Model
                         Releaseversion = item.ReleaseVersion,
                         State = item.State.ToString(),
                         CreatedBy = deploymentevent.Username,
-                        StartTime = task.StartTime?.DateTime,
-                        Endtime = task.CompletedTime?.DateTime,
+                        StartTime = item.Created.DateTime,
+                        Endtime = item.CompletedTime?.DateTime,
                     });
                 }
 
