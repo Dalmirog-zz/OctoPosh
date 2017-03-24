@@ -23,7 +23,8 @@ namespace Octoposh.Tests
         private static readonly string FakeVersion = "9000.0.0";
         private static readonly string HighestVersion = "4.0.0";
         private static readonly string AssetsPath = @"TestAssets\OctopusTools";
-        private static readonly string FakePath = @"C:\FakePath";
+        private static readonly string EmptyPath = @"TestAssets\EmptyFolder";
+        private static readonly string FakePath = @"AbsolutelyAFakePath\MoreFake";
 
 
         [Test]
@@ -99,9 +100,32 @@ namespace Octoposh.Tests
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
 
-            Assert.Throws<CmdletInvocationException>(() => powershell.Invoke<List<OctopusToolVersion>>());
-            
-            
+            var ex = Assert.Throws<CmdletInvocationException>(() => powershell.Invoke<List<OctopusToolVersion>>());
+
+            StringAssert.StartsWith("Octo.exe version", ex.Message);
+        }
+
+        [Test]
+        public void ThrowIfItToolsFolderDoesNotExist()
+        {
+            OctoposhEnvVariables.OctopusToolsFolder = Path.Combine(TestsUtilities.GetTestsPath, FakePath);
+
+            var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType);
+
+            var ex = Assert.Throws<CmdletInvocationException>(() => powershell.Invoke<List<OctopusToolVersion>>());
+
+            StringAssert.StartsWith("Could not find a part of the path", ex.Message);
+        }
+
+        [Test]
+        public void ThrowIfCantFindAnyOctoExeVersionsInFolder()
+        {
+            OctoposhEnvVariables.OctopusToolsFolder = Path.Combine(TestsUtilities.GetTestsPath, EmptyPath);
+
+            var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType);
+            var ex = Assert.Throws<CmdletInvocationException>(() => powershell.Invoke<List<OctopusToolVersion>>());
+
+            StringAssert.StartsWith("No version of [Octo.exe] was found",ex.Message);
         }
 
     }

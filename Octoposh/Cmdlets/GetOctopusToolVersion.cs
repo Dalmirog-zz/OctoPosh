@@ -59,7 +59,6 @@ namespace Octoposh.Cmdlets
                     WriteObject(octopusTools.GetToolByVersion(Version));
                     break;
                 case All:
-                    Console.WriteLine(OctoposhEnvVariables.OctopusToolsFolder);
                     WriteObject(octopusTools.GetAllToolVersions());
                     break;
             }

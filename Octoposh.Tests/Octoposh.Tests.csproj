@@ -81,13 +81,16 @@
     <Compile Include="GetOctopusTagSetTests.cs" />
     <Compile Include="GetOctopusTeamTests.cs" />
     <Compile Include="GetOctopusTenantTests.cs" />
+    <Compile Include="GetOctopusToolsFolderTests.cs" />
     <Compile Include="GetOctopusToolVersionTests.cs" />
     <Compile Include="GetOctopusUserTests.cs" />
     <Compile Include="GetOctopusVariableSetTests.cs" />
     <Compile Include="NewAndRemoveOctopusResourceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RandomNameGenerator.cs" />
+    <Compile Include="RandomStringGenerator.cs" />
     <Compile Include="SetOctopusReleaseStatusTests.cs" />
+    <Compile Include="SetOctopusToolPathTests.cs" />
+    <Compile Include="SetOctopusToolsFolderTests.cs" />
     <Compile Include="TestsUtilities.cs" />
     <Compile Include="UpdateOctopusResourceTests.cs" />
   </ItemGroup>
@@ -116,6 +119,11 @@
       <Project>{9ad6edc8-6242-41a4-b393-77f245a8d62e}</Project>
       <Name>Octoposh</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestAssets\EmptyFolder\DontBeAHeroAndLeaveThisFolderEmpty.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

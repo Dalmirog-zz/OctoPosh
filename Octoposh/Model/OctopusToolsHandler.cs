@@ -47,9 +47,19 @@ namespace Octoposh.Model
 
             var toolsFolderChilds = Directory.GetDirectories(toolsFolder, "*",SearchOption.TopDirectoryOnly);
 
+            if (toolsFolderChilds.Length == 0)
+            {
+                throw OctoposhExceptions.NoOctoExeVersionFoundInToolsFolder();
+            }
+
             foreach (var child in toolsFolderChilds)
             {
                 var files = Directory.GetFiles(child, "Octo.exe*");
+
+                if (files.Length == 0)
+                {
+                    throw OctoposhExceptions.NoOctoExeVersionFoundInToolsFolder();
+                }
 
                 foreach (var file in files)
                 {
@@ -86,7 +96,7 @@ namespace Octoposh.Model
 
             if (toolVersion == null)
             {
-                throw OctoposhExceptions.ToolVersionNotfound(version,OctoposhEnvVariables.OctopusToolsFolder);
+                throw OctoposhExceptions.ToolVersionNotfound(version);
             }
             else
             {
