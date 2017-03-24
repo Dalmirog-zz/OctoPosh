@@ -76,6 +76,9 @@
     <Compile Include="Cmdlets\GetOctopusDeployment.cs" />
     <Compile Include="Cmdlets\GetOctopusEnvironment.cs" />
     <Compile Include="Cmdlets\GetOctopusFeed.cs" />
+    <Compile Include="Cmdlets\GetOctopusToolPath.cs" />
+    <Compile Include="Cmdlets\GetOctopusToolsFolder.cs" />
+    <Compile Include="Cmdlets\GetOctopusToolVersion.cs" />
     <Compile Include="Cmdlets\GetOctopusVariableSet.cs" />
     <Compile Include="Cmdlets\GetOctopusLifecycle.cs" />
     <Compile Include="Cmdlets\GetOctopusMachine.cs" />
@@ -92,12 +95,17 @@
     <Compile Include="Cmdlets\NewOctopusResource.cs" />
     <Compile Include="Cmdlets\SetOctopusConnectionInfo.cs" />
     <Compile Include="Cmdlets\SetOctopusReleaseStatus.cs" />
+    <Compile Include="Cmdlets\SetOctopusToolsFolder.cs" />
+    <Compile Include="Cmdlets\SetOctopusToolPath.cs" />
     <Compile Include="Cmdlets\UpdateOctopusResource.cs" />
     <Compile Include="Model\FriendlyScopeCollection.cs" />
     <Compile Include="Model\FriendlyVariable.cs" />
+    <Compile Include="Model\OctoposhEnvVariables.cs" />
     <Compile Include="Model\OctoposhExceptions.cs" />
     <Compile Include="Model\OctopusConnection.cs" />
     <Compile Include="Model\OctopusConnectionInfo.cs" />
+    <Compile Include="Model\OctopusToolsHandler.cs" />
+    <Compile Include="Model\OctoToolVersion.cs" />
     <Compile Include="Model\OutputDeploymentPackage.cs" />
     <Compile Include="Model\OutputConverter.cs" />
     <Compile Include="Model\OutputDiscreteDeployment.cs" />
@@ -122,10 +130,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config">
+    <Content Include="Web.transform.config">
       <SubType>Designer</SubType>
-    </None>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Octoposh.psd1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DebugBootstraper.ps1">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config">

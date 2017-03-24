@@ -55,5 +55,11 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Octoposh\Octoposh.csproj">
+      <Project>{9ad6edc8-6242-41a4-b393-77f245a8d62e}</Project>
+      <Name>Octoposh</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
