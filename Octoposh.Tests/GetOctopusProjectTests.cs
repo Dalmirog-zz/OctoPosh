@@ -99,9 +99,9 @@ namespace Octoposh.Tests
             }};
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusProject>>();
+            var results = powershell.Invoke<List<OutputOctopusProject>>()[0];
 
-            Assert.AreEqual(results[0].Count, 0);
+            Assert.AreEqual(results.Count, 0);
         }
 
         [Test]

@@ -135,6 +135,11 @@ namespace Octoposh.Model
 
             foreach (var project in baseResourceList)
             {
+                if (project == null)
+                {
+                    continue;
+                }
+
                 var deployments = new List<OutputDiscreteDeployment>();
                 var dashboardItems = dashboard.Items.Where(x => x.ProjectId == project.Id);
                 
