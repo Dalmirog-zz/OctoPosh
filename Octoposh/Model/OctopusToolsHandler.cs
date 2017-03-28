@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Management.Automation;
 
 namespace Octoposh.Model
 {
@@ -56,11 +58,6 @@ namespace Octoposh.Model
             {
                 var files = Directory.GetFiles(child, "Octo.exe*");
 
-                if (files.Length == 0)
-                {
-                    throw OctoposhExceptions.NoOctoExeVersionFoundInToolsFolder();
-                }
-
                 foreach (var file in files)
                 {
                     var info = FileVersionInfo.GetVersionInfo(file);
@@ -73,7 +70,14 @@ namespace Octoposh.Model
                 }
             }
 
-            return new List<OctopusToolVersion>(versions.OrderByDescending(v => v.Version));
+            if (versions.Count == 0)
+            {
+                throw OctoposhExceptions.NoOctoExeVersionFoundInToolsFolder();
+            }
+            else
+            {
+                return new List<OctopusToolVersion>(versions.OrderByDescending(v => v.Version));
+            }
         }
 
         /// <summary>
@@ -121,6 +125,11 @@ namespace Octoposh.Model
         public string GetToolPath()
         {
             return OctoposhEnvVariables.Octoexe;
+        }
+
+        internal string DownloadOctoExe(string version = "Latest")
+        {
+            return NugetHandler.DownloadVersion(version, GetToolsFolder());
         }
     }
 }

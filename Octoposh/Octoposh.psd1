@@ -15,6 +15,8 @@ Description = 'This module contains a set of cmdlets that talk to the Octopus RE
 # Minimum version of the Windows PowerShell engine required by this module
 PowerShellVersion = '3.0'
 
+ScriptsToProcess = @('OctoposhBootstrapper.ps1')
+
 # Functions to export from this module
 FunctionsToExport = '*'
 
