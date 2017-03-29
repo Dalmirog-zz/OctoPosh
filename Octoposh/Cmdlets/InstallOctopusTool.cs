@@ -28,7 +28,7 @@ namespace Octoposh.Cmdlets
     /// <para type="link" uri="https://gitter.im/Dalmirog/OctoPosh#initial">QA and Feature requests: </para>
     [Cmdlet("Install", "OctopusTool", DefaultParameterSetName = ByLatest)]
     [OutputType(typeof(void))]
-    public class InstallOctopusPath : PSCmdlet
+    public class InstallOctopusTool : PSCmdlet
     {
 
         private const string ByLatest = "ByLatest";
@@ -55,21 +55,34 @@ namespace Octoposh.Cmdlets
         protected override void ProcessRecord()
         {
             var OctopusTools = new OctopusToolsHandler();
-            var OctoExePath = "";
+            string OctoExePath;
+            
+            try
+            {
+                if (ParameterSetName == ByVersion)
+                {
+                    OctopusTools.DownloadOctoExe(Version);
+                    OctoExePath = OctopusTools.GetToolByVersion(Version).Path;
+                }
+                else
+                {
+                    OctopusTools.DownloadOctoExe();
+                    OctoExePath = OctopusTools.GetLatestToolVersion().Path;
+                }
 
-            if (ParameterSetName == ByVersion)
-            {
-                OctoExePath = OctopusTools.DownloadOctoExe(Version);
-            }
-            else
-            {
-                OctoExePath = OctopusTools.DownloadOctoExe();
-            }
+                if (SetAsDefault)
+                {
+                    OctopusTools.SetOctoExePath(OctoExePath);
+                }
 
-            if (SetAsDefault)
-            {
-                OctopusTools.SetOctoExePath(OctoExePath);
+                Console.WriteLine($"Successfuly downloaded to [{OctoExePath}]");
             }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            
         }
     }
 }

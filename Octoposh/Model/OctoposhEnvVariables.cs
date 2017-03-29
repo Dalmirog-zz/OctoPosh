@@ -16,11 +16,15 @@ namespace Octoposh.Model
         /// </summary>
         private static string OctoExeEnvVariable = "Octoexe";
 
-
         /// <summary>
         /// Name of the environment variable that references the directory where the folders with different versions of Octo.exe are sitting on.
         /// </summary>
         private static string OctopusToolsFolderEnvVariable = "OctopusToolsFolder";
+
+        /// <summary>
+        /// Nuget repository URL from where Install-OctopusTool is going to fetch the packages
+        /// </summary>
+        private static string NugetRepositoryURLEnvVariable = "NugetRepositoryURL";
 
         /// <summary>
         /// Gets/Sets the value of the environment variable that references the path of an Octo.exe version
@@ -38,6 +42,15 @@ namespace Octoposh.Model
         {
             get { return Environment.GetEnvironmentVariable(OctopusToolsFolderEnvVariable); }
             set { Environment.SetEnvironmentVariable(OctopusToolsFolderEnvVariable, value); }
+        }
+
+        /// <summary>
+        /// Gets/Sets the value of the environment variable that references the Nuget repository URL from where Install-OctopusTool will fetch the packages
+        /// </summary>
+        public static string NugetRepositoryURL
+        {
+            get { return Environment.GetEnvironmentVariable(NugetRepositoryURLEnvVariable); }
+            set { Environment.SetEnvironmentVariable(NugetRepositoryURLEnvVariable, value); }
         }
     }
 }

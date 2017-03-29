@@ -127,9 +127,9 @@ namespace Octoposh.Model
             return OctoposhEnvVariables.Octoexe;
         }
 
-        internal string DownloadOctoExe(string version = "Latest")
+        internal void DownloadOctoExe(string version = "Latest")
         {
-            return NugetHandler.DownloadVersion(version, GetToolsFolder());
+            NugetHandler.DownloadVersion(version, GetToolsFolder());
         }
     }
 }

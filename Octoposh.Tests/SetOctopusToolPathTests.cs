@@ -46,7 +46,7 @@ namespace Octoposh.Tests
         [Test]
         public void SetPathByVersion()
         {
-            OctoposhEnvVariables.OctopusToolsFolder = Path.Combine(TestsUtilities.GetTestsPath, AssetsPath);
+            OctoposhEnvVariables.OctopusToolsFolder = Path.Combine(TestsUtilities.TestsPath, AssetsPath);
             var version = OctoexeVersion;
 
             var parameters = new List<CmdletParameter>(){

@@ -10,7 +10,7 @@ namespace Octoposh.Tests
 {
     static class TestsUtilities
     {
-        public static string GetTestsPath
+        public static string TestsPath
         {
             get { return Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase).Replace(@"file:\", string.Empty); }
             set { }
