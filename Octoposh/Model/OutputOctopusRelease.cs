@@ -17,5 +17,6 @@ namespace Octoposh.Model
         public string CreatedBy { get; set; }
         public ReleaseResource Resource { get; set; }
         public List<DeploymentResource> Deployments { get; set; }
+        public List<OutputDeploymentPackage> Packages { get; set; }
     }
 }

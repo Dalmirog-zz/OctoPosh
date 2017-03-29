@@ -141,7 +141,6 @@ namespace Octoposh.Model
                 foreach (var item in dashboardItems)
                 {
                     var deploymentevent = _connection.Repository.Events.List(regardingDocumentId: item.Id).Items.First();
-                    var task = _connection.Repository.Tasks.Get(item.TaskId);
 
                     deployments.Add(new OutputDiscreteDeployment
                     {
@@ -150,8 +149,8 @@ namespace Octoposh.Model
                         Releaseversion = item.ReleaseVersion,
                         State = item.State.ToString(),
                         CreatedBy = deploymentevent.Username,
-                        StartTime = task.StartTime?.DateTime,
-                        Endtime = task.CompletedTime?.DateTime,
+                        StartTime = item.Created.DateTime,
+                        Endtime = item.CompletedTime?.DateTime,
                     });
                 }
 
@@ -221,6 +220,25 @@ namespace Octoposh.Model
             {
                 var deployments = _connection.Repository.Releases.GetDeployments(release, 0).Items.ToList();
 
+                var packages = new List<OutputDeploymentPackage>();
+
+                if (release.SelectedPackages.Count > 0)
+                {
+                    var deploymentProcess = _connection.Repository.DeploymentProcesses.Get(release.Links["ProjectDeploymentProcessSnapshot"]);
+
+                    foreach (var package in release.SelectedPackages)
+                    {
+                        var packageId = deploymentProcess.Steps.FirstOrDefault(s => s.Actions.Any(a => a.Name == package.StepName)).Actions.FirstOrDefault(a => a.Name == package.StepName).Properties["Octopus.Action.Package.PackageId"].Value;
+
+                        packages.Add(new OutputDeploymentPackage()
+                        {
+                            Id = packageId,
+                            Version = package.Version,
+                            StepName = package.StepName
+                        });
+                    }
+                }
+
                 var releaseCreateEvent = GetCreateEvent(release.Id);
 
                 list.Add(new OutputOctopusRelease()
@@ -231,6 +249,7 @@ namespace Octoposh.Model
                     ReleaseNotes = release.ReleaseNotes,
                     CreationDate = release.Assembled.DateTime,
                     CreatedBy = releaseCreateEvent?.Username,
+                    Packages = packages,
                     Deployments = deployments,
                     Resource = release
                 });
