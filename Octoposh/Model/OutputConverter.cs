@@ -220,6 +220,25 @@ namespace Octoposh.Model
             {
                 var deployments = _connection.Repository.Releases.GetDeployments(release, 0).Items.ToList();
 
+                var packages = new List<OutputDeploymentPackage>();
+
+                if (release.SelectedPackages.Count > 0)
+                {
+                    var deploymentProcess = _connection.Repository.DeploymentProcesses.Get(release.Links["ProjectDeploymentProcessSnapshot"]);
+
+                    foreach (var package in release.SelectedPackages)
+                    {
+                        var packageId = deploymentProcess.Steps.FirstOrDefault(s => s.Actions.Any(a => a.Name == package.StepName)).Actions.FirstOrDefault(a => a.Name == package.StepName).Properties["Octopus.Action.Package.PackageId"].Value;
+
+                        packages.Add(new OutputDeploymentPackage()
+                        {
+                            Id = packageId,
+                            Version = package.Version,
+                            StepName = package.StepName
+                        });
+                    }
+                }
+
                 var releaseCreateEvent = GetCreateEvent(release.Id);
 
                 list.Add(new OutputOctopusRelease()
@@ -230,6 +249,7 @@ namespace Octoposh.Model
                     ReleaseNotes = release.ReleaseNotes,
                     CreationDate = release.Assembled.DateTime,
                     CreatedBy = releaseCreateEvent?.Username,
+                    Packages = packages,
                     Deployments = deployments,
                     Resource = release
                 });
