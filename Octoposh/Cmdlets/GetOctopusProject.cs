@@ -96,7 +96,10 @@ namespace Octoposh.Cmdlets
                     //multiple non-wildcared values (i.e. -MachineName WebServer1,Database1)
                     else if (!projectNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item)))
                     {
-                        baseResourceList = _connection.Repository.Projects.FindMany(x => projectNameList.Contains(x.Name.ToLower()));
+                        foreach (var name in projectNameList)
+                        {
+                            baseResourceList.Add(_connection.Repository.Projects.FindByName(name));
+                        }
                     }
                     break;
                 case ByProjectGroup:

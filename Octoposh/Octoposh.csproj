@@ -41,8 +41,16 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Web.XmlTransform, Version=2.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Xdt.2.1.1\lib\net40\Microsoft.Web.XmlTransform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NuGet.Core, Version=2.14.0.832, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\NuGet.Core.2.14.0\lib\net40-Client\NuGet.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NuGet.Versioning, Version=3.4.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -76,6 +84,9 @@
     <Compile Include="Cmdlets\GetOctopusDeployment.cs" />
     <Compile Include="Cmdlets\GetOctopusEnvironment.cs" />
     <Compile Include="Cmdlets\GetOctopusFeed.cs" />
+    <Compile Include="Cmdlets\GetOctopusToolPath.cs" />
+    <Compile Include="Cmdlets\GetOctopusToolsFolder.cs" />
+    <Compile Include="Cmdlets\GetOctopusToolVersion.cs" />
     <Compile Include="Cmdlets\GetOctopusVariableSet.cs" />
     <Compile Include="Cmdlets\GetOctopusLifecycle.cs" />
     <Compile Include="Cmdlets\GetOctopusMachine.cs" />
@@ -87,17 +98,24 @@
     <Compile Include="Cmdlets\GetOctopusTeam.cs" />
     <Compile Include="Cmdlets\GetOctopusTenant.cs" />
     <Compile Include="Cmdlets\GetOctopusUser.cs" />
+    <Compile Include="Cmdlets\InstallOctopusTool.cs" />
     <Compile Include="Cmdlets\NewOctopusConnection.cs" />
     <Compile Include="Cmdlets\RemoveOctopusResource.cs" />
     <Compile Include="Cmdlets\NewOctopusResource.cs" />
     <Compile Include="Cmdlets\SetOctopusConnectionInfo.cs" />
     <Compile Include="Cmdlets\SetOctopusReleaseStatus.cs" />
+    <Compile Include="Cmdlets\SetOctopusToolsFolder.cs" />
+    <Compile Include="Cmdlets\SetOctopusToolPath.cs" />
     <Compile Include="Cmdlets\UpdateOctopusResource.cs" />
     <Compile Include="Model\FriendlyScopeCollection.cs" />
     <Compile Include="Model\FriendlyVariable.cs" />
+    <Compile Include="Model\NugetHandler.cs" />
+    <Compile Include="Model\OctoposhEnvVariables.cs" />
     <Compile Include="Model\OctoposhExceptions.cs" />
     <Compile Include="Model\OctopusConnection.cs" />
     <Compile Include="Model\OctopusConnectionInfo.cs" />
+    <Compile Include="Model\OctopusToolsHandler.cs" />
+    <Compile Include="Model\OctoToolVersion.cs" />
     <Compile Include="Model\OutputDeploymentPackage.cs" />
     <Compile Include="Model\OutputConverter.cs" />
     <Compile Include="Model\OutputDiscreteDeployment.cs" />
@@ -122,10 +140,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config">
-      <SubType>Designer</SubType>
-    </None>
     <Content Include="Octoposh.psd1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DebugBootstrapper.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OctoposhBootstrapper.ps1">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config">

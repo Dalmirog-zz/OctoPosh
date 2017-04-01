@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Octoposh.Tests
 {
-    public static class RandomNameGenerator
+    public static class RandomStringGenerator
     {
 
         public static string Generate()
