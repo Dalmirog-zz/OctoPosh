@@ -21,7 +21,7 @@ namespace Octoposh.Tests
         private static readonly string RemoveCmdletName = "Remove-OctopusResource";
         private static readonly Type CreateCmdletType = typeof(NewOctopusResource);
         private static readonly Type RemoveCmdletType = typeof(RemoveOctopusResource);
-        private static readonly string TestResourceName = RandomNameGenerator.Generate();
+        private static readonly string TestResourceName = RandomStringGenerator.Generate();
 
         [Test]
         public void CreateAndRemoveEnvironment()
