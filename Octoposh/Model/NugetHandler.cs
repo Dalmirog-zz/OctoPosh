@@ -35,7 +35,6 @@ namespace Octoposh.Model
          
         public static void DownloadVersion(string version, string basePath)
         {
-            //Initialize the package manager
             try
             {
                 var packageVersion = GetPackageVersion(version);

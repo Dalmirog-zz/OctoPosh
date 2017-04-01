@@ -25,12 +25,12 @@ namespace Octoposh.Model
         /// <summary>
         /// Gets the current path of the Octopus Tools Folder. 
         /// </summary>
-        /// <exception cref="OctoposhExceptions.ToolsFolderNotSet"></exception>
         public string GetToolsFolder()
         {
             if (OctoposhEnvVariables.OctopusToolsFolder == null)
             {
-                throw OctoposhExceptions.ToolsFolderNotSet();
+                Console.WriteLine("The Octopus Tools folder has not been set yet. Run [Get-help Set-OctopusToolsFolder] to learn how to do this");
+                return null;
             }
             else
             {
