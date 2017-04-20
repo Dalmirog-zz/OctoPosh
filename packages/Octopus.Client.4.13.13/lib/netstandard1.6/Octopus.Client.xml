@@ -95,6 +95,11 @@
             Occurs when a request is about to be sent.
             </summary>
         </member>
+        <member name="E:Octopus.Client.IOctopusAsyncClient.AfterReceivedHttpResponse">
+            <summary>
+            Occurs when a response has been received.
+            </summary>
+        </member>
         <member name="P:Octopus.Client.IOctopusAsyncClient.Repository">
             <summary>
             A simplified interface to commonly-used parts of the API.
@@ -345,7 +350,7 @@
             <param name="pathParameters">If the <c>path</c> is a URI template, parameters to use for substitution.</param>
             <returns>A task resource that provides details about the background task that deletes the specified resource.</returns>
         </member>
-        <member name="M:Octopus.Client.IOctopusAsyncClient.GetContent(System.String)">
+        <member name="M:Octopus.Client.IOctopusAsyncClient.GetContent(System.String,System.Object)">
             <summary>
             Fetches raw content from the resource at the specified path, using the GET verb.
             </summary>
@@ -360,6 +365,7 @@
             <exception cref="T:Octopus.Client.Exceptions.OctopusValidationException">HTTP 400: If there was a problem with the request provided by the user.</exception>
             <exception cref="T:Octopus.Client.Exceptions.OctopusResourceNotFoundException">HTTP 404: If the specified resource does not exist on the server.</exception>
             <param name="path">The path to the resource to fetch.</param>
+            <param name="pathParameters">If the <c>path</c> is a URI template, parameters to use for substitution.</param>
             <returns>A stream containing the content of the resource.</returns>
         </member>
         <member name="M:Octopus.Client.IOctopusAsyncClient.PutContent(System.String,System.IO.Stream)">
@@ -423,6 +429,11 @@
         <member name="E:Octopus.Client.OctopusAsyncClient.BeforeSendingHttpRequest">
             <summary>
             Occurs when a request is about to be sent.
+            </summary>
+        </member>
+        <member name="E:Octopus.Client.OctopusAsyncClient.AfterReceivedHttpResponse">
+            <summary>
+            Occurs when a response has been received.
             </summary>
         </member>
         <member name="E:Octopus.Client.OctopusAsyncClient.SendingOctopusRequest">
@@ -585,7 +596,7 @@
             The latest copy of the resource from the server.
             </returns>
         </member>
-        <member name="M:Octopus.Client.OctopusAsyncClient.GetContent(System.String)">
+        <member name="M:Octopus.Client.OctopusAsyncClient.GetContent(System.String,System.Object)">
             <summary>
             Fetches raw content from the resource at the specified path, using the GET verb.
             </summary>
@@ -600,6 +611,7 @@
             <exception cref="T:Octopus.Client.Exceptions.OctopusValidationException">HTTP 400: If there was a problem with the request provided by the user.</exception>
             <exception cref="T:Octopus.Client.Exceptions.OctopusResourceNotFoundException">HTTP 404: If the specified resource does not exist on the server.</exception>
             <param name="path">The path to the resource to fetch.</param>
+            <param name="pathParameters">If the <c>path</c> is a URI template, parameters to use for substitution.</param>
             <returns>A stream containing the content of the resource.</returns>
         </member>
         <member name="M:Octopus.Client.OctopusAsyncClient.PutContent(System.String,System.IO.Stream)">
@@ -929,6 +941,12 @@
             </summary>
             <value>The help text, or null.</value>
         </member>
+        <member name="P:Octopus.Client.Exceptions.OctopusExceptionFactory.OctopusErrorsContract.Details">
+            <summary>
+            Gets or sets the details regarding the error
+            </summary>
+            <value>Structured information about the error.</value>
+        </member>
         <member name="T:Octopus.Client.Exceptions.OctopusMethodNotAllowedFoundException">
             <summary>
             An exception thrown when the Octopus Server responds with HTTP 405, which indicates that the
@@ -1001,6 +1019,22 @@
             <param name="message">The message.</param>
             <param name="errors">The errors.</param>
         </member>
+        <member name="M:Octopus.Client.Exceptions.OctopusValidationException.#ctor(System.Int32,System.String,System.Collections.Generic.ICollection{System.String},System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Octopus.Client.Exceptions.OctopusValidationException" /> class.
+            </summary>
+            <param name="httpStatusCode">The HTTP status code.</param>
+            <param name="message">The message.</param>
+            <param name="errors">The errors.</param>
+            <param name="details">The details of the error.</param>
+        </member>
+        <member name="M:Octopus.Client.Exceptions.OctopusValidationException.DetailsAs``1">
+            <summary>
+            Converts untyped <see cref="P:Octopus.Client.Exceptions.OctopusValidationException.Details" /> property to a known type.
+            </summary>
+            <typeparam name="TDetails"></typeparam>
+            <returns></returns>
+        </member>
         <member name="P:Octopus.Client.Exceptions.OctopusValidationException.ErrorMessage">
             <summary>
             Gets the error message that was returned by the Octopus Server.
@@ -1009,6 +1043,11 @@
         <member name="P:Octopus.Client.Exceptions.OctopusValidationException.Errors">
             <summary>
             Gets a list of problems with the request that was returned by the Octopus Server.
+            </summary>
+        </member>
+        <member name="P:Octopus.Client.Exceptions.OctopusValidationException.Details">
+            <summary>
+            Gets detailed, structured information about the error. Use <see cref="M:Octopus.Client.Exceptions.OctopusValidationException.DetailsAs``1" /> to convert the data to a known type.
             </summary>
         </member>
         <member name="T:Octopus.Client.Exceptions.UnsupportedApiVersionException">
@@ -1430,6 +1469,14 @@
             Represents a project.
             </summary>
         </member>
+        <member name="P:Octopus.Client.Model.ProjectResource.DiscreteChannelRelease">
+            <summary>
+            Treats releases of different channels to the same environment as a 
+            seperate deployment dimension. 'False' indicates a "hotfix"-style 
+            usage of channels (single release active per environment ignoring channels), 
+            whereas `True` indicates "microservice"-style usage (single release per environment per channel)
+            </summary>
+        </member>
         <member name="P:Octopus.Client.Model.ProjectResource.IncludedLibraryVariableSetIds">
             <summary>
             Library variable sets included in the project. Sets are listed in order
@@ -1558,6 +1605,12 @@
             The tags that make up this tag set
             </summary>
         </member>
+        <member name="P:Octopus.Client.Model.TaskDetailsResource.ActivityLog">
+            <summary>
+            Returned by Pre 3.4 servers
+            Sets the ActivityLogs property as well if it does not already have a value
+            </summary>
+        </member>
         <member name="T:Octopus.Client.Model.TaskResource">
             <summary>
             Octopus doesn't just store information; it actively *does* things. Examples include deployments, checking that
@@ -1609,6 +1662,11 @@
         <member name="P:Octopus.Client.Model.TaskResource.QueueTime">
             <summary>
             Gets or sets the time at which the task was queued.
+            </summary>
+        </member>
+        <member name="P:Octopus.Client.Model.TaskResource.QueueTimeExpiry">
+            <summary>
+            Gets or sets the time that can elapse after the QueueTime before the task will timeout if it has not started executing.
             </summary>
         </member>
         <member name="P:Octopus.Client.Model.TaskResource.StartTime">
@@ -1706,6 +1764,11 @@
             The roles that the team belongs to.
             </summary>
         </member>
+        <member name="P:Octopus.Client.Model.TeamResource.ProjectGroupIds">
+            <summary>
+            The project groups that the team can exercise its roles for. Includes all projects in the groups.
+            </summary>
+        </member>
         <member name="P:Octopus.Client.Model.TeamResource.ProjectIds">
             <summary>
             The projects that the team can exercise its roles in. If empty,
@@ -1781,6 +1844,12 @@
             if any.
             </summary>
         </member>
+        <member name="P:Octopus.Client.Model.UserPermissionRestriction.RestrictedToProjectGroupIds">
+            <summary>
+            Restrictions on the project groups to which the permission applies,
+            if any.
+            </summary>
+        </member>
         <member name="T:Octopus.Client.Model.UserPermissionSetResource">
             <summary>
             Summarizes the permissions assigned to a user via their
@@ -1811,6 +1880,12 @@
         <member name="T:Octopus.Client.Model.UserRoleResource">
             <summary>
             A role played by users.
+            </summary>
+        </member>
+        <member name="P:Octopus.Client.Model.VariableResource.IsSensitive">
+            <summary>
+            This property is kept for backwards compatibility. 
+            New way is to use Type = VariableType.Sensitive.
             </summary>
         </member>
         <member name="T:Octopus.Client.Model.VariableSetResource">
@@ -2507,6 +2582,38 @@
             <param name="repository">The Octopus Deploy server repository.</param>
             <exception cref="T:System.ArgumentException">
             </exception>
+        </member>
+        <member name="M:Octopus.Client.Repositories.Async.ICertificateRepository.Export(Octopus.Client.Model.CertificateResource,System.Nullable{Octopus.Client.Model.CertificateFormat},System.String,System.Boolean)">
+            <summary>
+            Exports the certificate data.
+            </summary>
+            <param name="certificate">The certificate to export.</param>
+            <param name="format">The format of the exported certificate. If null, the certificate will be exported exactly as it was originally uploaded (including with original password).</param>
+            <param name="password">Password for the exported file.  This value is only used if exporting to PCKS#12 or PEM formats.</param>
+            <param name="includePrivateKey">Specifies whether the certificate private-key (if present) should be included in the exported file.  This value is only be used when exporting to PEM format.</param>
+            <returns>The exported certificate data.</returns>
+        </member>
+        <member name="M:Octopus.Client.Repositories.Async.ICertificateRepository.Replace(Octopus.Client.Model.CertificateResource,System.String,System.String)">
+            <summary>
+            Replace with a new certificate.  
+            The certificate is replaced "in-place"; it will retain the same ID and other user properties (Name, Notes, Environments, etc...).
+            A backup will be made of the replaced certificate; it will have a new ID and will be archived.  
+            </summary>
+            <param name="certificate">The certificate to be replaced</param>
+            <param name="certificateData">The new base64-encoded certificate-data</param>
+            <param name="password">The new password</param>
+            <returns>The replaced certificate. The ReplacedBy property will contain the ID of the new certificate (which will be the previous ID of the replaced certificate).</returns>
+        </member>
+        <member name="M:Octopus.Client.Repositories.Async.ICertificateRepository.Archive(Octopus.Client.Model.CertificateResource)">
+            <summary>
+            Archive a certificate. 
+            Archiving makes a certificate unavailable for selection as the value of a variable. 
+            </summary>
+        </member>
+        <member name="M:Octopus.Client.Repositories.Async.ICertificateRepository.UnArchive(Octopus.Client.Model.CertificateResource)">
+            <summary>
+            Unarchive a certificate. This makes the certificate again available for selection as the value of a variable.
+            </summary>
         </member>
         <member name="T:Octopus.Client.Serialization.ControlConverter">
             <summary>
