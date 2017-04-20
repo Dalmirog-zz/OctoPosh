@@ -38,7 +38,7 @@ namespace Octoposh.Cmdlets
 
             try
             {
-                thumbprint = _connection.Repository.Certificates.GetOctopusCertificate().Thumbprint;
+                thumbprint = _connection.Repository.CertificateConfiguration.GetOctopusCertificate()?.Thumbprint;
             }
             catch (Exception e)
             {
