@@ -42,9 +42,9 @@ This module was made using the following awesome tools
 
 | Name | Site|
 | ------------- | ----------- |
-| Octopus Deploy      | https://octopusdeploy.com/|
-| Pester | https://github.com/pester/Pester|
+| Octopus Deploy      | https://octopusdeploy.com/ |
+| Pester | https://github.com/pester/Pester |
 | Fiddler | http://www.telerik.com/fiddler |
 | Papercut     | https://papercut.codeplex.com/ |
 | TeamCity    | https://www.jetbrains.com/teamcity/ |
-| Powershell Gallery | https://www.powershellgallery.com/|
+| Powershell Gallery | https://www.powershellgallery.com/ |
