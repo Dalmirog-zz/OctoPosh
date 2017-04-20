@@ -173,15 +173,29 @@ namespace Octoposh.Cmdlets
 
             if (ResourceOnly)
             {
-                WriteObject(baseResourceList);
+                if (baseResourceList.Count == 1)
+                {
+                    WriteObject(baseResourceList.FirstOrDefault());
+                }
+                else
+                {
+                    WriteObject(baseResourceList);
+                }
             }
 
             else
             {
                 var converter = new OutputConverter();
-                List<OutputOctopusVariableSet> outputList = converter.GetOctopusVariableSet(baseResourceList,projectList,libraryVariableSetList,IncludeUsage);
+                var outputList = converter.GetOctopusVariableSet(baseResourceList,projectList,libraryVariableSetList,IncludeUsage);
 
-                WriteObject(outputList);
+                if (outputList.Count == 1)
+                {
+                    WriteObject(outputList.FirstOrDefault());
+                }
+                else
+                {
+                    WriteObject(outputList);
+                }
             }
 
         }

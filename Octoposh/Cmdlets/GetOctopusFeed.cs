@@ -121,7 +121,14 @@ namespace Octoposh.Cmdlets
 
             if (ResourceOnly)
             {
-                WriteObject(baseResourceList);
+                if (baseResourceList.Count == 1)
+                {
+                    WriteObject(baseResourceList.FirstOrDefault());
+                }
+                else
+                {
+                    WriteObject(baseResourceList);
+                }
             }
 
             else
@@ -129,7 +136,14 @@ namespace Octoposh.Cmdlets
                 var converter = new OutputConverter();
                 var outputList = converter.GetOctopusFeed(baseResourceList);
 
-                WriteObject(outputList);
+                if (outputList.Count == 1)
+                {
+                    WriteObject(outputList.FirstOrDefault());
+                }
+                else
+                {
+                    WriteObject(outputList);
+                }
             }
 
         }
