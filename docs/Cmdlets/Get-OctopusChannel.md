@@ -9,13 +9,9 @@
 | ResourceOnly | System.Management.Automation.SwitchParameter |  If set to TRUE the cmdlet will return the basic Octopur resource. If not set  or set to FALSE, the cmdlet will return a human friendly Octoposh output object     |
 
 ### Syntax
- ```Powershell
+``` powershell
 
-Get-OctopusChannel [[-ChannelName] <string[]>] [[-ProjectName] <string[]>] 
-[-ResourceOnly <SwitchParameter>] [<CommonParameters>]
-
-
-
+Get-OctopusChannel [[-ChannelName] <string[]>] [[-ProjectName] <string[]>] [-ResourceOnly <SwitchParameter>] [<CommonParameters>]
 ``` 
 
 ### Examples
@@ -23,9 +19,9 @@ Get-OctopusChannel [[-ChannelName] <string[]>] [[-ProjectName] <string[]>]
 
 Gets all the channels in all the projects of the instance
 
- ```Powershell 
-PS C:\>PS C:\> Get-OctopusChannel
- ``` 
+```Powershell 
+PS C:\> Get-OctopusChannel
+``` 
 
 **EXAMPLE 2**
 
