@@ -5,7 +5,7 @@ Param
     [string]$Module = "Octoposh",
 
     # CmdletName = 
-    [string]$CmdletName = "*",
+    [string]$CmdletName = "Get-OctopusChannel",
 
     # Destionation directory
     [string]$Destination = "..\docs\cmdlets"
@@ -40,7 +40,7 @@ Process
         
         $OutFile = Join-Path (Resolve-Path $Destination) ($cmdlet.ToLower() + ".md")
 
-        $OutFileParameters = @{FilePath = $OutFile; Append = $true; Force = $true; Encoding = "utf8"}
+        $OutFileParameters = @{FilePath = $OutFile; Append = $true; Force = $true; Encoding = "string"}
 
         Write-Output "Sending output to $outfile"        
 
