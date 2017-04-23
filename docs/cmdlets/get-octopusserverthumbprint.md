@@ -1,4 +1,5 @@
-﻿### Summary
+﻿
+### Summary
 
 Gets the Octopus Server thumbprint. Admin access in the Octopus instance will be needed for this to work
 ### Syntax

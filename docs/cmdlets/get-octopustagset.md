@@ -1,11 +1,12 @@
-﻿### Summary
+﻿
+### Summary
 
 Gets information about Octopus TagSets
 ### Parameters
 | Name | DataType          | Description |
 | ------------- | ----------- | ----------- |
 | TagSetName | String[] |  TagSet name     |
-| ResourceOnly | Switch |  If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the cmdlet will return a  human friendly Octoposh output object     |
+| ResourceOnly | Switch |  If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the  cmdlet will return a human friendly Octoposh output object     |
 
 ### Syntax
 ``` powershell

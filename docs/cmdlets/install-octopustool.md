@@ -1,4 +1,5 @@
-﻿### Summary
+﻿
+### Summary
 
 This cmdlet downloads Octo.exe from Nuget to the "Octopus Tools Folder".To learn more about this path run Get-Help Set-OctopusToolsFolder
 ### Parameters
@@ -6,7 +7,7 @@ This cmdlet downloads Octo.exe from Nuget to the "Octopus Tools Folder".To learn
 | ------------- | ----------- | ----------- |
 | Version | String |  Downloads a specific version oc Octo.Exe from nuget     |
 | Latest | Switch |  Tells the cmdlet to download the latest version of Octo.exe available in Nuget     |
-| SetAsDefault | Switch |  If set to true, the cmdlet will set the just downloaded version of Octo.exe as the default one, making it instantly  available using $env:Octoexe     |
+| SetAsDefault | Switch |  If set to true, the cmdlet will set the just downloaded version of Octo.exe as the default one, making  it instantly available using $env:Octoexe     |
 
 ### Syntax
 ``` powershell

@@ -1,4 +1,5 @@
-﻿### Summary
+﻿
+### Summary
 
 
 ### Parameters
@@ -8,15 +9,16 @@
 | ReleaseVersion |  |  Releases to Block/Unblock     |
 | Description | String |  Reason to block the deployment     |
 | Status | String |  Status that the release will be put into     |
-| Resource |  |  List of [Octopus.Model.ReleaseResource] objects that will get blocked/unblocked. By using this parameter you do not need  to pass values to "ProjectName" or "ReleaseVersion", as that info will already be available in the Release object     |
+| Resource |  |  List of [Octopus.Model.ReleaseResource] objects that will get blocked/unblocked. By using this  parameter you do not need to pass values to "ProjectName" or "ReleaseVersion", as that info will  already be available in the Release object     |
 
 ### Syntax
 ``` powershell
 
-Set-OctopusReleaseStatus [-ReleaseVersion] <List`1> [-ProjectName] <string> [-Status] <string> [[-Description] <string>] 
-[<CommonParameters>]
+Set-OctopusReleaseStatus [-ReleaseVersion] <List`1> [-ProjectName] <string> [-Status] <string> 
+[[-Description] <string>] [<CommonParameters>]
 
-Set-OctopusReleaseStatus [-Resource] <List`1> [-Status] <string> [[-Description] <string>] [<CommonParameters>]
+Set-OctopusReleaseStatus [-Resource] <List`1> [-Status] <string> [[-Description] <string>] 
+[<CommonParameters>]
 
 
 

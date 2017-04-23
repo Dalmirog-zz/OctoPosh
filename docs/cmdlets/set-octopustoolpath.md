@@ -1,11 +1,12 @@
-﻿### Summary
+﻿
+### Summary
 
 This cmdlet sets a version of Octo.exe as default. To get the value of the current default Octo.exe version run Get-OctopusToolPath or simply use $env:OctoExe
 ### Parameters
 | Name | DataType          | Description |
 | ------------- | ----------- | ----------- |
 | Version | String |  Sets the value of the default Octo.exe based on the version of it found by Get-OctopustoolsVersion     |
-| Path | String |  Sets the value of the default Octo.exe using a literal path. The cmdlet won't validate if the path leads to an existing  octo.exe file     |
+| Path | String |  Sets the value of the default Octo.exe using a literal path. The cmdlet won't validate if the path  leads to an existing octo.exe file     |
 
 ### Syntax
 ``` powershell

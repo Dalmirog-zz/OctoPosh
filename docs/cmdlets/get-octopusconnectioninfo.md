@@ -1,4 +1,5 @@
-﻿### Summary
+﻿
+### Summary
 
 This function gets the data of the variables $env:OctopusURI and $env:OctopusAPI that are used by all the cmdlets of the Octoposh module
 ### Syntax

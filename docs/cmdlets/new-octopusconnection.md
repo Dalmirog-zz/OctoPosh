@@ -1,4 +1,5 @@
-﻿### Summary
+﻿
+### Summary
 
 Creates an endpoint to connect to an Octopus Server
 ### Syntax

@@ -1,4 +1,5 @@
-﻿### Summary
+﻿
+### Summary
 
 Gets information about the external feeds registered in Octopus
 ### Parameters
@@ -6,7 +7,7 @@ Gets information about the external feeds registered in Octopus
 | ------------- | ----------- | ----------- |
 | FeedName | String[] |  Feed name     |
 | URL | String[] |  Feed URL/Path     |
-| ResourceOnly | Switch |  If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the cmdlet will return a  human friendly Octoposh output object     |
+| ResourceOnly | Switch |  If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the  cmdlet will return a human friendly Octoposh output object     |
 
 ### Syntax
 ``` powershell

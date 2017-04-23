@@ -1,4 +1,5 @@
-﻿### Summary
+﻿
+### Summary
 
 Gets information about Octopus deployments
 ### Parameters
@@ -6,7 +7,7 @@ Gets information about Octopus deployments
 | ------------- | ----------- | ----------- |
 | ReleaseVersion | String[] |  Release version to filter by. The cmdlet will only return deployments that belong to these releases     |
 | LatestReleases |  |  Gets deployments by latest X releases     |
-| ResourceOnly | Switch |  If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the cmdlet will return a  human friendly Octoposh output object     |
+| ResourceOnly | Switch |  If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the  cmdlet will return a human friendly Octoposh output object     |
 | EnvironmentName | String[] |  Name of the Environment to filter by     |
 | ProjectName | String[] |  Name of the Project to filter by     |
 | Before |  |  Target communication style to filter by     |
@@ -15,11 +16,13 @@ Gets information about Octopus deployments
 ### Syntax
 ``` powershell
 
-Get-OctopusDeployment [-After <DateTimeOffset>] [-Before <DateTimeOffset>] [-EnvironmentName <string[]>] [-ProjectName 
-<string[]>] [-ReleaseVersion <string[]>] [-ResourceOnly <SwitchParameter>] [<CommonParameters>]
+Get-OctopusDeployment [-After <DateTimeOffset>] [-Before <DateTimeOffset>] [-EnvironmentName 
+<string[]>] [-ProjectName <string[]>] [-ReleaseVersion <string[]>] [-ResourceOnly <SwitchParameter>] 
+[<CommonParameters>]
 
-Get-OctopusDeployment [-After <DateTimeOffset>] [-Before <DateTimeOffset>] [-EnvironmentName <string[]>] [-LatestReleases 
-<int>] [-ProjectName <string[]>] [-ResourceOnly <SwitchParameter>] [<CommonParameters>]
+Get-OctopusDeployment [-After <DateTimeOffset>] [-Before <DateTimeOffset>] [-EnvironmentName 
+<string[]>] [-LatestReleases <int>] [-ProjectName <string[]>] [-ResourceOnly <SwitchParameter>] 
+[<CommonParameters>]
 
 
 

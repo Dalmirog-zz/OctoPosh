@@ -1,4 +1,5 @@
-﻿### Summary
+﻿
+### Summary
 
 Sets the current Octopus connection info (URL and API Key). Highly recommended to call this function from $profile to avoid having to re-configure this on every session.
 ### Parameters

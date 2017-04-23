@@ -1,11 +1,12 @@
-﻿### Summary
+﻿
+### Summary
 
 Gets information about Octopus Tenants
 ### Parameters
 | Name | DataType          | Description |
 | ------------- | ----------- | ----------- |
 | TenantName | String[] |  Tenant name     |
-| ResourceOnly | Switch |  If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the cmdlet will return a  human friendly Octoposh output object     |
+| ResourceOnly | Switch |  If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the  cmdlet will return a human friendly Octoposh output object     |
 
 ### Syntax
 ``` powershell

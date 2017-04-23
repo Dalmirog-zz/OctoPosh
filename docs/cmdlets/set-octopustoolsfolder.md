@@ -1,4 +1,5 @@
-﻿### Summary
+﻿
+### Summary
 
 This cmdlet sets the path of the "Octopus Tools Folder". This folder is where Install-OctopusTool will download Octo.exe, and its also from where Get-OctopusToolVersion will resolve the path of the downloaded Octo.exe versions.
 ### Parameters

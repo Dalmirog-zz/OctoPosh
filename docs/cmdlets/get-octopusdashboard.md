@@ -1,4 +1,5 @@
-﻿### Summary
+﻿
+### Summary
 
 Sets the current Octopus connection info (URL and API Key). Highly recommended to call this function from $profile to avoid having to re-configure this on every session.
 ### Parameters
@@ -11,8 +12,8 @@ Sets the current Octopus connection info (URL and API Key). Highly recommended t
 ### Syntax
 ``` powershell
 
-Get-OctopusDashboard [-DeploymentStatus <string[]>] [-EnvironmentName <string[]>] [-ProjectName <string[]>] 
-[<CommonParameters>]
+Get-OctopusDashboard [-DeploymentStatus <string[]>] [-EnvironmentName <string[]>] [-ProjectName 
+<string[]>] [<CommonParameters>]
 
 
 
