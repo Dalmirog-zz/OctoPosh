@@ -20,7 +20,7 @@ Get-OctopusChannel [[-ChannelName] <string[]>] [[-ProjectName] <string[]>] [-Res
 ### Examples
 Gets all the channels in all the projects of the instance
 
- ``` Powershell 
+ ```powershell 
  PS C:\> Get-OctopusChannel
  ``` 
 
