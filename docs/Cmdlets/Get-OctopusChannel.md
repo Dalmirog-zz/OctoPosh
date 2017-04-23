@@ -9,7 +9,6 @@ Gets information about Octopus Channels
 
 ### Syntax
 ``` powershell
-<<<<<<< HEAD
 
 Get-OctopusChannel [[-ChannelName] <string[]>] [[-ProjectName] <string[]>] [-ResourceOnly <SwitchParameter>] [<CommonParameters>]
 
@@ -17,26 +16,15 @@ Get-OctopusChannel [[-ChannelName] <string[]>] [[-ProjectName] <string[]>] [-Res
 
 
 ``` 
-=======
-
-Get-OctopusChannel [[-ChannelName] <string[]>] [[-ProjectName] <string[]>] [-ResourceOnly <SwitchParameter>] [<CommonParameters>]
-``` 
->>>>>>> 65b1ed435385f80cbd25f7a4ef09335971249dd6
 
 ### Examples
 **EXAMPLE 5**
 
 Gets all the channels in all the projects of the instance
 
-<<<<<<< HEAD
  ``` powershell 
  PS C:\> Get-OctopusChannel
  ``` 
-=======
-```Powershell 
-PS C:\> Get-OctopusChannel
-``` 
->>>>>>> 65b1ed435385f80cbd25f7a4ef09335971249dd6
 
 **EXAMPLE 5**
 
