@@ -1,21 +1,16 @@
-### Summary
-
-This function gets the data of the variables $env:OctopusURI and 
-$env:OctopusAPI that are used by all the cmdlets of the Octoposh module
-
-
-
+﻿### Summary
+This function gets the data of the variables $env:OctopusURI and $env:OctopusAPI that are used by all the cmdlets of the Octoposh module
 ### Syntax
- ```Powershell
+``` powershell
 
 ``` 
 
 ### Examples
-**EXAMPLE 1**
+**EXAMPLE 5**
 
 Get the current connection info. Its the same as getting the values of $env:OctopusURL and $Env:OctopusAPIKey
 
- ```Powershell 
-PS C:\>PS C:\> Get-OctopusConnectionInfo
+ ``` powershell 
+ PS C:\> Get-OctopusConnectionInfo
  ``` 
 
