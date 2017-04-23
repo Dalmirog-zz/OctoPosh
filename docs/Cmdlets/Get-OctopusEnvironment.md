@@ -1,10 +1,11 @@
 ﻿### Summary
+
 Gets information about Octopus Environments
 ### Parameters
 | Name | DataType          | Description |
 | ------------- | ----------- | ----------- |
 | EnvironmentName | String[] |  Environment name     |
-| ResourceOnly | Switch |  If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh  output object     |
+| ResourceOnly | Switch |  If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh output object     |
 
 ### Syntax
 ``` powershell
@@ -16,7 +17,8 @@ Get-OctopusEnvironment [[-EnvironmentName] <string[]>] [-ResourceOnly <SwitchPar
 
 ``` 
 
-### Examples
+### Examples 
+
 **EXAMPLE 1**
 
 Gets info about the environment "Production"

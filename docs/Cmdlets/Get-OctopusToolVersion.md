@@ -1,9 +1,10 @@
 ﻿### Summary
+
 Gets a list of available versions of Octo.exe in the folder set on the "Octopus Tools Folder". If you don't know what this path is run [Get-Help Set-OctopusToolsFolder] to learn more about it
 ### Parameters
 | Name | DataType          | Description |
 | ------------- | ----------- | ----------- |
-| Latest | Switch |  If set to TRUE the cmdlet will only return the highest version of Octo.exe found on the child folders $env:OctopusToolsFolder. If you don't  know what this path is run [Get-Help Set-OctopusToolsFolder] to learn more about it     |
+| Latest | Switch |  If set to TRUE the cmdlet will only return the highest version of Octo.exe found on the child folders $env:OctopusToolsFolder. If you don't know what this path is  run [Get-Help Set-OctopusToolsFolder] to learn more about it     |
 | Version | String |  Gets a specific version of Octo.exe     |
 
 ### Syntax
@@ -18,7 +19,8 @@ Get-OctopusToolVersion [[-Version] <string>] [<CommonParameters>]
 
 ``` 
 
-### Examples
+### Examples 
+
 **EXAMPLE 1**
 
 Gets a list of available versions of Octo.exe in the folder set on the "Octopus Tools Folder".

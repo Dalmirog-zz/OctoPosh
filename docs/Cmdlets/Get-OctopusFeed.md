@@ -1,11 +1,12 @@
 ﻿### Summary
+
 Gets information about the external feeds registered in Octopus
 ### Parameters
 | Name | DataType          | Description |
 | ------------- | ----------- | ----------- |
 | FeedName | String[] |  Feed name     |
 | URL | String[] |  Feed URL/Path     |
-| ResourceOnly | Switch |  If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh  output object     |
+| ResourceOnly | Switch |  If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh output object     |
 
 ### Syntax
 ``` powershell
@@ -19,7 +20,8 @@ Get-OctopusFeed [[-URL] <string[]>] [-ResourceOnly <SwitchParameter>] [<CommonPa
 
 ``` 
 
-### Examples
+### Examples 
+
 **EXAMPLE 1**
 
 Get all the external feeds registered in the current Instance

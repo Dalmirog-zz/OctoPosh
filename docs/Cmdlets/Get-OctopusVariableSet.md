@@ -1,4 +1,5 @@
 ﻿### Summary
+
 Gets Octopus Variable sets. These can belong to a specific Project or to a Library Variable set. "Variable set" is the name of the object that holds the collection of variables for both Projects and Library Sets.
 ### Parameters
 | Name | DataType          | Description |
@@ -6,20 +7,21 @@ Gets Octopus Variable sets. These can belong to a specific Project or to a Libra
 | LibrarySetName | String[] |  Library Set name     |
 | ProjectName | String[] |  Project name     |
 | IncludeUsage | Switch |  If set to TRUE the list of Projects on which each Library Variable Set is being used will be displayer     |
-| ResourceOnly | Switch |  If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh  output object     |
+| ResourceOnly | Switch |  If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh output object     |
 
 ### Syntax
 ``` powershell
 
-Get-OctopusVariableSet [[-LibrarySetName] <string[]>] [[-ProjectName] <string[]>] [-IncludeUsage <SwitchParameter>] [-ResourceOnly 
-<SwitchParameter>] [<CommonParameters>]
+Get-OctopusVariableSet [[-LibrarySetName] <string[]>] [[-ProjectName] <string[]>] [-IncludeUsage <SwitchParameter>] [-ResourceOnly <SwitchParameter>] 
+[<CommonParameters>]
 
 
 
 
 ``` 
 
-### Examples
+### Examples 
+
 **EXAMPLE 1**
 
 Gets all the Project and Library variable sets of the instance

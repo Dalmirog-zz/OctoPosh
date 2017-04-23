@@ -1,10 +1,11 @@
 ﻿### Summary
+
 Gets information about Octopus Project Groups
 ### Parameters
 | Name | DataType          | Description |
 | ------------- | ----------- | ----------- |
 | ProjectGroupName | String[] |  Project Group name     |
-| ResourceOnly | Switch |  If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh  output object     |
+| ResourceOnly | Switch |  If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh output object     |
 
 ### Syntax
 ``` powershell
@@ -16,7 +17,8 @@ Get-OctopusProjectGroup [[-ProjectGroupName] <string[]>] [-ResourceOnly <SwitchP
 
 ``` 
 
-### Examples
+### Examples 
+
 **EXAMPLE 1**
 
 Gets all the Project Groups on the Octopus instance

@@ -1,4 +1,5 @@
 ﻿### Summary
+
 Deletes resources from an Octopus Instance
 ### Parameters
 | Name | DataType          | Description |
@@ -15,7 +16,8 @@ Remove-OctopusResource [[-Resource] <Resource[]>] [<CommonParameters>]
 
 ``` 
 
-### Examples
+### Examples 
+
 **EXAMPLE 1**
 
 Deletes the project called "MyApp" from the Octopus Instance

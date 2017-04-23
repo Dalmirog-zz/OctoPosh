@@ -51,7 +51,7 @@ Process
 
         $help = Get-Help $cmdlet
 
-        "### Summary" | Out-File @OutFileParameters
+        "### Summary`n" | Out-File @OutFileParameters
         #$null = "$($help.Synopsis)`n" | Out-File @OutFileParameters
         $help.Synopsis | Out-File @OutFileParameters
 
@@ -84,7 +84,7 @@ Process
         $syntax | Out-File @OutFileParameters
         "`````` `n" | Out-File @OutFileParameters
         
-        "### Examples" | Out-File @OutFileParameters
+        "### Examples `n" | Out-File @OutFileParameters
         foreach ($example in $help.examples.example){
             $title = $example.title.Replace("-","").trim().insert(0,"**").insert(11,"**")
 

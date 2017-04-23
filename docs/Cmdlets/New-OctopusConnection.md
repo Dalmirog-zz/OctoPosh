@@ -1,11 +1,13 @@
 ﻿### Summary
+
 Creates an endpoint to connect to an Octopus Server
 ### Syntax
 ``` powershell
 
 ``` 
 
-### Examples
+### Examples 
+
 **EXAMPLE 1**
 
 Gets all the environments on the Octopus instance using the Octopus .NET client repository

@@ -1,4 +1,5 @@
 ﻿### Summary
+
 This cmdlet returns info about Octopus Targets (Tentacles, cloud regions, Offline deployment targets, SHH)
 ### Parameters
 | Name | DataType          | Description |
@@ -7,7 +8,7 @@ This cmdlet returns info about Octopus Targets (Tentacles, cloud regions, Offlin
 | EnvironmentName | String[] |  Name of the Environment to filter by     |
 | URL | String[] |  Target URI to filter by     |
 | CommunicationStyle | String |  Target communication style to filter by     |
-| ResourceOnly | Switch |  If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh  output object     |
+| ResourceOnly | Switch |  If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh output object     |
 
 ### Syntax
 ``` powershell
@@ -25,7 +26,8 @@ Get-OctopusMachine [-CommunicationStyle <string>] [-ResourceOnly <SwitchParamete
 
 ``` 
 
-### Examples
+### Examples 
+
 **EXAMPLE 1**
 
 Gets the machine with the name "Database_Prod"

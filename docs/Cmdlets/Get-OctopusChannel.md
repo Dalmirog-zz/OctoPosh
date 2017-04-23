@@ -1,11 +1,12 @@
 ﻿### Summary
+
 Gets information about Octopus Channels
 ### Parameters
 | Name | DataType          | Description |
 | ------------- | ----------- | ----------- |
 | ChannelName | String[] |  Channel name     |
 | ProjectName | String[] |  Project name     |
-| ResourceOnly | Switch |  If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh  output object     |
+| ResourceOnly | Switch |  If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh output object     |
 
 ### Syntax
 ``` powershell
@@ -17,7 +18,8 @@ Get-OctopusChannel [[-ChannelName] <string[]>] [[-ProjectName] <string[]>] [-Res
 
 ``` 
 
-### Examples
+### Examples 
+
 **EXAMPLE 1**
 
 Gets all the channels in all the projects of the instance

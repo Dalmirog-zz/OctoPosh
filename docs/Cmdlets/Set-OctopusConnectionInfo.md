@@ -1,4 +1,5 @@
 ﻿### Summary
+
 Sets the current Octopus connection info (URL and API Key). Highly recommended to call this function from $profile to avoid having to re-configure this on every session.
 ### Parameters
 | Name | DataType          | Description |
@@ -16,7 +17,8 @@ Set-OctopusConnectionInfo [-Server] <string> [-ApiKey] <string> [<CommonParamete
 
 ``` 
 
-### Examples
+### Examples 
+
 **EXAMPLE 1**
 
 Set connection info with a specific API Key for an Octopus instance

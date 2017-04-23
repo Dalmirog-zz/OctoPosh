@@ -1,11 +1,12 @@
 ﻿### Summary
+
 This cmdlet returns info about Octopus Projects
 ### Parameters
 | Name | DataType          | Description |
 | ------------- | ----------- | ----------- |
 | ProjectName | String[] |  Project name     |
 | ProjectGroupName | String[] |  Gets all projects inside a set of Project Groups     |
-| ResourceOnly | Switch |  If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh  output object     |
+| ResourceOnly | Switch |  If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh output object     |
 
 ### Syntax
 ``` powershell
@@ -19,7 +20,8 @@ Get-OctopusProject [[-ProjectGroupName] <string[]>] [-ResourceOnly <SwitchParame
 
 ``` 
 
-### Examples
+### Examples 
+
 **EXAMPLE 1**
 
 Gets all the projects of the current Instance

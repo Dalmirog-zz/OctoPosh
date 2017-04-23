@@ -1,4 +1,5 @@
 ﻿### Summary
+
 This cmdlet downloads Octo.exe from Nuget to the "Octopus Tools Folder".To learn more about this path run Get-Help Set-OctopusToolsFolder
 ### Parameters
 | Name | DataType          | Description |
@@ -19,7 +20,8 @@ Install-OctopusTool [-Latest <SwitchParameter>] [-SetAsDefault <SwitchParameter>
 
 ``` 
 
-### Examples
+### Examples 
+
 **EXAMPLE 1**
 
 Downloads the latest version of Octo.exe to the Octopus Tools Folder.

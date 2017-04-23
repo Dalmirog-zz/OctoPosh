@@ -1,4 +1,5 @@
 ﻿### Summary
+
 Creates a new Octopus Resource. This is an advanced cmdlet and all its examples involve multiple lines of code. Please check the advanced examples for a better reference: https://github.com/Dalmirog/OctoPosh/wiki/Advanced-Examples
 ### Parameters
 | Name | DataType          | Description |
@@ -15,7 +16,8 @@ New-OctopusResource [[-Resource] <Resource>] [<CommonParameters>]
 
 ``` 
 
-### Examples
+### Examples 
+
 **EXAMPLE 1**
 
 Creates a new Project Group called "NewProjectGroup" on Octopus

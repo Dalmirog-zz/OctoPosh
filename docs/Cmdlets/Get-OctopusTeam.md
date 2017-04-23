@@ -1,10 +1,11 @@
 ﻿### Summary
+
 This cmdlet returns Octopus Teams
 ### Parameters
 | Name | DataType          | Description |
 | ------------- | ----------- | ----------- |
 | TeamName | String[] |  Team name     |
-| ResourceOnly | Switch |  If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh  output object     |
+| ResourceOnly | Switch |  If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh output object     |
 
 ### Syntax
 ``` powershell
@@ -16,7 +17,8 @@ Get-OctopusTeam [[-TeamName] <string[]>] [-ResourceOnly <SwitchParameter>] [<Com
 
 ``` 
 
-### Examples
+### Examples 
+
 **EXAMPLE 1**
 
 Gets all the teams on the Octopus instance

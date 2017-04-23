@@ -1,4 +1,5 @@
 ﻿### Summary
+
 This cmdlet creates instances of Octopus Resource Objects
 ### Parameters
 | Name | DataType          | Description |
@@ -15,7 +16,8 @@ Get-OctopusResourceModel -Resource <string> [<CommonParameters>]
 
 ``` 
 
-### Examples
+### Examples 
+
 **EXAMPLE 1**
 
 Creates an Environment Resource object
