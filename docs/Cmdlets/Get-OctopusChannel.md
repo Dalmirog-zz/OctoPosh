@@ -9,12 +9,7 @@ Gets information about Octopus Channels
 
 ### Syntax
 ``` powershell
-
 Get-OctopusChannel [[-ChannelName] <string[]>] [[-ProjectName] <string[]>] [-ResourceOnly <SwitchParameter>] [<CommonParameters>]
-
-
-
-
 ``` 
 
 ### Examples
