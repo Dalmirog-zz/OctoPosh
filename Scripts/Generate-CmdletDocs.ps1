@@ -44,7 +44,7 @@ Begin
             #>
         
             $cmdletPath = [string]::Concat($baseFolder,"/",$cmdlet.ToLower(),".md")
-            $null = $sb.AppendLine("`t- $cmdlet`: $cmdletPath")
+            $null = $sb.AppendLine("  - $cmdlet`: $cmdletPath")
         }
 
         $sb.ToString() | clip
