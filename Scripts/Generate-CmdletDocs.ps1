@@ -8,7 +8,7 @@ Param
     [string]$CmdletName = "*",
 
     # Destionation directory
-    [string]$Destination = "..\docs\Cmdlets"
+    [string]$Destination = "..\docs\cmdlets"
 )
 
 Begin
@@ -37,7 +37,8 @@ Process
 
     foreach ($cmdlet in $cmdlets){
         Write-Output "Procesing $cmdlet"
-        $OutFile = Join-Path (Resolve-Path $Destination) ($cmdlet + ".md")
+        
+        $OutFile = Join-Path (Resolve-Path $Destination) ($cmdlet.ToLower() + ".md")
 
         $OutFileParameters = @{FilePath = $OutFile; Append = $true; Force = $true; Encoding = "utf8"}
 
@@ -78,7 +79,9 @@ Process
         }
         
         "### Syntax" | Out-File @OutFileParameters
+        
         #$help.syntax | clip.exe ; Get-Clipboard -OutVariable Syntax | Out-Null
+
         $Syntax = $help.syntax
         "`````` powershell" | Out-File @OutFileParameters
         $syntax | Out-File @OutFileParameters
@@ -97,8 +100,7 @@ Process
         }        
         #>
         Write-Verbose "Finished processing: $outfile"
-    }
-    
+    }    
 }
 
 End
