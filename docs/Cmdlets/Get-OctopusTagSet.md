@@ -19,25 +19,25 @@ Get-OctopusTagSet [[-TagSetName] <string[]>] [-ResourceOnly <SwitchParameter>] [
 ### Examples
 Gets all the TagSets of the instance
 
- ``` powershell 
- PS C:\> Get-OctopusTagSet
- ``` 
+``` powershell 
+ Get-OctopusTagSet
+``` 
 
 Gets the TagSet with the name "Upgrade Ring"
 
- ``` powershell 
- PS C:\> Get-OctopusTagSet -name "Upgrade Ring"
- ``` 
+``` powershell 
+ Get-OctopusTagSet -name "Upgrade Ring"
+``` 
 
 Gets the TagSets with the names "Upgrade Ring" and "EAP"
 
- ``` powershell 
- PS C:\> Get-OctopusTagSet -name "Upgrade Ring","EAP"
- ``` 
+``` powershell 
+ Get-OctopusTagSet -name "Upgrade Ring","EAP"
+``` 
 
 Gets all the TagSets whose name matches the pattern "*_Customers"
 
- ``` powershell 
- PS C:\> Get-OctopustagSet -name "*_Customers"
- ``` 
+``` powershell 
+ Get-OctopustagSet -name "*_Customers"
+``` 
 

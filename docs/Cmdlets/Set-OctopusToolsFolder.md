@@ -18,7 +18,7 @@ Set-OctopusToolsFolder [-Path] <string> [<CommonParameters>]
 ### Examples
 Sets the "Octopus Tools Folder" to "C:\Tools"
 
- ``` powershell 
- PS C:\> Set-OctopusToolsFolder -path C:\tools
- ``` 
+``` powershell 
+ Set-OctopusToolsFolder -path C:\tools
+``` 
 

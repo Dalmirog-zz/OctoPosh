@@ -21,13 +21,13 @@ Get-OctopusToolVersion [[-Version] <string>] [<CommonParameters>]
 ### Examples
 Gets a list of available versions of Octo.exe in the folder set on the "Octopus Tools Folder".
 
- ``` powershell 
- PS C:\> Get-OctopusToolVersion
- ``` 
+``` powershell 
+ Get-OctopusToolVersion
+``` 
 
 Gets the latest version of Octo.exe in the folder set on the "Octopus Tools Folder".
 
- ``` powershell 
- PS C:\> Get-OctopusToolVersion -latest
- ``` 
+``` powershell 
+ Get-OctopusToolVersion -latest
+``` 
 

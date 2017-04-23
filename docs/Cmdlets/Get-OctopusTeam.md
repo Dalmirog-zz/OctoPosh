@@ -19,25 +19,25 @@ Get-OctopusTeam [[-TeamName] <string[]>] [-ResourceOnly <SwitchParameter>] [<Com
 ### Examples
 Gets all the teams on the Octopus instance
 
- ``` powershell 
- PS C:\> Get-OctopusTeam
- ``` 
+``` powershell 
+ Get-OctopusTeam
+``` 
 
 Gets the team with the name "ProjectA_Managers"
 
- ``` powershell 
- PS C:\> Get-OctopusTeam -name "ProjectA_Managers"
- ``` 
+``` powershell 
+ Get-OctopusTeam -name "ProjectA_Managers"
+``` 
 
 Gets the teams with the names "ProjectA_Managers" and "ProjectA_Developers"
 
- ``` powershell 
- PS C:\> Get-OctopusTeam -name "ProjectA_Managers","ProjectA_Developers"
- ``` 
+``` powershell 
+ Get-OctopusTeam -name "ProjectA_Managers","ProjectA_Developers"
+``` 
 
 Gets all the teams whose name starts with "ProjectA"
 
- ``` powershell 
- PS C:\> Get-OctopusTeam -name "ProjectA*"
- ``` 
+``` powershell 
+ Get-OctopusTeam -name "ProjectA*"
+``` 
 

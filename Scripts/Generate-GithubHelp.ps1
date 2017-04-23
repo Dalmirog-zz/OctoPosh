@@ -90,7 +90,10 @@ Process
 
             #"$title`n" | Out-File @OutFileParameters
             "$($example.remarks.text)`n" | Out-File @OutFileParameters
-            " `````` powershell `n $($example.code)`n `````` `n" | Out-File @OutFileParameters
+
+            $code = $example.code.Replace('PS C:\> ',"")
+
+            "`````` powershell `n $code`n`````` `n" | Out-File @OutFileParameters
         }        
         #>
         Write-Verbose "Finished processing: $outfile"

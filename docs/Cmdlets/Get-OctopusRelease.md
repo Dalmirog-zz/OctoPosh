@@ -23,19 +23,19 @@ Get-OctopusRelease [-ProjectName] <string> [-Latest <int>] [-ResourceOnly <Switc
 ### Examples
 Get all the realeases of the project "MyProject"
 
- ``` powershell 
- PS C:\> Get-OctopusRelease -ProjectName "MyProject"
- ``` 
+``` powershell 
+ Get-OctopusRelease -ProjectName "MyProject"
+``` 
 
 Get the release realeases 1.0.1 & 1.0.2 of the project "MyProject"
 
- ``` powershell 
- PS C:\> Get-OctopusRelease -ProjectName "MyProject" -version 1.0.1,1.0.2
- ``` 
+``` powershell 
+ Get-OctopusRelease -ProjectName "MyProject" -version 1.0.1,1.0.2
+``` 
 
 Get the latest 10 releases of the project "MyProject"
 
- ``` powershell 
- PS C:\> Get-OctopusRelease -ProjectName "MyProject" -Latest 10
- ``` 
+``` powershell 
+ Get-OctopusRelease -ProjectName "MyProject" -Latest 10
+``` 
 

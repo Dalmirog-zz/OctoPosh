@@ -18,13 +18,13 @@ Remove-OctopusResource [[-Resource] <Resource[]>] [<CommonParameters>]
 ### Examples
 Deletes the project called "MyApp" from the Octopus Instance
 
- ``` powershell 
- PS C:\> $ProjectResource = Get-OctopusProject -name "MyApp" ; Remove-OctopusResource -resource $ProjectResource
- ``` 
+``` powershell 
+ $ProjectResource = Get-OctopusProject -name "MyApp" ; Remove-OctopusResource -resource $ProjectResource
+``` 
 
 Deletes all the projects inside the Project Group "MyProjects"
 
- ``` powershell 
- PS C:\> Get-OctopusProjectGroup -name "MyProjects" | select -ExpandProperty Projects | Remove-OctopusResource
- ``` 
+``` powershell 
+ Get-OctopusProjectGroup -name "MyProjects" | select -ExpandProperty Projects | Remove-OctopusResource
+``` 
 

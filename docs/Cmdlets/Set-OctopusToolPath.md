@@ -21,19 +21,19 @@ Set-OctopusToolPath [-Path] <string> [<CommonParameters>]
 ### Examples
 Sets C:\Tools\1.0.0\Octo.exe as the current default Octo.exe version
 
- ``` powershell 
- PS C:\> Set-OctopusToolPath -path C:\tools\1.0.0\Octo.exe
- ``` 
+``` powershell 
+ Set-OctopusToolPath -path C:\tools\1.0.0\Octo.exe
+``` 
 
 Uses Get-OctopusToolVersion to look for Octo.exe version 1.0.0 and then sets its path as the current default version
 
- ``` powershell 
- PS C:\> Set-OctopusToolPath -version 1.0.0
- ``` 
+``` powershell 
+ Set-OctopusToolPath -version 1.0.0
+``` 
 
 Gets the latest version of Octo.exe installed on the machine using Get-OctopusToolsVersion and sets $env:OctoExe with its path
 
- ``` powershell 
+``` powershell 
  PS C:\>Get-OctopusToolsVersion -latest | Set-OctopusToolPath
- ``` 
+``` 
 

@@ -18,7 +18,7 @@ Get-OctopusResourceModel -Resource <string> [<CommonParameters>]
 ### Examples
 Creates an Environment Resource object
 
- ``` powershell 
- PS C:\> $EnvironmentObj = Get-OctopusResourceModel -Resource Environment
- ``` 
+``` powershell 
+ $EnvironmentObj = Get-OctopusResourceModel -Resource Environment
+``` 
 

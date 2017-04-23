@@ -18,7 +18,7 @@ New-OctopusResource [[-Resource] <Resource>] [<CommonParameters>]
 ### Examples
 Creates a new Project Group called "NewProjectGroup" on Octopus
 
- ``` powershell 
- PS C:\> $pg = Get-OctopusResourceModel -Resource ProjectGroup ; $pg.name = "NewProjectGroup" ; New-OctopusResource -Resource $pg
- ``` 
+``` powershell 
+ $pg = Get-OctopusResourceModel -Resource ProjectGroup ; $pg.name = "NewProjectGroup" ; New-OctopusResource -Resource $pg
+``` 
 

@@ -19,25 +19,25 @@ Get-OctopusTenant [[-TenantName] <string[]>] [-ResourceOnly <SwitchParameter>] [
 ### Examples
 Gets all the tenants of the instance
 
- ``` powershell 
- PS C:\> Get-OctopusTenant
- ``` 
+``` powershell 
+ Get-OctopusTenant
+``` 
 
 Gets the tenant with the name "MyAwesometenant"
 
- ``` powershell 
- PS C:\> Get-OctopusTenant -name "MyAwesomeTenant"
- ``` 
+``` powershell 
+ Get-OctopusTenant -name "MyAwesomeTenant"
+``` 
 
 Gets the tenants with the names "MyAwesomeTenant" and "MyOtherAwesomeTenant"
 
- ``` powershell 
- PS C:\> Get-OctopusTenant -name "MyAwesomeTenant","MyOtherAwesomeTenant"
- ``` 
+``` powershell 
+ Get-OctopusTenant -name "MyAwesomeTenant","MyOtherAwesomeTenant"
+``` 
 
 Gets all the tenants whose name matches the pattern "*AwesomeTenant"
 
- ``` powershell 
- PS C:\> Get-Channel -name "*AwesomeTenant"
- ``` 
+``` powershell 
+ Get-Channel -name "*AwesomeTenant"
+``` 
 

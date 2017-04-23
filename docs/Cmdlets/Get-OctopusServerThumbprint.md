@@ -8,7 +8,7 @@ Gets the Octopus Server thumbprint. Admin access in the Octopus instance will be
 ### Examples
 Gets the thumbprint of the Octopus Server
 
- ``` powershell 
- PS C:\> Get-OctopusServerThumbprint
- ``` 
+``` powershell 
+ Get-OctopusServerThumbprint
+``` 
 

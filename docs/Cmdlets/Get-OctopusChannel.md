@@ -1,4 +1,4 @@
-### Summary
+﻿### Summary
 Gets information about Octopus Channels
 ### Parameters
 | Name | DataType          | Description |
@@ -9,37 +9,42 @@ Gets information about Octopus Channels
 
 ### Syntax
 ``` powershell
+
 Get-OctopusChannel [[-ChannelName] <string[]>] [[-ProjectName] <string[]>] [-ResourceOnly <SwitchParameter>] [<CommonParameters>]
+
+
+
+
 ``` 
 
 ### Examples
 Gets all the channels in all the projects of the instance
 
-```powershell 
-Get-OctopusChannel
+``` powershell 
+ Get-OctopusChannel
 ``` 
 
 Gets all the channels of the project "MyFinantialApp"
 
 ``` powershell 
- PS C:\> Get-OctopusChannel -Project "MyFinantialApp"
+ Get-OctopusChannel -Project "MyFinantialApp"
 ``` 
 
 Gets the Channel with the name "Hotfix_Website" of the project "MyFinantialApp"
 
 ``` powershell 
- PS C:\> Get-OctopusChannel -name "Hotfix_Website" -Project "MyFinantialApp"
+ Get-OctopusChannel -name "Hotfix_Website" -Project "MyFinantialApp"
 ``` 
 
 Gets the Channels with the names "Hotfix_Website" and "Hotfix_WebService" of the project "MyFinantialApp"
 
 ``` powershell 
-PS C:\> Get-OctopusChannel -name "Hotfix_Website","Hotfix_WebService" -Project "MyFinantialApp"
+ Get-OctopusChannel -name "Hotfix_Website","Hotfix_WebService" -Project "MyFinantialApp"
 ``` 
 
 Gets all the Channels whose name starts with "Hotfix_" of the project "MyFinantialApp"
 
 ``` powershell 
-PS C:\> Get-OctopusChannel -name "Hotfix_*" -Project "MyFinantialApp"
+ Get-OctopusChannel -name "Hotfix_*" -Project "MyFinantialApp"
 ``` 
 

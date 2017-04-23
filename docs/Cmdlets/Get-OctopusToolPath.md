@@ -8,7 +8,7 @@ This cmdlet returns the full path of the current Octo.exe version set as default
 ### Examples
 returns the full path of the current Octo.exe version set as default.
 
- ``` powershell 
- PS C:\> Get-OctopusToolPath
- ``` 
+``` powershell 
+ Get-OctopusToolPath
+``` 
 

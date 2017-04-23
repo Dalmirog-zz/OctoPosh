@@ -8,7 +8,7 @@ This cmdlet gets the path of the "Octopus Tools Folder" that will be used by oth
 ### Examples
 Gets the path of the "Octopus Tools Folder"
 
- ``` powershell 
- PS C:\> Get-OctopusToolsFolder
- ``` 
+``` powershell 
+ Get-OctopusToolsFolder
+``` 
 

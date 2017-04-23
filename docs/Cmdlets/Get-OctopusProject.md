@@ -22,25 +22,25 @@ Get-OctopusProject [[-ProjectGroupName] <string[]>] [-ResourceOnly <SwitchParame
 ### Examples
 Gets all the projects of the current Instance
 
- ``` powershell 
- PS C:\> Get-OctopusProject
- ``` 
+``` powershell 
+ Get-OctopusProject
+``` 
 
 Get the project named "MyProject"
 
- ``` powershell 
- PS C:\> Get-OctopusProject -name MyProject
- ``` 
+``` powershell 
+ Get-OctopusProject -name MyProject
+``` 
 
 Get all the projects whose name starts with the string "MyApp"
 
- ``` powershell 
- PS C:\> Get-OctopusProject -name MyApp*
- ``` 
+``` powershell 
+ Get-OctopusProject -name MyApp*
+``` 
 
 Gets all the projects inside of the Project Group "MyProduct"
 
- ``` powershell 
- PS C:\> Get-OctopusProject -ProjectGroupName "MyProduct"
- ``` 
+``` powershell 
+ Get-OctopusProject -ProjectGroupName "MyProduct"
+``` 
 

@@ -8,7 +8,7 @@ This function gets the data of the variables $env:OctopusURI and $env:OctopusAPI
 ### Examples
 Get the current connection info. Its the same as getting the values of $env:OctopusURL and $Env:OctopusAPIKey
 
- ``` powershell 
- PS C:\> Get-OctopusConnectionInfo
- ``` 
+``` powershell 
+ Get-OctopusConnectionInfo
+``` 
 
