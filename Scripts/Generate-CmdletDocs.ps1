@@ -40,7 +40,7 @@ Process
         
         $OutFile = Join-Path (Resolve-Path $Destination) ($cmdlet.ToLower() + ".md")
 
-        $OutFileParameters = @{FilePath = $OutFile; Append = $true; Force = $true; Encoding = "string"}
+        $OutFileParameters = @{FilePath = $OutFile; Append = $true; Force = $true; Encoding = "utf8"}
 
         Write-Output "Sending output to $outfile"        
 
@@ -51,7 +51,7 @@ Process
         }                
 
         $help = Get-Help $cmdlet
-
+        "" | Out-File @OutFileParameters
         "### Summary`n" | Out-File @OutFileParameters
         #$null = "$($help.Synopsis)`n" | Out-File @OutFileParameters
         $help.Synopsis | Out-File @OutFileParameters
