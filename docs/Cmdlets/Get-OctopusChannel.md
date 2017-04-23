@@ -1,4 +1,4 @@
-﻿### Summary
+### Summary
 
 Gets information about Octopus Channels
 ### Parameters
