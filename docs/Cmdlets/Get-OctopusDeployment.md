@@ -26,15 +26,11 @@ Get-OctopusDeployment [-After <DateTimeOffset>] [-Before <DateTimeOffset>] [-Env
 ``` 
 
 ### Examples
-**EXAMPLE 5**
-
 Get all the deployments that were done on the Octopus Instance. You might wanna go grab a coffee after hitting [enter] on this one, its gonna take a while.
 
  ``` powershell 
  PS C:\> Get-OctopusDeployment
  ``` 
-
-**EXAMPLE 5**
 
 Get all the deployments that were done for the release 1.0.0 of the project "MyProject"
 
@@ -42,23 +38,17 @@ Get all the deployments that were done for the release 1.0.0 of the project "MyP
  PS C:\> Get-OctopusDeployment -Project "MyProject" -ReleaseVersion 1.0.0
  ``` 
 
-**EXAMPLE 5**
-
 Get all the deployents that were done to the environments Staging and UAT on the project "MyService"
 
  ``` powershell 
  PS C:\> Get-OctopusDeployment -EnvironmentName "Staging","UAT" -ProjectName "MyService"
  ``` 
 
-**EXAMPLE 5**
-
 Get all the deployments that were done to the environment "Production" on the projects "MyProduct.webapp" and "MyProduct.service"
 
  ``` powershell 
  PS C:\> Get-OctopusDeployment -project "MyProduct.Webapp","MyProduct.service" -Environment "Production"
  ``` 
-
-**EXAMPLE 5**
 
 Gets all the machines registered in "Listening" mode. "Polling" is also a valid value
 

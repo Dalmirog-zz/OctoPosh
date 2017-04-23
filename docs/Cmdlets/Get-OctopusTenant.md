@@ -17,15 +17,11 @@ Get-OctopusTenant [[-TenantName] <string[]>] [-ResourceOnly <SwitchParameter>] [
 ``` 
 
 ### Examples
-**EXAMPLE 5**
-
 Gets all the tenants of the instance
 
  ``` powershell 
  PS C:\> Get-OctopusTenant
  ``` 
-
-**EXAMPLE 5**
 
 Gets the tenant with the name "MyAwesometenant"
 
@@ -33,15 +29,11 @@ Gets the tenant with the name "MyAwesometenant"
  PS C:\> Get-OctopusTenant -name "MyAwesomeTenant"
  ``` 
 
-**EXAMPLE 5**
-
 Gets the tenants with the names "MyAwesomeTenant" and "MyOtherAwesomeTenant"
 
  ``` powershell 
  PS C:\> Get-OctopusTenant -name "MyAwesomeTenant","MyOtherAwesomeTenant"
  ``` 
-
-**EXAMPLE 5**
 
 Gets all the tenants whose name matches the pattern "*AwesomeTenant"
 

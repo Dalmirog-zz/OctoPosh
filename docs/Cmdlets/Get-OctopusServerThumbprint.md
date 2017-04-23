@@ -6,8 +6,6 @@ Gets the Octopus Server thumbprint. Admin access in the Octopus instance will be
 ``` 
 
 ### Examples
-**EXAMPLE 5**
-
 Gets the thumbprint of the Octopus Server
 
  ``` powershell 

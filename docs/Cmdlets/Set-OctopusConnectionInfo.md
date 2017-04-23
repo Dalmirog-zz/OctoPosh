@@ -17,8 +17,6 @@ Set-OctopusConnectionInfo [-Server] <string> [-ApiKey] <string> [<CommonParamete
 ``` 
 
 ### Examples
-**EXAMPLE 5**
-
 Set connection info with a specific API Key for an Octopus instance
 
  ``` powershell 

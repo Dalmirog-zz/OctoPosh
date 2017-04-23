@@ -6,8 +6,6 @@ This cmdlet returns the full path of the current Octo.exe version set as default
 ``` 
 
 ### Examples
-**EXAMPLE 5**
-
 returns the full path of the current Octo.exe version set as default.
 
  ``` powershell 

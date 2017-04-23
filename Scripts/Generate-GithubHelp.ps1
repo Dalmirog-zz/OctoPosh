@@ -88,7 +88,7 @@ Process
         foreach ($example in $help.examples.example){
             #$title = $example.title.Replace("-","").trim().insert(0,"**").insert(11,"**")
 
-            "$title`n" | Out-File @OutFileParameters
+            #"$title`n" | Out-File @OutFileParameters
             "$($example.remarks.text)`n" | Out-File @OutFileParameters
             " `````` powershell `n $($example.code)`n `````` `n" | Out-File @OutFileParameters
         }        

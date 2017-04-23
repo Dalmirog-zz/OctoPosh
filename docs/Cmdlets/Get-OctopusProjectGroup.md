@@ -17,23 +17,17 @@ Get-OctopusProjectGroup [[-ProjectGroupName] <string[]>] [-ResourceOnly <SwitchP
 ``` 
 
 ### Examples
-**EXAMPLE 5**
-
 Gets all the Project Groups on the Octopus instance
 
  ``` powershell 
  PS C:\> Get-OctopusProjectGroup
  ``` 
 
-**EXAMPLE 5**
-
 Gets a Project Group named "MyProjects"
 
  ``` powershell 
  PS C:\> Get-OctopusProjectGroup -name "MyProjects"
  ``` 
-
-**EXAMPLE 5**
 
 Get all the projects whose name matches the pattern "*web*"
 

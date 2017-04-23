@@ -18,15 +18,11 @@ Get-OctopusChannel [[-ChannelName] <string[]>] [[-ProjectName] <string[]>] [-Res
 ``` 
 
 ### Examples
-**EXAMPLE 5**
-
 Gets all the channels in all the projects of the instance
 
  ``` powershell 
  PS C:\> Get-OctopusChannel
  ``` 
-
-**EXAMPLE 5**
 
 Gets all the channels of the project "MyFinantialApp"
 
@@ -34,23 +30,17 @@ Gets all the channels of the project "MyFinantialApp"
  PS C:\> Get-OctopusChannel -Project "MyFinantialApp"
  ``` 
 
-**EXAMPLE 5**
-
 Gets the Channel with the name "Hotfix_Website" of the project "MyFinantialApp"
 
  ``` powershell 
  PS C:\> Get-OctopusChannel -name "Hotfix_Website" -Project "MyFinantialApp"
  ``` 
 
-**EXAMPLE 5**
-
 Gets the Channels with the names "Hotfix_Website" and "Hotfix_WebService" of the project "MyFinantialApp"
 
  ``` powershell 
  PS C:\> Get-OctopusChannel -name "Hotfix_Website","Hotfix_WebService" -Project "MyFinantialApp"
  ``` 
-
-**EXAMPLE 5**
 
 Gets all the Channels whose name starts with "Hotfix_" of the project "MyFinantialApp"
 

@@ -16,15 +16,11 @@ Update-OctopusResource [[-Resource] <Resource>] [<CommonParameters>]
 ``` 
 
 ### Examples
-**EXAMPLE 5**
-
 Updates the Name of a ProjectGroup
 
  ``` powershell 
  PS C:\> $pg = Get-OctopusProjectGroup -name SomeProjectName ; $pg.resource.name = "SomeOtherProjectName" ; Update-OctopusResource -resource $pg.resource
  ``` 
-
-**EXAMPLE 5**
 
 Updates the [IsDisabled] property of a machine to disable it
 

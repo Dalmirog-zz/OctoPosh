@@ -20,23 +20,17 @@ Get-OctopusFeed [[-URL] <string[]>] [-ResourceOnly <SwitchParameter>] [<CommonPa
 ``` 
 
 ### Examples
-**EXAMPLE 5**
-
 Get all the external feeds registered in the current Instance
 
  ``` powershell 
  PS C:\> Get-OctopusFeed
  ``` 
 
-**EXAMPLE 5**
-
 Get the External Feed named "MyGet"
 
  ``` powershell 
  PS C:\> Get-OctopusFeed -FeedName "MyGet"
  ``` 
-
-**EXAMPLE 5**
 
 Get a feed with a the string "MyCompany" inside its URL
 
