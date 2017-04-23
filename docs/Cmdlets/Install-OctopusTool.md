@@ -20,17 +20,23 @@ Install-OctopusTool [-Latest <SwitchParameter>] [-SetAsDefault <SwitchParameter>
 ``` 
 
 ### Examples
+**EXAMPLE 1**
+
 Downloads the latest version of Octo.exe to the Octopus Tools Folder.
 
 ``` powershell 
  Install-OctopusTool -Latest
 ``` 
 
+**EXAMPLE 2**
+
 Downloads version 1.0.0 of Octo.exe to the Octopus Tools Folder.
 
 ``` powershell 
  Install-OctopusTool -version 1.0.0
 ``` 
+
+**EXAMPLE 3**
 
 Downloads version 1.0.0 of Octo.exe to the Octopus Tools Folder and also sets it as the current defaul version
 

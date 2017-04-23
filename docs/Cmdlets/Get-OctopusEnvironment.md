@@ -17,11 +17,15 @@ Get-OctopusEnvironment [[-EnvironmentName] <string[]>] [-ResourceOnly <SwitchPar
 ``` 
 
 ### Examples
+**EXAMPLE 1**
+
 Gets info about the environment "Production"
 
 ``` powershell 
  Get-OctopusEnvironment -name Production
 ``` 
+
+**EXAMPLE 2**
 
 Gets info about all the environments whose name matches the pattern "FeatureTest*"
 

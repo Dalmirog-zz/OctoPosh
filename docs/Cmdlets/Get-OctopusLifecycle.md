@@ -17,11 +17,15 @@ Get-OctopusLifecycle [[-LifecycleName] <string[]>] [-ResourceOnly <SwitchParamet
 ``` 
 
 ### Examples
+**EXAMPLE 1**
+
 Get all the Lifecycles of the current Instance
 
 ``` powershell 
  Get-OctopusLifecycle
 ``` 
+
+**EXAMPLE 2**
 
 Get the Lifecycle named "MyLifecycle"
 
@@ -29,11 +33,15 @@ Get the Lifecycle named "MyLifecycle"
  Get-OctopusLifecycle -name MyLifecycle
 ``` 
 
+**EXAMPLE 3**
+
 Gets the teams with the names "ProjectA_Lifecycle" and "ProjectB_Lifecycle"
 
 ``` powershell 
  Get-OctopusLifecycle -name "ProjectA_Lifecycle","ProjectB_Lifecycle"
 ``` 
+
+**EXAMPLE 4**
 
 Gets all the lifecycles whose name starts with "ProjectA"
 

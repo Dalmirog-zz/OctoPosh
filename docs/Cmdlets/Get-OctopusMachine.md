@@ -26,11 +26,15 @@ Get-OctopusMachine [-CommunicationStyle <string>] [-ResourceOnly <SwitchParamete
 ``` 
 
 ### Examples
+**EXAMPLE 1**
+
 Gets the machine with the name "Database_Prod"
 
 ``` powershell 
  Get-OctopusMachine -name "Database_Prod"
 ``` 
+
+**EXAMPLE 2**
 
 Gets all the machines which name is like "*_Prod"
 
@@ -38,17 +42,23 @@ Gets all the machines which name is like "*_Prod"
  Get-OctopusMachine -name "*_Prod"
 ``` 
 
+**EXAMPLE 3**
+
 Gets all the machines on the environments "Staging","UAT"
 
 ``` powershell 
  Get-OctopusMachine -EnvironmentName "Staging","UAT""
 ``` 
 
+**EXAMPLE 4**
+
 Gets all the machines with the string "*:10933" at the end of the URL
 
 ``` powershell 
  Get-OctopusMachine -URL "*:10933"
 ``` 
+
+**EXAMPLE 5**
 
 Gets all the machines registered in "Listening" mode. "Polling" is also a valid value
 

@@ -17,11 +17,15 @@ Get-OctopusTeam [[-TeamName] <string[]>] [-ResourceOnly <SwitchParameter>] [<Com
 ``` 
 
 ### Examples
+**EXAMPLE 1**
+
 Gets all the teams on the Octopus instance
 
 ``` powershell 
  Get-OctopusTeam
 ``` 
+
+**EXAMPLE 2**
 
 Gets the team with the name "ProjectA_Managers"
 
@@ -29,11 +33,15 @@ Gets the team with the name "ProjectA_Managers"
  Get-OctopusTeam -name "ProjectA_Managers"
 ``` 
 
+**EXAMPLE 3**
+
 Gets the teams with the names "ProjectA_Managers" and "ProjectA_Developers"
 
 ``` powershell 
  Get-OctopusTeam -name "ProjectA_Managers","ProjectA_Developers"
 ``` 
+
+**EXAMPLE 4**
 
 Gets all the teams whose name starts with "ProjectA"
 

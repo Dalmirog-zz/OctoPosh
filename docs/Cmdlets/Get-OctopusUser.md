@@ -17,11 +17,15 @@ Get-OctopusUser [[-UserName] <string[]>] [-ResourceOnly <SwitchParameter>] [<Com
 ``` 
 
 ### Examples
+**EXAMPLE 1**
+
 Gets all the Users on the Octopus instance
 
 ``` powershell 
  Get-OctopusUser
 ``` 
+
+**EXAMPLE 2**
 
 Gets the user with the Username "Jotaro Kujo"
 
@@ -29,11 +33,15 @@ Gets the user with the Username "Jotaro Kujo"
  Get-OctopusUser -Username "Jotaro Kujo"
 ``` 
 
+**EXAMPLE 3**
+
 Gets the users with the Usernames "Jotaro Kujo" and "Dio Brando"
 
 ``` powershell 
  Get-OctopusUser -Username "Jotaro Kujo","Dio Brando"
 ``` 
+
+**EXAMPLE 4**
 
 Gets all the users whose username ends with "Joestar"
 

@@ -20,11 +20,15 @@ Get-OctopusProject [[-ProjectGroupName] <string[]>] [-ResourceOnly <SwitchParame
 ``` 
 
 ### Examples
+**EXAMPLE 1**
+
 Gets all the projects of the current Instance
 
 ``` powershell 
  Get-OctopusProject
 ``` 
+
+**EXAMPLE 2**
 
 Get the project named "MyProject"
 
@@ -32,11 +36,15 @@ Get the project named "MyProject"
  Get-OctopusProject -name MyProject
 ``` 
 
+**EXAMPLE 3**
+
 Get all the projects whose name starts with the string "MyApp"
 
 ``` powershell 
  Get-OctopusProject -name MyApp*
 ``` 
+
+**EXAMPLE 4**
 
 Gets all the projects inside of the Project Group "MyProduct"
 

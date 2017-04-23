@@ -18,6 +18,8 @@ Get-OctopusDashboard [-DeploymentStatus <string[]>] [-EnvironmentName <string[]>
 ``` 
 
 ### Examples
+**EXAMPLE 1**
+
 Set connection info with a specific API Key for an Octopus instance
 
 ``` powershell 
