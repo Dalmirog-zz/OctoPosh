@@ -24,7 +24,7 @@ Your questions will help shape up the module according to the needs of the commu
 
 |               |               Build status               |
 | :-----------: | :--------------------------------------: |
-| Documentation | [![Documentation Status](http://readthedocs.org/projects/octoposh/badge/?version=latest)](http://octoposh.readthedocs.io/en/latest/?badge=latest) |
+|Documentation | ![ReadTheDocs](https://raw.githubusercontent.com/rtfd/readthedocs.org/master/media/images/favicon.png) [![Documentation Status](http://readthedocs.org/projects/octoposh/badge/?version=latest)](http://octoposh.readthedocs.io/en/latest/?badge=latest) |
 
 ## Disclaimer
 This is an open source project which is NOT supported by the Octopus Deploy team. All questions/bugs about this module should be entered on this github project.
