@@ -1,30 +1,17 @@
 # OctoPosh: The Octopus Deploy Powershell Module
 
-Octoposh is a Powershell module that prives cmdlets to interact with your Octopus Deploy instances. All cmdlets use a combination of the [Octopus .NET client](https://www.nuget.org/packages/Octopus.Client) and some raw REST API calls.
-
-With this module you can do things like:
-
-- Use  all the [Get-Octopus* cmdlets included](https://github.com/Dalmirog/OctoPosh/wiki) to get full-blown .NET objects referencing Octopus resources such as Projects, Evironments, Deployment Targets and much more.
-
-- [Create Octopus Resources](https://github.com/Dalmirog/OctoPosh/wiki/Creating-Resources)
-
-- [Modify Octopus Resources](https://github.com/Dalmirog/OctoPosh/wiki/Modifying-Resources)
-
-- [Delete Octopus Resources](https://github.com/Dalmirog/OctoPosh/wiki/Deleting-Resources)
-
-- Do all sorts of administrative tasks such as
-  - Starting a health check on an environment. [Wiki](https://github.com/Dalmirog/OctoPosh/wiki/Start-OctopusHealthCheck)
-  - Setting maintenance mode ON/OFF. [wiki](https://github.com/Dalmirog/OctoPosh/wiki/Set-OctopusMaintenanceMode)
-  - Start a Server-side retention Policy cleanup. [Wiki](https://github.com/Dalmirog/OctoPosh/wiki/Start-OctopusRetentionPolicy)
-  - *More to come*
-
+Octoposh is a Powershell module that provides cmdlets to interact with Octopus Deploy. All the cmdlets use rely on the [Octopus .NET client](https://www.nuget.org/packages/Octopus.Client).
 
 ## Getting Started
 
-- [How to download the module](https://github.com/Dalmirog/OctoPosh/wiki/Installing-the-module)
-- [How to setup your credentials](https://github.com/Dalmirog/OctoPosh/wiki/Setting-Credentials)
+- [Installing the module](http://octoposh.readthedocs.io/en/latest/gettingstarted/installing-the-module/)
+- [Setting credentials](http://octoposh.readthedocs.io/en/latest/gettingstarted/setting-credentials/)
 
-Check out our [Wiki](https://github.com/Dalmirog/OctoPosh/wiki) for our entire list of cmdlets
+## Documentation
+
+Check our docs site to learn how to use each cmdlet and some other avanced usages:
+
+http://octoposh.readthedocs.io
 
 ## Questions y feature requests
 If you want to request a cmdlet or a feature, or you just wanna ask how to do something with the module, drop by our Gitter channel and ask there:
@@ -33,18 +20,11 @@ If you want to request a cmdlet or a feature, or you just wanna ask how to do so
 
 Your questions will help shape up the module according to the needs of the community, so dont be a stranger!
 
+## Builds
+
+|               |               Build status               |
+| :-----------: | :--------------------------------------: |
+| Documentation | [![Documentation Status](http://readthedocs.org/projects/octoposh/badge/?version=latest)](http://octoposh.readthedocs.io/en/latest/?badge=latest) |
+
 ## Disclaimer
 This is an open source project which is NOT supported by the Octopus Deploy team. All questions/bugs about this module should be entered on this github project.
-
-## Credits
-
-This module was made using the following awesome tools
-
-| Name | Site|
-| ------------- | ----------- |
-| Octopus Deploy      | https://octopusdeploy.com/ |
-| Pester | https://github.com/pester/Pester |
-| Fiddler | http://www.telerik.com/fiddler |
-| Papercut     | https://papercut.codeplex.com/ |
-| TeamCity    | https://www.jetbrains.com/teamcity/ |
-| Powershell Gallery | https://www.powershellgallery.com/ |
