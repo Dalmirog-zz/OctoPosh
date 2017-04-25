@@ -3,7 +3,11 @@ theme: readthedocs
 repo_url: https://github.com/Dalmirog/Octoposh
 
 pages:
-- Home: index.md   
+- Home: index.md
+
+- Getting Started:
+  - Installing the Module: gettingstarted/installing-the-module.md
+  - Setting credentials: gettingstarted/setting-credentials.md
 
 - Cmdlets:
   - Get-OctopusChannel: cmdlets/get-octopuschannel.md
