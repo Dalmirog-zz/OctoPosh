@@ -9,22 +9,22 @@ using System.Management.Automation;
 namespace Octoposh.Cmdlets
 {
     /// <summary>
-    /// <para type="Description">Blocks or unblocks a release or set of releases.</para>
+    /// <para type="synopsis">Blocks or unblocks releases.</para>
     /// </summary>
     /// <summary>
-    /// <para type="Description">Blocks or unblocks a release or set of releases.</para>
+    /// <para type="Description">Blocks or unblocks releases.</para>
     /// </summary>
     /// <example>   
-    ///   <code>PS C:\> Set-OctopusReleaseStatus -ProjectName MyProject -ReleaseVersion 1.0.0 -Description "Because of reasons"</code>
-    ///   <para>Blocks the release [1.0.0] from the project [MyProject] from being deployed with the reson ["Because of reasons"]. Using the "ProjectName" parameter allows you to only block releases in one project at a time. For multiple releases check usage of parameter "Resource"</para>    
+    ///   <code>PS C:\> Set-OctopusReleaseStatus -ProjectName MyProject -ReleaseVersion 1.0.0 -state Blocked -Description "Because of reasons"</code>
+    ///   <para>Blocks the release [1.0.0] from the project [MyProject] from being deployed with the reason ["Because of reasons"] </para>    
     /// </example>
     /// <example>   
     ///   <code>PS C:\> Set-OctopusReleaseStatus -ProjectName MyProject -ReleaseVersion 1.0.0, 2.0.0 -Description "Because of reasons"</code>
-    ///   <para>Blocks the releasse [1.0.0],[2.0.0] from the project [MyProject] from being deployed with the reson ["Because of reasons"]. Using the "ProjectName" parameter allows you to only block releases in one project at a time. For multiple releases check usage of parameter "Resource"</para>    
+    ///   <para>Blocks the releases [1.0.0],[2.0.0] from the project [MyProject] from being deployed with the reson ["Because of reasons"] </para>    
     /// </example>
     /// <example>   
-    ///   <code>PS C:\> Set-OctopusReleaseStatus -Resource $ReleaseResource -Description </code>
-    ///   <para>Blocks all the releases</para>
+    ///   <code>PS C:\> Set-OctopusReleaseStatus-ProjectName MyProject -ReleaseVersion 1.0.0 -state Unblocked </code>
+    ///   <para>Unblocks release [1.0.0] from project [MyProject]</para>
     /// </example>
     /// <para type="link" uri="http://Octoposh.net">WebSite: </para>
     /// <para type="link" uri="https://github.com/Dalmirog/OctoPosh/">Github Project: </para>
