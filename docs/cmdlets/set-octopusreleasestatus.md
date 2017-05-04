@@ -29,25 +29,25 @@ Set-OctopusReleaseStatus [-Resource] <List`1> [-Status] <string> [[-Description]
 
 **EXAMPLE 1**
 
-Blocks the release [1.0.0] from the project [MyProject] from being deployed with the reson ["Because of reasons"]. Using the "ProjectName" parameter allows you to only block releases in one project at a time. For multiple releases check usage of parameter "Resource"
-
-``` powershell 
- Set-OctopusReleaseStatus -ProjectName MyProject -ReleaseVersion 1.0.0 -Description "Because of reasons"
-``` 
-
-**EXAMPLE 2**
-
-Blocks the releasse [1.0.0],[2.0.0] from the project [MyProject] from being deployed with the reson ["Because of reasons"]. Using the "ProjectName" parameter allows you to only block releases in one project at a time. For multiple releases check usage of parameter "Resource"
+Blocks the release [1.0.0] from the project [MyProject] from being deployed with the reason ["Because of reasons"]
 
 ``` powershell 
  Set-OctopusReleaseStatus -ProjectName MyProject -ReleaseVersion 1.0.0, 2.0.0 -Description "Because of reasons"
 ``` 
 
-**EXAMPLE 3**
+**EXAMPLE 2**
 
-Blocks all the releases
+Blocks the releases [1.0.0],[2.0.0] from the project [MyProject] from being deployed with the reson ["Because of reasons"]
 
 ``` powershell 
- Set-OctopusReleaseStatus -Resource $ReleaseResource -Description
+ Set-OctopusReleaseStatus -ProjectName MyProject -ReleaseVersion 1.0.0, 2.0.0 -state Blocked -Description "Because of reasons"
+``` 
+
+**EXAMPLE 3**
+
+Unblocks release [1.0.0] from project [MyProject]
+
+``` powershell 
+ Set-OctopusReleaseStatus-ProjectName MyProject -ReleaseVersion 1.0.0 -state Unblocked
 ``` 
 
