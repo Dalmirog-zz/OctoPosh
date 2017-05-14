@@ -714,7 +714,7 @@ namespace Octoposh.Model
                 list.Add(new FriendlyVariable()
                 {
                     Name = variable.Name,
-                    Value = variable.Name,
+                    Value = variable.Value,
                     IsEditable = variable.IsEditable,
                     IsSensitive = variable.IsSensitive,
                     Scope = scope,
