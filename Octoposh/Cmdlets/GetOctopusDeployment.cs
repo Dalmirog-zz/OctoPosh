@@ -30,8 +30,8 @@ namespace Octoposh.Cmdlets
     ///   <para>Get all the deployments that were done to the environment "Production"  on the projects "MyProduct.webapp" and "MyProduct.service"</para>    
     /// </example>
     /// <example>   
-    ///   <code>PS Get-OctopusDeployment -project "MyProduct.Webapp" -Environment "Production" -After 2/20/2015 -Before 2/21/2015</code>
-    ///   <para>Gets all the machines registered in "Listening" mode. "Polling" is also a valid value</para>    
+    ///   <code>PS Get-OctopusDeployment -project "MyProduct.Webapp" -Environment "Production" -After 2/20/2017 -Before 2/21/2017</code>
+    ///   <para>Gets all the deployments for the project "MyProduct.WebApp" for the environment "Production" between 2/20/2017 and 2/21/2017</para>    
     /// </example>
     /// <para type="link" uri="http://Octoposh.net">WebSite: </para>
     /// <para type="link" uri="https://github.com/Dalmirog/OctoPosh/">Github Project: </para>
