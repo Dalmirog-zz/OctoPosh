@@ -62,9 +62,9 @@ namespace Octoposh.Tests
                 }
             };
 
-            var removePowershell = new CmdletRunspace().CreatePowershellcmdlet(RemoveCmdletName, RemoveCmdletType, removeParameters);
+            var removePowershell = new CmdletRunspace().CreatePowershellcmdlet(RemoveCmdletName, RemoveCmdletType);
 
-            var removeResult = removePowershell.Invoke<bool>().FirstOrDefault();
+            var removeResult = removePowershell.Invoke<bool>(removeParameters).FirstOrDefault();
 
             Assert.IsTrue(removeResult);
             Console.WriteLine("Deleted resource [{0}] of type [{1}]", createResult.Name, createResult.GetType());
@@ -108,9 +108,9 @@ namespace Octoposh.Tests
                 }
             };
 
-            var removePowershell = new CmdletRunspace().CreatePowershellcmdlet(RemoveCmdletName, RemoveCmdletType, removeParameters);
+            var removePowershell = new CmdletRunspace().CreatePowershellcmdlet(RemoveCmdletName, RemoveCmdletType);
 
-            var removeResult = removePowershell.Invoke<bool>().FirstOrDefault();
+            var removeResult = removePowershell.Invoke<bool>(removeParameters).FirstOrDefault();
 
             Assert.IsTrue(removeResult);
             Console.WriteLine("Deleted resource [{0}] of type [{1}]", createResult.Name, createResult.GetType());
@@ -163,9 +163,9 @@ namespace Octoposh.Tests
                 }
             };
 
-            var removePowershell = new CmdletRunspace().CreatePowershellcmdlet(RemoveCmdletName, RemoveCmdletType, removeParameters);
+            var removePowershell = new CmdletRunspace().CreatePowershellcmdlet(RemoveCmdletName, RemoveCmdletType);
 
-            var removeResult = removePowershell.Invoke<bool>().FirstOrDefault();
+            var removeResult = removePowershell.Invoke<bool>(removeParameters).FirstOrDefault();
 
             Assert.IsTrue(removeResult);
             Console.WriteLine("Deleted resource [{0}] of type [{1}]", createResult.Name, createResult.GetType());
@@ -219,9 +219,9 @@ namespace Octoposh.Tests
                 }
             };
 
-            var removePowershell = new CmdletRunspace().CreatePowershellcmdlet(RemoveCmdletName, RemoveCmdletType, removeParameters);
+            var removePowershell = new CmdletRunspace().CreatePowershellcmdlet(RemoveCmdletName, RemoveCmdletType);
 
-            var removeResult = removePowershell.Invoke<bool>().FirstOrDefault();
+            var removeResult = removePowershell.Invoke<bool>(removeParameters).FirstOrDefault();
 
             Assert.IsTrue(removeResult);
             Console.WriteLine("Deleted resource [{0}] of type [{1}]", createResult.Name, createResult.GetType());
@@ -270,9 +270,9 @@ namespace Octoposh.Tests
                 }
             };
 
-            var removePowershell = new CmdletRunspace().CreatePowershellcmdlet(RemoveCmdletName, RemoveCmdletType, removeParameters);
+            var removePowershell = new CmdletRunspace().CreatePowershellcmdlet(RemoveCmdletName, RemoveCmdletType);
 
-            var removeResult = removePowershell.Invoke<bool>().FirstOrDefault();
+            var removeResult = removePowershell.Invoke<bool>(removeParameters).FirstOrDefault();
 
             Assert.IsTrue(removeResult);
             Console.WriteLine("Deleted resource [{0}] of type [{1}]", createResult.Name, createResult.GetType());
@@ -320,9 +320,9 @@ namespace Octoposh.Tests
                 }
             };
 
-            var removePowershell = new CmdletRunspace().CreatePowershellcmdlet(RemoveCmdletName, RemoveCmdletType, removeParameters);
+            var removePowershell = new CmdletRunspace().CreatePowershellcmdlet(RemoveCmdletName, RemoveCmdletType);
 
-            var removeResult = removePowershell.Invoke<bool>().FirstOrDefault();
+            var removeResult = removePowershell.Invoke<bool>(removeParameters).FirstOrDefault();
 
             Assert.IsTrue(removeResult);
             Console.WriteLine("Deleted resource [{0}] of type [{1}]", createResult.Name, createResult.GetType());
@@ -375,9 +375,9 @@ namespace Octoposh.Tests
                 }
             };
 
-            var removePowershell = new CmdletRunspace().CreatePowershellcmdlet(RemoveCmdletName, RemoveCmdletType, removeParameters);
+            var removePowershell = new CmdletRunspace().CreatePowershellcmdlet(RemoveCmdletName, RemoveCmdletType);
 
-            var removeResult = removePowershell.Invoke<bool>().FirstOrDefault();
+            var removeResult = removePowershell.Invoke<bool>(removeParameters).FirstOrDefault();
 
             Assert.IsTrue(removeResult);
             Console.WriteLine("Deleted resource [{0}] of type [{1}]", createResult.Username, createResult.GetType());
@@ -426,9 +426,9 @@ namespace Octoposh.Tests
                 }
             };
 
-            var removePowershell = new CmdletRunspace().CreatePowershellcmdlet(RemoveCmdletName, RemoveCmdletType, removeParameters);
+            var removePowershell = new CmdletRunspace().CreatePowershellcmdlet(RemoveCmdletName, RemoveCmdletType);
 
-            var removeResult = removePowershell.Invoke<bool>().FirstOrDefault();
+            var removeResult = removePowershell.Invoke<bool>(removeParameters).FirstOrDefault();
 
             Assert.IsTrue(removeResult);
             Console.WriteLine("Deleted resource [{0}] of type [{1}]", createResult.Name, createResult.GetType());
@@ -476,9 +476,9 @@ namespace Octoposh.Tests
                 }
             };
 
-            var removePowershell = new CmdletRunspace().CreatePowershellcmdlet(RemoveCmdletName, RemoveCmdletType, removeParameters);
+            var removePowershell = new CmdletRunspace().CreatePowershellcmdlet(RemoveCmdletName, RemoveCmdletType);
 
-            var removeResult = removePowershell.Invoke<bool>().FirstOrDefault();
+            var removeResult = removePowershell.Invoke<bool>(removeParameters).FirstOrDefault();
 
             Assert.IsTrue(removeResult);
             Console.WriteLine("Deleted resource [{0}] of type [{1}]", createResult.Name, createResult.GetType());
@@ -526,9 +526,9 @@ namespace Octoposh.Tests
                 }
             };
 
-            var removePowershell = new CmdletRunspace().CreatePowershellcmdlet(RemoveCmdletName, RemoveCmdletType, removeParameters);
+            var removePowershell = new CmdletRunspace().CreatePowershellcmdlet(RemoveCmdletName, RemoveCmdletType);
 
-            var removeResult = removePowershell.Invoke<bool>().FirstOrDefault();
+            var removeResult = removePowershell.Invoke<bool>(removeParameters).FirstOrDefault();
 
             Assert.IsTrue(removeResult);
             Console.WriteLine("Deleted resource [{0}] of type [{1}]", createResult.Name, createResult.GetType());
@@ -579,9 +579,9 @@ namespace Octoposh.Tests
                 }
             };
 
-            var removePowershell = new CmdletRunspace().CreatePowershellcmdlet(RemoveCmdletName, RemoveCmdletType, removeParameters);
+            var removePowershell = new CmdletRunspace().CreatePowershellcmdlet(RemoveCmdletName, RemoveCmdletType);
 
-            var removeResult = removePowershell.Invoke<bool>().FirstOrDefault();
+            var removeResult = removePowershell.Invoke<bool>(removeParameters).FirstOrDefault();
 
             Assert.IsTrue(removeResult);
             Console.WriteLine("Deleted resource [{0}] of type [{1}]", createResult.Name, createResult.GetType());
@@ -640,9 +640,9 @@ namespace Octoposh.Tests
                 }
             };
 
-            var removePowershell = new CmdletRunspace().CreatePowershellcmdlet(RemoveCmdletName, RemoveCmdletType, removeParameters);
+            var removePowershell = new CmdletRunspace().CreatePowershellcmdlet(RemoveCmdletName, RemoveCmdletType);
 
-            var removeResult = removePowershell.Invoke<bool>().FirstOrDefault();
+            var removeResult = removePowershell.Invoke<bool>(removeParameters).FirstOrDefault();
 
             Assert.IsTrue(removeResult);
             Console.WriteLine("Deleted resource [{0}] of type [{1}]", createResult.Name, createResult.GetType());

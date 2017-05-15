@@ -36,7 +36,7 @@ namespace Octoposh.Cmdlets
         /// <para type="description">Resource Object to delete from the Octopus Server</para>
         /// </summary>
         [ValidateNotNullOrEmpty()]
-        [Parameter(Position = 1, ValueFromPipeline = true)]
+        [Parameter(Position = 1, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
         public Resource[] Resource { get; set; }
         
         //todo Add -Force parameter
