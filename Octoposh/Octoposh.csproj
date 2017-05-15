@@ -154,7 +154,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>..\..\..\..\packages\XmlDoc2CmdletDoc.0.2.5\tools\XmlDoc2CmdletDoc.exe Octoposh.dll</PostBuildEvent>
+    <PostBuildEvent>..\..\..\..\packages\XmlDoc2CmdletDoc.0.2.7\tools\XmlDoc2CmdletDoc.exe Octoposh.dll</PostBuildEvent>
   </PropertyGroup>
   <Import Project="..\packages\XmlDoc2CmdletDoc.0.2.7\build\XmlDoc2CmdletDoc.targets" Condition="Exists('..\packages\XmlDoc2CmdletDoc.0.2.7\build\XmlDoc2CmdletDoc.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
