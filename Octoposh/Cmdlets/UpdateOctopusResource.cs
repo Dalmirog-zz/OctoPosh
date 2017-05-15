@@ -82,9 +82,11 @@ namespace Octoposh.Cmdlets
                     outputResource = _connection.Repository.Feeds.Modify(nugetFeed);
                     break;
 
-                case "Octopus.Client.Model.LibraryVariableSetResource":
-                    var libraryVariableSet = (LibraryVariableSetResource)Resource;
-                    outputResource = _connection.Repository.LibraryVariableSets.Modify(libraryVariableSet);
+                case "Octopus.Client.Model.VariableSetResource":
+
+                    var variableSet = (VariableSetResource)Resource;
+                    outputResource = _connection.Repository.VariableSets.Modify(variableSet);
+
                     break;
 
                 case "Octopus.Client.Model.MachineResource":
