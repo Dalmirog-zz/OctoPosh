@@ -119,6 +119,34 @@ $machine.Endpoint.Thumbprint = $discover.Endpoint.Thumbprint
 New-OctopusResource -Resource $machine
 ```
 
+**Offline Drop**
+```Powershell
+$OfflineDropName = "MYOfflineDrop"
+$Roles = "RoleA","RoleB"
+$DropFolderPath = "C:\drop"
+$ApplicationsDirectory = "C:\aplications"
+$OctopusWorkingDirectory = "C:\Working"
+$environmentNames = "Development","Staging"
+
+$machine = Get-OctopusResourceModel -Resource Machine
+
+$machine.Endpoint = New-Object Octopus.Client.Model.Endpoints.OfflineDropEndpointResource
+
+$machine.Name = $OfflineDropName
+
+$Roles | % {$machine.roles.Add($_)}
+
+$machine.Endpoint.ApplicationsDirectory = $ApplicationsDirectory
+$machine.Endpoint.DropFolderPath = $DropFolderPath
+$machine.Endpoint.OctopusWorkingDirectory = $OctopusWorkingDirectory
+
+$environments = Get-OctopusEnvironment $environmentNames -ResourceOnly
+
+$environments | %{$machine.EnvironmentIds.Add($_.Id)}
+
+New-OctopusResource -Resource $machine
+```
+
 ###Users
 
 **Create an Octopus user while the Octopus server is in Username/Password authentication mode**
