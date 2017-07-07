@@ -8,7 +8,7 @@ Param
     [string]$CmdletName = "*",
 
     # Destionation directory
-    [string]$Destination = "..\docs\cmdlets",
+    [string]$Destination = "$PSscriptRoot\..\docs\cmdlets",
 
     # yaml index only
     [switch]$YamlIndexOnly
