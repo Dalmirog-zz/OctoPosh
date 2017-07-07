@@ -121,6 +121,12 @@ namespace Octoposh.Cmdlets
                     var tagset = (TagSetResource)Resource;
                     outputResource = _connection.Repository.TagSets.Modify(tagset);
                     break;
+
+                case "Octopus.Client.Model.ReleaseResource":
+                    var release = (ReleaseResource)Resource;
+                    outputResource = _connection.Repository.Releases.Modify(release);
+                    break;
+
                 default:
                     Console.WriteLine("Update-OctopusResource doesn't support updating objects of type: {0}", Resource.GetType().ToString());
                     break;
