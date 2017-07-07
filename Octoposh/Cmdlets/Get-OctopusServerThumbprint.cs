@@ -46,7 +46,7 @@ namespace Octoposh.Cmdlets
                 throw;
             }
 
-            WriteObject(thumbprint);
+            WriteObject(thumbprint,true);
         }
     }
 }

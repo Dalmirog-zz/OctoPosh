@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-114",
+  "Id": "CommunityActionTemplates-120",
   "Name": "IIS Website AppFabric Application - Start",
   "ExternalId": "3f80830a-8920-44d9-bf2f-af6b84262631",
   "Description": "Starts an AppFabric application in IIS.",
@@ -20,7 +20,7 @@
       "Name": "WebsiteName",
       "Label": "Website name",
       "HelpText": "The name of the site in IIS",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -30,12 +30,12 @@
       "Name": "ApplicationName",
       "Label": "Application Name",
       "HelpText": "The name of the AppFabric application inside the Website in IIS",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-114",
+  "LogoAttachmentKey": "CommunityActionTemplates-120",
   "LogoAttachmentMimeType": "image/png"
 }

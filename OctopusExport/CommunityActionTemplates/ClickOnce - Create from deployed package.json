@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-27",
+  "Id": "CommunityActionTemplates-29",
   "Name": "ClickOnce - Create from deployed package",
   "ExternalId": "1b7909be-4870-4f81-8957-8357b9342c0f",
   "Description": "Create binaries manifest & CO application and sign them with given code sign certificate ... using mage.exe.",
@@ -24,7 +24,7 @@
       "Name": "DeployStepName",
       "Label": "Deploy step to read binaries from",
       "HelpText": "Name of the previous step used to deploy binaries that will be packed in CO package",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "StepName"
       }
@@ -44,7 +44,7 @@
       "Name": "ExeFileName",
       "Label": "Name of the target executable file",
       "HelpText": "Name of the executable file of the application to pack",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -94,7 +94,7 @@
       "Name": "IconFile",
       "Label": "Icon filename",
       "HelpText": "Name of icon file in the package, eg. ApplicationIcon.ico",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -104,12 +104,12 @@
       "Name": "DisplayName",
       "Label": "Application display name",
       "HelpText": "Name which appears in the Start Menu",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-27",
+  "LogoAttachmentKey": "CommunityActionTemplates-29",
   "LogoAttachmentMimeType": "image/png"
 }

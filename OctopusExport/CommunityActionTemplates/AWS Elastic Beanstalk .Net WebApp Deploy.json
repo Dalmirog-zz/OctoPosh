@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-12",
+  "Id": "CommunityActionTemplates-13",
   "Name": "AWS Elastic Beanstalk .Net WebApp Deploy",
   "ExternalId": "11060b54-15bc-4b12-a912-197c6c18b7b7",
   "Description": "Deploy a .Net WebApp build to AWS Elastic Beanstalk. This template uses the awsdeploy tool. ALL step fields need to be populated for this template to work.\n\nAWS Toolkit needs to be installed on your deployment server for this to work properly:\nhttps://aws.amazon.com/visualstudio/",
@@ -24,7 +24,7 @@
       "Name": "ProfileName",
       "Label": "Profile Name",
       "HelpText": "AWS Profile Name",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -34,7 +34,7 @@
       "Name": "ApplicationName",
       "Label": "Application Name",
       "HelpText": "AWS Application Name",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -44,7 +44,7 @@
       "Name": "EnvironmentName",
       "Label": "Environment Name",
       "HelpText": "AWS Environment Name",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -54,7 +54,7 @@
       "Name": "Region",
       "Label": "Region",
       "HelpText": "AWS Application Region",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -64,7 +64,7 @@
       "Name": "UploadBucket",
       "Label": "Upload Bucket",
       "HelpText": "AWS Application Upload Bucket",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -74,7 +74,7 @@
       "Name": "AccessKey",
       "Label": "Access Key",
       "HelpText": "AWS Access Key",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -84,7 +84,7 @@
       "Name": "SecretKey",
       "Label": "Secret Key",
       "HelpText": "AWS Secret Key",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -94,7 +94,7 @@
       "Name": "BuildDirectory",
       "Label": "Build Directory",
       "HelpText": "Path to the compiled code that needs to be packaged by MSDeploy.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "MultiLineText"
       }
@@ -104,7 +104,7 @@
       "Name": "MSDeployOutputDirectory",
       "Label": "MSDeploy Output Directory",
       "HelpText": "Path where MSDeploy should put the newly created package.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "MultiLineText"
       }
@@ -120,6 +120,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-12",
+  "LogoAttachmentKey": "CommunityActionTemplates-13",
   "LogoAttachmentMimeType": "image/png"
 }

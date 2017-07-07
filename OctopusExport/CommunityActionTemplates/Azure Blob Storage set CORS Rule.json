@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-19",
+  "Id": "CommunityActionTemplates-21",
   "Name": "Azure Blob Storage set CORS Rule",
   "ExternalId": "745fa985-7022-4b19-a788-2fd77aa5b365",
   "Description": "Set a given CORS rule on the specified Azure storage blob container",
@@ -20,7 +20,7 @@
       "Name": "PublishSettingsFile",
       "Label": "Publish Settings File",
       "HelpText": "Absolute path on the tentacle to the Azure publishsettings file to use. Eg. C:\\Azure\\Azure.publishsettings",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -28,7 +28,7 @@
       "Name": "StorageAccount",
       "Label": "Storage Account",
       "HelpText": "The Azure Storage Account to use.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -36,7 +36,7 @@
       "Name": "StorageAccountKey",
       "Label": "Storage Account Key",
       "HelpText": "The primary or secondary key for the Azure Storage Account.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
@@ -46,7 +46,7 @@
       "Name": "StorageContainer",
       "Label": "Storage Container",
       "HelpText": "The storage container to use.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -82,6 +82,6 @@
       "DisplaySettings": {}
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-19",
+  "LogoAttachmentKey": "CommunityActionTemplates-21",
   "LogoAttachmentMimeType": "image/png"
 }

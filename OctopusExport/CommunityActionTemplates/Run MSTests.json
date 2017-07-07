@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-156",
+  "Id": "CommunityActionTemplates-167",
   "Name": "Run MSTests",
   "ExternalId": "75746f93-6c2b-4a52-b3b6-97e8dee09a81",
   "Description": "This Step template should be used for running MSTests by passing list of assemblies.",
@@ -20,7 +20,7 @@
       "Name": "MsTestExePath",
       "Label": "Ms Test Path",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -28,7 +28,7 @@
       "Name": "MsTestWorkingDirectoryPath",
       "Label": "Working directory",
       "HelpText": "The folder that contains the test assemblies. Generally this will be bound to an output variable from a previous step. Example: _#{Octopus.Action[Deploy integration tests].Output.Package.InstallationDirectoryPath}_",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -36,10 +36,10 @@
       "Name": "MsTestAssemblies",
       "Label": "Test assemblies",
       "HelpText": "A semicolon-separated list of assembly names containing tests. Example: _MyCompany.IntegrationTests.dll; MyCompany.SmokeTests.dll_",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-156",
+  "LogoAttachmentKey": "CommunityActionTemplates-167",
   "LogoAttachmentMimeType": "image/png"
 }

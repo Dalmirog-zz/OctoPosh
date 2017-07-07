@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-35",
+  "Id": "CommunityActionTemplates-37",
   "Name": "Configuration - Encrypt Section",
   "ExternalId": "193628c4-2251-41e9-a782-225e632ef871",
   "Description": "Encrypts several configuration sections for the specified file in a given directory.",
@@ -25,7 +25,7 @@
       "Name": "WebsiteDirectory",
       "Label": "Website directory",
       "HelpText": "The path to the website physical directory that contains a `Web.Config` file. \n\nYou can get the InstallationDirectoryPath like so `#{Octopus.Action[StepName].Output.Package.InstallationDirectoryPath}`",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -35,7 +35,7 @@
       "Name": "SectionsToEncrypt",
       "Label": "Section to encrypt",
       "HelpText": "The name of the section in the web config to encrypt e.g. `appSettings`, `connectionStrings` etc.\nFor multiple sections, separate with a comma (,)",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -45,7 +45,7 @@
       "Name": "Provider",
       "Label": "Provider Name",
       "HelpText": "The provider to use for encryption",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -65,12 +65,12 @@
       "Name": "OtherFiles",
       "Label": "Other Files",
       "HelpText": "A list of other files in the `#{WebsiteDirectory}` folder that should be included when encrypting the specified `#{SectionToEncrypt}`. For example, `connectionStrings.config`. Values should be separated by a comma.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "MultiLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-35",
+  "LogoAttachmentKey": "CommunityActionTemplates-37",
   "LogoAttachmentMimeType": "image/png"
 }

@@ -28,7 +28,7 @@ namespace Octoposh.Cmdlets
             {
                 OctopusUrl = Environment.GetEnvironmentVariable("OctopusURL"),
                 OctopusApiKey = Environment.GetEnvironmentVariable("OctopusAPIKey")
-            });
+            },true);
         }
     }
 }

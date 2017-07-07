@@ -92,7 +92,7 @@ namespace Octoposh.Cmdlets
                     break;
             }
 
-            WriteObject(baseresource);
+            WriteObject(baseresource,true);
         }
     }
 }

@@ -36,12 +36,12 @@ namespace Octoposh.Tests
             Console.WriteLine("Looking for resource with name [{0}]",name);
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusMachine>>();
+            var results = powershell.Invoke<OutputOctopusMachine>();
 
-            Assert.AreEqual(1, results[0].Count);
+            Assert.AreEqual(1, results.Count);
 
             Console.WriteLine("Found [{0}]");
-            foreach (var item in results[0])
+            foreach (var item in results)
             {
                 Console.WriteLine(item.Name);
             }
@@ -61,7 +61,7 @@ namespace Octoposh.Tests
 
             Console.WriteLine("Looking for [{0}] machines with the names [{1}]",names.Length,names);
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusMachine>>()[0];
+            var results = powershell.Invoke<OutputOctopusMachine>();
 
             Console.WriteLine("Found [{0}] resources", results.Count);
             Assert.AreEqual(2,results.Count);
@@ -89,7 +89,7 @@ namespace Octoposh.Tests
             var pattern = new WildcardPattern(namePattern);
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusMachine>>()[0];
+            var results = powershell.Invoke<OutputOctopusMachine>();
 
             Console.WriteLine("Resources found: {0}", results.Count);
             Assert.Greater(results.Count, 0);
@@ -114,7 +114,7 @@ namespace Octoposh.Tests
 
             Console.WriteLine("Looking for a machine with the name [{0}]",name);
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusMachine>>()[0];
+            var results = powershell.Invoke<OutputOctopusMachine>();
 
             Assert.AreEqual(results.Count, 0);
             Console.WriteLine("Machine with name [{0}] not found", name);
@@ -133,11 +133,11 @@ namespace Octoposh.Tests
                 }};
 
                 var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-                var results = powershell.Invoke<List<OutputOctopusMachine>>();
+                var results = powershell.Invoke<OutputOctopusMachine>();
 
                 if (results != null)
                 {
-                    foreach (var result in results[0])
+                    foreach (var result in results)
                     {
                         Assert.AreEqual(result.CommunicationStyle, style);
                     }

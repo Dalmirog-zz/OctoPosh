@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-212",
+  "Id": "CommunityActionTemplates-229",
   "Name": "Windows - Local User",
   "ExternalId": "6dbe826d-f973-46fe-a897-a0a2cdfd01f4",
   "Description": "Configures a local user. (If assigning user rights the ntrights.exe file should be installed on the target server and added to the system path variable)",
@@ -20,7 +20,7 @@
       "Name": "Username",
       "Label": "Username",
       "HelpText": "The username",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -28,7 +28,7 @@
       "Name": "Password",
       "Label": "Password",
       "HelpText": "The password",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -36,7 +36,7 @@
       "Name": "MemberOf",
       "Label": "Group memberships",
       "HelpText": "A comma separated list of group memberships",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -44,10 +44,10 @@
       "Name": "UserRights",
       "Label": "User rights",
       "HelpText": "A comma separated list of user rights to assign (e.g. SeServiceLogonRight). See http://support.microsoft.com/kb/315276 for full list of rights",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-212",
+  "LogoAttachmentKey": "CommunityActionTemplates-229",
   "LogoAttachmentMimeType": "image/png"
 }

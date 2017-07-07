@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-104",
+  "Id": "CommunityActionTemplates-110",
   "Name": "IIS Website - Create",
   "ExternalId": "74c6ab38-f56c-4637-918c-1b46b4e24049",
   "Description": "Creates a new website in IIS",
@@ -20,7 +20,7 @@
       "Name": "WebsiteName",
       "Label": "Website name",
       "HelpText": "The display name of the IIS website to create.\n\nExample: Default Web Site",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -28,7 +28,7 @@
       "Name": "WebRoot",
       "Label": "Relative home directory",
       "HelpText": "The directory which will be used as the home directory of the IIS website. This should be bound to the installation directory of a previous step.\n\nExample: C:\\inetpub\\wwwroot",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -36,7 +36,7 @@
       "Name": "ApplicationPoolName",
       "Label": "Application pool name",
       "HelpText": "Name of the application pool in IIS to use for the new website",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -68,7 +68,7 @@
       "Name": "BindingHost",
       "Label": "Host Header",
       "HelpText": "The host name to use for the new website\n\nExample: company.example.com",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -76,7 +76,7 @@
       "Name": "BindingSslThumbprint",
       "Label": "Thumbprint",
       "HelpText": "The thumbprint of the SSL certificate to use for the new website when using the HTTPS protocol\n\nExample: 7c003ac253aa41e89976f139c11edd7b",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -98,6 +98,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-104",
+  "LogoAttachmentKey": "CommunityActionTemplates-110",
   "LogoAttachmentMimeType": "image/png"
 }

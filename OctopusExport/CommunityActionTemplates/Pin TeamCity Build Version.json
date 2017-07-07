@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-130",
+  "Id": "CommunityActionTemplates-138",
   "Name": "Pin TeamCity Build Version",
   "ExternalId": "b3137de8-93c9-4a10-8f6a-5dd14175b843",
   "Description": "Try to pin the TeamCity build version. (Requires Octopus version to match TeamCity version)",
@@ -30,7 +30,7 @@
       "Name": "buildTypeId",
       "Label": "Build Configuration ID",
       "HelpText": "The build configuration id to look for the build to pin.\n\nGeneral Settings of the Build Configuration",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -48,7 +48,7 @@
       "Name": "TeamCityUser",
       "Label": "TeamCity User",
       "HelpText": "The TeamCity user used for pinning the build",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -58,12 +58,12 @@
       "Name": "TeamCityPassword",
       "Label": "TeamCity User Password",
       "HelpText": "The password for the TeamCity user.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-130",
+  "LogoAttachmentKey": "CommunityActionTemplates-138",
   "LogoAttachmentMimeType": "image/png"
 }

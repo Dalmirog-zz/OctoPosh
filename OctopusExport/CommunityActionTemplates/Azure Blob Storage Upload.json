@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-20",
+  "Id": "CommunityActionTemplates-22",
   "Name": "Azure Blob Storage Upload",
   "ExternalId": "0b167d34-832e-4c96-8a8f-2ea0a6c0fe0c",
   "Description": "Upload files in a directory to a specified Azure Storage blob container.",
@@ -20,7 +20,7 @@
       "Name": "CopyDirectory",
       "Label": "Copy Directory",
       "HelpText": "Replicates files and directory under the Copy Directory.\nEg. `Content/CDN` that is located at the root of the nuget package.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -30,7 +30,7 @@
       "Name": "PublishSettingsFile",
       "Label": "Publish Settings File",
       "HelpText": "Absolute path on the tentacle to the Azure publishsettings file to use.\nEg. `C:\\Azure\\Azure.publishsettings`",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -40,7 +40,7 @@
       "Name": "StorageAccount",
       "Label": "Storage Account",
       "HelpText": "The Azure Storage Account to use.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -50,7 +50,7 @@
       "Name": "StorageAccountKey",
       "Label": "Storage Account Key",
       "HelpText": "The primary or secondary key for the Azure Storage Account.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -60,7 +60,7 @@
       "Name": "StorageContainer",
       "Label": "Storage Container",
       "HelpText": "The storage container to use.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -70,12 +70,12 @@
       "Name": "NugetPackageStepName",
       "Label": "Nuget Package Step Name",
       "HelpText": "Name of the previously-deployed package step that contains the Copy Directory.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-20",
+  "LogoAttachmentKey": "CommunityActionTemplates-22",
   "LogoAttachmentMimeType": "image/png"
 }

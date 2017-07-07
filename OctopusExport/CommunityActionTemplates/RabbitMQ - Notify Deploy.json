@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-134",
+  "Id": "CommunityActionTemplates-145",
   "Name": "RabbitMQ - Notify Deploy",
   "ExternalId": "309f8497-7f79-4979-89a6-5d7e15d83ae2",
   "Description": "Notifies a deploy by sending a message into rabbitMQ. The message contains all octopus variables and these can be used to have some insight on the deploy. The step is very beta, it is advised to improve it to match real case scenarios.",
@@ -40,7 +40,7 @@
       "Name": "rabbitExchange",
       "Label": "rabbitMQ exchange",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -50,7 +50,7 @@
       "Name": "rabbitVirtualHost",
       "Label": "rabbitmq virtual host",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -66,6 +66,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-134",
+  "LogoAttachmentKey": "CommunityActionTemplates-145",
   "LogoAttachmentMimeType": "image/png"
 }

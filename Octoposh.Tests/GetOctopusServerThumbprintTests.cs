@@ -27,7 +27,7 @@ namespace Octoposh.Tests
             Console.WriteLine("Getting thumbprint from Octopus server running on [{0}]", octopusUrl);
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType);
-            var results = powershell.Invoke<string>()[0];
+            var results = powershell.Invoke<string>();
 
             Assert.NotNull(results);
 

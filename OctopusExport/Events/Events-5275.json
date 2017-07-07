@@ -1,0 +1,31 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-5275",
+  "RelatedDocumentIds": [
+    "Projects-27",
+    "Releases-143"
+  ],
+  "ProjectId": "Projects-27",
+  "EnvironmentId": null,
+  "TenantId": null,
+  "Category": "Created",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-03-14T21:01:08.7890296-03:00",
+  "Message": "Unblocked issue: First Block for project ReleaseTests_Project1 release 0.0.1.",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Projects-27",
+      "StartIndex": 41,
+      "Length": 21
+    },
+    {
+      "ReferencedDocumentId": "Releases-143",
+      "StartIndex": 71,
+      "Length": 5
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "Session cookie"
+}

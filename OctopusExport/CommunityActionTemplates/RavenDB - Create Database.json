@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-136",
+  "Id": "CommunityActionTemplates-147",
   "Name": "RavenDB - Create Database",
   "ExternalId": "ffa7c244-f835-42d1-ad38-15f96037f114",
   "Description": "Used to create a new database on a server",
@@ -30,7 +30,7 @@
       "Name": "ravenDatabaseName",
       "Label": "Name of the Database",
       "HelpText": "The name the database will be called. Make sure that name is not already being used.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -40,7 +40,7 @@
       "Name": "ravenActiveBundles",
       "Label": "Active Bundles",
       "HelpText": "A settings option, Active Bundles refers bundles that RavenDB has (Replication;Versioning; etc)",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -61,7 +61,7 @@
       "Name": "ravenDataDir",
       "Label": "Path for the database directory",
       "HelpText": "The path for the database directory on the server",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -81,7 +81,7 @@
       "Name": "voronTempPath",
       "Label": "Path to Temporary Files",
       "HelpText": "A different path where the temporary files will be stored",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -91,7 +91,7 @@
       "Name": "esentLogsPath",
       "Label": "Path for the Esent Logs",
       "HelpText": "The path for the Esent logs",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -101,12 +101,12 @@
       "Name": "indexStoragePath",
       "Label": "Path for the Indexes",
       "HelpText": "The path for the indexes on a disk, if you want to store the indexes on another HDD for performance reasons",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-136",
+  "LogoAttachmentKey": "CommunityActionTemplates-147",
   "LogoAttachmentMimeType": "image/png"
 }

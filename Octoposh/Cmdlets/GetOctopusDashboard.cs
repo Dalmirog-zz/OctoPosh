@@ -58,7 +58,7 @@ namespace Octoposh.Cmdlets
             var converter = new OutputConverter();
             
             var outputList = converter.GetOctopusDashboard(rawDashboard, ProjectName, EnvironmentName, DeploymentStatus);
-            WriteObject(outputList);
+            WriteObject(outputList,true);
         }
     }
 }

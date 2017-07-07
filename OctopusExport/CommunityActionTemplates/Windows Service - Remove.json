@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-222",
+  "Id": "CommunityActionTemplates-239",
   "Name": "Windows Service - Remove",
   "ExternalId": "c5e85c9f-0408-4b38-b85f-6a225fd3e9d6",
   "Description": "Removes a Windows service.",
@@ -20,10 +20,10 @@
       "Name": "ServiceName",
       "Label": "Service name to remove.",
       "HelpText": "Name of the service to remove. Example: _OctopusDeploy Tentacle_",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-222",
+  "LogoAttachmentKey": "CommunityActionTemplates-239",
   "LogoAttachmentMimeType": "image/png"
 }

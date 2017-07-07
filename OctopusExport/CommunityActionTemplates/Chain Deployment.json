@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-22",
+  "Id": "CommunityActionTemplates-24",
   "Name": "Chain Deployment",
   "ExternalId": "18392835-d50e-4ce9-9065-8e15a3c30954",
   "Description": "Trigger a deployment for another project in Octopus",
@@ -25,7 +25,7 @@
       "Name": "Chain_ApiKey",
       "Label": "API Key",
       "HelpText": "The API Key to use for authentication",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
@@ -35,7 +35,7 @@
       "Name": "Chain_ProjectName",
       "Label": "Project Name",
       "HelpText": "The name of the project to trigger a deployment for",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -76,12 +76,12 @@
       "Name": "Chain_WaitForDeployment",
       "Label": "Wait For Deployment",
       "HelpText": "If checked, waits for the deployment to complete before continuing",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Checkbox"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-22",
+  "LogoAttachmentKey": "CommunityActionTemplates-24",
   "LogoAttachmentMimeType": "image/png"
 }

@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-58",
+  "Id": "CommunityActionTemplates-63",
   "Name": "File System - Clean Configuration Transforms",
   "ExternalId": "9a2b84db-2940-4d9a-b61f-c82df35cee6c",
   "Description": "Clean out configuration transform files from the installation directory after a deployment (e.g. Web.Release.config, YourApp.Production.config, etc.).",
@@ -20,7 +20,7 @@
       "Name": "PathToClean",
       "Label": "Path to clean",
       "HelpText": "The path to clean.\n\nUsually you would set this to `Octopus.Action[StepName].Output.Package.InstallationDirectoryPath`.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -36,6 +36,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-58",
+  "LogoAttachmentKey": "CommunityActionTemplates-63",
   "LogoAttachmentMimeType": "image/png"
 }

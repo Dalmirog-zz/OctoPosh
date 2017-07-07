@@ -1,0 +1,26 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-7454",
+  "RelatedDocumentIds": [
+    "variableset-LibraryVariableSets-23",
+    "LibraryVariableSets-23"
+  ],
+  "ProjectId": null,
+  "EnvironmentId": null,
+  "TenantId": null,
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-07-07T04:45:00.9201961+00:00",
+  "Message": "Variables for VariableSetTests_Library1 were changed",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "LibraryVariableSets-23",
+      "StartIndex": 14,
+      "Length": 25
+    }
+  ],
+  "Comments": null,
+  "Details": "<span>{\r&para;<br>  \"Id\": \"variableset-LibraryVariableSets-23\",\r&para;<br>  \"OwnerId\": \"LibraryVariableSets-23\",\r&para;<br>  \"Version\": </span><del style=\"background:#ffe6e6;\">1</del><ins style=\"background:#e6ffe6;\">2</ins><span>,\r&para;<br>  \"Variables\": [\r&para;<br>    {\r&para;<br>      \"Id\": \"e016795e-1ce1-109b-470f-9f611ba3fd03\",\r&para;<br>      \"Name\": \"var\",\r&para;<br>      \"Type\": \"String\",\r&para;<br>      \"Value\": \"</span><del style=\"background:#ffe6e6;\">foo</del><ins style=\"background:#e6ffe6;\">modified_VariableValue</ins><span>\",\r&para;<br>      \"Scope\": {\r&para;<br>        \"Environment\": [\r&para;<br>          \"Environments-21\"\r&para;<br>        ],\r&para;<br>        \"Machine\": [\r&para;<br>          \"Machines-21\"\r&para;<br>        ],\r&para;<br>        \"Role\": [\r&para;<br>          \"WebServer\"\r&para;<br>        ]\r&para;<br>      }\r&para;<br>    }\r&para;<br>  ],\r&para;<br>  \"RelatedDocumentIds\": [\r&para;<br>    \"Environments-21\",\r&para;<br>    \"Machines-21\",\r&para;<br>    \"WebServer\"\r&para;<br>  ]\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+}

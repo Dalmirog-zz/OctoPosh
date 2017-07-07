@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-176",
+  "Id": "CommunityActionTemplates-192",
   "Name": "SQL - Execute SQL Script with SQL or Windows Authentication",
   "ExternalId": "3ec610a8-f75c-43da-8d82-8c9b7b334084",
   "Description": "Executes SQL script file(s) against the specified database using either SQL or Windows authentication. SQL Scripts can be hardcoded value or can be from an extracted NuGet package.",
@@ -25,7 +25,7 @@
       "Name": "serverInstance",
       "Label": "Server Instance Name",
       "HelpText": "The SQL Server Instance name",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -33,7 +33,7 @@
       "Name": "dbName",
       "Label": "Database Name",
       "HelpText": "The database name",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -41,7 +41,7 @@
       "Name": "Authentication",
       "Label": "Authentication",
       "HelpText": "The authentication method",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Select",
         "Octopus.SelectOptions": "SqlAuthentication\nWindowsIntegrated"
@@ -52,7 +52,7 @@
       "Name": "Username",
       "Label": "Username",
       "HelpText": "The username to use to connect (only applies with SqlAuthentication selected)",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -60,7 +60,7 @@
       "Name": "Password",
       "Label": "Password",
       "HelpText": "The password to use to connect (only applies with SqlAuthentication selected)",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -68,7 +68,7 @@
       "Name": "SQLScripts",
       "Label": "SQL Scripts",
       "HelpText": "Full path to each script name on a new line\nWildcards are accepted, eg. C:\\Scripts\\*.sql, C:\\Scripts\\Deploy*.sql",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "MultiLineText"
       }
@@ -78,12 +78,12 @@
       "Name": "DacpacPackageExtractStepName",
       "Label": "DACPAC Package Extract Step Name",
       "HelpText": "Optional: The step in which the DACPAC package was installed. Can be left as blank if SQLScripts is a hardcoded value.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "StepName"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-176",
+  "LogoAttachmentKey": "CommunityActionTemplates-192",
   "LogoAttachmentMimeType": "image/png"
 }

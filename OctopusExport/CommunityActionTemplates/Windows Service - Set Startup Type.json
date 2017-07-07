@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-224",
+  "Id": "CommunityActionTemplates-242",
   "Name": "Windows Service - Set Startup Type",
   "ExternalId": "361926f3-8c53-4d19-bb3b-337a531e4448",
   "Description": "Sets the Startup Type of a Windows Service",
@@ -20,7 +20,7 @@
       "Name": "ServiceName",
       "Label": "Service Name",
       "HelpText": "Name of the Windows Service (this is not always the display name).",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -37,6 +37,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-224",
+  "LogoAttachmentKey": "CommunityActionTemplates-242",
   "LogoAttachmentMimeType": "image/png"
 }

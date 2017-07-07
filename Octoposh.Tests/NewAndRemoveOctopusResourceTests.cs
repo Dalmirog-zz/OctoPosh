@@ -122,8 +122,8 @@ namespace Octoposh.Tests
         {
             #region ProjectCreate
 
-            var projectGroupId = "ProjectGroups-21";
-            var lifecycleID = "Lifecycles-21";
+            var projectGroupId = TestUtilities.Repository.ProjectGroups.FindAll().FirstOrDefault().Id;
+            var lifecycleID = TestUtilities.Repository.Lifecycles.FindAll().FirstOrDefault().Id;
 
             var resource = new ProjectResource()
             {
@@ -540,7 +540,7 @@ namespace Octoposh.Tests
         {
             #region ChannelCreate
 
-            var projectId = "Projects-5";
+            var projectId = TestUtilities.Repository.Projects.FindAll().FirstOrDefault().Id;
 
             var resource = new ChannelResource()
             {
@@ -593,7 +593,7 @@ namespace Octoposh.Tests
         {
             #region MachineCreate
 
-            var environmentId = "Environments-1";
+            var environmentId = TestUtilities.Repository.Environments.FindAll().FirstOrDefault().Id;
 
             var resource = new MachineResource()
             {

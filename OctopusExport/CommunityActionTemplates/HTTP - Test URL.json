@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-80",
+  "Id": "CommunityActionTemplates-85",
   "Name": "HTTP - Test URL",
   "ExternalId": "f5cebc0a-cc16-4876-9f72-bfbd513e6fdd",
   "Description": "Makes a GET request to a HTTP(S) end point and verifies that a particular status code and response (optional) is returned within a specified period of time",
@@ -25,7 +25,7 @@
       "Name": "Uri",
       "Label": "URI",
       "HelpText": "The full Uri of the endpoint",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -49,7 +49,7 @@
       "Name": "BasicAuthUsername",
       "Label": "Username",
       "HelpText": "Username for Basic authentication. Leave blank to use Anonymous.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -59,7 +59,7 @@
       "Name": "BasicAuthPassword",
       "Label": "Password",
       "HelpText": "Password for Basic authentication. Leave blank for Anonymous.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
@@ -79,12 +79,12 @@
       "Name": "ExpectedResponse",
       "Label": "Expected Response",
       "HelpText": "The response should be this text",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-80",
+  "LogoAttachmentKey": "CommunityActionTemplates-85",
   "LogoAttachmentMimeType": "image/png"
 }

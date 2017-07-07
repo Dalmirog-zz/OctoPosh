@@ -1,0 +1,41 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-4218",
+  "RelatedDocumentIds": [
+    "Projects-26",
+    "Environments-21"
+  ],
+  "ProjectId": "Projects-26",
+  "EnvironmentId": "Environments-21",
+  "TenantId": null,
+  "Category": "DeploymentSucceeded",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-02-14T03:19:58.0619282-03:00",
+  "Message": "Deploy to Dev succeeded  for TestProject2 release 0.0.4 to Dev",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 0,
+      "Length": 13
+    },
+    {
+      "ReferencedDocumentId": "Projects-26",
+      "StartIndex": 29,
+      "Length": 12
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 50,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-21",
+      "StartIndex": 59,
+      "Length": 3
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "Unknown"
+}

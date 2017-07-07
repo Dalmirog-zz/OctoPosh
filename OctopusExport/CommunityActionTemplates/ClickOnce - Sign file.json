@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-28",
+  "Id": "CommunityActionTemplates-30",
   "Name": "ClickOnce - Sign file",
   "ExternalId": "c2d2cb47-b737-49a9-9063-41e84db53097",
   "Description": "Sign file with given code sign certificate using mage.exe.",
@@ -21,7 +21,7 @@
       "Name": "SignFileFilter",
       "Label": "Filter to find file to sign",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -31,7 +31,7 @@
       "Name": "SignCert",
       "Label": "Path to the certification file",
       "HelpText": "Path to the certification pfx file",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -41,7 +41,7 @@
       "Name": "SignCertPass",
       "Label": "Password of the certification file",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -51,7 +51,7 @@
       "Name": "AdvencedMageParameters",
       "Label": "Addition parameters for mage.exe",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -61,7 +61,7 @@
       "Name": "PackagePath",
       "Label": "Path to the root directory of ClickOnce package",
       "HelpText": "Path to the root drectory of ClickOnce package. This is where you can find the setup.exe, and *.application files and the \"Application Files\" folder",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -77,6 +77,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-28",
+  "LogoAttachmentKey": "CommunityActionTemplates-30",
   "LogoAttachmentMimeType": "image/png"
 }

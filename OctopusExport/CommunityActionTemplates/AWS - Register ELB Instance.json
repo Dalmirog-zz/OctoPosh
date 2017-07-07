@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-11",
+  "Id": "CommunityActionTemplates-12",
   "Name": "AWS - Register ELB Instance",
   "ExternalId": "cc1ae822-3dcf-4041-a790-69a1267552c2",
   "Description": "Registers an instance with an ELB",
@@ -20,7 +20,7 @@
       "Name": "ec2ClientId",
       "Label": "AWS EC2 Client Id",
       "HelpText": "The client id to use when authenticating with AWS",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
@@ -30,7 +30,7 @@
       "Name": "ec2Credentials",
       "Label": "AWS EC2 Client Secret",
       "HelpText": "The client secret used to authenticate with AWS",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
@@ -40,7 +40,7 @@
       "Name": "elbName",
       "Label": "AWS ELB Name",
       "HelpText": "The name of the AWS ELB to add the instance to",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -76,6 +76,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-11",
+  "LogoAttachmentKey": "CommunityActionTemplates-12",
   "LogoAttachmentMimeType": "image/png"
 }

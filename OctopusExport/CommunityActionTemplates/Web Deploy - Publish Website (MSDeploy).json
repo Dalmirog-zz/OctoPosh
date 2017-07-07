@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-200",
+  "Id": "CommunityActionTemplates-217",
   "Name": "Web Deploy - Publish Website (MSDeploy)",
   "ExternalId": "ba8581a6-c463-40fb-ab98-3800e761b6f4",
   "Description": "Ensure that Web Deploy 3.5 is installed on the system. The installer is downloaded from http://www.iis.net/downloads/microsoft/web-deploy if required.",
@@ -20,7 +20,7 @@
       "Name": "PublishUrl",
       "Label": "Publish Url",
       "HelpText": "Publish url to use when publishing the website.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -38,7 +38,7 @@
       "Name": "WebsiteName",
       "Label": "Website Name",
       "HelpText": "Website name to use when publishing the website.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -46,7 +46,7 @@
       "Name": "Username",
       "Label": "Username",
       "HelpText": "Username to use when authenticating with the HTTPS server.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -54,7 +54,7 @@
       "Name": "Password",
       "Label": null,
       "HelpText": "Password to use when authenticating with the HTTPS server. You should create a sensitive variable in your project variables, and then bind this value.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -62,7 +62,7 @@
       "Name": "WebDeployPackageStepName",
       "Label": "Package Step Name",
       "HelpText": "Name of the previously-deployed package step that contains the files that you want to deploy.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -80,7 +80,7 @@
       "Name": "SkipSyncPaths",
       "Label": "Skip Paths From Sync",
       "HelpText": "Semi-colon separated, absolute reg-ex paths to skip/not-sync during deployment. Handy for folders that you don't want deleted etc. (Escape slashes)",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -96,6 +96,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-200",
+  "LogoAttachmentKey": "CommunityActionTemplates-217",
   "LogoAttachmentMimeType": "image/png"
 }

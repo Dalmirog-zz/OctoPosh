@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-119",
+  "Id": "CommunityActionTemplates-126",
   "Name": "Microsoft Teams - Post a message",
   "ExternalId": "110a8b1e-4da4-498a-9209-ef8929c31168",
   "Description": "Posts a message to Microsoft Teams using a general webhook.",
@@ -40,7 +40,7 @@
       "Name": "Url",
       "Label": "Webhook Url",
       "HelpText": "The specific URL provided by Microsoft Teams when adding a _Incomming Webbook_ connector to a team channel. Copy and paste the full Webhook URL from Microsoft Teams here.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -56,6 +56,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-119",
+  "LogoAttachmentKey": "CommunityActionTemplates-126",
   "LogoAttachmentMimeType": "image/png"
 }

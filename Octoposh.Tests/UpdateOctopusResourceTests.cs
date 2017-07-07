@@ -39,7 +39,7 @@ namespace Octoposh.Tests
             };
             //Changing the name from Unmodified_* => Modified_*
             var powershell1 = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results1 = powershell1.Invoke<List<ProjectResource>>()[0];
+            var results1 = powershell1.Invoke<ProjectResource>();
 
             Assert.AreEqual(results1.Count, 1);
             Assert.AreEqual(results1[0].Name, modifiedName);
@@ -49,7 +49,7 @@ namespace Octoposh.Tests
             parameters[0].Resource = baseresource;
 
             var powershell2 = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results2 = powershell2.Invoke<List<ProjectResource>>()[0];
+            var results2 = powershell2.Invoke<ProjectResource>();
 
             Assert.AreEqual(results2.Count, 1);
             Assert.AreEqual(results2[0].Name, unmodifiedName);
@@ -77,7 +77,7 @@ namespace Octoposh.Tests
             };
             //Changing the name from Unmodified_* => Modified_*
             var powershell1 = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results1 = powershell1.Invoke<List<ProjectGroupResource>>()[0];
+            var results1 = powershell1.Invoke<ProjectGroupResource>();
 
             Assert.AreEqual(results1.Count, 1);
             Assert.AreEqual(results1[0].Name, modifiedName);
@@ -87,7 +87,7 @@ namespace Octoposh.Tests
             parameters[0].Resource = baseresource;
 
             var powershell2 = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results2 = powershell2.Invoke<List<ProjectGroupResource>>()[0];
+            var results2 = powershell2.Invoke<ProjectGroupResource>();
 
             Assert.AreEqual(results2.Count, 1);
             Assert.AreEqual(results2[0].Name, unmodifiedName);
@@ -115,7 +115,7 @@ namespace Octoposh.Tests
             };
             //Changing the name from Unmodified_* => Modified_*
             var powershell1 = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results1 = powershell1.Invoke<List<EnvironmentResource>>()[0];
+            var results1 = powershell1.Invoke<EnvironmentResource>();
 
             Assert.AreEqual(results1.Count, 1);
             Assert.AreEqual(results1[0].Name, modifiedName);
@@ -125,7 +125,7 @@ namespace Octoposh.Tests
             parameters[0].Resource = baseresource;
 
             var powershell2 = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results2 = powershell2.Invoke<List<EnvironmentResource>>()[0];
+            var results2 = powershell2.Invoke<EnvironmentResource>();
 
             Assert.AreEqual(results2.Count, 1);
             Assert.AreEqual(results2[0].Name, unmodifiedName);
@@ -153,7 +153,7 @@ namespace Octoposh.Tests
             };
             //Changing the name from Unmodified_* => Modified_*
             var powershell1 = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results1 = powershell1.Invoke<List<TeamResource>>()[0];
+            var results1 = powershell1.Invoke<TeamResource>();
 
             Assert.AreEqual(results1.Count, 1);
             Assert.AreEqual(results1[0].Name, modifiedName);
@@ -163,7 +163,7 @@ namespace Octoposh.Tests
             parameters[0].Resource = baseresource;
 
             var powershell2 = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results2 = powershell2.Invoke<List<TeamResource>>()[0];
+            var results2 = powershell2.Invoke<TeamResource>();
 
             Assert.AreEqual(results2.Count, 1);
             Assert.AreEqual(results2[0].Name, unmodifiedName);
@@ -192,7 +192,7 @@ namespace Octoposh.Tests
             };
             //Changing the name from Unmodified_* => Modified_*
             var powershell1 = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results1 = powershell1.Invoke<List<ChannelResource>>()[0];
+            var results1 = powershell1.Invoke<ChannelResource>();
 
             Assert.AreEqual(results1.Count, 1);
             Assert.AreEqual(results1[0].Name, modifiedName);
@@ -202,7 +202,7 @@ namespace Octoposh.Tests
             parameters[0].Resource = baseresource;
 
             var powershell2 = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results2 = powershell2.Invoke<List<ChannelResource>>()[0];
+            var results2 = powershell2.Invoke<ChannelResource>();
 
             Assert.AreEqual(results2.Count, 1);
             Assert.AreEqual(results2[0].Name, unmodifiedName);
@@ -211,41 +211,52 @@ namespace Octoposh.Tests
         }
 
         [Test]
-        public void UpdateLibraryVariableSet()
+        public void UpdateVariableSet()
         {
-            var unmodifiedName = "unmodified_TestLibraryVariableSet";
-            var modifiedName = "modified_TestLibraryVariableSet";
+            var variableSetName = "VariableSetTests_Library1";
+            var unmodifiedValue = "unmodified_VariableValue";
+            var modifiedValue = "modified_VariableValue";
 
-            var baseresource = Repository.LibraryVariableSets.FindByName(unmodifiedName);
+            var libraryVariableSet = Repository.LibraryVariableSets.FindByName(variableSetName);
+            var baseresource1 = Repository.VariableSets.Get(libraryVariableSet.VariableSetId);
 
-            baseresource.Name = modifiedName;
+            baseresource1.Variables[0].Value = modifiedValue;
 
-            var parameters = new List<CmdletParameter>
+            var parameters1 = new List<CmdletParameter>
             {
                 new CmdletParameter()
                 {
                     Name = "Resource",
-                    Resource = baseresource
+                    Resource = baseresource1
                 }
             };
             //Changing the name from Unmodified_* => Modified_*
-            var powershell1 = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results1 = powershell1.Invoke<List<LibraryVariableSetResource>>()[0];
+            var powershell1 = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters1);
+            var results1 = powershell1.Invoke<VariableSetResource>();
 
             Assert.AreEqual(results1.Count, 1);
-            Assert.AreEqual(results1[0].Name, modifiedName);
+            Assert.AreEqual(results1[0].Variables[0].Value, modifiedValue);
 
             // Changing the name back from Modified_* => Unmodified_* for the sake of being able to re-run tests without having to reload test data
-            baseresource.Name = unmodifiedName;
-            parameters[0].Resource = baseresource;
+            var baseresource2 = Repository.VariableSets.Get(libraryVariableSet.VariableSetId);
+            baseresource2.Variables[0].Value = unmodifiedValue;
 
-            var powershell2 = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results2 = powershell2.Invoke<List<LibraryVariableSetResource>>()[0];
+            var parameters2 = new List<CmdletParameter>
+            {
+                new CmdletParameter()
+                {
+                    Name = "Resource",
+                    Resource = baseresource2
+                }
+            };
+
+            var powershell2 = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters2);
+            var results2 = powershell2.Invoke<VariableSetResource>();
 
             Assert.AreEqual(results2.Count, 1);
-            Assert.AreEqual(results2[0].Name, unmodifiedName);
+            Assert.AreEqual(results2[0].Variables[0].Value, unmodifiedValue);
 
-            Console.WriteLine("Resource name changed from {0} to {1} and back to {0}", unmodifiedName, modifiedName);
+            Console.WriteLine("Variable in variable set [{2}] value changed from [{0}] to [{1}] and back to [{0}]", unmodifiedValue, modifiedValue, variableSetName);
         }
 
         [Test]
@@ -382,7 +393,7 @@ namespace Octoposh.Tests
             };
             //Changing the name from Unmodified_* => Modified_*
             var powershell1 = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results1 = powershell1.Invoke<List<FeedResource>>()[0];
+            var results1 = powershell1.Invoke<FeedResource>();
 
             Assert.AreEqual(results1.Count, 1);
             Assert.AreEqual(results1[0].Name, modifiedName);
@@ -392,7 +403,7 @@ namespace Octoposh.Tests
             parameters[0].Resource = baseresource;
 
             var powershell2 = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results2 = powershell2.Invoke<List<FeedResource>>()[0];
+            var results2 = powershell2.Invoke<FeedResource>();
 
             Assert.AreEqual(results2.Count, 1);
             Assert.AreEqual(results2[0].Name, unmodifiedName);
@@ -439,5 +450,45 @@ namespace Octoposh.Tests
         }
 
         //todo add tests for Tag Sets
+
+        [Test]
+        public void UpdateRelease()
+        {
+            var unmodifiedReleaseNotes = "unmodified_ReleaseNotes";
+            var modifiedReleaseNotes = "modified_ReleaseNotes";
+
+            var releaseVersion = "0.0.1";
+            var project = Repository.Projects.FindByName("ReleaseTests_Project1");
+            var baseresource = Repository.Projects.GetReleaseByVersion(project, releaseVersion);
+
+            baseresource.ReleaseNotes = modifiedReleaseNotes;
+
+            var parameters = new List<CmdletParameter>
+            {
+                new CmdletParameter()
+                {
+                    Name = "Resource",
+                    Resource = baseresource
+                }
+            };
+            //Changing the name from Unmodified_* => Modified_*
+            var powershell1 = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
+            var results1 = powershell1.Invoke<ReleaseResource>();
+
+            Assert.AreEqual(results1.Count, 1);
+            Assert.AreEqual(results1[0].ReleaseNotes, modifiedReleaseNotes);
+
+            // Changing the name back from Modified_* => Unmodified_* for the sake of being able to re-run tests without having to reload test data
+            baseresource.ReleaseNotes= unmodifiedReleaseNotes;
+            parameters[0].Resource = baseresource;
+
+            var powershell2 = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
+            var results2 = powershell2.Invoke<ReleaseResource>();
+
+            Assert.AreEqual(results2.Count, 1);
+            Assert.AreEqual(results2[0].ReleaseNotes, unmodifiedReleaseNotes);
+
+            Console.WriteLine("Resource name changed from {0} to {1} and back to {0}", unmodifiedReleaseNotes, modifiedReleaseNotes);
+        }
     }
 }

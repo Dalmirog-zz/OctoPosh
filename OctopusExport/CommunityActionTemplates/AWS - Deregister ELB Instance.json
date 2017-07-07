@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-9",
+  "Id": "CommunityActionTemplates-10",
   "Name": "AWS - Deregister ELB Instance",
   "ExternalId": "bcb05502-ae9a-48a0-a153-1cb3057efb61",
   "Description": "Removes the current instance from the ELB",
@@ -20,7 +20,7 @@
       "Name": "ec2ClientId",
       "Label": "AWS EC2 Client Id",
       "HelpText": "The client id used to authenticate with AWS",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
@@ -30,7 +30,7 @@
       "Name": "ec2Credentials",
       "Label": "AWS EC2 Client Secret",
       "HelpText": "The client secret used to authenticate with AWS",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
@@ -40,7 +40,7 @@
       "Name": "elbName",
       "Label": "AWS ELB Name",
       "HelpText": "The name of the AWS ELB to remove the instance from",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -56,6 +56,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-9",
+  "LogoAttachmentKey": "CommunityActionTemplates-10",
   "LogoAttachmentMimeType": "image/png"
 }

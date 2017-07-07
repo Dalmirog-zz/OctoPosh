@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-32",
+  "Id": "CommunityActionTemplates-34",
   "Name": "Com Component - Register and Unregister using Regsvr32.exe",
   "ExternalId": "cf8634b6-313f-4435-bae6-88520c58d81d",
   "Description": "Uses regsvr32.exe to register com components",
@@ -20,7 +20,7 @@
       "Name": "DllFilePaths",
       "Label": "DllFilePaths",
       "HelpText": "List of dlls to be registered separated by a ; and can appear on separate lines",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "MultiLineText"
       }
@@ -30,12 +30,12 @@
       "Name": "Uninstall",
       "Label": "Un-register",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Checkbox"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-32",
+  "LogoAttachmentKey": "CommunityActionTemplates-34",
   "LogoAttachmentMimeType": "image/png"
 }

@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-105",
+  "Id": "CommunityActionTemplates-111",
   "Name": "IIS Website - Delete",
   "ExternalId": "a032159b-0742-4982-95f4-59877a31fba3",
   "Description": "Deletes a website in IIS.",
@@ -20,10 +20,10 @@
       "Name": "WebsiteName",
       "Label": "Website name",
       "HelpText": "The name of the website in IIS to delete.\n\nExample: Default Web Site",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-105",
+  "LogoAttachmentKey": "CommunityActionTemplates-111",
   "LogoAttachmentMimeType": "image/png"
 }

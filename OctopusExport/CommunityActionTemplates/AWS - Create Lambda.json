@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-8",
+  "Id": "CommunityActionTemplates-9",
   "Name": "AWS - Create Lambda",
   "ExternalId": "001609c0-35d0-4faa-95c3-a995faaeaa5e",
   "Description": "Creates a [AWS Lambda Function](#https://aws.amazon.com/lambda/) from the specified zip.\n\n- Requires the [AWS PowerShell cmdlets](http://aws.amazon.com/powershell/)",
@@ -20,7 +20,7 @@
       "Name": "AWSSecretAccessKey",
       "Label": "AWS Secret Access Key",
       "HelpText": "The [secret access key](http://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys) to use when executing the script",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
@@ -30,7 +30,7 @@
       "Name": "AWSAccessKey",
       "Label": "AWS Access Key",
       "HelpText": "The [access key](http://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys) to use when executing the script",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -40,7 +40,7 @@
       "Name": "AWSRegion",
       "Label": "AWS Region",
       "HelpText": "The Amazon Region see [https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/](https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/) for further info",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -50,7 +50,7 @@
       "Name": "FunctionName",
       "Label": "AWS Lambda Function Name",
       "HelpText": "The name of the AWS Lambda Function",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -60,7 +60,7 @@
       "Name": "FunctionZip",
       "Label": "AWS Lambda Function Zip Location",
       "HelpText": "The zip location of the AWS Lambda Function",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -70,7 +70,7 @@
       "Name": "Handler",
       "Label": "AWS Lambda Function Handler",
       "HelpText": "The handler signature (ASSEMBLY::TYPE::METHOD) of the AWS Lambda Function",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -80,7 +80,7 @@
       "Name": "Runtime",
       "Label": "AWS Lambda Function Runtime",
       "HelpText": "The runtime of the AWS Lambda Function",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Select",
         "Octopus.SelectOptions": "nodejs|nodejs\nnodejs4.3|nodejs4.3\njava8|java8\npython2.7|python2.7\ndotnetcore1.0|dotnetcore1.0\nnodejs4.3-edge|nodejs4.3-edge"
@@ -91,7 +91,7 @@
       "Name": "Role",
       "Label": "AWS Lambda Function Role",
       "HelpText": "The role of the AWS Lambda Function, in [ARN](http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) format",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -101,7 +101,7 @@
       "Name": "Description",
       "Label": "AWS Lambda Function Description",
       "HelpText": "The description of the AWS Lambda Function",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "MultiLineText"
       }
@@ -121,12 +121,12 @@
       "Name": "Timeout",
       "Label": "AWS Lambda Function Timeout",
       "HelpText": "The timeout of hte AWS Lambda Function",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-8",
+  "LogoAttachmentKey": "CommunityActionTemplates-9",
   "LogoAttachmentMimeType": "image/png"
 }

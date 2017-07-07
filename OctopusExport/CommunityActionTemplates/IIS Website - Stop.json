@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-111",
+  "Id": "CommunityActionTemplates-117",
   "Name": "IIS Website - Stop",
   "ExternalId": "9eb40453-ac5d-4cb0-8666-046ff6305a3a",
   "Description": "Stops a website in IIS.",
@@ -24,7 +24,7 @@
       "Name": "WebsiteName",
       "Label": "Website name",
       "HelpText": "The name of the site in IIS",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -48,6 +48,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-111",
+  "LogoAttachmentKey": "CommunityActionTemplates-117",
   "LogoAttachmentMimeType": "image/png"
 }

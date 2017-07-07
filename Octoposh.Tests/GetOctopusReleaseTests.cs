@@ -31,7 +31,7 @@ namespace Octoposh.Tests
             };
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusRelease>>()[0];
+            var results = powershell.Invoke<OutputOctopusRelease>();
 
             Console.WriteLine("Found [{0}] releases",results.Count);
             Assert.Greater(results.Count,1);
@@ -63,7 +63,7 @@ namespace Octoposh.Tests
             };
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusRelease>>()[0];
+            var results = powershell.Invoke<OutputOctopusRelease>();
 
             Assert.IsTrue(results.Count == 1);
             Assert.AreEqual(results[0].ReleaseVersion, ReleaseVersion);
@@ -90,7 +90,7 @@ namespace Octoposh.Tests
             };
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusRelease>>()[0];
+            var results = powershell.Invoke<OutputOctopusRelease>();
 
             Console.WriteLine("Found [{0}] Releases",results.Count);
             Assert.IsTrue(results.Count == 2);
@@ -130,7 +130,7 @@ namespace Octoposh.Tests
             Console.WriteLine("Looking for releases with version numbers [{0}] and [{1}]. The test expects to find only 1 release with version [{1}] for the project [{2}]",badVersion,goodVersion,projectName);
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusRelease>>()[0];
+            var results = powershell.Invoke<OutputOctopusRelease>();
 
             Console.WriteLine("Found [{0}] releases", results.Count);
             Assert.IsTrue(results.Count == 1);
@@ -164,7 +164,7 @@ namespace Octoposh.Tests
             Console.WriteLine("Looking for the last [{0}] releases for project [{1}]", latest, projectName);
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
 
-            var results = powershell.Invoke<List<OutputOctopusRelease>>()[0];
+            var results = powershell.Invoke<OutputOctopusRelease>();
 
             Console.WriteLine("Found [{0}] releases", results.Count);
             Assert.IsTrue(results.Count == latest);

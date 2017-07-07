@@ -37,7 +37,7 @@ namespace Octoposh.Tests
             Console.WriteLine("Looking for Tenant [{0}]", tenantName);
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusTenant>>()[0];
+            var results = powershell.Invoke<OutputOctopusTenant>();
 
             Assert.AreEqual(1, results.Count);
 
@@ -65,7 +65,7 @@ namespace Octoposh.Tests
             Console.WriteLine("Looking for Tenants [{0}] and [{1}]", tenantName1, tenantName2);
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusTenant>>()[0];
+            var results = powershell.Invoke<OutputOctopusTenant>();
 
             Assert.AreEqual(2, results.Count);
 
@@ -107,7 +107,7 @@ namespace Octoposh.Tests
             var pattern = new WildcardPattern(namePattern);
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusTenant>>()[0];
+            var results = powershell.Invoke<OutputOctopusTenant>();
 
             Assert.AreEqual(2, results.Count);
             Console.WriteLine("Resources found: {0}", results.Count);
@@ -130,7 +130,7 @@ namespace Octoposh.Tests
             }};
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusTenant>>()[0];
+            var results = powershell.Invoke<OutputOctopusTenant>();
 
             Assert.AreEqual(results.Count, 0);
             Console.WriteLine("No resources found with name [{0}]", resourceName);

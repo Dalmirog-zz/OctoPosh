@@ -37,7 +37,7 @@ namespace Octoposh.Tests
             Console.WriteLine("Looking for TagSet [{0}]", tagSetName);
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusTagSet>>()[0];
+            var results = powershell.Invoke<OutputOctopusTagSet>();
 
             Assert.AreEqual(1, results.Count);
 
@@ -65,7 +65,7 @@ namespace Octoposh.Tests
             Console.WriteLine("Looking for TagSets [{0}] and [{1}]", tagSetName1, tagSetName2);
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusTagSet>>()[0];
+            var results = powershell.Invoke<OutputOctopusTagSet>();
 
             Assert.AreEqual(2, results.Count);
 
@@ -107,7 +107,7 @@ namespace Octoposh.Tests
             var pattern = new WildcardPattern(namePattern);
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusTagSet>>()[0];
+            var results = powershell.Invoke<OutputOctopusTagSet>();
 
             Assert.AreEqual(2, results.Count);
             Console.WriteLine("Resources found: {0}", results.Count);
@@ -130,7 +130,7 @@ namespace Octoposh.Tests
             }};
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusTagSet>>()[0];
+            var results = powershell.Invoke<OutputOctopusTagSet>();
 
             Assert.AreEqual(results.Count, 0);
             Console.WriteLine("No resources found with name [{0}]", resourceName);

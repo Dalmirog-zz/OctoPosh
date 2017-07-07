@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-154",
+  "Id": "CommunityActionTemplates-165",
   "Name": "Run Entity Framework migrations (Update-Database)",
   "ExternalId": "a6cd35d6-164a-4e57-a0f8-0d327129783a",
   "Description": "Runs `Update-Database` to update the database to the latest Entity Framework migrations",
@@ -21,7 +21,7 @@
       "Name": "EfToolsFolder",
       "Label": "Path to EF Tools folder",
       "HelpText": "Please provide a full path to a folder where Migrate.exe (along with other EF files are contained, available from EF nuget package) on tentacle",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -31,7 +31,7 @@
       "Name": "NugetPackageStepName",
       "Label": "Site Path",
       "HelpText": "Name of the previously-deployed package step that contains the files with web.config and `/bin` folder",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "StepName"
       }
@@ -41,7 +41,7 @@
       "Name": "AssemblyDllName",
       "Label": "Name of Assembly file with EF-Context",
       "HelpText": "Please provide a name of the assembly file where EF-context is stored",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -51,12 +51,12 @@
       "Name": "ConnectionStringName",
       "Label": "ConnectionStringName",
       "HelpText": "Name of the key in <connectionStrings> section in Web.Config",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-154",
+  "LogoAttachmentKey": "CommunityActionTemplates-165",
   "LogoAttachmentMimeType": "image/png"
 }

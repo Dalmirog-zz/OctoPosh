@@ -1,0 +1,40 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-4481",
+  "RelatedDocumentIds": [
+    "Environments-21"
+  ],
+  "ProjectId": null,
+  "EnvironmentId": "Environments-21",
+  "TenantId": null,
+  "Category": "DeploymentStarted",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-02-11T01:36:14.835311-03:00",
+  "Message": "Deploy to Dev started  for DeploymentTests_Project1 release 0.0.11 to Dev",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 0,
+      "Length": 13
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 27,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 60,
+      "Length": 6
+    },
+    {
+      "ReferencedDocumentId": "Environments-21",
+      "StartIndex": 70,
+      "Length": 3
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "Unknown"
+}

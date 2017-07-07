@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-91",
+  "Id": "CommunityActionTemplates-97",
   "Name": "IIS AppPool - Create",
   "ExternalId": "70a293d6-ee6a-4755-8e06-5f13d7e51fff",
   "Description": "Creates or Reconfigures an IIS Application Pool",
@@ -24,7 +24,7 @@
       "Name": "AppPoolName",
       "Label": "Application pool name",
       "HelpText": "The name of the application pool that the application will run under.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -45,7 +45,7 @@
       "Name": "AppPoolIdentityUser",
       "Label": "Specific User Name",
       "HelpText": "_(Specific User)_ The user name to use with the application pool identity.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -55,7 +55,7 @@
       "Name": "AppPoolIdentityPassword",
       "Label": "Specific User Password",
       "HelpText": "_(Specific User)_ The password for the specific user to use with the application pool identity.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
@@ -164,6 +164,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-91",
+  "LogoAttachmentKey": "CommunityActionTemplates-97",
   "LogoAttachmentMimeType": "image/png"
 }

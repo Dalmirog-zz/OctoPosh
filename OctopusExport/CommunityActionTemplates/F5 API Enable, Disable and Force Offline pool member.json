@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-54",
+  "Id": "CommunityActionTemplates-59",
   "Name": "F5 API Enable, Disable and Force Offline pool member",
   "ExternalId": "45d3003a-9443-42a0-aa71-38398eb4f9d6",
   "Description": "Enable, Disable and to Force Offline F5 pool member via API.\nThis step not require iControl snap-in installed.",
@@ -25,7 +25,7 @@
       "Name": "node",
       "Label": "Node Member Pool",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -35,7 +35,7 @@
       "Name": "pool",
       "Label": "Pool Name",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -45,7 +45,7 @@
       "Name": "f5user",
       "Label": "F5 Username",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -55,7 +55,7 @@
       "Name": "f5pass",
       "Label": "F5 password",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
@@ -65,7 +65,7 @@
       "Name": "f5ipv4",
       "Label": "F5 Server",
       "HelpText": "comma separated (without spaces).",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -95,13 +95,13 @@
       "Name": "action",
       "Label": "Action member node",
       "HelpText": "Change the status of member pool:\n- Enabled;\n- Disabled;\n- Forced Offline.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Select",
         "Octopus.SelectOptions": "Enable|Member Enabled in GUI\nDisable|Member Disabled in GUI\nOffline|Member Forced Offline in GUI"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-54",
+  "LogoAttachmentKey": "CommunityActionTemplates-59",
   "LogoAttachmentMimeType": "image/png"
 }

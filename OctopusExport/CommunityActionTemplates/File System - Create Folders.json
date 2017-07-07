@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-62",
+  "Id": "CommunityActionTemplates-67",
   "Name": "File System - Create Folders",
   "ExternalId": "7eaad6c2-fd5c-40a4-b880-350c983dc51d",
   "Description": "Ensure/Create multiple folders separated by ;",
@@ -20,7 +20,7 @@
       "Name": "FolderPaths",
       "Label": "Folder Paths",
       "HelpText": "A list of folders to create separated by a ;",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "MultiLineText"
       }
@@ -30,12 +30,12 @@
       "Name": "ContinueOnError",
       "Label": "Continue On Error",
       "HelpText": "When this is selected the script will log failures but continue and succeed in octopus.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Checkbox"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-62",
+  "LogoAttachmentKey": "CommunityActionTemplates-67",
   "LogoAttachmentMimeType": "image/png"
 }

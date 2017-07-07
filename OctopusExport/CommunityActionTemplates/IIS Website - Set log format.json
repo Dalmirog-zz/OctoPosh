@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-109",
+  "Id": "CommunityActionTemplates-115",
   "Name": "IIS Website - Set log format",
   "ExternalId": "e46aad55-5484-48a7-a90d-970d40129893",
   "Description": "Sets fields included in IIS logging. Uses named checkboxes where the names are identical to the naming scheme in IIS Manager.",
@@ -25,7 +25,7 @@
       "Name": "SiteName",
       "Label": "SiteName",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -35,7 +35,7 @@
       "Name": "iisLogDirectory",
       "Label": "Where should the logs be placed?",
       "HelpText": "",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -271,6 +271,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-109",
+  "LogoAttachmentKey": "CommunityActionTemplates-115",
   "LogoAttachmentMimeType": "image/png"
 }

@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-161",
+  "Id": "CommunityActionTemplates-173",
   "Name": "SharePoint Solution Deployment",
   "ExternalId": "7ac03a43-cb18-4e83-a114-b158a2bb2a52",
   "Description": "SharePoint Solution Deployment for 2010 & 2013.",
@@ -20,12 +20,12 @@
       "Name": "NugetPackageStepName",
       "Label": "SharePoint Solution Package Step",
       "HelpText": "Select the step in this project which downloads the SharePoint package.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "StepName"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-161",
+  "LogoAttachmentKey": "CommunityActionTemplates-173",
   "LogoAttachmentMimeType": "image/png"
 }

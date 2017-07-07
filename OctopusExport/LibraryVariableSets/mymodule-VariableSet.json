@@ -1,12 +1,13 @@
 {
   "$type": "Octopus.Core.Model.Variables.VariableSet, Octopus.Core",
-  "Id": "variableset-LibraryVariableSets-1",
-  "OwnerId": "LibraryVariableSets-1",
+  "Id": "variableset-LibraryVariableSets-21",
+  "OwnerId": "LibraryVariableSets-21",
   "Version": 1,
   "Variables": [
     {
       "Id": "88bf2acc-b87d-4fef-afe7-a9a50d029799",
       "Name": "Octopus.Script.Module[mymodule]",
+      "Type": "String",
       "Value": "function GetReleaseNumber()\r\n{\r\n    Write-Output $OctopusParameters['Octopus.Release.Number']\r\n}\r\n"
     }
   ],

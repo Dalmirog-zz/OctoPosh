@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-133",
+  "Id": "CommunityActionTemplates-144",
   "Name": "Pushover - Send a notification",
   "ExternalId": "610f3e98-e0ee-4c94-8f0f-b6417c16169e",
   "Description": "Sends a notification using the Pushover REST API.",
@@ -20,7 +20,7 @@
       "Name": "APIToken",
       "Label": "Specify the App token as registered in the Pushover Dashboard",
       "HelpText": "Goto [Create New Pushover Application/Plugin](https://pushover.net/apps/build) and create a token for your application, e.g. Octopus.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
@@ -30,7 +30,7 @@
       "Name": "UserKey",
       "Label": "The User Key of the Pushover User to send the notification to",
       "HelpText": "The **User Key** can be found on the [Pushover dashboard](https://pushover.net/) after logging in.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
@@ -40,7 +40,7 @@
       "Name": "Message",
       "Label": "The message that should be send",
       "HelpText": "The message that must be displayed in the notification.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "MultiLineText"
       }
@@ -50,7 +50,7 @@
       "Name": "Title",
       "Label": "Title",
       "HelpText": "The title of the notification. When empty, the parameter will be omitted in the Pushover API call.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -76,6 +76,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-133",
+  "LogoAttachmentKey": "CommunityActionTemplates-144",
   "LogoAttachmentMimeType": "image/png"
 }

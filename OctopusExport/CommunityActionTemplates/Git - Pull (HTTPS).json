@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-70",
+  "Id": "CommunityActionTemplates-76",
   "Name": "Git - Pull (HTTPS)",
   "ExternalId": "5c08170d-e919-4afe-9da3-7616c797d42b",
   "Description": "Gets the latest source for a Git repository.",
@@ -20,7 +20,7 @@
       "Name": "GitHttpsUrl",
       "Label": "Clone URL",
       "HelpText": "'https://' URL to the repository that will be cloned from.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -28,7 +28,7 @@
       "Name": "Username",
       "Label": "Username",
       "HelpText": "Username to use when authenticating with the HTTPS server.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -36,7 +36,7 @@
       "Name": "Password",
       "Label": "Password",
       "HelpText": "Password to use when authenticating with the HTTPS server. You should create a sensitive variable in your project variables, and then bind this value.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -48,6 +48,6 @@
       "DisplaySettings": {}
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-70",
+  "LogoAttachmentKey": "CommunityActionTemplates-76",
   "LogoAttachmentMimeType": "image/png"
 }

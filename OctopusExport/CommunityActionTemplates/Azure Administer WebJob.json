@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-18",
+  "Id": "CommunityActionTemplates-20",
   "Name": "Azure Administer WebJob",
   "ExternalId": "ac7868f9-dc5c-42b8-ab8c-0c1e801f6957",
   "Description": "Start, Stop, or Delete a WebJob from the Azure Web App",
@@ -20,7 +20,7 @@
       "Name": "WebJobWebApp",
       "Label": "Web App",
       "HelpText": "The Web App the Azure WebJob is hosted under.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -30,7 +30,7 @@
       "Name": "WebJobUserName",
       "Label": "User Name",
       "HelpText": "The Username of the authentication to the Kudu Api.\n\nSee https://github.com/projectkudu/kudu/wiki/Deployment-credentials",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -40,7 +40,7 @@
       "Name": "WebJobPassword",
       "Label": "Password",
       "HelpText": "The Password of the authentication to the Kudu Api.\n\nSee https://github.com/projectkudu/kudu/wiki/Deployment-credentials",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
@@ -50,7 +50,7 @@
       "Name": "WebJobAction",
       "Label": "Action",
       "HelpText": "The action to perform. Start, Stop, or Delete.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Select",
         "Octopus.SelectOptions": "start|Start\nstop|Stop\ndelete|Delete"
@@ -72,12 +72,12 @@
       "Name": "WebJobName",
       "Label": "Job Name",
       "HelpText": "The name of the Job to act upon.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-18",
+  "LogoAttachmentKey": "CommunityActionTemplates-20",
   "LogoAttachmentMimeType": "image/png"
 }

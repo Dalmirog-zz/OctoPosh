@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-92",
+  "Id": "CommunityActionTemplates-98",
   "Name": "IIS AppPool - Delete",
   "ExternalId": "a7120f3e-6676-4bbb-b848-1413b03a35e8",
   "Description": "Deletes an IIS Application Pool. \nCAUTION: Delete will proceed even if applications are using the Application Pool.",
@@ -20,12 +20,12 @@
       "Name": "AppPoolName",
       "Label": "Application pool name",
       "HelpText": "The name of the application pool that will be deleted.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-92",
+  "LogoAttachmentKey": "CommunityActionTemplates-98",
   "LogoAttachmentMimeType": "image/png"
 }

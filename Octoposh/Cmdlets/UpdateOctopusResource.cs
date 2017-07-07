@@ -131,8 +131,8 @@ namespace Octoposh.Cmdlets
                     Console.WriteLine("Update-OctopusResource doesn't support updating objects of type: {0}", Resource.GetType().ToString());
                     break;
             }
-
-            WriteObject(outputResource,true);
+            
+            WriteObject(outputResource, true);
         }
     }
 }

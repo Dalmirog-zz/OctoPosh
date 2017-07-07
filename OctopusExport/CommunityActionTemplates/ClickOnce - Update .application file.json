@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-29",
+  "Id": "CommunityActionTemplates-31",
   "Name": "ClickOnce - Update .application file",
   "ExternalId": "0185c15c-3bde-446b-a5cf-10f475dc0008",
   "Description": "Update .application file after updating the manifest file.",
@@ -21,7 +21,7 @@
       "Name": "PackagePath",
       "Label": "Path to the root directory of ClickOnce package",
       "HelpText": "Path to the root drectory of ClickOnce package. This is where you can find the setup.exe, and *.application files and the \"Application Files\" folder",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -31,7 +31,7 @@
       "Name": "AppName",
       "Label": "Name of the ClickOnce application",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -41,7 +41,7 @@
       "Name": "AdvencedMageParameters",
       "Label": "Addition parameters for mage.exe",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -57,6 +57,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-29",
+  "LogoAttachmentKey": "CommunityActionTemplates-31",
   "LogoAttachmentMimeType": "image/png"
 }

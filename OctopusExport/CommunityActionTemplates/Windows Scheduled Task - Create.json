@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-218",
+  "Id": "CommunityActionTemplates-235",
   "Name": "Windows Scheduled Task - Create",
   "ExternalId": "17bc51d1-8b88-4aad-b188-24a0904d0bf2",
   "Description": "Create Windows scheduled task. If the task exists it will be torn down and re-added to ensure consistency",
@@ -24,7 +24,7 @@
       "Name": "TaskName",
       "Label": "Name",
       "HelpText": "The name of the Scheduled Task",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -44,7 +44,7 @@
       "Name": "RunAsPassword",
       "Label": "Password",
       "HelpText": "Specifying a password allows the task to run when the user is not logged on to the server.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
@@ -54,7 +54,7 @@
       "Name": "Command",
       "Label": "Action",
       "HelpText": "The Action that the task executes. Usually a path to the executable",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -64,7 +64,7 @@
       "Name": "Arguments",
       "Label": "Arguments",
       "HelpText": "A value that specifies any arguments to be passed to run the task.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -93,7 +93,7 @@
       "Name": "StartDate",
       "Label": "Start Date",
       "HelpText": "The date the task will start running. use the format MM/dd/yyyy",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -103,7 +103,7 @@
       "Name": "Interval",
       "Label": "Interval",
       "HelpText": "A value that specifies the repetition interval in minutes.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -111,7 +111,7 @@
       "Name": "Duration",
       "Label": "Duration",
       "HelpText": "A value that specifies the duration to run the task. The time format is HH:mm (24-hour time).",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -119,7 +119,7 @@
       "Name": "RunWithElevatedPermissions",
       "Label": "RunWithElevatedPermissions",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Checkbox"
       }
@@ -129,13 +129,13 @@
       "Name": "Days",
       "Label": "Days",
       "HelpText": "A value that specifies the day of the week to run the task. Valid values are: MON, TUE, WED, THU, FRI, SAT, SUN and for MONTHLY schedules 1 - 31 (days of the month). The wildcard character (*) specifies all days.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText",
         "Octopus.SelectOptions": ""
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-218",
+  "LogoAttachmentKey": "CommunityActionTemplates-235",
   "LogoAttachmentMimeType": "image/png"
 }

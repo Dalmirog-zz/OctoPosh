@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-43",
+  "Id": "CommunityActionTemplates-44",
   "Name": "Datadog - Schedule Downtime",
   "ExternalId": "4db094ce-9c74-499d-8129-ce973cdaa9d4",
   "Description": "Datadog is cloud monitoring service which allows you to push arbitrary events into via an api. This task allows you to schedule a downtime event to prevent error alerts during a deployment.",
@@ -20,7 +20,7 @@
       "Name": "ApiKey",
       "Label": "Datadog Api Key",
       "HelpText": "The api key used to authenticate with Datadog",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -30,7 +30,7 @@
       "Name": "AppKey",
       "Label": "Datadog Application Key",
       "HelpText": "The Application key used to authenticate with Datadog",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -50,7 +50,7 @@
       "Name": "Environment",
       "Label": "Environment",
       "HelpText": "Environment tag in Datadog to schedule the downtime for",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -66,6 +66,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-43",
+  "LogoAttachmentKey": "CommunityActionTemplates-44",
   "LogoAttachmentMimeType": "image/png"
 }

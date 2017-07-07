@@ -30,7 +30,7 @@ namespace Octoposh.Tests
             };
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusDashboardEntry>>()[0];
+            var results = powershell.Invoke<OutputOctopusDashboardEntry>();
 
             Assert.Greater(results.Count, 0);
             foreach (var item in results)
@@ -57,7 +57,7 @@ namespace Octoposh.Tests
             };
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusDashboardEntry>>()[0];
+            var results = powershell.Invoke<OutputOctopusDashboardEntry>();
 
             Assert.Greater(results.Count, 0);
             foreach (var item in results)
@@ -96,7 +96,7 @@ namespace Octoposh.Tests
             };
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusDashboardEntry>>()[0];
+            var results = powershell.Invoke<OutputOctopusDashboardEntry>();
 
             Assert.Greater(results.Count, 0);
             foreach (var item in results)
@@ -125,7 +125,7 @@ namespace Octoposh.Tests
             };
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusDashboardEntry>>()[0];
+            var results = powershell.Invoke<OutputOctopusDashboardEntry>();
 
             Assert.Greater(results.Count, 0);
             foreach (var item in results)
@@ -164,7 +164,7 @@ namespace Octoposh.Tests
             };
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusDashboardEntry>>()[0];
+            var results = powershell.Invoke<OutputOctopusDashboardEntry>();
 
             Assert.Greater(results.Count, 0);
             foreach (var item in results)
@@ -193,7 +193,7 @@ namespace Octoposh.Tests
             };
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusDashboardEntry>>()[0];
+            var results = powershell.Invoke<OutputOctopusDashboardEntry>();
 
             Assert.Greater(results.Count, 0);
             foreach (var item in results)
@@ -231,7 +231,7 @@ namespace Octoposh.Tests
 
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusDashboardEntry>>()[0];
+            var results = powershell.Invoke<OutputOctopusDashboardEntry>();
 
             Assert.Greater(results.Count,0);
             
@@ -256,7 +256,7 @@ namespace Octoposh.Tests
 
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusDashboardEntry>>()[0];
+            var results = powershell.Invoke<OutputOctopusDashboardEntry>();
 
             Assert.Greater(results.Count, 0);
 
@@ -281,7 +281,7 @@ namespace Octoposh.Tests
 
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusDashboardEntry>>()[0];
+            var results = powershell.Invoke<OutputOctopusDashboardEntry>();
 
             Assert.Greater(results.Count, 0);
 
@@ -296,7 +296,7 @@ namespace Octoposh.Tests
         public void GetDashboardWithoutParametersReturnsValues()
         {
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType);
-            var results = powershell.Invoke<List<OutputOctopusDashboardEntry>>()[0];
+            var results = powershell.Invoke<OutputOctopusDashboardEntry>();
 
             Assert.Greater(results.Count, 0);
         }

@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-230",
+  "Id": "CommunityActionTemplates-248",
   "Name": "XML update",
   "ExternalId": "170a9b93-96f2-470b-81ca-e0ff53fa7c3d",
   "Description": null,
@@ -20,7 +20,7 @@
       "Name": "path",
       "Label": "XML file path",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -30,7 +30,7 @@
       "Name": "xmlPath",
       "Label": "XPath",
       "HelpText": "XPath element with namespace //b:setting",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -40,7 +40,7 @@
       "Name": "key",
       "Label": "Key",
       "HelpText": "Key to change",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -50,7 +50,7 @@
       "Name": "value",
       "Label": "Value",
       "HelpText": "New value",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -70,12 +70,12 @@
       "Name": "nsValue",
       "Label": "NS Value",
       "HelpText": "Namespace value",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-230",
+  "LogoAttachmentKey": "CommunityActionTemplates-248",
   "LogoAttachmentMimeType": "image/png"
 }

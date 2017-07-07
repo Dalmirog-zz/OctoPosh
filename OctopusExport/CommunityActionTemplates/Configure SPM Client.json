@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-36",
+  "Id": "CommunityActionTemplates-38",
   "Name": "Configure SPM Client",
   "ExternalId": "044392b0-5ee7-4f8d-b961-016f07ec6d50",
   "Description": "This Step Template will Configure the SPM Client for Solr and Zookeeper",
@@ -25,7 +25,7 @@
       "Name": "appguid",
       "Label": "SemaText Application GUID",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -35,7 +35,7 @@
       "Name": "applicationtype",
       "Label": "Application Type",
       "HelpText": "Value can be solr or zk",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -55,7 +55,7 @@
       "Name": "jmxhostaddress",
       "Label": "JMX Host Address",
       "HelpText": "JMX Host Address",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -65,12 +65,12 @@
       "Name": "jmxhostport",
       "Label": "JMX Host Port",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-36",
+  "LogoAttachmentKey": "CommunityActionTemplates-38",
   "LogoAttachmentMimeType": "image/png"
 }

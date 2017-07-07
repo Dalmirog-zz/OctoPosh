@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-117",
+  "Id": "CommunityActionTemplates-124",
   "Name": "Log to a Splunk Event Collector",
   "ExternalId": "eb2ef48d-d4d1-40c9-9dab-769c1bac7608",
   "Description": "A step template that logs a given message to the Splunk [Event Collector](http://dev.splunk.com/view/event-collector/SP-CAAAE6M) along with related Octopus Deploy variables.",
@@ -24,7 +24,7 @@
       "Name": "SplunkHost",
       "Label": "The host endpoint of the Splunk Event Collector",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -42,7 +42,7 @@
       "Name": "SplunkEventCollectorToken",
       "Label": "The token for the Event Collector",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -50,12 +50,12 @@
       "Name": "Message",
       "Label": "The message to send to the event collector",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "MultiLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-117",
+  "LogoAttachmentKey": "CommunityActionTemplates-124",
   "LogoAttachmentMimeType": "image/png"
 }

@@ -2,7 +2,7 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-3481",
   "RelatedDocumentIds": [
-    "Lifecycles-41"
+    "Users-1"
   ],
   "ProjectId": null,
   "EnvironmentId": null,
@@ -10,16 +10,16 @@
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-03-19T02:03:15.6244748+00:00",
-  "Message": "Lifecycle 56A839YY9Q2B34L was created",
+  "Occurred": "2017-03-18T18:32:39.6592021-03:00",
+  "Message": "User admin was created using the admin command line",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Lifecycles-41",
-      "StartIndex": 10,
-      "Length": 15
+      "ReferencedDocumentId": "Users-1",
+      "StartIndex": 5,
+      "Length": 5
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Command-line or tools"
 }

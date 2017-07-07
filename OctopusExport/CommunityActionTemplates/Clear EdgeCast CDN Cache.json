@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-25",
+  "Id": "CommunityActionTemplates-27",
   "Name": "Clear EdgeCast CDN Cache",
   "ExternalId": "d97ff2d4-250a-4a1a-bd5e-36644893888c",
   "Description": "This step will clear (purge) the EdgeCast CDN Cache",
@@ -20,7 +20,7 @@
       "Name": "AccountNumber",
       "Label": null,
       "HelpText": "CDN Account number, can be found in MCC",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -30,7 +30,7 @@
       "Name": "ApiToken",
       "Label": null,
       "HelpText": "API token for accessing the EdgeCast API for the account",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
@@ -40,7 +40,7 @@
       "Name": "MediaPath",
       "Label": null,
       "HelpText": "A string that indicates the CDN or edge CNAME URL for the asset or the location that will be purged from our edge servers. Make sure to include the proper protocol (i.e., http:// or rtmp://).",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -56,6 +56,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-25",
+  "LogoAttachmentKey": "CommunityActionTemplates-27",
   "LogoAttachmentMimeType": "image/png"
 }

@@ -1,0 +1,34 @@
+{
+  "$type": "Octopus.Core.Model.ServerTasks.ServerTask, Octopus.Core",
+  "Id": "ServerTasks-906",
+  "Name": "Deploy",
+  "Arguments": {
+    "DeploymentId": "Deployments-136"
+  },
+  "Description": "Deploy DeploymentTests_Project1 release 0.0.0 to Prod",
+  "QueueTime": "2017-03-13T22:08:07.1372105-03:00",
+  "QueueTimeExpiry": "10675199.02:48:05.4775807",
+  "ExecutionTimeExpiry": "00:00:00",
+  "StartTime": "2017-03-13T22:08:07.2081972-03:00",
+  "LastUpdatedTime": "2017-03-13T22:08:16.7570145-03:00",
+  "CompletedTime": "2017-03-13T22:08:16.7570145-03:00",
+  "ErrorMessage": "",
+  "ConcurrencyTag": "/Projects-3/Environments-2",
+  "State": "Success",
+  "HasPendingInterruptions": false,
+  "HasWarningsOrErrors": false,
+  "ServerVersion": "3.8.4+Branch.master.Sha.1b250ca4d7c1d42aa029771ed15851e6ed11ff83",
+  "ServerNode": "DEVBOX",
+  "LogDifferentiationToken": "J9ZKJFRTDP",
+  "AdditionalDescription": null,
+  "DurationSeconds": 10,
+  "ProjectId": "Projects-23",
+  "EnvironmentId": "Environments-22",
+  "TenantId": null,
+  "ExtendedViewLogPermissions": [],
+  "ExtendedCreatePermissions": [
+    "DeploymentCreate"
+  ],
+  "CanRerun": false,
+  "Properties": {}
+}

@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-85",
+  "Id": "CommunityActionTemplates-91",
   "Name": "IIS - Configure Compression",
   "ExternalId": "66dc7184-8736-4ab8-be65-51cb3933eaef",
   "Description": "Configures the MIME types used in static and dynamic compression e.g. The application/json MIME type can be configured to be served using GZIP compression.",
@@ -20,7 +20,7 @@
       "Name": "StaticMimeTypes",
       "Label": "Static Compression MIME Types",
       "HelpText": "The MIME types to be added for static compression separated by commas. Example: _application/json,application/xml_",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -28,10 +28,10 @@
       "Name": "DynamicMimeTypes",
       "Label": "Dynamic Compression MIME Types",
       "HelpText": "The MIME types to be added for dynamic compression separated by commas. Example: _application/json,application/xml_",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-85",
+  "LogoAttachmentKey": "CommunityActionTemplates-91",
   "LogoAttachmentMimeType": "image/png"
 }

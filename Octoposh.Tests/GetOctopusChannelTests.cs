@@ -46,7 +46,7 @@ namespace Octoposh.Tests
             Console.WriteLine("Looking for a channel with name [{0}] in project [{1}]", channelName,projectName);
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusChannel>>()[0];
+            var results = powershell.Invoke<OutputOctopusChannel>();
 
             Console.WriteLine("Found [{0}] channels", results.Count);
             Assert.AreEqual(1,results.Count);
@@ -80,7 +80,7 @@ namespace Octoposh.Tests
             Console.WriteLine("Looking for channels with name [{0}] in [{1}] projects", channelName, projectNames.Length);
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusChannel>>()[0];
+            var results = powershell.Invoke<OutputOctopusChannel>();
 
             Console.WriteLine("Found [{0}] channels", results.Count);
 
@@ -112,7 +112,7 @@ namespace Octoposh.Tests
             Console.WriteLine("Looking for channels with name [{0}] ", channelName);
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusChannel>>()[0];
+            var results = powershell.Invoke<OutputOctopusChannel>();
 
             Console.WriteLine("Found [{0}] channels", results.Count);
             Assert.Greater(results.Count,1);
@@ -152,7 +152,7 @@ namespace Octoposh.Tests
             Console.WriteLine("Looking for a channels with names [{0}] and [{1}] in project", name1, name2,projectName);
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusChannel>>()[0];
+            var results = powershell.Invoke<OutputOctopusChannel>();
 
             Console.WriteLine("Found [{0}] channels", results.Count);
             Assert.AreEqual(names.Length,results.Count);
@@ -203,7 +203,7 @@ namespace Octoposh.Tests
             Console.WriteLine("Looking for a channels with names [{0}] or [{1}]", name1, name2);
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusChannel>>()[0];
+            var results = powershell.Invoke<OutputOctopusChannel>();
 
             Console.WriteLine("Found [{0}] channels", results.Count);
 

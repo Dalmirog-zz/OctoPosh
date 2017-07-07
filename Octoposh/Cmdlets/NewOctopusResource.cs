@@ -131,7 +131,7 @@ namespace Octoposh.Cmdlets
                     break;
             }
 
-            WriteObject(outputResource);
+            WriteObject(outputResource,true);
         }
     }
 }

@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-69",
+  "Id": "CommunityActionTemplates-75",
   "Name": "Flyway Migrate",
   "ExternalId": "3868c17c-8471-4805-89be-e99513afd59a",
   "Description": "Deploy a database using Flyway",
@@ -20,7 +20,7 @@
       "Name": "FlyWayPackageStep",
       "Label": "Flyway package step (required)",
       "HelpText": "A previous deployment step which deploys a NuGet package containing your FlyWay project.\n\n\n_Requirements:_\n\n1. The NuGet package must contain your FlyWay project.\n\n2. The flyway.conf file needs to contain the correct information for your target database. This can be achieved using the Octopus Deploy \"Substitute variables in files\" feature in your \"Deploy a NuGet package\" step:\nhttp://docs.octopusdeploy.com/display/OD/Substitute+Variables+in+Files\n\n3. You should be able to execute your deployment simply by running \"flyway migrate\" from the flyway.cmd directory.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "StepName"
       }
@@ -30,7 +30,7 @@
       "Name": "RelativePath",
       "Label": "Relative path to flyway.cmd (optional)",
       "HelpText": "If your FlyWay project is not in the root of your NuGet package specify the relative path here.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -40,7 +40,7 @@
       "Name": "locations",
       "Label": "-locations (relative path, optional)",
       "HelpText": "Comma-separated list of locations to scan recursively for migrations. The location type is determined by its prefix.\nUnprefixed locations or locations starting with classpath: point to a package on the classpath and may contain both sql and java-based migrations.\nLocations starting with filesystem: point to a directory on the filesystem and may only contain sql migrations.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -60,7 +60,7 @@
       "Name": "targetUser",
       "Label": "Target -user (required)",
       "HelpText": "The username to connect to the target database.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -70,7 +70,7 @@
       "Name": "targetPassword",
       "Label": "Target -password (required)",
       "HelpText": "The password to connect to the target database.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
@@ -80,7 +80,7 @@
       "Name": "runDriftCheck",
       "Label": "Run pre-deploy drift check",
       "HelpText": "Check for drift with Redgate comparison tool.\n\n_Requirements_\n\nRequires that a Redgate command line comparison tool is installed on the target machine.\n\nFor SQL Server: SQL Compare\n\nhttp://www.red-gate.com/products/sql-development/sql-compare/\n\nFor Oracle: Schema Compare for Oracle\n\nhttp://www.red-gate.com/products/oracle-development/schema-compare-for-oracle/\n\nFor MySQL: MySQL Compare\n\nhttps://www.red-gate.com/products/mysql/mysql-compare/\n\nAll tools include a free trial licence for a limited period of time.\n\n_Limitations_\n\nSQL Server, Oracle and MySQL only",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Checkbox"
       }
@@ -100,7 +100,7 @@
       "Name": "shadowUrl",
       "Label": "Shadow -url (required for drift-check)",
       "HelpText": "The url of the target database in the format specified in the default flyway.conf file.\n\nE.g.\nSQL Server: jdbc:jtds:sqlserver://host:port/database\nOracle: jdbc:oracle:thin:@//host:port/service\nMySQL: jdbc:mysql://host:port/database",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -110,7 +110,7 @@
       "Name": "shadowUser",
       "Label": "Shadow -user (required for drift-check)",
       "HelpText": "The username to connect to the shadow database.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -120,12 +120,12 @@
       "Name": "shadowPassword",
       "Label": "Shadow -password (required for drift-check)",
       "HelpText": "The password to connect to the shadow database.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-69",
+  "LogoAttachmentKey": "CommunityActionTemplates-75",
   "LogoAttachmentMimeType": "image/png"
 }

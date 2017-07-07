@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-158",
+  "Id": "CommunityActionTemplates-170",
   "Name": "Seq - Log Deployment",
   "ExternalId": "a55a825b-8e8b-4995-8143-0f9dd7b6bcfa",
   "Description": "Post details of the deployment to a [Seq](https://getseq.net) log server. Add this as the last step in a process, and ensure it is set to run always (on success and failure).",
@@ -30,12 +30,12 @@
       "Name": "SeqApiKey",
       "Label": "Seq API key",
       "HelpText": "If an [API key](http://docs.getseq.net/docs/api-keys) is required for writing events, specify it here.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-158",
+  "LogoAttachmentKey": "CommunityActionTemplates-170",
   "LogoAttachmentMimeType": "image/png"
 }

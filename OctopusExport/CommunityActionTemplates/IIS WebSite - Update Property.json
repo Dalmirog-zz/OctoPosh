@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-113",
+  "Id": "CommunityActionTemplates-119",
   "Name": "IIS WebSite - Update Property",
   "ExternalId": "34118a0e-f872-435a-8522-d3c7f8515cb8",
   "Description": "Updates property for specified WebSite",
@@ -24,7 +24,7 @@
       "Name": "webSiteName",
       "Label": "Web site name",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -34,7 +34,7 @@
       "Name": "propertyName",
       "Label": "Name of the property to set",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -44,12 +44,12 @@
       "Name": "propertyValue",
       "Label": "Value of the property to set",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-113",
+  "LogoAttachmentKey": "CommunityActionTemplates-119",
   "LogoAttachmentMimeType": "image/png"
 }

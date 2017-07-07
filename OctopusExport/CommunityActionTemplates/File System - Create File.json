@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-60",
+  "Id": "CommunityActionTemplates-65",
   "Name": "File System - Create File",
   "ExternalId": "175a91a9-562e-49b9-bfa6-609a4e16bc56",
   "Description": "Creates a file, using the full path that is provided.",
@@ -20,7 +20,7 @@
       "Name": "FilePath",
       "Label": "The full path where the file will be created.",
       "HelpText": "Provide the entire physical path to which the physical file will be created. For example, 'C:\\Temp\\MyFile.txt' will create am empty text file named 'MyFile.txt' in the 'Temp' folder on the C: drive.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -30,12 +30,12 @@
       "Name": "FileContent",
       "Label": "File Content",
       "HelpText": "The text you would like inside the file, if nothing then will create an empty file.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "MultiLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-60",
+  "LogoAttachmentKey": "CommunityActionTemplates-65",
   "LogoAttachmentMimeType": "image/png"
 }

@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-38",
+  "Id": "CommunityActionTemplates-40",
   "Name": "Create Azure Website Staging Slot. Requires Azure PowerShell to be installed on Tentacle machine",
   "ExternalId": "2f763d9e-81e1-4ce2-a897-3fe2c72ab9f0",
   "Description": "Creates a staging slot for Azure Website. \n\nProvides Azure publish url as variable:\n\n     #{Octopus.Action[Create Staging Slot Step Name].Output.AzurePublishUrl}\n\nAnd Username/Password for publishing:\n\n    #{Octopus.Action[Create Staging Slot Step Name].Output.AzureUsername}\n    #{Octopus.Action[Create Staging Slot Step Name].Output.AzurePassword}",
@@ -20,12 +20,12 @@
       "Name": "AzureWebSite",
       "Label": "Azure Web Site Name",
       "HelpText": "Name of the web-site in Azure",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-38",
+  "LogoAttachmentKey": "CommunityActionTemplates-40",
   "LogoAttachmentMimeType": "image/png"
 }

@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-97",
+  "Id": "CommunityActionTemplates-103",
   "Name": "IIS AppPool - Update Property",
   "ExternalId": "183c1676-cb8e-44e8-a348-bbcb2b77536e",
   "Description": "Updates property for specified AppPool, useful for example to change startMode to AlwaysRunning.",
@@ -20,7 +20,7 @@
       "Name": "appPoolName",
       "Label": "Application pool name",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -30,7 +30,7 @@
       "Name": "propertyName",
       "Label": "Name of the property to set",
       "HelpText": "",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -40,12 +40,12 @@
       "Name": "propertyValue",
       "Label": "Value of the property to set",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-97",
+  "LogoAttachmentKey": "CommunityActionTemplates-103",
   "LogoAttachmentMimeType": "image/png"
 }

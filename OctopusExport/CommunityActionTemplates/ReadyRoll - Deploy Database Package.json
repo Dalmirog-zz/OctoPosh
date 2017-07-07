@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-144",
+  "Id": "CommunityActionTemplates-155",
   "Name": "ReadyRoll - Deploy Database Package",
   "ExternalId": "14e87c33-b34a-429f-be2c-e44d3d631649",
   "Description": "Deploy database changes packaged with Redgate's [ReadyRoll](http://www.ready-roll.com/). Requires the Microsoft SQL Command Line Utilities 11 or later to be installed on the tentacle.\r\n\r\n*Version date: 14th January, 2016*",
@@ -24,7 +24,7 @@
       "Name": "PackageName",
       "Label": "Package to deploy",
       "HelpText": "The ID of the NuGet package you want to deploy. This matches the NuGet package ID from the NuSpec file in your ReadyRoll project.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -32,7 +32,7 @@
       "Name": "DatabaseServer",
       "Label": "Target SQL Server instance",
       "HelpText": "The fully qualified SQL Server instance name for the target database.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -42,7 +42,7 @@
       "Name": "DatabaseName",
       "Label": "Target database name",
       "HelpText": "The name of the database to deploy to. ReadyRoll will create a new database if it does not exist.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -62,7 +62,7 @@
       "Name": "DatabaseUsername",
       "Label": "Username",
       "HelpText": "The SQL Server username used to connect to the database.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -72,12 +72,12 @@
       "Name": "DatabasePassword",
       "Label": "Password",
       "HelpText": "The SQL Server password used to connect to the database.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-144",
+  "LogoAttachmentKey": "CommunityActionTemplates-155",
   "LogoAttachmentMimeType": "image/png"
 }

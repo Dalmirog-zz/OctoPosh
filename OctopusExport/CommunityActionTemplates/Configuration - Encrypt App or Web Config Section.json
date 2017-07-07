@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-33",
+  "Id": "CommunityActionTemplates-35",
   "Name": "Configuration - Encrypt App or Web Config Section",
   "ExternalId": "c79b5e6b-88ac-47d5-8678-99e8ab2a1cd9",
   "Description": "Encrypts a configuration section for the specified executable.",
@@ -25,7 +25,7 @@
       "Name": "ExecutablePath",
       "Label": "Executable path",
       "HelpText": "For Web:\nThe virtual path to the web site.\n\nFor Windows:\nThe path to the executable that has a corresponding `[Executable].exe.config` file.\n \nYou can get the InstallationDirectoryPath like so `#{Octopus.Action[StepName].Output.Package.InstallationDirectoryPath}`",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -35,7 +35,7 @@
       "Name": "SectionToEncrypt",
       "Label": "Section to encrypt",
       "HelpText": "The name of the section(s) in the config to encrypt e.g. appSettings, connectionStrings etc.\n\nSeparate multiple sections with comma ','.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -45,7 +45,7 @@
       "Name": "Provider",
       "Label": "Provider Name",
       "HelpText": "The provider to use for encryption",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -66,12 +66,12 @@
       "Name": "WebSiteName",
       "Label": "Web Site Name",
       "HelpText": "Enter the web site name installed in IIS.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-33",
+  "LogoAttachmentKey": "CommunityActionTemplates-35",
   "LogoAttachmentMimeType": "image/png"
 }

@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-88",
+  "Id": "CommunityActionTemplates-94",
   "Name": "IIS App - Update Property",
   "ExternalId": "4eb08b60-142c-4443-92cf-2e069727f438",
   "Description": "Updates property for specified application",
@@ -20,7 +20,7 @@
       "Name": "webSiteName",
       "Label": "Web site name",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -30,7 +30,7 @@
       "Name": "applicationName",
       "Label": "Aplication name",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -40,7 +40,7 @@
       "Name": "propertyName",
       "Label": "Name of the property to set",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -50,12 +50,12 @@
       "Name": "propertyValue",
       "Label": "Value of the property to set",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-88",
+  "LogoAttachmentKey": "CommunityActionTemplates-94",
   "LogoAttachmentMimeType": "image/png"
 }

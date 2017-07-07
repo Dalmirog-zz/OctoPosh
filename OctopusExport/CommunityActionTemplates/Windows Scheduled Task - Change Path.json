@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-217",
+  "Id": "CommunityActionTemplates-234",
   "Name": "Windows Scheduled Task - Change Path",
   "ExternalId": "406ae0ad-72ce-491f-89a3-22bc2dbbb7ed",
   "Description": "Changes the execution path of a Windows Scheduled Task for both 2008 and 2012.",
@@ -20,7 +20,7 @@
       "Name": "TaskName",
       "Label": "Task Name",
       "HelpText": "Name of the Windows Scheduled Task.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -28,7 +28,7 @@
       "Name": "TaskFolder",
       "Label": "Task Folder",
       "HelpText": "Folder path of the command to be executed by the Scheduled Task.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -38,7 +38,7 @@
       "Name": "TaskUserName",
       "Label": "User Name",
       "HelpText": "User name the task will run under.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -46,7 +46,7 @@
       "Name": "TaskPassword",
       "Label": "Password",
       "HelpText": "Password for the user the task will run under.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
@@ -56,10 +56,10 @@
       "Name": "TaskExe",
       "Label": "Task Executable",
       "HelpText": "Executable name of the task to be run from the Task Folder.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-217",
+  "LogoAttachmentKey": "CommunityActionTemplates-234",
   "LogoAttachmentMimeType": "image/png"
 }

@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-132",
+  "Id": "CommunityActionTemplates-143",
   "Name": "Pushalot - Send a notification",
   "ExternalId": "5e837cf6-27de-436b-a2e6-b2f9d0c7411c",
   "Description": "Sends a notification using the Pushalot REST API.",
@@ -20,7 +20,7 @@
       "Name": "AuthorizationToken",
       "Label": "Specify the authorization token as registered in the Pushalot Dashboard",
       "HelpText": "Goto [Apps+Tokens](https://pushalot.com) and create a token for your application, e.g. Octopus.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
@@ -30,7 +30,7 @@
       "Name": "Body",
       "Label": "The body of the message",
       "HelpText": "Body of the message. Will show in client app in message listing in shortened version and in message detail page in full version, so when possible try to keep most important information in the beginning of the text.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "MultiLineText"
       }
@@ -40,7 +40,7 @@
       "Name": "Title",
       "Label": "The title for the message",
       "HelpText": "Title for the message. Will show in client app in message listing in shortened version and in message detail in full version, so when possible try to keep most important information in the beginning of the text.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -66,6 +66,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-132",
+  "LogoAttachmentKey": "CommunityActionTemplates-143",
   "LogoAttachmentMimeType": "image/png"
 }

@@ -1,0 +1,26 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-4040",
+  "RelatedDocumentIds": [
+    "Machines-26",
+    "Environments-24"
+  ],
+  "ProjectId": null,
+  "EnvironmentId": "Environments-24",
+  "TenantId": null,
+  "Category": "Created",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-01-23T02:19:48.9139282-03:00",
+  "Message": "Machine unmodified_TestMachine was created",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Machines-26",
+      "StartIndex": 8,
+      "Length": 22
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "Session cookie"
+}

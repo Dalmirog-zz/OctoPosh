@@ -2,7 +2,7 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-3492",
   "RelatedDocumentIds": [
-    "TagSets-21"
+    "Users-1"
   ],
   "ProjectId": null,
   "EnvironmentId": null,
@@ -10,16 +10,16 @@
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-03-19T02:03:18.2784988+00:00",
-  "Message": "TagSet 56A839YY9Q2B34L was created",
+  "Occurred": "2017-01-20T21:22:32.0180058-03:00",
+  "Message": "User admin was created using the admin command line",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "TagSets-21",
-      "StartIndex": 7,
-      "Length": 15
+      "ReferencedDocumentId": "Users-1",
+      "StartIndex": 5,
+      "Length": 5
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Command-line or tools"
 }

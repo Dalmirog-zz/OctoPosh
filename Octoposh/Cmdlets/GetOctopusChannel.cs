@@ -146,7 +146,7 @@ namespace Octoposh.Cmdlets
                 }
                 else
                 {
-                    WriteObject(baseResourceList);
+                    WriteObject(baseResourceList,true);
                 }
             }
 
@@ -157,11 +157,11 @@ namespace Octoposh.Cmdlets
 
                 if (outputList.Count == 1)
                 {
-                    WriteObject(outputList.FirstOrDefault());
+                    WriteObject(outputList.FirstOrDefault(),true);
                 }
                 else
                 {
-                    WriteObject(outputList);
+                    WriteObject(outputList,true);
                 }
             }
 

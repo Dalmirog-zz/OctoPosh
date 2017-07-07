@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-206",
+  "Id": "CommunityActionTemplates-223",
   "Name": "Windows - Create Shortcut",
   "ExternalId": "95ed2a99-f92a-482e-a625-bbd1fb7c24bc",
   "Description": "Creates or updates a Windows shortcut to point to a target file.",
@@ -20,7 +20,7 @@
       "Name": "TargetFilePath",
       "Label": "Target file the shortcut will reference",
       "HelpText": "This should be set to the file that the shortcut will link to.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -39,7 +39,7 @@
       "Name": "ShortcutPath",
       "Label": "The path the shortcut will be put in if Custom path is chosen",
       "HelpText": "This path is only used if Custom is set as destination for the shortcut. This should include a path that the shortcut should live in.  If the path does not exist, it will be created.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -49,10 +49,10 @@
       "Name": "ShortcutName",
       "Label": "The name of the shortcut",
       "HelpText": "This should be the name of the shortcut.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-206",
+  "LogoAttachmentKey": "CommunityActionTemplates-223",
   "LogoAttachmentMimeType": "image/png"
 }

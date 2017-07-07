@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-232",
+  "Id": "CommunityActionTemplates-250",
   "Name": "Zabbix API maintenance",
   "ExternalId": "2fdc47cd-d120-4919-b0d5-2ed22ca8ff62",
   "Description": "This step template adds single host on Zabbix maintenance.",
@@ -25,7 +25,7 @@
       "Name": "zserver",
       "Label": "Zabbix Server",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -35,7 +35,7 @@
       "Name": "zuser",
       "Label": "Zabbix Username",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -45,7 +45,7 @@
       "Name": "zpass",
       "Label": "Zabbix Password",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
@@ -65,7 +65,7 @@
       "Name": "action",
       "Label": "",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Select",
         "Octopus.SelectOptions": "create|Create maintenance\nremove|Remove maintenance"
@@ -102,6 +102,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-232",
+  "LogoAttachmentKey": "CommunityActionTemplates-250",
   "LogoAttachmentMimeType": "image/png"
 }

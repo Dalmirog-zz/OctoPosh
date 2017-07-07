@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-94",
+  "Id": "CommunityActionTemplates-100",
   "Name": "IIS AppPool - Set Managed Pipeline Mode",
   "ExternalId": "e87b057b-bbe0-49a4-bbed-5cfe0413667a",
   "Description": "Sets an IIS Application Pool's Managed Pipeline Mode.\nI.E. Classic or Integrated",
@@ -25,7 +25,7 @@
       "Name": "AppPoolName",
       "Label": "Application Pool Name",
       "HelpText": "The Application Pool Name to update.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -42,6 +42,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-94",
+  "LogoAttachmentKey": "CommunityActionTemplates-100",
   "LogoAttachmentMimeType": "image/png"
 }

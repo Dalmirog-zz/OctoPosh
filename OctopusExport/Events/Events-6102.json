@@ -1,0 +1,26 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-6102",
+  "RelatedDocumentIds": [
+    "Machines-24",
+    "Environments-21"
+  ],
+  "ProjectId": null,
+  "EnvironmentId": "Environments-21",
+  "TenantId": null,
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-03-07T22:41:05.0406031-03:00",
+  "Message": "Machine MachineTests_Machine2 was modified",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Machines-24",
+      "StartIndex": 8,
+      "Length": 21
+    }
+  ],
+  "Comments": null,
+  "Details": "<span>{\r&para;<br>  \"Id\": \"Machines-5\",\r&para;<br>  \"Name\": \"</span><del style=\"background:#ffe6e6;\">South</del><ins style=\"background:#e6ffe6;\">MachineTests_Machine2</ins><span>\",\r&para;<br>  \"Endpoint\": {},\r&para;<br>  \"IsDisabled\": false,\r&para;<br>  \"Roles\": [\r&para;<br>    \"WebApps\"\r&para;<br>  ],\r&para;<br>  \"EnvironmentIds\": [\r&para;<br>    \"Environments-1\"\r&para;<br>  ],\r&para;<br>  \"TenantIds\": [],\r&para;<br>  \"TenantTags\": [],\r&para;<br>  \"MachinePolicyId\": \"MachinePolicies-1\"\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "Session cookie"
+}

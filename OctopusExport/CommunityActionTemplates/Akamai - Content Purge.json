@@ -24,7 +24,7 @@
       "Name": "AkamaiClientToken",
       "Label": "Client Token",
       "HelpText": "Authentication token used in client authentication. Available in Luna Portal.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -34,7 +34,7 @@
       "Name": "AkamaiClientAccessToken",
       "Label": "Client Access Token",
       "HelpText": "Authentication token used in client authentication. Available in Luna Portal.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -44,7 +44,7 @@
       "Name": "AkamaiSecret",
       "Label": "Secret",
       "HelpText": "Authentication password used in client authentication. Available in Luna Portal.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
@@ -65,7 +65,7 @@
       "Name": "AkamaiObjects",
       "Label": "Objects",
       "HelpText": "A comma separated list of objects to purge, either URLs or CPCODEs",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -108,7 +108,7 @@
       "Name": "ProxyUser",
       "Label": "Proxy User",
       "HelpText": "Optional, a user name for the proxy if required in the network",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -118,7 +118,7 @@
       "Name": "ProxyPassword",
       "Label": "Proxy Password",
       "HelpText": "Optional, the password for the account to use if a Proxy User was specified",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }

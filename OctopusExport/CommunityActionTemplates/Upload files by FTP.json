@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-195",
+  "Id": "CommunityActionTemplates-211",
   "Name": "Upload files by FTP",
   "ExternalId": "3b534e57-e8b0-4a06-aa2c-9e7eba1f4337",
   "Description": "Upload files to a remote server via File Transfer Protocol (FTP) using WinSCP.\n\nThis step template requires the [WinSCP .NET Assembly](http://winscp.net/eng/docs/library#downloading_and_installing_the_assembly) to be installed on the server running the deployment.",
@@ -20,7 +20,7 @@
       "Name": "PathToWinScp",
       "Label": "Path to WinScp",
       "HelpText": "The directory where you extracted the WinSCP .NET Assembly.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -30,7 +30,7 @@
       "Name": "FtpHost",
       "Label": "Host",
       "HelpText": "The address of your FTP server. Example: `ftp.yourhost.com`.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -60,7 +60,7 @@
       "Name": "FtpRemoteDirectory",
       "Label": "Remote directory",
       "HelpText": "The directory on your FTP server in which you want files to be placed. Example: `/site/wwwroot`",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -70,7 +70,7 @@
       "Name": "FtpPackageStepName",
       "Label": "Package step name",
       "HelpText": "Name of the previously-deployed package step that contains the files that you want to deploy.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "StepName"
       }
@@ -86,6 +86,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-195",
+  "LogoAttachmentKey": "CommunityActionTemplates-211",
   "LogoAttachmentMimeType": "image/png"
 }

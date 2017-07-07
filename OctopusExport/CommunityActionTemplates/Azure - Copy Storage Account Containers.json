@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-15",
+  "Id": "CommunityActionTemplates-16",
   "Name": "Azure - Copy Storage Account Containers",
   "ExternalId": "bf955a12-57ee-41b0-af58-672ca48ea07d",
   "Description": "Copy blobs between specified containers across two different storage accounts",
@@ -24,7 +24,7 @@
       "Name": "SourceStorageAccountName",
       "Label": "Source Storage Account Name",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -34,7 +34,7 @@
       "Name": "SourceStorageAccountKey",
       "Label": "Source Storage Account Key",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -44,7 +44,7 @@
       "Name": "SourceContainerName",
       "Label": "Source Container Name",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -54,7 +54,7 @@
       "Name": "SourceBlobPrefix",
       "Label": "Source Blob Prefix (Optional)",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -64,7 +64,7 @@
       "Name": "DestinationStorageAccountName",
       "Label": "Destination Storage Account Name",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -74,7 +74,7 @@
       "Name": "DestinationStorageAccountKey",
       "Label": "Destination Storage Account Key",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -84,7 +84,7 @@
       "Name": "DestinationContainerName",
       "Label": "Destination Container Name",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -94,12 +94,12 @@
       "Name": "DestinationBlobPrefix",
       "Label": "Destination Blob Prefix (Optional)",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-15",
+  "LogoAttachmentKey": "CommunityActionTemplates-16",
   "LogoAttachmentMimeType": "image/png"
 }

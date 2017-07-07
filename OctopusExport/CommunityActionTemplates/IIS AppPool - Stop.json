@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-96",
+  "Id": "CommunityActionTemplates-102",
   "Name": "IIS AppPool - Stop",
   "ExternalId": "3aaf34a5-90eb-4ea1-95db-15ec93c1e54d",
   "Description": "Stops an IIS Application Pool",
@@ -20,7 +20,7 @@
       "Name": "AppPoolName",
       "Label": "Application pool name",
       "HelpText": "The name of the application pool in IIS.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -44,6 +44,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-96",
+  "LogoAttachmentKey": "CommunityActionTemplates-102",
   "LogoAttachmentMimeType": "image/png"
 }

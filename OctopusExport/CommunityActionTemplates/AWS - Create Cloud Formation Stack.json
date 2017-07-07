@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-7",
+  "Id": "CommunityActionTemplates-8",
   "Name": "AWS - Create Cloud Formation Stack",
   "ExternalId": "d6d9d9db-e4ab-487c-967c-860bf8303052",
   "Description": "Creates a [Amazon Cloud Formation Stack](#http://docs.aws.amazon.com/powershell/latest/reference/items/New-CFNStack.html) with the template specified.\n\n- Requires the [AWS PowerShell cmdlets](http://aws.amazon.com/powershell/)",
@@ -25,7 +25,7 @@
       "Name": "AWSSecretAccessKey",
       "Label": "AWS Secret Access Key",
       "HelpText": "The [secret access key](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSGettingStartedGuide/AWSCredentials.html) to use when executing the script",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
@@ -35,7 +35,7 @@
       "Name": "AWSAccessKey",
       "Label": "AWS Access Key",
       "HelpText": "The [access key](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSGettingStartedGuide/AWSCredentials.html) to use when executing the script",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -45,7 +45,7 @@
       "Name": "AWSRegion",
       "Label": "AWS Region",
       "HelpText": "The Amazon Region see (http://docs.aws.amazon.com/powershell/latest/reference/items/Get-AWSRegion.html) for further info",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Select",
         "Octopus.SelectOptions": "us-east-1|US East (Virginia)\nus-west-1|US West (N. California)\nus-west-2|US West (Oregon)\neu-west-1|EU West (Ireland)\neu-central-1|EU Central (Frankfurt)\nap-northeast-1|Asia Pacific (Tokyo)\nap-southeast-1|Asia Pacific (Singapore)\nap-southeast-2|Asia Pacific (Sydney)\nsa-east-1|South America (Sao Paulo)"
@@ -56,7 +56,7 @@
       "Name": "CloudFormationStackName",
       "Label": "AWS Cloud Formation Stack Name",
       "HelpText": "The name of the AWS Cloud Formation Stack",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -86,7 +86,7 @@
       "Name": "UseS3ForCloudFormationTemplate",
       "Label": "Use AWS S3 storage for the Cloud Formation Template",
       "HelpText": "Whether to use S3 storage to source the Cloud Formation script.  See [docs](http://docs.aws.amazon.com/powershell/latest/reference/items/New-CFNStack.html)",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Checkbox"
       }
@@ -96,7 +96,7 @@
       "Name": "CloudFormationTemplate",
       "Label": "The Cloud Formation Template",
       "HelpText": "The Cloud Formation Template in the format, see [docs](http://aws.amazon.com/cloudformation/aws-cloudformation-templates/)",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "MultiLineText"
       }
@@ -106,7 +106,7 @@
       "Name": "CloudFormationTemplateURL",
       "Label": "The location in S3 for the Cloud Formation Template",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -116,7 +116,7 @@
       "Name": "CloudFormationParameters",
       "Label": "Cloud Formation Parameters",
       "HelpText": "See [docs](http://docs.aws.amazon.com/powershell/latest/reference/items/New-CFNStack.html)\n\nShould be provided as a JSON formatted object.\n\ne.g.`{ \"Key1\": \"Value1\", \"Key2\": \"Value2\" }`",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "MultiLineText"
       }
@@ -126,7 +126,7 @@
       "Name": "UseS3ForStackPolicy",
       "Label": "Use AWS S3 Storage for Cloud Formation Stack Policy",
       "HelpText": "See [docs](http://docs.aws.amazon.com/powershell/latest/reference/items/New-CFNStack.html)",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Checkbox"
       }
@@ -136,7 +136,7 @@
       "Name": "CloudFormationStackPolicyURL",
       "Label": "The URL for the Cloud Formation Policy in S3",
       "HelpText": "See [docs](http://docs.aws.amazon.com/powershell/latest/reference/items/New-CFNStack.html)",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -152,6 +152,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-7",
+  "LogoAttachmentKey": "CommunityActionTemplates-8",
   "LogoAttachmentMimeType": "image/png"
 }

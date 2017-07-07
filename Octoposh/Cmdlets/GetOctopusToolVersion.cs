@@ -66,13 +66,13 @@ namespace Octoposh.Cmdlets
             switch (ParameterSetName)
             {
                 case ByLatest:
-                    WriteObject(octopusTools.GetLatestToolVersion());
+                    WriteObject(octopusTools.GetLatestToolVersion(),true);
                     break;
                 case ByVersion:
-                    WriteObject(octopusTools.GetToolByVersion(Version));
+                    WriteObject(octopusTools.GetToolByVersion(Version),true);
                     break;
                 case All:
-                    WriteObject(octopusTools.GetAllToolVersions());
+                    WriteObject(octopusTools.GetAllToolVersions(),true);
                     break;
             }
         }

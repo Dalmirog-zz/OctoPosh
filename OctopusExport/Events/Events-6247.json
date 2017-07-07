@@ -1,0 +1,30 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-6247",
+  "RelatedDocumentIds": [
+    "Projects-25"
+  ],
+  "ProjectId": "Projects-25",
+  "EnvironmentId": null,
+  "TenantId": null,
+  "Category": "Created",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-02-14T02:08:18.4380044-03:00",
+  "Message": "TestProject1 release 0.0.33 was created",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Projects-25",
+      "StartIndex": 0,
+      "Length": 12
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 21,
+      "Length": 6
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+}

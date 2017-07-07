@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-98",
+  "Id": "CommunityActionTemplates-104",
   "Name": "IIS AppPool - Update Recycle Settings",
   "ExternalId": "5d771fd0-710c-41a7-9969-10bc75d00307",
   "Description": "Update the worker process and app pool timeout/recycle times.",
@@ -25,7 +25,7 @@
       "Name": "ApplicationPoolName",
       "Label": "Application pool",
       "HelpText": "The name of the application pool to modify. The application pool must already exist.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -33,7 +33,7 @@
       "Name": "IdleTimeoutMinutes",
       "Label": "Process idle timeout",
       "HelpText": "Amount of time (in minutes) a worker process will remain idle before it shuts down. A value of 0 means the process does not shut down after an idle timeout.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -41,7 +41,7 @@
       "Name": "RegularTimeIntervalMinutes",
       "Label": "Application pool recycle time interval",
       "HelpText": "Period of time (in minutes) after which the application pool will recycle. A value of 0 means the application pool does not recycle on a regular interval.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -49,7 +49,7 @@
       "Name": "PeriodicRecycleTime",
       "Label": "Application pool periodic recycle time",
       "HelpText": "A specific local time, in 24 hour format, when the application pool is recycled.\n\nExample: \"00:30:00\" for half an hour past midnight.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -57,12 +57,12 @@
       "Name": "RecycleEventsToLog",
       "Label": "Recycle Events To Log",
       "HelpText": "Event Log entries can be generated when an application pool is recycled. Select the Recycling events to log. The Options are **Time**, **Requests**, **Schedule**, **Memory**, **IsapiUnhealthy**, **OnDemand**, **ConfigChange**,  **PrivateMemory**. These should be entered in a comma separated list. \n\nExample: \"OnDemand,ConfigChange\"",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-98",
+  "LogoAttachmentKey": "CommunityActionTemplates-104",
   "LogoAttachmentMimeType": "image/png"
 }
