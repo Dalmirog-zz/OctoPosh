@@ -6,13 +6,12 @@ Gets information about Octopus Environments
 | Name | DataType          | Description |
 | ------------- | ----------- | ----------- |
 | EnvironmentName | String[] |  Environment name     |
-| ResourceOnly | Switch |  If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the  cmdlet will return a human friendly Octoposh output object     |
+| ResourceOnly | Switch |  If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh output object     |
 
 ### Syntax
 ``` powershell
 
-Get-OctopusEnvironment [[-EnvironmentName] <string[]>] [-ResourceOnly <SwitchParameter>] 
-[<CommonParameters>]
+Get-OctopusEnvironment [[-EnvironmentName] <string[]>] [-ResourceOnly <SwitchParameter>] [<CommonParameters>]
 
 
 

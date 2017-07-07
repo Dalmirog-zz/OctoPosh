@@ -5,6 +5,11 @@ This function gets the data of the variables $env:OctopusURI and $env:OctopusAPI
 ### Syntax
 ``` powershell
 
+Get-OctopusConnectionInfo [<CommonParameters>]
+
+
+
+
 ``` 
 
 ### Examples 
