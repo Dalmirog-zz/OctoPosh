@@ -1,0 +1,25 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-6793",
+  "RelatedDocumentIds": [
+    "ServerTasks-1096"
+  ],
+  "ProjectId": null,
+  "EnvironmentId": null,
+  "TenantId": null,
+  "Category": "TaskCanceled",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-01-29T05:06:23.5189252-03:00",
+  "Message": "Task Deploy TestProject2 release 0.0.1 to Stage #71 was canceled",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "ServerTasks-1096",
+      "StartIndex": 5,
+      "Length": 46
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "Session cookie"
+}

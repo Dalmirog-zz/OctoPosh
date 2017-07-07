@@ -35,7 +35,7 @@ namespace Octoposh.Cmdlets
     /// </example>
     /// <para type="link" uri="http://Octoposh.net">WebSite: </para>
     /// <para type="link" uri="https://github.com/Dalmirog/OctoPosh/">Github Project: </para>
-    /// <para type="link" uri="https://github.com/Dalmirog/OctoPosh/wiki">Wiki: </para>
+    /// <para type="link" uri="http://octoposh.readthedocs.io">Wiki: </para>
     /// <para type="link" uri="https://gitter.im/Dalmirog/OctoPosh#initial">QA and Feature requests: </para>
     [Cmdlet("Get", "OctopusToolVersion",DefaultParameterSetName = All)]
     [OutputType(typeof(List<OctopusToolVersion>))]
@@ -66,13 +66,13 @@ namespace Octoposh.Cmdlets
             switch (ParameterSetName)
             {
                 case ByLatest:
-                    WriteObject(octopusTools.GetLatestToolVersion());
+                    WriteObject(octopusTools.GetLatestToolVersion(),true);
                     break;
                 case ByVersion:
-                    WriteObject(octopusTools.GetToolByVersion(Version));
+                    WriteObject(octopusTools.GetToolByVersion(Version),true);
                     break;
                 case All:
-                    WriteObject(octopusTools.GetAllToolVersions());
+                    WriteObject(octopusTools.GetAllToolVersions(),true);
                     break;
             }
         }

@@ -7,7 +7,7 @@ Gets information about Octopus deployments
 | ------------- | ----------- | ----------- |
 | ReleaseVersion | String[] |  Release version to filter by. The cmdlet will only return deployments that belong to these releases     |
 | LatestReleases |  |  Gets deployments by latest X releases     |
-| ResourceOnly | Switch |  If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the  cmdlet will return a human friendly Octoposh output object     |
+| ResourceOnly | Switch |  If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh output object     |
 | EnvironmentName | String[] |  Name of the Environment to filter by     |
 | ProjectName | String[] |  Name of the Project to filter by     |
 | Before |  |  Target communication style to filter by     |
@@ -16,13 +16,9 @@ Gets information about Octopus deployments
 ### Syntax
 ``` powershell
 
-Get-OctopusDeployment [-After <DateTimeOffset>] [-Before <DateTimeOffset>] [-EnvironmentName 
-<string[]>] [-ProjectName <string[]>] [-ReleaseVersion <string[]>] [-ResourceOnly <SwitchParameter>] 
-[<CommonParameters>]
+Get-OctopusDeployment [-After <DateTimeOffset>] [-Before <DateTimeOffset>] [-EnvironmentName <string[]>] [-ProjectName <string[]>] [-ReleaseVersion <string[]>] [-ResourceOnly <SwitchParameter>] [<CommonParameters>]
 
-Get-OctopusDeployment [-After <DateTimeOffset>] [-Before <DateTimeOffset>] [-EnvironmentName 
-<string[]>] [-LatestReleases <int>] [-ProjectName <string[]>] [-ResourceOnly <SwitchParameter>] 
-[<CommonParameters>]
+Get-OctopusDeployment [-After <DateTimeOffset>] [-Before <DateTimeOffset>] [-EnvironmentName <string[]>] [-LatestReleases <int>] [-ProjectName <string[]>] [-ResourceOnly <SwitchParameter>] [<CommonParameters>]
 
 
 
@@ -65,9 +61,9 @@ Get all the deployments that were done to the environment "Production" on the pr
 
 **EXAMPLE 5**
 
-Gets all the machines registered in "Listening" mode. "Polling" is also a valid value
+Gets all the deployments for the project "MyProduct.WebApp" for the environment "Production" between 2/20/2017 and 2/21/2017
 
 ``` powershell 
- PS Get-OctopusDeployment -project "MyProduct.Webapp" -Environment "Production" -After 2/20/2015 -Before 2/21/2015
+ PS Get-OctopusDeployment -project "MyProduct.Webapp" -Environment "Production" -After 2/20/2017 -Before 2/21/2017
 ``` 
 

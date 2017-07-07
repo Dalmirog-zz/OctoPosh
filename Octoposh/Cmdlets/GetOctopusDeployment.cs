@@ -35,7 +35,7 @@ namespace Octoposh.Cmdlets
     /// </example>
     /// <para type="link" uri="http://Octoposh.net">WebSite: </para>
     /// <para type="link" uri="https://github.com/Dalmirog/OctoPosh/">Github Project: </para>
-    /// <para type="link" uri="https://github.com/Dalmirog/OctoPosh/wiki">Wiki: </para>
+    /// <para type="link" uri="http://octoposh.readthedocs.io">Wiki: </para>
     /// <para type="link" uri="https://gitter.im/Dalmirog/OctoPosh#initial">QA and Feature requests: </para>
     [Cmdlet("Get", "OctopusDeployment", DefaultParameterSetName = ByLatest)]
     [OutputType(typeof(List<OutputOctopusDeployment>))]
@@ -120,9 +120,12 @@ namespace Octoposh.Cmdlets
             }
             else
             {
-                foreach (var name in ProjectName)
+
+                var projectNameList = ProjectName?.ToList().ConvertAll(s => s.ToLower());
+
+                foreach (var name in projectNameList)
                 {
-                    var project = rawDashboard.Projects.FirstOrDefault(p => p.Name == name);
+                    var project = rawDashboard.Projects.FirstOrDefault(p => p.Name.ToLower() == name);
                     if (project != null)
                     {
                         projects.Add(project);
@@ -136,8 +139,7 @@ namespace Octoposh.Cmdlets
                 }
             }
             
-            foreach(var dashboardProject in projects)
-            {
+            foreach(var dashboardProject in projects){
 
                 var project = _connection.Repository.Projects.Get(dashboardProject.Id);
 
@@ -193,9 +195,11 @@ namespace Octoposh.Cmdlets
             }
             else
             {
-                foreach (var name in EnvironmentName)
+                var environmentNameList = EnvironmentName?.ToList().ConvertAll(s => s.ToLower());
+
+                foreach (var name in environmentNameList)
                 {
-                    var environment = rawDashboard.Environments.FirstOrDefault(e => e.Name == name);
+                    var environment = rawDashboard.Environments.FirstOrDefault(e => e.Name.ToLower() == name);
                     if (environment != null)
                     {
                         environments.Add(environment);
@@ -222,11 +226,11 @@ namespace Octoposh.Cmdlets
             {
                 if (baseResourceList.Count == 1)
                 {
-                    WriteObject(baseResourceList.FirstOrDefault());
+                    WriteObject(baseResourceList.FirstOrDefault(),true);
                 }
                 else
                 {
-                    WriteObject(baseResourceList);
+                    WriteObject(baseResourceList,true);
                 }
             }
 
@@ -237,11 +241,11 @@ namespace Octoposh.Cmdlets
 
                 if (outputList.Count == 1)
                 {
-                    WriteObject(outputList.FirstOrDefault());
+                    WriteObject(outputList.FirstOrDefault(),true);
                 }
                 else
                 {
-                    WriteObject(outputList);
+                    WriteObject(outputList,true);
                 }
             }
         }

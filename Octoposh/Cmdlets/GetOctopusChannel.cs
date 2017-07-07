@@ -35,7 +35,7 @@ namespace Octoposh.Cmdlets
     /// </example>
     /// <para type="link" uri="http://Octoposh.net">WebSite: </para>
     /// <para type="link" uri="https://github.com/Dalmirog/OctoPosh/">Github Project: </para>
-    /// <para type="link" uri="https://github.com/Dalmirog/OctoPosh/wiki">Wiki: </para>
+    /// <para type="link" uri="http://octoposh.readthedocs.io">Wiki: </para>
     /// <para type="link" uri="https://gitter.im/Dalmirog/OctoPosh#initial">QA and Feature requests: </para>
     [Cmdlet("Get", "OctopusChannel")]
     [OutputType(typeof(List<OutputOctopusChannel>))]
@@ -146,7 +146,7 @@ namespace Octoposh.Cmdlets
                 }
                 else
                 {
-                    WriteObject(baseResourceList);
+                    WriteObject(baseResourceList,true);
                 }
             }
 
@@ -157,11 +157,11 @@ namespace Octoposh.Cmdlets
 
                 if (outputList.Count == 1)
                 {
-                    WriteObject(outputList.FirstOrDefault());
+                    WriteObject(outputList.FirstOrDefault(),true);
                 }
                 else
                 {
-                    WriteObject(outputList);
+                    WriteObject(outputList,true);
                 }
             }
 

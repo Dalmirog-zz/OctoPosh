@@ -25,7 +25,7 @@ namespace Octoposh.Cmdlets
     /// </example>
     /// <para type="link" uri="http://Octoposh.net">WebSite: </para>
     /// <para type="link" uri="https://github.com/Dalmirog/OctoPosh/">Github Project: </para>
-    /// <para type="link" uri="https://github.com/Dalmirog/OctoPosh/wiki">Wiki: </para>
+    /// <para type="link" uri="http://octoposh.readthedocs.io">Wiki: </para>
     /// <para type="link" uri="https://gitter.im/Dalmirog/OctoPosh#initial">QA and Feature requests: </para>
     [Cmdlet("Update", "OctopusResource")]
     [OutputType(typeof(EnvironmentResource))]
@@ -83,10 +83,8 @@ namespace Octoposh.Cmdlets
                     break;
 
                 case "Octopus.Client.Model.VariableSetResource":
-
                     var variableSet = (VariableSetResource)Resource;
                     outputResource = _connection.Repository.VariableSets.Modify(variableSet);
-
                     break;
 
                 case "Octopus.Client.Model.MachineResource":
@@ -124,12 +122,17 @@ namespace Octoposh.Cmdlets
                     outputResource = _connection.Repository.TagSets.Modify(tagset);
                     break;
 
+                case "Octopus.Client.Model.ReleaseResource":
+                    var release = (ReleaseResource)Resource;
+                    outputResource = _connection.Repository.Releases.Modify(release);
+                    break;
+
                 default:
-                    Console.WriteLine("Dunno what to modify");
+                    Console.WriteLine("Update-OctopusResource doesn't support updating objects of type: {0}", Resource.GetType().ToString());
                     break;
             }
-
-            WriteObject(outputResource);
+            
+            WriteObject(outputResource, true);
         }
     }
 }

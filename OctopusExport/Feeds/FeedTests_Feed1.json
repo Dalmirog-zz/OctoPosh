@@ -1,5 +1,8 @@
 {
   "$type": "Octopus.Core.Model.NuGet.NuGetFeed, Octopus.Core",
+  "DownloadAttempts": 5,
+  "DownloadRetryBackoffSeconds": 10,
+  "EnhancedMode": false,
   "Id": "feeds-feedtests-feed1",
   "Name": "FeedTests_Feed1",
   "FeedUri": "c:\\feed1",

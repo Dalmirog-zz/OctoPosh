@@ -1,0 +1,41 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-6837",
+  "RelatedDocumentIds": [
+    "Projects-25",
+    "Environments-23"
+  ],
+  "ProjectId": "Projects-25",
+  "EnvironmentId": "Environments-23",
+  "TenantId": null,
+  "Category": "DeploymentFailed",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-01-29T05:09:00.5827823-03:00",
+  "Message": "Deploy to Stage failed  for TestProject1 release 0.0.33 to Stage",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 0,
+      "Length": 15
+    },
+    {
+      "ReferencedDocumentId": "Projects-25",
+      "StartIndex": 28,
+      "Length": 12
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 49,
+      "Length": 6
+    },
+    {
+      "ReferencedDocumentId": "Environments-23",
+      "StartIndex": 59,
+      "Length": 5
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "Unknown"
+}

@@ -1,15 +1,16 @@
 {
   "$type": "Octopus.Core.Model.Projects.Project, Octopus.Core",
-  "Id": "Projects-7",
+  "Id": "Projects-27",
   "Name": "ReleaseTests_Project1",
   "Description": "Resource created for unit testing. Do not delete.",
   "Slug": "releasetests-project1",
   "IsDisabled": false,
-  "VariableSetId": "variableset-Projects-7",
-  "DeploymentProcessId": "deploymentprocess-Projects-7",
-  "ProjectGroupId": "ProjectGroups-23",
+  "VariableSetId": "variableset-Projects-27",
+  "DeploymentProcessId": "deploymentprocess-Projects-27",
+  "ProjectGroupId": "ProjectGroups-43",
   "LifecycleId": "Lifecycles-1",
   "AutoCreateRelease": false,
+  "DiscreteChannelRelease": false,
   "IncludedLibraryVariableSetIds": [],
   "UsedPackages": [],
   "DefaultToSkipIfAlreadyInstalled": false,
@@ -25,7 +26,8 @@
   },
   "ProjectConnectivityPolicy": {
     "SkipMachineBehavior": "None",
-    "TargetRoles": []
+    "TargetRoles": [],
+    "AllowDeploymentsToNoTargets": false
   },
   "AutoDeployReleaseOverrides": []
 }

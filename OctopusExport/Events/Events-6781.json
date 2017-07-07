@@ -1,0 +1,25 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-6781",
+  "RelatedDocumentIds": [
+    "TagSets-21"
+  ],
+  "ProjectId": null,
+  "EnvironmentId": null,
+  "TenantId": null,
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-03-11T03:30:50.4759129-03:00",
+  "Message": "TagSet TenantTagSetTests_Set1 was modified",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "TagSets-21",
+      "StartIndex": 7,
+      "Length": 22
+    }
+  ],
+  "Comments": null,
+  "Details": "<span>{\r&para;<br>  \"Id\": \"TagSets-1\",\r&para;<br>  \"Name\": \"TenantTagSetTests_Set1\",\r&para;<br>  \"Description\": \"Resource created for unit tests. Do not delete.\",\r&para;<br>  \"SortOrder\": 0,\r&para;<br>  \"Tags\": [\r&para;<br>    {\r&para;<br>      \"Id\": \"TagSets-1/Tags-1\",\r&para;<br>      \"Name\": \"Set1_Tag1\",\r&para;<br>      \"Description\": </span><del style=\"background:#ffe6e6;\">null</del><ins style=\"background:#e6ffe6;\">\"Tag 1 of set 1\",\r&para;<br>      \"Color\": \"#6e6e6e\",\r&para;<br>      \"SortOrder\": 0\r&para;<br>    },\r&para;<br>    {\r&para;<br>      \"Id\": null,\r&para;<br>      \"Name\": \"Set1_Tag2\",\r&para;<br>      \"Description\": \"Tag 2 of set 1\"</ins><span>,\r&para;<br>      \"Color\": \"#6e6e6e\",\r&para;<br>      \"SortOrder\": </span><del style=\"background:#ffe6e6;\">0</del><ins style=\"background:#e6ffe6;\">1</ins><span>\r&para;<br>    }\r&para;<br>  ]\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "Session cookie"
+}

@@ -1,15 +1,16 @@
 {
   "$type": "Octopus.Core.Model.Projects.Project, Octopus.Core",
-  "Id": "Projects-1",
+  "Id": "Projects-21",
   "Name": "DashboardTests_Project1",
   "Description": "",
   "Slug": "dashboardtests-project1",
   "IsDisabled": false,
-  "VariableSetId": "variableset-Projects-1",
-  "DeploymentProcessId": "deploymentprocess-Projects-1",
-  "ProjectGroupId": "ProjectGroups-21",
+  "VariableSetId": "variableset-Projects-21",
+  "DeploymentProcessId": "deploymentprocess-Projects-21",
+  "ProjectGroupId": "ProjectGroups-41",
   "LifecycleId": "Lifecycles-1",
   "AutoCreateRelease": false,
+  "DiscreteChannelRelease": false,
   "IncludedLibraryVariableSetIds": [],
   "UsedPackages": [],
   "DefaultToSkipIfAlreadyInstalled": false,
@@ -25,7 +26,8 @@
   },
   "ProjectConnectivityPolicy": {
     "SkipMachineBehavior": "None",
-    "TargetRoles": []
+    "TargetRoles": [],
+    "AllowDeploymentsToNoTargets": false
   },
   "AutoDeployReleaseOverrides": []
 }

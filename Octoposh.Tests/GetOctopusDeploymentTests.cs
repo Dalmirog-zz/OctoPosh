@@ -45,7 +45,7 @@ namespace Octoposh.Tests
             };
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusDeployment>>()[0];
+            var results = powershell.Invoke<OutputOctopusDeployment>();
 
             Assert.Greater(results.Count, 0);
 
@@ -79,7 +79,7 @@ namespace Octoposh.Tests
             };
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusDeployment>>()[0];
+            var results = powershell.Invoke<OutputOctopusDeployment>();
 
             Assert.Greater(results.Count, 0);
 
@@ -111,7 +111,7 @@ namespace Octoposh.Tests
             };
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusDeployment>>()[0];
+            var results = powershell.Invoke<OutputOctopusDeployment>();
 
             Assert.Greater(results.Count, 0);
 
@@ -145,7 +145,7 @@ namespace Octoposh.Tests
             };
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusDeployment>>()[0];
+            var results = powershell.Invoke<OutputOctopusDeployment>();
 
             Assert.Greater(results.Count, 0);
 
@@ -184,7 +184,7 @@ namespace Octoposh.Tests
             };
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusDeployment>>()[0];
+            var results = powershell.Invoke<OutputOctopusDeployment>();
 
             Assert.Greater(results.Count, 0);
 
@@ -221,7 +221,7 @@ namespace Octoposh.Tests
             };
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusDeployment>>()[0];
+            var results = powershell.Invoke<OutputOctopusDeployment>();
 
             Assert.Greater(results.Count, 0);
 
@@ -262,7 +262,7 @@ namespace Octoposh.Tests
             };
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusDeployment>>()[0];
+            var results = powershell.Invoke<OutputOctopusDeployment>();
 
             Assert.Greater(results.Count, 0);
 
@@ -305,7 +305,7 @@ namespace Octoposh.Tests
             };
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusDeployment>>()[0];
+            var results = powershell.Invoke<OutputOctopusDeployment>();
 
             Assert.Greater(results.Count, 0);
 

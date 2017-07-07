@@ -352,7 +352,7 @@ namespace Octoposh.Model
                 }
                 else
                 {
-                    var endDate = DateTime.Now.Date;
+                    var endDate = DateTime.Now;
                     TimeSpan? durationSpan = endDate - deployment.Created;
                     duration = string.Format("{0:D2}:{1:D2}:{2:D2}", durationSpan.Value.Hours,
                         durationSpan.Value.Minutes, durationSpan.Value.Seconds);
@@ -380,7 +380,7 @@ namespace Octoposh.Model
                     ProjectName = project.Name,
                     EnvironmentName = environment.Name,
                     DeploymentStartTime = task.StartTime.Value.DateTime,
-                    DeploymentEndTime = task.CompletedTime.Value.DateTime,
+                    DeploymentEndTime = task.CompletedTime?.DateTime,
                     DeploymentStartedBy = deploymentCreateEvent?.Username,
                     Id = deployment.Id,
                     Duration = duration,

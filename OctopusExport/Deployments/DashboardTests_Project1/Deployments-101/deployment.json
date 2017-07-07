@@ -1,0 +1,29 @@
+{
+  "$type": "Octopus.Core.Model.Projects.Deployment, Octopus.Core",
+  "Id": "Deployments-101",
+  "Name": "Deploy to Dev",
+  "Created": "2017-03-13T22:09:46.7717754-03:00",
+  "ForcePackageDownload": false,
+  "ForcePackageRedeployment": false,
+  "Comments": null,
+  "SkipActions": [],
+  "SpecificMachineIds": [],
+  "ExcludedMachineIds": [],
+  "UseGuidedFailure": false,
+  "TentacleRetentionPeriod": {
+    "Unit": "Items",
+    "QuantityToKeep": 0,
+    "ShouldKeepForever": true
+  },
+  "EnvironmentId": "Environments-21",
+  "TenantId": null,
+  "TaskId": "ServerTasks-920",
+  "ReleaseId": "Releases-81",
+  "ProjectId": "Projects-21",
+  "ChannelId": "Channels-21",
+  "DeploymentProcessId": "deploymentprocess-Projects-21-s-2-WWXU3",
+  "ManifestVariableSetId": null,
+  "ProjectGroupId": "ProjectGroups-21",
+  "DeployedBy": "admin",
+  "StateObject": null
+}
