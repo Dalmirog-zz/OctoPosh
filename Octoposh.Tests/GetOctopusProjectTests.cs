@@ -30,11 +30,11 @@ namespace Octoposh.Tests
 
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusProject>>();
+            var results = powershell.Invoke<OutputOctopusProject>();
 
-            Assert.AreEqual(results[0].Count, 1);
+            Assert.AreEqual(results.Count, 1);
             Console.WriteLine("Items Found:");
-            foreach (var item in results[0])
+            foreach (var item in results)
             {
                 Console.WriteLine(item.Name);
             }
@@ -49,13 +49,13 @@ namespace Octoposh.Tests
             }};
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusProject>>();
+            var results = powershell.Invoke<OutputOctopusProject>();
 
             //todo this test sucks
-            Assert.AreEqual(results[0].Count, 2);
+            Assert.AreEqual(results.Count, 2);
 
             Console.WriteLine("Items Found:");
-            foreach (var item in results[0])
+            foreach (var item in results)
             {
                 Console.WriteLine(item.Name);
             }
@@ -76,12 +76,12 @@ namespace Octoposh.Tests
             var pattern = new WildcardPattern(namePattern);
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusProject>>();
+            var results = powershell.Invoke<OutputOctopusProject>();
 
-            Assert.Greater(results[0].Count, 0);
-            Console.WriteLine("Resources found: {0}", results[0].Count);
+            Assert.Greater(results.Count, 0);
+            Console.WriteLine("Resources found: {0}", results.Count);
 
-            foreach (var item in results[0])
+            foreach (var item in results)
             {
                 Console.WriteLine("Resource name: {0}", item.Name);
                 Assert.IsTrue(pattern.IsMatch(item.Name));
@@ -99,7 +99,7 @@ namespace Octoposh.Tests
             }};
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusProject>>()[0];
+            var results = powershell.Invoke<OutputOctopusProject>();
 
             Assert.AreEqual(results.Count, 0);
         }
@@ -115,9 +115,9 @@ namespace Octoposh.Tests
             }};
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusProject>>();
+            var results = powershell.Invoke<OutputOctopusProject>();
 
-            foreach (var result in results[0])
+            foreach (var result in results)
             {
                 Assert.AreEqual(result.ProjectGroupName, projectGroupName);
             }
@@ -139,7 +139,7 @@ namespace Octoposh.Tests
             var results = powershell.Invoke<List<ProjectResource>>();
 
             //If [results] has at least one item, It'll be of the base resource type meaning the test was successful
-            Assert.Greater(results[0].Count, 0);
+            Assert.Greater(results.Count, 0);
             ;
         }
 

@@ -30,11 +30,11 @@ namespace Octoposh.Tests
         [Test]
         public void NotPassingAParameterReturnsMultipleVersions()
         {
-            OctoposhEnvVariables.OctopusToolsFolder = Path.Combine(TestsUtilities.TestsPath,AssetsPath);
+            OctoposhEnvVariables.OctopusToolsFolder = Path.Combine(TestUtilities.TestsPath,AssetsPath);
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType);
 
-            var results = powershell.Invoke<List<OctopusToolVersion>>()[0];
+            var results = powershell.Invoke<OctopusToolVersion>();
 
             Assert.IsTrue(results.Count > 1);
         }
@@ -42,7 +42,7 @@ namespace Octoposh.Tests
         [Test]
         public void PassingLatestParameterReturnsHighestVersion()
         {
-            OctoposhEnvVariables.OctopusToolsFolder = Path.Combine(TestsUtilities.TestsPath, AssetsPath);
+            OctoposhEnvVariables.OctopusToolsFolder = Path.Combine(TestUtilities.TestsPath, AssetsPath);
 
             var parameters = new List<CmdletParameter>
             {
@@ -54,7 +54,7 @@ namespace Octoposh.Tests
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType,parameters);
 
-            var results = powershell.Invoke<List<OctopusToolVersion>>()[0];
+            var results = powershell.Invoke<OctopusToolVersion>();
 
             Assert.IsTrue(results.Count == 1);
             Assert.IsTrue(results[0].Version == Version.Parse(HighestVersion));
@@ -63,7 +63,7 @@ namespace Octoposh.Tests
         [Test]
         public void GetToolVersionByVersion()
         {
-            OctoposhEnvVariables.OctopusToolsFolder = Path.Combine(TestsUtilities.TestsPath, AssetsPath);
+            OctoposhEnvVariables.OctopusToolsFolder = Path.Combine(TestUtilities.TestsPath, AssetsPath);
             var version = Version1;
 
             var parameters = new List<CmdletParameter>
@@ -77,7 +77,7 @@ namespace Octoposh.Tests
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
 
-            var results = powershell.Invoke<List<OctopusToolVersion>>()[0];
+            var results = powershell.Invoke<OctopusToolVersion>();
 
             Assert.IsTrue(results.Count == 1);
             Assert.IsTrue(results[0].Version == Version.Parse(version));
@@ -86,7 +86,7 @@ namespace Octoposh.Tests
         [Test]
         public void ThrowIfItCantFindSpecificVersion()
         {
-            OctoposhEnvVariables.OctopusToolsFolder = Path.Combine(TestsUtilities.TestsPath, AssetsPath);
+            OctoposhEnvVariables.OctopusToolsFolder = Path.Combine(TestUtilities.TestsPath, AssetsPath);
             var version = FakeVersion;
 
             var parameters = new List<CmdletParameter>
@@ -108,7 +108,7 @@ namespace Octoposh.Tests
         [Test]
         public void ThrowIfItToolsFolderDoesNotExist()
         {
-            OctoposhEnvVariables.OctopusToolsFolder = Path.Combine(TestsUtilities.TestsPath, FakePath);
+            OctoposhEnvVariables.OctopusToolsFolder = Path.Combine(TestUtilities.TestsPath, FakePath);
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType);
 
@@ -120,7 +120,7 @@ namespace Octoposh.Tests
         [Test]
         public void ThrowIfCantFindAnyOctoExeVersionsInFolder()
         {
-            OctoposhEnvVariables.OctopusToolsFolder = Path.Combine(TestsUtilities.TestsPath, EmptyPath);
+            OctoposhEnvVariables.OctopusToolsFolder = Path.Combine(TestUtilities.TestsPath, EmptyPath);
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType);
             var ex = Assert.Throws<CmdletInvocationException>(() => powershell.Invoke<List<OctopusToolVersion>>());

@@ -1,15 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Management.Automation;
-using System.Management.Automation.Runspaces;
 using NUnit.Framework;
 using Octoposh.Cmdlets;
 using Octoposh.Model;
-using Octopus.Client.Model;
 
 namespace Octoposh.Tests
 {
@@ -18,10 +12,9 @@ namespace Octoposh.Tests
     {
         private static readonly string CmdletName = "Install-OctopusTool";
         private static readonly Type CmdletType = typeof(InstallOctopusTool);
-        private static readonly string TempDirectory = Path.Combine(TestsUtilities.TestsPath, @"TestAssets\Temp");
-        private static readonly string NugetRepositoryURL = Path.Combine(TestsUtilities.TestsPath, @"TestAssets\Repository");
+        private static readonly string TempDirectory = Path.Combine(TestUtilities.TestsPath, @"TestAssets\Temp");
+        private static readonly string NugetRepositoryURL = Path.Combine(TestUtilities.TestsPath, @"TestAssets\Repository");
         private static readonly string Version1 = "1.0.0";
-        private static readonly string LatestVersion = "4.0.0";
 
         public InstallOctopusToolTests()
         {
@@ -53,7 +46,7 @@ namespace Octoposh.Tests
 
             Assert.DoesNotThrow(() => powershell.Invoke());
 
-            var expectedpath = Path.Combine(TestsUtilities.TestsPath, TempDirectory,String.Concat("OctopusTools.", version), "Octo.exe");
+            var expectedpath = Path.Combine(TestUtilities.TestsPath, TempDirectory,String.Concat("OctopusTools.", version), "Octo.exe");
 
             Assert.AreEqual(OctoposhEnvVariables.Octoexe, expectedpath);
         }
@@ -89,7 +82,14 @@ namespace Octoposh.Tests
         /// </summary>
         private void ClearTempDirectory()
         {
-            DirectoryInfo di = new DirectoryInfo(Path.Combine(TestsUtilities.TestsPath, TempDirectory));
+            var fullTempDirPath = Path.Combine(TestUtilities.TestsPath, TempDirectory);
+
+            if (!Directory.Exists(fullTempDirPath))
+            {
+                Directory.CreateDirectory(fullTempDirPath);
+            }
+
+            DirectoryInfo di = new DirectoryInfo(fullTempDirPath);
 
             foreach (FileInfo file in di.GetFiles())
             {

@@ -83,10 +83,8 @@ namespace Octoposh.Cmdlets
                     break;
 
                 case "Octopus.Client.Model.VariableSetResource":
-
                     var variableSet = (VariableSetResource)Resource;
                     outputResource = _connection.Repository.VariableSets.Modify(variableSet);
-
                     break;
 
                 case "Octopus.Client.Model.MachineResource":
@@ -123,13 +121,12 @@ namespace Octoposh.Cmdlets
                     var tagset = (TagSetResource)Resource;
                     outputResource = _connection.Repository.TagSets.Modify(tagset);
                     break;
-
                 default:
-                    Console.WriteLine("Dunno what to modify");
+                    Console.WriteLine("Update-OctopusResource doesn't support updating objects of type: {0}", Resource.GetType().ToString());
                     break;
             }
 
-            WriteObject(outputResource);
+            WriteObject(outputResource, true);
         }
     }
 }

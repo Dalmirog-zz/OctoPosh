@@ -39,7 +39,7 @@ namespace Octoposh.Tests
             Console.WriteLine("Looking for variable set of project [{0}]", projectName);
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusVariableSet>>()[0];
+            var results = powershell.Invoke<OutputOctopusVariableSet>();
 
             Assert.AreEqual(1, results.Count);
 
@@ -70,7 +70,7 @@ namespace Octoposh.Tests
             Console.WriteLine("Looking for variable sets of projects [{0}] and [{1}]", name1, name2);
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusVariableSet>>()[0];
+            var results = powershell.Invoke<OutputOctopusVariableSet>();
 
             Assert.AreEqual(2, results.Count);
 
@@ -113,7 +113,7 @@ namespace Octoposh.Tests
             var pattern = new WildcardPattern(namePattern);
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusVariableSet>>()[0];
+            var results = powershell.Invoke<OutputOctopusVariableSet>();
 
             Assert.IsTrue(results.Count > 0);
             Console.WriteLine("Resources found: {0}", results.Count);
@@ -143,7 +143,7 @@ namespace Octoposh.Tests
             Console.WriteLine("Looking for library variable [{0}]", libraryName);
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusVariableSet>>()[0];
+            var results = powershell.Invoke<OutputOctopusVariableSet>();
 
             Assert.AreEqual(1, results.Count);
 
@@ -174,7 +174,7 @@ namespace Octoposh.Tests
             Console.WriteLine("Looking for variable sets of projects [{0}] and [{1}]", name1, name2);
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusVariableSet>>()[0];
+            var results = powershell.Invoke<OutputOctopusVariableSet>();
 
             Assert.AreEqual(2, results.Count);
 
@@ -217,7 +217,7 @@ namespace Octoposh.Tests
             var pattern = new WildcardPattern(namePattern);
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusVariableSet>>()[0];
+            var results = powershell.Invoke<OutputOctopusVariableSet>();
 
             Assert.IsTrue(results.Count > 0);
             Console.WriteLine("Resources found: {0}", results.Count);
@@ -256,7 +256,7 @@ namespace Octoposh.Tests
             Console.WriteLine("Looking for variable sets of project [{0}] and library [{1}]", projectName, libraryName);
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusVariableSet>>()[0];
+            var results = powershell.Invoke<OutputOctopusVariableSet>();
 
             Assert.AreEqual(2, results.Count);
 
@@ -304,7 +304,7 @@ namespace Octoposh.Tests
             Console.WriteLine("Looking for library variable set [{0}]", libraryName);
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusVariableSet>>()[0];
+            var results = powershell.Invoke<OutputOctopusVariableSet>();
 
             Assert.AreEqual(1, results.Count);
 
@@ -330,7 +330,7 @@ namespace Octoposh.Tests
             Console.WriteLine("Looking for library variable set [{0}]", libraryName);
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusVariableSet>>()[0];
+            var results = powershell.Invoke<OutputOctopusVariableSet>();
 
             Assert.AreEqual(1, results.Count);
 
@@ -357,14 +357,13 @@ namespace Octoposh.Tests
             Console.WriteLine("Looking for library variable set [{0}]", projectName);
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-            var results = powershell.Invoke<List<OutputOctopusVariableSet>>()[0];
+            var results = powershell.Invoke<OutputOctopusVariableSet>();
 
             Assert.AreEqual(1, results.Count);
 
             var variable = results[0].Variables.FirstOrDefault(v => v.Name == variableName);
 
             Assert.IsNotNull(variable);
-
             Assert.IsTrue(variable.Scope.Channels.Count != 0);
             Assert.IsTrue(variable.Scope.Actions.Count != 0);
             Assert.IsTrue(variable.Scope.Environments.Count != 0);

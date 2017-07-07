@@ -28,7 +28,7 @@ namespace Octoposh.Cmdlets
         protected override void ProcessRecord()
         {
             var octoTools = new OctopusToolsHandler();
-            WriteObject(octoTools.GetToolPath());
+            WriteObject(octoTools.GetToolPath(),true);
         }
     }
 }
