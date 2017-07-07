@@ -8,18 +8,30 @@ namespace Octoposh.Cmdlets
 {
     //Todo Fix help
     /// <summary>
-    /// <para type="synopsis">Sets the current Octopus connection info (URL and API Key). Highly recommended to call this function from $profile to avoid having to re-configure this on every session.</para>
+    /// <para type="synopsis">Returns the Octopus Dashboard</para>
     /// </summary>
     /// <summary>
-    /// <para type="description">Sets the current Octopus connection info (URL and API Key). Highly recommended to call this function from $profile to avoid having to re-configure this on every session.</para>
+    /// <para type="description">Returns the Octopus Dashboard</para>
     /// </summary>
     /// <example>   
-    ///   <code>PS C:\> Set-OctopusConnectionInfo -Server "http://MyOctopus.AwesomeCompany.com" -API "API-7CH6XN0HHOU7DDEEUGKUFUR1K"</code>
-    ///   <para>Set connection info with a specific API Key for an Octopus instance</para>    
+    ///   <code>PS C:\> Get-OctopusDashboard</code>
+    ///   <para>Gets the entire Octopus dashboard</para>    
+    /// </example>
+    /// <example>   
+    ///   <code>PS C:\> Get-OctopusDashboard -ProjectName MyWebApp</code>
+    ///   <para>Gets the dashboard info for the project MyWebApp</para>    
+    /// </example>
+    /// <example>   
+    ///   <code>PS C:\> Get-OctopusDashboard -EnvironmentName Production</code>
+    ///   <para>Gets the dashboard info for all the projects that have a release deployed to the "Production" environment.</para>    
+    /// </example>
+    /// <example>   
+    ///   <code>PS C:\> Get-OctopusDashboard -DeploymentStatus Success</code>
+    ///   <para>Gets all the deployments in "Success" status on the dashboard</para>    
     /// </example>
     /// <para type="link" uri="http://Octoposh.net">WebSite: </para>
     /// <para type="link" uri="https://github.com/Dalmirog/OctoPosh/">Github Project: </para>
-    /// <para type="link" uri="https://github.com/Dalmirog/OctoPosh/wiki">Wiki: </para>
+    /// <para type="link" uri="http://octoposh.readthedocs.io">Wiki: </para>
     /// <para type="link" uri="https://gitter.im/Dalmirog/OctoPosh#initial">QA and Feature requests: </para>
     [Cmdlet("Get", "OctopusDashboard")]
     [OutputType(typeof(List<OutputOctopusDashboardEntry>))]
