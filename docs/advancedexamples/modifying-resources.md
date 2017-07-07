@@ -101,6 +101,22 @@ Update-OctopusResource -Resource $EnvMachines.resource -Force
 
 ## Variable Sets
 
+### Clear a variable set (project or library)
+```Powershell
+
+##Project
+$ProjectName = "MyProject"
+$variableSet = Get-OctopusVariableSet -ProjectName $ProjectName
+$variableSet.Resource.Variables.clear()
+Update-OctopusResource -Resource $variableSet.Resource
+
+##VariableSet
+$VariableSetName = "MyVariableSet"
+$variableSet = Get-OctopusVariableSet -Library $MyVariableSet
+$variableSet.Resource.Variables = $null 
+Update-OctopusResource -Resource $variableSet.Resource
+```
+
 ### Put all of a (single) Project's variables into a New Library Variable Set
 ```Powershell
 $NewLibraryVariableSetName = "MyNewVariableSet" #Name of the new Library Variable Set
