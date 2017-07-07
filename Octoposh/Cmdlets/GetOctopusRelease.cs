@@ -27,7 +27,7 @@ namespace Octoposh.Cmdlets
     /// </example>
     /// <para type="link" uri="http://Octoposh.net">WebSite: </para>
     /// <para type="link" uri="https://github.com/Dalmirog/OctoPosh/">Github Project: </para>
-    /// <para type="link" uri="https://github.com/Dalmirog/OctoPosh/wiki">Wiki: </para>
+    /// <para type="link" uri="http://octoposh.readthedocs.io">Wiki: </para>
     /// <para type="link" uri="https://gitter.im/Dalmirog/OctoPosh#initial">QA and Feature requests: </para>
     [Cmdlet("Get", "OctopusRelease", DefaultParameterSetName = All)]
     [OutputType(typeof(List<OutputOctopusRelease>))]
