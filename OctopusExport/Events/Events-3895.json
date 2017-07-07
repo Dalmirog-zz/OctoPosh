@@ -1,0 +1,23 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-3895",
+  "RelatedDocumentIds": [],
+  "ProjectId": null,
+  "EnvironmentId": null,
+  "TenantId": null,
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-01-30T22:39:49.6658061-03:00",
+  "Message": "Deployment process for DashboardTests_Project1 was changed",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 23,
+      "Length": 23
+    }
+  ],
+  "Comments": null,
+  "Details": "<span>{\r&para;<br>  \"Id\": \"deploymentprocess-Projects-22\",\r&para;<br>  \"OwnerId\": \"Projects-22\",\r&para;<br>  \"Version\": </span><del style=\"background:#ffe6e6;\">0,\r&para;<br>  \"Steps\": [</del><ins style=\"background:#e6ffe6;\">1,\r&para;<br>  \"Steps\": [\r&para;<br>    {\r&para;<br>      \"Id\": \"43ce56a5-9680-42ae-b082-8ef9ab68af3f\",\r&para;<br>      \"Name\": \"Run script 1\",\r&para;<br>      \"Condition\": \"Success\",\r&para;<br>      \"StartTrigger\": \"StartAfterPrevious\",\r&para;<br>      \"RequiresPackagesToBeAcquired\": false,\r&para;<br>      \"Actions\": [\r&para;<br>        {\r&para;<br>          \"Id\": \"f5381ee6-8c5c-4226-8593-47c7694a2510\",\r&para;<br>          \"Name\": \"Run script 1\",\r&para;<br>          \"ActionType\": \"Octopus.Script\",\r&para;<br>          \"IsDisabled\": false,\r&para;<br>          \"Environments\": [],\r&para;<br>          \"Channels\": [],\r&para;<br>          \"TenantTags\": [],\r&para;<br>          \"Properties\": {\r&para;<br>            \"Octopus.Action.RunOnServer\": \"false\",\r&para;<br>            \"Octopus.Action.Script.Syntax\": \"PowerShell\",\r&para;<br>            \"Octopus.Action.Script.ScriptSource\": \"Inline\",\r&para;<br>            \"Octopus.Action.Script.ScriptBody\": \"$StepName = $OctopusParameters['Octopus.Step.Name']\\n$TargetName = $OctopusParameters['Octopus.Machine.Name']\\n\\\"Hello from step [$StepName] on [$Targetname]\\\"\"\r&para;<br>          }\r&para;<br>        }\r&para;<br>      ],\r&para;<br>      \"Properties\": {\r&para;<br>        \"Octopus.Action.TargetRoles\": \"WebApps\"\r&para;<br>      }\r&para;<br>    }\r&para;<br>  </ins><span>],\r&para;<br>  \"RelatedDocumentIds\": []\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "Session cookie"
+}

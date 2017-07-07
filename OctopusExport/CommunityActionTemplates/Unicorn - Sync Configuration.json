@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-190",
+  "Id": "CommunityActionTemplates-206",
   "Name": "Unicorn - Sync Configuration",
   "ExternalId": "993b2b9a-05a4-4dbd-b5b7-3dc0358acac8",
   "Description": "Sync Unicorn items",
@@ -20,7 +20,7 @@
       "Name": "BaseUrl",
       "Label": "Base Url",
       "HelpText": "e.g. http://mywebsite.com.au/ - This should be where you'd normally manually sync Unicorn",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -30,7 +30,7 @@
       "Name": "ConfigName",
       "Label": "Configuration Name",
       "HelpText": "e.g. Default Configuration",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -50,7 +50,7 @@
       "Name": "DeploymentAuthToken",
       "Label": "Deployment Auth Token",
       "HelpText": "The auth token used to authenticate this request.\nThis should be in your web.config appSettings as DeploymentToolAuthToken.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -76,6 +76,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-190",
+  "LogoAttachmentKey": "CommunityActionTemplates-206",
   "LogoAttachmentMimeType": "image/png"
 }

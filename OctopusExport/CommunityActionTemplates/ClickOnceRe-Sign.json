@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-31",
+  "Id": "CommunityActionTemplates-33",
   "Name": "ClickOnceRe-Sign",
   "ExternalId": "a9e5843e-d382-44fd-84dd-d999dab54993",
   "Description": "This Template will help to re-sign the .application and manifest files. Finally add .deploy extenstion to the files",
@@ -20,7 +20,7 @@
       "Name": "signcertpath",
       "Label": "Signing Certificate Path",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -30,7 +30,7 @@
       "Name": "signCertPass",
       "Label": "Signing Certificate Password",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -40,7 +40,7 @@
       "Name": "baseDeployPath",
       "Label": "Deployment Path",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -50,12 +50,12 @@
       "Name": "AppName",
       "Label": "Application Name",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-31",
+  "LogoAttachmentKey": "CommunityActionTemplates-33",
   "LogoAttachmentMimeType": "image/png"
 }

@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-65",
+  "Id": "CommunityActionTemplates-70",
   "Name": "File System - Grant Permissions",
   "ExternalId": "b77d55ae-7f54-45ab-ba57-7afff97c93a2",
   "Description": "Grant read, write and modify permissions to a folder or file",
@@ -25,7 +25,7 @@
       "Name": "Item",
       "Label": "Item",
       "HelpText": "The full path to the file or folder",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -35,7 +35,7 @@
       "Name": "ReadPermissionsTo",
       "Label": "Read Users",
       "HelpText": "A comma separated list of users to grant read permissions to",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -45,7 +45,7 @@
       "Name": "WritePermissionsTo",
       "Label": "Write Users",
       "HelpText": "A comma separated list of users to grant write permissions to",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -55,12 +55,12 @@
       "Name": "ModifyPermissionsTo",
       "Label": "Modify Users",
       "HelpText": "A comma separated list of users to grant modify permissions to",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-65",
+  "LogoAttachmentKey": "CommunityActionTemplates-70",
   "LogoAttachmentMimeType": "image/png"
 }

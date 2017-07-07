@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-188",
+  "Id": "CommunityActionTemplates-204",
   "Name": "Test - Run NUnit",
   "ExternalId": "edcacbb5-6776-445a-9555-576ee4c3e2d6",
   "Description": "Runs NUnit tests from a list of assemblies.",
@@ -20,7 +20,7 @@
       "Name": "NUnitExePath",
       "Label": "NUnit path",
       "HelpText": "The path to `nunit-console.exe`. If this is not provided it will be assumed that the executable is on the PATH. Example: _C:\\Program Files (x86)\\NUnit 2.6.3\\bin\\nunit-console.exe_.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -28,7 +28,7 @@
       "Name": "NUnitWorkingDirectoryPath",
       "Label": "Working directory",
       "HelpText": "The folder that contains the test assemblies. Generally this will be bound to an output variable from a previous step. Example: _#{Octopus.Action[Deploy integration tests].Output.Package.InstallationDirectoryPath}_",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -36,7 +36,7 @@
       "Name": "NUnitTestAssemblies",
       "Label": "Test assemblies",
       "HelpText": "A semicolon-separated list of assembly names containing tests. Example: _MyCompany.IntegrationTests.dll; MyCompany.SmokeTests.dll_",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -48,6 +48,6 @@
       "DisplaySettings": {}
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-188",
+  "LogoAttachmentKey": "CommunityActionTemplates-204",
   "LogoAttachmentMimeType": "image/png"
 }

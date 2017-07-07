@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-49",
+  "Id": "CommunityActionTemplates-51",
   "Name": "Dyn - Create an A Record",
   "ExternalId": "5e359c05-89a0-4a13-98a4-d54b0415bb45",
   "Description": "Creates an A record in the specified zone with the specified details. \n\nNOTE: The API User MUST have the follow permissions:\n\t- UserLogin\n\t- UserChangepw\n\t- RecordAdd\n\t- RecordUpdate\n        - RecordGet\n\t- ZoneGet\n\t- ZoneAddNode\n\t- ZonePublish\n\t- ZoneChangeset\n",
@@ -20,7 +20,7 @@
       "Name": "dynCustomerName",
       "Label": "Dyn Customer Name",
       "HelpText": "The Dyn customer name,  usually the company name",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -30,7 +30,7 @@
       "Name": "dynUserName",
       "Label": "Dyn User Name",
       "HelpText": "User Name of the user that will perform this step\n\nNOTE: The API User MUST have the follow permissions:\n\t- UserLogin\n\t- UserChangepw\n\t- RecordAdd\n\t- RecordUpdate\n        - RecordGet\n\t- ZoneGet\n\t- ZoneAddNode\n\t- ZonePublish\n\t- ZoneChangeset",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -40,7 +40,7 @@
       "Name": "dynPassword",
       "Label": "Password",
       "HelpText": "Password of the user to access Dyn",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
@@ -50,7 +50,7 @@
       "Name": "dynZone",
       "Label": "Dyn Zone",
       "HelpText": "The name of the Zone, where you want the A record to be created\n\nFor example: myzone.com",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -60,7 +60,7 @@
       "Name": "dynFQDN",
       "Label": "Fully Qualified Domain Name",
       "HelpText": "The name of the A record that is being created in Fully Qualified Domain Name format\n\nFor example: newrecord.myzone.com",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -80,12 +80,12 @@
       "Name": "dynCorrectIPAddress",
       "Label": "IPv4 Address",
       "HelpText": "The IPv4 address of the new A record",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-49",
+  "LogoAttachmentKey": "CommunityActionTemplates-51",
   "LogoAttachmentMimeType": "image/png"
 }

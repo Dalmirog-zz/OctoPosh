@@ -1,0 +1,31 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-5278",
+  "RelatedDocumentIds": [
+    "Releases-143",
+    "Projects-27"
+  ],
+  "ProjectId": "Projects-27",
+  "EnvironmentId": null,
+  "TenantId": null,
+  "Category": "Created",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-03-14T21:37:41.5657183-03:00",
+  "Message": "Release 0.0.1 for project ReleaseTests_Project1 blocked with reason: Raising defect from unit tests on [3/14/2017 9:36:43 PM]",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Releases-143",
+      "StartIndex": 8,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Projects-27",
+      "StartIndex": 26,
+      "Length": 21
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+}

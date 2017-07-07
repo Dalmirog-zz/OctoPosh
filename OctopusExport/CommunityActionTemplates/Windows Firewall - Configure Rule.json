@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-216",
+  "Id": "CommunityActionTemplates-233",
   "Name": "Windows Firewall - Configure Rule",
   "ExternalId": "e47a9558-e49c-44a6-ae8f-66372b285789",
   "Description": "Configures a firewall rule",
@@ -20,7 +20,7 @@
       "Name": "RuleName",
       "Label": "Rule name",
       "HelpText": "The name of the rule",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -28,7 +28,7 @@
       "Name": "LocalPort",
       "Label": "Local Port",
       "HelpText": "The comma separated list of local port values",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -52,10 +52,10 @@
       "Name": "Direction",
       "Label": "Direction",
       "HelpText": "The rule direction. Either 'in' or 'out'",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-216",
+  "LogoAttachmentKey": "CommunityActionTemplates-233",
   "LogoAttachmentMimeType": "image/png"
 }

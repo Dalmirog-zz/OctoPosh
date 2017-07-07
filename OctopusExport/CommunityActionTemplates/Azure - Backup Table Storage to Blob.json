@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-13",
+  "Id": "CommunityActionTemplates-14",
   "Name": "Azure - Backup Table Storage to Blob",
   "ExternalId": "38791635-a3fc-4b26-bcd7-b65f0f6de5d2",
   "Description": "This script allow to backup the specified azure table storage into the specified blob.",
@@ -24,7 +24,7 @@
       "Name": "sourceStorageAccountName",
       "Label": "Source Storage Account Name",
       "HelpText": "Name of the source storage account",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -34,7 +34,7 @@
       "Name": "sourceStorageAccountKey",
       "Label": "Source Storage Account Key",
       "HelpText": "Key of the source storage account",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
@@ -44,7 +44,7 @@
       "Name": "sourceTableName",
       "Label": "Source Table Name",
       "HelpText": "Name of the Source Azure Table",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -54,7 +54,7 @@
       "Name": "destinationStorageAccountName",
       "Label": "Destination Storage Account Name",
       "HelpText": "Name of the destination storage account",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -64,7 +64,7 @@
       "Name": "destinationStorageAccountKey",
       "Label": "Destination Storage Account Key",
       "HelpText": "Key of the destination storage account",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
@@ -81,6 +81,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-13",
+  "LogoAttachmentKey": "CommunityActionTemplates-14",
   "LogoAttachmentMimeType": "image/png"
 }

@@ -1,0 +1,36 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-6738",
+  "RelatedDocumentIds": [
+    "Projects-25",
+    "Environments-22"
+  ],
+  "ProjectId": "Projects-25",
+  "EnvironmentId": "Environments-22",
+  "TenantId": null,
+  "Category": "DeploymentQueued",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-01-29T04:57:15.8057166-03:00",
+  "Message": "Deployed TestProject1 release 0.0.32 to Prod",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Projects-25",
+      "StartIndex": 9,
+      "Length": 12
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 30,
+      "Length": 6
+    },
+    {
+      "ReferencedDocumentId": "Environments-22",
+      "StartIndex": 40,
+      "Length": 4
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "Session cookie"
+}

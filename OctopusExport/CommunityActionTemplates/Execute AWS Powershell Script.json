@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-51",
+  "Id": "CommunityActionTemplates-55",
   "Name": "Execute AWS Powershell Script",
   "ExternalId": "551a6f13-9e4c-4d45-8387-f424d5ca02a4",
   "Description": "This combines two previous library templates of [checking for Chocolatey being installed](http://library.octopusdeploy.com/#!/step-templates/actiontemplate-chocolatey-ensure-installed), and [installing something via Chocolatey](http://library.octopusdeploy.com/#!/step-templates/actiontemplate-chocolatey-install-package), in this case awstools.powershell, and then adds on a third piece of running a custom Powershell script using AWS Powershell tools",
@@ -20,7 +20,7 @@
       "Name": "SecretKey",
       "Label": "SecretKey",
       "HelpText": "Enter your AWS Secret Key here. This will be used to authenticate the session with AWS",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -30,7 +30,7 @@
       "Name": "AccessKey",
       "Label": "AccessKey",
       "HelpText": "Enter your AWS Access Key here. This will be used to authenticate the session with AWS",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -40,7 +40,7 @@
       "Name": "Region",
       "Label": "Region",
       "HelpText": "Enter the region for where you will be executing your powershell scripts against. If you are unsure of the region you are in, check the list found [here](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html)",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -50,12 +50,12 @@
       "Name": "AWSScript",
       "Label": "AWSScript",
       "HelpText": "This is the Powershell Script that contains commands using the AWSPowershell module that you want to execute",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "MultiLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-51",
+  "LogoAttachmentKey": "CommunityActionTemplates-55",
   "LogoAttachmentMimeType": "image/png"
 }

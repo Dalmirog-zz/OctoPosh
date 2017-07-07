@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-135",
+  "Id": "CommunityActionTemplates-146",
   "Name": "Rackspace - Update Load Balancer",
   "ExternalId": "94aa35a3-0a0c-4c45-8781-98006bda3bcd",
   "Description": "Change the condition of a node in a Rackspace Cloud Load Balancer.",
@@ -20,7 +20,7 @@
       "Name": "Username",
       "Label": "Username",
       "HelpText": "Rackspace control panel username",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -28,7 +28,7 @@
       "Name": "ApiKey",
       "Label": "API key",
       "HelpText": "Rackspace control panel user API key",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -36,7 +36,7 @@
       "Name": "LoadBalancerID",
       "Label": "Load Balancer ID",
       "HelpText": "ID of the load balancer, found on the details page in the Rackspace control panel",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -44,7 +44,7 @@
       "Name": "NodeIpAddress",
       "Label": "Node IP address",
       "HelpText": "IP address of load balanced node. Found on the load balancer details page of the Rackspace control panel",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -52,10 +52,10 @@
       "Name": "NewCondition",
       "Label": "New Node Condition",
       "HelpText": "Condition to set the node to. Can either be 'ENABLED', 'DISABLED' or 'DRAINING'",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-135",
+  "LogoAttachmentKey": "CommunityActionTemplates-146",
   "LogoAttachmentMimeType": "image/png"
 }

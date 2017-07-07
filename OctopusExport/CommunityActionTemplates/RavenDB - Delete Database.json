@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-138",
+  "Id": "CommunityActionTemplates-149",
   "Name": "RavenDB - Delete Database",
   "ExternalId": "474d4dff-e91b-4580-b074-c39763741cd6",
   "Description": "Used to delete a database from a server, with a possibility to remove all the data from hard drive.",
@@ -30,7 +30,7 @@
       "Name": "ravenDatabaseName",
       "Label": "Name of the Raven Database",
       "HelpText": "Name of the Database in Raven.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -50,12 +50,12 @@
       "Name": "allowDelete",
       "Label": "Allow Deletion",
       "HelpText": "Is the database allowed to be deleted. **TRUE OR FALSE** value must be entered\n\n**For example**: you don't want a production server to be deleted, the script will stop it from happening\n\n**HINT**: have a variable within Octopus that returns true if it is allowed to be deleted and vice versa.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Checkbox"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-138",
+  "LogoAttachmentKey": "CommunityActionTemplates-149",
   "LogoAttachmentMimeType": "image/png"
 }

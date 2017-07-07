@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-102",
+  "Id": "CommunityActionTemplates-108",
   "Name": "IIS Virtual Directory - Create",
   "ExternalId": "2cfbcd72-cf43-43fd-8291-9bb564cc512c",
   "Description": "Create an IIS virtual directory.",
@@ -40,7 +40,7 @@
       "Name": "ParentSite",
       "Label": "Parent site",
       "HelpText": "The name of the IIS web site to attach the application to. For example, to put the application under the default web site, enter:\n\n    Default Web Site",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -50,7 +50,7 @@
       "Name": "Username",
       "Label": "Username",
       "HelpText": "Pass-through authentication username",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -60,12 +60,12 @@
       "Name": "Password",
       "Label": "Password",
       "HelpText": "Pass-through authentication password",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-102",
+  "LogoAttachmentKey": "CommunityActionTemplates-108",
   "LogoAttachmentMimeType": "image/png"
 }

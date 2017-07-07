@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-86",
+  "Id": "CommunityActionTemplates-92",
   "Name": "IIS - Enable or Disable Authentication Methods",
   "ExternalId": "d3aa2e7b-d716-4f66-8d85-068cacedbb4f",
   "Description": "Step template to set the desired IIS Authentication (Anonymous, Windows, Digest) State for IIS site(s)",
@@ -54,12 +54,12 @@
       "Name": "IISSitePaths",
       "Label": "IIS Site name(s)",
       "HelpText": "The IIS site(s) which will have security permissions transformed. Multiple values are to be new-line separated.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "MultiLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-86",
+  "LogoAttachmentKey": "CommunityActionTemplates-92",
   "LogoAttachmentMimeType": "image/png"
 }

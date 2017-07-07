@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-46",
+  "Id": "CommunityActionTemplates-47",
   "Name": "Deploy SSRS Reports from a package",
   "ExternalId": "4e3a1163-e157-4675-a60c-4dc569d14348",
   "Description": "Uploads SSRS reports to an SSRS server from a NuGet package.",
@@ -25,7 +25,7 @@
       "Name": "NugetPackageStepName",
       "Label": "SSRS package step",
       "HelpText": "Select the step in this project which downloads the SSRS package.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "StepName"
       }
@@ -35,7 +35,7 @@
       "Name": "ReportServiceUrl",
       "Label": "Url of SSRS Server service",
       "HelpText": "The complete Url to the SSRS server.\nExample: http://198.239.216.46/ReportServer_LOCALDEV/reportservice2010.asmx?wsdl",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -45,7 +45,7 @@
       "Name": "ReportExecutionUrl",
       "Label": "Report Execution Url",
       "HelpText": "The complete Url to the Report Execution service.\nExample: http://198.239.216.46/ReportServer_LOCALDEV/ReportExecution2005.asmx?wsdl",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -55,7 +55,7 @@
       "Name": "ReportFolder",
       "Label": "Report folder",
       "HelpText": "Relative Url to the folder in which the reports will be deployed.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -65,7 +65,7 @@
       "Name": "ReportDatasourceFolder",
       "Label": "Report data source folder",
       "HelpText": "Relative Url where the data sources for the reports are located, starting with '/'",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -85,7 +85,7 @@
       "Name": "BackupLocation",
       "Label": "Backup Location",
       "HelpText": "Directory path to take a backup of existing reports (.rdl) and data source (.rds) files.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -95,7 +95,7 @@
       "Name": "ReportDataSetFolder",
       "Label": "DataSet folder",
       "HelpText": "Relative Url where Shared Data Sets are stored",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -105,7 +105,7 @@
       "Name": "ServiceUserDomain",
       "Label": "Service Domain",
       "HelpText": "(Optional - leave blank to use Tentacle identity) Name of the domain for the user account to execute as",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -115,7 +115,7 @@
       "Name": "ServiceUserName",
       "Label": "Service Username",
       "HelpText": "(Optional - leave blank to use Tentacle identity) Username of the user account to execute as",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -125,12 +125,12 @@
       "Name": "ServicePassword",
       "Label": "Service Password",
       "HelpText": "(Optional - leave blank to use Tentacle identity) Password of the user account to execute as",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-46",
+  "LogoAttachmentKey": "CommunityActionTemplates-47",
   "LogoAttachmentMimeType": "image/png"
 }

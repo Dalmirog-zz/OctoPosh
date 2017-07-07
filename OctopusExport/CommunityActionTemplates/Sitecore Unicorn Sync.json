@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-163",
+  "Id": "CommunityActionTemplates-175",
   "Name": "Sitecore Unicorn Sync",
   "ExternalId": "d5adc467-69a8-49ca-b4d0-4f793fad4d62",
   "Description": "Syncs all the specified configurations via the Unicorn remote sync PowerShell script. Uses the newer MicroChap security layer. Please see the following post for instructions: http://www.sitecorenutsbolts.net/2016/03/14/Octopus-Deploy-Step-for-Unicorn-Sync/",
@@ -21,7 +21,7 @@
       "Name": "SharedSecret",
       "Label": "Shared Secret",
       "HelpText": "The shared secret used for the MicroChap handshake",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
@@ -31,7 +31,7 @@
       "Name": "SiteUrl",
       "Label": "Site Url",
       "HelpText": "The Url of your content authoring system. Must be able to view `/unicorn.aspx`",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -41,7 +41,7 @@
       "Name": "MicroChap",
       "Label": "MicroCHAP DLL Location",
       "HelpText": "The location of the MicroCHAP.dll file in your project",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -51,12 +51,12 @@
       "Name": "Configurations",
       "Label": "Configurations",
       "HelpText": "Add a configuration per line",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "MultiLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-163",
+  "LogoAttachmentKey": "CommunityActionTemplates-175",
   "LogoAttachmentMimeType": "image/png"
 }

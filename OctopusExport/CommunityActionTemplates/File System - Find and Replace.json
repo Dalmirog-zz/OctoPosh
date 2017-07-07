@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-64",
+  "Id": "CommunityActionTemplates-69",
   "Name": "File System - Find and Replace",
   "ExternalId": "87cbaa94-4477-4474-a9c3-7943b5668d30",
   "Description": "Find and replace text in one or more files.",
@@ -20,7 +20,7 @@
       "Name": "FRCandidatePathGlobs",
       "Label": "Files",
       "HelpText": "The files to search. Wildcards `*` and `**` are supported. Paths must be fully-qualified, e.g. `C:\\MyApp\\**\\*.xml`. Separate multiple paths with `;` semicolons.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -28,7 +28,7 @@
       "Name": "FRFindText",
       "Label": "Find",
       "HelpText": "The text to find in the target files.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -36,7 +36,7 @@
       "Name": "FRReplaceText",
       "Label": "Replace with",
       "HelpText": "The replacement text to insert in place of each occurrence of _Find_.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -48,6 +48,6 @@
       "DisplaySettings": {}
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-64",
+  "LogoAttachmentKey": "CommunityActionTemplates-69",
   "LogoAttachmentMimeType": "image/png"
 }

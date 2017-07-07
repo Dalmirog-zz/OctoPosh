@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-177",
+  "Id": "CommunityActionTemplates-193",
   "Name": "SQL - Restore Database",
   "ExternalId": "469b6d9d-761a-4f94-9745-20e9c2f93841",
   "Description": "Restore a MS SQL Server database to the file system.",
@@ -28,7 +28,7 @@
       "Name": "Database",
       "Label": "Database",
       "HelpText": "The name of the database to restore.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -36,7 +36,7 @@
       "Name": "BackupDirectory",
       "Label": "Backup Directory",
       "HelpText": "The backup directory to retrieve the database backup from.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -44,7 +44,7 @@
       "Name": "SqlLogin",
       "Label": "SQL login",
       "HelpText": "The SQL auth login to connect with. If specified, the SQL Password must also be entered.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -52,7 +52,7 @@
       "Name": "SqlPassword",
       "Label": "SQL password",
       "HelpText": "The password for the SQL auth login to connect with. Only used if SQL Login is specified.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
@@ -84,10 +84,10 @@
       "Name": "Stamp",
       "Label": "Backup file suffix",
       "HelpText": "Specify a suffix to add to the backup file names. If left blank the backup will use the current timestamp.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-177",
+  "LogoAttachmentKey": "CommunityActionTemplates-193",
   "LogoAttachmentMimeType": "image/png"
 }

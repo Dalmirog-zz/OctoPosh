@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-185",
+  "Id": "CommunityActionTemplates-201",
   "Name": "StatusPage.io - Update Scheduled Maintenance Incident",
   "ExternalId": "7bc83a07-8927-467e-a2eb-922609212e3a",
   "Description": "Updates an existing scheduled maintenance incident on StatusPage.io",
@@ -25,7 +25,7 @@
       "Name": "IncidentName",
       "Label": "Scheduled Maintenance Name",
       "HelpText": "The name of the scheduled maintenance incident.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -35,7 +35,7 @@
       "Name": "IncidentStatus",
       "Label": "Status",
       "HelpText": "The status of the incident, one of scheduled|in_progress|verifying|completed",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Select",
         "Octopus.SelectOptions": "scheduled|Scheduled\nin_progress|In Progress\nverifying|Verifying\ncompleted|Completed"
@@ -46,7 +46,7 @@
       "Name": "IncidentMessage",
       "Label": "Message",
       "HelpText": "Optional message to add to scheduled maintenance incident.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -56,7 +56,7 @@
       "Name": "PageId",
       "Label": "StatusPage.io Page Id",
       "HelpText": "StatusPage.io Organization or \"Page ID\". Visit the [API authentication docs](http://doers.statuspage.io/api/authentication/) for details.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -66,12 +66,12 @@
       "Name": "ApiKey",
       "Label": "StatusPage.io API Key",
       "HelpText": "StatusPage.io API key for the organization. Visit the [API Authentication docs](http://doers.statuspage.io/api/authentication/) for details.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-185",
+  "LogoAttachmentKey": "CommunityActionTemplates-201",
   "LogoAttachmentMimeType": "image/png"
 }

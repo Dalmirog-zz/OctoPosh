@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-124",
+  "Id": "CommunityActionTemplates-132",
   "Name": "Notification - Spark",
   "ExternalId": "cab1e42d-6b8e-4e3e-980d-82fc8e0e2178",
   "Description": "Send a message to Spark user or room",
@@ -25,7 +25,7 @@
       "Name": "message",
       "Label": "Message to send",
       "HelpText": "Can use markdown notation",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "MultiLineText"
       }
@@ -35,7 +35,7 @@
       "Name": "auth_token",
       "Label": "Authentication token",
       "HelpText": "Bot token",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
@@ -76,12 +76,12 @@
       "Name": "contactdetails",
       "Label": "Contact Details",
       "HelpText": "Enter contact details depending on Contact Method choice. Set multiple entries with ','.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-124",
+  "LogoAttachmentKey": "CommunityActionTemplates-132",
   "LogoAttachmentMimeType": "image/png"
 }

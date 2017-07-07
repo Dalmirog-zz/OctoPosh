@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-167",
+  "Id": "CommunityActionTemplates-180",
   "Name": "Splunk - Forward File",
   "ExternalId": "0e5d7444-1be1-47c4-a776-ec0f51cf04b3",
   "Description": "Configures splunk forwarding for the specified file. (The splunk forwarder service should be installed on the target server)",
@@ -20,7 +20,7 @@
       "Name": "File",
       "Label": "File",
       "HelpText": "The path to the file to forward",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -28,7 +28,7 @@
       "Name": "Index",
       "Label": "Index",
       "HelpText": "The Splunk index to forward to",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -36,10 +36,10 @@
       "Name": "AppName",
       "Label": "App name",
       "HelpText": "The application name outputting to the file",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-167",
+  "LogoAttachmentKey": "CommunityActionTemplates-180",
   "LogoAttachmentMimeType": "image/png"
 }

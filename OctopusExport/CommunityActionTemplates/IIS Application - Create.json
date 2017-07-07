@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-89",
+  "Id": "CommunityActionTemplates-95",
   "Name": "IIS Application - Create",
   "ExternalId": "5b3e7576-44f8-4852-ae09-a45bd985c549",
   "Description": "Create an IIS virtual application (a virtual directory with an application pool)",
@@ -54,7 +54,7 @@
       "Name": "ParentSite",
       "Label": "Parent site",
       "HelpText": "The name of the IIS web site to attach the application to. For example, to put the application under the default web site, enter:\n\n    Default Web Site",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -122,7 +122,7 @@
       "Name": "ApplicationPoolName",
       "Label": "Application pool",
       "HelpText": "The name of the application pool that the application will run under.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -154,7 +154,7 @@
       "Name": "ApplicationPoolUsername",
       "Label": "Application Pool Username",
       "HelpText": "The Windows/domain account of the custom user that the application pool will run under. Example: YOURDOMAIN\\\\YourAccount. You will need to ensure that this user has permissions to run as an application pool.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -164,12 +164,12 @@
       "Name": "ApplicationPoolPassword",
       "Label": "Application Pool Password",
       "HelpText": "The password for the custom account given above.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-89",
+  "LogoAttachmentKey": "CommunityActionTemplates-95",
   "LogoAttachmentMimeType": "image/png"
 }

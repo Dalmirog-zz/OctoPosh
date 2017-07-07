@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-17",
+  "Id": "CommunityActionTemplates-19",
   "Name": "Azure - Upload Files to Azure",
   "ExternalId": "bc18b460-06a7-412f-850f-44098f1b497a",
   "Description": "Uploads files and folders to an Azure container from a specified location.\n\n**IMPORTANT:** Azure PowerShell must be installed on the tentacle server for this step to work. This can be downloaded from http://bit.ly/AzurePowershellDownload",
@@ -25,7 +25,7 @@
       "Name": "storageAccountName",
       "Label": "Azure Storage Account Name",
       "HelpText": "Name of the account that the files and folders will be uploaded to.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -35,7 +35,7 @@
       "Name": "storageAccountKey",
       "Label": "Azure Storage Account Key",
       "HelpText": "The key that is used to log into the account.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
@@ -45,7 +45,7 @@
       "Name": "containerName",
       "Label": "Azure Container Name",
       "HelpText": "The name of the container the files and folder will be uploaded to.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -55,7 +55,7 @@
       "Name": "localFolder",
       "Label": "Name of the Parent Folder",
       "HelpText": "Name of the Parent Folder being uploaded",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -81,6 +81,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-17",
+  "LogoAttachmentKey": "CommunityActionTemplates-19",
   "LogoAttachmentMimeType": "image/png"
 }

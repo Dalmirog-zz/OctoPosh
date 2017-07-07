@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-227",
+  "Id": "CommunityActionTemplates-245",
   "Name": "Xamarin Insights dSYM Upload",
   "ExternalId": "a1c51946-abd0-434c-99f3-b7a1b5af74c5",
   "Description": "Uploads a dSYM symbols file to Xamarin Insights, for more readable exceptions.",
@@ -20,7 +20,7 @@
       "Name": "InsightsAppSpecificApiToken",
       "Label": "Insights Api Token",
       "HelpText": "Your Xamarin API Key for the specific application you are uploading the symbol files to.\n\nVisit:\nhttps://insights.xamarin.com\n\nLog in, browse your application, and click Settings. Your application specific API Token should be visible under \"API Key\".",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -30,7 +30,7 @@
       "Name": "PackageStepName",
       "Label": "Package Step Name",
       "HelpText": "Name of the previously-deployed package step that contains the dSYM symbol file that you want to deploy.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "StepName"
       }
@@ -40,12 +40,12 @@
       "Name": "NugetSearchPath",
       "Label": "Nuget Search Path (Optional)",
       "HelpText": "This fully optional search path allows you to look in a specific folder path in your nuget file, such as \"bin\\release\". This may be needed in cases when the nuget file has multiple dSYM files in different locations.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-227",
+  "LogoAttachmentKey": "CommunityActionTemplates-245",
   "LogoAttachmentMimeType": "image/png"
 }

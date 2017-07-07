@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-166",
+  "Id": "CommunityActionTemplates-179",
   "Name": "Solarwinds - Unmanage",
   "ExternalId": "8da75dc4-f430-4c52-ac50-b37629445ff5",
   "Description": "Stop monitoring for a Solarwinds node, application or both",
@@ -20,7 +20,7 @@
       "Name": "Host",
       "Label": "Host",
       "HelpText": "IP or DNS of the Solarwinds monitoring server",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -28,7 +28,7 @@
       "Name": "NodeId",
       "Label": "Node ID",
       "HelpText": "Solarwinds ID of machine to be unmonitored. Starts with 'N:'.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -36,7 +36,7 @@
       "Name": "ApplicationId",
       "Label": "Application ID",
       "HelpText": "Solarwinds ID of application to be unmonitored. Starts with 'AA:'.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -44,7 +44,7 @@
       "Name": "RemanageMinutes",
       "Label": "Re-manage after (minutes)",
       "HelpText": "Automatically begins monitoring of a node after given minutes.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -52,7 +52,7 @@
       "Name": "Username",
       "Label": "Username",
       "HelpText": "Username for the Solarwinds console user.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -60,10 +60,10 @@
       "Name": "Password",
       "Label": "Password",
       "HelpText": "Password for the Solarwinds console user",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-166",
+  "LogoAttachmentKey": "CommunityActionTemplates-179",
   "LogoAttachmentMimeType": "image/png"
 }

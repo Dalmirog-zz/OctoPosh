@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-159",
+  "Id": "CommunityActionTemplates-171",
   "Name": "Service - Check Running (Bash)",
   "ExternalId": "2617b82a-c5f8-4a66-a9eb-e99b37e127d8",
   "Description": "Check if any given service or list of services is/are running (uses `ps` command)",
@@ -25,12 +25,12 @@
       "Name": "services",
       "Label": "Service names",
       "HelpText": "The set of service names as should be listed by `ps` command. This can be either a single service or a comma separated list of services to check.\n- Example 1: httpd\n- Example 2: httpd, sshd, memcached",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "MultiLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-159",
+  "LogoAttachmentKey": "CommunityActionTemplates-171",
   "LogoAttachmentMimeType": "image/png"
 }

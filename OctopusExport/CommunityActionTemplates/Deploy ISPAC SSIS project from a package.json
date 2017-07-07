@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-44",
+  "Id": "CommunityActionTemplates-45",
   "Name": "Deploy ISPAC SSIS project from a package",
   "ExternalId": "bf005449-60c2-4746-8e07-8ba857f93605",
   "Description": "This step template will deploy SSIS ISPAC projects to SQL Server Integration Services Catalogs",
@@ -24,7 +24,7 @@
       "Name": "ServerName",
       "Label": "Database server name (\\instance)",
       "HelpText": "Name of the SQL Server you are deploying to.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -54,7 +54,7 @@
       "Name": "CatalogPwd",
       "Label": "Catalog password",
       "HelpText": "Password to the Integration Services Catalog.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
@@ -64,7 +64,7 @@
       "Name": "FolderName",
       "Label": "Folder name",
       "HelpText": "Name of the folder to use within the Integration Services Catalog",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -74,7 +74,7 @@
       "Name": "ProjectName",
       "Label": "Project name",
       "HelpText": "Name of the project within the folder of the Integration Services catalog",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -94,7 +94,7 @@
       "Name": "EnvironmentName",
       "Label": "Environment name",
       "HelpText": "Name of the environment to reference the project to. If the environment doesn't exist, it will create it.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -124,12 +124,12 @@
       "Name": "NugetPackageStepName",
       "Label": "NuGet package step",
       "HelpText": "The step that uploaded the NuGet package to the server.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "StepName"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-44",
+  "LogoAttachmentKey": "CommunityActionTemplates-45",
   "LogoAttachmentMimeType": "image/png"
 }

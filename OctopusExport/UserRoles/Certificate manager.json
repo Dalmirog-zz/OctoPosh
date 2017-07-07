@@ -1,0 +1,16 @@
+{
+  "$type": "Octopus.Core.Model.Users.UserRole, Octopus.Core",
+  "Id": "userroles-certificatemanager",
+  "Name": "Certificate manager",
+  "Description": "Certificate managers can edit certificates and export private-keys",
+  "GrantedPermissions": [
+    "CertificateView",
+    "CertificateCreate",
+    "CertificateEdit",
+    "CertificateDelete",
+    "CertificateExportPrivateKey",
+    "EnvironmentView",
+    "TenantView"
+  ],
+  "CanBeDeleted": false
+}

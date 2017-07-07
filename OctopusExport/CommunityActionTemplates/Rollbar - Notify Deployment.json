@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-152",
+  "Id": "CommunityActionTemplates-163",
   "Name": "Rollbar - Notify Deployment",
   "ExternalId": "2b204b54-165f-4c5b-a856-ac932dfa979e",
   "Description": "Posts a deployment notification to Rollbar.",
@@ -35,7 +35,7 @@
       "Name": "Environment",
       "Label": "Environment",
       "HelpText": "Name of the environment being deployed, e.g. \"production\". Required.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -45,7 +45,7 @@
       "Name": "Revision",
       "Label": "Revision",
       "HelpText": "Revision number/sha being deployed. If using git, use the full sha. Required.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -55,7 +55,7 @@
       "Name": "LocalUsername",
       "Label": "Local Username",
       "HelpText": "User who deployed. Optional.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -65,7 +65,7 @@
       "Name": "RollbarUsername",
       "Label": "Rollbar Username",
       "HelpText": "Rollbar username of the user who deployed. Optional.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -75,7 +75,7 @@
       "Name": "Comment",
       "Label": "Comment",
       "HelpText": "Deploy comment (e.g. what is being deployed). Optional. Will be rendered as Rollbar-flavored Markdown.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -91,6 +91,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-152",
+  "LogoAttachmentKey": "CommunityActionTemplates-163",
   "LogoAttachmentMimeType": "image/png"
 }

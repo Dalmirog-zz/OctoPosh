@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-120",
+  "Id": "CommunityActionTemplates-127",
   "Name": "MSMQ - Create Transactional Queue",
   "ExternalId": "4c22f201-c634-4a22-aa55-ae24dc83d588",
   "Description": "Create one or more MSMQ transactional queues and configure permissions.",
@@ -57,7 +57,7 @@
       "Name": "MSMQAdminUsers",
       "Label": "Admin queue users",
       "HelpText": "Users with access to the queue separated by semicolons. Example: _DOMAIN\\User1;DOMAIN\\User2_",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -73,7 +73,7 @@
       "Name": "MSMQPermAdminDeny",
       "Label": "Denied admin permissions",
       "HelpText": "Denied permissions, separated by semicolons: _TakeQueueOwnership_",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -91,12 +91,12 @@
       "Name": "ResetDomains",
       "Label": "Reset Permissions Domains",
       "HelpText": "This is used if Reset Permissions is set.\nExample: YOURDOMAIN1;YOURDOMAIN2",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-120",
+  "LogoAttachmentKey": "CommunityActionTemplates-127",
   "LogoAttachmentMimeType": "image/png"
 }

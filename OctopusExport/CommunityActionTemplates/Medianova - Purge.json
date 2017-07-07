@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-118",
+  "Id": "CommunityActionTemplates-125",
   "Name": "Medianova - Purge",
   "ExternalId": "dce70842-466e-4ae7-acd4-9aa18bfac065",
   "Description": "Allows to purge content using Medianova CDN Purge App",
@@ -25,7 +25,7 @@
       "Name": "username",
       "Label": "Username",
       "HelpText": "Username of the user with purge priviliges",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -35,7 +35,7 @@
       "Name": "pass",
       "Label": "Password",
       "HelpText": "Password of the user",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
@@ -45,12 +45,12 @@
       "Name": "fileList",
       "Label": "File Names",
       "HelpText": "A row seperated list of files to purge.\n\nSample;\n/folder-1/file-1.jpg",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "MultiLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-118",
+  "LogoAttachmentKey": "CommunityActionTemplates-125",
   "LogoAttachmentMimeType": "image/png"
 }

@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-90",
+  "Id": "CommunityActionTemplates-96",
   "Name": "IIS Application - Remove",
   "ExternalId": "a3edf679-e65a-4758-88a8-ec45a6c77563",
   "Description": "Removes an IIS virtual application (a virtual directory with an application pool)",
@@ -20,7 +20,7 @@
       "Name": "VirtualPath",
       "Label": "Virtual path",
       "HelpText": "The name of the application to remove. For example, if the application that will be removed is at `/myapp`, enter `myapp`. To remove an application under a parent virtual directory or application, separate with slashes - for example: `/applications/myapp`",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -30,12 +30,12 @@
       "Name": "ParentSite",
       "Label": "Parent site",
       "HelpText": "The name of the IIS web site to remove the application from. For example, to remove the application under the default web site, enter:\n\n    Default Web Site",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-90",
+  "LogoAttachmentKey": "CommunityActionTemplates-96",
   "LogoAttachmentMimeType": "image/png"
 }

@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-50",
+  "Id": "CommunityActionTemplates-52",
   "Name": "elmah.io - Register Deployment",
   "ExternalId": "8ca59ac6-11a5-4624-a019-e93c1ba5f03c",
   "Description": "Step template for notifying elmah.io about deployments on Octopus.",
@@ -25,7 +25,7 @@
       "Name": "ApiKey",
       "Label": "API Key",
       "HelpText": "Required: Input your elmah.io API key located on the organization settings page.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
@@ -35,12 +35,12 @@
       "Name": "LogId",
       "Label": "Log ID",
       "HelpText": "Optional: As default, new deployments are shown on all logs on the organization. If you want the deployment to show up on a single log only, input the ID of the log here.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-50",
+  "LogoAttachmentKey": "CommunityActionTemplates-52",
   "LogoAttachmentMimeType": "image/png"
 }

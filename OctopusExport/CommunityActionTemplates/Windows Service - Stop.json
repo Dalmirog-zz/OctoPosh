@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-226",
+  "Id": "CommunityActionTemplates-244",
   "Name": "Windows Service - Stop",
   "ExternalId": "ab3eb4cf-5fc1-4168-be8d-02246d919ca8",
   "Description": "Stops a Windows Service if it is running.",
@@ -20,10 +20,10 @@
       "Name": "ServiceName",
       "Label": "Service Name",
       "HelpText": "Name of the Windows Service (this is not always the display name).",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-226",
+  "LogoAttachmentKey": "CommunityActionTemplates-244",
   "LogoAttachmentMimeType": "image/png"
 }

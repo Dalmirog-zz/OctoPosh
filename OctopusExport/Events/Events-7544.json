@@ -1,0 +1,25 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-7544",
+  "RelatedDocumentIds": [
+    "Environments-24"
+  ],
+  "ProjectId": null,
+  "EnvironmentId": "Environments-24",
+  "TenantId": null,
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-07-07T06:52:30.3702621+00:00",
+  "Message": "Environment unmodified_TestEnvironment was modified",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Environments-24",
+      "StartIndex": 12,
+      "Length": 26
+    }
+  ],
+  "Comments": null,
+  "Details": "<span>{\r&para;<br>  \"Id\": \"Environments-24\",\r&para;<br>  \"Name\": \"</span><ins style=\"background:#e6ffe6;\">un</ins><span>modified_TestEnvironment\",\r&para;<br>  \"Description\": \"Resource created for unit testing purposes. Do not delete/edit\",\r&para;<br>  \"SortOrder\": 2,\r&para;<br>  \"UseGuidedFailure\": false\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+}

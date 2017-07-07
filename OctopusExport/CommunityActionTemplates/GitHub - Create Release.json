@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-72",
+  "Id": "CommunityActionTemplates-78",
   "Name": "GitHub - Create Release",
   "ExternalId": "7a6704f9-c675-4dd2-bb2d-5fba374fd439",
   "Description": "Create a release for a Github Repository.",
@@ -50,7 +50,7 @@
       "Name": "gitHubUsername",
       "Label": "Owner",
       "HelpText": "The owner of the repository.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -60,7 +60,7 @@
       "Name": "gitHubRepository",
       "Label": "Repository",
       "HelpText": "The repository to create the release for.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -70,7 +70,7 @@
       "Name": "gitHubApiKey",
       "Label": "Api Token",
       "HelpText": "The GitHub [API key](https://github.com/blog/1509-personal-api-tokens)",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
@@ -96,6 +96,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-72",
+  "LogoAttachmentKey": "CommunityActionTemplates-78",
   "LogoAttachmentMimeType": "image/png"
 }

@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-155",
+  "Id": "CommunityActionTemplates-166",
   "Name": "Run GhostInspector",
   "ExternalId": "8b84e760-a6ca-412c-9b83-1129ca239f32",
   "Description": "Runs GhostInspector smoke tests asynchronously, returning immediately",
@@ -24,7 +24,7 @@
       "Name": "suiteId",
       "Label": "Suite ID",
       "HelpText": "Suite ID from Ghostinspector.  Can be found in the suite's URL e.g.: \nhttps://app.ghostinspector.com/suites/<suiteID>",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -34,7 +34,7 @@
       "Name": "siteUrl",
       "Label": "Site Base URL",
       "HelpText": "The site's base URL.  All smoke tests will be run starting from this page.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -44,7 +44,7 @@
       "Name": "httpAuthUser",
       "Label": "Username",
       "HelpText": "The username for use with HTTP Auth (can be left blank for open sites)",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -54,7 +54,7 @@
       "Name": "httpAuthPass",
       "Label": "Password",
       "HelpText": "The password for use with HTTP Auth (can be left blank for open sites)",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
@@ -64,10 +64,10 @@
       "Name": "apiKey",
       "Label": "GhostInspector API Key",
       "HelpText": "GhostInspector API key.  Can be found here: https://app.ghostinspector.com/account",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-155",
+  "LogoAttachmentKey": "CommunityActionTemplates-166",
   "LogoAttachmentMimeType": "image/png"
 }

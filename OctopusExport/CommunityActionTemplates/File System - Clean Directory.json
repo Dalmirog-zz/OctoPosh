@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-59",
+  "Id": "CommunityActionTemplates-64",
   "Name": "File System - Clean Directory",
   "ExternalId": "e56aafe2-0d59-453b-9449-d7384914468d",
   "Description": "Clean out unwanted files from the installation directory after a deployment.",
@@ -20,7 +20,7 @@
       "Name": "PathsToClean",
       "Label": "Paths to clean",
       "HelpText": "A semicolon-separated list of paths to clean.\n\nUsually you would set this to `Octopus.Action[StepName].Output.Package.InstallationDirectoryPath`.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -36,10 +36,10 @@
       "Name": "CleanIgnore",
       "Label": "Files to ignore",
       "HelpText": "A semicolon-separated list of path expressions that will be not be removed.\n\nExamples:  \n\n    - web.log4net.config\n    - img\\needed.jpg\n    - **\\*.dll\n    - web.config;Release Notes.txt\n\n`\\**\\` denotes a recursive search",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-59",
+  "LogoAttachmentKey": "CommunityActionTemplates-64",
   "LogoAttachmentMimeType": "image/png"
 }

@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-174",
+  "Id": "CommunityActionTemplates-188",
   "Name": "SQL - Execute Script",
   "ExternalId": "73f89638-51d1-4fbb-b68f-b71ba9e86720",
   "Description": "Execute a SQL script",
@@ -20,7 +20,7 @@
       "Name": "ConnectionString",
       "Label": "Connection string",
       "HelpText": "Connection string for the SQL connection. Example:\n\n    Server=.\\SQLExpress;Database=OctoFX;Integrated Security=True;\n\nBind to a variable to provide different values for different environments.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -56,6 +56,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-174",
+  "LogoAttachmentKey": "CommunityActionTemplates-188",
   "LogoAttachmentMimeType": "image/png"
 }

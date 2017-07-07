@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-178",
+  "Id": "CommunityActionTemplates-194",
   "Name": "SQL - Test Connection String",
   "ExternalId": "7e43cab7-e56c-4c37-a471-f4d552815169",
   "Description": "Tests a SQL Server connection string by attempting to connect to the database.",
@@ -20,10 +20,10 @@
       "Name": "ConnectionString",
       "Label": "Connection string",
       "HelpText": "The connection string. For example:\n\n> Data Source=MyServer;Initial Catalog=MyDatabase;User Id=admin; Password=supersecretpassword;",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-178",
+  "LogoAttachmentKey": "CommunityActionTemplates-194",
   "LogoAttachmentMimeType": "image/png"
 }

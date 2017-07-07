@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-127",
+  "Id": "CommunityActionTemplates-136",
   "Name": "PagerDuty - Open Maintenance Window",
   "ExternalId": "93a10982-f675-42cd-ac3a-46ef28a46afa",
   "Description": "Open a new maintenance window for the specified services.\n\nNo new incidents will be created for a service that is currently in maintenance.\n\nThis script sets an output variable **WindowId** that can be used in the _PagerDuty - Close Maintenance Window_ template.",
@@ -32,7 +32,7 @@
       "Name": "RequesterId",
       "Label": "RequesterId",
       "HelpText": "The user id of the user creating the maintenance window.\n\nFound here: https://mydomain.pagerduty.com/users/**ABC123**",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -42,7 +42,7 @@
       "Name": "Token",
       "Label": "Token",
       "HelpText": "The API token of the PagerDuty instance.\n\nFound here: https://mydomain.pagerduty.com/api_keys",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -62,7 +62,7 @@
       "Name": "ServiceIds",
       "Label": "ServiceIds",
       "HelpText": "A comma separated list of the service ids that are affected by this maintenance window.\n\nFound here: https://mydomain.pagerduty.com/services/**ABC123**\n\nExample: ABC123, ABC456",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -72,12 +72,12 @@
       "Name": "Subdomain",
       "Label": "Subdomain",
       "HelpText": "The subdomain of the PagerDuty instance.\n\nFound here: https://**mydomain**.pagerduty.com/",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-127",
+  "LogoAttachmentKey": "CommunityActionTemplates-136",
   "LogoAttachmentMimeType": "image/png"
 }

@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-228",
+  "Id": "CommunityActionTemplates-246",
   "Name": "Xamarin TestCloud execute test run",
   "ExternalId": "fd79c2f6-8983-4f91-a36d-aa622f44f16f",
   "Description": "Executes a Xamarin TestCloud test run for an app contained in a nuget file.",
@@ -20,7 +20,7 @@
       "Name": "apiKey",
       "Label": "Api Key",
       "HelpText": "The app specific API key for your test run. This may be found in the testcloud interface for your application:\n\n1. Visit the testcloud interface: https://testcloud.xamarin.com/\n2. Choose \"New Test Run\" and configure as desired.\n3. In the last step, copy the large hash (app specific API Key), devices parameter code, and username",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
@@ -30,7 +30,7 @@
       "Name": "devicesCode",
       "Label": "Devices Code",
       "HelpText": "The code identifying the devices to test against.\n\nThis may be found in the testcloud interface for your application:\n\n1. Visit the testcloud interface: https://testcloud.xamarin.com/\n2. Choose \"New Test Run\" and configure as desired.\n3. In the last step, copy the large hash (app specific API Key), devices parameter code, and username",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -40,7 +40,7 @@
       "Name": "testCloudUserName",
       "Label": "TestCloud user name",
       "HelpText": "The TestCloud user name (e.g. email) that should own the test run. This user must have appropriate permissions for test runs for the configured application.\n\n(Note that this user name will automatically be converted to lower case at this time, to work around an issue with the TestCloud API)",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -50,7 +50,7 @@
       "Name": "PackageStepName",
       "Label": "Package Step Name",
       "HelpText": "The name of the previously-deployed package step that contains the app files that you want to test.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "StepName"
       }
@@ -80,7 +80,7 @@
       "Name": "appPathOverride",
       "Label": "App path override (optional)",
       "HelpText": "This fully optional search path allows you to look for app files in a specific folder path in your nuget file, such as \"bin\\iPhone\". This may be needed in cases when the nuget file has multiple app files in different locations. This path override is a path relative to the root of the nuget file.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -90,7 +90,7 @@
       "Name": "dllPathOverride",
       "Label": "UITest DLL path override (optional)",
       "HelpText": "This fully optional search path allows you to look for the UITest DLL library files in a specific folder path in your nuget file, such as \"bin\\UITest\\Release\". This may be needed in cases when the nuget file has multiple UITest libraries in different locations. This path override is a path relative to the root of the nuget file.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -100,7 +100,7 @@
       "Name": "symbolPathOverride",
       "Label": "Symbol Path Override (optional)",
       "HelpText": "!!IMPORTANT!!\nA symbols file is NOT REQUIRED for TestCloud. It only provides more information for crashes.\n\nThis optional search path allows you to look in a specific folder path in your nuget file, such as \"bin\\iPhone\", for a *.dSYM.zip symbols file. This path override is a path relative to the root of the nuget file.\n\nIf an override is specified and a .zip file is not found, the script will search for a *.dSYM folder to use instead. This means if you have a dSYM folder and not a zip file, you can specify \".\" as an override to search the entire nuget package for the folder, or specify a more specific search path.\n\nThis may be needed in cases when the nuget file has multiple symbol files in different locations, or when you only have a dSYM folder, not a .zip file available.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -110,12 +110,12 @@
       "Name": "testCloudExePathOverride",
       "Label": "test-cloud.exe path override (optional)",
       "HelpText": "This fully optional search path allows you to look for the test-cloud.exe utility file in a specific folder path in your nuget file, such as \"tools\". This may be needed in cases when the nuget file has multiple instances of the test-cloud.exe utility in different locations. This path override is a path relative to the root of the nuget file.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-228",
+  "LogoAttachmentKey": "CommunityActionTemplates-246",
   "LogoAttachmentMimeType": "image/png"
 }

@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-142",
+  "Id": "CommunityActionTemplates-153",
   "Name": "RavenDB - Update Properties within a Document",
   "ExternalId": "89806198-6216-4034-a934-6de6a3f445b0",
   "Description": "Retrieves the specified document by a Raven Query, updates selected variables with values from octopus Variables. Replaces the current document with the newly created document with the updated values.\n**IMPORTANT**: Any variable that is being updated **MUST** have an Octopus Variable that has exactly the same name (including capitals, any special characters, etc.) prefixed with “Property_”. This is the case of **BOTH** document variables and Metadata variables. I.E. if you wanted TestMode change, you **MUST** have an Octopus Variable named Property_TestMode (same name, and capitals, etc.).\n",
@@ -30,7 +30,7 @@
       "Name": "ravenDatabaseName",
       "Label": "Name of the Database",
       "HelpText": "Name of the database in Raven",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -40,7 +40,7 @@
       "Name": "ravenDocumentName",
       "Label": "Name of the Document",
       "HelpText": "Name of the document in Raven that the program will retrieve.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -50,7 +50,7 @@
       "Name": "includeSettingList",
       "Label": "List of Included Document Variables",
       "HelpText": "A List of document variables that the program will update based on values within Octopus Variables\n\n**IMPORTANT:** The names of the variables **MUST** be the same (including capitals, special characters, etc.)",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -60,7 +60,7 @@
       "Name": "excludeSettingList",
       "Label": "List of Excluded Document Variables",
       "HelpText": "A list of document variables that the step will exclude from the updated version. \n\nFor example: if TestMode is in both the include and exclude document list, then TestMode will be excluded from the update.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -70,7 +70,7 @@
       "Name": "includeMetadataList",
       "Label": "List of Included Metadata Variables",
       "HelpText": "A List of Metadata variables that the program will update based on values within Octopus Variables\n\n**IMPORTANT:** The names of the variables **MUST** be the same (including capitals, special characters, etc.)",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -80,12 +80,12 @@
       "Name": "excludeMetadataList",
       "Label": "List of Excluded Metadata Variables",
       "HelpText": "A list of Metadata variables that the step will exclude from the updated version. \n\nFor example: if Raven-Entity-Name is in both the include and exclude metadata lists, then Raven-Entity-Name will be excluded from the update.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-142",
+  "LogoAttachmentKey": "CommunityActionTemplates-153",
   "LogoAttachmentMimeType": "image/png"
 }

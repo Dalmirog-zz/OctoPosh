@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-34",
+  "Id": "CommunityActionTemplates-36",
   "Name": "Configuration - Encrypt App.config Section",
   "ExternalId": "d80a7d9a-8c7b-4aa6-934e-0929bce606fe",
   "Description": "Encrypts configuration sections for the specified executable.",
@@ -20,7 +20,7 @@
       "Name": "ExecutablePath",
       "Label": "Executable path",
       "HelpText": "The path to the executable that has a corresponding `[Executable].exe.config` file. \n\nYou can get the InstallationDirectoryPath like so `#{Octopus.Action[StepName].Output.Package.InstallationDirectoryPath}`",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -30,7 +30,7 @@
       "Name": "SectionsToEncrypt",
       "Label": "Sections to encrypt",
       "HelpText": "The name of the section in the App config to encrypt e.g. `appSettings`, `connectionStrings` etc. For multiple sections, separate with a comma (,)",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -40,12 +40,12 @@
       "Name": "Provider",
       "Label": "Provider Name",
       "HelpText": "The provider to use for encryption",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-34",
+  "LogoAttachmentKey": "CommunityActionTemplates-36",
   "LogoAttachmentMimeType": "image/png"
 }

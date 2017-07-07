@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-204",
+  "Id": "CommunityActionTemplates-221",
   "Name": "Windows - Add Users to Local Groups",
   "ExternalId": "ed204305-3399-4ffa-8566-a62da4e36641",
   "Description": "Add a list of users to a list of Local Groups",
@@ -20,7 +20,7 @@
       "Name": "UserNames",
       "Label": "User Names",
       "HelpText": "List of user names separated by ;",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "MultiLineText"
       }
@@ -30,12 +30,12 @@
       "Name": "GroupNames",
       "Label": "Group Names",
       "HelpText": "list of group names separated by ;",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "MultiLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-204",
+  "LogoAttachmentKey": "CommunityActionTemplates-221",
   "LogoAttachmentMimeType": "image/png"
 }

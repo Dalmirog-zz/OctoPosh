@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-229",
+  "Id": "CommunityActionTemplates-247",
   "Name": "XML Transform using XDT",
   "ExternalId": "569a5f1b-bb57-491a-9c4e-a6d6e44e6b26",
   "Description": "You can use this script to easily transform any XML file using XDT.\nThe script will download its dependencies automatically.",
@@ -24,7 +24,7 @@
       "Name": "sourceFile",
       "Label": "Source file path",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -34,7 +34,7 @@
       "Name": "transformFile",
       "Label": "Transform file path",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -44,7 +44,7 @@
       "Name": "destFile",
       "Label": "Destination file path",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -60,6 +60,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-229",
+  "LogoAttachmentKey": "CommunityActionTemplates-247",
   "LogoAttachmentMimeType": "image/png"
 }

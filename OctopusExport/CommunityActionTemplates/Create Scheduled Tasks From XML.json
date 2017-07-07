@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-40",
+  "Id": "CommunityActionTemplates-41",
   "Name": "Create Scheduled Tasks From XML",
   "ExternalId": "26c779af-4cce-447e-98bb-4741c25e0b3c",
   "Description": "This will create a schedule task based on exported xml. See https://msdn.microsoft.com/en-us/library/windows/desktop/bb736357%28v=vs.85%29.aspx for instructions on how to export scheduled tasks as xml.",
@@ -20,7 +20,7 @@
       "Name": "xmlFileName",
       "Label": "Xml File List",
       "HelpText": "A list of XML files, separated by ';', containing the scheduled tasks to create.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "MultiLineText"
       }
@@ -30,7 +30,7 @@
       "Name": "username",
       "Label": "User Name",
       "HelpText": "The User that the task will run as",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -40,12 +40,12 @@
       "Name": "password",
       "Label": "Password",
       "HelpText": "The password of the user the task will run as",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-40",
+  "LogoAttachmentKey": "CommunityActionTemplates-41",
   "LogoAttachmentMimeType": "image/png"
 }

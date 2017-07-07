@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-153",
+  "Id": "CommunityActionTemplates-164",
   "Name": "Run - Windows Installer",
   "ExternalId": "f56647ac-7762-4986-bc98-c3fb74bb844f",
   "Description": "Runs the Windows Installer to non-interactively install an MSI",
@@ -25,7 +25,7 @@
       "Name": "MsiFilePath",
       "Label": "Msi File Path",
       "HelpText": "This is the path of the MSI file that will be installed. If the path includes wildcards, then the first match will be used.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -46,7 +46,7 @@
       "Name": "Properties",
       "Label": "Properties",
       "HelpText": "Properties that will be passed to the MSI separated by lines. Properties are in the format key=value, note that values with spaces in the must be quoted. \n\n    Key=Value\n    Key=\"Value\"",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "MultiLineText"
       }
@@ -72,6 +72,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-153",
+  "LogoAttachmentKey": "CommunityActionTemplates-164",
   "LogoAttachmentMimeType": "image/png"
 }

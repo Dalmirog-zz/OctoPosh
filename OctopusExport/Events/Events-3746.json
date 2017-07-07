@@ -1,0 +1,25 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-3746",
+  "RelatedDocumentIds": [
+    "Machines-22"
+  ],
+  "ProjectId": null,
+  "EnvironmentId": null,
+  "TenantId": null,
+  "Category": "MachineAdded",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-02-04T19:36:02.1460494-03:00",
+  "Message": "Machine ListeningTentacle2 was created (domain-event)",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Machines-22",
+      "StartIndex": 8,
+      "Length": 18
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "Session cookie"
+}

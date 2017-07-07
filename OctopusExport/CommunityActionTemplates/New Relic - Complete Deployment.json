@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-123",
+  "Id": "CommunityActionTemplates-131",
   "Name": "New Relic - Complete Deployment",
   "ExternalId": "7c88ea1e-de71-452d-be7e-b99dda397ba7",
   "Description": "Notifies [New Relic](https://newrelic.com) of a deployment.\nSends the revision/version number, deployer, etc from the Octopus deployment.",
@@ -25,7 +25,7 @@
       "Name": "ApiKey",
       "Label": "Api Key",
       "HelpText": "Your New Relic API key.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -33,7 +33,7 @@
       "Name": "AppId",
       "Label": "App ID",
       "HelpText": "The ID of the application in New Relic RPM.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -43,10 +43,10 @@
       "Name": "User",
       "Label": "User",
       "HelpText": "The name of the user/process that triggered this deployment.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-123",
+  "LogoAttachmentKey": "CommunityActionTemplates-131",
   "LogoAttachmentMimeType": "image/png"
 }

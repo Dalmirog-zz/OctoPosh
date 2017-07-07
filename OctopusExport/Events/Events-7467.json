@@ -1,0 +1,26 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-7467",
+  "RelatedDocumentIds": [
+    "Machines-67",
+    "Environments-21"
+  ],
+  "ProjectId": null,
+  "EnvironmentId": "Environments-21",
+  "TenantId": null,
+  "Category": "MachineHealthy",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-07-07T05:13:51.0497988+00:00",
+  "Message": "Machine 6FWRBTABBLRUTUN became healthy",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Machines-67",
+      "StartIndex": 8,
+      "Length": 15
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "Unknown"
+}

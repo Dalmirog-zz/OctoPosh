@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-128",
+  "Id": "CommunityActionTemplates-137",
   "Name": "Pause or Resume Pingdom check",
   "ExternalId": "a2d3b49a-84aa-4dc4-8da1-fbb3d8ff205b",
   "Description": null,
@@ -20,7 +20,7 @@
       "Name": "UserName",
       "Label": "User Name",
       "HelpText": "",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -30,7 +30,7 @@
       "Name": "Password",
       "Label": "Pingdom Password",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
@@ -40,7 +40,7 @@
       "Name": "AppKey",
       "Label": "Application Key",
       "HelpText": "You generate your application key inside the Pingdom control panel.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
@@ -50,7 +50,7 @@
       "Name": "CheckId",
       "Label": "Check Id",
       "HelpText": "Check Id to be paused or resumed",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -60,13 +60,13 @@
       "Name": "Action",
       "Label": null,
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Select",
         "Octopus.SelectOptions": "Pause\nResume"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-128",
+  "LogoAttachmentKey": "CommunityActionTemplates-137",
   "LogoAttachmentMimeType": "image/png"
 }

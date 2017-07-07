@@ -1,0 +1,25 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-7630",
+  "RelatedDocumentIds": [
+    "Lifecycles-101"
+  ],
+  "ProjectId": null,
+  "EnvironmentId": null,
+  "TenantId": null,
+  "Category": "Deleted",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-07-07T06:55:55.4804549+00:00",
+  "Message": "Lifecycle IF5KCGKKXQO3QNZ was deleted",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Lifecycles-101",
+      "StartIndex": 10,
+      "Length": 15
+    }
+  ],
+  "Comments": null,
+  "Details": "<span>{</span><del style=\"background:#ffe6e6;\">\r&para;<br>  \"Id\": \"Lifecycles-101\",\r&para;<br>  \"Name\": \"IF5KCGKKXQO3QNZ\",\r&para;<br>  \"Description\": \"Lifecycle IF5KCGKKXQO3QNZ\",\r&para;<br>  \"Phases\": [],\r&para;<br>  \"ReleaseRetentionPolicy\": {\r&para;<br>    \"Unit\": \"Items\",\r&para;<br>    \"QuantityToKeep\": 1,\r&para;<br>    \"ShouldKeepForever\": false\r&para;<br>  },\r&para;<br>  \"TentacleRetentionPolicy\": {\r&para;<br>    \"Unit\": \"Items\",\r&para;<br>    \"QuantityToKeep\": 1,\r&para;<br>    \"ShouldKeepForever\": false\r&para;<br>  }\r&para;<br></del><span>}</span>",
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+}

@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-68",
+  "Id": "CommunityActionTemplates-74",
   "Name": "File System - Zip Directory Contents",
   "ExternalId": "fa148b10-99e2-47be-b19f-a16dee1c8f27",
   "Description": "Creates a zip archive that contains the files and directories from the specified directory, uses the specified compression level, and optionally includes the base directory.\n\nRequires .NET 4.5 as it relies on the `System.IO.Compression.ZipFile` class.",
@@ -20,7 +20,7 @@
       "Name": "SourceDirectoryName",
       "Label": "Source Directory",
       "HelpText": "The path to the directory to be archived, specified as a relative or absolute path.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -30,7 +30,7 @@
       "Name": "DestinationArchiveFileName",
       "Label": "Destination Archive File",
       "HelpText": "The path of the archive to be created, specified as a relative or absolute path.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -51,7 +51,7 @@
       "Name": "IncludeBaseDirectory",
       "Label": "Include Base Directory",
       "HelpText": "Include the directory name from Source Directory at the root of the archive.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Checkbox"
       }
@@ -61,12 +61,12 @@
       "Name": "OverwriteDestination",
       "Label": "Overwrite Destination If Exists",
       "HelpText": "Overwrite the destination archive file if it already exists.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Checkbox"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-68",
+  "LogoAttachmentKey": "CommunityActionTemplates-74",
   "LogoAttachmentMimeType": "image/png"
 }

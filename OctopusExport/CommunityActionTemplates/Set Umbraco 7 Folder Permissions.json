@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-160",
+  "Id": "CommunityActionTemplates-172",
   "Name": "Set Umbraco 7 Folder Permissions",
   "ExternalId": "c60a8c60-c5bc-4dac-9384-65ec4bcf6c67",
   "Description": "To ensure a stable and smoothly running umbraco installation, these permissions need to be set correctly.\n\nThese permissions should be set before or during the insallation of umbraco. The user with the permissions set are the user used by the Application Pool used by the IIS website (usually Network Service or the IIS_IUSRS group). If in doubt, ask your server admin / hosting company\n\n[Umbraco Wiki Article](http://our.umbraco.org/wiki/reference/files-and-folders/permissions)\n",
@@ -20,7 +20,7 @@
       "Name": "WebsiteDirectory",
       "Label": "Website Directory",
       "HelpText": "This is the location where the website is configured to run from in IIS",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     },
     {
@@ -28,10 +28,10 @@
       "Name": "ApplicationPoolName",
       "Label": "Application Pool Name",
       "HelpText": "This is the name of the application pool the website is configured to run under in IIS",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {}
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-160",
+  "LogoAttachmentKey": "CommunityActionTemplates-172",
   "LogoAttachmentMimeType": "image/png"
 }

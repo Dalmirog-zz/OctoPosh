@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-149",
+  "Id": "CommunityActionTemplates-160",
   "Name": "Register Linux Tentacle",
   "ExternalId": "0f119877-288c-4110-aec9-0f693c2e7922",
   "Description": "This Step Template will Register a Linux Tentacle.\nReference : http://docs.octopusdeploy.com/display/OD/SSH+Targets.",
@@ -25,7 +25,7 @@
       "Name": "apikey",
       "Label": "API Key",
       "HelpText": "API Key with appropriate access",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -35,7 +35,7 @@
       "Name": "accountname",
       "Label": "Account Name",
       "HelpText": "The Account Name with access to the Host name to register",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -45,7 +45,7 @@
       "Name": "hostdetails",
       "Label": "HostName/IPaddress",
       "HelpText": "HostName or IPaddress of the Machine to register",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -55,7 +55,7 @@
       "Name": "role",
       "Label": "Role Name",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -65,12 +65,12 @@
       "Name": "machineName",
       "Label": "Machine Name",
       "HelpText": "Machine Name to register",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-149",
+  "LogoAttachmentKey": "CommunityActionTemplates-160",
   "LogoAttachmentMimeType": "image/png"
 }

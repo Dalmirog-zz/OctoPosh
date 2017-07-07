@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-191",
+  "Id": "CommunityActionTemplates-207",
   "Name": "Uninstall TopShelf service",
   "ExternalId": "b5a4ed5a-7fb3-4d0c-b4a5-02616d0ed919",
   "Description": "This step can be used before unpacking a package with your TopShelf service to stop and remove the previous installation, if there is one.",
@@ -25,12 +25,12 @@
       "Name": "Unpackage step",
       "Label": "",
       "HelpText": "The step where you unpack the topshelf service",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "StepName"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-191",
+  "LogoAttachmentKey": "CommunityActionTemplates-207",
   "LogoAttachmentMimeType": "image/png"
 }

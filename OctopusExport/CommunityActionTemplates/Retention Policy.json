@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-151",
+  "Id": "CommunityActionTemplates-162",
   "Name": "Retention Policy",
   "ExternalId": "46705230-c116-41c6-ba4b-b58d43f4f0e1",
   "Description": "Applies retention policy for built-in package repository by specified package id. Useful when you are using variables in PackageId parameter of deploy package step and built-in retention policy for package repository is not deleting packages.",
@@ -24,7 +24,7 @@
       "Name": "Retention.PackagesRootDirectory",
       "Label": "Packages root directory",
       "HelpText": "Packages directory path on Octopus server (e.g. D:\\Octopus\\Packages).",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -55,7 +55,7 @@
       "Name": "Retention.PackageId",
       "Label": "Package Id",
       "HelpText": null,
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -71,6 +71,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-151",
+  "LogoAttachmentKey": "CommunityActionTemplates-162",
   "LogoAttachmentMimeType": "image/png"
 }

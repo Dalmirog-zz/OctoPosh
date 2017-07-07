@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-150",
+  "Id": "CommunityActionTemplates-161",
   "Name": "Registry - Update Configuration Variables In Export File",
   "ExternalId": "7f9c1f6d-8305-4a37-a4c6-9b47ea4699d9",
   "Description": "Replace values in a .reg file (Registry Export) automatically with octopus variables.",
@@ -20,12 +20,12 @@
       "Name": "regExports",
       "Label": "Registry Exports",
       "HelpText": "A list of .reg files (Registry exports) separated by a ;",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "MultiLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-150",
+  "LogoAttachmentKey": "CommunityActionTemplates-161",
   "LogoAttachmentMimeType": "image/png"
 }

@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-182",
+  "Id": "CommunityActionTemplates-198",
   "Name": "SSL Certificate - Install",
   "ExternalId": "2a939210-3f1c-4a66-a535-40ba7cd709fb",
   "Description": "Installs an SSL certificate on the target machine",
@@ -20,7 +20,7 @@
       "Name": "Base64Certificate",
       "Label": "Base64 certificate",
       "HelpText": "The certificate, encoded as a base64 string",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "MultiLineText"
       }
@@ -30,7 +30,7 @@
       "Name": "Password",
       "Label": "Password",
       "HelpText": "The certificate password",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
@@ -58,6 +58,6 @@
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-182",
+  "LogoAttachmentKey": "CommunityActionTemplates-198",
   "LogoAttachmentMimeType": "image/png"
 }

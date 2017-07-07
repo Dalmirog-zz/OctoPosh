@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-186",
+  "Id": "CommunityActionTemplates-202",
   "Name": "Stop Service With Kill",
   "ExternalId": "6fa0fab6-4799-4d81-944d-3c7b54530870",
   "Description": "This steps stops the specified service and in case it does not respond or times out, the service will be killed.",
@@ -20,12 +20,12 @@
       "Name": "ServiceName",
       "Label": "Service Name",
       "HelpText": "Name of the service to stop",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-186",
+  "LogoAttachmentKey": "CommunityActionTemplates-202",
   "LogoAttachmentMimeType": "image/png"
 }

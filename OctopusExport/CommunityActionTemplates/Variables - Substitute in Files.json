@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-197",
+  "Id": "CommunityActionTemplates-213",
   "Name": "Variables - Substitute in Files",
   "ExternalId": "a3078bc0-0615-4220-84e8-bb1f271a90f9",
   "Description": "Replaces variables in a file(s) with their values from OctopusParameters",
@@ -42,7 +42,7 @@
       "Name": "Include",
       "Label": "Include",
       "HelpText": "Passed to Get-ChildItem to find the files you want to process",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "MultiLineText"
       }
@@ -52,7 +52,7 @@
       "Name": "Exclude",
       "Label": "Exclude",
       "HelpText": "Passed to Get-ChildItem to find the files you want to process",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "MultiLineText"
       }
@@ -62,12 +62,12 @@
       "Name": "Recurse",
       "Label": "Recurse",
       "HelpText": "Passed to Get-ChildItem to find the files you want to process",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Checkbox"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-197",
+  "LogoAttachmentKey": "CommunityActionTemplates-213",
   "LogoAttachmentMimeType": "image/png"
 }

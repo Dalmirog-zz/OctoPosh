@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-189",
+  "Id": "CommunityActionTemplates-205",
   "Name": "Trigger TeamCity Build",
   "ExternalId": "22483ce2-1444-4c02-861c-fb9533959e16",
   "Description": "Trigger a specific Team City build from an Octopus Deploy process.",
@@ -20,7 +20,7 @@
       "Name": "BuildConfigurationId",
       "Label": null,
       "HelpText": "The Id of the build configuration to trigger.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -30,7 +30,7 @@
       "Name": "TeamCityUrl",
       "Label": null,
       "HelpText": "The URL of the Team City server.\nE.g. `http://teamcity.example.com`.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -50,12 +50,12 @@
       "Name": "TeamCityPassword",
       "Label": null,
       "HelpText": "The password for the TeamCity user.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Sensitive"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-189",
+  "LogoAttachmentKey": "CommunityActionTemplates-205",
   "LogoAttachmentMimeType": "image/png"
 }

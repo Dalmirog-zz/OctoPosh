@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Projects.CommunityActionTemplate, Octopus.Core",
-  "Id": "CommunityActionTemplates-106",
+  "Id": "CommunityActionTemplates-112",
   "Name": "IIS Website - HTTP to HTTPS Redirect",
   "ExternalId": "929f72d3-e1c3-4b97-bac9-d84434ca63c3",
   "Description": "Adds either a global or site specific rule which redirects from http to https",
@@ -25,7 +25,7 @@
       "Name": "Site",
       "Label": "Name of Website",
       "HelpText": "Set the rule for a specific website.\nIf not supplied, a global rule will be created.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "SingleLineText"
       }
@@ -35,7 +35,7 @@
       "Name": "EnableProxyRules",
       "Label": "Enable proxy rules",
       "HelpText": "If the website is running behind a proxy, this setting most likely need to be checked.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Checkbox"
       }
@@ -45,12 +45,12 @@
       "Name": "Disabled",
       "Label": "Disable",
       "HelpText": "Disable adding rules.\nThis will remove any rules mathing current values.",
-      "DefaultValue": null,
+      "DefaultValue": "",
       "DisplaySettings": {
         "Octopus.ControlType": "Checkbox"
       }
     }
   ],
-  "LogoAttachmentKey": "CommunityActionTemplates-106",
+  "LogoAttachmentKey": "CommunityActionTemplates-112",
   "LogoAttachmentMimeType": "image/png"
 }

@@ -4,5 +4,11 @@
   "CorsWhitelist": "",
   "TrustedRedirectUrls": "",
   "XFrameOptionAllowFrom": null,
-  "AutoLoginEnabled": false
+  "XContentTypeOptionsEnableNoSniff": true,
+  "XssProtectionEnabled": true,
+  "AutoLoginEnabled": false,
+  "ReferrerPolicy": "no-referrer",
+  "HttpStrictTransportSecurityMaxAge": 31556926,
+  "HttpStrictTransportSecurityEnabled": false,
+  "ContentSecurityPolicyEnabled": true
 }
