@@ -120,9 +120,12 @@ namespace Octoposh.Cmdlets
             }
             else
             {
-                foreach (var name in ProjectName)
+
+                var projectNameList = ProjectName?.ToList().ConvertAll(s => s.ToLower());
+
+                foreach (var name in projectNameList)
                 {
-                    var project = rawDashboard.Projects.FirstOrDefault(p => p.Name == name);
+                    var project = rawDashboard.Projects.FirstOrDefault(p => p.Name.ToLower() == name);
                     if (project != null)
                     {
                         projects.Add(project);
@@ -136,8 +139,7 @@ namespace Octoposh.Cmdlets
                 }
             }
             
-            foreach(var dashboardProject in projects)
-            {
+            foreach(var dashboardProject in projects){
 
                 var project = _connection.Repository.Projects.Get(dashboardProject.Id);
 
@@ -193,9 +195,11 @@ namespace Octoposh.Cmdlets
             }
             else
             {
-                foreach (var name in EnvironmentName)
+                var environmentNameList = EnvironmentName?.ToList().ConvertAll(s => s.ToLower());
+
+                foreach (var name in environmentNameList)
                 {
-                    var environment = rawDashboard.Environments.FirstOrDefault(e => e.Name == name);
+                    var environment = rawDashboard.Environments.FirstOrDefault(e => e.Name.ToLower() == name);
                     if (environment != null)
                     {
                         environments.Add(environment);
