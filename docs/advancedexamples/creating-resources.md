@@ -181,6 +181,25 @@ $newUser.IsService = $false #Set $true if you are trying to create a service acc
 New-OctopusResource -Resource $newUser
 ```
 
+###Tenants
+
+```Powershell
+$TenantName = "MyTenant"
+
+$ProjectName = "MyProject"
+
+$EnvironmentNames = ("Development","staging")
+
+$Tenant = Get-OctopusResourceModel -Resource Tenant
+$Project = Get-OctopusProject -ProjectName $ProjectName -ResourceOnly
+$environments = Get-OctopusEnvironment -EnvironmentName $EnvironmentNames -ResourceOnly
+
+$Tenant.Name = $TenantName
+$Tenant.ConnectToProjectAndEnvironments($Project,$environments)
+
+New-OctopusResource $Tenant
+```
+
 ###Teams
 
 **Creating a team with 1 role and scoped to 1 Project, 1 Environment, 1 User and 1 Active Directory group**
