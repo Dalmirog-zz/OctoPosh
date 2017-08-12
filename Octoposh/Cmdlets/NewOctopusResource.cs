@@ -36,6 +36,7 @@ namespace Octoposh.Cmdlets
     [OutputType(typeof(ChannelResource))]
     [OutputType(typeof(TenantResource))]
     [OutputType(typeof(TagSetResource))]
+    [OutputType(typeof(UserRoleResource))]
     public class NewOctopusResource : PSCmdlet
     {
         /// <summary>
@@ -124,6 +125,10 @@ namespace Octoposh.Cmdlets
                 case "Octopus.Client.Model.TagSetResource":
                     var tagset = (TagSetResource)Resource;
                     outputResource = _connection.Repository.TagSets.Create(tagset);
+                    break;
+                case "Octopus.Client.Model.UserRoleResource":
+                    var userRole = (UserRoleResource)Resource;
+                    outputResource = _connection.Repository.UserRoles.Create(userRole);
                     break;
 
                 default:
