@@ -2,25 +2,39 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-3820",
   "RelatedDocumentIds": [
-    "variableset-LibraryVariableSets-21",
-    "LibraryVariableSets-21"
+    "Environments-3"
   ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-3",
   "TenantId": null,
-  "Category": "Modified",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-02-04T17:47:46.1669594-03:00",
-  "Message": "Variables for mymodule were changed",
+  "Category": "DeploymentSucceeded",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-02-01T00:39:37.5979041-03:00",
+  "Message": "Deploy to Stage succeeded  for DashboardTests_Project2 release 0.0.1 to Stage",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "LibraryVariableSets-21",
-      "StartIndex": 14,
-      "Length": 8
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 0,
+      "Length": 15
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 31,
+      "Length": 23
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 63,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-3",
+      "StartIndex": 72,
+      "Length": 5
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"variableset-LibraryVariableSets-22\",\r&para;<br>  \"OwnerId\": \"LibraryVariableSets-22\",\r&para;<br>  \"V</span><del style=\"background:#ffe6e6;\">ariables\": [</del><ins style=\"background:#e6ffe6;\">ersion\": 1,\r&para;<br>  \"Variables\": [\r&para;<br>    {\r&para;<br>      \"Id\": \"88bf2acc-b87d-4fef-afe7-a9a50d029799\",\r&para;<br>      \"Name\": \"Octopus.Script.Module[mymodule]\",\r&para;<br>      \"Value\": \"function GetReleaseNumber()\\r\\n{\\r\\n    Write-Output $OctopusParameters['Octopus.Release.Number']\\r\\n}\\r\\n\"\r&para;<br>    }\r&para;<br>  </ins><span>],\r&para;<br>  \"RelatedDocumentIds\": []\r&para;<br>}</span>",
-  "IdentityEstablishedWith": "Session cookie"
+  "Details": null,
+  "IdentityEstablishedWith": "Unknown"
 }

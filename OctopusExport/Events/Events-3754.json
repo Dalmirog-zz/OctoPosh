@@ -2,30 +2,40 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-3754",
   "RelatedDocumentIds": [
-    "Users-43",
-    "teams-everyone"
+    "Projects-4",
+    "Environments-1"
   ],
-  "ProjectId": null,
-  "EnvironmentId": null,
+  "ProjectId": "Projects-4",
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Modified",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-02-12T03:15:02.4546763-03:00",
-  "Message": "User UserTests_User2 was added to the team Everyone",
+  "Category": "DeploymentStarted",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-03-06T21:52:44.0528903-03:00",
+  "Message": "Deploy to Dev started  for DeploymentTests_Project2 release 0.0.5 to Dev",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Users-43",
-      "StartIndex": 5,
-      "Length": 15
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 0,
+      "Length": 13
     },
     {
-      "ReferencedDocumentId": "teams-everyone",
-      "StartIndex": 43,
-      "Length": 8
+      "ReferencedDocumentId": "Projects-4",
+      "StartIndex": 27,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 60,
+      "Length": 5
+    },
+    {
+      "ReferencedDocumentId": "Environments-1",
+      "StartIndex": 69,
+      "Length": 3
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "IdentityEstablishedWith": "Unknown"
 }

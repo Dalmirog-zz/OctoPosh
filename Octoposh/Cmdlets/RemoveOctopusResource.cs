@@ -127,6 +127,12 @@ namespace Octoposh.Cmdlets
                             WriteObject(true,true);
                             break;
 
+                        case "Octopus.Client.Model.UserRoleResource":
+                            var userRole = (UserRoleResource)r;
+                            _connection.Repository.UserRoles.Delete(userRole);
+                            WriteObject(true, true);
+                            break;
+
                         default:
                             Console.WriteLine("Dunno what to delete");
                             break;

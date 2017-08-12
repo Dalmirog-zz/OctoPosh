@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Environments.Machine, Octopus.Core",
-  "Id": "Machines-25",
+  "Id": "Machines-5",
   "Name": "OfflineTarget",
   "Endpoint": {
     "$type": "Octopus.Core.Model.Environments.Endpoints.OfflineDropEndpoint, Octopus.Core",
@@ -14,8 +14,9 @@
     "Offline"
   ],
   "EnvironmentIds": [
-    "Environments-21"
+    "Environments-1"
   ],
+  "TenantedDeploymentParticipation": "Untenanted",
   "TenantIds": [],
   "TenantTags": [],
   "MachinePolicyId": "MachinePolicies-1"

@@ -1,0 +1,25 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-1279",
+  "RelatedDocumentIds": [
+    "Teams-3"
+  ],
+  "ProjectId": null,
+  "EnvironmentId": null,
+  "TenantId": null,
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-07-07T01:00:55.1769339-03:00",
+  "Message": "Team modified_TestTeam was modified",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Teams-3",
+      "StartIndex": 5,
+      "Length": 17
+    }
+  ],
+  "Comments": null,
+  "Details": "<span>{\r&para;<br>  \"Id\": \"Teams-23\",\r&para;<br>  \"Name\": \"</span><del style=\"background:#ffe6e6;\">un</del><span>modified_TestTeam\",\r&para;<br>  \"MemberUserIds\": [],\r&para;<br>  \"ExternalSecurityGroups\": [],\r&para;<br>  \"UserRoleIds\": [],\r&para;<br>  \"ProjectIds\": [],\r&para;<br>  \"EnvironmentIds\": [],\r&para;<br>  \"TenantIds\": [],\r&para;<br>  \"ProjectGroupIds\": [],\r&para;<br>  \"TenantTags\": []\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+}

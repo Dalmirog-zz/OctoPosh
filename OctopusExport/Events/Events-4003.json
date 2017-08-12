@@ -2,24 +2,39 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-4003",
   "RelatedDocumentIds": [
-    "Environments-21"
+    "Environments-1"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-21",
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Created",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-02-11T00:48:38.9925179-03:00",
-  "Message": "Machine KDPKROC3P2UV5R1 was created",
+  "Category": "DeploymentStarted",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-02-12T03:05:36.9578365-03:00",
+  "Message": "Deploy to Dev (#2) started  for DeploymentTests_Project1 release 0.0.13 to Dev",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 8,
-      "Length": 15
+      "StartIndex": 0,
+      "Length": 18
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 32,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 65,
+      "Length": 6
+    },
+    {
+      "ReferencedDocumentId": "Environments-1",
+      "StartIndex": 75,
+      "Length": 3
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Unknown"
 }

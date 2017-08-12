@@ -1,0 +1,26 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-1951",
+  "RelatedDocumentIds": [
+    "Machines-5",
+    "Environments-1"
+  ],
+  "ProjectId": null,
+  "EnvironmentId": "Environments-1",
+  "TenantId": null,
+  "Category": "MachineHealthy",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-08-12T04:34:57.1661105-03:00",
+  "Message": "Machine OfflineTarget became healthy",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Machines-5",
+      "StartIndex": 8,
+      "Length": 13
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "Unknown"
+}

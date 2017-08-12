@@ -490,5 +490,44 @@ namespace Octoposh.Tests
 
             Console.WriteLine("Resource name changed from {0} to {1} and back to {0}", unmodifiedReleaseNotes, modifiedReleaseNotes);
         }
+
+        [Test]
+        public void UpdateUserRole()
+        {
+            var unmodifiedName = "unmodified_TestUserRole";
+            var modifiedName = "modified_TestUserRole";
+
+            var baseresource = Repository.UserRoles.FindByName(unmodifiedName);
+
+            baseresource.Name = modifiedName;
+
+            var parameters = new List<CmdletParameter>
+            {
+                new CmdletParameter()
+                {
+                    Name = "Resource",
+                    Resource = baseresource
+                }
+            };
+            //Changing the name from Unmodified_* => Modified_*
+            var powershell1 = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
+            var results1 = powershell1.Invoke<UserRoleResource>();
+
+            Assert.AreEqual(results1.Count, 1);
+            Assert.AreEqual(results1[0].Name, modifiedName);
+
+            // Changing the name back from Modified_* => Unmodified_* for the sake of being able to re-run tests without having to reload test data
+            baseresource.Name = unmodifiedName;
+            parameters[0].Resource = baseresource;
+
+            var powershell2 = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
+            var results2 = powershell2.Invoke<UserRoleResource>();
+
+            Assert.AreEqual(results2.Count, 1);
+            Assert.AreEqual(results2[0].Name, unmodifiedName);
+
+            Console.WriteLine("Resource name changed from {0} to {1} and back to {0}", unmodifiedName, modifiedName);
+        }
+
     }
 }

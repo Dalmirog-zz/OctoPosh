@@ -2,40 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-3925",
   "RelatedDocumentIds": [
-    "Projects-22",
-    "Environments-23"
+    "Users-1"
   ],
-  "ProjectId": "Projects-22",
-  "EnvironmentId": "Environments-23",
+  "ProjectId": null,
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentFailed",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-03-06T21:00:59.5639847-03:00",
-  "Message": "Deploy to Stage (#2) failed  for DashboardTests_Project2 release 0.0.2 to Stage",
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-02-01T00:12:34.715632-03:00",
+  "Message": "User admin set password using the admin command line",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 0,
-      "Length": 20
-    },
-    {
-      "ReferencedDocumentId": "Projects-22",
-      "StartIndex": 33,
-      "Length": 23
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 65,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-23",
-      "StartIndex": 74,
+      "ReferencedDocumentId": "Users-1",
+      "StartIndex": 5,
       "Length": 5
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "IdentityEstablishedWith": "Command-line or tools"
 }

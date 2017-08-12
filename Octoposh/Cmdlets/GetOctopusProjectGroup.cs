@@ -45,7 +45,7 @@ namespace Octoposh.Cmdlets
         public string[] ProjectGroupName { get; set; }
 
         /// <summary>
-        /// <para type="description">If set to TRUE the cmdlet will return the basic Octopur resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh output object</para>
+        /// <para type="description">If set to TRUE the cmdlet will return the basic Octopus resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh output object</para>
         /// </summary>
         [Parameter]
         public SwitchParameter ResourceOnly { get; set; }
