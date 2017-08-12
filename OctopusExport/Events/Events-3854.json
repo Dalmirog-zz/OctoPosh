@@ -2,34 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-3854",
   "RelatedDocumentIds": [
-    "Environments-21"
+    "Users-1"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-21",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentQueued",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-03-06T20:47:30.8355184-03:00",
-  "Message": "Deployed 3 release 0.0.1 to Dev",
+  "Occurred": "2017-03-18T18:32:39.6592021-03:00",
+  "Message": "User admin was created using the admin command line",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 9,
-      "Length": 1
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 19,
+      "ReferencedDocumentId": "Users-1",
+      "StartIndex": 5,
       "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-21",
-      "StartIndex": 28,
-      "Length": 3
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "IdentityEstablishedWith": "Command-line or tools"
 }

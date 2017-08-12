@@ -1,40 +1,23 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-3566",
-  "RelatedDocumentIds": [
-    "Environments-23"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
-  "EnvironmentId": "Environments-23",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentStarted",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-06T03:14:09.8000496-03:00",
-  "Message": "Deploy to Stage started  for DeploymentTests_Project2 release 0.0.8 to Stage",
+  "Category": "Created",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-08-12T16:22:57.0488773-03:00",
+  "Message": "Project P4XRVHWF8SZRB4A was created",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 0,
+      "StartIndex": 8,
       "Length": 15
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 29,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 62,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-23",
-      "StartIndex": 71,
-      "Length": 5
     }
   ],
   "Comments": null,
-  "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "Details": "<span>{\r&para;<br>  \"Id\": \"Projects-21\",\r&para;<br>  \"Name\": \"P4XRVHWF8SZRB4A\",\r&para;<br>  \"Description\": </span><del style=\"background:#ffe6e6;\">\"\"</del><ins style=\"background:#e6ffe6;\">null</ins><span>,\r&para;<br>  \"Slug\": \"p4xrvhwf8szrb4a\",\r&para;<br>  \"IsDisabled\": false,\r&para;<br>  \"VariableSetId\": null,\r&para;<br>  \"DeploymentProcessId\": null,\r&para;<br>  \"ProjectGroupId\": \"ProjectGroups-1\",\r&para;<br>  \"LifecycleId\": \"Lifecycles-1\",\r&para;<br>  \"AutoCreateRelease\": false,\r&para;<br>  \"DiscreteChannelRelease\": false,\r&para;<br>  \"IncludedLibraryVariableSetIds\": [],\r&para;<br>  \"UsedPackages\": [],\r&para;<br>  \"DefaultToSkipIfAlreadyInstalled\": false,\r&para;<br>  \"TenantedDeploymentMode\": \"Untenanted\",\r&para;<br>  \"VersioningStrategy\": {\r&para;<br>    \"DonorPackageStepId\": null,\r&para;<br>    \"Template\": \"#{Octopus.Version.LastMajor}.#{Octopus.Version.LastMinor}.#{Octopus.Version.NextPatch}\"\r&para;<br>  },\r&para;<br>  \"Templates\": [],\r&para;<br>  \"ReleaseCreationStrategy\": {\r&para;<br>    \"ReleaseCreationPackageStepId\": null,\r&para;<br>    \"ChannelId\": null\r&para;<br>  },\r&para;<br>  \"ProjectConnectivityPolicy\": {\r&para;<br>    \"SkipMachineBehavior\": \"None\",\r&para;<br>    \"TargetRoles\": [],\r&para;<br>    \"AllowDeploymentsToNoTargets\": false\r&para;<br>  },\r&para;<br>  \"AutoDeployReleaseOverrides\": []\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

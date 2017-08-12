@@ -1,20 +1,27 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-4032",
-  "RelatedDocumentIds": [],
-  "ProjectId": null,
+  "RelatedDocumentIds": [
+    "Projects-4"
+  ],
+  "ProjectId": "Projects-4",
   "EnvironmentId": null,
   "TenantId": null,
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-03-12T16:10:51.5136565-03:00",
-  "Message": "Team K6Y0PULR0VC09VV was created",
+  "Occurred": "2017-03-07T01:41:59.1904518-03:00",
+  "Message": "DeploymentTests_Project2 release 0.0.14 was created",
   "MessageReferences": [
     {
+      "ReferencedDocumentId": "Projects-4",
+      "StartIndex": 0,
+      "Length": 24
+    },
+    {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 5,
-      "Length": 15
+      "StartIndex": 33,
+      "Length": 6
     }
   ],
   "Comments": null,

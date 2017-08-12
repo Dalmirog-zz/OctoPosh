@@ -1,20 +1,27 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-3769",
-  "RelatedDocumentIds": [],
-  "ProjectId": null,
+  "RelatedDocumentIds": [
+    "Projects-4"
+  ],
+  "ProjectId": "Projects-4",
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-03-06T20:17:44.1937155-03:00",
-  "Message": "NuGetFeed 0TELT9ZSK114CD8 was deleted",
+  "Occurred": "2017-03-06T21:53:17.7865367-03:00",
+  "Message": "DeploymentTests_Project2 release 0.0.6 was created",
   "MessageReferences": [
     {
+      "ReferencedDocumentId": "Projects-4",
+      "StartIndex": 0,
+      "Length": 24
+    },
+    {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 10,
-      "Length": 15
+      "StartIndex": 33,
+      "Length": 5
     }
   ],
   "Comments": null,

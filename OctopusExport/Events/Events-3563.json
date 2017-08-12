@@ -2,36 +2,21 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-3563",
   "RelatedDocumentIds": [
-    "Environments-23"
+    "Environments-1"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-23",
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "DeploymentSucceeded",
+  "Category": "MachineHealthy",
   "UserId": "users-system",
   "Username": "system",
-  "Occurred": "2017-02-14T02:11:12.646058-03:00",
-  "Message": "Deploy to Stage succeeded  for DeploymentTests_Project1 release 0.0.15 to Stage",
+  "Occurred": "2017-08-12T16:22:56.8498756-03:00",
+  "Message": "Machine P4XRVHWF8SZRB4A became healthy",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 0,
+      "StartIndex": 8,
       "Length": 15
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 31,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 64,
-      "Length": 6
-    },
-    {
-      "ReferencedDocumentId": "Environments-23",
-      "StartIndex": 74,
-      "Length": 5
     }
   ],
   "Comments": null,

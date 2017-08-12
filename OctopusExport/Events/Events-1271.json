@@ -1,0 +1,26 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-1271",
+  "RelatedDocumentIds": [
+    "ServerTasks-495",
+    "Environments-1"
+  ],
+  "ProjectId": null,
+  "EnvironmentId": "Environments-1",
+  "TenantId": null,
+  "Category": "Created",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-02-04T19:39:26.1442656-03:00",
+  "Message": "Ran task Check ListeningTentacle2 health",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "ServerTasks-495",
+      "StartIndex": 9,
+      "Length": 31
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "Session cookie"
+}

@@ -1,0 +1,26 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-364",
+  "RelatedDocumentIds": [
+    "Machines-5",
+    "Environments-1"
+  ],
+  "ProjectId": null,
+  "EnvironmentId": "Environments-1",
+  "TenantId": null,
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-02-04T19:59:55.0316774-03:00",
+  "Message": "Machine OfflineTarget was modified",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Machines-5",
+      "StartIndex": 8,
+      "Length": 13
+    }
+  ],
+  "Comments": null,
+  "Details": "<span>{\r&para;<br>  \"Id\": \"Machines-3\",\r&para;<br>  \"Name\": \"OfflineTarget\",\r&para;<br>  \"Endpoint\": {\r&para;<br>    \"DropFolderPath\": \"\\\\\\\\whatever\",\r&para;<br>    \"SensitiveVariablesEncryptionPassword\": null,\r&para;<br>    \"ApplicationsDirectory\": \"c:\\\\whatever\",\r&para;<br>    \"OctopusWorkingDirectory\": \"c:\\\\whatever\"\r&para;<br>  },\r&para;<br>  \"IsDisabled\": false,\r&para;<br>  \"Roles\": [\r&para;<br>    \"</span><del style=\"background:#ffe6e6;\">WebServer</del><ins style=\"background:#e6ffe6;\">Offline</ins><span>\"\r&para;<br>  ],\r&para;<br>  \"EnvironmentIds\": [\r&para;<br>    \"Environments-1\"\r&para;<br>  ],\r&para;<br>  \"TenantIds\": [],\r&para;<br>  \"TenantTags\": [],\r&para;<br>  \"MachinePolicyId\": \"MachinePolicies-1\"\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "Session cookie"
+}

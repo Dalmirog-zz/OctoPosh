@@ -2,24 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-4284",
   "RelatedDocumentIds": [
-    "Lifecycles-44"
+    "Tenants-21"
   ],
   "ProjectId": null,
   "EnvironmentId": null,
-  "TenantId": null,
-  "Category": "Modified",
+  "TenantId": "Tenants-21",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-14T03:33:20.247403-03:00",
-  "Message": "Lifecycle unmodified_TestLifecycle was modified",
+  "Occurred": "2017-08-12T19:34:34.8286813+00:00",
+  "Message": "Tenant 8EJ1Z76VZ2RJE9K was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Lifecycles-44",
-      "StartIndex": 10,
-      "Length": 24
+      "ReferencedDocumentId": "Tenants-21",
+      "StartIndex": 7,
+      "Length": 15
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"Lifecycles-22\",\r&para;<br>  \"Name\": \"</span><ins style=\"background:#e6ffe6;\">un</ins><span>modified_TestLifecycle\",\r&para;<br>  \"Description\": \"Resource created for unit testing purposes. Do not delete/edit\",\r&para;<br>  \"Phases\": [],\r&para;<br>  \"ReleaseRetentionPolicy\": {\r&para;<br>    \"Unit\": \"Items\",\r&para;<br>    \"QuantityToKeep\": 0,\r&para;<br>    \"ShouldKeepForever\": true\r&para;<br>  },\r&para;<br>  \"TentacleRetentionPolicy\": {\r&para;<br>    \"Unit\": \"Items\",\r&para;<br>    \"QuantityToKeep\": 0,\r&para;<br>    \"ShouldKeepForever\": true\r&para;<br>  }\r&para;<br>}</span>",
+  "Details": "<span>{\r&para;<br>  \"Id\": \"Tenants-21\",\r&para;<br>  \"Name\": \"8EJ1Z76VZ2RJE9K\",\r&para;<br>  \"ProjectIds\": [],\r&para;<br>  \"ProjectEnvironments\": {},\r&para;<br>  \"TenantTags\": []\r&para;<br>}</span>",
   "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

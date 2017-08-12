@@ -127,6 +127,11 @@ namespace Octoposh.Cmdlets
                     outputResource = _connection.Repository.Releases.Modify(release);
                     break;
 
+                case "Octopus.Client.Model.UserRoleResource":
+                    var userRole = (UserRoleResource)Resource;
+                    outputResource = _connection.Repository.UserRoles.Modify(userRole);
+                    break;
+
                 default:
                     Console.WriteLine("Update-OctopusResource doesn't support updating objects of type: {0}", Resource.GetType().ToString());
                     break;

@@ -2,21 +2,21 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-4143",
   "RelatedDocumentIds": [
-    "Machines-26"
+    "Environments-4"
   ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-4",
   "TenantId": null,
-  "Category": "MachineAdded",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-23T02:19:48.9329295-03:00",
-  "Message": "Machine unmodified_TestMachine was created (domain-event)",
+  "Occurred": "2017-01-23T02:19:02.3299678-03:00",
+  "Message": "Environment unmodified_TestEnvironment was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Machines-26",
-      "StartIndex": 8,
-      "Length": 22
+      "ReferencedDocumentId": "Environments-4",
+      "StartIndex": 12,
+      "Length": 26
     }
   ],
   "Comments": null,

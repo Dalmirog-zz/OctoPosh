@@ -1,0 +1,25 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-300",
+  "RelatedDocumentIds": [
+    "LibraryVariableSets-2"
+  ],
+  "ProjectId": null,
+  "EnvironmentId": null,
+  "TenantId": null,
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-01-23T03:22:32.8571976-03:00",
+  "Message": "Library Variable Set modified_TestLibraryVariableSet was modified",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "LibraryVariableSets-2",
+      "StartIndex": 21,
+      "Length": 31
+    }
+  ],
+  "Comments": null,
+  "Details": "<span>{\r&para;<br>  \"Id\": \"LibraryVariableSets-1\",\r&para;<br>  \"Name\": \"</span><del style=\"background:#ffe6e6;\">un</del><span>modified_TestLibraryVariable</span><del style=\"background:#ffe6e6;\">s</del><ins style=\"background:#e6ffe6;\">S</ins><span>et\",\r&para;<br>  \"Description\": \"Resource created for unit testing purposes. Do not delete/edit\",\r&para;<br>  \"VariableSetId\": \"variableset-LibraryVariableSets-1\",\r&para;<br>  \"ContentType\": \"Variables\",\r&para;<br>  \"Templates\": []\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+}

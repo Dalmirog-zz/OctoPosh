@@ -1,20 +1,27 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-3993",
-  "RelatedDocumentIds": [],
-  "ProjectId": null,
+  "RelatedDocumentIds": [
+    "Projects-3"
+  ],
+  "ProjectId": "Projects-3",
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-11T00:48:37.3634974-03:00",
-  "Message": "NuGetFeed KDPKROC3P2UV5R1 was deleted",
+  "Occurred": "2017-03-07T01:40:49.8811114-03:00",
+  "Message": "DeploymentTests_Project1 release 0.0.16 was created",
   "MessageReferences": [
     {
+      "ReferencedDocumentId": "Projects-3",
+      "StartIndex": 0,
+      "Length": 24
+    },
+    {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 10,
-      "Length": 15
+      "StartIndex": 33,
+      "Length": 6
     }
   ],
   "Comments": null,

@@ -1,40 +1,23 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-4121",
-  "RelatedDocumentIds": [
-    "Environments-23"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
-  "EnvironmentId": "Environments-23",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentStarted",
-  "UserId": "users-system",
-  "Username": "system",
-  "Occurred": "2017-02-11T01:13:04.199143-03:00",
-  "Message": "Deploy to Stage started  for DashboardTests_Project1 release 0.0.1 to Stage",
+  "Category": "Deleted",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-03-07T02:21:12.4900112-03:00",
+  "Message": "Project 59U7TXBICAC6G8O was deleted",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 0,
+      "StartIndex": 8,
       "Length": 15
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 29,
-      "Length": 23
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 61,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-23",
-      "StartIndex": 70,
-      "Length": 5
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Unknown"
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

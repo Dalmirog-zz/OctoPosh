@@ -1,19 +1,22 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-4272",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Machines-21",
+    "Environments-1"
+  ],
   "ProjectId": null,
-  "EnvironmentId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "MachineAdded",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-11T05:08:08.3640022-03:00",
-  "Message": "Lifecycle N8X9XSZX7UGW309 was deleted",
+  "Occurred": "2017-08-12T19:34:33.7016729+00:00",
+  "Message": "Machine 8EJ1Z76VZ2RJE9K was created (domain-event)",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 10,
+      "ReferencedDocumentId": "Machines-21",
+      "StartIndex": 8,
       "Length": 15
     }
   ],

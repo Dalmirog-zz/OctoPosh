@@ -1,6 +1,6 @@
 {
   "$type": "Octopus.Core.Model.Environments.Machine, Octopus.Core",
-  "Id": "Machines-24",
+  "Id": "Machines-4",
   "Name": "MachineTests_Machine2",
   "Endpoint": {
     "$type": "Octopus.Core.Model.Environments.Endpoints.CloudRegionEndpoint, Octopus.Core"
@@ -10,8 +10,9 @@
     "WebApps"
   ],
   "EnvironmentIds": [
-    "Environments-21"
+    "Environments-1"
   ],
+  "TenantedDeploymentParticipation": "Untenanted",
   "TenantIds": [],
   "TenantTags": [],
   "MachinePolicyId": "MachinePolicies-1"

@@ -1,23 +1,25 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-3584",
-  "RelatedDocumentIds": [],
+  "RelatedDocumentIds": [
+    "Channels-13"
+  ],
   "ProjectId": null,
   "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
+  "Category": "Modified",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-30T22:27:50.9683063-03:00",
-  "Message": "Project Group G44KK3F6M2G2CJA was created",
+  "Occurred": "2017-08-12T16:22:58.8778752-03:00",
+  "Message": "Channel modified_TestChannel was modified",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 14,
-      "Length": 15
+      "ReferencedDocumentId": "Channels-13",
+      "StartIndex": 8,
+      "Length": 20
     }
   ],
   "Comments": null,
-  "Details": null,
+  "Details": "<span>{\r&para;<br>  \"Id\": \"Channels-13\",\r&para;<br>  \"Name\": \"</span><del style=\"background:#ffe6e6;\">un</del><span>modified_TestChannel\",\r&para;<br>  \"Description\": \"Resource created for unit testing purposes. Do not delete/edit\",\r&para;<br>  \"ProjectId\": \"Projects-8\",\r&para;<br>  \"LifecycleId\": null,\r&para;<br>  \"IsDefault\": false,\r&para;<br>  \"TenantTags\": [],\r&para;<br>  \"Rules\": []\r&para;<br>}</span>",
   "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }
