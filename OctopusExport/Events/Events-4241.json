@@ -2,25 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-4241",
   "RelatedDocumentIds": [
-    "Machines-26",
-    "Environments-24"
+    "LibraryVariableSets-4"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-24",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Modified",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-03-12T16:10:55.6766566-03:00",
-  "Message": "Machine modified_TestMachine was modified",
+  "Occurred": "2017-03-18T18:38:14.9518044-03:00",
+  "Message": "Library Variable Set VariableSetTests_Library2 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Machines-26",
-      "StartIndex": 8,
-      "Length": 20
+      "ReferencedDocumentId": "LibraryVariableSets-4",
+      "StartIndex": 21,
+      "Length": 25
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"Machines-6\",\r&para;<br>  \"Name\": \"</span><del style=\"background:#ffe6e6;\">un</del><span>modified_TestMachine\",\r&para;<br>  \"Endpoint\": {},\r&para;<br>  \"IsDisabled\": false,\r&para;<br>  \"Roles\": [\r&para;<br>    \"UnitTest\"\r&para;<br>  ],\r&para;<br>  \"EnvironmentIds\": [\r&para;<br>    \"Environments-4\"\r&para;<br>  ],\r&para;<br>  \"TenantIds\": [],\r&para;<br>  \"TenantTags\": [],\r&para;<br>  \"MachinePolicyId\": \"MachinePolicies-1\"\r&para;<br>}</span>",
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "Details": null,
+  "IdentityEstablishedWith": "Session cookie"
 }

@@ -2,29 +2,39 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-4173",
   "RelatedDocumentIds": [
-    "Projects-26"
+    "Environments-1"
   ],
-  "ProjectId": "Projects-26",
-  "EnvironmentId": null,
+  "ProjectId": null,
+  "EnvironmentId": "Environments-1",
   "TenantId": null,
-  "Category": "Created",
-  "UserId": "Users-1",
-  "Username": "admin",
-  "Occurred": "2017-02-14T03:19:49.4689901-03:00",
-  "Message": "TestProject2 release 0.0.4 was created",
+  "Category": "DeploymentFailed",
+  "UserId": "users-system",
+  "Username": "system",
+  "Occurred": "2017-03-03T17:26:11.6495005-03:00",
+  "Message": "Deploy to Dev failed  for DeploymentTests_Project1 release 0.0.16 to Dev",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Projects-26",
+      "ReferencedDocumentId": "NotFound",
       "StartIndex": 0,
-      "Length": 12
+      "Length": 13
     },
     {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 21,
-      "Length": 5
+      "StartIndex": 26,
+      "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 59,
+      "Length": 6
+    },
+    {
+      "ReferencedDocumentId": "Environments-1",
+      "StartIndex": 69,
+      "Length": 3
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "IdentityEstablishedWith": "Unknown"
 }

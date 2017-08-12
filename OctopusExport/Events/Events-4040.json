@@ -1,23 +1,20 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-4040",
-  "RelatedDocumentIds": [
-    "Machines-26",
-    "Environments-24"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
-  "EnvironmentId": "Environments-24",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Created",
+  "Category": "Deleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-23T02:19:48.9139282-03:00",
-  "Message": "Machine unmodified_TestMachine was created",
+  "Occurred": "2017-01-30T22:55:31.4076823-03:00",
+  "Message": "Project DashboardTests2 was deleted",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Machines-26",
+      "ReferencedDocumentId": "NotFound",
       "StartIndex": 8,
-      "Length": 22
+      "Length": 15
     }
   ],
   "Comments": null,

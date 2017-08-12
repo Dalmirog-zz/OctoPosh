@@ -1,0 +1,23 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-1439",
+  "RelatedDocumentIds": [],
+  "ProjectId": null,
+  "EnvironmentId": null,
+  "TenantId": null,
+  "Category": "Created",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-07-07T01:32:13.9518348-03:00",
+  "Message": "Lifecycle FV78YPWJ2AO4BUK was created",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 10,
+      "Length": 15
+    }
+  ],
+  "Comments": null,
+  "Details": "<span>{\r&para;<br>  \"Id\": \"Lifecycles-84\",\r&para;<br>  \"Name\": \"FV78YPWJ2AO4BUK\",\r&para;<br>  \"Description\": \"Lifecycle FV78YPWJ2AO4BUK\",\r&para;<br>  \"Phases\": [],\r&para;<br>  \"ReleaseRetentionPolicy\": {\r&para;<br>    \"Unit\": \"Items\",\r&para;<br>    \"QuantityToKeep\": 1,\r&para;<br>    \"ShouldKeepForever\": false\r&para;<br>  },\r&para;<br>  \"TentacleRetentionPolicy\": {\r&para;<br>    \"Unit\": \"Items\",\r&para;<br>    \"QuantityToKeep\": 1,\r&para;<br>    \"ShouldKeepForever\": false\r&para;<br>  }\r&para;<br>}</span>",
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+}

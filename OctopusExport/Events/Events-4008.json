@@ -2,21 +2,32 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-4008",
   "RelatedDocumentIds": [
-    "Environments-21"
+    "Projects-3",
+    "Environments-2"
   ],
-  "ProjectId": null,
-  "EnvironmentId": "Environments-21",
+  "ProjectId": "Projects-3",
+  "EnvironmentId": "Environments-2",
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "DeploymentQueued",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-11T00:48:39.325511-03:00",
-  "Message": "Machine KDPKROC3P2UV5R1 was deleted",
+  "Occurred": "2017-03-07T01:41:13.0765292-03:00",
+  "Message": "Deployed DeploymentTests_Project1 release 0.0.16 to Prod",
   "MessageReferences": [
     {
+      "ReferencedDocumentId": "Projects-3",
+      "StartIndex": 9,
+      "Length": 24
+    },
+    {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 8,
-      "Length": 15
+      "StartIndex": 42,
+      "Length": 6
+    },
+    {
+      "ReferencedDocumentId": "Environments-2",
+      "StartIndex": 52,
+      "Length": 4
     }
   ],
   "Comments": null,
