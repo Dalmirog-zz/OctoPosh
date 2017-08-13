@@ -7,9 +7,6 @@ Most of the examples to create resources using Octoposh involve
 - Adding values to mandatory properties of the object.
 - Passing the resource object to `New-OctopusResource`.
 
-None of the examples below include the `-force` switch to avoid any accidents. If you want to avoid getting prompted every time you create a resource, pass the switch `-Force` to `Create-OctopusResource`
-
-
 ###Project Groups
 ```Powershell
 #Create a Project Group object
