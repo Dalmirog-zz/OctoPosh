@@ -34,16 +34,6 @@ else{
     Throw "VM [$($env:computername)] doesn't have the Octopus Server installed. It needs to be installed to run tests against it"
 }
 
-function CreateOctopusInstance {
-	& $OctopusServerexe create-instance --instance $Config.OctopusInstance --config "C:\Octopus\$($config.OctopusInstance)\OctopusServer-$($Config.OctopusInstance).config" --console
-	& $OctopusServerexe configure --instance $Config.OctopusInstance --home "C:\Octopus\$($Config.OctopusInstance)" --storageConnectionString $config.ConnectionString --upgradeCheck "False" --upgradeCheckWithStatistics "False" --webAuthenticationMode "UsernamePassword" --webForceSSL "False" --webListenPrefixes "http://localhost:$($config.OctopuswebListenPort)/" --commsListenPort $Config.OctopusPollingPort --serverNodeName $env:computername --console
-	& $OctopusServerexe database --instance $Config.OctopusInstance --create --grant "NT AUTHORITY\SYSTEM" --console
-	& $OctopusServerexe service --instance $Config.OctopusInstance --stop --console
-	& $OctopusServerexe admin --instance $Config.OctopusInstance --username $config.OctopusAdmin --password $config.OctopusPassword --console
-	& $OctopusServerexe license --instance $Config.OctopusInstance --licenseBase64 $config.OctopusLicenseBase64 --console
-	& $OctopusServerexe service --instance $Config.OctopusInstance --install --reconfigure --start --console
-}
-
 #$OctopusExportDir = (Resolve-Path $PSScriptRoot\..\DataBackup\OctopusExport).path #Relative to the location of the .cake script, NOT to the location of this ps1 script.
 $OctopusExportDir = ".\OctopusExport"
 
@@ -60,7 +50,11 @@ If($Action -eq "CreateInstance"){
 		}
 		else{
 			Write-Output "Instance not found. Creating: $($Config.OctopusInstance)"	
-			CreateOctopusInstance
+			
+            $ConnectionString = "Server=$($env:computername)\$($config.SQLInstancename);Database=$($config.SQLDatabaseName);Integrated Security=SSPI"
+
+            . $PSscriptRoot\DSC_OctopusServer.ps1 -ConnectionString $ConnectionString -Ensure Present -Port $config.OctopuswebListenPort -OctopusAdmin $config.OctopusAdmin -OctopusPassword $config.OctopusPassword -serviceState "Started" -Verbose
+
 		}
 	}
 	Else{
@@ -70,13 +64,14 @@ If($Action -eq "CreateInstance"){
 elseif ($Action -eq "RemoveInstance"){
     If($RemoveInstance){
         If(ValidateIfInstanceExists){
+            
             Write-Output "Removing Octopus Instance: $($Config.OctopusInstance)"
-            & $OctopusServerexe service --instance $Config.OctopusInstance --stop --uninstall
-            & $OctopusServerexe delete-instance --instance $Config.OctopusInstance
-        
-            $OctoposhDBExe = get-item ".\Octoposh.Database\bin\Release\Octoposh.Database.exe"
+            
+            $ConnectionString = "Server=$($env:computername)\$($config.SQLInstancename);Database=$($config.SQLDatabaseName);Integrated Security=SSPI"
 
-            & $OctoposhDBExe "$($config.ConnectionString)"
+            . $PSscriptRoot\DSC_OctopusServer.ps1 -ConnectionString $ConnectionString -Ensure Absent -Port $config.OctopuswebListenPort -OctopusAdmin $config.OctopusAdmin -OctopusPassword $config.OctopusPassword -serviceState "Stopped" -Verbose
+        
+            . $PSScriptRoot\DSC_SQL.ps1 -Verbose -SQLInstanceName $config.SQLInstancename -SQLDatabaseName $config.SQLDatabaseName
         }
         else{
             Write-Output "Not attempting to remove Instance: $($Config.OctopusInstance) because it does not exist on $($env:computername)"
