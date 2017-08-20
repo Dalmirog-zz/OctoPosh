@@ -290,7 +290,8 @@ function Set-TargetResource
   {
     if ($Ensure -eq "Present" -and $currentResource["DownloadUrl"] -ne $DownloadUrl)
     {
-      Update-OctopusDeploy $Name $DownloadUrl $State
+      Write-Verbose "Octoposh tweak to DSC resource: Not updating Octopus"
+      #Update-OctopusDeploy $Name $DownloadUrl $State
     }
     if (Test-ReconfigurationRequired $currentResource $params)
     {
@@ -434,7 +435,7 @@ function Uninstall-OctopusDeploy($name)
   )
   Invoke-OctopusServerCommand $args
 
-  Write-Log "Not uninstalling MSI as part of custom Octoposh fork of the OctopusDSC resource"
+  Write-Verbose "Octoposh tweak to DSC resource: Not uninstalling MSI"
   <#
   if ($services.length -eq 1)
   {
@@ -654,7 +655,7 @@ function Install-OctopusDeploy
   Write-Verbose "Installing Octopus Deploy..."
   Write-Log "Setting up new instance of Octopus Deploy with name '$name'"
 
-  Write-Log "Not installing MSI as part of custom Octoposh fork of the OctopusDSC resource"
+  Write-Verbose "Octoposh tweak to DSC resource: Will not update Octopus"
   #Install-MSI $downloadUrl
 
   Write-Log "Creating Octopus Deploy instance ..."
