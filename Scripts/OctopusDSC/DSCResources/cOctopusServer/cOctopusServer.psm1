@@ -37,7 +37,7 @@ function Get-TargetResource
   )
 
   Write-Verbose "Checking if Octopus Server is installed"
-  $installLocation = (Get-ItemProperty -path "HKLM:\Software\Octopus\Octopus" -ErrorAction SilentlyContinue).InstallLocation
+  $installLocation = (Get-ItemProperty -path "HKLM:\Software\Octopus\OctopusServer" -ErrorAction SilentlyContinue).InstallLocation
   $present = ($null -ne $installLocation)
   Write-Verbose "Octopus Server present: $present"
 
@@ -79,7 +79,7 @@ function Get-TargetResource
   $existingAutoLoginEnabled = $null
 
   if ($existingEnsure -eq "Present") {
-    $existingConfig = Import-ServerConfig "$($env:SystemDrive)\Octopus\OctopusServer.config"
+    $existingConfig = Import-ServerConfig "$($env:SystemDrive)\Octopus\OctopusServer.config" $Name
     $existingSqlDbConnectionString = $existingConfig.OctopusStorageExternalDatabaseConnectionString
     $existingWebListenPrefix = $existingConfig.OctopusWebPortalListenPrefixes
     $existingForceSSL = $existingConfig.OctopusWebPortalForceSsl
@@ -121,7 +121,9 @@ function Import-ServerConfig
   [CmdletBinding()]
   param (
     [Parameter(Mandatory)]
-    [string] $Path
+    [string] $Path,
+    [Parameter(Mandatory)]
+    [string] $InstanceName
   )
 
   Write-Verbose "Importing server configuration file from '$Path'"
@@ -138,7 +140,7 @@ function Import-ServerConfig
   }
 
   if (Test-OctopusVersionSupportsShowConfiguration) {
-    $rawConfig = & $octopusServerExePath show-configuration --format=json-hierarchical --noconsolelogging --console
+    $rawConfig = & $octopusServerExePath show-configuration --format=json-hierarchical --noconsolelogging --console --instance $InstanceName
     $config = $rawConfig | ConvertFrom-Json
 
     $result = [pscustomobject] @{
@@ -290,8 +292,13 @@ function Set-TargetResource
   {
     if ($Ensure -eq "Present" -and $currentResource["DownloadUrl"] -ne $DownloadUrl)
     {
-      Write-Verbose "Octoposh tweak to DSC resource: Not updating Octopus"
-      #Update-OctopusDeploy $Name $DownloadUrl $State
+    Write-Verbose "Octoposh tweak to DSC resource: Not updating Octopus"
+    <#
+      Update-OctopusDeploy -name $Name `
+                           -downloadUrl $DownloadUrl `
+                           -state $State `
+                           -url ($webListenPrefix -split ';')[0]
+                           #>
     }
     if (Test-ReconfigurationRequired $currentResource $params)
     {
@@ -469,14 +476,13 @@ function Uninstall-OctopusDeploy($name)
   #>
 }
 
-function Update-OctopusDeploy($name, $downloadUrl, $state)
+function Update-OctopusDeploy($name, $downloadUrl, $state, $url)
 {
   Write-Verbose "Upgrading Octopus Deploy..."
-  $serviceName = (Get-ServiceName $name)
-  Stop-Service -Name $serviceName
+  Stop-OctopusDeployService -name $name
   Install-MSI $downloadUrl
   if ($state -eq "Started") {
-    Start-Service $serviceName
+    Start-OctopusDeployService -name $name -url $url
   }
   Write-Verbose "Octopus Deploy upgraded!"
 }
@@ -549,12 +555,11 @@ function Install-MSI
     mkdir "$($env:SystemDrive)\Octopus" -ErrorAction SilentlyContinue
 
     $msiPath = "$($env:SystemDrive)\Octopus\Octopus-x64.msi"
-    if ((Test-Path $msiPath) -ne $true)
+    if ((Test-Path $msiPath) -eq $true)
     {
-        #Remove-Item $msiPath -force
-        Request-File $downloadUrl $msiPath
+        Remove-Item $msiPath -force
     }
-    
+    Request-File $downloadUrl $msiPath
 
     Write-Verbose "Installing MSI..."
     if (-not (Test-Path "$($env:SystemDrive)\Octopus\logs")) { New-Item -type Directory "$($env:SystemDrive)\Octopus\logs" }
@@ -626,6 +631,21 @@ function Invoke-AndAssert {
     }
 }
 
+function Get-RegistryValue {
+  param (
+    [parameter(Mandatory=$true)]
+    [ValidateNotNullOrEmpty()]$Path,
+    [parameter(Mandatory=$true)]
+    [ValidateNotNullOrEmpty()]$Value
+  )
+  try {
+    return Get-ItemProperty -Path $Path | Select-Object -ExpandProperty $Value -ErrorAction Stop
+  }
+  catch {
+    return ""
+  }
+}
+
 function Install-OctopusDeploy
 {
   param (
@@ -653,8 +673,14 @@ function Install-OctopusDeploy
   )
 
   Write-Verbose "Installing Octopus Deploy..."
-  Write-Log "Setting up new instance of Octopus Deploy with name '$name'"
 
+  Write-Log "Checking to make sure .net 4.5.1+ is installed"
+  $dotnetVersion = Get-RegistryValue "HKLM:\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full" "Release"
+  if (($dotnetVersion -eq "") -or ([int]$dotnetVersion -lt 378675)) {
+    throw "Octopus Server requires .NET 4.5.1. Please install it before attempting to install Octopus Server."
+  }
+
+  Write-Log "Setting up new instance of Octopus Deploy with name '$name'"
   Write-Verbose "Octoposh tweak to DSC resource: Will not update Octopus"
   #Install-MSI $downloadUrl
 
