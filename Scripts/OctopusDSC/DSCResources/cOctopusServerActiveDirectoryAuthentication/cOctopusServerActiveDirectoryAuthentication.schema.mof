@@ -1,0 +1,8 @@
+[ClassVersion("1.0.0"), FriendlyName("cOctopusServerActiveDirectoryAuthentication")]
+class cOctopusServerActiveDirectoryAuthentication : OMI_BaseResource
+{
+  [Key, Description("Name of the Octopus Server instance")] string InstanceName;
+  [Write] boolean Enabled;
+  [Write] boolean AllowFormsAuthenticationForDomainUsers;
+  [Write] string ActiveDirectoryContainer;
+};

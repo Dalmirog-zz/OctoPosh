@@ -1,0 +1,8 @@
+[ClassVersion("1.0.0"), FriendlyName("cOctopusServerGoogleAppsAuthentication")]
+class cOctopusServerGoogleAppsAuthentication : OMI_BaseResource
+{
+  [Key, Description("Name of the Octopus Server instance")] string InstanceName;
+  [Write] boolean Enabled;
+  [Write] string ClientID;
+  [Write] string HostedDomain;
+};
