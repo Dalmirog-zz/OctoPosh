@@ -1,0 +1,86 @@
+﻿@page
+
+@model Octoposh.Web.Pages.IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-xs-12">
+            <h2>About OctoPosh</h2>
+            <p>
+                OctoPosh is a Powershell module that provides cmdlets to do basic tasks on Octopus Deploy. All the cmdlets use a combination of the Octopus REST API and the  Octopus .NET Client.
+            </p>
+        </div>
+        <div class="col-md-6 col-xs-12">
+            <h2>Installation</h2>
+            <h3>From PowershellGallery</h3>
+            <div class="well well-sm">
+                <ol>
+                    <li>
+                        <button type="button" class="btn btn-xs btn-primary pull-right hidden-xs hidden-sm" id="copy-button" data-clipboard-text="" data-clipboard-target="code" title="Click to copy me.">
+                            <span class="glyphicon glyphicon-paperclip"  id="copy-icon"></span>
+                        </button>
+                        <span class="code">C:\> <span id="code">Install-Module -Name Octoposh -force</span></span><br>
+                    </li>
+                    <li>
+                        <span class="code">C:\> Import-Module Octoposh</span><br>
+                    </li>
+                </ol>
+                <p class="text-center small">The Install-Module cmdlet is part of the <strong><a target="_blank" href="https://www.microsoft.com/en-us/download/details.aspx?id=50395">Windows Management Framework 5.0</a>.</strong></p>
+            </div>
+            <p>
+                Click <a href="https://github.com/Dalmirog/OctoPosh/wiki/Installing-the-module" target="_blank">here</a> for alternative installation methods.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-xs-12" id="documentation">
+            <h2>Documentation</h2>
+            <img src="~/images/github-sm.png" />
+            <h4><a target="_blank" href="https://github.com/Dalmirog/OctoPosh/wiki">OctoPosh Wiki on GitHub</a></h4>
+            <p>Visit the OctoPosh Wiki page to learn about the module's features and how to use them.</p>
+            <img src="~/images/gitter-sm.png" />
+            <h4><a target="_blank" href="https://gitter.im/Dalmirog/OctoPosh#initial">OctoPosh on Gitter</a></h4>
+            <p>Get in touch, ask questions, report issues or request features.</p>
+        </div>
+        <div class="col-md-6 col-xs-12">
+            <h2>Latest Releases</h2>
+            <table class="table table-striped table-condensed text-center" id="releases">
+                <tr>
+                    <th>
+                        Version
+                    </th>
+                    <th>
+                        Downloads
+                    </th>
+                    <th>
+                        Released
+                    </th>
+                    <th>
+                        Release Notes
+                    </th>
+                </tr>
+                <tbody >
+                @for(var i = 0; i <5; i++) {
+                    <tr>
+                        <td>
+                            @Model.GalleryEntries[@i].Version
+                        </td>
+                        <td>
+                            @Model.GalleryEntries[@i].Downloads
+                        </td>
+                        <td>
+                            @Model.GalleryEntries[@i].DatePushed.ToString("dd/MM/yyy")
+                        </td>
+                        <td>
+                            <a href="@Model.GalleryEntries[@i].ReleaseNotesURI" target="_blank">Release Notes <span class="glyphicon glyphicon-share-alt"></span></a>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
