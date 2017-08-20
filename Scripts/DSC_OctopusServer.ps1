@@ -7,29 +7,41 @@ param (
     [string]$ServiceState,
     [int]$Port,
     [string]$OctopusAdmin,
-    [string]$OctopusPassword
+    [string]$OctopusPassword,
+    [string]$OctopusInstance
     )
 
+#Copying custom OctopusDSC build to modulePath
+<#
 if((Get-DscResource -Module OctopusDSC) -eq $null){
-    Write-Output "DSC Resource [OctopusDSC] not installed. Downloading from PSGallery..."
-    Install-Module -Name OctopusDSC -Force
+        
+    $modulepath = $env:PSModulePath.Split(';')[1]
+
+    Write-Output "DSC Resource [OctopusDSC] not installed. Copying custom fork from repo dir to [$modulepath]"
+
+    if(!(Test-Path $modulepath)){
+        New-Item $modulepath -ItemType Directory
     }
 
+    Copy-Item -Path $PSScriptRoot\OctopusDSC -Destination $modulepath -Recurse -Force -Verbose
+}
+#>
 Configuration DSC_OctopusServer
 {   
 
-    Import-DscResource -Module OctopusDSC
+    #Importing custom OctopusDSC resource
+    Import-DscResource -ModuleName OctopusDSC
 
     Node "localhost"
     {
-        cOctopusServer DSC_OctopusServer
+        cOctopusServer "Octopus Server"
         {
             Ensure = $Ensure
             State = $ServiceState
 
             # Server instance name. Leave it as 'OctopusServer' unless you have more
             # than one instance
-            Name = "OctopusServer"
+            Name = $OctopusInstance
 
             # The url that Octopus will listen on
             WebListenPrefix = "http://localhost:$port"
@@ -56,4 +68,4 @@ Configuration DSC_OctopusServer
 
 DSC_Octopusserver -OutputPath $PSScriptRoot\DSC_OctopusServer
 
-Start-DscConfiguration . $PSScriptRoot\DSC_OctopusServer -wait -Force
+Start-DscConfiguration $PSScriptRoot\DSC_OctopusServer -wait -Force

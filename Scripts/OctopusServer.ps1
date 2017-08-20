@@ -51,9 +51,11 @@ If($Action -eq "CreateInstance"){
 		else{
 			Write-Output "Instance not found. Creating: $($Config.OctopusInstance)"	
 			
-            $ConnectionString = "Server=$($env:computername)\$($config.SQLInstancename);Database=$($config.SQLDatabaseName);Integrated Security=SSPI"
+            $ConnectionString = "Server=$($env:computername)\$($config.SQLInstancename);Database=$($config.OctopusInstance);Integrated Security=SSPI"
 
-            . $PSscriptRoot\DSC_OctopusServer.ps1 -ConnectionString $ConnectionString -Ensure Present -Port $config.OctopuswebListenPort -OctopusAdmin $config.OctopusAdmin -OctopusPassword $config.OctopusPassword -serviceState "Started" -Verbose
+            . $PSscriptRoot\DSC_OctopusServer.ps1 -ConnectionString $ConnectionString  -OctopusInstance $config.OctopusInstance -Ensure Present -Port $config.OctopuswebListenPort -OctopusAdmin $config.OctopusAdmin -OctopusPassword $config.OctopusPassword -serviceState "Started" -Verbose
+
+            . $PSscriptRoot\DSC_OctopusServerUsernamePasswordAuth.ps1 -OctopusInstance $config.OctopusInstance
 
 		}
 	}
@@ -69,12 +71,12 @@ elseif ($Action -eq "RemoveInstance"){
             
             $ConnectionString = "Server=$($env:computername)\$($config.SQLInstancename);Database=$($config.SQLDatabaseName);Integrated Security=SSPI"
 
-            . $PSscriptRoot\DSC_OctopusServer.ps1 -ConnectionString $ConnectionString -Ensure Absent -Port $config.OctopuswebListenPort -OctopusAdmin $config.OctopusAdmin -OctopusPassword $config.OctopusPassword -serviceState "Stopped" -Verbose
+            . $PSscriptRoot\DSC_OctopusServer.ps1 -ConnectionString $ConnectionString -OctopusInstance $config.OctopusInstance -Ensure Absent -Port $config.OctopuswebListenPort -OctopusAdmin $config.OctopusAdmin -OctopusPassword $config.OctopusPassword -serviceState "Stopped" -Verbose
         
             . $PSScriptRoot\DSC_SQL.ps1 -Verbose -SQLInstanceName $config.SQLInstancename -SQLDatabaseName $config.SQLDatabaseName
         }
         else{
-            Write-Output "Not attempting to remove Instance: $($Config.OctopusInstance) because it does not exist on $($env:computername)"
+            Write-Output "Not attempting to remove Instance [$($Config.OctopusInstance)] because it does not exist on $($env:computername)"
         }
     }
     
