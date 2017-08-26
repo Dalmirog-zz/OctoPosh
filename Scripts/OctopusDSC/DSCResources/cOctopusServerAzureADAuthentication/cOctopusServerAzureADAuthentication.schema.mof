@@ -1,8 +1,0 @@
-[ClassVersion("1.0.0"), FriendlyName("cOctopusServerAzureADAuthentication")]
-class cOctopusServerAzureADAuthentication : OMI_BaseResource
-{
-  [Key, Description("Name of the Octopus Server instance")] string InstanceName;
-  [Write] boolean Enabled;
-  [Write] string Issuer;
-  [Write] string ClientId;
-};

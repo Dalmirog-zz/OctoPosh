@@ -20,7 +20,7 @@ function Get-TargetResource
     throw "This resource only supports Octopus Deploy 3.5.0+."
   }
 
-  $config = Get-Configuration
+  $config = Get-Configuration $InstanceName
 
   $result = @{
     InstanceName = $InstanceName
@@ -83,9 +83,9 @@ function Test-TargetResource
   return $currentConfigurationMatchesRequestedConfiguration
 }
 
-function Get-Configuration
+function Get-Configuration($instanceName)
 {
-  $rawConfig = & $octopusServerExePath show-configuration --format=json-hierarchical --noconsolelogging --console
+  $rawConfig = & $octopusServerExePath show-configuration --format=json-hierarchical --noconsolelogging --console --instance $instanceName
   $config = $rawConfig | ConvertFrom-Json
   return $config
 }
