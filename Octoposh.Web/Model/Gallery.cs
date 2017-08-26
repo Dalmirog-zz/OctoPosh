@@ -58,7 +58,7 @@ namespace Octoposh.Web.Model
                         Version = new Version(properties["d:Version"].InnerText),
                         Downloads = Convert.ToInt32(properties["d:VersionDownloadCount"].InnerText),
                         DatePushed = DateTime.Parse(properties["d:Created"].InnerText),
-                        GalleryDownloadURI = new Uri(properties["d:GalleryDetailsUrl"].InnerText)
+                        GalleryDownloadURI = properties["d:GalleryDetailsUrl"].InnerText
                     });                    
                 }
             }
