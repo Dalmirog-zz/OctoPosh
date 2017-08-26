@@ -1,3 +1,7 @@
+### 0.6.11/1.0.0-Beta11
+- [292](https://github.com/Dalmirog/OctoPosh/issues/292) Upgraded Octopus.client to `4.22.0` for compatibility with latest Octopus version
+- [246](https://github.com/Dalmirog/OctoPosh/issues/246) Bring back `Get-OctopusUserRole`
+
 ### 0.6.10/1.0.0-Beta10
 
 - [286](https://github.com/Dalmirog/OctoPosh/issues/286) Upgraded Octopus.client to `4.19.0` for compatibility with latest Octopus version
