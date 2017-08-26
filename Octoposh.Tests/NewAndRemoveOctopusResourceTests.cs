@@ -466,7 +466,7 @@ namespace Octoposh.Tests
             }
             #endregion
 
-            #region TenantDelete
+            #region TagSetDelete
             var removeParameters = new List<CmdletParameter>
             {
                 new CmdletParameter()
@@ -647,6 +647,59 @@ namespace Octoposh.Tests
             Assert.IsTrue(removeResult);
             Console.WriteLine("Deleted resource [{0}] of type [{1}]", createResult.Name, createResult.GetType());
             #endregion
+        }
+
+        [Test]
+        public void CreateAndRemoveUserRole()
+        {
+            #region UserRoleCreate
+
+            var exampleResource = TestUtilities.Repository.UserRoles.FindByName("System Administrator");
+
+            var resource = new UserRoleResource()
+            {
+                Name = TestResourceName,
+                GrantedPermissions = exampleResource.GrantedPermissions
+            };
+
+            var createParameters = new List<CmdletParameter>
+            {
+                new CmdletParameter()
+                {
+                    Name = "Resource",
+                    Resource = resource
+                }
+            };
+
+            var createPowershell = new CmdletRunspace().CreatePowershellcmdlet(CreateCmdletName, CreateCmdletType, createParameters);
+
+            //The fact that the line below doesn't throw is enough to prove that the cmdlet returns the expected object type really. Couldn't figure out a way to make the assert around the Powershell.invoke call
+            var createResult = createPowershell.Invoke<UserRoleResource>().FirstOrDefault();
+
+            if (createResult != null)
+            {
+                Assert.AreEqual(createResult.Name, TestResourceName);
+                Console.WriteLine("Created resource [{0}] of type [{1}]", createResult.Name, createResult.GetType());
+            }
+            #endregion
+
+            #region UserRoleDelete
+            var removeParameters = new List<CmdletParameter>
+            {
+                new CmdletParameter()
+                {
+                    Name = "Resource",
+                    Resource = createResult
+                }
+            };
+
+            var removePowershell = new CmdletRunspace().CreatePowershellcmdlet(RemoveCmdletName, RemoveCmdletType);
+
+            var removeResult = removePowershell.Invoke<bool>(removeParameters).FirstOrDefault();
+
+            Assert.IsTrue(removeResult);
+            Console.WriteLine("Deleted resource [{0}] of type [{1}]", createResult.Name, createResult.GetType());
+            #endregion            
         }
 
         //todo add tests for Tag Sets

@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<link rel="shortcut icon" type="image/ico" href="~/images/favicon.ico">
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Octoposh</title>    
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+<body>
+    
+    <span itemscope itemtype="http://schema.org/SoftwareApplication">
+        <div class="jumbotron text-center">
+            <img itemprop="image" src="~/images/octoposh-sm.png"/>
+            <h1 itemprop="name">OctoPosh</h1>
+            <p>The Octopus Deploy Powershell module</p>
+        </div>
+
+        <div class="container body-content">
+            @RenderBody()
+        </div>       
+
+        @RenderSection("Scripts", required: false)
+    </span>
+    </body>
+</html>
+<script src="~/lib/clipboard/dist/clipboard.js"></script>
+<script src="~/js/site.js"></script>

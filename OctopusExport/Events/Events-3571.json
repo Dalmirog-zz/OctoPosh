@@ -1,25 +1,23 @@
 {
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-3571",
-  "RelatedDocumentIds": [
-    "Environments-21"
-  ],
+  "RelatedDocumentIds": [],
   "ProjectId": null,
-  "EnvironmentId": "Environments-21",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "Deleted",
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-01-30T22:27:49.484522-03:00",
-  "Message": "Machine G44KK3F6M2G2CJA was deleted",
+  "Occurred": "2017-08-12T16:22:57.5288768-03:00",
+  "Message": "TagSet P4XRVHWF8SZRB4A was created",
   "MessageReferences": [
     {
       "ReferencedDocumentId": "NotFound",
-      "StartIndex": 8,
+      "StartIndex": 7,
       "Length": 15
     }
   ],
   "Comments": null,
-  "Details": null,
+  "Details": "<span>{\r&para;<br>  \"Id\": \"TagSets-21\",\r&para;<br>  \"Name\": \"P4XRVHWF8SZRB4A\",\r&para;<br>  \"Description\": \"\",\r&para;<br>  \"SortOrder\": 3,\r&para;<br>  \"Tags\": []\r&para;<br>}</span>",
   "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

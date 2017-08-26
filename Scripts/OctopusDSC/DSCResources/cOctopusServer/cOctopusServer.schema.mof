@@ -1,0 +1,17 @@
+[ClassVersion("1.0.0"), FriendlyName("cOctopusServer")]
+class cOctopusServer : OMI_BaseResource
+{
+  [Key, Description("Name of the Octopus Server instance")] string Name;
+  [Write, ValueMap{"Present", "Absent"}, Values{"Present", "Absent"}] string Ensure;
+  [Write, ValueMap{"Started", "Stopped"}, Values{"Started", "Stopped"}] string State;
+  [Write] string WebListenPrefix;
+  [Write] string SqlDbConnectionString;
+  [Write] string OctopusAdminUsername;
+  [Write] string OctopusAdminPassword;
+  [Write] boolean AllowUpgradeCheck;
+  [Write] boolean AllowCollectionOfAnonymousUsageStatistics;
+  [Write] string DownloadUrl;
+  [Write] uint16 ListenPort;
+  [Write] boolean ForceSSL;
+  [Write, ValueMap{"UsernamePassword", "Domain", "Ignore"}, Values{"UsernamePassword", "Domain", "Ignore"}] string LegacyWebAuthenticationMode;
+};

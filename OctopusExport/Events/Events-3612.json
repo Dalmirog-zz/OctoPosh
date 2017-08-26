@@ -2,24 +2,25 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-3612",
   "RelatedDocumentIds": [
-    "Tenants-23"
+    "ServerTasks-161",
+    "Environments-2"
   ],
   "ProjectId": null,
-  "EnvironmentId": null,
-  "TenantId": "Tenants-23",
-  "Category": "Modified",
+  "EnvironmentId": "Environments-2",
+  "TenantId": null,
+  "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-08T02:22:38.6158225-03:00",
-  "Message": "Tenant modified_TestTenant was modified",
+  "Occurred": "2017-02-12T03:04:28.6962419-03:00",
+  "Message": "Ran task Check ListeningTentacle1 health",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "Tenants-23",
-      "StartIndex": 7,
-      "Length": 19
+      "ReferencedDocumentId": "ServerTasks-161",
+      "StartIndex": 9,
+      "Length": 31
     }
   ],
   "Comments": null,
-  "Details": "<span>{\r&para;<br>  \"Id\": \"Tenants-1\",\r&para;<br>  \"Name\": \"</span><del style=\"background:#ffe6e6;\">un</del><span>modified_TestTenant\",\r&para;<br>  \"ProjectIds\": [],\r&para;<br>  \"ProjectEnvironments\": {},\r&para;<br>  \"TenantTags\": []\r&para;<br>}</span>",
-  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
+  "Details": null,
+  "IdentityEstablishedWith": "Session cookie"
 }

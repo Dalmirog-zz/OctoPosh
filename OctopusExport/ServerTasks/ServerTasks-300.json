@@ -1,0 +1,49 @@
+{
+  "$type": "Octopus.Core.Model.ServerTasks.ServerTask, Octopus.Core",
+  "Id": "ServerTasks-300",
+  "Name": "Health",
+  "Arguments": {
+    "Timeout": "00:05:00",
+    "MachineIds": [
+      "Machines-1"
+    ]
+  },
+  "Description": "Check ListeningTentacle1 health",
+  "QueueTime": "2017-02-11T01:29:19.5481582-03:00",
+  "QueueTimeExpiry": "10675199.02:48:05.4775807",
+  "ExecutionTimeExpiry": "00:00:00",
+  "StartTime": "2017-02-11T01:29:19.5681582-03:00",
+  "LastUpdatedTime": "2017-02-11T01:29:21.9218405-03:00",
+  "CompletedTime": "2017-02-11T01:29:21.9218405-03:00",
+  "ErrorMessage": "",
+  "ConcurrencyTag": "Health",
+  "State": "Success",
+  "HasPendingInterruptions": false,
+  "HasWarningsOrErrors": true,
+  "ServerVersion": "3.8.4+Branch.master.Sha.1b250ca4d7c1d42aa029771ed15851e6ed11ff83",
+  "ServerNode": "DEVBOX",
+  "LogDifferentiationToken": "LCCGJBGF4Z",
+  "AdditionalDescription": null,
+  "DurationSeconds": 2,
+  "ProjectId": null,
+  "EnvironmentId": "Environments-2",
+  "TenantId": null,
+  "ExtendedViewLogPermissions": [
+    "EnvironmentView",
+    "MachineView",
+    "EnvironmentView",
+    "MachineView",
+    "EnvironmentView",
+    "MachineView"
+  ],
+  "ExtendedCreatePermissions": [
+    "EnvironmentView",
+    "MachineEdit",
+    "EnvironmentView",
+    "MachineEdit",
+    "EnvironmentView",
+    "MachineEdit"
+  ],
+  "CanRerun": true,
+  "Properties": {}
+}

@@ -20,7 +20,7 @@ Thumbs.db
 obj/
 [Rr]elease/
 _ReSharper*/
-.vs
+.vs*/
 
 #Nuget packages
 packages
@@ -31,3 +31,12 @@ tools/Addins
 tools/NUnit.ConsoleRunner
 tools/*.md5sum
 
+#Ignore library step templates
+OctopusExport/CommunityActionTemplates/*
+OctopusExport/Attachments/CommunityActionTemplates*
+
+#DSC mof files
+Scripts/DSC_*/*
+
+#web library files
+Octoposh.web/wwwroot/lib/*

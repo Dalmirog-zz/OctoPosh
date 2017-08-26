@@ -35,7 +35,7 @@ namespace Octoposh.Cmdlets
         /// <summary>
         /// <para type="description">Resource object model</para>
         /// </summary>
-        [ValidateSet("Environment", "Project", "ProjectGroup", "NugetFeed","ExternalFeed", "LibraryVariableSet", "Machine","Target", "Lifecycle", "Team", "User","Channel","Tenant","TagSet")]
+        [ValidateSet("Environment", "Project", "ProjectGroup", "NugetFeed","ExternalFeed", "LibraryVariableSet", "Machine","Target", "Lifecycle", "Team", "User","Channel","Tenant","TagSet","UserRole")]
         [Parameter(Mandatory = true)]
         public string Resource { get; set; }
 
@@ -89,6 +89,9 @@ namespace Octoposh.Cmdlets
                     break;
                 case "TagSet":
                     baseresource = new TagSetResource();
+                    break;
+                case "UserRole":
+                    baseresource = new UserRoleResource();
                     break;
             }
 

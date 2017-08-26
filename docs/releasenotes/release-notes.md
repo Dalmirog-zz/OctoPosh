@@ -1,3 +1,44 @@
+### 0.6.10/1.0.0-Beta10
+
+- [286](https://github.com/Dalmirog/OctoPosh/issues/286) Upgraded Octopus.client to `4.19.0` for compatibility with latest Octopus version
+- [281](https://github.com/Dalmirog/OctoPosh/issues/281) `Get-OctopusDeployment` no longer fails if deployment is in progress.
+- [277](https://github.com/Dalmirog/OctoPosh/issues/277) `-ProjectName` and `-EnvironmentName` parameters of `Get-OctopusDeployment` are now case insensitive.
+- [273](https://github.com/Dalmirog/OctoPosh/issues/273) Objects returned by cmdlets can now be used with the pipeline.
+- [270](https://github.com/Dalmirog/OctoPosh/issues/270) Doc fixes.
+
+### 0.6.9/1.0.0-Beta9
+
+- [275](https://github.com/Dalmirog/OctoPosh/issues/275) `Update-OctopusResource` now supports updating Releases.
+
+### 0.6.8/1.0.0-Beta8
+
+- [268](https://github.com/Dalmirog/OctoPosh/issues/268) `Update-OctopusResource` can update Variable Sets again (both project and library).
+
+### 0.6.7/1.0.0-Beta7
+
+- [264](https://github.com/Dalmirog/OctoPosh/issues/264) Brought back pipeline support for `Update-OctopusResource` and `Remove-OctopusResource`.
+
+
+### 0.6.6/1.0.0-Beta6
+
+- [261](https://github.com/Dalmirog/OctoPosh/issues/261) Upgraded Octopus.client to `4.15.3` for compatibility with latest Octopus version
+
+- [260](https://github.com/Dalmirog/OctoPosh/issues/260) `Get-OctopusVariableSet` now properly returns the variable's value.
+
+- [262](https://github.com/Dalmirog/OctoPosh/issues/262) Doc fixes.
+
+### 0.6.5/1.0.0-Beta5
+
+- [255](https://github.com/Dalmirog/OctoPosh/issues/255) Upgraded Octopus.client to `4.13.13` for compatibility with latest Octopus version
+
+### 0.6.4/1.0.0-Beta4
+
+- [253](https://github.com/Dalmirog/OctoPosh/issues/253) Get-Octopus* cmdlets will now return a single object instead of a list, if the final list of results only has 1 result.
+
+### 0.6.3/1.0.0-Beta3
+
+- [183](https://github.com/Dalmirog/OctoPosh/issues/183): Octoposh now allows users to download and invoke `Octo.exe` to be able to create releases, start deployments and [much more](https://octopus.com/docs/api-and-integration/octo.exe-command-line).
+
 ### 0.6.2/1.0.0-Beta2
 
 - [249](https://github.com/Dalmirog/OctoPosh/issues/249): `Get-OctopusRelease` now includes package info.

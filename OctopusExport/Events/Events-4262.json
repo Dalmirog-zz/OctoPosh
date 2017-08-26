@@ -2,34 +2,24 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-4262",
   "RelatedDocumentIds": [
-    "Environments-21"
+    "Channels-21"
   ],
   "ProjectId": null,
-  "EnvironmentId": "Environments-21",
+  "EnvironmentId": null,
   "TenantId": null,
-  "Category": "DeploymentQueued",
+  "Category": "Deleted",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-02-11T01:30:19.3389461-03:00",
-  "Message": "Deployed DeploymentTests_Project1 release 0.0.1 to Dev",
+  "Occurred": "2017-08-12T19:34:32.5516674+00:00",
+  "Message": "Channel 8EJ1Z76VZ2RJE9K was deleted",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 9,
-      "Length": 24
-    },
-    {
-      "ReferencedDocumentId": "NotFound",
-      "StartIndex": 42,
-      "Length": 5
-    },
-    {
-      "ReferencedDocumentId": "Environments-21",
-      "StartIndex": 51,
-      "Length": 3
+      "ReferencedDocumentId": "Channels-21",
+      "StartIndex": 8,
+      "Length": 15
     }
   ],
   "Comments": null,
-  "Details": null,
+  "Details": "<span>{</span><del style=\"background:#ffe6e6;\">\r&para;<br>  \"Id\": \"Channels-21\",\r&para;<br>  \"Name\": \"8EJ1Z76VZ2RJE9K\",\r&para;<br>  \"Description\": null,\r&para;<br>  \"ProjectId\": \"Projects-1\",\r&para;<br>  \"LifecycleId\": null,\r&para;<br>  \"IsDefault\": false,\r&para;<br>  \"TenantTags\": [],\r&para;<br>  \"Rules\": []\r&para;<br></del><span>}</span>",
   "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

@@ -1,0 +1,39 @@
+{
+  "$type": "Octopus.Core.Model.ServerTasks.ServerTask, Octopus.Core",
+  "Id": "ServerTasks-186",
+  "Name": "Health",
+  "Arguments": {
+    "EnvironmentId": null,
+    "MachinePolicyId": null,
+    "MachineIds": [
+      null
+    ],
+    "Timeout": "00:05:00",
+    "MachineTimeout": "00:01:00",
+    "OnlyTestConnection": false
+  },
+  "Description": "Test connectivity to K20DWAGSNSX9QZB",
+  "QueueTime": "2017-02-14T03:33:14.3493944-03:00",
+  "QueueTimeExpiry": "10675199.02:48:05.4775807",
+  "ExecutionTimeExpiry": "00:00:00",
+  "StartTime": "2017-02-14T03:33:14.3563969-03:00",
+  "LastUpdatedTime": "2017-02-14T03:33:14.6318899-03:00",
+  "CompletedTime": "2017-02-14T03:33:14.6318899-03:00",
+  "ErrorMessage": "",
+  "ConcurrencyTag": null,
+  "State": "Success",
+  "HasPendingInterruptions": false,
+  "HasWarningsOrErrors": false,
+  "ServerVersion": "3.8.4+Branch.master.Sha.1b250ca4d7c1d42aa029771ed15851e6ed11ff83",
+  "ServerNode": "DEVBOX",
+  "LogDifferentiationToken": "5RGTFXZZYK",
+  "AdditionalDescription": null,
+  "DurationSeconds": 0,
+  "ProjectId": null,
+  "EnvironmentId": null,
+  "TenantId": null,
+  "ExtendedViewLogPermissions": [],
+  "ExtendedCreatePermissions": [],
+  "CanRerun": true,
+  "Properties": {}
+}

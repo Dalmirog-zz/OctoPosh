@@ -2,24 +2,29 @@
   "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
   "Id": "Events-3872",
   "RelatedDocumentIds": [
-    "ServerTasks-1037"
+    "Projects-4"
   ],
-  "ProjectId": null,
+  "ProjectId": "Projects-4",
   "EnvironmentId": null,
   "TenantId": null,
   "Category": "Created",
   "UserId": "Users-1",
   "Username": "admin",
-  "Occurred": "2017-03-06T20:53:31.2329895-03:00",
-  "Message": "Ran task Upgrade Tentacles in Dev",
+  "Occurred": "2017-03-06T21:56:12.3071483-03:00",
+  "Message": "DeploymentTests_Project2 release 0.0.11 was created",
   "MessageReferences": [
     {
-      "ReferencedDocumentId": "ServerTasks-1037",
-      "StartIndex": 9,
+      "ReferencedDocumentId": "Projects-4",
+      "StartIndex": 0,
       "Length": 24
+    },
+    {
+      "ReferencedDocumentId": "NotFound",
+      "StartIndex": 33,
+      "Length": 6
     }
   ],
   "Comments": null,
   "Details": null,
-  "IdentityEstablishedWith": "Session cookie"
+  "IdentityEstablishedWith": "API key 'Octoposh Automated Testing' created Sun, 04 Dec 2016 03:19:06 GMT"
 }

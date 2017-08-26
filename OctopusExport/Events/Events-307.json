@@ -1,0 +1,31 @@
+{
+  "$type": "Octopus.Core.Model.Events.Event, Octopus.Core",
+  "Id": "Events-307",
+  "RelatedDocumentIds": [
+    "Users-22",
+    "teams-everyone"
+  ],
+  "ProjectId": null,
+  "EnvironmentId": null,
+  "TenantId": null,
+  "Category": "Modified",
+  "UserId": "Users-1",
+  "Username": "admin",
+  "Occurred": "2017-02-12T03:14:44.6088639-03:00",
+  "Message": "User UserTests_User1 was added to the team Everyone",
+  "MessageReferences": [
+    {
+      "ReferencedDocumentId": "Users-22",
+      "StartIndex": 5,
+      "Length": 15
+    },
+    {
+      "ReferencedDocumentId": "teams-everyone",
+      "StartIndex": 43,
+      "Length": 8
+    }
+  ],
+  "Comments": null,
+  "Details": null,
+  "IdentityEstablishedWith": "Session cookie"
+}
