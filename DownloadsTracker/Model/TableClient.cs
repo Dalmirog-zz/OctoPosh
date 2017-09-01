@@ -38,8 +38,6 @@ namespace DownloadsTracker.Model
 
             else
             {
-                Console.WriteLine("Found entry for day [{0}]", yesterday.Date.ToString());
-
                 entryToInsert.TotalToDate = galleryEntry.Downloads;
                 entryToInsert.DayCount = galleryEntry.Downloads - previousDayEntry.TotalToDate;
             }
@@ -95,7 +93,7 @@ namespace DownloadsTracker.Model
             TableResult result = await CloudTable.ExecuteAsync(insertOrMergeOperation);
             TableEntryEntity insertedTableEntry = result.Result as TableEntryEntity;
 
-            Console.WriteLine("Inserted/Updated table entry [TotalTodate = {0}] and [DayCount = {1}]", insertedTableEntry.TotalToDate,insertedTableEntry.DayCount);
+            Console.WriteLine("Inserted/Updated table entry for [{0}] [TotalTodate = {1}] and [DayCount = {2}]",insertedTableEntry.RowKey,insertedTableEntry.TotalToDate,insertedTableEntry.DayCount);
             return insertedTableEntry;
         }
 
