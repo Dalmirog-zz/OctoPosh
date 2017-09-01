@@ -1,4 +1,6 @@
 ﻿##This script will get executed everytime the module gets imported
 
 $env:OctoposhModulePath = $PSScriptRoot
-$env:NugetRepositoryURL = "https://packages.nuget.org/api/v2" #"C:\Github\OctoPosh\Octoposh.Tests\TestAssets\Repository"
+
+#URL that will be used by Octoposh to download Octo.exe. Do not modify unless you know what you are doing :)
+$env:NugetRepositoryURL = "https://packages.nuget.org/api/v2"
