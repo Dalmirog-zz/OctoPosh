@@ -7,8 +7,6 @@ Param(
     [Version]$Version
 )
 
-$ManifestPath = Resolve-Path $ManifestPath
-
 If(!(Test-Path $ManifestPath)){
     throw "Module manifest not found at: $ManifestPath"
 }

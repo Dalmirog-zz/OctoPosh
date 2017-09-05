@@ -4,12 +4,6 @@ Param(
 	[ValidateSet("StopService","StartService","ConfigFile","CreateInstance","RemoveInstance","ImportBackup","ExportBackup")]
 	[string]$Action, 
 
-	#To create an instance you need to set this to $True and the option "CreateInstance" to the $Action param. Only if these 2 are set that way the instance will be created. Couldn't figure out how to tell cake to avoid a task based on a param, so I'm always running the Action "CreateInstance" but only actually creating it if this param is $True.
-	[bool]$CreateInstance = $false, 
-	
-	#Same story as with $CreateInstance
-	[bool]$RemoveInstance = $false,
-
 	#Path of the config.json file to be used by this script which should hold connection strings, Octopus user/pass and all that.	
 	[string]$ConfigFile = ".\devenvconfig.json"
 )
@@ -42,29 +36,25 @@ Write-Output "Using config file: $ConfigFile"
 $Config = Get-Content $ConfigFile | ConvertFrom-Json
 
 If($Action -eq "CreateInstance"){
-	If($CreateInstance){
-        Write-Output "Checking if instance exists: $($Config.OctopusInstance)"
 
-		If(ValidateIfInstanceExists){
-			Write-Output "Instance [$($Config.OctopusInstance)]already exists, so we won't attempt to create it"
-		}
-		else{
-			Write-Output "Instance not found. Creating: $($Config.OctopusInstance)"	
-			
-            $ConnectionString = "Server=$($env:computername)\$($config.SQLInstancename);Database=$($config.OctopusInstance);Integrated Security=SSPI"
+	Write-Output "Checking if instance exists: $($Config.OctopusInstance)"
 
-            . $PSscriptRoot\DSC_OctopusServer.ps1 -ConnectionString $ConnectionString  -OctopusInstance $config.OctopusInstance -Ensure Present -Port $config.OctopuswebListenPort -OctopusAdmin $config.OctopusAdmin -OctopusPassword $config.OctopusPassword -serviceState "Started" -Verbose
-
-            . $PSscriptRoot\DSC_OctopusServerUsernamePasswordAuth.ps1 -OctopusInstance $config.OctopusInstance
-
-		}
+	If(ValidateIfInstanceExists){
+		Write-Output "Instance [$($Config.OctopusInstance)]already exists, so we won't attempt to create it"
 	}
-	Else{
-		Write-Output "Not attempting to create Instance: $($Config.OctopusInstance)"
+	else{
+		Write-Output "Instance not found. Creating: $($Config.OctopusInstance)"	
+		
+		$ConnectionString = "Server=$($env:computername)\$($config.SQLInstancename);Database=$($config.OctopusInstance);Integrated Security=SSPI"
+
+		. $PSscriptRoot\DSC_OctopusServer.ps1 -ConnectionString $ConnectionString  -OctopusInstance $config.OctopusInstance -Ensure Present -Port $config.OctopuswebListenPort -OctopusAdmin $config.OctopusAdmin -OctopusPassword $config.OctopusPassword -serviceState "Started" -Verbose
+
+		. $PSscriptRoot\DSC_OctopusServerUsernamePasswordAuth.ps1 -OctopusInstance $config.OctopusInstance
+
 	}
 }
 elseif ($Action -eq "RemoveInstance"){
-    If($RemoveInstance){
+
         If(ValidateIfInstanceExists){
             
             Write-Output "Removing Octopus Instance: $($Config.OctopusInstance)"
@@ -77,13 +67,7 @@ elseif ($Action -eq "RemoveInstance"){
         }
         else{
             Write-Output "Not attempting to remove Instance [$($Config.OctopusInstance)] because it does not exist on $($env:computername)"
-        }
-    }
-    
-    else
-    {
-        Write-Output "Not attempting to remove Instance: $($Config.OctopusInstance)"
-    }
+        } 
 }
 else{
 	If(ValidateIfInstanceExists){

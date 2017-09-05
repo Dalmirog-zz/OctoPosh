@@ -14,6 +14,7 @@ var configuration = Argument("configuration", "Debug");
 //////////////////////////////////////////////////////////////////////
 
 // Define directories.
+//The compiled Website will be sent to publishDir. The Webjovs will be sent to publishDir + Path of the web job.
 var publishDir = Directory("./Octoposh.Web/Publish/");
 
 //////////////////////////////////////////////////////////////////////
@@ -38,8 +39,8 @@ Task("Build and Publish")
     .IsDependentOn("Restore-NuGet-Packages")
     .Does(() =>
     {
-        // Use MSBuild
-        //MSBuild("Octoposh.sln", settings => settings.SetConfiguration(configuration));
+
+    //Build website
     var webSiteSettings = new DotNetCorePublishSettings
      {
          Framework = "netcoreapp2.0",
@@ -47,6 +48,7 @@ Task("Build and Publish")
          OutputDirectory = publishDir
      };
 
+     //Build downloadsTracker webJob
      var downloadsTrackerJobSettings = new DotNetCorePublishSettings
      {
          Framework = "netcoreapp2.0",
