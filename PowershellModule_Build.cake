@@ -1,4 +1,5 @@
 #tool nuget:?package=NUnit.ConsoleRunner&version=3.7.0
+#tool nuget:?package=Cake.CoreCLR&version=0.21.1
 #addin "Cake.Powershell"
 
 //////////////////////////////////////////////////////////////////////
