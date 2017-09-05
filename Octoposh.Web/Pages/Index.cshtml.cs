@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Octoposh.Web.Model;
+using DownloadsTracker.Model;
 
 namespace Octoposh.Web.Pages
 {
@@ -14,7 +10,7 @@ namespace Octoposh.Web.Pages
 
         public void OnGet()
         {
-            var gallery = new Gallery();
+            var gallery = new GalleryClient();
             GalleryEntries = gallery.GetEntries();
         }
     }
