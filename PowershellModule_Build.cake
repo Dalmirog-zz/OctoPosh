@@ -7,7 +7,7 @@
 //////////////////////////////////////////////////////////////////////
 
 var target = Argument("target", "Default");
-var configuration = Argument("configuration", "Debug");
+var configuration = Argument("configuration", "Release");
 var ConfigFile = Argument("ConfigFile","");
 var BinaryVersion = Argument("BinaryVersion","");
 var RemoveOctopusInstanceAtBeggining = Argument("RemoveOctopusInstanceAtBeggining", false);
@@ -19,17 +19,19 @@ var RemoveOctopusInstanceAtEnd = Argument("RemoveOctopusInstanceAtEnd", false);
 //////////////////////////////////////////////////////////////////////
 
 // Define directories.
-var buildDir = Directory("./Octoposh/bin/") + Directory(configuration) + Directory("Octoposh");
-var ManifestPath = Directory(buildDir) + Directory("Octoposh.psd1");
+var publishDir = MakeAbsolute(Directory("./Octoposh/Publish/")).FullPath;
+var ManifestPath = Directory(publishDir) + Directory("Octoposh.psd1");
 
 //////////////////////////////////////////////////////////////////////
 // TASKS
 //////////////////////////////////////////////////////////////////////
 
+
+
 Task("Clean")    
     .Does(() =>
 {
-    CleanDirectory(buildDir);
+    CleanDirectory(publishDir);
 });
 
 Task("Restore-NuGet-Packages")
@@ -59,11 +61,12 @@ Task("Build")
     {           
         //Build PS Module     
         MSBuild("Octoposh/Octoposh.csproj", settings =>
-        settings.SetConfiguration(configuration));
-        
+        settings.SetConfiguration(configuration)
+            .WithProperty("OutDir", publishDir));
+
         //Build Tests
         MSBuild("Octoposh.Tests/Octoposh.Tests.csproj", settings =>
-        settings.SetConfiguration(configuration));        
+        settings.SetConfiguration(configuration));    
     });
 
 Task("Update-Module-Manifest")
