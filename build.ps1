@@ -63,7 +63,7 @@ Param(
 	[switch]$CreateOctopusInstance = $false,
 	[switch]$RemoveOctopusInstanceAtEnd = $false,
 	[switch]$RemoveOctopusInstanceAtBeggining = $false,
-    [string]$Version
+    [string]$BinaryVersion
 )
 
 #region BaseCakeScript
@@ -205,8 +205,8 @@ else{
 
 #endregion
 
-if([string]::IsNullOrWhiteSpace($Version)){
-    $Version = "0.0.0.0"
+if([string]::IsNullOrWhiteSpace($BinaryVersion)){
+    $BinaryVersion = "0.0.0.0"
 }
 
 If($Project -eq "PowershellModule"){
@@ -216,7 +216,7 @@ If($Project -eq "PowershellModule"){
     # Start Cake
     Write-Host "Running build script..."
 
-    $expression = "& `"$CAKE_EXE`" `"$Script`" -target=`"$Target`" -configuration=`"$Configuration`" -verbosity=`"$Verbosity`" $UseMono $UseDryRun $UseExperimental $ScriptArgs -ConfigFile=`"$ConfigFile`" -Version=`"$Version`" -RemoveOctopusInstanceAtBeggining=`"$RemoveOctopusInstanceAtBeggining`" -CreateOctopusInstance=`"$CreateOctopusInstance`" -RemoveOctopusInstanceAtEnd=`"$RemoveOctopusInstanceAtEnd`""
+    $expression = "& `"$CAKE_EXE`" `"$Script`" -target=`"$Target`" -configuration=`"$Configuration`" -verbosity=`"$Verbosity`" $UseMono $UseDryRun $UseExperimental $ScriptArgs -ConfigFile=`"$ConfigFile`" -BinaryVersion=`"$BinaryVersion`" -RemoveOctopusInstanceAtBeggining=`"$RemoveOctopusInstanceAtBeggining`" -CreateOctopusInstance=`"$CreateOctopusInstance`" -RemoveOctopusInstanceAtEnd=`"$RemoveOctopusInstanceAtEnd`""
 
     Write-Verbose "About to run [$expression]"
 
@@ -232,7 +232,7 @@ If($Project -eq "Website"){
     # Start Cake
     Write-Host "Running build script..."
 
-    $expression = "& `"$CAKE_EXE`" `"$Script`" -target=`"$Target`" -configuration=`"$Configuration`" -verbosity=`"$Verbosity`" $UseMono $UseDryRun $UseExperimental $ScriptArgs -Version=`"$Version`" "
+    $expression = "& `"$CAKE_EXE`" `"$Script`" -target=`"$Target`" -configuration=`"$Configuration`" -verbosity=`"$Verbosity`" $UseMono $UseDryRun $UseExperimental $ScriptArgs -BinaryVersion=`"$BinaryVersion`" "
 
     Write-Verbose "About to run [$expression]"
 

@@ -9,7 +9,7 @@
 var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Debug");
 var ConfigFile = Argument("ConfigFile","");
-var Version = Argument("Version","");
+var BinaryVersion = Argument("BinaryVersion","");
 var RemoveOctopusInstanceAtBeggining = Argument("RemoveOctopusInstanceAtBeggining", false);
 var CreateOctopusInstance = Argument("CreateOctopusInstance", false);
 var RemoveOctopusInstanceAtEnd = Argument("RemoveOctopusInstanceAtEnd", false);
@@ -76,7 +76,7 @@ Task("Update-Module-Manifest")
         .SetLogOutput()
         .WithArguments(args=>
         {
-            args.Append("Version",Version);
+            args.Append("Version",BinaryVersion);
             args.Append("ManifestPath",ManifestPath);            
         }));    
 });
