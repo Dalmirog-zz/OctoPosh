@@ -19,6 +19,7 @@ var RemoveOctopusInstanceAtEnd = Argument("RemoveOctopusInstanceAtEnd", false);
 //////////////////////////////////////////////////////////////////////
 
 // Define directories.
+//The compiled module will be sent to publishDir
 var publishDir = MakeAbsolute(Directory("./Octoposh/Publish/")).FullPath;
 var ManifestPath = Directory(publishDir) + Directory("Octoposh.psd1");
 
