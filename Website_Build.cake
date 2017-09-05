@@ -38,8 +38,7 @@ Task("Build and Publish")
     .IsDependentOn("Restore-NuGet-Packages")
     .Does(() =>
     {
-        // Use MSBuild
-        //MSBuild("Octoposh.sln", settings => settings.SetConfiguration(configuration));
+
     var webSiteSettings = new DotNetCorePublishSettings
      {
          Framework = "netcoreapp2.0",
