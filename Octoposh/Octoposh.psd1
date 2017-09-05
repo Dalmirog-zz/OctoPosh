@@ -47,7 +47,7 @@ PrivateData = @{
          IconUri = 'http://s6.postimg.org/x5auom5xd/librito_lg_white.png'
 
         # ReleaseNotes of this module
-         ReleaseNotes = 'https://github.com/Dalmirog/OctoPosh/wiki/Release-Notes'
+         ReleaseNotes = 'http://octoposh.readthedocs.io/en/latest/releasenotes/release-notes/'      
 
     } # End of PSData hashtable
 

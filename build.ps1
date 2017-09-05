@@ -40,7 +40,11 @@ http://cakebuild.net
 
 [CmdletBinding()]
 Param(
-    [string]$Script = "build.cake",
+    # .cake file will be chosen depending on the value passed to $Project
+    #[string]$Script = "build.cake",
+    [Parameter(Mandatory=$true)]
+    [ValidateSet("PowershellModule", "Website")]
+    [string]$Project = "",
     [string]$Target = "Default",
     [ValidateSet("Release", "Debug")]
     [string]$Configuration = "Release",
@@ -59,6 +63,8 @@ Param(
 	[switch]$RemoveOctopusInstanceAtBeggining = $false,
     [string]$ModuleVersion   
 )
+
+#region BaseCakeScript
 
 [Reflection.Assembly]::LoadWithPartialName("System.Security") | Out-Null
 function MD5HashFile([string] $filePath)
@@ -195,32 +201,60 @@ else{
 	Throw "Config file not found: $ConfigFile"
 }
 
-# Should we create the Octopus Instance set in the config.JSON file if it doesn't exist?
-$CreateInstance = 0
-IF($CreateOctopusInstance){
-	$CreateInstance = 1
+#endregion
+
+
+If($Project -eq "PowershellModule"){
+    
+    $script = "PowershellModule_Build.cake"
+
+    # Should we create the Octopus Instance set in the config.JSON file if it doesn't exist?
+    $CreateInstance = 0
+    IF($CreateOctopusInstance){
+	    $CreateInstance = 1
+    }
+
+    # Should we remove the Octopus Instance (if it exists) before attempting to re-create it?
+    $RemoveInstanceAtBeggining = 0
+    IF($RemoveOctopusInstanceAtBeggining){
+	    $RemoveInstanceAtBeggining = 1
+    }
+
+    # Should we remove the Octopus Instance at the end of the build script?
+    $RemoveInstanceAtEnd = 0
+    IF($RemoveOctopusInstanceAtEnd){
+	    $RemoveInstanceAtEnd = 1
+    }
+
+    if([string]::IsNullOrWhiteSpace($ModuleVersion)){
+        $ModuleVersion = "0.0.0.0"
+    }
+
+    # Start Cake
+    Write-Host "Running build script..."
+
+    $expression = "& `"$CAKE_EXE`" `"$Script`" -target=`"$Target`" -configuration=`"$Configuration`" -verbosity=`"$Verbosity`" $UseMono $UseDryRun $UseExperimental $ScriptArgs -CreateInstance=`"$CreateInstance`" -RemoveInstanceAtEnd=`"$RemoveInstanceAtEnd`" -ConfigFile=`"$ConfigFile`" -RemoveInstanceAtBeggining=`"$RemoveInstanceAtBeggining`" -ModuleVersion=`"$ModuleVersion`" " #-ManifestPath=`"$ManifestPath`" 
+
+    Write-Verbose "About to run [$expression]"
+
+    Invoke-Expression $expression
+
+    exit $LASTEXITCODE
 }
-$RemoveInstanceAtBeggining = 0
-IF($RemoveOctopusInstanceAtBeggining){
-	$RemoveInstanceAtBeggining = 1
+
+If($Project -eq "Website"){
+    
+    $script = "Website_Build.cake"
+       
+    # Start Cake
+    Write-Host "Running build script..."
+
+    $expression = "& `"$CAKE_EXE`" `"$Script`" -target=`"$Target`" -configuration=`"$Configuration`" -verbosity=`"$Verbosity`" $UseMono $UseDryRun $UseExperimental $ScriptArgs" #-ManifestPath=`"$ManifestPath`" 
+
+    Write-Verbose "About to run [$expression]"
+
+    Invoke-Expression $expression
+
+    exit $LASTEXITCODE
 }
 
-$RemoveInstanceAtEnd = 0
-IF($RemoveOctopusInstanceAtEnd){
-	$RemoveInstanceAtEnd = 1
-}
-
-if([string]::IsNullOrWhiteSpace($ModuleVersion)){
-    $ModuleVersion = "0.0.0.0"
-}
-
-# Start Cake
-Write-Host "Running build script..."
-
-$expression = "& `"$CAKE_EXE`" `"$Script`" -target=`"$Target`" -configuration=`"$Configuration`" -verbosity=`"$Verbosity`" $UseMono $UseDryRun $UseExperimental $ScriptArgs -CreateInstance=`"$CreateInstance`" -RemoveInstanceAtEnd=`"$RemoveInstanceAtEnd`" -ConfigFile=`"$ConfigFile`" -RemoveInstanceAtBeggining=`"$RemoveInstanceAtBeggining`" -ModuleVersion=`"$ModuleVersion`" " #-ManifestPath=`"$ManifestPath`" 
-
-Write-Verbose "About to run [$expression]"
-
-Invoke-Expression $expression
-
-exit $LASTEXITCODE
