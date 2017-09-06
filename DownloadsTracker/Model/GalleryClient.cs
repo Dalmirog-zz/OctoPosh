@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 
-namespace Octoposh.Web.Model
+namespace DownloadsTracker.Model
 {
-    public class Gallery
+    public class GalleryClient
     {
-        public Gallery()
+        public GalleryClient()
         {
 
         }
@@ -56,9 +54,11 @@ namespace Octoposh.Web.Model
                     Entries.Add(new GalleryEntry
                     {
                         Version = new Version(properties["d:Version"].InnerText),
-                        Downloads = Convert.ToInt32(properties["d:VersionDownloadCount"].InnerText),
+                        VersionDownloadCount = Convert.ToInt32(properties["d:VersionDownloadCount"].InnerText),
+                        TotalModuleDownloadCount = Convert.ToInt32(properties["d:DownloadCount"].InnerText),
                         DatePushed = DateTime.Parse(properties["d:Created"].InnerText),
                         GalleryDownloadURI = properties["d:GalleryDetailsUrl"].InnerText
+
                     });                    
                 }
             }

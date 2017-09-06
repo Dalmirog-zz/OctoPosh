@@ -1,17 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Octoposh.Web.Model 
+namespace DownloadsTracker.Model 
 {
     public class GalleryEntry
     {
-       public Version Version { get; set; }
-       public int Downloads { get; set; }
-       public DateTime DatePushed { get; set; }
-       public string ReleaseNotesURI {
+        /// <summary>
+        /// Version of the module
+        /// </summary>
+        public Version Version { get; set; }
+        
+        /// <summary>
+        /// Amount of downloads of this particular version
+        /// </summary>
+        public int VersionDownloadCount { get; set; }
+
+        /// <summary>
+        /// Regardless of the version of the current entry, this property will always show the historic download count of all the versions combined.
+        /// </summary>
+        public int TotalModuleDownloadCount { get; set; }
+        public DateTime DatePushed { get; set; }
+        public string ReleaseNotesURI {
             get
             {
                 var version = Version.ToString().Replace(".", "");
