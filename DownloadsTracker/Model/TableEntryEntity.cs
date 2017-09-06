@@ -8,6 +8,9 @@ namespace DownloadsTracker.Model
     public class TableEntryEntity : TableEntity
     {
         // Your entity type must expose a parameter-less constructor
+        public TableEntryEntity()
+        {
+        }
         public TableEntryEntity(string moduleVersion)
         {
             this.PartitionKey = moduleVersion;
