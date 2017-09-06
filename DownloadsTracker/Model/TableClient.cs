@@ -25,21 +25,23 @@ namespace DownloadsTracker.Model
         {
             var yesterday = DateTime.Now.AddDays(-1);
 
-            var previousDayEntry = GetEntryByDayAsync(yesterday).Result;
+            var previousDayEntry = GetEntryByDayAsync(galleryEntry.Version.ToString(), yesterday).Result;
 
-            var entryToInsert = new TableEntryEntity();
+            var entryToInsert = new TableEntryEntity(galleryEntry.Version.ToString());
 
             if (previousDayEntry == null)
             {
                 Console.WriteLine("Couldn't find entry for day [{0}]",yesterday.Date.ToString());
-                entryToInsert.TotalToDate = galleryEntry.Downloads;
-                entryToInsert.DayCount = 0;
+                entryToInsert.VersionTotalToDate = galleryEntry.VersionDownloadCount;
+                entryToInsert.ModuleTotalToDate = galleryEntry.TotalModuleDownloadCount;
+                entryToInsert.VersionDayCount = 0;
             }
 
             else
             {
-                entryToInsert.TotalToDate = galleryEntry.Downloads;
-                entryToInsert.DayCount = galleryEntry.Downloads - previousDayEntry.TotalToDate;
+                entryToInsert.VersionTotalToDate = galleryEntry.VersionDownloadCount;
+                entryToInsert.ModuleTotalToDate = galleryEntry.TotalModuleDownloadCount;
+                entryToInsert.VersionDayCount = galleryEntry.VersionDownloadCount - previousDayEntry.VersionTotalToDate;
             }
 
             InsertOrMergeTableEntryAsync(entryToInsert).Wait();
@@ -70,13 +72,13 @@ namespace DownloadsTracker.Model
             return table;
         }
 
-        private async Task<TableEntryEntity> GetEntryByDayAsync(DateTime day)
+        private async Task<TableEntryEntity> GetEntryByDayAsync(string moduleVersion, DateTime day)
         {
             var yesterdayString = day.ToString("yyyyMMdd");
 
             Console.WriteLine($"Looking for table entry for [{yesterdayString}]");
 
-            return (await RetrieveEntityUsingPointQueryAsync("DownloadsCount", yesterdayString));
+            return (await RetrieveEntityUsingPointQueryAsync(moduleVersion, yesterdayString));
         }
 
         private async Task<TableEntryEntity> InsertOrMergeTableEntryAsync(TableEntryEntity tableEntry)
@@ -93,7 +95,7 @@ namespace DownloadsTracker.Model
             TableResult result = await CloudTable.ExecuteAsync(insertOrMergeOperation);
             TableEntryEntity insertedTableEntry = result.Result as TableEntryEntity;
 
-            Console.WriteLine("Inserted/Updated table entry for [{0}] [TotalTodate = {1}] and [DayCount = {2}]",insertedTableEntry.RowKey,insertedTableEntry.TotalToDate,insertedTableEntry.DayCount);
+            Console.WriteLine("Inserted/Updated table entry for [{0}] [TotalTodate = {1}] and [DayCount = {2}]",insertedTableEntry.RowKey,insertedTableEntry.VersionTotalToDate,insertedTableEntry.VersionDayCount);
             return insertedTableEntry;
         }
 
@@ -104,7 +106,7 @@ namespace DownloadsTracker.Model
             TableEntryEntity tableEntry = result.Result as TableEntryEntity;
             if (tableEntry != null)
             {
-                Console.WriteLine("Found table entry for [{0}] with [TotalToDate = {1}]", tableEntry.RowKey, tableEntry.TotalToDate);
+                Console.WriteLine("Found table entry for [{0}] with [TotalToDate = {1}]", tableEntry.RowKey, tableEntry.VersionTotalToDate);
             }
 
             return tableEntry;

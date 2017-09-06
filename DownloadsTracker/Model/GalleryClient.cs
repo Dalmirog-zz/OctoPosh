@@ -54,9 +54,11 @@ namespace DownloadsTracker.Model
                     Entries.Add(new GalleryEntry
                     {
                         Version = new Version(properties["d:Version"].InnerText),
-                        Downloads = Convert.ToInt32(properties["d:VersionDownloadCount"].InnerText),
+                        VersionDownloadCount = Convert.ToInt32(properties["d:VersionDownloadCount"].InnerText),
+                        TotalModuleDownloadCount = Convert.ToInt32(properties["d:DownloadCount"].InnerText),
                         DatePushed = DateTime.Parse(properties["d:Created"].InnerText),
                         GalleryDownloadURI = properties["d:GalleryDetailsUrl"].InnerText
+
                     });                    
                 }
             }
