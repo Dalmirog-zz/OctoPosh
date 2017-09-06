@@ -1,6 +1,5 @@
 #tool nuget:?package=NUnit.ConsoleRunner&version=3.4.0
-#addin "Cake.SqlTools"
-#addin "Cake.Powershell"
+#addin "Cake.Bower"
 
 //////////////////////////////////////////////////////////////////////
 // ARGUMENTS
@@ -27,16 +26,20 @@ Task("Clean")
     CleanDirectory(publishDir);
 });
 
-Task("Restore-NuGet-Packages")
+Task("Restore-Packages")
     .IsDependentOn("Clean")
     .Does(() =>
 {
+    Information("Restoring Nuget Packages...");
     DotNetCoreRestore("DownloadsTracker/DownloadsTracker.csproj");
-    DotNetCoreRestore("Octoposh.Web/Octoposh.Web.csproj");    
+    DotNetCoreRestore("Octoposh.Web/Octoposh.Web.csproj");
+
+    Information("Restoring Bower dependencies...");
+    Bower.Install(s => s.UseWorkingDirectory("./Octoposh.Web"));    
 });
 
 Task("Build and Publish")
-    .IsDependentOn("Restore-NuGet-Packages")
+    .IsDependentOn("Restore-Packages")
     .Does(() =>
     {
 
@@ -45,7 +48,7 @@ Task("Build and Publish")
      {
          Framework = "netcoreapp2.0",
          Configuration = "Release",
-         OutputDirectory = publishDir
+         OutputDirectory = publishDir         
      };
 
      //Build downloadsTracker webJob
@@ -56,8 +59,12 @@ Task("Build and Publish")
          OutputDirectory = Directory(publishDir + Directory("App_Data/jobs/triggered/DownloadsTracker"))
      };    
 
+    Information("Building Octoposh.Web...");
     DotNetCorePublish("./Octoposh.Web/Octoposh.Web.csproj", webSiteSettings);
+
+    Information("Building DownloadsTracker...");
     DotNetCorePublish("./DownloadsTracker/DownloadsTracker.csproj", downloadsTrackerJobSettings);
+    
     });
 
 //////////////////////////////////////////////////////////////////////
