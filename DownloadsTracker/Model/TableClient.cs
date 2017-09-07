@@ -95,7 +95,7 @@ namespace DownloadsTracker.Model
             TableResult result = await CloudTable.ExecuteAsync(insertOrMergeOperation);
             TableEntryEntity insertedTableEntry = result.Result as TableEntryEntity;
 
-            Console.WriteLine("Inserted/Updated table entry:\n[Version\\PartitionKey = {0}]\n[Date\\Rowkey = {1}]\n[ModuleTotalToDate = {2}]\n[VersionTotalToDate{3}\n[VersionDayCount = {4}]]", insertedTableEntry.PartitionKey, insertedTableEntry.RowKey, insertedTableEntry.ModuleTotalToDate, insertedTableEntry.VersionTotalToDate, insertedTableEntry.VersionDayCount);
+            Console.WriteLine("Inserted/Updated table entry:\n\t[Version\\PartitionKey = {0}]\n\t[Date\\Rowkey = {1}]\n\t[ModuleTotalToDate = {2}]\n\t[VersionTotalToDate = {3}\n\t[VersionDayCount = {4}]", insertedTableEntry.PartitionKey, insertedTableEntry.RowKey, insertedTableEntry.ModuleTotalToDate, insertedTableEntry.VersionTotalToDate, insertedTableEntry.VersionDayCount);
             return insertedTableEntry;
         }
 
