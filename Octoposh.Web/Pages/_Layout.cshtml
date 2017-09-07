@@ -4,26 +4,37 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Octoposh</title>    
-    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
-    <link href="~/css/site.css" rel="stylesheet" />
+    <title>Octoposh</title>   
+    <environment include="Development">
+        <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+        <link href="~/css/site.css" rel="stylesheet" />
+    </environment>
+    <environment exclude="Development">
+        <link href="~/css/site.min.css" rel="stylesheet" />
+    </environment>
 </head>
 <body>
     
-    <span itemscope itemtype="http://schema.org/SoftwareApplication">
-        <div class="jumbotron text-center">
-            <img itemprop="image" src="~/images/octoposh-sm.png"/>
-            <h1 itemprop="name">OctoPosh</h1>
-            <p>The Octopus Deploy Powershell module</p>
-        </div>
+<div itemscope itemtype="http://schema.org/SoftwareApplication">
+    <div class="jumbotron text-center">
+        <img itemprop="image" src="~/images/octoposh-sm.png"/>
+        <h1 itemprop="name">OctoPosh</h1>
+        <p>The Octopus Deploy Powershell module</p>
+    </div>
 
-        <div class="container body-content">
-            @RenderBody()
-        </div>       
+    <div class="container body-content">
+        @RenderBody()
+    </div>       
 
-        @RenderSection("Scripts", required: false)
-    </span>
-    </body>
+    @RenderSection("Scripts", required: false)
+</div>
+</body>
 </html>
-<script src="~/lib/clipboard/dist/clipboard.js"></script>
-<script src="~/js/site.js"></script>
+
+<environment include="Development">
+    <script src="~/lib/clipboard/dist/clipboard.js"></script>
+    <script src="~/js/site.js"></script>
+</environment>
+<environment exclude="Development">
+    <script src="~/js/site.min.js"></script>
+</environment>

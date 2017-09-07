@@ -10,7 +10,10 @@
   "profiles": {
     "IIS Express": {
       "commandName": "IISExpress",
-      "launchBrowser": true
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_Environment": "Development"
+      }
     },
     "Octoposh.Web": {
       "commandName": "Project",
