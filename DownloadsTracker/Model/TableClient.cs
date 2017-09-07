@@ -95,7 +95,7 @@ namespace DownloadsTracker.Model
             TableResult result = await CloudTable.ExecuteAsync(insertOrMergeOperation);
             TableEntryEntity insertedTableEntry = result.Result as TableEntryEntity;
 
-            Console.WriteLine("Inserted/Updated table entry for [{0}] [TotalTodate = {1}] and [DayCount = {2}]",insertedTableEntry.RowKey,insertedTableEntry.VersionTotalToDate,insertedTableEntry.VersionDayCount);
+            Console.WriteLine("Inserted/Updated table entry:\n[Version\\PartitionKey = {0}]\n[Date\\Rowkey = {1}]\n[ModuleTotalToDate = {2}]\n[VersionTotalToDate{3}\n[VersionDayCount = {4}]]", insertedTableEntry.PartitionKey, insertedTableEntry.RowKey, insertedTableEntry.ModuleTotalToDate, insertedTableEntry.VersionTotalToDate, insertedTableEntry.VersionDayCount);
             return insertedTableEntry;
         }
 
@@ -106,7 +106,7 @@ namespace DownloadsTracker.Model
             TableEntryEntity tableEntry = result.Result as TableEntryEntity;
             if (tableEntry != null)
             {
-                Console.WriteLine("Found table entry for [{0}] with [TotalToDate = {1}]", tableEntry.RowKey, tableEntry.VersionTotalToDate);
+                Console.WriteLine("Found table entry:\n[Version\\PartitionKey = {0}]\n[Date\\Rowkey = {1}]\n[ModuleTotalToDate = {2}]\n[VersionTotalToDate{3}\n[VersionDayCount = {4}]]", tableEntry.PartitionKey, tableEntry.RowKey,tableEntry.ModuleTotalToDate,tableEntry.VersionTotalToDate,tableEntry.VersionDayCount);
             }
 
             return tableEntry;
