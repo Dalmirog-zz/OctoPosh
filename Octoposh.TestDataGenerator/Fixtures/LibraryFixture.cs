@@ -16,9 +16,10 @@ namespace Octoposh.TestDataGenerator.Fixtures
         private static readonly string[] ScriptModuleNames = { "ScriptModuleTests_Module1" };
         private static readonly string[] LibraryVariableSetNames = { "VariableSetTests_Library1", "VariableSetTests_Library2", "unmodified_TestLibraryVariableSet" };
 
-        public static void Run(IOctopusAsyncRepository repository)
+        public static void Run()
         {
-            _repository = repository;
+            _repository = OctopusRepository.GetRepository().Result;
+
             Log.Logger.Information("**Running Library Fixture**");
             
             CreateLibraryStuff();

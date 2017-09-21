@@ -23,7 +23,7 @@ namespace Octoposh.TestDataGenerator
             step.Actions[0].Properties["Octopus.Action.Script.ScriptSource"] = "Inline";
             step.Actions[0].Properties["Octopus.Action.RunOnServer"] = "true";
             step.Actions[0].Properties["Octopus.Action.Script.ScriptBody"] = "'Hello World'";
-            step.Properties["Octopus.Action.TargetRoles"] = "InstallStuff";
+            step.Properties["Octopus.Action.TargetRoles"] = "default-role";
             return step;
         }
     }

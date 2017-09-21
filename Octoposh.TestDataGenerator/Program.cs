@@ -13,47 +13,42 @@ namespace Octoposh.TestDataGenerator
     {
         static void Main(string[] args)
         {
-            var server = "http://localhost:89";
-
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
                 .WriteTo.Console(outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level}] {Message}{NewLine}",theme:AnsiConsoleTheme.Code)
                 .CreateLogger();
 
-            var repository = GetRepository(server).Result;
-
-            RunFixtures(repository,
+            RunFixtures(
                 runConfigurationFixture:true,
+                runLibraryFixture: true,
                 runInfrastructureFixture: true,
-                runLibraryFixture:true);
+                runDeploymentFixture:true);
 
             Console.ReadLine();
         }
 
-        private static async Task<IOctopusAsyncRepository> GetRepository(string serverUrl)
-        {
-            var client = await OctopusAsyncClient.Create(new OctopusServerEndpoint(serverUrl));
-            await client.Repository.Users.SignIn(new LoginCommand { Username = "sa", Password = "Michael2" });
-            return client.Repository;
-        }
-
-        static void RunFixtures(IOctopusAsyncRepository repository,bool runConfigurationFixture ,bool runInfrastructureFixture, bool runLibraryFixture)
+        static void RunFixtures(bool runConfigurationFixture , bool runLibraryFixture, bool runInfrastructureFixture, bool runDeploymentFixture)
         {
             Log.Information("**Running Fixtures**");
 
             if (runConfigurationFixture)
             {
-                ConfigurationFixture.Run(repository);
-            }
-
-            if (runInfrastructureFixture)
-            {
-                InfrastructureFixture.Run(repository);
+                ConfigurationFixture.Run();
             }
 
             if (runLibraryFixture)
             {
-                LibraryFixture.Run(repository);
+                LibraryFixture.Run();
+            }
+
+            if (runInfrastructureFixture)
+            {
+                InfrastructureFixture.Run();
+            }
+
+            if (runDeploymentFixture)
+            {
+                DeploymentFixture.Run();
             }
         }
     }

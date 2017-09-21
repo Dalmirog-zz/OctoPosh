@@ -13,21 +13,23 @@ namespace Octoposh.TestDataGenerator.Fixtures
 {
     static class InfrastructureFixture
     {
-        //Resources to create
+        private static IOctopusAsyncRepository _repository;
+
+        #region ResourcesToCreate
         private static readonly string[] EnvironmentNames = { "Dev", "Stage", "Prod", "Unmodified_TestEnvironment", "MachineTests_Environment" };
         private static readonly string[] LifecycleNames = { "Default Lifecycle", "LifecycleTests_Lifecycle1", "LifecycleTests_Lifecycle2", "unmodified_TestLifecycle" };
 
         private static readonly string[] ProjectGroupNames = { "DashboardTests_ProjectGroup", "DeploymentTests_ProjectGroup", "ReleaseTests_ProjectGroup", "TestProjectGroup1", "TestProjectGroup2", "unmodified_TestProjectGroup", "ProjectGroupTests_ProjectGroup", "ProjectGroupTests_ProjectGroup2", "ProjectTests_ProjectGroup", "ReleaseTests_ProjectGroup" };
-        private static readonly string[] ProjectNames = { "DashboardTests_Project1", "DashboardTests_Project2", "DeploymentTests_Project1", "DeploymentTests_Project2","ProjectTests_Project1", "ProjectTests_Project2", "ReleaseTests_Project1", "unmodified_TestProject"};
+        private static readonly string[] ProjectNames = { "DashboardTests_Project1", "DashboardTests_Project2", "DeploymentTests_Project1", "DeploymentTests_Project2", "ProjectTests_Project1", "ProjectTests_Project2", "ReleaseTests_Project1", "unmodified_TestProject" };
 
-        private static readonly string[] TagSetNames = { "TagSetTests_TagSet1","TagSetTests_TagSet2", "unmodified_TagSet"};
+        private static readonly string[] TagSetNames = { "TagSetTests_TagSet1", "TagSetTests_TagSet2", "unmodified_TagSet" };
         private static readonly string[] TenantNames = { "TenantTests_Tenant1", "TenantTests_Tenant2", "unmodified_Tenant" };
+        #endregion
 
-        private static IOctopusAsyncRepository _repository;
-
-        public static void Run(IOctopusAsyncRepository repository)
+        public static void Run()
         {
-            _repository = repository;
+            _repository = OctopusRepository.GetRepository().Result;
+
             Log.Logger.Information("**Running Infrastructure Fixture**");
 
             var pgs = CreateProjectGroups();
@@ -37,6 +39,8 @@ namespace Octoposh.TestDataGenerator.Fixtures
             CreateLifecycles();
             CreateTagSets();
             CreateTenants();
+
+            Log.Logger.Information("**Finished running Infrastructure Fixture**");
         }
 
         #region Projects/Project Groups/Channels
@@ -75,6 +79,7 @@ namespace Octoposh.TestDataGenerator.Fixtures
         {
             var projectList = new List<ProjectResource>();
             var lifecycle = _repository.Lifecycles.FindByName("Default Lifecycle").Result;// All projects will use the same lifecycle
+            var libraryVariableset = _repository.LibraryVariableSets.FindByName("VariableSetTests_Library1").Result;//All projects will use the same LVS.
 
             foreach (var projectName in ProjectNames)
             {
@@ -90,6 +95,7 @@ namespace Octoposh.TestDataGenerator.Fixtures
                 project.LifecycleId = lifecycle.Id;
                 project.ProjectGroupId = projectGroup.Id;
                 project.TenantedDeploymentMode = TenantedDeploymentMode.TenantedOrUntenanted;
+                project.IncludedLibraryVariableSetIds.Add(libraryVariableset.Id);
 
                 try
                 {
@@ -102,7 +108,33 @@ namespace Octoposh.TestDataGenerator.Fixtures
                     projectList.Add(project);
 
                     //Adding steps to the process. All pre-existing steps are deleted and the default ones added during this process.
-                    UpdateDeploymentprocess(project);
+                    var deploymentProcess = UpdateDeploymentprocess(project);
+
+                    //Adding extra config to specific the projects
+                    switch (project.Name)
+                    {
+                        case "ProjectTests_Project1":
+                            AddChannel("ChannelTests_Channel1", project);
+                            AddChannel("ChannelTests_Channel2", project);
+
+                            AddVariableToProject("VariableSetTests_Variable1", "bar",project,new ScopeSpecification()
+                            {
+                                {ScopeField.Environment,new ScopeValue(_repository.Environments.FindAll().Result.Select(x => x.Id).ToList())},
+                                {ScopeField.Channel,new ScopeValue(_repository.Projects.GetChannels(project).Result.Items.Select(x => x.Id).ToList())},
+                                {ScopeField.Role,new ScopeValue(_repository.MachineRoles.GetAllRoleNames().Result)},
+                                {ScopeField.Action, new ScopeValue(deploymentProcess.Steps.Select(x => x.Actions[0].Id))},
+                                {ScopeField.Machine,new ScopeValue(_repository.Machines.FindAll().Result.Select(x => x.Id))}
+                            });
+
+                            break;
+                        case "ProjectTests_Project2":
+                            AddChannel("ChannelTests_Channel1", project);
+                            AddChannel("ChannelTests_Channel2", project);
+                            break;
+                        case "unmodified_TestProject":
+                            AddChannel("unmodified_TestChannel", project);
+                            break;
+                    }
                 }
                 catch (Exception e)
                 {
@@ -121,9 +153,46 @@ namespace Octoposh.TestDataGenerator.Fixtures
 
             process.Steps.Add(StepLibrary.GetSimpleScriptStep());
 
+            Log.Information($"Modifying deployment proces o project [{project.Name}]");
             process = _repository.DeploymentProcesses.Modify(process).Result;
 
             return process;
+        }
+
+        private static void AddChannel(string channelName,ProjectResource project)
+        {
+            var channel = _repository.Channels.FindByName(project, channelName).Result ?? new ChannelResource();
+
+            channel.Name = channelName;
+            channel.Description = GeneralResourceProperty.ResourceDescription;
+            channel.ProjectId = project.Id;
+            channel.Rules = new List<ChannelVersionRuleResource>();
+            channel.IsDefault = false;
+
+            try
+            {
+                Log.Information($"Creating/Modifying Channel [{channel.Name}] for project [{project.Name}]");
+                if (channel.Id != null)
+                    _repository.Channels.Modify(channel);
+                else
+                    _repository.Channels.Create(channel);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+
+        }
+
+        private static void AddVariableToProject(string variableName, string variableValue ,ProjectResource project, ScopeSpecification scope)
+        {
+            var variableSet = _repository.VariableSets.Get(project.VariableSetId).Result;
+            
+            variableSet.AddOrUpdateVariableValue(variableName, variableValue, scope);
+
+            Log.Information($"Adding variable [{variableName}] to project [{project.Name}]");
+            _repository.VariableSets.Modify(variableSet).Wait();
         }
 
         #endregion
@@ -365,6 +434,7 @@ namespace Octoposh.TestDataGenerator.Fixtures
 
             foreach (var tagSetName in TagSetNames)
             {
+                //todo fix the tagset shit
                 var tagSet = _repository.TagSets.FindByName(tagSetName).Result ?? new TagSetResource();
 
                 tagSet.Name = tagSetName;

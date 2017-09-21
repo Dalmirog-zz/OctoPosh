@@ -15,9 +15,10 @@ namespace Octoposh.TestDataGenerator.Fixtures
 
         private static IOctopusAsyncRepository _repository;
 
-        public static void Run(IOctopusAsyncRepository repository)
+        public static void Run()
         {
-            _repository = repository;
+            _repository = OctopusRepository.GetRepository().Result;
+
             Log.Logger.Information("**Running Configuration Fixture**");
 
             SetFeatures();
@@ -129,7 +130,7 @@ namespace Octoposh.TestDataGenerator.Fixtures
 
         private static void SetFeatures()
         {
-            Log.Information("Setting Instance features (Multi-Tenancy, Community Action templates, etc");
+            Log.Information("Setting Instance features (Multi-Tenancy, Community Action templates, etc)");
 
             var fc = _repository.FeaturesConfiguration.GetFeaturesConfiguration().Result;
 
