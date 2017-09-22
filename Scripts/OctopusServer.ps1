@@ -1,7 +1,7 @@
 ﻿[CmdletBinding()]
 Param(
 	#Action to be executed
-	[ValidateSet("StopService","StartService","ConfigFile","CreateInstance","RemoveInstance","ImportBackup","ExportBackup")]
+	[ValidateSet("StopService","StartService","CreateInstance","RemoveInstance","GenerateTestData")]
 	[string]$Action, 
 
 	#Path of the config.json file to be used by this script which should hold connection strings, Octopus user/pass and all that.	
@@ -21,15 +21,11 @@ function ValidateIfInstanceExists {
 If(Test-Path HKLM:\SOFTWARE\Octopus\OctopusServer\){
     $OctopusInstallPath = (Get-ItemProperty HKLM:\SOFTWARE\Octopus\OctopusServer\).InstallLocation
     $OctopusServerexe = join-path $OctopusInstallPath "Octopus.Server.exe"
-    $OctopusMigratorexe = join-path $OctopusInstallPath "Octopus.Migrator.exe"
 }
 
 else{
     Throw "VM [$($env:computername)] doesn't have the Octopus Server installed. It needs to be installed to run tests against it"
 }
-
-#$OctopusExportDir = (Resolve-Path $PSScriptRoot\..\DataBackup\OctopusExport).path #Relative to the location of the .cake script, NOT to the location of this ps1 script.
-$OctopusExportDir = ".\OctopusExport"
 
 Write-Output "Using config file: $ConfigFile"
 
@@ -49,9 +45,10 @@ If($Action -eq "CreateInstance"){
 
 		. $PSscriptRoot\DSC_OctopusServer.ps1 -ConnectionString $ConnectionString  -OctopusInstance $config.OctopusInstance -Ensure Present -Port $config.OctopuswebListenPort -OctopusAdmin $config.OctopusAdmin -OctopusPassword $config.OctopusPassword -serviceState "Started" -Verbose
 
-		. $PSscriptRoot\DSC_OctopusServerUsernamePasswordAuth.ps1 -OctopusInstance $config.OctopusInstance
-
+		. $PSscriptRoot\DSC_OctopusServerUsernamePasswordAuth.ps1 -OctopusInstance $config.OctopusInstance		
 	}
+
+	. $PSscriptRoot\DSC_OctopusServerUsernamePasswordAuth.ps1 -OctopusInstance $config.OctopusInstance		
 }
 elseif ($Action -eq "RemoveInstance"){
 
@@ -78,13 +75,14 @@ else{
 			}
 			"StartService" {
 				& $OctopusServerexe service --instance $Config.OctopusInstance --start
-					}
-			"ImportBackup" {
-				& $OctopusMigratorexe import --instance $Config.OctopusInstance --directory "$OctopusExportDir" --password $config.OctopusPassword --overwrite --include-tasklogs
-				}
-			"ExportBackup" {				
-				& $OctopusMigratorexe export --instance $config.OctopusInstance --directory $OctopusExportDir --password $config.OctopusPassword
 			}
+			"GenerateTestData" {
+								
+				$dllpath = get-item ".\Octoposh.TestDataGenerator\Publish\Octoposh.TestDataGenerator.dll"
+
+				dotnet.exe $dllPath.FullName
+				
+			}			
 		}
 	}
 	Else{

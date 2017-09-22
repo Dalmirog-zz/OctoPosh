@@ -62,7 +62,8 @@ Param(
     [string]$Configfile = ".\DevEnvConfig.json",
 	[switch]$CreateOctopusInstance = $false,
 	[switch]$RemoveOctopusInstanceAtEnd = $false,
-	[switch]$RemoveOctopusInstanceAtBeggining = $false,
+    [switch]$RemoveOctopusInstanceAtBeggining = $false,
+    [switch]$GenerateTestData = $false,
     [string]$BinaryVersion
 )
 
@@ -216,7 +217,7 @@ If($Project -eq "PowershellModule"){
     # Start Cake
     Write-Host "Running build script..."
 
-    $expression = "& `"$CAKE_EXE`" `"$Script`" -target=`"$Target`" -configuration=`"$Configuration`" -verbosity=`"$Verbosity`" $UseMono $UseDryRun $UseExperimental $ScriptArgs -ConfigFile=`"$ConfigFile`" -BinaryVersion=`"$BinaryVersion`" -RemoveOctopusInstanceAtBeggining=`"$RemoveOctopusInstanceAtBeggining`" -CreateOctopusInstance=`"$CreateOctopusInstance`" -RemoveOctopusInstanceAtEnd=`"$RemoveOctopusInstanceAtEnd`""
+    $expression = "& `"$CAKE_EXE`" `"$Script`" -target=`"$Target`" -configuration=`"$Configuration`" -verbosity=`"$Verbosity`" $UseMono $UseDryRun $UseExperimental $ScriptArgs -ConfigFile=`"$ConfigFile`" -BinaryVersion=`"$BinaryVersion`" -RemoveOctopusInstanceAtBeggining=`"$RemoveOctopusInstanceAtBeggining`" -CreateOctopusInstance=`"$CreateOctopusInstance`" -RemoveOctopusInstanceAtEnd=`"$RemoveOctopusInstanceAtEnd`" -GenerateTestData=`"$GenerateTestData`""
 
     Write-Verbose "About to run [$expression]"
 
