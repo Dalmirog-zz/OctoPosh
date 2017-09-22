@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NUnit.Framework;
 using Octopus.Client;
 
@@ -22,12 +18,12 @@ namespace Octoposh.Tests
         private static void SetApiKeyEnvVariable()
         {
             var octopusUrl = string.Concat("http://localhost:", ConfigurationManager.AppSettings["OctopusBindingPort"]);
-            var octopusUser = ConfigurationManager.AppSettings["OctopusUser"];
+            var octopusAdmin = ConfigurationManager.AppSettings["OctopusAdmin"];
             var octopusPassword = ConfigurationManager.AppSettings["OctopusPassword"];
 
             var repository = new OctopusRepository(new OctopusServerEndpoint(octopusUrl));
 
-            repository.Users.SignIn(octopusUser, octopusPassword, true);
+            repository.Users.SignIn(octopusAdmin, octopusPassword, true);
 
             var user = repository.Users.GetCurrent();
 
