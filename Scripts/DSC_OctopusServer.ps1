@@ -54,8 +54,8 @@ Configuration DSC_OctopusServer
             OctopusAdminPassword = $OctopusPassword
 
             # optional parameters
-            AllowUpgradeCheck = $true
-            AllowCollectionOfAnonymousUsageStatistics = $true
+            AllowUpgradeCheck = $false
+            AllowCollectionOfAnonymousUsageStatistics = $false
             ForceSSL = $false
             ListenPort = 10943            
 
