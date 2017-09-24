@@ -56,15 +56,26 @@ Param(
     [string[]]$ScriptArgs,    
 
     #Octoposh custom parameters
-    [Parameter(Mandatory=$true)]
-    [ValidateSet("PowershellModule", "Website")]
-    [string]$Project = "",
     [string]$Configfile = ".\DevEnvConfig.json",
-	[switch]$CreateOctopusInstance = $false,
-	[switch]$RemoveOctopusInstanceAtEnd = $false,
+
+    [Parameter(ParameterSetName='PowershellModule')]
+    [switch]$CreateOctopusInstance = $false,
+
+    [Parameter(ParameterSetName='PowershellModule')]
+    [switch]$RemoveOctopusInstanceAtEnd = $false,
+
+    [Parameter(ParameterSetName='PowershellModule')]
     [switch]$RemoveOctopusInstanceAtBeggining = $false,
+
+    [Parameter(ParameterSetName='PowershellModule')]
     [switch]$GenerateTestData = $false,
-    [string]$BinaryVersion
+
+    [string]$BinaryVersion,
+
+    [Parameter(ParameterSetName='Website',Mandatory = $true)]
+    [switch]$BuildWebsite,    
+    [Parameter(ParameterSetName='PowershellModule',Mandatory = $true)]
+    [switch]$BuildPowershellModule
 )
 
 #region BaseCakeScript
@@ -210,7 +221,7 @@ if([string]::IsNullOrWhiteSpace($BinaryVersion)){
     $BinaryVersion = "0.0.0.0"
 }
 
-If($Project -eq "PowershellModule"){
+If($PSCmdlet.ParameterSetName -eq "PowershellModule"){
     
     $script = "PowershellModule_Build.cake"
 
@@ -226,7 +237,7 @@ If($Project -eq "PowershellModule"){
     exit $LASTEXITCODE
 }
 
-If($Project -eq "Website"){
+If($PSCmdlet.ParameterSetName -eq "Website"){
     
     $script = "Website_Build.cake"
        
