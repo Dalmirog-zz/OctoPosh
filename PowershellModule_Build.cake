@@ -148,8 +148,22 @@ Task("Create-Octopus-Instance")
     
 });
 
-Task("Run-TestDatagenerator")
+Task("Start-Octopus-Server")
     .IsDependentOn("Create-Octopus-Instance")
+    .Description("Make sure the Octopus Server is started before running tests")   
+    .Does(() =>
+{    
+    StartPowershellFile("Scripts/OctopusServer.ps1", new PowershellSettings()
+        .SetFormatOutput()
+        .SetLogOutput()
+        .WithArguments(args=>
+        {
+            args.Append("Action","StartService");
+        }));        
+});
+
+Task("Run-TestDatagenerator")
+    .IsDependentOn("Start-Octopus-Server")
     .WithCriteria(GenerateTestData == true)
     .Description("Runs the TestDataGenerator console to create all the Octopus resources needed for the tests to run ")    
     .Does(() =>
@@ -164,22 +178,8 @@ Task("Run-TestDatagenerator")
         }));    
 });
 
-Task("Start-Octopus-Server")
-    .IsDependentOn("Run-TestDatagenerator")
-    .Description("Make sure the Octopus Server is started before running tests")   
-    .Does(() =>
-{    
-    StartPowershellFile("Scripts/OctopusServer.ps1", new PowershellSettings()
-        .SetFormatOutput()
-        .SetLogOutput()
-        .WithArguments(args=>
-        {
-            args.Append("Action","StartService");
-        }));        
-});
-
 Task("Run-Unit-Tests")
-    .IsDependentOn("Start-Octopus-Server")
+    .IsDependentOn("Run-TestDatagenerator")
     .Does(() =>
 {    
     NUnit3("./Octoposh.Tests/bin/" + configuration + "/*.Tests.dll", new NUnit3Settings {        
@@ -211,7 +211,7 @@ Task("Remove-Octopus-Instance-At-End")
 //////////////////////////////////////////////////////////////////////
 
 Task("Default")
-    //.IsDependentOn("Run-Unit-Tests"); 
+    //.IsDependentOn("testDelete"); 
     .IsDependentOn("Remove-Octopus-Instance-At-End"); 
 
 //////////////////////////////////////////////////////////////////////
