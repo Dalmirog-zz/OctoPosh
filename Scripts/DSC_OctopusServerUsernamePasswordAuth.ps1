@@ -1,6 +1,6 @@
 ﻿[CmdletBinding()]
 param (
-    [string]$OctopusInstance = "OctopusServer"
+    [string]$OctopusInstance
     )
 
 #Copying custom OctopusDSC build to modulePath
