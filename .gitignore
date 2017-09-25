@@ -25,12 +25,10 @@ _ReSharper*/
 #Nuget packages
 packages
 
-#Ignore files added by cake
-tools/Cake
-tools/Cake.CoreCLR
-tools/Addins
-tools/NUnit.ConsoleRunner
-tools/*.md5sum
+#Ignore everything under tools except the files that start with !
+tools*/
+
+!tools/packages.config
 
 #Ignore library step templates
 OctopusExport/CommunityActionTemplates/*
@@ -42,6 +40,8 @@ Scripts/DSC_*/*
 #Publish Folders
 Octoposh/Publish
 Octoposh.Web/publish
+Octoposh.TestDataGenerator/publish
+Octoposh.Tests/publish
 
 #web library files
 Octoposh.web/wwwroot/lib/*

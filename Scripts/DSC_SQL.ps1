@@ -4,9 +4,10 @@
 [CmdletBinding()]
 param (
     [string]$SQLServerName = $env:COMPUTERNAME,
-    [string]$SQLInstanceName = "SQLExpress",
-    [string]$SQLDatabaseName = ""    
-    )
+    [string]$SQLInstanceName,
+    [string]$SQLDatabaseName
+
+)
 
 if((Get-DscResource -Module xSqlServer) -eq $null){
     Write-Output "DSC Resource [xSQLServer] not installed. Downloading from PSGallery..."

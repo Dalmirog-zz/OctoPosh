@@ -32,7 +32,11 @@ namespace Octoposh.Tests
             get
             {
                 var octopusUrl = string.Concat("http://localhost:", ConfigurationManager.AppSettings["OctopusBindingPort"]);
-                var octopusApiKey = ConfigurationManager.AppSettings["OctopusAPIKey"];
+
+                //todo do something about this terrible approach
+                //var octopusApiKey = ConfigurationManager.AppSettings["OctopusAPIKey"];
+
+                var octopusApiKey = Environment.GetEnvironmentVariable("OctopusAPIKey");
 
                 var endpoint = new OctopusServerEndpoint(octopusUrl, octopusApiKey);
 

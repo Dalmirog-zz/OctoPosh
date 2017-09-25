@@ -13,38 +13,45 @@ var BinaryVersion = Argument("BinaryVersion","");
 var RemoveOctopusInstanceAtBeggining = Argument("RemoveOctopusInstanceAtBeggining", false);
 var CreateOctopusInstance = Argument("CreateOctopusInstance", false);
 var RemoveOctopusInstanceAtEnd = Argument("RemoveOctopusInstanceAtEnd", false);
+var GenerateTestData = Argument("GenerateTestData", false);
 
 //////////////////////////////////////////////////////////////////////
 // PREPARATION
 //////////////////////////////////////////////////////////////////////
 
 // Define directories.
-//The compiled module will be sent to publishDir
-var publishDir = MakeAbsolute(Directory("./Octoposh/Publish/")).FullPath;
-var ManifestPath = Directory(publishDir) + Directory("Octoposh.psd1");
+//The compiled module will be sent to modulePublishDir
+var modulePublishDir = MakeAbsolute(Directory("./Octoposh/Publish/")).FullPath;
+var testDataGeneratorPublishDir = MakeAbsolute(Directory("./Octoposh.TestDataGenerator/Publish/")).FullPath;
+var testOutputDir = MakeAbsolute(Directory("./Octoposh.Tests/Publish")).FullPath;
+
+var pathsToClean = new string[]{modulePublishDir,testDataGeneratorPublishDir,testOutputDir};
+
+var ManifestPath = Directory(modulePublishDir) + Directory("Octoposh.psd1");
 
 //////////////////////////////////////////////////////////////////////
 // TASKS
 //////////////////////////////////////////////////////////////////////
 
-
-
 Task("Clean")    
     .Does(() =>
 {
-    CleanDirectory(publishDir);
+    //Add the path to clean to pathstoClean
+    foreach(var dir in pathsToClean){
+      CleanDirectory(dir);  
+    }
 });
 
 Task("Restore-NuGet-Packages")
     .IsDependentOn("Clean")
     .Does(() =>
-{
-    NuGetRestore("Octoposh.sln");    
+{    
+    NuGetRestore("Octoposh.sln");
 });
 
 Task("Replace-Test-Project-App-Settings")   
     .IsDependentOn("Restore-NuGet-Packages")
-    .Description("Replace app.config settings on test project so they are run against the Octopus Instance that's being created by this build.")    
+    .Description("Replace appconfig files on projects so they are run against the Octopus Instance that's being created by this build.")
     .Does(() =>
 {    
     StartPowershellFile("Octoposh.Tests/Scripts/replaceAppSettings.ps1", new PowershellSettings()
@@ -53,7 +60,15 @@ Task("Replace-Test-Project-App-Settings")
         .WithArguments(args=>
         {           
             args.Append("ConfigFile",ConfigFile);           
-        }));        
+        }));
+
+    StartPowershellFile("Octoposh.TestDataGenerator/Scripts/replaceAppSettings.ps1", new PowershellSettings()
+        .SetFormatOutput()
+        .SetLogOutput()
+        .WithArguments(args=>
+        {           
+            args.Append("ConfigFile",ConfigFile);           
+        }));       
 });
 
 Task("Build")
@@ -61,13 +76,26 @@ Task("Build")
     .Does(() =>
     {           
         //Build PS Module     
+        Information("Running MSBuild for Octoposh.csproj...");
         MSBuild("Octoposh/Octoposh.csproj", settings =>
         settings.SetConfiguration(configuration)
-            .WithProperty("OutDir", publishDir));
+            .WithProperty("OutDir", modulePublishDir));
 
         //Build Tests
+        Information("Running MSBuild for Octoposh.Tests.csproj...");
         MSBuild("Octoposh.Tests/Octoposh.Tests.csproj", settings =>
-        settings.SetConfiguration(configuration));    
+        settings.SetConfiguration(configuration));
+
+        //Build website
+        var testDataGeneratorSettings = new DotNetCorePublishSettings
+        {
+            Framework = "netcoreapp2.0",
+            Configuration = "Release",
+            OutputDirectory = testDataGeneratorPublishDir
+        };
+
+        Information("Running dotnet publish for Octoposh.TestDataGenerator.csproj...");
+        DotNetCorePublish("./Octoposh.TestDataGenerator/Octoposh.TestDataGenerator.csproj", testDataGeneratorSettings);
     });
 
 Task("Update-Module-Manifest")
@@ -120,25 +148,9 @@ Task("Create-Octopus-Instance")
     
 });
 
-Task("Import-Octopus-Backup")
-    .IsDependentOn("Create-Octopus-Instance")
-    .WithCriteria(CreateOctopusInstance == true)
-    .Description("Imports the Octopus backup that's on source control with the project")    
-    .Does(() =>
-{    
-    StartPowershellFile("Scripts/OctopusServer.ps1", new PowershellSettings()
-        .SetFormatOutput()
-        .SetLogOutput()
-        .WithArguments(args=>
-        {
-            args.Append("Action","ImportBackup");           
-            args.Append("ConfigFile",ConfigFile);
-        }));    
-});
-
 Task("Start-Octopus-Server")
-    .IsDependentOn("Import-Octopus-Backup")
-    .Description("Starts the Octopus server so the tests can run against it")   
+    .IsDependentOn("Create-Octopus-Instance")
+    .Description("Make sure the Octopus Server is started before running tests")   
     .Does(() =>
 {    
     StartPowershellFile("Scripts/OctopusServer.ps1", new PowershellSettings()
@@ -150,13 +162,29 @@ Task("Start-Octopus-Server")
         }));        
 });
 
+Task("Run-TestDatagenerator")
+    .IsDependentOn("Start-Octopus-Server")
+    .WithCriteria(GenerateTestData == true)
+    .Description("Runs the TestDataGenerator console to create all the Octopus resources needed for the tests to run ")    
+    .Does(() =>
+{    
+    StartPowershellFile("Scripts/OctopusServer.ps1", new PowershellSettings()
+        .SetFormatOutput()
+        .SetLogOutput()
+        .WithArguments(args=>
+        {
+            args.Append("Action","GenerateTestData");           
+            args.Append("ConfigFile",ConfigFile);
+        }));    
+});
 
 Task("Run-Unit-Tests")
-    .IsDependentOn("Start-Octopus-Server")
+    .IsDependentOn("Run-TestDatagenerator")
     .Does(() =>
 {    
     NUnit3("./Octoposh.Tests/bin/" + configuration + "/*.Tests.dll", new NUnit3Settings {        
-        NoResults = true    
+        NoResults = false, //Needs to be "true" for NUnit to create TestResult.xml
+        WorkingDirectory = testOutputDir //TestResult.xml will be dropped under "WorkingDirectory"
     });    
 });
 
@@ -183,7 +211,8 @@ Task("Remove-Octopus-Instance-At-End")
 //////////////////////////////////////////////////////////////////////
 
 Task("Default")
-    .IsDependentOn("Remove-Octopus-Instance-At-End");
+    //.IsDependentOn("testDelete"); 
+    .IsDependentOn("Remove-Octopus-Instance-At-End"); 
 
 //////////////////////////////////////////////////////////////////////
 // EXECUTION

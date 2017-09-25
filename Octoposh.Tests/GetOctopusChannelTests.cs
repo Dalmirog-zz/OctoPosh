@@ -60,7 +60,7 @@ namespace Octoposh.Tests
         [Test]
         public void GetChannelBySingleNameAndMultipleProjects()
         {
-            var channelName = Channel1;
+            var channelName = DefaultChannel;
             var projectNames = new string[] {Project1,Project2};
 
             var parameters = new List<CmdletParameter>
@@ -219,7 +219,7 @@ namespace Octoposh.Tests
                 }
                 else
                 {
-                    Console.WriteLine("Team found with name that was not expected: [{0}]", resource.Name);
+                    Console.WriteLine("Channel found with name that was not expected: [{0}]", resource.Name);
                     throw new Exception();
                 }
             }
@@ -264,3 +264,4 @@ namespace Octoposh.Tests
         }
     }
 }
+

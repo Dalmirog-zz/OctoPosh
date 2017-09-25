@@ -126,9 +126,9 @@ namespace Octoposh.Tests
         public void GetDeploymentBySingleRelease()
         {
             var projectName = Project1;
-            var rnd = new Random();
+            var rnd = new Random().Next(1,4);
 
-            var releaseVersion = $"0.0.{rnd.Next(1, 12)}";
+            var releaseVersion = $"{rnd}.0.0";
             
             var parameters = new List<CmdletParameter>
             {
@@ -162,13 +162,15 @@ namespace Octoposh.Tests
             var projectName = Project1;
 
             Random rnd = new Random();
-            var releaseVersions = new string[]
-            {
-                string.Format("0.0.{0}", rnd.Next(1, 6)),
-                string.Format("0.0.{0}", rnd.Next(7,12))
-            }; //Adding 2 different versions from 0.0.1 to 0.0.6 & from 0.0.7 to 0.0.12
 
-            // todo add a CW for each parameter passed in the test
+            var version1 = $"{rnd.Next(1, 2)}.0.0";
+            var isVersion1 = false;
+
+            var version2 = $"{rnd.Next(3, 4)}.0.0";
+            var isVersion2 = false;
+
+            //var releaseVersions = 
+            
             var parameters = new List<CmdletParameter>
             {
                 new CmdletParameter()
@@ -179,23 +181,33 @@ namespace Octoposh.Tests
                 new CmdletParameter()
                 {
                     Name = "ReleaseVersion",
-                    MultipleValue = releaseVersions
-                }
+                    MultipleValue = new string[]{version1,version2}//Adding 2 different versions from 1.0.0 to 2.0.0 & from 3.0.0 to 4.0.0 //releaseVersions
+        }
             };
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
             var results = powershell.Invoke<OutputOctopusDeployment>();
 
-            Assert.Greater(results.Count, 0);
-
             Console.WriteLine("Found [{0}] deployments", results.Count);
+
             foreach (var item in results)
             {
-                Assert.IsTrue(results.Any(d => (releaseVersions.Contains(d.ReleaseVersion)) && (d.ProjectName == projectName)));
-                Assert.IsTrue(releaseVersions.Any(rv => rv.Equals(item.ReleaseVersion)));
                 Assert.AreEqual(item.ProjectName, projectName);
+
+                if (item.ReleaseVersion == version1)
+                {
+                    isVersion1 = true;
+                }
+                if (item.ReleaseVersion == version2)
+                {
+                    isVersion2 = true;
+                }
             }
-            Console.WriteLine("The [{0}] deployments belong to releases [{1}] or [{2}] and project [{3}]", results.Count, releaseVersions[0], releaseVersions[1], projectName);
+
+            Assert.IsTrue(isVersion1);
+            Assert.IsTrue(isVersion2);
+
+            Console.WriteLine("The [{0}] deployments belong to releases [{1}] or [{2}] and project [{3}]", results.Count, version1, version2, projectName);
         }
 
         [Test]
@@ -204,7 +216,7 @@ namespace Octoposh.Tests
             var projectName = Project1;
 
             var rnd = new Random();
-            var latestAmount = rnd.Next(1, 6); //Getting latest 1-6 releases to reduce test time.
+            var latestAmount = rnd.Next(1, 4); //Getting latest 1-6 releases to reduce test time.
 
             var parameters = new List<CmdletParameter>
             {
@@ -220,6 +232,7 @@ namespace Octoposh.Tests
                 }
             };
 
+            //TODO review performance of this test/cmdlet 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
             var results = powershell.Invoke<OutputOctopusDeployment>();
 
@@ -228,12 +241,14 @@ namespace Octoposh.Tests
             Console.WriteLine("Found [{0}] deployments", results.Count);
 
             var releaseVersions = new HashSet<string>(results.Select(d => d.ReleaseVersion));
+
             Assert.IsTrue(releaseVersions.Count <= latestAmount);
             Assert.IsTrue(results.Any(d => d.ProjectName == projectName));
 
             Console.WriteLine("The [{0}] deployments belong to the latest [{1}] releases of project [{2}]", results.Count, latestAmount, projectName);
         }
 
+        [Ignore("Need to review")]
         [Test]
         public void GetDeploymentAfterDate()
         {
@@ -241,9 +256,9 @@ namespace Octoposh.Tests
 
             var rnd = new Random();
 
-            var plusDays = rnd.Next(0, 3); //I added test data for aprox 3 days after baseDate. So this will go as high as 3.
+            var plusDays = rnd.Next(0, 3); 
 
-            DateTime afterDate = baseDate.AddDays(plusDays); //adding """Random""" amount of days so the test result is not always the same. Good enough for a test. Feel free to PR a better solution :)
+            var afterDate = baseDate.AddDays(plusDays); 
 
             var project = Project1;
 
@@ -269,12 +284,13 @@ namespace Octoposh.Tests
             Console.WriteLine("Found [{0}] deployments", results.Count);
             var deploymentsStartDates = new HashSet<DateTime>(results.Select(d => d.DeploymentStartTime));
 
-            Assert.IsFalse(deploymentsStartDates.Any(d => afterDate >= d));//Checking afterDate is not greater than the start time of any deployment on the results collection
+            Assert.IsFalse(deploymentsStartDates.Any(d => afterDate >= d));
 
             Console.WriteLine("The [{0}] deployments found started after [{1}]", results.Count, afterDate);
         }
 
-        //[Test]
+        [Ignore("Need to review")]
+        [Test]
         public void GetDeploymentBeforeDate()
         {
             DateTime baseDate = new DateTime(2017, 2, 11); //Date of the first deployment on the test data.

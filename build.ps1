@@ -56,14 +56,26 @@ Param(
     [string[]]$ScriptArgs,    
 
     #Octoposh custom parameters
-    [Parameter(Mandatory=$true)]
-    [ValidateSet("PowershellModule", "Website")]
-    [string]$Project = "",
     [string]$Configfile = ".\DevEnvConfig.json",
-	[switch]$CreateOctopusInstance = $false,
-	[switch]$RemoveOctopusInstanceAtEnd = $false,
-	[switch]$RemoveOctopusInstanceAtBeggining = $false,
-    [string]$BinaryVersion
+
+    [Parameter(ParameterSetName='PowershellModule')]
+    [switch]$CreateOctopusInstance = $false,
+
+    [Parameter(ParameterSetName='PowershellModule')]
+    [switch]$RemoveOctopusInstanceAtEnd = $false,
+
+    [Parameter(ParameterSetName='PowershellModule')]
+    [switch]$RemoveOctopusInstanceAtBeggining = $false,
+
+    [Parameter(ParameterSetName='PowershellModule')]
+    [switch]$GenerateTestData = $false,
+
+    [string]$BinaryVersion,
+
+    [Parameter(ParameterSetName='Website',Mandatory = $true)]
+    [switch]$BuildWebsite,    
+    [Parameter(ParameterSetName='PowershellModule',Mandatory = $true)]
+    [switch]$BuildPowershellModule
 )
 
 #region BaseCakeScript
@@ -209,14 +221,14 @@ if([string]::IsNullOrWhiteSpace($BinaryVersion)){
     $BinaryVersion = "0.0.0.0"
 }
 
-If($Project -eq "PowershellModule"){
+If($PSCmdlet.ParameterSetName -eq "PowershellModule"){
     
     $script = "PowershellModule_Build.cake"
 
     # Start Cake
     Write-Host "Running build script..."
 
-    $expression = "& `"$CAKE_EXE`" `"$Script`" -target=`"$Target`" -configuration=`"$Configuration`" -verbosity=`"$Verbosity`" $UseMono $UseDryRun $UseExperimental $ScriptArgs -ConfigFile=`"$ConfigFile`" -BinaryVersion=`"$BinaryVersion`" -RemoveOctopusInstanceAtBeggining=`"$RemoveOctopusInstanceAtBeggining`" -CreateOctopusInstance=`"$CreateOctopusInstance`" -RemoveOctopusInstanceAtEnd=`"$RemoveOctopusInstanceAtEnd`""
+    $expression = "& `"$CAKE_EXE`" `"$Script`" -target=`"$Target`" -configuration=`"$Configuration`" -verbosity=`"$Verbosity`" $UseMono $UseDryRun $UseExperimental $ScriptArgs -ConfigFile=`"$ConfigFile`" -BinaryVersion=`"$BinaryVersion`" -RemoveOctopusInstanceAtBeggining=`"$RemoveOctopusInstanceAtBeggining`" -CreateOctopusInstance=`"$CreateOctopusInstance`" -RemoveOctopusInstanceAtEnd=`"$RemoveOctopusInstanceAtEnd`" -GenerateTestData=`"$GenerateTestData`""
 
     Write-Verbose "About to run [$expression]"
 
@@ -225,7 +237,7 @@ If($Project -eq "PowershellModule"){
     exit $LASTEXITCODE
 }
 
-If($Project -eq "Website"){
+If($PSCmdlet.ParameterSetName -eq "Website"){
     
     $script = "Website_Build.cake"
        
