@@ -1,15 +1,15 @@
 # Contributing guide to Octoposh
 
-- Asking Questions
-- Reporting Bugs
-- Sending PRs
-  - Submitting a bug fix
-  - Submitting a new cmdlet/functionality
-  - Submitting changes to the built-in module help
-  - Submitting changes to the wiki
-- Setting up the development environment
-  - Dev machine requirements
-  - Running the unit tests
+- [Asking Questions](#asking-questions)
+- [Reporting Bugs](#reporting-bugs)
+- [Sending PRs](#sending-prs)
+  - [Submitting a bug fix](#submitting-a-bug-fix)
+  - [Submitting a new cmdlet/functionality](#submitting-a-new-cmdletfunctionality)
+  - [Submitting changes to the built-in module help](#submitting-changes-to-the-built-in-module-help)
+  - [Submitting changes to the wiki](#submitting-changes-to-the-wiki)
+- [Setting up the development environment](#setting-up-the-development-environment)
+  - [Dev machine requirements](#dev-machine-requirements)
+  - [Running the unit tests](#running-the-unit-tests)
   
 
 ## Asking Questions
