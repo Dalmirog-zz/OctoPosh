@@ -1,22 +1,16 @@
-#Contributing guide to Octoposh
+# Contributing guide to Octoposh
 
 - Asking Questions
-
 - Reporting Bugs
-
 - Sending PRs
-
   - Submitting a bug fix
   - Submitting a new cmdlet/functionality
   - Submitting changes to the built-in module help
   - Submitting changes to the wiki
-
 - Setting up the development environment
-
   - Dev machine requirements
   - Running the unit tests
-
-  ​
+  
 
 ## Asking Questions
 
@@ -35,7 +29,7 @@ Go to the project's [Gitter Channel ](https://gitter.im/Dalmirog/OctoPosh#initia
 
 We've all been in that situation where we send a PR and the Project owner doesn't merge it because of reasons. So as a general rule: always ask in the project's [Gitter Channel](https://gitter.im/Dalmirog/OctoPosh#initial) before you dedicate your precious time in a PR.
 
-###Submitting a bug fix
+### Submitting a bug fix
 
 Before you start working on a fix, make sure it is an actual bug by asking in the project's [Gitter Channel](https://gitter.im/Dalmirog/OctoPosh#initial). All bug fixes must have their correspondent unit tests.
 
@@ -68,20 +62,18 @@ A **Spell-y/Magical** approach would be
 Disable-Tentacles -name Prod_*
 ```
 
-
-
 Before you submit any kind of PR for new functionality, please discuss it first with the project owners in the project's [Gitter Channel](https://gitter.im/Dalmirog/OctoPosh#initial) . We don't want you to spend a lot of time on something that might never get merged :pray:.
 
 Of course, every PR must have their respective Unit tests.
 
-###Submitting changes to the built-in module help
+### Submitting changes to the built-in module help
 
 When you run `Get-Help -name CmdletName` , the help text that you see comes from the XML Documentation comments at the top of each cmdlet. For example if you wanted to send a PR for the cmdlet `Get-OctopusMachine`, you should be looking at:
 
 - For the cmdles description and examples look at [these lines in the code](https://github.com/Dalmirog/OctoPosh/blob/master/Octoposh/Cmdlets/GetOctopusMachine.cs#L11-L40) 
 - For the parameter's help text look at the XML comment at the top of each parameter [like this](https://github.com/Dalmirog/OctoPosh/blob/master/Octoposh/Cmdlets/GetOctopusMachine.cs#L52-L58)
 
-###Submitting changes to the wiki
+### Submitting changes to the wiki
 
 The source code of the wiki is split between 2 sources:
 
@@ -91,7 +83,7 @@ The source code of the wiki is split between 2 sources:
 
 ## Setting up the development environment
 
-###Dev machine requirements
+### Dev machine requirements
 
 - SQL Server 2012+. Can be Express
 - Octopus Server 3.17+ Installed. No need to have the Tentacle installed.
