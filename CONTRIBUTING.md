@@ -89,8 +89,6 @@ The source code of the wiki is split between 2 sources:
 
 2) The `Getting Started`,`Advanced Usage` and `Release Notes` sections are raw markdown files under `[ProjectRoot]/docs`
 
-
-
 ## Setting up the development environment
 
 ###Dev machine requirements
@@ -99,3 +97,11 @@ The source code of the wiki is split between 2 sources:
 - Octopus Server 3.17+ Installed. No need to have the Tentacle installed.
 - .NET CORE 2.0.
 - Latest Visual Studio 2017.
+
+### Running the unit tests
+
+All the tests for the Octoposh module are in the `Octoposh.Tests` project. These tests depend on some specific test data which can be programmatically generated using the `Octoposh.TestDataGenerator` project. 
+
+For both projects, make sure to enter the Octopus Username(needs to be admin on the instance), password and Octopus Instance port in their respective `app.config` and `appConfig.json` files.
+
+Once the `Octoposh.TestDataGenerator` console runs successfully, you should be able to run the NUnit3 tests. You should be able to run the `Octoposh.TestDataGenerator` console as many times as you want and it shouldn't have problems with existing data.a
