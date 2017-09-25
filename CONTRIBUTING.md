@@ -10,6 +10,7 @@
 - [Setting up the development environment](#setting-up-the-development-environment)
   - [Dev machine requirements](#dev-machine-requirements)
   - [Running the unit tests](#running-the-unit-tests)
+  - [Running the Cake Build](#running-the-cake-build)
   
 
 ## Asking Questions
@@ -96,4 +97,8 @@ All the tests for the Octoposh module are in the `Octoposh.Tests` project. These
 
 For both projects, make sure to enter the Octopus Username(needs to be admin on the instance), password and Octopus Instance port in their respective `app.config` and `appConfig.json` files.
 
-Once the `Octoposh.TestDataGenerator` console runs successfully, you should be able to run the NUnit3 tests. You should be able to run the `Octoposh.TestDataGenerator` console as many times as you want and it shouldn't have problems with existing data.a
+Once the `Octoposh.TestDataGenerator` console runs successfully, you should be able to run the NUnit3 tests. You should be able to run the `Octoposh.TestDataGenerator` console as many times as you want and it shouldn't have problems with existing data.
+
+### Running the Cake build
+
+WIP
