@@ -138,7 +138,7 @@ namespace Octoposh.Tests
         [Test]
         public void GetTenantUsingResourceOnlyReturnsRawResource()
         {
-            var TenantName = Tenant1;
+            var tenantName = Tenant1;
 
             var parameters = new List<CmdletParameter>
             {
@@ -149,7 +149,7 @@ namespace Octoposh.Tests
                 new CmdletParameter()
                 {
                     Name = "TenantName",
-                    SingleValue = TenantName
+                    SingleValue = tenantName
                 }
             };
 

@@ -29,11 +29,11 @@ Configuration DSC_OctopusServerUsernamePasswordAuth
         cOctopusServerUsernamePasswordAuthentication "Enable Username/Password Auth"
         {
             InstanceName = $OctopusInstance
-            Enabled = $true            
+            Enabled = $true
         }
     }
 }
 
-DSC_Octopusserver -OutputPath $PSScriptRoot\DSC_OctopusServerUsernamePasswordAuth
+DSC_OctopusServerUsernamePasswordAuth -OutputPath $PSScriptRoot\DSC_OctopusServerUsernamePasswordAuth
 
-Start-DscConfiguration $PSScriptRoot\DSC_OctopusServerUsernamePasswordAuth -wait -Force
+Start-DscConfiguration $PSScriptRoot\DSC_OctopusServerUsernamePasswordAuth -wait -Force -Verbose

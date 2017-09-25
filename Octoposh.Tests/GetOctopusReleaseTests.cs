@@ -14,7 +14,7 @@ namespace Octoposh.Tests
     {
         private static readonly string CmdletName = "Get-OctopusRelease";
         private static readonly Type CmdletType = typeof(GetOctopusRelease);
-        private static readonly string Project1 = "ProjectTests_Project1";
+        private static readonly string Project1 = "ReleaseTests_Project1";
 
         [Test]
         public void GetReleaseByProject()
@@ -35,6 +35,7 @@ namespace Octoposh.Tests
 
             Console.WriteLine("Found [{0}] releases",results.Count);
             Assert.Greater(results.Count,1);
+
             foreach (var item in results)
             {
                 Assert.AreEqual(item.ProjectName,projectName);
@@ -46,7 +47,7 @@ namespace Octoposh.Tests
         public void GetReleaseBySingleVersion()
         {
             var projectName = Project1;
-            var ReleaseVersion = "0.0.1";
+            var ReleaseVersion = "1.0.0";
 
             var parameters = new List<CmdletParameter>()
             {
@@ -73,7 +74,7 @@ namespace Octoposh.Tests
         public void GetReleaseByMultipleVersions()
         {
             var projectName = Project1;
-            var releaseVersions = new string[]{"0.0.1","0.0.2"};
+            var releaseVersions = new string[]{"1.0.0","2.0.0"};
 
             var parameters = new List<CmdletParameter>()
             {
@@ -108,8 +109,8 @@ namespace Octoposh.Tests
         {
             var projectName = Project1;
 
-            var goodVersion = "0.0.1";
-            var badVersion = "whatever";
+            var goodVersion = "1.0.0";
+            var badVersion = "TotallyNotAVersion";
 
             var releaseVersions = new string[] { goodVersion, badVersion };
 

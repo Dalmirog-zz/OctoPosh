@@ -15,9 +15,7 @@ namespace Octoposh.Tests
     {
         private static readonly string CmdletName = "Update-OctopusResource";
         private static readonly Type CmdletType = typeof(UpdateOctopusResource);
-        private static readonly string OctopusUrl = string.Concat("http://localhost:", ConfigurationManager.AppSettings["OctopusBindingPort"]);
-        private static readonly string OctopusApiKey = ConfigurationManager.AppSettings["OctopusAPIKey"];
-        private static readonly OctopusRepository Repository = new OctopusRepository(new OctopusServerEndpoint(OctopusUrl,OctopusApiKey));
+        private static readonly OctopusRepository Repository = TestUtilities.Repository;
 
         [Test]
         public void UpdateProject()
@@ -262,8 +260,8 @@ namespace Octoposh.Tests
         [Test]
         public void UpdateTenant()
         {
-            var unmodifiedName = "unmodified_TestTenant";
-            var modifiedName = "modified_TestTenant";
+            var unmodifiedName = "unmodified_Tenant";
+            var modifiedName = "modified_Tenant";
 
             var baseresource = Repository.Tenants.FindByName(unmodifiedName);
 
@@ -300,8 +298,8 @@ namespace Octoposh.Tests
         [Test]
         public void UpdateTagSet()
         {
-            var unmodifiedName = "Unmodified_TestTagSet";
-            var modifiedName = "Modified_TestTagSet";
+            var unmodifiedName = "Unmodified_TagSet";
+            var modifiedName = "Modified_TagSet";
 
             var baseresource = Repository.TagSets.FindByName(unmodifiedName);
 
@@ -457,7 +455,7 @@ namespace Octoposh.Tests
             var unmodifiedReleaseNotes = "unmodified_ReleaseNotes";
             var modifiedReleaseNotes = "modified_ReleaseNotes";
 
-            var releaseVersion = "0.0.1";
+            var releaseVersion = "1.0.0";
             var project = Repository.Projects.FindByName("ReleaseTests_Project1");
             var baseresource = Repository.Projects.GetReleaseByVersion(project, releaseVersion);
 

@@ -23,14 +23,9 @@ namespace Octoposh.Tests
         private static readonly Type CmdletType = typeof(SetOctopusReleaseStatus);
         private static readonly string ProjectName = "ReleaseTests_Project1";
 
-        private static readonly string Server = string.Concat("http://localhost:", ConfigurationManager.AppSettings["OctopusBindingPort"]);
-        private static readonly string Apikey = ConfigurationManager.AppSettings["OctopusAPIKey"];
-        private static readonly OctopusServerEndpoint Endpoint = new OctopusServerEndpoint(Server, Apikey);
-        private static readonly OctopusRepository Repository = new OctopusRepository(Endpoint);
-
-        private static readonly ProjectResource Project = Repository.Projects.FindByName(ProjectName);
-        private static readonly string ReleaseVersion = "0.0.1";
-        private static readonly ReleaseResource Release = Repository.Projects.GetReleaseByVersion(Project, ReleaseVersion);
+        private static readonly ProjectResource Project = TestUtilities.Repository.Projects.FindByName(ProjectName);
+        private static readonly string ReleaseVersion = "1.0.0";
+        private static readonly ReleaseResource Release = TestUtilities.Repository.Projects.GetReleaseByVersion(Project, ReleaseVersion);
 
         private static readonly string Blocked = "Blocked";
         private static readonly string Unblocked = "Unblocked";
@@ -42,7 +37,7 @@ namespace Octoposh.Tests
         [Test]
         public void BlockAndUnblockReleaseByProjectNameAndVersion()
         {
-            var latestDefect = Repository.Defects.GetDefects(Release).Items.LastOrDefault();
+            var latestDefect = TestUtilities.Repository.Defects.GetDefects(Release).Items.LastOrDefault();
 
             //If the release doesn't have any defects or the last one has the status "Resolved" (meaning its not blocked) => Block first and unblock later.
             if (latestDefect == null || latestDefect.Status.ToString() == "Resolved")
@@ -61,7 +56,7 @@ namespace Octoposh.Tests
         [Test]
         public void BlockAndUnblockReleaseByReleaseResource()
         {
-            var latestDefect = Repository.Defects.GetDefects(Release).Items.LastOrDefault();
+            var latestDefect = TestUtilities.Repository.Defects.GetDefects(Release).Items.LastOrDefault();
 
             //If the release doesn't have any defects or the last one has the status "Resolved" (meaning its not blocked) => Block first and unblock later.
             if (latestDefect == null || latestDefect.Status.ToString() == "Resolved")

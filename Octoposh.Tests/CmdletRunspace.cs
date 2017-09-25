@@ -1,18 +1,32 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
 using System.Management.Automation;
 using System.Management.Automation.Runspaces;
-using System.Text;
-using System.Threading.Tasks;
-using Octoposh.Cmdlets;
+using Octopus.Client;
 
 namespace Octoposh.Tests
 {
+    //todo should make this class static probably
     internal class CmdletRunspace
     {
+        public CmdletRunspace()
+        {
+            //var octopusUrl = string.Concat("http://localhost:", ConfigurationManager.AppSettings["OctopusBindingPort"]);
+            //var octopusUser = ConfigurationManager.AppSettings["OctopusUser"];
+            //var octopusPassword = ConfigurationManager.AppSettings["OctopusPassword"];
+
+            //var repository = new OctopusRepository(new OctopusServerEndpoint(octopusUrl));
+
+            //repository.Users.SignIn(octopusUser, octopusPassword, true);
+
+            //var user = repository.Users.GetCurrent();
+
+            //var octopusApiKey = repository.Users.CreateApiKey(user, "Unit Tests").ApiKey;
+
+            //Environment.SetEnvironmentVariable("OctopusURL", octopusUrl);
+            //Environment.SetEnvironmentVariable("OctopusAPIKey", octopusApiKey);
+        }
         /// <summary>
         /// Creates a Powershell cmdlet with parameters
         /// </summary>
@@ -62,13 +76,6 @@ namespace Octoposh.Tests
 
                 powershell.Commands.AddCommand(command);
 
-                var octopusUrl = string.Concat("http://localhost:", ConfigurationManager.AppSettings["OctopusBindingPort"]);
-                var octopusApiKey = ConfigurationManager.AppSettings["OctopusAPIKey"];
-
-                //todo: figure out what to do with the URL and API Key
-                Environment.SetEnvironmentVariable("OctopusURL", octopusUrl);
-                Environment.SetEnvironmentVariable("OctopusAPIKey", octopusApiKey);
-
                 return powershell;
         }
 
@@ -99,13 +106,6 @@ namespace Octoposh.Tests
             var command = new Command(cmdletName);
 
             powershell.Commands.AddCommand(command);
-
-            var octopusUrl = string.Concat("http://localhost:", ConfigurationManager.AppSettings["OctopusBindingPort"]);
-            var octopusApiKey = ConfigurationManager.AppSettings["OctopusAPIKey"];
-
-            //todo: figure out what to do with the URL and API Key
-            Environment.SetEnvironmentVariable("OctopusURL", octopusUrl);
-            Environment.SetEnvironmentVariable("OctopusAPIKey", octopusApiKey);
 
             return powershell;
         }
