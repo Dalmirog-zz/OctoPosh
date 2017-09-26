@@ -3,20 +3,12 @@
 **Octoposh** is a Powershell module that provides cmdlets to interact with Octopus Deploy. All the cmdlets included rely on the [Octopus .NET client](https://www.nuget.org/packages/Octopus.Client) .
 
 - [Getting Started](#getting-started)
-
 - [Documentation](#documentation)
-
 - [Contribution guide](https://github.com/Dalmirog/OctoPosh/blob/master/CONTRIBUTING.md)
-
 - [Questions and feature requests](#questions-and-feature-requests)
-
 - [Builds](#builds)
-
 - [Disclaimer](#disclaimer)
-
 - [License](https://github.com/Dalmirog/OctoPosh/blob/master/LICENSE.md)
-
-  ​
 
 ## Getting Started
 
