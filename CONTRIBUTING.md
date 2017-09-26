@@ -12,6 +12,7 @@
   - [Running the unit tests](#running-the-unit-tests)
   - [Running the Cake Build](#running-the-cake-build)
 - [Working on the code](#working-on-the-code)
+  - [Branches](#branches)
   - [Working with cmdlets](#adding-a-new-cmdlet)
   - [Writing Tests](#writing-tests)
   - [Adding Test Data](#adding-test-data)
@@ -82,9 +83,9 @@ When you run `Get-Help -name CmdletName` , the help text that you see comes from
 
 The source code of the wiki is split between 2 sources:
 
-1) Each cmdlet's help page under the `Cmdlets` section is programmatically generated from the output of `Get-Help -name CmdletName`. So if you want to submit a fix to that, It'll be the same as submitting changes to the built-in module help.
+1) Each cmdlet's help page under the `Cmdlets` section is programmatically generated from the output of `Get-Help -name CmdletName`. So if you want to submit a fix to that, you'll need to make the changes to the XML comment help in the `[cmdletname].cs` file. The changes will be reflected in the wiki during the next build.
 
-2) The `Getting Started`,`Advanced Usage` and `Release Notes` sections are raw markdown files under `[ProjectRoot]/docs`
+2) The `Getting Started`,`Advanced Usage` and `Release Notes` sections are raw markdown files under `[ProjectRoot]/docs` that you can edit manually. Those changes will be reflected as soon as the PR is merged to master.
 
 ## Setting up the development environment
 
@@ -109,6 +110,12 @@ WIP
 
 ## Working on the code
 
+### Branches
+
+  - `Master` should always contain exactly what's in Production/PowershellGallery at the moment. Do not submit PRs against this branch.
+  
+  - `Development` is the only branch that will be merged to `Master`. All PRs should be submitted using a separate branch based on `Development`, and will eventually be merged to `Development`.
+
 ### Working with cmdlets
 
 WIP
@@ -123,6 +130,8 @@ https://github.com/Dalmirog/OctoPosh/blob/master/Octoposh.Tests/GetOctopusMachin
 
 The project `Octoposh.TestDataGenerator` is in charge of adding the test data needed by the tests to an Octopus Instance. As every console project, it starts from `program.cs`, which then runs a set of Fixtures under the `Fixtures` namespace. Try opening all the fixtures to understand what each one does and how to extend them/add your own data.
 
-The console was build with the idea that it should be re-runable at all times, regardless of the existing data on the Octopus Instance. For example: If a resource that the console is trying to create already exists, It'll fetch it, reconfigure it as detailed in the fixture and then save it. In very few cases (like creating releases) the resource will be deleted and re-created from scratch.
+The console was built with the idea that it should be re-runable at all times, regardless of the existing data on the Octopus Instance. For example: If a resource that the console is trying to create already exists, It'll fetch it, reconfigure it as detailed in the fixture and then save it. In very few cases (like creating releases) the resource will be deleted and re-created from scratch.
 
-To run the project simply set the connection data in the `appSettings.json` file, compile it and then run `dotnet.exe run Octoposh.TestDataGenerator.dll`
+To run the project simply set the connection data in the `appSettings.json` file, compile it and then run:
+
+`dotnet.exe run Octoposh.TestDataGenerator.dll`
