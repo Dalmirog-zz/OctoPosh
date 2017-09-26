@@ -11,6 +11,10 @@ using Serilog;
 
 namespace Octoposh.TestDataGenerator.Fixtures
 {
+    /// <summary>
+    /// This fixture is in charge of creating: Machines, Environments, Lifecycles, ProjectGroups, Projects
+    /// Accounts, Channels, Tenants and Tenant tag sets
+    /// </summary>
     static class InfrastructureFixture
     {
         private static IOctopusAsyncRepository _repository;
@@ -26,6 +30,9 @@ namespace Octoposh.TestDataGenerator.Fixtures
         private static readonly string[] TenantNames = { "TenantTests_Tenant1", "TenantTests_Tenant2", "unmodified_Tenant" };
         #endregion
 
+        /// <summary>
+        /// Run the fixture
+        /// </summary>
         public static void Run()
         {
             _repository = OctopusRepository.GetRepository().Result;
@@ -428,7 +435,7 @@ namespace Octoposh.TestDataGenerator.Fixtures
 
         #region Tenants and Tenant tag sets
 
-        public static void CreateTagSets()
+        private static void CreateTagSets()
         {
             var tagSetList = new List<TagSetResource>();
 
@@ -456,7 +463,7 @@ namespace Octoposh.TestDataGenerator.Fixtures
             }
         }
 
-        public static void CreateTenants()
+        private static void CreateTenants()
         {
             var tenantList = new List<TenantResource>();
 

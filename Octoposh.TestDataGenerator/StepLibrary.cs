@@ -5,8 +5,15 @@ using Octopus.Client.Model;
 
 namespace Octoposh.TestDataGenerator
 {
+    /// <summary>
+    /// Static class that exposes baked in steps ready to be added to Deployment Processes
+    /// </summary>
     public static class StepLibrary
     {
+        /// <summary>
+        /// A simple script step that prints "Hello World" using Powershell.
+        /// </summary>
+        /// <returns>DeploymentStepResource</returns>
         public static DeploymentStepResource GetSimpleScriptStep()
         {
             var step = new DeploymentStepResource()

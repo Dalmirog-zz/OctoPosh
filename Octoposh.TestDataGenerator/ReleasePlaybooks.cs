@@ -1,16 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Octoposh.TestDataGenerator.Fixtures;
+﻿using System.Collections.Generic;
+using Octoposh.TestDataGenerator.Model;
 using Octopus.Client.Model;
 
 namespace Octoposh.TestDataGenerator
 {
+    /// <summary>
+    /// Static class that exposes sets/lists of releases that will be used by the DeploymentFixture
+    /// </summary>
     public static class Releaseplaybooks
     {
-        public static readonly List<DeploymentFixture.Release> DeploymentTestsPlaybook = new List<DeploymentFixture.Release>()
+        public static readonly List<Release> DeploymentTestsPlaybook = new List<Release>()
         {
-            new DeploymentFixture.Release()
+            new Release()
             {
                 ReleaseVersion = "1.0.0",
                 Deployments = new List<Deployment>()
@@ -20,7 +21,7 @@ namespace Octoposh.TestDataGenerator
                     new Deployment(){DeploymentState = TaskState.Success, EnvironmentName = "Prod" },
                 }
             },
-            new DeploymentFixture.Release()
+            new Release()
             {
                 ReleaseVersion = "2.0.0",
                 Deployments = new List<Deployment>()
@@ -30,7 +31,7 @@ namespace Octoposh.TestDataGenerator
                     new Deployment(){DeploymentState = TaskState.Success, EnvironmentName = "Prod" },
                 }
             },
-            new DeploymentFixture.Release()
+            new Release()
             {
                 ReleaseVersion = "3.0.0",
                 Deployments = new List<Deployment>()
@@ -40,7 +41,7 @@ namespace Octoposh.TestDataGenerator
                     new Deployment(){DeploymentState = TaskState.Success, EnvironmentName = "Prod" },
                 }
             },
-            new DeploymentFixture.Release()
+            new Release()
             {
                 ReleaseVersion = "4.0.0",
                 Deployments = new List<Deployment>()
@@ -51,10 +52,9 @@ namespace Octoposh.TestDataGenerator
                 }
             }
         };
-
-        public static readonly List<DeploymentFixture.Release> DashboardTestsPlaybook = new List<DeploymentFixture.Release>()
+        public static readonly List<Release> DashboardTestsPlaybook = new List<Release>()
         {
-            new DeploymentFixture.Release()
+            new Release()
             {
                 ReleaseVersion = "1.0.0",
                 Deployments = new List<Deployment>()
@@ -64,7 +64,7 @@ namespace Octoposh.TestDataGenerator
                     new Deployment(){DeploymentState = TaskState.Success, EnvironmentName = "Prod" },
                 }
             },
-            new DeploymentFixture.Release()
+            new Release()
             {
                 ReleaseVersion = "2.0.0",
                 Deployments = new List<Deployment>()
@@ -73,7 +73,7 @@ namespace Octoposh.TestDataGenerator
                     new Deployment(){DeploymentState = TaskState.Canceled, EnvironmentName = "Stage" }
                 }
             },
-            new DeploymentFixture.Release()
+            new Release()
             {
                 ReleaseVersion = "3.0.0",
                 Deployments = new List<Deployment>()
@@ -83,9 +83,9 @@ namespace Octoposh.TestDataGenerator
             }
 
         };
-        public static readonly List<DeploymentFixture.Release> DashboardTestsPlaybookShort = new List<DeploymentFixture.Release>()
+        public static readonly List<Release> DashboardTestsPlaybookShort = new List<Release>()
         {
-            new DeploymentFixture.Release()
+            new Release()
             {
                 ReleaseVersion = "1.0.0",
                 Deployments = new List<Deployment>()
@@ -94,16 +94,20 @@ namespace Octoposh.TestDataGenerator
                 }
             }
         };
+        public static readonly List<Release> ReleaseTestsPlaybook = GetListOfEmptyReleases(31);
 
-        public static readonly List<DeploymentFixture.Release> ReleaseTestsPlaybook = GetListOfEmptyReleases(31);
-
-        private static List<DeploymentFixture.Release> GetListOfEmptyReleases(int amountOfReleases)
+        /// <summary>
+        /// Returns a list of releases without deployments assigned to them. This is mostly used by the Get-OctopusRelease tests
+        /// </summary>
+        /// <param name="amountOfReleases"></param>
+        /// <returns></returns>
+        private static List<Release> GetListOfEmptyReleases(int amountOfReleases)
         {
-            var list = new List<DeploymentFixture.Release>();
+            var list = new List<Release>();
 
             for (var i = 1; i < amountOfReleases+1; i++)
             {
-                list.Add(new DeploymentFixture.Release()
+                list.Add(new Release()
                 {
                     ReleaseVersion = $"{i}.0.0"
                 });
@@ -111,12 +115,5 @@ namespace Octoposh.TestDataGenerator
 
             return list;
         }
-
-    }
-
-    public class Deployment
-    {
-        public string EnvironmentName { get; set; }
-        public TaskState DeploymentState { get; set; }
     }
 }

@@ -8,6 +8,9 @@ using Serilog;
 
 namespace Octoposh.TestDataGenerator.Fixtures
 {
+    /// <summary>
+    /// This fixture is in charge of creating/setting up most of the things that can be found in the "Library" section of the Octopus portal, such as External feeds, Script modules, Library Variable Sets,etc
+    /// </summary>
     class LibraryFixture
     {
         private static IOctopusAsyncRepository _repository;
@@ -16,6 +19,9 @@ namespace Octoposh.TestDataGenerator.Fixtures
         private static readonly string[] ScriptModuleNames = { "ScriptModuleTests_Module1" };
         private static readonly string[] LibraryVariableSetNames = { "VariableSetTests_Library1", "VariableSetTests_Library2", "unmodified_TestLibraryVariableSet" };
 
+        /// <summary>
+        /// Run the fixture
+        /// </summary>
         public static void Run()
         {
             _repository = OctopusRepository.GetRepository().Result;

@@ -11,6 +11,10 @@
   - [Dev machine requirements](#dev-machine-requirements)
   - [Running the unit tests](#running-the-unit-tests)
   - [Running the Cake Build](#running-the-cake-build)
+- [Working on the code](#working-on-the-code)
+  - [Working with cmdlets](#adding-a-new-cmdlet)
+  - [Writing Tests](#writing-tests)
+  - [Adding Test Data](#adding-test-data)
   
 
 ## Asking Questions
@@ -102,3 +106,23 @@ Once the `Octoposh.TestDataGenerator` console runs successfully, you should be a
 ### Running the Cake build
 
 WIP
+
+## Working on the code
+
+### Working with cmdlets
+
+WIP
+
+### Writing Tests
+
+Each cmdlet has its own class file with tests on it. Check the tests with XML comments on them in the file below for examples:
+
+https://github.com/Dalmirog/OctoPosh/blob/master/Octoposh.Tests/GetOctopusMachineTests.cs
+
+### Adding Test Data
+
+The project `Octoposh.TestDataGenerator` is in charge of adding the test data needed by the tests to an Octopus Instance. As every console project, it starts from `program.cs`, which then runs a set of Fixtures under the `Fixtures` namespace. Try opening all the fixtures to understand what each one does and how to extend them/add your own data.
+
+The console was build with the idea that it should be re-runable at all times, regardless of the existing data on the Octopus Instance. For example: If a resource that the console is trying to create already exists, It'll fetch it, reconfigure it as detailed in the fixture and then save it. In very few cases (like creating releases) the resource will be deleted and re-created from scratch.
+
+To run the project simply set the connection data in the `appSettings.json` file, compile it and then run `dotnet.exe run Octoposh.TestDataGenerator.dll`

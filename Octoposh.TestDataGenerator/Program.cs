@@ -17,8 +17,7 @@ namespace Octoposh.TestDataGenerator
                 runConfigurationFixture:true,
                 runLibraryFixture: true,
                 runInfrastructureFixture: true,
-                runDeploymentFixture:true);            
-                
+                runDeploymentFixture:true);
         }
 
         static void RunFixtures(bool runConfigurationFixture , bool runLibraryFixture, bool runInfrastructureFixture, bool runDeploymentFixture)

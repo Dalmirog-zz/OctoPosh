@@ -7,6 +7,9 @@ using Serilog;
 
 namespace Octoposh.TestDataGenerator.Fixtures
 {
+    /// <summary>
+    /// This fixture is in charge of creating/setting up most of the things that can be found in the "Configuration" section of the Octopus portal, such as Teams, Users, UserRoles, Features, etc
+    /// </summary>
     public static class ConfigurationFixture
     {
         private static readonly string[] UserNamePasswordNames = { "UserTests_User1", "UserTests_User2", "Unmodified_TestUser" };
@@ -15,6 +18,9 @@ namespace Octoposh.TestDataGenerator.Fixtures
 
         private static IOctopusAsyncRepository _repository;
 
+        /// <summary>
+        /// Run the fixture
+        /// </summary>
         public static void Run()
         {
             _repository = OctopusRepository.GetRepository().Result;

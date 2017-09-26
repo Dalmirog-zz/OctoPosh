@@ -1,22 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Octoposh.TestDataGenerator.Model;
 using Octopus.Client;
 using Octopus.Client.Model;
 using Serilog;
 
 namespace Octoposh.TestDataGenerator.Fixtures
 {
+    /// <summary>
+    /// This fixture is in charge of creating releases and deploying them.
+    /// </summary>
     public class DeploymentFixture
     {
         private static IOctopusAsyncRepository _repository;
 
+        /// <summary>
+        /// Projects on which releases/deployments will be created.
+        /// </summary>
         private static readonly string[] ProjectNames = {"DashboardTests_Project1","DashboardTests_Project2", "DeploymentTests_Project1", "ReleaseTests_Project1" };
 
         private static List<ProjectResource> _allProjects;
         private static List<ReleaseResource> _allReleases;
         private static List<EnvironmentResource> _allEnvironments;
 
+        /// <summary>
+        /// Run the fixture
+        /// </summary>
         public static void Run()
         {
             _repository = OctopusRepository.GetRepository().Result;
@@ -36,21 +46,6 @@ namespace Octoposh.TestDataGenerator.Fixtures
             CreateAndDeployReleases();
 
             Log.Logger.Information("**Finished running Deployment Fixture**");
-        }
-
-        private class ReleasePlaybook
-        {
-            public List<Release> ReleaseList { get; set; }
-            public ProjectResource Project { get; set; }
-        }
-
-        public class Release
-        {
-            public string ReleaseVersion { get; set; }
-
-            public List<Deployment> Deployments { get; set; }
-
-            public ReleaseResource ReleaseResource { get; set; }
         }
         
         private static void CreateAndDeployReleases()
