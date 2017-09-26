@@ -13,7 +13,7 @@
   - [Running the Cake Build](#running-the-cake-build)
 - [Working on the code](#working-on-the-code)
   - [Branches](#branches)
-  - [Working with cmdlets](#adding-a-new-cmdlet)
+  - [Working on the Octoposh Module](#Working-on-the-Octoposh-Module)
   - [Writing Tests](#writing-tests)
   - [Adding Test Data](#adding-test-data)
   
@@ -116,9 +116,11 @@ WIP
   
   - `Development` is the only branch that will be merged to `Master`. All PRs should be submitted using a separate branch based on `Development`, and will eventually be merged to `Development`.
 
-### Working with cmdlets
+### Working on the Octoposh Module
 
-WIP
+The project `Octoposh` builds the DLL that represents the module. To debug it go to `[Project Properties] -> Debug -> Command Line Arguemnts` and set the URL and API key of the Octopus Instance that you'll be running the module against. Try not to touch anything else on that field.
+
+Then hit `F5` and once the build compiles, it will open a Powershell session with the module loaded. At this point the code will halt at breakpoints like in any debug session.
 
 ### Writing Tests
 
