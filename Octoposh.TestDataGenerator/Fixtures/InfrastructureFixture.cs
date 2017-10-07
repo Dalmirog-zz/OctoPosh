@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
 using Octopus.Client;
 using Octopus.Client.Model;
 using Octopus.Client.Model.Accounts;
@@ -23,10 +21,10 @@ namespace Octoposh.TestDataGenerator.Fixtures
         private static readonly string[] EnvironmentNames = { "Dev", "Stage", "Prod", "Unmodified_TestEnvironment", "MachineTests_Environment" };
         private static readonly string[] LifecycleNames = { "Default Lifecycle", "LifecycleTests_Lifecycle1", "LifecycleTests_Lifecycle2", "unmodified_TestLifecycle" };
 
-        private static readonly string[] ProjectGroupNames = { "DashboardTests_ProjectGroup", "DeploymentTests_ProjectGroup", "ReleaseTests_ProjectGroup", "TestProjectGroup1", "TestProjectGroup2", "unmodified_TestProjectGroup", "ProjectGroupTests_ProjectGroup", "ProjectGroupTests_ProjectGroup2", "ProjectTests_ProjectGroup", "ReleaseTests_ProjectGroup" };
-        private static readonly string[] ProjectNames = { "DashboardTests_Project1", "DashboardTests_Project2", "DeploymentTests_Project1", "DeploymentTests_Project2", "ProjectTests_Project1", "ProjectTests_Project2", "ReleaseTests_Project1", "unmodified_TestProject" };
+        private static readonly string[] ProjectGroupNames = { "DashboardTests_ProjectGroup", "DeploymentTests_ProjectGroup", "ReleaseTests_ProjectGroup","unmodified_TestProjectGroup", "ProjectGroupTests_ProjectGroup1", "ProjectGroupTests_ProjectGroup2", "ProjectGroupTests_ProjectGroup3", "ProjectGroupTests_ProjectGroup4", "ProjectTests_ProjectGroup", "ReleaseTests_ProjectGroup" };
+        private static readonly string[] ProjectNames = { "DashboardTests_Project1", "DashboardTests_Project2", "DeploymentTests_Project1", "DeploymentTests_Project2", "ProjectTests_Project1", "ProjectTests_Project2", "ProjectTests_Project3", "ProjectTests_Project4", "ReleaseTests_Project1", "ReleaseTests_Project2", "unmodified_TestProject" };
 
-        private static readonly string[] TagSetNames = { "TagSetTests_TagSet1", "TagSetTests_TagSet2", "unmodified_TagSet" };
+        private static readonly string[] TagSetNames = { "TagSetTests_TagSet1", "TagSetTests_TagSet2", "TagSetTests_TagSet3", "TagSetTests_TagSet4", "unmodified_TagSet" };
         private static readonly string[] TenantNames = { "TenantTests_Tenant1", "TenantTests_Tenant2", "unmodified_Tenant" };
         #endregion
 
@@ -116,6 +114,9 @@ namespace Octoposh.TestDataGenerator.Fixtures
 
                     //Adding steps to the process. All pre-existing steps are deleted and the default ones added during this process.
                     var deploymentProcess = UpdateDeploymentprocess(project);
+
+                    //Adding the same channel to all projects
+                    AddChannel("ChannelTests_Globalchannel",project);
 
                     //Adding extra config to specific the projects
                     switch (project.Name)

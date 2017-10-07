@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Management.Automation;
 using NUnit.Framework;
 using Octoposh.Cmdlets;
@@ -14,15 +15,17 @@ namespace Octoposh.Tests
         private static readonly string CmdletName = "Get-OctopusEnvironment";
         private static readonly Type CmdletType = typeof(GetOctopusEnvironment);
 
-        [Test]
-        public void GetEnvironmentBySingleName()
+        [TestCase("Dev")]
+        [TestCase("Stage")]
+        [TestCase("Prod")]
+        public void GetEnvironmentBySingleName(string environmentName)
         {
             var parameters = new List<CmdletParameter>
             {
                 new CmdletParameter()
                 {
                     Name = "Name",
-                    SingleValue = "Dev"
+                    SingleValue = environmentName
                 }
             };
 
@@ -30,68 +33,64 @@ namespace Octoposh.Tests
             var results = powershell.Invoke<OutputOctopusEnvironment>();
 
             Assert.AreEqual(results.Count, 1);
-            Console.WriteLine("Items Found:");
-            foreach (var item in results)
-            {
-                Console.WriteLine(item.Name);
-            }
+            Assert.AreEqual(environmentName,results[0].Name);
         }
 
-        [Test]
-        public void GetEnvironmentsByMultipleNames()
+        [TestCase(new[] { "Dev", "Stage" }, null)]
+        [TestCase(new[] { "Stage", "Prod" }, null)]
+        public void GetEnvironmentsByMultipleNames(string[] environmentNames,string unused)
         {
-            var parameters = new List<CmdletParameter> {new CmdletParameter()
-            {
-                Name = "Name", MultipleValue = new[] {"Dev","Stage"}
-            }};
+            var parameters = new List<CmdletParameter> {
+                new CmdletParameter()
+                {
+                    Name = "Name",
+                    MultipleValue = environmentNames
+                }
+            };
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
             var results = powershell.Invoke<OutputOctopusEnvironment>();
 
             Assert.AreEqual(results.Count, 2);
+            var environmentNamesFromResults = results.Select(e => e.Name).ToList();
 
-            Console.WriteLine("Items Found:");
-            foreach (var item in results)
+            foreach (var environmentName in environmentNames)
             {
-                Console.WriteLine(item.Name);
+                Assert.Contains(environmentName,environmentNamesFromResults);
             }
         }
 
-        [Test]
-        public void GetEnvironmentsByNameUsingWildcard()
+        [TestCase("De*")]
+        [TestCase("*tag*")]
+        [TestCase("*rod")]
+        public void GetEnvironmentsByNameUsingWildcard(string namePattern)
         {
-            var namePattern = "S*";
-
             var parameters = new List<CmdletParameter> {new CmdletParameter()
             {
                 Name = "Name", SingleValue = namePattern
             }};
-
-            Console.WriteLine("Looking for resources with name pattern: {0}", namePattern);
 
             var pattern = new WildcardPattern(namePattern);
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
             var results = powershell.Invoke<OutputOctopusEnvironment>();
 
-            Assert.Greater(results.Count, 0);
-            Console.WriteLine("Resources found: {0}",results.Count);
-
             foreach (var item in results)
             {
-                Console.WriteLine("Resource name: {0}",item.Name);
                 Assert.IsTrue(pattern.IsMatch(item.Name));
             }
         }
 
-        [Test]
-        public void DontGetEnvironmentsIfNameDoesntMatch()
+        [TestCase("Debt")]
+        [TestCase("Stager")]
+        [TestCase("Purrod")]
+        public void DontGetEnvironmentsIfNameDoesntMatch(string environmentName)
         {
-            var resourceName = "TotallyANameThatYoullNeverPutToAResource";
+            //var environmentName = "TotallyANameThatYoullNeverPutToAResource";
 
             var parameters = new List<CmdletParameter> {new CmdletParameter()
             {
-                Name = "Name", SingleValue = resourceName
+                Name = "Name", SingleValue = environmentName
             }};
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);

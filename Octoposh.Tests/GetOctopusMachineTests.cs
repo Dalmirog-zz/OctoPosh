@@ -14,17 +14,16 @@ namespace Octoposh.Tests
     {
         private static readonly string CmdletName = "Get-OctopusMachine";
         private static readonly Type CmdletType = typeof(GetOctopusMachine);
-        private static readonly string Machine1 = "MachineTests_Machine1";
-        private static readonly string Machine2 = "MachineTests_Machine2";
 
         /// <summary>
         /// This test is the equivalent of running the command:
         /// Get-OctopusMachine -MachineName "MachineTests_Machine1"
         /// </summary>
-        [Test]
-        public void GetMachineBySingleName()
+        [TestCase("MachineTests_Machine1")]
+        [TestCase("MachineTests_Machine2")]
+        public void GetMachineBySingleName(string name)
         {
-            var name = Machine1;
+            //var name = Machine1;
 
             //Here we are creating the cmdlet parameter "-MachineName 'MachineTests_Machine1'" that will be passed to the cmdlet
             var parameters = new List<CmdletParameter>
@@ -34,9 +33,7 @@ namespace Octoposh.Tests
                     Name = "MachineName",
                     SingleValue = name
                 }};
-
-            Console.WriteLine("Looking for resource with name [{0}]", name);
-
+            
             //Creating the powershell cmdlet.
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
 
@@ -44,12 +41,7 @@ namespace Octoposh.Tests
             var results = powershell.Invoke<OutputOctopusMachine>();
 
             Assert.AreEqual(1, results.Count);
-
-            Console.WriteLine("Found [{0}]");
-            foreach (var item in results)
-            {
-                Console.WriteLine(item.Name);
-            }
+            Assert.AreEqual(name,results[0].Name);
         }
 
         /// <summary>
@@ -79,105 +71,133 @@ namespace Octoposh.Tests
             ;
         }
 
-        [Test]
-        public void GetMachineByMultipleNames()
+        [TestCase(new[] { "MachineTests_Machine1", "MachineTests_Machine2" }, null)]
+        [TestCase(new[] { "MachineTests_Environment_CloudRegion", "MachineTests_Environment_SSH" }, null)]
+        public void GetMachineByMultipleNames(string[] machineNames, string unused)
         {
-
-            var names = new[] { Machine1, Machine2 };
-
             var parameters = new List<CmdletParameter> {new CmdletParameter()
             {
                 Name = "MachineName",
-                MultipleValue = names
+                MultipleValue = machineNames
             }};
 
-            Console.WriteLine("Looking for [{0}] machines with the names [{1}]", names.Length, names);
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
             var results = powershell.Invoke<OutputOctopusMachine>();
 
-            Console.WriteLine("Found [{0}] resources", results.Count);
             Assert.AreEqual(2, results.Count);
+            var machineNamesInResults = results.Select(m => m.Name).ToList();
 
-            foreach (var item in results)
+            foreach (var machineName in machineNames)
             {
-                Console.WriteLine("Resource name: {0}", item.Name);
-                Assert.IsTrue(names.Contains(item.Name));
+                Assert.Contains(machineName,machineNamesInResults);
             }
-            Console.WriteLine("The [{0}] resources have the expected names", names.Length);
         }
 
-        [Test]
-        public void GetMachinesByNameUsingWildcard()
+        [TestCase("*SSH")]
+        [TestCase("*CloudRegion")]
+        [TestCase("MachineTests_*_Polling")]
+        public void GetMachinesByNameUsingWildcard(string namePattern)
         {
-            var namePattern = "MachineTests_*";
-
-            var parameters = new List<CmdletParameter> {new CmdletParameter()
-            {
-                Name = "MachineName", SingleValue = namePattern
-            }};
-
-            Console.WriteLine("Looking for resources with name pattern: {0}", namePattern);
+            var parameters = new List<CmdletParameter> {
+                new CmdletParameter()
+                {
+                    Name = "MachineName",
+                    SingleValue = namePattern
+                }
+            };
 
             var pattern = new WildcardPattern(namePattern);
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
             var results = powershell.Invoke<OutputOctopusMachine>();
 
-            Console.WriteLine("Resources found: {0}", results.Count);
             Assert.Greater(results.Count, 0);
 
             foreach (var item in results)
             {
-                Console.WriteLine("Resource name: {0}", item.Name);
                 Assert.IsTrue(pattern.IsMatch(item.Name));
             }
-            Console.WriteLine("All resources found match the pattern [{0}]", namePattern);
         }
 
-        [Test]
-        public void DontGetMachineIfNameDoesntMatch()
+        [TestCase("BoneMachine")]
+        public void DontGetMachineIfNameDoesntMatch(string name)
         {
-            var name = "TotallyANameThatYoullNeverPutToAResource";
-
             var parameters = new List<CmdletParameter> {new CmdletParameter()
             {
                 Name = "MachineName", SingleValue = name
             }};
 
-            Console.WriteLine("Looking for a machine with the name [{0}]", name);
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
             var results = powershell.Invoke<OutputOctopusMachine>();
 
             Assert.AreEqual(results.Count, 0);
-            Console.WriteLine("Machine with name [{0}] not found", name);
         }
 
-        [Test]
-        public void GetMachineByCommunicationStyle()
+        [TestCase("CloudRegion")]
+        [TestCase("ListeningTentacle")]
+        [TestCase("PollingTentacle")]
+        [TestCase("OfflineDrop")]
+        [TestCase("SSHEndpoint")]
+        public void GetMachineByCommunicationStyle(string communicationStyle)
         {
-            var communicationStyles = new string[] { "ListeningTentacle", "PollingTentacle", "SSHEndpoint", "CloudRegion", "OfflineDrop" };
-
-            foreach (var style in communicationStyles)
+            var parameters = new List<CmdletParameter> {new CmdletParameter()
             {
-                var parameters = new List<CmdletParameter> {new CmdletParameter()
-                {
-                    Name = "CommunicationStyle", SingleValue = style
-                }};
+                Name = "CommunicationStyle",
+                SingleValue = communicationStyle
+            }};
 
-                var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
-                var results = powershell.Invoke<OutputOctopusMachine>();
+            var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
+            var results = powershell.Invoke<OutputOctopusMachine>();
 
-                if (results != null)
-                {
-                    foreach (var result in results)
-                    {
-                        Assert.AreEqual(result.CommunicationStyle, style);
-                    }
-                }
-                else
-                {
-                    Assert.Inconclusive("No targets of the type [{0}] were found", style);
-                }
+            Assert.Greater(results.Count,0);
+
+            foreach (var machine in results)
+            {
+                Assert.AreEqual(communicationStyle,machine.CommunicationStyle);
+            }
+        }
+
+        [TestCase("Dev")]
+        [TestCase("Stage")]
+        [TestCase("Prod")]
+        public void GetmachineBySingleEnvironment(string environmentName)
+        {
+            var parameters = new List<CmdletParameter> {new CmdletParameter()
+            {
+                Name = "EnvironmentName", SingleValue = environmentName
+            }};
+
+            var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
+            var results = powershell.Invoke<OutputOctopusMachine>();
+
+            Assert.Greater(results.Count, 0);
+
+            foreach (var machine in results)
+            {
+                Assert.Contains(environmentName,machine.EnvironmentName);
+            }
+        }
+
+        [TestCase(new[] { "Dev", "Stage" }, null)]
+        [TestCase(new[] { "Stage", "Prod" }, null)]
+        public void GetmachineByMultipleEnvironments(string[] environmentNames,string unused)
+        {
+            var parameters = new List<CmdletParameter> {new CmdletParameter()
+            {
+                Name = "EnvironmentName",
+                MultipleValue = environmentNames
+            }};
+
+            var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
+            var results = powershell.Invoke<OutputOctopusMachine>();
+
+            Assert.Greater(results.Count, 0);
+
+            var environmentsFromResults = results.SelectMany(machine => machine.EnvironmentName.ToList()).ToList();
+
+            foreach (var environmentName in environmentNames)
+            {
+                Assert.Contains(environmentName,environmentsFromResults);
             }
         }
     }

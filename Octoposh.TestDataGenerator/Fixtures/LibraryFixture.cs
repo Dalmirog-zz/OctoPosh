@@ -15,7 +15,7 @@ namespace Octoposh.TestDataGenerator.Fixtures
     {
         private static IOctopusAsyncRepository _repository;
 
-        private static readonly string[] FeedNames = { "Local Folder", "FeedTests_Feed1", "FeedTests_Feed2", "unmodified_TestFeed" };
+        private static readonly string[] FeedNames = { "Local Folder", "FeedTests_Feed1", "FeedTests_Feed2", "FeedTests_Feed3", "FeedTests_Feed4", "unmodified_TestFeed" };
         private static readonly string[] ScriptModuleNames = { "ScriptModuleTests_Module1" };
         private static readonly string[] LibraryVariableSetNames = { "VariableSetTests_Library1", "VariableSetTests_Library2", "unmodified_TestLibraryVariableSet" };
 

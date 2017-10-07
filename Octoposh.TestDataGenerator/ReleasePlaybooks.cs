@@ -16,9 +16,7 @@ namespace Octoposh.TestDataGenerator
                 ReleaseVersion = "1.0.0",
                 Deployments = new List<Deployment>()
                 {
-                    new Deployment(){DeploymentState = TaskState.Success , EnvironmentName = "Dev" },
-                    new Deployment(){DeploymentState = TaskState.Success, EnvironmentName = "Stage" },
-                    new Deployment(){DeploymentState = TaskState.Success, EnvironmentName = "Prod" },
+                    new Deployment(){DeploymentState = TaskState.Success , EnvironmentName = "Dev" }
                 }
             },
             new Release()
@@ -26,9 +24,7 @@ namespace Octoposh.TestDataGenerator
                 ReleaseVersion = "2.0.0",
                 Deployments = new List<Deployment>()
                 {
-                    new Deployment(){DeploymentState = TaskState.Success , EnvironmentName = "Dev" },
-                    new Deployment(){DeploymentState = TaskState.Success, EnvironmentName = "Stage" },
-                    new Deployment(){DeploymentState = TaskState.Success, EnvironmentName = "Prod" },
+                    new Deployment(){DeploymentState = TaskState.Success , EnvironmentName = "Dev" }
                 }
             },
             new Release()
@@ -36,9 +32,7 @@ namespace Octoposh.TestDataGenerator
                 ReleaseVersion = "3.0.0",
                 Deployments = new List<Deployment>()
                 {
-                    new Deployment(){DeploymentState = TaskState.Success , EnvironmentName = "Dev" },
-                    new Deployment(){DeploymentState = TaskState.Success, EnvironmentName = "Stage" },
-                    new Deployment(){DeploymentState = TaskState.Success, EnvironmentName = "Prod" },
+                    new Deployment(){DeploymentState = TaskState.Success , EnvironmentName = "Dev" }
                 }
             },
             new Release()
@@ -95,6 +89,7 @@ namespace Octoposh.TestDataGenerator
             }
         };
         public static readonly List<Release> ReleaseTestsPlaybook = GetListOfEmptyReleases(31);
+        public static readonly List<Release> ReleaseTestsPlaybookShort = GetListOfEmptyReleases(3);
 
         /// <summary>
         /// Returns a list of releases without deployments assigned to them. This is mostly used by the Get-OctopusRelease tests

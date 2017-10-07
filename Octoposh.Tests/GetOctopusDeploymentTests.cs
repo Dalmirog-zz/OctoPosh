@@ -18,29 +18,24 @@ namespace Octoposh.Tests
         private static readonly string CmdletName = "Get-OctopusDeployment";
         private static readonly Type CmdletType = typeof(GetOctopusDeployment);
         private static readonly string Project1 = "DeploymentTests_Project1";
-        private static readonly string Project2 = "DeploymentTests_Project2";
-        private static readonly string Environment1 = "Dev";
-        private static readonly string Environment2 = "Stage";
-        private static readonly string Environment3 = "Prod";
 
-        [Test]
-        //Testing Single Environment and Project te reduce overhead of having 1 test for project and 1 test for environment.
-        public void GetDeploymentBySingleEnvironmentAndProject()
+        [TestCase("Dev", "DeploymentTests_Project1")]
+        [TestCase("Stage", "DeploymentTests_Project1")]
+        [TestCase("Stage", "DeploymentTests_Project2")]
+        [TestCase("Prod", "DeploymentTests_Project2")]
+        public void GetDeploymentBySingleEnvironmentAndProject(string environmentName, string projectName)
         {
-            var environment = "Dev";
-            var project = Project1;
-
             var parameters = new List<CmdletParameter>
             {
                 new CmdletParameter()
                 {
                     Name = "EnvironmentName",
-                    SingleValue = environment
+                    SingleValue = environmentName
                 },
                 new CmdletParameter()
                 {
                     Name = "ProjectName",
-                    SingleValue = project
+                    SingleValue = projectName
                 }
             };
 
@@ -48,28 +43,24 @@ namespace Octoposh.Tests
             var results = powershell.Invoke<OutputOctopusDeployment>();
 
             Assert.Greater(results.Count, 0);
-
-            Console.WriteLine("Found [{0}] deployments",results.Count);
+            
             foreach (var item in results)
             {
-                Assert.AreEqual(item.EnvironmentName, environment);
-                Assert.AreEqual(item.ProjectName, project);
+                Assert.AreEqual(item.EnvironmentName, environmentName);
+                Assert.AreEqual(item.ProjectName, projectName);
             }
-            Console.WriteLine("The [{0}] deployments found belong to the environment [{1}] on project [{2}]", results.Count,environment,project);
         }
 
-        [Test]
-        public void GetDeploymentByMultipleEnvironments()
+        [TestCase(new[] { "Dev", "Stage" }, "DeploymentTests_Project2")]
+        [TestCase(new[] { "Stage", "Prod" }, "DeploymentTests_Project1")]
+        public void GetDeploymentByMultipleEnvironments(string[] environmentNames, string projectName)
         {
-            var environments = new string[] { Environment2, Environment3};
-            var projectName = Project1;
-
             var parameters = new List<CmdletParameter>
             {
                 new CmdletParameter()
                 {
                     Name = "EnvironmentName",
-                    MultipleValue = environments
+                    MultipleValue = environmentNames
                 },
                 new CmdletParameter()
                 {
@@ -82,31 +73,30 @@ namespace Octoposh.Tests
             var results = powershell.Invoke<OutputOctopusDeployment>();
 
             Assert.Greater(results.Count, 0);
+            
+            var environmentsFromResults = results.Select(d => d.EnvironmentName).ToList();
 
-            Console.WriteLine("Found [{0}] deployments", results.Count);
+            foreach (var environmentName in environmentNames)
+            {
+                Assert.Contains(environmentName,environmentsFromResults);
 
-            Assert.IsTrue(results.Any(d => (environments.Contains(d.EnvironmentName)) && (d.ProjectName == projectName)));
-
-            Console.WriteLine("The [{0}] deployments found belong to the environments [{1}] or [{2}] on project [{3}]", results.Count, Environment2, Environment3,projectName);
+                foreach (var deployment in results)
+                {
+                    Assert.AreEqual(projectName,deployment.ProjectName);
+                }
+            }
         }
 
-        [Test]
-        public void GetDeploymentByMultipleProjects()
+        [TestCase(new[] { "DashboardTests_Project1", "DashboardTests_Project2" }, null)]
+        [TestCase(new[] { "DashboardTests_Project2", "DeploymentTests_Project1" }, null)]
+        public void GetDeploymentByMultipleProjects(string[] projectNames, string unused)
         {
-            var environmentName = Environment1;
-            var projects = new string[] { Project1, Project2 };
-
             var parameters = new List<CmdletParameter>
             {
                 new CmdletParameter()
                 {
-                    Name = "EnvironmentName",
-                    SingleValue = environmentName
-                },
-                new CmdletParameter()
-                {
                     Name = "ProjectName",
-                    MultipleValue = projects //Passing project also to reduce test overall time. Otherwise it'll search on all projects.
+                    MultipleValue = projectNames 
                 }
             };
 
@@ -115,27 +105,27 @@ namespace Octoposh.Tests
 
             Assert.Greater(results.Count, 0);
 
-            Console.WriteLine("Found [{0}] deployments", results.Count);
+            var projectsFromResults = results.Select(d => d.ProjectName).ToList();
 
-            Assert.IsTrue(results.Any(r => (projects.Contains(r.ProjectName)) && (r.EnvironmentName == environmentName)));
-
-            Console.WriteLine("The [{0}] deployments found belong to the environment [{1}] on projects [{2}] or [{3}]", results.Count, environmentName, projects[0],projects[1]);
+            foreach (var projectName in projectNames)
+            {
+                Assert.Contains(projectName,projectsFromResults);
+            }
         }
 
-        [Test]
-        public void GetDeploymentBySingleRelease()
+        [TestCase("1.0.0")]
+        [TestCase("2.0.0")]
+        [TestCase("3.0.0")]
+        public void GetDeploymentBySingleRelease(string releaseVersion)
         {
-            var projectName = Project1;
-            var rnd = new Random().Next(1,4);
-
-            var releaseVersion = $"{rnd}.0.0";
+            var projectName = "DeploymentTests_Project1";
             
             var parameters = new List<CmdletParameter>
             {
                 new CmdletParameter()
                 {
                     Name = "ProjectName",
-                    SingleValue = projectName
+                    SingleValue = projectName //Passing project also to reduce test overall time. Otherwise it'll search on all projects.
                 },
                 new CmdletParameter()
                 {
@@ -149,74 +139,55 @@ namespace Octoposh.Tests
 
             Assert.Greater(results.Count, 0);
 
-            Console.WriteLine("Found [{0}] deployments", results.Count);
-            
-            Assert.IsTrue(results.Any(d => (d.ReleaseVersion == releaseVersion) && (d.ProjectName == projectName)));
-            
-            Console.WriteLine("The [{0}] deployments belong to release [{1}] and project [{2}]", results.Count, releaseVersion, projectName);
+            foreach (var deployment in results)
+            {
+                Assert.AreEqual(releaseVersion, deployment.ReleaseVersion);
+                Assert.AreEqual(projectName, deployment.ProjectName);
+            }
         }
 
-        [Test]
-        public void GetDeploymentByMultipleReleases()
+        [TestCase(new[] { "1.0.0", "2.0.0" }, null)]
+        [TestCase(new[] { "3.0.0", "4.0.0" }, null)]
+        public void GetDeploymentByMultipleReleases(string[] releaseVersions,string unused)
         {
-            var projectName = Project1;
+            var projectName = "DeploymentTests_Project1";
 
             Random rnd = new Random();
-
-            var version1 = $"{rnd.Next(1, 2)}.0.0";
-            var isVersion1 = false;
-
-            var version2 = $"{rnd.Next(3, 4)}.0.0";
-            var isVersion2 = false;
-
-            //var releaseVersions = 
-            
+           
             var parameters = new List<CmdletParameter>
             {
                 new CmdletParameter()
                 {
                     Name = "ProjectName",
-                    SingleValue = projectName
+                    SingleValue = projectName //Passing project also to reduce test overall time. Otherwise it'll search on all projects.
                 },
                 new CmdletParameter()
                 {
                     Name = "ReleaseVersion",
-                    MultipleValue = new string[]{version1,version2}//Adding 2 different versions from 1.0.0 to 2.0.0 & from 3.0.0 to 4.0.0 //releaseVersions
-        }
+                    MultipleValue = releaseVersions
+                }
             };
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
             var results = powershell.Invoke<OutputOctopusDeployment>();
 
-            Console.WriteLine("Found [{0}] deployments", results.Count);
+            var releasesOfResults = results.Select(d => d.ReleaseVersion).ToList();
 
-            foreach (var item in results)
+            foreach (var releaseVersion in releaseVersions)
             {
-                Assert.AreEqual(item.ProjectName, projectName);
-
-                if (item.ReleaseVersion == version1)
-                {
-                    isVersion1 = true;
-                }
-                if (item.ReleaseVersion == version2)
-                {
-                    isVersion2 = true;
-                }
+                Assert.Contains(releaseVersion,releasesOfResults);
             }
-
-            Assert.IsTrue(isVersion1);
-            Assert.IsTrue(isVersion2);
-
-            Console.WriteLine("The [{0}] deployments belong to releases [{1}] or [{2}] and project [{3}]", results.Count, version1, version2, projectName);
         }
 
-        [Test]
-        public void GetDeploymentByLatestReleases()
+        [TestCase(1)]
+        [TestCase(2)]
+        [TestCase(3)]
+        public void GetDeploymentByLatestReleases(int latestAmount)
         {
-            var projectName = Project1;
+            var projectName = "DeploymentTests_Project1";
 
-            var rnd = new Random();
-            var latestAmount = rnd.Next(1, 4); //Getting latest 1-6 releases to reduce test time.
+            var projectResource = TestUtilities.Repository.Projects.FindByName(projectName);
+            var allReleases = TestUtilities.Repository.Projects.GetAllReleases(projectResource);
 
             var parameters = new List<CmdletParameter>
             {
@@ -232,20 +203,18 @@ namespace Octoposh.Tests
                 }
             };
 
-            //TODO review performance of this test/cmdlet 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
             var results = powershell.Invoke<OutputOctopusDeployment>();
 
             Assert.Greater(results.Count, 0);
 
-            Console.WriteLine("Found [{0}] deployments", results.Count);
+            var versionOfActualLatestNReleases = allReleases.Reverse().Skip(allReleases.Count - latestAmount).Select(r => r.Version).ToList();
 
-            var releaseVersions = new HashSet<string>(results.Select(d => d.ReleaseVersion));
-
-            Assert.IsTrue(releaseVersions.Count <= latestAmount);
-            Assert.IsTrue(results.Any(d => d.ProjectName == projectName));
-
-            Console.WriteLine("The [{0}] deployments belong to the latest [{1}] releases of project [{2}]", results.Count, latestAmount, projectName);
+            foreach (var deployment in results)
+            {
+                Assert.Contains(deployment.ReleaseVersion,versionOfActualLatestNReleases);
+            }
+            
         }
 
         [Ignore("Need to review")]
@@ -289,6 +258,7 @@ namespace Octoposh.Tests
             Console.WriteLine("The [{0}] deployments found started after [{1}]", results.Count, afterDate);
         }
 
+        //todo fix these tests - Need to figure out a way to generate test data to test this.
         [Ignore("Need to review")]
         [Test]
         public void GetDeploymentBeforeDate()

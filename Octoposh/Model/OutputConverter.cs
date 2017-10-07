@@ -62,8 +62,7 @@ namespace Octoposh.Model
                     case "Octopus.Client.Model.Endpoints.OfflineDropEndpointResource":
                         communicationStyle = "OfflineDrop";
                         break;
-
-                    case "Octopus.Client.Model.Endpoints.SSHEndpointResource":
+                    case "Octopus.Client.Model.Endpoints.SshEndpointResource":
                         communicationStyle = "SSHEndpoint";
                         break;
                 }

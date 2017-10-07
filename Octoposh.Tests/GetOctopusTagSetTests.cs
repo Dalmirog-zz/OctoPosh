@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Management.Automation;
-using System.Management.Automation.Runspaces;
 using NUnit.Framework;
 using Octoposh.Cmdlets;
 using Octoposh.Model;
@@ -20,11 +17,10 @@ namespace Octoposh.Tests
         private static readonly string TagSet1 = "TagSetTests_TagSet1";
         private static readonly string TagSet2 = "TagSetTests_TagSet2";
 
-        [Test]
-        public void GetTagSetBySingleName()
+        [TestCase("TagSetTests_TagSet1")]
+        [TestCase("TagSetTests_TagSet2")]
+        public void GetTagSetBySingleName(string tagSetName)
         {
-            var tagSetName = TagSet1;
-
             var parameters = new List<CmdletParameter>
             {
                 new CmdletParameter()
@@ -33,64 +29,40 @@ namespace Octoposh.Tests
                     SingleValue = tagSetName
                 }
             };
-
-            Console.WriteLine("Looking for TagSet [{0}]", tagSetName);
-
+            
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
             var results = powershell.Invoke<OutputOctopusTagSet>();
 
             Assert.AreEqual(1, results.Count);
-
             Assert.AreEqual(results[0].Name, tagSetName);
-
-            Console.WriteLine("TagSet [{0}] found", tagSetName);
         }
-        [Test]
-        public void GetTagSetByMultipleNames()
-        {
-            var tagSetName1 = TagSet1;
-            var tagSetName2 = TagSet2;
-            bool isTagSet1 = false;
-            bool isTagSet2 = false;
 
+        [TestCase(new[] {"TagSetTests_TagSet1","TagSetTests_TagSet2"}, null)]
+        [TestCase(new[] { "TagSetTests_TagSet3","TagSetTests_TagSet4"}, null)]
+        public void GetTagSetByMultipleNames(string[] tagsetNames, string unused)
+        {
             var parameters = new List<CmdletParameter>
             {
                 new CmdletParameter()
                 {
                     Name = "TagSetName",
-                    MultipleValue = new string[]{tagSetName1,tagSetName2}
+                    MultipleValue = tagsetNames
                 }
             };
-
-            Console.WriteLine("Looking for TagSets [{0}] and [{1}]", tagSetName1, tagSetName2);
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
             var results = powershell.Invoke<OutputOctopusTagSet>();
 
-            Assert.AreEqual(2, results.Count);
+            Assert.AreEqual(2,results.Count);
 
-            foreach (var item in results)
+            var tagSetNamesInResults = results.Select(t => t.Name).ToList();
+
+            foreach (var tagsetName in tagsetNames)
             {
-                if (item.Name == tagSetName1)
-                {
-                    isTagSet1 = true;
-                }
-                else if (item.Name == tagSetName2)
-                {
-                    isTagSet2 = true;
-                }
-                else
-                {
-                    Console.WriteLine("TagSet found with name that was not expected: [{0}]", item.Name);
-                    throw new Exception();
-                }
+                Assert.Contains(tagsetName,tagSetNamesInResults);
             }
-
-            Assert.IsTrue(isTagSet1);
-            Assert.IsTrue(isTagSet2);
-
-            Console.WriteLine("TagSets [{0}] and [{1}] found", tagSetName1, tagSetName2);
         }
+
         [Test]
         public void GetTagSetByNameUsingWildcard()
         {

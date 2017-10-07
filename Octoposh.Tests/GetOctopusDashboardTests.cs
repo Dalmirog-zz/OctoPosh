@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Management.Automation;
+using System.Linq;
 using NUnit.Framework;
 using Octoposh.Cmdlets;
 using Octoposh.Model;
-using Octopus.Client.Model;
 
 namespace Octoposh.Tests
 {
@@ -13,19 +12,17 @@ namespace Octoposh.Tests
     {
         private static readonly string CmdletName = "Get-OctopusDashboard";
         private static readonly Type CmdletType = typeof(GetOctopusDashboard);
-        private static readonly string project1 = "DashboardTests_Project1";
-        private static readonly string project2 = "DashboardTests_Project2";
 
-
-        [Test]
-        public void GetDashboardBySingleProject()
+        [TestCase("DashboardTests_Project1")]
+        [TestCase("DashboardTests_Project2")]
+        public void GetDashboardBySingleProject(string projectName)
         {
             var parameters = new List<CmdletParameter>
             {
                 new CmdletParameter()
                 {
                     Name = "ProjectName",
-                    SingleValue = project1
+                    SingleValue = projectName
                 }
             };
 
@@ -35,57 +32,37 @@ namespace Octoposh.Tests
             Assert.Greater(results.Count, 0);
             foreach (var item in results)
             {
-                Assert.AreEqual(item.ProjectName, project1);
+                Assert.AreEqual(item.ProjectName, projectName);
             }
         }
 
-        [Test]
-        public void GetDashboardByMultipleProjects()
+        [TestCase(new[] { "DashboardTests_Project1", "DashboardTests_Project2" },null)]
+        [TestCase(new[] { "DashboardTests_Project2", "DeploymentTests_Project1" }, null)]
+        public void GetDashboardByMultipleProjects(string[] projectNames,string unused)
         {
-            var projects = new string[] {project1, project2};
-
-            bool isProject1 = false;
-            bool isProject2 = false;
-
             var parameters = new List<CmdletParameter>
             {
                 new CmdletParameter()
                 {
                     Name = "Projectname",
-                    MultipleValue = projects
+                    MultipleValue = projectNames
                 }
             };
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
             var results = powershell.Invoke<OutputOctopusDashboardEntry>();
 
-            Assert.Greater(results.Count, 0);
-            foreach (var item in results)
+            foreach (var projectName in projectNames)
             {
-                if (item.ProjectName == project1)
-                {
-                    isProject1 = true;
-                }
-                else if (item.ProjectName == project2)
-                {
-                    isProject2 = true;
-                }
-                else
-                {
-                    Console.WriteLine("Dashboard entry found for wrong project with name [{0}]",item.ProjectName);
-                    throw new Exception();
-                }
+                Assert.Contains(projectName, results.Select(c => c.ProjectName).ToList());//(.Contains(projectName));
             }
-
-            Assert.IsTrue(isProject1);
-            Assert.IsTrue(isProject2);
         }
 
-        [Test]
-        public void GetDashboardBySingleEnvironment()
+        [TestCase("Dev")]
+        [TestCase("Stage")]
+        [TestCase("Prod")]
+        public void GetDashboardBySingleEnvironment(string environmentName)
         {
-            var environmentName = "Dev";
-
             var parameters = new List<CmdletParameter>
             {
                 new CmdletParameter()
@@ -105,55 +82,36 @@ namespace Octoposh.Tests
             }
         }
 
-        [Test]
-        public void GetDashboardByMultipleEnvironments()
+
+        [TestCase(new[] { "Dev", "Stage" }, null)]
+        [TestCase(new[] { "Stage", "Prod" }, null)]
+        public void GetDashboardByMultipleEnvironments(string[] environmentNames, string unused)
         {
-            var environment1 = "Stage";
-            var environment2 = "Prod";
-            var environments = new string[] { environment1, environment2 };
-
-            bool isEnvironment1 = false;
-            bool isEnvironment2 = false;
-
             var parameters = new List<CmdletParameter>
             {
                 new CmdletParameter()
                 {
                     Name = "EnvironmentName",
-                    MultipleValue = environments
+                    MultipleValue = environmentNames
                 }
             };
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
             var results = powershell.Invoke<OutputOctopusDashboardEntry>();
 
-            Assert.Greater(results.Count, 0);
-            foreach (var item in results)
-            {
-                if (item.EnvironmentName == environment1)
-                {
-                    isEnvironment1 = true;
-                }
-                else if (item.EnvironmentName == environment2)
-                {
-                    isEnvironment2 = true;
-                }
-                else
-                {
-                    Console.WriteLine("Dashboard entry found for wrong environment with name [{0}]", item.EnvironmentName);
-                    throw new Exception();
-                }
-            }
+            var environmentsFromResults = results.Select(d => d.EnvironmentName).ToList();
 
-            Assert.IsTrue(isEnvironment1);
-            Assert.IsTrue(isEnvironment2);
+            foreach (var environmentName in environmentNames)
+            {
+                Assert.Contains(environmentName,environmentsFromResults);
+            }
         }
 
-        [Test]
-        public void GetDashboardBySingleStatus()
+        [TestCase("Success")]
+        [TestCase("Failed")]
+        [TestCase("Canceled")]
+        public void GetDashboardBySingleStatus(string status)
         {
-            var status = "Success";
-
             var parameters = new List<CmdletParameter>
             {
                 new CmdletParameter()
@@ -173,16 +131,11 @@ namespace Octoposh.Tests
             }
         }
 
-        [Test]
-        public void GetDashboardByMultipleStatuses()
+
+        [TestCase(new[] { "Success", "Failed" }, null)]
+        [TestCase(new[] { "Failed", "Canceled" }, null)]
+        public void GetDashboardByMultipleStatuses(string[] statuses, string unused)
         {
-            var status1 = "Failed";
-            var status2 = "Canceled";
-            var statuses = new string[] { status1, status2 };
-
-            var isStatus1 = false;
-            var isStatus2 = false;
-
             var parameters = new List<CmdletParameter>
             {
                 new CmdletParameter()
@@ -196,39 +149,26 @@ namespace Octoposh.Tests
             var results = powershell.Invoke<OutputOctopusDashboardEntry>();
 
             Assert.Greater(results.Count, 0);
-            foreach (var item in results)
-            {
-                if (item.DeploymentStatus == status1)
-                {
-                    isStatus1 = true;
-                }
-                else if (item.DeploymentStatus == status2)
-                {
-                    isStatus2 = true;
-                }
-                else
-                {
-                    Console.WriteLine("Dashboard entry found for wrong status with name [{0}]", item.DeploymentStatus);
-                    throw new Exception();
-                }
-            }
 
-            Assert.IsTrue(isStatus1);
-            Assert.IsTrue(isStatus2);
+            var statusFromResults = results.Select(d => d.DeploymentStatus).ToList();
+
+            foreach (var status in statuses)
+            {
+                Assert.Contains(status,statusFromResults);
+            }
         }
 
-        [Test]
-        public void GetDashboardByProjectAndEnvironment()
+        [TestCase("Dev","DashboardTests_Project1")]
+        [TestCase("Stage", "DashboardTests_Project1")]
+        [TestCase("Prod", "DashboardTests_Project1")]
+        [TestCase("Dev", "DashboardTests_Project2")]
+        public void GetDashboardByProjectAndEnvironment(string environmentName, string projectName)
         {
-            var environmentName = "Dev";
-            var projectName = project1;
-
             var parameters = new List<CmdletParameter>
             {
                 new CmdletParameter() {Name = "EnvironmentName", SingleValue = environmentName},
                 new CmdletParameter() {Name = "ProjectName", SingleValue = projectName}
             };
-
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
             var results = powershell.Invoke<OutputOctopusDashboardEntry>();
@@ -242,18 +182,17 @@ namespace Octoposh.Tests
             }
         }
 
-        [Test]
-        public void GetDashboardByProjectAndStatus()
+        [TestCase("DashboardTests_Project1", "Success")]
+        [TestCase("DashboardTests_Project1", "Failed")]
+        [TestCase("DashboardTests_Project1", "Canceled")]
+        [TestCase("DeploymentTests_Project1", "Success")]
+        public void GetDashboardByProjectAndStatus(string projectName,string deploymentStatus)
         {
-            var deploymentStatus = "Failed";
-            var projectName = project1;
-
             var parameters = new List<CmdletParameter>
             {
                 new CmdletParameter() {Name = "DeploymentStatus", SingleValue = deploymentStatus},
                 new CmdletParameter() {Name = "ProjectName", SingleValue = projectName}
             };
-
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
             var results = powershell.Invoke<OutputOctopusDashboardEntry>();
@@ -267,11 +206,15 @@ namespace Octoposh.Tests
             }
         }
 
-        [Test]
-        public void GetDashboardByEnvironmentAndStatus()
+        [TestCase("Dev", "Failed")]
+        [TestCase("Dev", "Success")]
+        [TestCase("Stage", "Canceled")]
+        [TestCase("Stage", "Success")]
+        [TestCase("Prod", "Success")]
+        public void GetDashboardByEnvironmentAndStatus(string environmentName,string deploymentStatus)
         {
-            var deploymentStatus = "Failed";
-            var environmentName = "Dev";
+            //var deploymentStatus = "Failed";
+            //var environmentName = "Dev";
 
             var parameters = new List<CmdletParameter>
             {
