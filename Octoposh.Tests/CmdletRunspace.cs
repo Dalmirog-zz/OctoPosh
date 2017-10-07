@@ -12,20 +12,7 @@ namespace Octoposh.Tests
     {
         public CmdletRunspace()
         {
-            //var octopusUrl = string.Concat("http://localhost:", ConfigurationManager.AppSettings["OctopusBindingPort"]);
-            //var octopusUser = ConfigurationManager.AppSettings["OctopusUser"];
-            //var octopusPassword = ConfigurationManager.AppSettings["OctopusPassword"];
 
-            //var repository = new OctopusRepository(new OctopusServerEndpoint(octopusUrl));
-
-            //repository.Users.SignIn(octopusUser, octopusPassword, true);
-
-            //var user = repository.Users.GetCurrent();
-
-            //var octopusApiKey = repository.Users.CreateApiKey(user, "Unit Tests").ApiKey;
-
-            //Environment.SetEnvironmentVariable("OctopusURL", octopusUrl);
-            //Environment.SetEnvironmentVariable("OctopusAPIKey", octopusApiKey);
         }
         /// <summary>
         /// Creates a Powershell cmdlet with parameters

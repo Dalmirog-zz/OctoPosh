@@ -17,61 +17,63 @@ namespace Octoposh.Tests
     {
         private static readonly string CmdletName = "Get-OctopusProject";
         private static readonly Type CmdletType = typeof(GetOctopusProject);
-        private static readonly string Project1 = "ProjectTests_Project1";
-        private static readonly string Project2 = "ProjectTests_Project2";
 
-        [Test]
-        public void GetProjectBySingleName()
+        [TestCase("ProjectTests_Project1")]
+        [TestCase("ProjectTests_Project2")]
+        public void GetProjectBySingleName(string projectName)
         {
-            var parameters = new List<CmdletParameter> {new CmdletParameter()
+            var parameters = new List<CmdletParameter>
             {
-                Name = "Name", SingleValue = Project1
-            }};
+                new CmdletParameter()
+                {
+                    Name = "Name", SingleValue = projectName
+                }
+                
+            };
 
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
             var results = powershell.Invoke<OutputOctopusProject>();
 
-            Assert.AreEqual(results.Count, 1);
-            Console.WriteLine("Items Found:");
-            foreach (var item in results)
-            {
-                Console.WriteLine(item.Name);
-            }
+            Assert.AreEqual(1,results.Count);
+            Assert.AreEqual(projectName,results[0].Name);
         }
 
-        [Test]
-        public void GetProjectsByMultipleNames()
+        [TestCase(new[] {"ProjectTests_Project1","ProjectTests_Project2"},null)]
+        [TestCase(new[] { "ProjectTests_Project3", "ProjectTests_Project4" }, null)]
+        public void GetProjectsByMultipleNames(string[] projectNames,string unused)
         {
-            var parameters = new List<CmdletParameter> {new CmdletParameter()
+            var parameters = new List<CmdletParameter>
             {
-                Name = "Name", MultipleValue = new[] {Project1,Project2}
-            }};
+                new CmdletParameter()
+                {
+                    Name = "Name",
+                    MultipleValue = projectNames
+                }
+            };
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
             var results = powershell.Invoke<OutputOctopusProject>();
 
-            //todo this test sucks
-            Assert.AreEqual(results.Count, 2);
+            Assert.AreEqual(2,results.Count);
 
-            Console.WriteLine("Items Found:");
-            foreach (var item in results)
+            var projectNamesInResults = results.Select(p => p.Name).ToList();
+            
+            foreach (var projectName in projectNames)
             {
-                Console.WriteLine(item.Name);
+                Assert.Contains(projectName,projectNamesInResults);
             }
         }
 
-        [Test]
-        public void GetProjectsByNameUsingWildcard()
+        [TestCase("ProjectTests*")]
+        [TestCase("ProjectTests*_Project*")]
+        [TestCase("*1")]
+        public void GetProjectsByNameUsingWildcard(string namePattern)
         {
-            var namePattern = "*1";
-
             var parameters = new List<CmdletParameter> {new CmdletParameter()
             {
                 Name = "Name", SingleValue = namePattern
             }};
-
-            Console.WriteLine("Looking for resources with name pattern: {0}", namePattern);
 
             var pattern = new WildcardPattern(namePattern);
 
@@ -79,8 +81,7 @@ namespace Octoposh.Tests
             var results = powershell.Invoke<OutputOctopusProject>();
 
             Assert.Greater(results.Count, 0);
-            Console.WriteLine("Resources found: {0}", results.Count);
-
+            
             foreach (var item in results)
             {
                 Console.WriteLine("Resource name: {0}", item.Name);
@@ -88,26 +89,30 @@ namespace Octoposh.Tests
             }
         }
 
-        [Test]
-        public void DontGetProjectIfNameDoesntMatch()
+        [TestCase("TotallyANameThatYoullNeverPutToAResource")]
+        public void DontGetProjectIfNameDoesntMatch(string projectName)
         {
-            var resourceName = "TotallyANameThatYoullNeverPutToAResource";
-
-            var parameters = new List<CmdletParameter> {new CmdletParameter()
+            var parameters = new List<CmdletParameter>
             {
-                Name = "Name", SingleValue = resourceName
-            }};
+                new CmdletParameter()
+                {
+                    Name = "Name", SingleValue = projectName
+                }
+            };
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
             var results = powershell.Invoke<OutputOctopusProject>();
 
-            Assert.AreEqual(results.Count, 0);
+            Assert.AreEqual(1,results.Count);
+            Assert.AreEqual(projectName,results[0].Name);
         }
 
-        [Test]
-        public void GetProjectByProjectGroup()
+        [TestCase("DashboardTests_ProjectGroup")]
+        [TestCase("DeploymentTests_ProjectGroup")]
+        [TestCase("ProjectTests_ProjectGroup")]
+        public void GetProjectByProjectGroup(string projectGroupName)
         {
-            var projectGroupName = "TestProjectGroup";
+            //var projectGroupName = "TestProjectGroup";
 
             var parameters = new List<CmdletParameter> {new CmdletParameter()
             {
@@ -117,9 +122,38 @@ namespace Octoposh.Tests
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
             var results = powershell.Invoke<OutputOctopusProject>();
 
-            foreach (var result in results)
+            Assert.Greater(results.Count,0);
+
+            foreach (var project in results)
             {
-                Assert.AreEqual(result.ProjectGroupName, projectGroupName);
+                Assert.AreEqual(projectGroupName,project.ProjectGroupName);
+            }
+            
+        }
+
+        [TestCase(new[] { "DashboardTests_ProjectGroup", "DeploymentTests_ProjectGroup" }, null)]
+        [TestCase(new[] { "ProjectTests_ProjectGroup", "ReleaseTests_ProjectGroup" }, null)]
+        public void GetProjectsByMultipleProjectGroups(string[] projectGroupNames, string unused)
+        {
+            var parameters = new List<CmdletParameter>
+            {
+                new CmdletParameter()
+                {
+                    Name = "ProjectGroupName",
+                    MultipleValue = projectGroupNames
+                }
+            };
+
+            var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
+            var results = powershell.Invoke<OutputOctopusProject>();
+
+            Assert.Greater(results.Count,2);
+
+            var projectGroupNamesInResults = results.Select(p => p.ProjectGroupName).ToList();
+
+            foreach (var projectGroupName in projectGroupNames)
+            {
+                Assert.Contains(projectGroupName, projectGroupNamesInResults);
             }
         }
 

@@ -18,7 +18,7 @@ namespace Octoposh.TestDataGenerator.Fixtures
         /// <summary>
         /// Projects on which releases/deployments will be created.
         /// </summary>
-        private static readonly string[] ProjectNames = {"DashboardTests_Project1","DashboardTests_Project2", "DeploymentTests_Project1", "ReleaseTests_Project1" };
+        private static readonly string[] ProjectNames = {"DashboardTests_Project1","DashboardTests_Project2", "DeploymentTests_Project1","DeploymentTests_Project2", "ReleaseTests_Project1", "ReleaseTests_Project2" };
 
         private static List<ProjectResource> _allProjects;
         private static List<ReleaseResource> _allReleases;
@@ -74,6 +74,7 @@ namespace Octoposh.TestDataGenerator.Fixtures
             switch (projectName)
             {
                 case "DeploymentTests_Project1":
+                case "DeploymentTests_Project2":
                     return Releaseplaybooks.DeploymentTestsPlaybook;
                 case "DashboardTests_Project1":
                     return Releaseplaybooks.DashboardTestsPlaybook;
@@ -81,6 +82,8 @@ namespace Octoposh.TestDataGenerator.Fixtures
                     return Releaseplaybooks.DashboardTestsPlaybookShort;
                 case "ReleaseTests_Project1":
                     return Releaseplaybooks.ReleaseTestsPlaybook;
+                case "ReleaseTests_Project2":
+                    return Releaseplaybooks.ReleaseTestsPlaybookShort;
                 default:
                     throw new Exception($"Project {projectName}");
             }

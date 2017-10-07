@@ -17,14 +17,11 @@ namespace Octoposh.Tests
     {
         private static readonly string CmdletName = "Get-OctopusFeed";
         private static readonly Type CmdletType = typeof(GetOctopusFeed);
-        private static readonly string Feed1 = "FeedTests_Feed1";
-        private static readonly string Feed2 = "FeedTests_Feed2";
 
-        [Test]
-        public void GetFeedBySingleName()
+        [TestCase("FeedTests_Feed1")]
+        [TestCase("FeedTests_Feed2")]
+        public void GetFeedBySingleName(string feedName)
         {
-            var feedName = Feed1;
-
             var parameters = new List<CmdletParameter>
             {
                 new CmdletParameter()
@@ -34,111 +31,84 @@ namespace Octoposh.Tests
                 }
             };
 
-            Console.WriteLine("Looking for Feed [{0}]", feedName);
-
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
             var results = powershell.Invoke<OutputOctopusFeed>();
 
             Assert.AreEqual(1, results.Count);
 
             Assert.AreEqual(results[0].Name, feedName);
-
-            Console.WriteLine("Feed [{0}] found", feedName);
         }
-        [Test]
-        public void GetFeedByMultipleNames()
-        {
-            var feedName1 = Feed1;
-            var feedName2 = Feed2;
-            bool isFeed1 = false;
-            bool isFeed2 = false;
 
+        [TestCase(new[] { "FeedTests_Feed1", "FeedTests_Feed2" }, null)]
+        [TestCase(new[] { "FeedTests_Feed3", "FeedTests_Feed4" }, null)]
+        public void GetFeedByMultipleNames(string[] feedNames,string unused)
+        {
             var parameters = new List<CmdletParameter>
             {
                 new CmdletParameter()
                 {
                     Name = "FeedName",
-                    MultipleValue = new string[]{feedName1,feedName2}
+                    MultipleValue = feedNames
                 }
             };
-
-            Console.WriteLine("Looking for Feeds [{0}] and [{1}]", feedName1, feedName2);
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
             var results = powershell.Invoke<OutputOctopusFeed>();
 
             Assert.AreEqual(2, results.Count);
+            var feedNamesInResults = results.Select(f => f.Name).ToList();
 
-            foreach (var item in results)
+            foreach (var feedName in feedNames)
             {
-                if (item.Name == feedName1)
-                {
-                    isFeed1 = true;
-                }
-                else if (item.Name == feedName2)
-                {
-                    isFeed2 = true;
-                }
-                else
-                {
-                    Console.WriteLine("Feed found with name that was not expected: [{0}]", item.Name);
-                    throw new Exception();
-                }
+                Assert.Contains(feedName,feedNamesInResults);
             }
 
-            Assert.IsTrue(isFeed1);
-            Assert.IsTrue(isFeed2);
-
-            Console.WriteLine("Feeds [{0}] and [{1}] found", feedName1, feedName2);
         }
-        [Test]
-        public void GetFeedByNameUsingWildcard()
-        {
-            var namePattern = "FeedTests_Feed*";
 
+        [TestCase("*1")]
+        [TestCase("*2")]
+        [TestCase("*3")]
+        public void GetFeedByNameUsingWildcard(string namePattern)
+        {
             var parameters = new List<CmdletParameter> {
                 new CmdletParameter(){
-                    Name = "Name", SingleValue = namePattern
+                    Name = "Name",
+                    SingleValue = namePattern
                 }
             };
-
-            Console.WriteLine("Looking for resources with name pattern: {0}", namePattern);
 
             var pattern = new WildcardPattern(namePattern);
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
             var results = powershell.Invoke<OutputOctopusFeed>();
 
-            Assert.AreEqual(2, results.Count);
-            Console.WriteLine("Resources found: {0}", results.Count);
-
-            foreach (var item in results)
-            {
-                Console.WriteLine("Resource name: {0}", item.Name);
-                Assert.IsTrue(pattern.IsMatch(item.Name));
-            }
-            Console.WriteLine("Resources found match pattern [{0}]", namePattern);
+            Assert.AreEqual(1, results.Count);
+            
+            Assert.IsTrue(pattern.IsMatch(results[0].Name));
         }
-        [Test]
-        public void DontGetFeedIfNameDoesntMatch()
-        {
-            var resourceName = "TotallyANameThatYoullNeverPutToAResource";
 
-            var parameters = new List<CmdletParameter> {new CmdletParameter()
-            {
-                Name = "Name", SingleValue = resourceName
-            }};
+        [TestCase("FeedTests_Feed123")]
+        [TestCase("FeedTests_Feed234")]
+        [TestCase("FeedTests_Feed345")]
+        public void DontGetFeedIfNameDoesntMatch(string feedName)
+        {
+            var parameters = new List<CmdletParameter> {
+                new CmdletParameter()
+                {
+                    Name = "Name",
+                    SingleValue = feedName
+                }};
 
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
             var results = powershell.Invoke<OutputOctopusFeed>();
 
             Assert.AreEqual(results.Count, 0);
-            Console.WriteLine("No resources found with name [{0}]", resourceName);
         }
+
         [Test]
         public void GetFeedUsingResourceOnlyReturnsRawResource()
         {
-            var feedName = Feed1;
+            var feedName = "FeedTests_Feed1";
 
             var parameters = new List<CmdletParameter>
             {

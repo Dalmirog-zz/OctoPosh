@@ -78,7 +78,7 @@ namespace Octoposh.Cmdlets
         /// </summary>
         //todo: figure out how to print accepted values in help
         [Alias("Mode")]
-        [ValidateSet("ListeningTentacle", "PollingTentacle", "SSHEndPoint", "CloudRegion", "OfflineDrop")]
+        [ValidateSet("ListeningTentacle", "PollingTentacle", "SSHEndpoint", "CloudRegion", "OfflineDrop")]
         [Parameter(ValueFromPipeline = true, ParameterSetName = ByCommunicationStyle)]
         public string CommunicationStyle { get; set; }
 
@@ -152,10 +152,11 @@ namespace Octoposh.Cmdlets
                         
                     switch (CommunicationStyle)
                     {
-                        case "Polling":
+                         
+                        case "PollingTentacle":
                             endpointtype = "Octopus.Client.Model.Endpoints.PollingTentacleEndpointResource";
                             break;
-                        case "Listening":
+                        case "ListeningTentacle":
                             endpointtype = "Octopus.Client.Model.Endpoints.ListeningTentacleEndpointResource";
                             break;
                         case "CloudRegion":
@@ -164,7 +165,7 @@ namespace Octoposh.Cmdlets
                         case "OfflineDrop":
                             endpointtype = "Octopus.Client.Model.Endpoints.OfflineDropEndpointResource";
                             break;
-                        case "SSH":
+                        case "SSHEndpoint":
                             endpointtype = "Octopus.Client.Model.Endpoints.SSHEndpointResource";
                             break;
                     }

@@ -14,13 +14,11 @@ namespace Octoposh.Tests
     {
         private static readonly string CmdletName = "Get-OctopusRelease";
         private static readonly Type CmdletType = typeof(GetOctopusRelease);
-        private static readonly string Project1 = "ReleaseTests_Project1";
 
-        [Test]
-        public void GetReleaseByProject()
+        [TestCase("ReleaseTests_Project1")]
+        [TestCase("ReleaseTests_Project2")]
+        public void GetReleaseByProject(string projectName)
         {
-            var projectName = Project1;
-
             var parameters = new List<CmdletParameter>{
 
                 new CmdletParameter()
@@ -33,21 +31,20 @@ namespace Octoposh.Tests
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
             var results = powershell.Invoke<OutputOctopusRelease>();
 
-            Console.WriteLine("Found [{0}] releases",results.Count);
             Assert.Greater(results.Count,1);
 
             foreach (var item in results)
             {
                 Assert.AreEqual(item.ProjectName,projectName);
             }
-            Console.WriteLine("All releases found [{0}] belong to project [{1}]",results.Count,projectName);
         }
-
-        [Test]
-        public void GetReleaseBySingleVersion()
+        
+        [TestCase("1.0.0")]
+        [TestCase("2.0.0")]
+        [TestCase("3.0.0")]
+        public void GetReleaseBySingleVersion(string releaseVersion)
         {
-            var projectName = Project1;
-            var ReleaseVersion = "1.0.0";
+            var projectName = "ReleaseTests_Project1";
 
             var parameters = new List<CmdletParameter>()
             {
@@ -59,7 +56,7 @@ namespace Octoposh.Tests
                 new CmdletParameter()
                 {
                     Name = "ReleaseVersion",
-                    SingleValue = ReleaseVersion
+                    SingleValue = releaseVersion
                 }
             };
 
@@ -67,14 +64,15 @@ namespace Octoposh.Tests
             var results = powershell.Invoke<OutputOctopusRelease>();
 
             Assert.IsTrue(results.Count == 1);
-            Assert.AreEqual(results[0].ReleaseVersion, ReleaseVersion);
+            Assert.AreEqual(results[0].ReleaseVersion, releaseVersion);
         }
 
-        [Test]
-        public void GetReleaseByMultipleVersions()
+        [TestCase(new[] { "1.0.0", "2.0.0" }, null)]
+        [TestCase(new[] { "3.0.0", "4.0.0","5.0.0" }, null)]
+        [TestCase(new[] { "6.0.0", "7.0.0", "8.0.0","9.0.0" }, null)]
+        public void GetReleaseByMultipleVersions(string[] releaseVersions, string unused)
         {
-            var projectName = Project1;
-            var releaseVersions = new string[]{"1.0.0","2.0.0"};
+            var projectName = "ReleaseTests_Project1";
 
             var parameters = new List<CmdletParameter>()
             {
@@ -93,26 +91,23 @@ namespace Octoposh.Tests
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
             var results = powershell.Invoke<OutputOctopusRelease>();
 
-            Console.WriteLine("Found [{0}] Releases",results.Count);
-            Assert.IsTrue(results.Count == 2);
+            Assert.IsTrue(results.Count == releaseVersions.Length);
 
-            foreach (var release in results)
+            var releaseNumbersInResults = results.Select(r => r.ReleaseVersion).ToList();
+
+            foreach (var releaseVersion in releaseVersions)
             {
-                Assert.IsTrue(releaseVersions.Contains(release.ReleaseVersion));
+                Assert.Contains(releaseVersion,releaseNumbersInResults);
             }
-
-            Console.WriteLine("The [{0}] releases have the version numbers [{1}] and [{2}]",results.Count,releaseVersions[0],releaseVersions[1]);
         }
 
-        [Test]
-        public void GetReleaseByMultipleVersionsWithUnexisting()
+        [TestCase("1.0.0", "1.0..")]
+        [TestCase("2.0.0", "one.zero.zero")]
+        public void GetReleaseByMultipleVersionsWithUnexisting(string goodVersion,string badVersion)
         {
-            var projectName = Project1;
+            var projectName = "ReleaseTests_Project1";
 
-            var goodVersion = "1.0.0";
-            var badVersion = "TotallyNotAVersion";
-
-            var releaseVersions = new string[] { goodVersion, badVersion };
+            var releaseVersions = new[] { goodVersion, badVersion };
 
             var parameters = new List<CmdletParameter>
             {
@@ -128,25 +123,23 @@ namespace Octoposh.Tests
                 }
             };
 
-            Console.WriteLine("Looking for releases with version numbers [{0}] and [{1}]. The test expects to find only 1 release with version [{1}] for the project [{2}]",badVersion,goodVersion,projectName);
-
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
             var results = powershell.Invoke<OutputOctopusRelease>();
 
-            Console.WriteLine("Found [{0}] releases", results.Count);
             Assert.IsTrue(results.Count == 1);
 
-            Assert.AreEqual(results[0].ReleaseVersion,goodVersion);
             Assert.IsTrue(results[0].ProjectName == projectName);
-            Console.WriteLine("The release found has the version [{0}] and belongs to the project [{1}]",results[0].ReleaseVersion,projectName);
+            Assert.AreEqual(results[0].ReleaseVersion,goodVersion);
         }
 
-        [Test]
-        public void GetReleaseUsingLatestX()
+        [TestCase(3)]
+        [TestCase(5)]
+        [TestCase(31)]
+        
+        public void GetReleaseUsingLatestX(int randomMax)
         {
-            var projectName = Project1;
-            var randomMax = 31; //Setting 31 as the max cause in that particular case It'll force Octopus to paginate
-            var latest = new Random().Next(1, randomMax);
+            var projectName = "ReleaseTests_Project1";
+            var latest = new Random().Next(1, randomMax); //The test will get the latest X releases where X is a random number between 1 and randomMax
 
             var parameters = new List<CmdletParameter>
             {
@@ -162,22 +155,19 @@ namespace Octoposh.Tests
                 }
             };
 
-            Console.WriteLine("Looking for the last [{0}] releases for project [{1}]", latest, projectName);
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
 
             var results = powershell.Invoke<OutputOctopusRelease>();
 
-            Console.WriteLine("Found [{0}] releases", results.Count);
             Assert.IsTrue(results.Count == latest);
 
             Assert.That(results.Any(r => r.ProjectName == projectName));
-            Console.WriteLine("All releases found belong to the project [{0}]",projectName);
         }
 
         [Test]
         public void GetReleaseUsingResourceOnlyReturnsRawResource()
         {
-            var projectName = Project1;
+            var projectName = "ReleaseTests_Project1";
             var latest = 1;
 
             var parameters = new List<CmdletParameter>

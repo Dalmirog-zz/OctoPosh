@@ -47,7 +47,7 @@ namespace Octoposh.Cmdlets
         public string[] ReleaseVersion { get; set; }
 
         /// <summary>
-        /// <para type="description">Name of project to filter releases. Only one Project can be passed to this parameter at a time</para>
+        /// <para type="description">Name of project to filter releases.</para>
         /// </summary>
         [Alias("Project")]
         [ValidateNotNullOrEmpty()]
