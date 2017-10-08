@@ -81,7 +81,7 @@ namespace Octoposh.Tests
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
             var results = powershell.Invoke<OutputOctopusTagSet>();
 
-            Assert.AreEqual(2, results.Count);
+            Assert.AreEqual(4, results.Count);
             Console.WriteLine("Resources found: {0}", results.Count);
 
             foreach (var item in results)

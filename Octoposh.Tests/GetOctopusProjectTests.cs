@@ -103,8 +103,7 @@ namespace Octoposh.Tests
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
             var results = powershell.Invoke<OutputOctopusProject>();
 
-            Assert.AreEqual(1,results.Count);
-            Assert.AreEqual(projectName,results[0].Name);
+            Assert.AreEqual(0,results.Count);
         }
 
         [TestCase("DashboardTests_ProjectGroup")]

@@ -132,5 +132,7 @@ namespace Octoposh.Tests
             ;
         }
 
+        //todo Add tests for GetByURI
+
     }
 }
