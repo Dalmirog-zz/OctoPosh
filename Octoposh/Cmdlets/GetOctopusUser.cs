@@ -1,8 +1,7 @@
-﻿
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
+using Octoposh.Infrastructure;
 using Octoposh.Model;
 using Octopus.Client.Model;
 
@@ -37,7 +36,7 @@ namespace Octoposh.Cmdlets
     [Cmdlet("Get", "OctopusUser")]
     [OutputType(typeof(List<OutputOctopusMachine>))]
     [OutputType(typeof(List<MachineResource>))]
-    public class GetOctopusUser : PSCmdlet
+    public class GetOctopusUser : GetOctoposhCmdlet
     {
         /// <summary>
         /// <para type="description">User Name. Accepts wildcard</para>
@@ -47,19 +46,6 @@ namespace Octoposh.Cmdlets
         [Parameter(Position = 1, ValueFromPipeline = true)]
         public string[] UserName { get; set; }
 
-        /// <summary>
-        /// <para type="description">If set to TRUE the cmdlet will return the basic Octopus resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh output object</para>
-        /// </summary>
-        [Parameter]
-        public SwitchParameter ResourceOnly { get; set; }
-
-        private OctopusConnection _connection;
-
-        protected override void BeginProcessing()
-        {
-            _connection = new NewOctopusConnection().Invoke<OctopusConnection>().ToList()[0];
-        }
-
         protected override void ProcessRecord()
         {
             var baseResourceList = new List<UserResource>();
@@ -68,7 +54,7 @@ namespace Octoposh.Cmdlets
 
             if (userNameList == null)
             {
-                baseResourceList = _connection.Repository.Users.FindAll();
+                baseResourceList = Connection.Repository.Users.FindAll();
             }
             else
             {
@@ -81,12 +67,12 @@ namespace Octoposh.Cmdlets
                 else if (userNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && userNameList.Count == 1))
                 {
                     var pattern = new WildcardPattern(userNameList.First());
-                    baseResourceList = _connection.Repository.Users.FindMany(u => pattern.IsMatch(u.Username.ToLower()));
+                    baseResourceList = Connection.Repository.Users.FindMany(u => pattern.IsMatch(u.Username.ToLower()));
                 }
                 //multiple non-wildcared values (i.e. -MachineName WebServer1,Database1)
                 else if (!userNameList.Any(WildcardPattern.ContainsWildcardCharacters))
                 {
-                    baseResourceList = _connection.Repository.Users.FindMany(u => userNameList.Contains(u.Username.ToLower()));
+                    baseResourceList = Connection.Repository.Users.FindMany(u => userNameList.Contains(u.Username.ToLower()));
                 }
             }
 

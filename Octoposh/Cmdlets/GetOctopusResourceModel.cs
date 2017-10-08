@@ -38,18 +38,13 @@ namespace Octoposh.Cmdlets
         [ValidateSet("Environment", "Project", "ProjectGroup", "NugetFeed","ExternalFeed", "LibraryVariableSet", "Machine","Target", "Lifecycle", "Team", "User","Channel","Tenant","TagSet","UserRole")]
         [Parameter(Mandatory = true)]
         public string Resource { get; set; }
-
-        private OctopusConnection _connection;
-
-        protected override void BeginProcessing()
-        {
-            _connection = new NewOctopusConnection().Invoke<OctopusConnection>().ToList()[0];
-        }
-
+        
         protected override void ProcessRecord()
         {
             object baseresource = null;
-
+            
+            //todo Ask Shannon - Is there a way to make this support all resources instead of having to add each one by hand?
+            //todo Ask Shannon - Should the cmdlet inherit from the abstract class, even if the latter will give the cmdlet properties/parameters that it shouldn't have but don't break any functionality? Should I solve this breaking down the inheritances into more classes?
             switch (Resource)
             {
                 case "Environment":

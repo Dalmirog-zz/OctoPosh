@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
+using Octoposh.Infrastructure;
 using Octoposh.Model;
 
 namespace Octoposh.Cmdlets
@@ -35,7 +36,7 @@ namespace Octoposh.Cmdlets
     /// <para type="link" uri="https://gitter.im/Dalmirog/OctoPosh#initial">QA and Feature requests: </para>
     [Cmdlet("Get", "OctopusDashboard")]
     [OutputType(typeof(List<OutputOctopusDashboardEntry>))]
-    public class GetOctopusDashboard : Cmdlet
+    public class GetOctopusDashboard : OctoposhConnection
     {
         /// <summary>
         /// <para type="description">Name of the Project to filter for.</para>
@@ -56,16 +57,9 @@ namespace Octoposh.Cmdlets
         [ValidateSet("Success", "Failed", "Executing", "Canceled",IgnoreCase = true)]
         public string[] DeploymentStatus { get; set; }
 
-        private OctopusConnection _connection;
-
-        protected override void BeginProcessing()
-        {
-            _connection = new NewOctopusConnection().Invoke<OctopusConnection>().ToList()[0];
-        }
-
         protected override void ProcessRecord()
         {
-            var rawDashboard = _connection.Repository.Dashboards.GetDashboard();
+            var rawDashboard = Connection.Repository.Dashboards.GetDashboard();
             
             var converter = new OutputConverter();
             

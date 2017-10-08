@@ -4,6 +4,7 @@ using Octopus.Client.Model;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
+using Octoposh.Infrastructure;
 
 namespace Octoposh.Cmdlets
 {
@@ -32,7 +33,7 @@ namespace Octoposh.Cmdlets
     [Cmdlet("Get", "OctopusRelease", DefaultParameterSetName = All)]
     [OutputType(typeof(List<OutputOctopusRelease>))]
     [OutputType(typeof(List<ReleaseResource>))]
-    public class GetOctopusRelease : PSCmdlet
+    public class GetOctopusRelease : GetOctoposhCmdlet
     {
         private const string ByVersion = "ByVersion";
         private const string ByLatest = "ByLatest";
@@ -62,76 +63,46 @@ namespace Octoposh.Cmdlets
         [Parameter(ParameterSetName = ByLatest)]
         public int Latest { get; set; }
 
-        /// <summary>
-        /// <para type="description">If set to TRUE the cmdlet will return the basic Octopus resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh output object</para>
-        /// </summary>
-        [Parameter]
-        public SwitchParameter ResourceOnly { get; set; }
-
-        private OctopusConnection _connection;
-        
-
-        protected override void BeginProcessing()
-        {
-            _connection = new NewOctopusConnection().Invoke<OctopusConnection>().ToList()[0];
-        }
-
         protected override void ProcessRecord()
         {
             var baseResourceList = new List<ReleaseResource>();
 
-            var project = _connection.Repository.Projects.FindByName(ProjectName);
+            var project = Connection.Repository.Projects.FindByName(ProjectName);
 
             if (project == null)
             {
                 throw OctoposhExceptions.ResourceNotFound(ProjectName, "Project");
             }
-            else
+
+            switch (ParameterSetName)
             {
-                switch (ParameterSetName)
-                {
-                    case ByVersion:
-                        foreach (var version in ReleaseVersion)
+                case ByVersion:
+                    foreach (var version in ReleaseVersion)
+                    {
+                        try
                         {
-                            try
-                            {
-                                baseResourceList.Add(_connection.Repository.Projects.GetReleaseByVersion(project, version));
-                            }
-                            catch (Exception e)
-                            {
-                                WriteError(new ErrorRecord(e,"ResourceNotFound", ErrorCategory.ObjectNotFound, e.Message));
-                            }
+                            baseResourceList.Add(Connection.Repository.Projects.GetReleaseByVersion(project, version));
                         }
-                        break;
-
-                    case ByLatest:
-
-                        var releases = new List<ReleaseResource>();
-
-                        if (Latest > 30)
+                        catch (Exception e)
                         {
-                            releases = _connection.Repository.Projects.GetAllReleases(project).ToList();
+                            WriteError(new ErrorRecord(e,"ResourceNotFound", ErrorCategory.ObjectNotFound, e.Message));
                         }
-                        else
-                        {
-                            releases = _connection.Repository.Projects.GetReleases(project).Items.ToList();
-                        }
+                    }
+                    break;
 
-                        if(releases.Count > Latest)
-                        {
-                            baseResourceList.AddRange(releases.GetRange(0, Latest));
-                        }
-                        else
-                        {
-                            baseResourceList.AddRange(releases);
-                        }
+                case ByLatest:
 
-                        break;
+                    List<ReleaseResource> releases;
 
-                    default:
-                        baseResourceList.AddRange(_connection.Repository.Projects.GetAllReleases(project).ToList());
-                        break;
-                }
+                    releases = Latest > 30 ? Connection.Repository.Projects.GetAllReleases(project).ToList() : Connection.Repository.Projects.GetReleases(project).Items.ToList();
+
+                    baseResourceList.AddRange(releases.Count > Latest ? releases.GetRange(0, Latest) : releases);
+
+                    break;
+
+                default:
+                    baseResourceList.AddRange(Connection.Repository.Projects.GetAllReleases(project).ToList());
+                    break;
             }
 
             if (ResourceOnly)

@@ -3,6 +3,7 @@ using Octopus.Client.Model;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
+using Octoposh.Infrastructure;
 
 namespace Octoposh.Cmdlets
 {
@@ -35,7 +36,7 @@ namespace Octoposh.Cmdlets
     [Cmdlet("Get", "OctopusProject", DefaultParameterSetName = All)]
     [OutputType(typeof(List<OutputOctopusProject>))]
     [OutputType(typeof(List<ProjectResource>))]
-    public class GetOctopusProject : PSCmdlet
+    public class GetOctopusProject : GetOctoposhCmdlet
     {
         private const string ByName = "ByName";
         private const string ByProjectGroup = "ByProjectGroup";
@@ -57,19 +58,6 @@ namespace Octoposh.Cmdlets
         [Parameter(Position = 1, ValueFromPipeline = true, ParameterSetName = ByProjectGroup)]
         public string[] ProjectGroupName { get; set; }
 
-        /// <summary>
-        /// <para type="description">If set to TRUE the cmdlet will return the basic Octopus resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh output object</para>
-        /// </summary>
-        [Parameter]
-        public SwitchParameter ResourceOnly { get; set; }
-
-        private OctopusConnection _connection;
-
-        protected override void BeginProcessing()
-        {
-            _connection = new NewOctopusConnection().Invoke<OctopusConnection>().ToList()[0];
-        }
-
         protected override void ProcessRecord()
         {
             var baseResourceList = new List<ProjectResource>();
@@ -77,65 +65,27 @@ namespace Octoposh.Cmdlets
             switch (ParameterSetName)
             {
                 case All:
-                    baseResourceList = _connection.Repository.Projects.FindAll();
+                    baseResourceList = Connection.Repository.Projects.FindAll();
                     break;
 
                 case ByName:
                     var projectNameList = ProjectName?.ToList().ConvertAll(s => s.ToLower());
-                    //Multiple values but one of them is wildcarded, which is not an accepted scenario (I.e -MachineName WebServer*, Database1)
-                    if (projectNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && projectNameList.Count > 1))
-                    {
-                        throw OctoposhExceptions.ParameterCollectionHasRegularAndWildcardItem("ProjectName");
-                    }
-                    //Only 1 wildcarded value (ie -MachineName WebServer*)
-                    else if (projectNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && projectNameList.Count == 1))
-                    {
-                        var pattern = new WildcardPattern(projectNameList.First());
-                        baseResourceList = _connection.Repository.Projects.FindMany(x => pattern.IsMatch(x.Name.ToLower()));
-                    }
-                    //multiple non-wildcared values (i.e. -MachineName WebServer1,Database1)
-                    else if (!projectNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item)))
-                    {
-                        foreach (var name in projectNameList)
-                        {
-                            baseResourceList.Add(_connection.Repository.Projects.FindByName(name));
-                        }
-                    }
+
+                    baseResourceList = FilterByName(projectNameList, Connection.Repository.Projects,"ProjectName");
+
                     break;
                 case ByProjectGroup:
+                    
                     var projectGroupNameList = ProjectGroupName?.ToList().ConvertAll(s => s.ToLower());
-                    //Multiple values but one of them is wildcarded, which is not an accepted scenario (I.e -MachineName WebServer*, Database1)
-                    if (projectGroupNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && projectGroupNameList.Count > 1))
-                    {
-                        throw OctoposhExceptions.ParameterCollectionHasRegularAndWildcardItem("ProjectGroupName");
-                    }
-                    //Only 1 wildcarded value (ie -MachineName WebServer*)
-                    else if (projectGroupNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && projectGroupNameList.Count == 1))
-                    {
-                        var pattern = new WildcardPattern(projectGroupNameList.First());
-                        var projectGroups = _connection.Repository.ProjectGroups.FindMany(x => pattern.IsMatch(x.Name.ToLower()));
 
-                        if (projectGroups.Count != 0)
-                        {
-                            foreach (var projectGroup in projectGroups)
-                            {
-                                baseResourceList.AddRange(_connection.Repository.ProjectGroups.GetProjects(projectGroup));
-                            }
-                        }
-                    }
-                    //multiple non-wildcared values (i.e. -MachineName WebServer1,Database1)
-                    else if (!projectGroupNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item)))
-                    {
-                        var projectGroups = _connection.Repository.ProjectGroups.FindMany(x => projectGroupNameList.Contains(x.Name.ToLower()));
+                    var projectGroups = FilterByName(projectGroupNameList,Connection.Repository.ProjectGroups,"ProjectGroupName");
 
-                        if (projectGroups.Count != 0)
+                    if (projectGroups.Count != 0)
+                    {
+                        foreach (var projectGroup in projectGroups)
                         {
-                            foreach (var projectGroup in projectGroups)
-                            {
-                                baseResourceList.AddRange(_connection.Repository.ProjectGroups.GetProjects(projectGroup));
-                            }
+                            baseResourceList.AddRange(Connection.Repository.ProjectGroups.GetProjects(projectGroup));
                         }
-                        
                     }
                     break;
             }

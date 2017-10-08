@@ -3,6 +3,7 @@ using Octopus.Client.Model;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
+using Octoposh.Infrastructure;
 
 namespace Octoposh.Cmdlets
 {
@@ -31,7 +32,7 @@ namespace Octoposh.Cmdlets
     [Cmdlet("Get", "OctopusProjectGroup", DefaultParameterSetName = All)]
     [OutputType(typeof(List<OutputOctopusProjectGroup>))]
     [OutputType(typeof(List<ProjectGroupResource>))]
-    public class GetOctopusProjectGroup : PSCmdlet
+    public class GetOctopusProjectGroup : GetOctoposhCmdlet
     {
         private const string ByName = "ByName";
         private const string All = "All";
@@ -44,19 +45,6 @@ namespace Octoposh.Cmdlets
         [Parameter(Position = 1, ValueFromPipeline = true, ParameterSetName = ByName)]
         public string[] ProjectGroupName { get; set; }
 
-        /// <summary>
-        /// <para type="description">If set to TRUE the cmdlet will return the basic Octopus resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh output object</para>
-        /// </summary>
-        [Parameter]
-        public SwitchParameter ResourceOnly { get; set; }
-
-        private OctopusConnection _connection;
-
-        protected override void BeginProcessing()
-        {
-            _connection = new NewOctopusConnection().Invoke<OctopusConnection>().ToList()[0];
-        }
-
         protected override void ProcessRecord()
         {
             var baseResourceList = new List<ProjectGroupResource>();
@@ -64,27 +52,11 @@ namespace Octoposh.Cmdlets
             switch (ParameterSetName)
             {
                 case All:
-                    baseResourceList = _connection.Repository.ProjectGroups.FindAll();
+                    baseResourceList = Connection.Repository.ProjectGroups.FindAll();
                     break;
 
                 case ByName:
-                    var projectGroupNameList = ProjectGroupName?.ToList().ConvertAll(s => s.ToLower());
-                    //Multiple values but one of them is wildcarded, which is not an accepted scenario (I.e -MachineName WebServer*, Database1)
-                    if (projectGroupNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && projectGroupNameList.Count > 1))
-                    {
-                        throw OctoposhExceptions.ParameterCollectionHasRegularAndWildcardItem("ProjectGroupName");
-                    }
-                    //Only 1 wildcarded value (ie -MachineName WebServer*)
-                    else if (projectGroupNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && projectGroupNameList.Count == 1))
-                    {
-                        var pattern = new WildcardPattern(projectGroupNameList.First());
-                        baseResourceList = _connection.Repository.ProjectGroups.FindMany(x => pattern.IsMatch(x.Name.ToLower()));
-                    }
-                    //multiple non-wildcared values (i.e. -MachineName WebServer1,Database1)
-                    else if (!projectGroupNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item)))
-                    {
-                        baseResourceList = _connection.Repository.ProjectGroups.FindMany(x => projectGroupNameList.Contains(x.Name.ToLower()));
-                    }
+                    baseResourceList = FilterByName(ProjectGroupName, Connection.Repository.ProjectGroups, "ProjectGroupName");
                     break;
             }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
+using Octoposh.Infrastructure;
 using Octoposh.Model;
 using Octopus.Client.Model;
 
@@ -23,22 +24,15 @@ namespace Octoposh.Cmdlets
     /// <para type="link" uri="https://gitter.im/Dalmirog/OctoPosh#initial">QA and Feature requests: </para>
     [Cmdlet("Get", "OctopusServerThumbprint")]
     [OutputType(typeof(string))]
-    public class GetOctopusServerThumbprint: PSCmdlet
+    public class GetOctopusServerThumbprint: OctoposhConnection
     {
-        private OctopusConnection _connection;
-
-        protected override void BeginProcessing()
-        {
-            _connection = new NewOctopusConnection().Invoke<OctopusConnection>().ToList()[0];
-        }
-
         protected override void ProcessRecord()
         {
             string thumbprint;
 
             try
             {
-                thumbprint = _connection.Repository.CertificateConfiguration.GetOctopusCertificate()?.Thumbprint;
+                thumbprint = Connection.Repository.CertificateConfiguration.GetOctopusCertificate()?.Thumbprint;
             }
             catch (Exception e)
             {

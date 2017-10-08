@@ -4,6 +4,7 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 using System.Threading.Tasks;
+using Octoposh.Infrastructure;
 using Octoposh.Model;
 using Octopus.Client.Model;
 
@@ -30,7 +31,7 @@ namespace Octoposh.Cmdlets
 
     [Cmdlet("Remove", "OctopusResource")]
     [OutputType(typeof(bool))]
-    public class RemoveOctopusResource : PSCmdlet
+    public class RemoveOctopusResource : OctoposhConnection
     {
         /// <summary>
         /// <para type="description">Resource Object to delete from the Octopus Server</para>
@@ -40,13 +41,6 @@ namespace Octoposh.Cmdlets
         public Resource[] Resource { get; set; }
         
         //todo Add -Force parameter
-
-        private OctopusConnection _connection;
-
-        protected override void BeginProcessing()
-        {
-            _connection = new NewOctopusConnection().Invoke<OctopusConnection>().ToList()[0];
-        }
 
         protected override void ProcessRecord()
         {
@@ -58,78 +52,78 @@ namespace Octoposh.Cmdlets
                     {
                         case "Octopus.Client.Model.EnvironmentResource":
                             var enviroment = (EnvironmentResource)r;
-                            _connection.Repository.Environments.Delete(enviroment);
+                            Connection.Repository.Environments.Delete(enviroment);
                             WriteObject(true,true);
                             break;
 
                         case "Octopus.Client.Model.ProjectResource":
                             var project = (ProjectResource)r;
-                            _connection.Repository.Projects.Delete(project);
+                            Connection.Repository.Projects.Delete(project);
                             WriteObject(true,true);
                             break;
 
                         case "Octopus.Client.Model.ProjectGroupResource":
                             var projectGroup = (ProjectGroupResource)r;
-                            _connection.Repository.ProjectGroups.Delete(projectGroup);
+                            Connection.Repository.ProjectGroups.Delete(projectGroup);
                             WriteObject(true,true);
                             break;
 
                         case "Octopus.Client.Model.NuGetFeedResource":
                             var nugetFeed = (NuGetFeedResource)r;
-                            _connection.Repository.Feeds.Delete(nugetFeed);
+                            Connection.Repository.Feeds.Delete(nugetFeed);
                             WriteObject(true,true);
                             break;
 
                         case "Octopus.Client.Model.LibraryVariableSetResource":
                             var libraryVariableSet = (LibraryVariableSetResource)r;
-                            _connection.Repository.LibraryVariableSets.Delete(libraryVariableSet);
+                            Connection.Repository.LibraryVariableSets.Delete(libraryVariableSet);
                             WriteObject(true,true);
                             break;
 
                         case "Octopus.Client.Model.MachineResource":
                             var machine = (MachineResource)r;
-                            _connection.Repository.Machines.Delete(machine);
+                            Connection.Repository.Machines.Delete(machine);
                             WriteObject(true,true);
                             break;
 
                         case "Octopus.Client.Model.LifecycleResource":
                             var lifecycle = (LifecycleResource)r;
-                            _connection.Repository.Lifecycles.Delete(lifecycle);
+                            Connection.Repository.Lifecycles.Delete(lifecycle);
                             WriteObject(true,true);
                             break;
 
                         case "Octopus.Client.Model.TeamResource":
                             var team = (TeamResource)r;
-                            _connection.Repository.Teams.Delete(team);
+                            Connection.Repository.Teams.Delete(team);
                             WriteObject(true,true);
                             break;
 
                         case "Octopus.Client.Model.UserResource":
                             var user = (UserResource)r;
-                            _connection.Repository.Users.Delete(user);
+                            Connection.Repository.Users.Delete(user);
                             WriteObject(true,true);
                             break;
 
                         case "Octopus.Client.Model.ChannelResource":
                             var channel = (ChannelResource)r;
-                            _connection.Repository.Channels.Delete(channel);
+                            Connection.Repository.Channels.Delete(channel);
                             WriteObject(true,true);
                             break;
 
                         case "Octopus.Client.Model.TenantResource":
                             var tenant = (TenantResource)r;
-                            _connection.Repository.Tenants.Delete(tenant);
+                            Connection.Repository.Tenants.Delete(tenant);
                             WriteObject(true,true);
                             break;
                         case "Octopus.Client.Model.TagSetResource":
                             var tagset = (TagSetResource)r;
-                            _connection.Repository.TagSets.Delete(tagset);
+                            Connection.Repository.TagSets.Delete(tagset);
                             WriteObject(true,true);
                             break;
 
                         case "Octopus.Client.Model.UserRoleResource":
                             var userRole = (UserRoleResource)r;
-                            _connection.Repository.UserRoles.Delete(userRole);
+                            Connection.Repository.UserRoles.Delete(userRole);
                             WriteObject(true, true);
                             break;
 

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
+using Octoposh.Infrastructure;
 using Octoposh.Model;
 using Octopus.Client.Model;
 
@@ -41,7 +42,7 @@ namespace Octoposh.Cmdlets
     [Cmdlet("Get", "OctopusMachine", DefaultParameterSetName = All)]
     [OutputType(typeof(List<OutputOctopusMachine>))]
     [OutputType(typeof(List<MachineResource>))]
-    public class GetOctopusMachine : PSCmdlet
+    public class GetOctopusMachine : GetOctoposhCmdlet
     {
         private const string ByName = "ByName";
         private const string ByEnvironment = "ByEnvironment";
@@ -82,19 +83,6 @@ namespace Octoposh.Cmdlets
         [Parameter(ValueFromPipeline = true, ParameterSetName = ByCommunicationStyle)]
         public string CommunicationStyle { get; set; }
 
-        /// <summary>
-        /// <para type="description">If set to TRUE the cmdlet will return the basic Octopus resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh output object</para>
-        /// </summary>
-        [Parameter]
-        public SwitchParameter ResourceOnly {get; set; }
-
-        private OctopusConnection _connection;
-
-        protected override void BeginProcessing()
-        {
-            _connection = new NewOctopusConnection().Invoke<OctopusConnection>().ToList()[0];
-        }
-
         protected override void ProcessRecord()
         {
             var baseResourceList = new List<MachineResource>();
@@ -102,31 +90,15 @@ namespace Octoposh.Cmdlets
             switch (ParameterSetName)
             {
                 case All:
-                    baseResourceList = _connection.Repository.Machines.FindAll();
+                    baseResourceList = Connection.Repository.Machines.FindAll();
                     break;
 
                 case ByName:
                     var machineNameList = MachineName?.ToList().ConvertAll(s => s.ToLower());
-
-                    //Multiple values but one of them is wildcarded, which is not an accepted scenario (I.e -MachineName WebServer*, Database1)
-                    if (machineNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && machineNameList.Count > 1))
-                    {
-                        throw OctoposhExceptions.ParameterCollectionHasRegularAndWildcardItem("MachineName");
-                    }
-                    //Only 1 wildcarded value (ie -MachineName WebServer*)
-                    else if (machineNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && machineNameList.Count == 1))
-                    {
-                        var pattern = new WildcardPattern(machineNameList.First());
-                        baseResourceList = _connection.Repository.Machines.FindMany(x => pattern.IsMatch(x.Name.ToLower()));
-                    }
-                    //multiple non-wildcared values (i.e. -MachineName WebServer1,Database1)
-                    else if (!machineNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item)))
-                    {
-                        baseResourceList = _connection.Repository.Machines.FindMany(x => machineNameList.Contains(x.Name.ToLower()));
-                    }
+                    baseResourceList = FilterByName(machineNameList, Connection.Repository.Machines, "MachineName");
                     break;
                 case ByUrl:
-
+                    //todo Ask Shannon - Another case where I need to filter by other property
                     var urlList = URL.ToList().ConvertAll(s => s.ToLower());
 
                     //Multiple values but one of them is wildcarded, which is not an accepted scenario (I.e -URL http://Tentacle*, http://Database1)
@@ -138,12 +110,12 @@ namespace Octoposh.Cmdlets
                     else if (urlList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && urlList.Count == 1))
                     {
                         var pattern = new WildcardPattern(urlList.First());
-                        baseResourceList = _connection.Repository.Machines.FindMany(x => pattern.IsMatch(x.Uri));
+                        baseResourceList = Connection.Repository.Machines.FindMany(x => pattern.IsMatch(x.Uri));
                     }
                     //multiple non-wildcared values (i.e. -URL http://Tentacle ,http://Database)
                     else if (!urlList.Any(item => WildcardPattern.ContainsWildcardCharacters(item)))
                     {
-                        baseResourceList = _connection.Repository.Machines.FindMany(x => urlList.Contains(x.Uri));
+                        baseResourceList = Connection.Repository.Machines.FindMany(x => urlList.Contains(x.Uri));
                     }
                     break;
                 case ByCommunicationStyle:
@@ -170,7 +142,7 @@ namespace Octoposh.Cmdlets
                             break;
                     }
 
-                    baseResourceList = _connection.Repository.Machines.FindMany(x => String.Equals(x.Endpoint.GetType().ToString(), endpointtype, StringComparison.CurrentCultureIgnoreCase));
+                    baseResourceList = Connection.Repository.Machines.FindMany(x => String.Equals(x.Endpoint.GetType().ToString(), endpointtype, StringComparison.CurrentCultureIgnoreCase));
 
                     break;
 
@@ -180,8 +152,8 @@ namespace Octoposh.Cmdlets
 
                     foreach (var name in environmentNameList)
                     {
-                        var environment = _connection.Repository.Environments.FindByName(name);
-                        baseResourceList.AddRange(_connection.Repository.Environments.GetMachines(environment));
+                        var environment = Connection.Repository.Environments.FindByName(name);
+                        baseResourceList.AddRange(Connection.Repository.Environments.GetMachines(environment));
                     }
                     break;
             }

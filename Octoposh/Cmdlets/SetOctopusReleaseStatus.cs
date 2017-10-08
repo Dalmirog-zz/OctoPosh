@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using System.Management.Automation;
+using Octoposh.Infrastructure;
 
 namespace Octoposh.Cmdlets
 {
@@ -31,7 +32,7 @@ namespace Octoposh.Cmdlets
     /// <para type="link" uri="http://octoposh.readthedocs.io">Wiki: </para>
     /// <para type="link" uri="https://gitter.im/Dalmirog/OctoPosh#initial">QA and Feature requests: </para>
     [Cmdlet("Set", "OctopusReleaseStatus")]
-    public class SetOctopusReleaseStatus : PSCmdlet
+    public class SetOctopusReleaseStatus : OctoposhConnection
     {
         private const string ByReleaseResource = "ByReleaseResource";
         private const string ByProjectAndVersion = "ByProjectAndVersion";
@@ -71,29 +72,22 @@ namespace Octoposh.Cmdlets
         [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true, ParameterSetName = ByReleaseResource)]
         public List<ReleaseResource> Resource { get; set; }
 
-        private OctopusConnection _connection;
-
-        protected override void BeginProcessing()
+        protected override void ProcessRecord()
         {
-            _connection = new NewOctopusConnection().Invoke<OctopusConnection>().ToList()[0];
             if (string.IsNullOrWhiteSpace(Description))
             {
                 Description = $"Blocking release from Octoposh on {DateTime.Now}";
             }
 
-        }
-
-        protected override void ProcessRecord()
-        {
             var releases = new List<ReleaseResource>();
 
             if (ParameterSetName == ByProjectAndVersion)
             {
-                var project = _connection.Repository.Projects.FindByName(ProjectName);
+                var project = Connection.Repository.Projects.FindByName(ProjectName);
 
                 foreach (var version in ReleaseVersion)
                 {
-                    releases.Add(_connection.Repository.Projects.GetReleaseByVersion(project, version));
+                    releases.Add(Connection.Repository.Projects.GetReleaseByVersion(project, version));
                 }
             }
             else
@@ -106,12 +100,12 @@ namespace Octoposh.Cmdlets
                 if (Status == "Unblocked")
                 {
                     WriteDebug($"Unblocking release [{release.Version}]");
-                    _connection.Repository.Defects.ResolveDefect(release);
+                    Connection.Repository.Defects.ResolveDefect(release);
                 }
                 else
                 {
                     WriteDebug($"Blocking release [{release.Version}]");
-                    _connection.Repository.Defects.RaiseDefect(release, Description);
+                    Connection.Repository.Defects.RaiseDefect(release, Description);
                 }
 
             }

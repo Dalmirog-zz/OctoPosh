@@ -3,6 +3,7 @@ using Octopus.Client.Model;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
+using Octoposh.Infrastructure;
 
 namespace Octoposh.Cmdlets
 {
@@ -35,7 +36,7 @@ namespace Octoposh.Cmdlets
     [Cmdlet("Get", "OctopusTagSet")]
     [OutputType(typeof(List<OutputOctopusTagSet>))]
     [OutputType(typeof(List<TagSetResource>))]
-    public class GetOctopusTagSet : PSCmdlet
+    public class GetOctopusTagSet : GetOctoposhCmdlet
     {
         /// <summary>
         /// <para type="description">TagSet name</para>
@@ -45,48 +46,20 @@ namespace Octoposh.Cmdlets
         [Parameter(Position = 1, ValueFromPipeline = true)]
         public string[] TagSetName { get; set; }
 
-        /// <summary>
-        /// <para type="description">If set to TRUE the cmdlet will return the basic Octopus resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh output object</para>
-        /// </summary>
-        [Parameter]
-        public SwitchParameter ResourceOnly { get; set; }
-
-        private OctopusConnection _connection;
-
-        protected override void BeginProcessing()
-        {
-            _connection = new NewOctopusConnection().Invoke<OctopusConnection>().ToList()[0];
-        }
-
         protected override void ProcessRecord()
         {
-            var TagSetNameList = TagSetName?.ToList().ConvertAll(s => s.ToLower());
+            var tagSetNameList = TagSetName?.ToList().ConvertAll(s => s.ToLower());
 
             var baseResourceList = new List<TagSetResource>();
 
-            if (TagSetNameList == null)
+            if (tagSetNameList == null)
             {
-                baseResourceList.AddRange(_connection.Repository.TagSets.FindAll());
+                baseResourceList.AddRange(Connection.Repository.TagSets.FindAll());
             }
 
             else
             {
-                //Multiple values but one of them is wildcarded, which is not an accepted scenario (I.e -MachineName WebServer*, Database1)
-                if (TagSetNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && TagSetNameList.Count > 1))
-                {
-                    throw OctoposhExceptions.ParameterCollectionHasRegularAndWildcardItem("TagSetName");
-                }
-                //Only 1 wildcarded value (ie -MachineName WebServer*)
-                else if (TagSetNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && TagSetNameList.Count == 1))
-                {
-                    var pattern = new WildcardPattern(TagSetNameList.First());
-                    baseResourceList.AddRange(_connection.Repository.TagSets.FindMany(t => pattern.IsMatch(t.Name.ToLower())));
-                }
-                //multiple non-wildcared values (i.e. -MachineName WebServer1,Database1)
-                else if (!TagSetNameList.Any(WildcardPattern.ContainsWildcardCharacters))
-                {
-                    baseResourceList.AddRange(_connection.Repository.TagSets.FindMany(t => TagSetNameList.Contains(t.Name.ToLower())));
-                }
+                baseResourceList = FilterByName(tagSetNameList, Connection.Repository.TagSets, "TagSetName");
             }
 
             if (ResourceOnly)

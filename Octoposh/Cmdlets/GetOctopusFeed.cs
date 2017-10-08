@@ -3,6 +3,7 @@ using Octopus.Client.Model;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
+using Octoposh.Infrastructure;
 
 namespace Octoposh.Cmdlets
 {
@@ -31,7 +32,7 @@ namespace Octoposh.Cmdlets
     [Cmdlet("Get", "OctopusFeed", DefaultParameterSetName = All)]
     [OutputType(typeof(List<OutputOctopusFeed>))]
     [OutputType(typeof(List<FeedResource>))]
-    public class GetOctopusFeed : PSCmdlet
+    public class GetOctopusFeed : GetOctoposhCmdlet
     {
 
         private const string ByName = "ByName";
@@ -54,68 +55,39 @@ namespace Octoposh.Cmdlets
         [Parameter(Position = 1, ValueFromPipeline = true, ParameterSetName = ByUrl)]
         public string[] URL { get; set; }
 
-        /// <summary>
-        /// <para type="description">If set to TRUE the cmdlet will return the basic Octopus resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh output object</para>
-        /// </summary>
-        [Parameter]
-        public SwitchParameter ResourceOnly { get; set; }
-
-        private OctopusConnection _connection;
-        private List<string> _feedNameList;
-        private List<string> _urlList;
-
-        protected override void BeginProcessing()
-        {
-            _connection = new NewOctopusConnection().Invoke<OctopusConnection>().ToList()[0];
-            _feedNameList = FeedName?.ToList().ConvertAll(s => s.ToLower());
-            _urlList = URL?.ToList().ConvertAll(s => s.ToLower());
-        }
-
         protected override void ProcessRecord()
         {
             var baseResourceList = new List<FeedResource>();
 
+            var feedNameList = FeedName?.ToList().ConvertAll(s => s.ToLower());
+            var urlList = URL?.ToList().ConvertAll(s => s.ToLower());
+
             switch (ParameterSetName)
             {
                 case All:
-                    baseResourceList = _connection.Repository.Feeds.FindAll();
+                    baseResourceList = Connection.Repository.Feeds.FindAll();
                     break;
                 case ByName:
-                    //Multiple values but one of them is wildcarded, which is not an accepted scenario (I.e -MachineName WebServer*, Database1)
-                    if (_feedNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && _feedNameList.Count > 1))
-                    {
-                        throw OctoposhExceptions.ParameterCollectionHasRegularAndWildcardItem("FeedName");
-                    }
-                    //Only 1 wildcarded value (ie -MachineName WebServer*)
-                    else if (_feedNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && _feedNameList.Count == 1))
-                    {
-                        var pattern = new WildcardPattern(_feedNameList.First());
-                        baseResourceList = _connection.Repository.Feeds.FindMany(t => pattern.IsMatch(t.Name.ToLower()));
-                    }
-                    //multiple non-wildcared values (i.e. -MachineName WebServer1,Database1)
-                    else if (!_feedNameList.Any(WildcardPattern.ContainsWildcardCharacters))
-                    {
-                        baseResourceList = _connection.Repository.Feeds.FindMany(t => _feedNameList.Contains(t.Name.ToLower()));
-                    }
+                    baseResourceList = FilterByName(feedNameList,Connection.Repository.Feeds,"Feeds");
                     break;
                 case ByUrl:
+                    //todo Ask Shannon if its possible to make a Filter by X property or if I should have another function for FilterByFeedURI. Also this is the only part of the project where I'm filtering by this property
                     //Multiple values but one of them is wildcarded, which is not an accepted scenario (I.e -MachineName WebServer*, Database1)
-                    if (_urlList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && _urlList.Count > 1))
+                    if (urlList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && urlList.Count > 1))
                     {
                         throw OctoposhExceptions.ParameterCollectionHasRegularAndWildcardItem("URL");
                     }
                     //Only 1 wildcarded value (ie -MachineName WebServer*)
-                    else if (_urlList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && _urlList.Count == 1))
+                    else if (urlList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && urlList.Count == 1))
                     {
-                        var pattern = new WildcardPattern(_urlList.First());
-                        baseResourceList = _connection.Repository.Feeds.FindMany(t => pattern.IsMatch(t.FeedUri.ToLower()));
+                        var pattern = new WildcardPattern(urlList.First());
+                        baseResourceList = Connection.Repository.Feeds.FindMany(t => pattern.IsMatch(t.FeedUri.ToLower()));
                     }
                     //multiple non-wildcared values (i.e. -MachineName WebServer1,Database1)
-                    else if (!_urlList.Any(WildcardPattern.ContainsWildcardCharacters))
+                    else if (!urlList.Any(WildcardPattern.ContainsWildcardCharacters))
                     {
-                        baseResourceList = _connection.Repository.Feeds.FindMany(t => _urlList.Contains(t.Name.ToLower()));
+                        baseResourceList = Connection.Repository.Feeds.FindMany(t => urlList.Contains(t.FeedUri.ToLower()));
                     }
-                    
                     break;
             }
 

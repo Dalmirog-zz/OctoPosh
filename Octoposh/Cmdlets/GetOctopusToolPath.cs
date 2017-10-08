@@ -1,6 +1,4 @@
-﻿using System;
-using Octoposh.Model;
-using System.Collections.Generic;
+﻿using Octoposh.Model;
 using System.Management.Automation;
 
 namespace Octoposh.Cmdlets

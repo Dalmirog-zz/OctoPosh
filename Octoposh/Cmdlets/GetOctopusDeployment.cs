@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
+using Octoposh.Infrastructure;
 using Octoposh.Model;
 using Octopus.Client.Model;
 
@@ -40,7 +41,7 @@ namespace Octoposh.Cmdlets
     [Cmdlet("Get", "OctopusDeployment", DefaultParameterSetName = ByLatest)]
     [OutputType(typeof(List<OutputOctopusDeployment>))]
     [OutputType(typeof(List<DeploymentResource>))]
-    public class GetOctopusDeployment : PSCmdlet
+    public class GetOctopusDeployment : GetOctoposhCmdlet
     {
         private const string ByVersion = "ByVersion";
         private const string ByLatest = "ByLatest";
@@ -90,20 +91,6 @@ namespace Octoposh.Cmdlets
         [Parameter]
         public DateTimeOffset After = DateTimeOffset.MinValue;
 
-        /// <summary>
-        /// <para type="description">If set to TRUE the cmdlet will return the basic Octopus resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh output object</para>
-        /// </summary>
-        [Parameter]
-        public SwitchParameter ResourceOnly { get; set; }
-
-
-        private OctopusConnection _connection;
-
-        protected override void BeginProcessing()
-        {
-            _connection = new NewOctopusConnection().Invoke<OctopusConnection>().ToList()[0];
-        }
-
         protected override void ProcessRecord()
         {
             var baseResourceList = new List<DeploymentResource>();
@@ -112,7 +99,7 @@ namespace Octoposh.Cmdlets
             var releases = new List<ReleaseResource>();
 
             //Using the dashboard for this because it involves only 1 API call VS calling Projects/Environmnets.FindByName() plenty of times.
-            var rawDashboard = _connection.Repository.Dashboards.GetDashboard();
+            var rawDashboard = Connection.Repository.Dashboards.GetDashboard();
 
             if (ProjectName == null)
             {
@@ -120,7 +107,6 @@ namespace Octoposh.Cmdlets
             }
             else
             {
-
                 var projectNameList = ProjectName?.ToList().ConvertAll(s => s.ToLower());
 
                 foreach (var name in projectNameList)
@@ -141,7 +127,7 @@ namespace Octoposh.Cmdlets
             
             foreach(var dashboardProject in projects){
 
-                var project = _connection.Repository.Projects.Get(dashboardProject.Id);
+                var project = Connection.Repository.Projects.Get(dashboardProject.Id);
 
                 switch (ParameterSetName)
                 {
@@ -150,7 +136,7 @@ namespace Octoposh.Cmdlets
                         {
                             try
                             {
-                                releases.Add(_connection.Repository.Projects.GetReleaseByVersion(project, version));
+                                releases.Add(Connection.Repository.Projects.GetReleaseByVersion(project, version));
                             }
                             catch (Exception e)
                             {
@@ -165,11 +151,11 @@ namespace Octoposh.Cmdlets
 
                         if (LatestReleases > 30)
                         {
-                            projectReleases = _connection.Repository.Projects.GetAllReleases(project).ToList();
+                            projectReleases = Connection.Repository.Projects.GetAllReleases(project).ToList();
                         }
                         else
                         {
-                            projectReleases = _connection.Repository.Projects.GetReleases(project).Items.ToList();
+                            projectReleases = Connection.Repository.Projects.GetReleases(project).Items.ToList();
                         }
 
                         if (projectReleases.Count > LatestReleases)
@@ -184,7 +170,7 @@ namespace Octoposh.Cmdlets
                         break;
 
                     default:
-                        releases.AddRange(_connection.Repository.Projects.GetAllReleases(project).ToList());
+                        releases.AddRange(Connection.Repository.Projects.GetAllReleases(project).ToList());
                         break;
                 }
             }
@@ -217,7 +203,8 @@ namespace Octoposh.Cmdlets
 
             foreach (var release in releases)
             {
-                baseResourceList.AddRange(_connection.Repository.Releases.GetDeployments(release).Items.Where(d => (d.Created > After) && (d.Created < Before) && (envIds.Contains(d.EnvironmentId))).ToList());
+                //todo Ask Shannon - Is there any point into moving this logic to another file since its the only time I'll be using it?
+                baseResourceList.AddRange(Connection.Repository.Releases.GetDeployments(release).Items.Where(d => (d.Created > After) && (d.Created < Before) && (envIds.Contains(d.EnvironmentId))).ToList());
             }
 
             ResourceOnly = false;

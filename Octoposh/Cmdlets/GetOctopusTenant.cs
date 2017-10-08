@@ -3,6 +3,7 @@ using Octopus.Client.Model;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
+using Octoposh.Infrastructure;
 
 namespace Octoposh.Cmdlets
 {
@@ -35,7 +36,7 @@ namespace Octoposh.Cmdlets
     [Cmdlet("Get", "OctopusTenant")]
     [OutputType(typeof(List<OutputOctopusTenant>))]
     [OutputType(typeof(List<TenantResource>))]
-    public class GetOctopusTenant : PSCmdlet
+    public class GetOctopusTenant : GetOctoposhCmdlet
     {
         /// <summary>
         /// <para type="description">Tenant name</para>
@@ -45,49 +46,11 @@ namespace Octoposh.Cmdlets
         [Parameter(Position = 1, ValueFromPipeline = true)]
         public string[] TenantName { get; set; }
 
-        /// <summary>
-        /// <para type="description">If set to TRUE the cmdlet will return the basic Octopus resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh output object</para>
-        /// </summary>
-        [Parameter]
-        public SwitchParameter ResourceOnly { get; set; }
-
-        private OctopusConnection _connection;
-
-        protected override void BeginProcessing()
-        {
-            _connection = new NewOctopusConnection().Invoke<OctopusConnection>().ToList()[0];
-        }
-
         protected override void ProcessRecord()
         {
-            var baseResourceList = new List<TenantResource>();
-
             var tenantNameList = TenantName?.ToList().ConvertAll(s => s.ToLower());
 
-            if (tenantNameList == null)
-            {
-                baseResourceList.AddRange(_connection.Repository.Tenants.FindAll());
-            }
-
-            else
-            {
-                //Multiple values but one of them is wildcarded, which is not an accepted scenario (I.e -MachineName WebServer*, Database1)
-                if (tenantNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && tenantNameList.Count > 1))
-                {
-                    throw OctoposhExceptions.ParameterCollectionHasRegularAndWildcardItem("TenantName");
-                }
-                //Only 1 wildcarded value (ie -MachineName WebServer*)
-                else if (tenantNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && tenantNameList.Count == 1))
-                {
-                    var pattern = new WildcardPattern(tenantNameList.First());
-                    baseResourceList.AddRange(_connection.Repository.Tenants.FindMany(t => pattern.IsMatch(t.Name.ToLower())));
-                }
-                //multiple non-wildcared values (i.e. -MachineName WebServer1,Database1)
-                else if (!tenantNameList.Any(WildcardPattern.ContainsWildcardCharacters))
-                {
-                    baseResourceList.AddRange(_connection.Repository.Tenants.FindMany(t => tenantNameList.Contains(t.Name.ToLower())));
-                }
-            }
+            var baseResourceList = tenantNameList == null ? (Connection.Repository.Tenants.FindAll()) : FilterByName(tenantNameList, Connection.Repository.Tenants, "TenantName");
 
             if (ResourceOnly)
             {

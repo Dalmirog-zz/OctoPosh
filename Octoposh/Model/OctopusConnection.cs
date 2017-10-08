@@ -8,7 +8,7 @@ using Octopus.Client;
 
 namespace Octoposh.Model
 {
-    class OctopusConnection
+    public class OctopusConnection
     {
         public OctopusRepository Repository;
         public Hashtable Header = new Hashtable();

@@ -3,6 +3,7 @@ using Octopus.Client.Model;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
+using Octoposh.Infrastructure;
 
 namespace Octoposh.Cmdlets
 {
@@ -51,7 +52,7 @@ namespace Octoposh.Cmdlets
     [Cmdlet("Get", "OctopusVariableSet")]
     [OutputType(typeof(List<OutputOctopusVariableSet>))]
     [OutputType(typeof(List<VariableSetResource>))]
-    public class GetOctopusVariableSet : PSCmdlet
+    public class GetOctopusVariableSet : GetOctoposhCmdlet
     {
         /// <summary>
         /// <para type="description">Library Set name</para>
@@ -73,22 +74,8 @@ namespace Octoposh.Cmdlets
         [Parameter]
         public SwitchParameter IncludeUsage { get; set; }
 
-        /// <summary>
-        /// <para type="description">If set to TRUE the cmdlet will return the basic Octopus resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh output object</para>
-        /// </summary>
-        [Parameter]
-        public SwitchParameter ResourceOnly { get; set; }
-
-        private OctopusConnection _connection;
-
-        protected override void BeginProcessing()
-        {
-            _connection = new NewOctopusConnection().Invoke<OctopusConnection>().ToList()[0];
-        }
-
         protected override void ProcessRecord()
         {
-            var baseResourceList = new List<VariableSetResource>();
             var variableSetIDs = new List<string>();
 
             var projectList = new List<ProjectResource>();
@@ -101,59 +88,26 @@ namespace Octoposh.Cmdlets
             //If no Project and Library set is declared, return all the things.
             if (projectNameList == null && librarySetNameList == null)
             {
-                projectList.AddRange(_connection.Repository.Projects.FindAll());
-                libraryVariableSetList.AddRange(_connection.Repository.LibraryVariableSets.FindAll());
+                projectList.AddRange(Connection.Repository.Projects.FindAll());
+                libraryVariableSetList.AddRange(Connection.Repository.LibraryVariableSets.FindAll());
             }
 
             //If at least 1 project or Library variable set is defined, then just return that list instead of everything.
             else
             {
+                //todo should revisit logic when user doesn't pass -IncludeUsage. Is it necesary to get all libraries and projects?
+                //Getting projects to get their variable set IDs
                 #region Getting projects
-                //Getting variable set ids from projects
-                
-                if(projectNameList != null) { 
-                    //Multiple values but one of them is wildcarded, which is not an accepted scenario (I.e -MachineName WebServer*, Database1)
-                    if (projectNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && projectNameList.Count > 1))
-                    {
-                        throw OctoposhExceptions.ParameterCollectionHasRegularAndWildcardItem("ProjectName");
-                    }
-                    //Only 1 wildcarded value (ie -MachineName WebServer*)
-                    else if (projectNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && projectNameList.Count == 1))
-                    {
-                        var pattern = new WildcardPattern(projectNameList.First());
-                        projectList.AddRange(_connection.Repository.Projects.FindMany(t => pattern.IsMatch(t.Name.ToLower())));
-                    }
-                    //multiple non-wildcared values (i.e. -MachineName WebServer1,Database1)
-                    else if (!projectNameList.Any(WildcardPattern.ContainsWildcardCharacters))
-                    {
-                        projectList.AddRange(_connection.Repository.Projects.FindMany(t => projectNameList.Contains(t.Name.ToLower())));
-                    }
-                    
+                if (projectNameList != null)
+                {
+                    projectList = FilterByName(projectNameList, Connection.Repository.Projects, "ProjectName");
                 }
                 #endregion
-
+                
                 #region Getting Library variable sets
                 if (librarySetNameList != null)
                 {
-                    //Getting variable set ids from LibraryVariableSets
-
-                    //Multiple values but one of them is wildcarded, which is not an accepted scenario (I.e -MachineName WebServer*, Database1)
-                    if (librarySetNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && librarySetNameList.Count > 1))
-                    {
-                        throw OctoposhExceptions.ParameterCollectionHasRegularAndWildcardItem("LibrarySetName");
-                    }
-                    //Only 1 wildcarded value (ie -MachineName WebServer*)
-                    else if (librarySetNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && librarySetNameList.Count == 1))
-                    {
-                        var pattern = new WildcardPattern(librarySetNameList.First());
-                        libraryVariableSetList.AddRange(_connection.Repository.LibraryVariableSets.FindMany(t => pattern.IsMatch(t.Name.ToLower())));
-                    }
-                    //multiple non-wildcared values (i.e. -MachineName WebServer1,Database1)
-                    else if (!librarySetNameList.Any(WildcardPattern.ContainsWildcardCharacters))
-                    {
-                        libraryVariableSetList.AddRange(_connection.Repository.LibraryVariableSets.FindMany(t => librarySetNameList.Contains(t.Name.ToLower())));
-                    }
-                    
+                    libraryVariableSetList = FilterByName(librarySetNameList, Connection.Repository.LibraryVariableSets,"LibrarySetName");
                 }
                 #endregion
             }
@@ -161,15 +115,12 @@ namespace Octoposh.Cmdlets
             variableSetIDs.AddRange(libraryVariableSetList.Select(v => v.VariableSetId));
             variableSetIDs.AddRange(projectList.Select(p => p.VariableSetId));
 
-            //This works
-            foreach (var id in variableSetIDs)
-            {
-                baseResourceList.Add(_connection.Repository.VariableSets.Get(id));
-            }
-
             //This doesn't work and throws: [Exception thrown: 'Octopus.Client.Exceptions.OctopusResourceNotFoundException' in Octopus.Client.dll]
             //Github issue for this https://github.com/OctopusDeploy/Issues/issues/3307
             //baseResourceList.AddRange(_connection.Repository.VariableSets.Get(variableSetIDs.ToArray()));
+
+            //This works
+            var baseResourceList = variableSetIDs.Select(id => Connection.Repository.VariableSets.Get(id)).ToList();
 
             if (ResourceOnly)
             {

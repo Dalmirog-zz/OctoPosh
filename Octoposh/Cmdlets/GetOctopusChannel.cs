@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
 using System.Runtime.InteropServices;
+using Octoposh.Infrastructure;
 
 namespace Octoposh.Cmdlets
 {
@@ -40,7 +41,7 @@ namespace Octoposh.Cmdlets
     [Cmdlet("Get", "OctopusChannel")]
     [OutputType(typeof(List<OutputOctopusChannel>))]
     [OutputType(typeof(List<ChannelResource>))]
-    public class GetOctopusChannel : PSCmdlet
+    public class GetOctopusChannel : GetOctoposhCmdlet
     {
         /// <summary>
         /// <para type="description">Channel name</para>
@@ -58,47 +59,33 @@ namespace Octoposh.Cmdlets
         [Parameter(Position = 1, ValueFromPipeline = true)]
         public string[] ProjectName { get; set; }
 
-        /// <summary>
-        /// <para type="description">If set to TRUE the cmdlet will return the basic Octopus resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh output object</para>
-        /// </summary>
-        [Parameter]
-        public SwitchParameter ResourceOnly { get; set; }
-
-        private OctopusConnection _connection;
-        private List<string> _channelNameList;
-        private List<string> _projectNameList;
-
-
-        protected override void BeginProcessing()
-        {
-            _connection = new NewOctopusConnection().Invoke<OctopusConnection>().ToList()[0];
-            _channelNameList = ChannelName?.ToList().ConvertAll(s => s.ToLower());
-            _projectNameList = ProjectName?.ToList().ConvertAll(s => s.ToLower());
-        }
-
         protected override void ProcessRecord()
         {
             var baseResourceList = new List<ChannelResource>();
-            if (_projectNameList == null)
-            {
-                var allProjects = _connection.Repository.Projects.FindAll();
 
-                if (_channelNameList == null)
+            var channelNameList = ChannelName?.ToList().ConvertAll(s => s.ToLower());
+            var projectNameList = ProjectName?.ToList().ConvertAll(s => s.ToLower());
+
+            if (projectNameList == null)
+            {
+                var allProjects = Connection.Repository.Projects.FindAll();
+
+                if (channelNameList == null)
                 {
-                    allProjects.ForEach(p => baseResourceList.AddRange(_connection.Repository.Projects.GetChannels(p).Items.ToList()));
+                    allProjects.ForEach(p => baseResourceList.AddRange(Connection.Repository.Projects.GetChannels(p).Items.ToList()));
                 }
                 else
                 {
-                    allProjects.ForEach(p => baseResourceList.AddRange(_connection.Repository.Projects.GetChannels(p).Items.Where(c => _channelNameList.Contains(c.Name.ToLower())).ToList()));
+                    allProjects.ForEach(p => baseResourceList.AddRange(Connection.Repository.Projects.GetChannels(p).Items.Where(c => channelNameList.Contains(c.Name.ToLower())).ToList()));
                 }
             }
             else
             {
                 var projects = new List<ProjectResource>();
 
-                foreach (var name in _projectNameList)
+                foreach (var name in projectNameList)
                 {
-                    var project = _connection.Repository.Projects.FindByName(name);
+                    var project = Connection.Repository.Projects.FindByName(name);
 
                     if (project == null)
                     {
@@ -111,29 +98,33 @@ namespace Octoposh.Cmdlets
 
                 foreach (var project in projects)
                 {
-                    if (_channelNameList == null)
+                    if (channelNameList == null)
                     {
-                        baseResourceList.AddRange(_connection.Repository.Projects.GetChannels(project).Items.ToList());
+                        baseResourceList = Connection.Repository.Projects.GetChannels(project).Items.ToList();
                     }
 
                     else
                     {
+                        //todo Ask Shannon how to work around this
+                        //baseResourceList = FilterByName<ChannelResource>(channelNameList, Connection.Repository.Channels, "Channel");
+
                         //Multiple values but one of them is wildcarded, which is not an accepted scenario (I.e -MachineName WebServer*, Database1)
-                        if (_channelNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && _channelNameList.Count > 1))
+                        if (channelNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && channelNameList.Count > 1))
                         {
                             throw OctoposhExceptions.ParameterCollectionHasRegularAndWildcardItem("ChannelName");
                         }
                         //Only 1 wildcarded value (ie -MachineName WebServer*)
-                        else if (_channelNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && _channelNameList.Count == 1))
+                        else if (channelNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && channelNameList.Count == 1))
                         {
-                            var pattern = new WildcardPattern(_channelNameList.First());
-                            baseResourceList.AddRange(_connection.Repository.Projects.GetChannels(project).Items.Where(t => pattern.IsMatch(t.Name.ToLower())).ToList());
+                            var pattern = new WildcardPattern(channelNameList.First());
+                            baseResourceList.AddRange(Connection.Repository.Projects.GetChannels(project).Items.Where(t => pattern.IsMatch(t.Name.ToLower())).ToList());
                         }
                         //multiple non-wildcared values (i.e. -MachineName WebServer1,Database1)
-                        else if (!_channelNameList.Any(WildcardPattern.ContainsWildcardCharacters))
+                        else if (!channelNameList.Any(WildcardPattern.ContainsWildcardCharacters))
                         {
-                            baseResourceList.AddRange(_connection.Repository.Projects.GetChannels(project).Items.Where(t => _channelNameList.Contains(t.Name.ToLower())).ToList());
+                            baseResourceList.AddRange(Connection.Repository.Projects.GetChannels(project).Items.Where(t => channelNameList.Contains(t.Name.ToLower())).ToList());
                         }
+
                     }
                 }
             }
@@ -153,6 +144,8 @@ namespace Octoposh.Cmdlets
             else
             {
                 var converter = new OutputConverter();
+
+                //todo Ask shannon how to make this more generic
                 var outputList = converter.GetOctopusChannel(baseResourceList);
 
                 if (outputList.Count == 1)

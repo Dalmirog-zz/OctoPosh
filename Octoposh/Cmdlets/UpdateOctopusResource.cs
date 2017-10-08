@@ -4,6 +4,7 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 using System.Threading.Tasks;
+using Octoposh.Infrastructure;
 using Octoposh.Model;
 using Octopus.Client.Model;
 
@@ -40,7 +41,7 @@ namespace Octoposh.Cmdlets
     [OutputType(typeof(ChannelResource))]
     [OutputType(typeof(TenantResource))]
     [OutputType(typeof(TagSetResource))]
-    public class UpdateOctopusResource : PSCmdlet
+    public class UpdateOctopusResource : OctoposhConnection
     {
         /// <summary>
         /// <para type="description">Resource Object</para>
@@ -48,13 +49,6 @@ namespace Octoposh.Cmdlets
         [ValidateNotNullOrEmpty()]
         [Parameter(Position = 1, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
         public Resource Resource { get; set; }
-
-        private OctopusConnection _connection;
-
-        protected override void BeginProcessing()
-        {
-            _connection = new NewOctopusConnection().Invoke<OctopusConnection>().ToList()[0];
-        }
 
         protected override void ProcessRecord()
         {
@@ -64,72 +58,72 @@ namespace Octoposh.Cmdlets
             {
                 case "Octopus.Client.Model.EnvironmentResource":
                     var enviroment = (EnvironmentResource)Resource;
-                    outputResource = _connection.Repository.Environments.Modify(enviroment);
+                    outputResource = Connection.Repository.Environments.Modify(enviroment);
                     break;
 
                 case "Octopus.Client.Model.ProjectResource":
                     var project = (ProjectResource)Resource;
-                    outputResource = _connection.Repository.Projects.Modify(project);
+                    outputResource = Connection.Repository.Projects.Modify(project);
                     break;
 
                 case "Octopus.Client.Model.ProjectGroupResource":
                     var projectGroup = (ProjectGroupResource)Resource;
-                    outputResource = _connection.Repository.ProjectGroups.Modify(projectGroup);
+                    outputResource = Connection.Repository.ProjectGroups.Modify(projectGroup);
                     break;
 
                 case "Octopus.Client.Model.NuGetFeedResource":
                     var nugetFeed = (NuGetFeedResource)Resource;
-                    outputResource = _connection.Repository.Feeds.Modify(nugetFeed);
+                    outputResource = Connection.Repository.Feeds.Modify(nugetFeed);
                     break;
 
                 case "Octopus.Client.Model.VariableSetResource":
                     var variableSet = (VariableSetResource)Resource;
-                    outputResource = _connection.Repository.VariableSets.Modify(variableSet);
+                    outputResource = Connection.Repository.VariableSets.Modify(variableSet);
                     break;
 
                 case "Octopus.Client.Model.MachineResource":
                     var machine = (MachineResource)Resource;
-                    outputResource = _connection.Repository.Machines.Modify(machine);
+                    outputResource = Connection.Repository.Machines.Modify(machine);
                     break;
 
                 case "Octopus.Client.Model.LifecycleResource":
                     var lifecycle = (LifecycleResource)Resource;
-                    outputResource = _connection.Repository.Lifecycles.Modify(lifecycle);
+                    outputResource = Connection.Repository.Lifecycles.Modify(lifecycle);
                     break;
 
                 case "Octopus.Client.Model.TeamResource":
                     var team = (TeamResource)Resource;
-                    outputResource = _connection.Repository.Teams.Modify(team);
+                    outputResource = Connection.Repository.Teams.Modify(team);
                     break;
 
                 case "Octopus.Client.Model.UserResource":
                     var user = (UserResource)Resource;
-                    outputResource = _connection.Repository.Users.Modify(user);
+                    outputResource = Connection.Repository.Users.Modify(user);
                     break;
 
                 case "Octopus.Client.Model.ChannelResource":
                     var channel = (ChannelResource)Resource;
-                    outputResource = _connection.Repository.Channels.Modify(channel);
+                    outputResource = Connection.Repository.Channels.Modify(channel);
                     break;
 
                 case "Octopus.Client.Model.TenantResource":
                     var tenant = (TenantResource)Resource;
-                    outputResource = _connection.Repository.Tenants.Modify(tenant);
+                    outputResource = Connection.Repository.Tenants.Modify(tenant);
                     break;
 
                 case "Octopus.Client.Model.TagSetResource":
                     var tagset = (TagSetResource)Resource;
-                    outputResource = _connection.Repository.TagSets.Modify(tagset);
+                    outputResource = Connection.Repository.TagSets.Modify(tagset);
                     break;
 
                 case "Octopus.Client.Model.ReleaseResource":
                     var release = (ReleaseResource)Resource;
-                    outputResource = _connection.Repository.Releases.Modify(release);
+                    outputResource = Connection.Repository.Releases.Modify(release);
                     break;
 
                 case "Octopus.Client.Model.UserRoleResource":
                     var userRole = (UserRoleResource)Resource;
-                    outputResource = _connection.Repository.UserRoles.Modify(userRole);
+                    outputResource = Connection.Repository.UserRoles.Modify(userRole);
                     break;
 
                 default:

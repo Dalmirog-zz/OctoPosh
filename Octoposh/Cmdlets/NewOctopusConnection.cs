@@ -48,7 +48,6 @@ namespace Octoposh.Cmdlets
 
             connection.Repository = new OctopusRepository(endpoint);
             connection.Header.Add("X-Octopus-APIKey",_apikey);
-
             WriteObject(connection);
         }
         

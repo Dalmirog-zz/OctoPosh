@@ -4,6 +4,7 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 using System.Threading.Tasks;
+using Octoposh.Infrastructure;
 using Octoposh.Model;
 using Octopus.Client.Model;
 
@@ -30,8 +31,9 @@ namespace Octoposh.Cmdlets
     [Cmdlet("Get","OctopusEnvironment", DefaultParameterSetName = All)]
     [OutputType(typeof(List<OutputOctopusEnvironment>))]
     [OutputType(typeof(List<EnvironmentResource>))]
-    public class GetOctopusEnvironment : PSCmdlet
+    public class GetOctopusEnvironment : GetOctoposhCmdlet
     {
+        //todo Ask Shannon if these could also be put into GetOctoposhCmdlet
         private const string ByName = "ByName";
         private const string All = "All";
 
@@ -43,47 +45,19 @@ namespace Octoposh.Cmdlets
         [Parameter(Position = 1, ValueFromPipeline = true, ParameterSetName = ByName)]
         public string[] EnvironmentName { get; set; }
 
-        /// <summary>
-        /// <para type="description">If set to TRUE the cmdlet will return the basic Octopus resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh output object</para>
-        /// </summary>
-        [Parameter]
-        public SwitchParameter ResourceOnly { get; set; }
-
-        private OctopusConnection _connection;
-
-        protected override void BeginProcessing()
-        {
-            _connection = new NewOctopusConnection().Invoke<OctopusConnection>().ToList()[0];
-        }
-
         protected override void ProcessRecord()
         {
             var baseResourceList = new List<EnvironmentResource>();
             var environmentNameList = EnvironmentName?.ToList().ConvertAll(s => s.ToLower());
 
-            switch (this.ParameterSetName)
+            switch (ParameterSetName)
             {
                 case All:
-                    baseResourceList = _connection.Repository.Environments.FindAll();
+                    baseResourceList = Connection.Repository.Environments.FindAll();
                     break;
 
                 case ByName:
-                    //Multiple values but one of them is wildcarded, which is not an accepted scenario (I.e -MachineName WebServer*, Database1)
-                    if (environmentNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && environmentNameList.Count > 1))
-                    {
-                        throw OctoposhExceptions.ParameterCollectionHasRegularAndWildcardItem("EnvironmentName");
-                    }
-                    //Only 1 wildcarded value (ie -MachineName WebServer*)
-                    else if (environmentNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && environmentNameList.Count == 1))
-                    {
-                        var pattern = new WildcardPattern(environmentNameList.First().ToLower());
-                        baseResourceList = _connection.Repository.Environments.FindMany(x => pattern.IsMatch(x.Name.ToLower()));
-                    }
-                    //multiple non-wildcared values (i.e. -MachineName WebServer1,Database1)
-                    else if (!environmentNameList.Any(WildcardPattern.ContainsWildcardCharacters))
-                    {
-                        baseResourceList = _connection.Repository.Environments.FindMany(x => environmentNameList.Contains(x.Name.ToLower()));
-                    }
+                    baseResourceList= FilterByName(environmentNameList,Connection.Repository.Environments,"Environment");
                     break;
             }
 
@@ -112,7 +86,6 @@ namespace Octoposh.Cmdlets
                     WriteObject(outputList,true);
                 }
             }
-
         }
     }
 }

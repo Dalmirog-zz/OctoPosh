@@ -3,6 +3,7 @@ using Octopus.Client.Model;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
+using Octoposh.Infrastructure;
 
 namespace Octoposh.Cmdlets
 {
@@ -35,7 +36,7 @@ namespace Octoposh.Cmdlets
     [Cmdlet("Get", "OctopusLifecycle")]
     [OutputType(typeof(List<OutputOctopusLifecycle>))]
     [OutputType(typeof(List<LifecycleResource>))]
-    public class GetOctopusLifecycle : PSCmdlet
+    public class GetOctopusLifecycle : GetOctoposhCmdlet
     {
         /// <summary>
         /// <para type="description">Lifecycle name</para>
@@ -45,46 +46,19 @@ namespace Octoposh.Cmdlets
         [Parameter(Position = 1, ValueFromPipeline = true)]
         public string[] LifecycleName { get; set; }
 
-        /// <summary>
-        /// <para type="description">If set to TRUE the cmdlet will return the basic Octopus resource. If not set or set to FALSE, the cmdlet will return a human friendly Octoposh output object</para>
-        /// </summary>
-        [Parameter]
-        public SwitchParameter ResourceOnly { get; set; }
-
-        private OctopusConnection _connection;
-
-        protected override void BeginProcessing()
-        {
-            _connection = new NewOctopusConnection().Invoke<OctopusConnection>().ToList()[0];
-        }
-
         protected override void ProcessRecord()
         {
             var lifecycleNameList = LifecycleName?.ToList().ConvertAll(s => s.ToLower());
 
-            var baseResourceList = new List<LifecycleResource>();
+            List<LifecycleResource> baseResourceList;
+
             if (lifecycleNameList == null)
             {
-                baseResourceList = _connection.Repository.Lifecycles.FindAll();
+                baseResourceList = Connection.Repository.Lifecycles.FindAll();
             }
             else
             {
-                //Multiple values but one of them is wildcarded, which is not an accepted scenario (I.e -MachineName WebServer*, Database1)
-                if (lifecycleNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && lifecycleNameList.Count > 1))
-                {
-                    throw OctoposhExceptions.ParameterCollectionHasRegularAndWildcardItem("Lifecycle");
-                }
-                //Only 1 wildcarded value (ie -MachineName WebServer*)
-                else if (lifecycleNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && lifecycleNameList.Count == 1))
-                {
-                    var pattern = new WildcardPattern(lifecycleNameList.First());
-                    baseResourceList = _connection.Repository.Lifecycles.FindMany(t => pattern.IsMatch(t.Name.ToLower()));
-                }
-                //multiple non-wildcared values (i.e. -MachineName WebServer1,Database1)
-                else if (!lifecycleNameList.Any(WildcardPattern.ContainsWildcardCharacters))
-                {
-                    baseResourceList = _connection.Repository.Lifecycles.FindMany(t => lifecycleNameList.Contains(t.Name.ToLower()));
-                }
+                baseResourceList = FilterByName(lifecycleNameList, Connection.Repository.Lifecycles, "LifecycleName");
             }
 
             if (ResourceOnly)

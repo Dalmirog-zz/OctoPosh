@@ -27,6 +27,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\Octoposh\Octoposh.xml</DocumentationFile>
+    <NoWarn>1591</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -105,6 +106,8 @@
     <Compile Include="Cmdlets\SetOctopusToolsFolder.cs" />
     <Compile Include="Cmdlets\SetOctopusToolPath.cs" />
     <Compile Include="Cmdlets\UpdateOctopusResource.cs" />
+    <Compile Include="Infrastructure\GetOctoposhCmdlet.cs" />
+    <Compile Include="Infrastructure\OctoposhConnection.cs" />
     <Compile Include="Model\FriendlyScopeCollection.cs" />
     <Compile Include="Model\FriendlyVariable.cs" />
     <Compile Include="Model\NugetHandler.cs" />
