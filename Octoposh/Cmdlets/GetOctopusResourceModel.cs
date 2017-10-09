@@ -35,16 +35,9 @@ namespace Octoposh.Cmdlets
         /// <summary>
         /// <para type="description">Resource object model</para>
         /// </summary>
-        [ValidateSet("Environment", "Project", "ProjectGroup", "NugetFeed","ExternalFeed", "LibraryVariableSet", "Machine","Target", "Lifecycle", "Team", "User","Channel","Tenant","TagSet","UserRole")]
+        [ValidateSet("Environment", "Project", "ProjectGroup", "NugetFeed", "ExternalFeed", "LibraryVariableSet", "Machine", "Target", "Lifecycle", "Team", "User", "Channel", "Tenant", "TagSet", "UserRole", "VariableSet")]
         [Parameter(Mandatory = true)]
         public string Resource { get; set; }
-
-        private OctopusConnection _connection;
-
-        protected override void BeginProcessing()
-        {
-            _connection = new NewOctopusConnection().Invoke<OctopusConnection>().ToList()[0];
-        }
 
         protected override void ProcessRecord()
         {
@@ -92,6 +85,9 @@ namespace Octoposh.Cmdlets
                     break;
                 case "UserRole":
                     baseresource = new UserRoleResource();
+                    break;
+                case "VariableSet":
+                    baseresource = new VariableSetResource();
                     break;
             }
 
