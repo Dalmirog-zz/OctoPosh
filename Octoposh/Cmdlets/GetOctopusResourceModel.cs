@@ -42,16 +42,15 @@ namespace Octoposh.Cmdlets
         protected override void ProcessRecord()
         {
             object baseresource = null;
-            
+
             //todo Ask Shannon - Is there a way to make this support all resources instead of having to add each one by hand?
-            //todo Ask Shannon - Should the cmdlet inherit from the abstract class, even if the latter will give the cmdlet properties/parameters that it shouldn't have but don't break any functionality? Should I solve this breaking down the inheritances into more classes?
             switch (Resource)
             {
                 case "Environment":
                     baseresource = new EnvironmentResource();
                     break;
                 case "Project":
-                    baseresource =new ProjectResource();
+                    baseresource = new ProjectResource();
                     break;
                 case "ProjectGroup":
                     baseresource = new ProjectGroupResource();
@@ -87,6 +86,8 @@ namespace Octoposh.Cmdlets
                     break;
                 case "UserRole":
                     baseresource = new UserRoleResource();
+                    break;
+                default:
                     break;
             }
 

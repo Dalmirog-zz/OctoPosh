@@ -203,7 +203,6 @@ namespace Octoposh.Cmdlets
 
             foreach (var release in releases)
             {
-                //todo Ask Shannon - Is there any point into moving this logic to another file since its the only time I'll be using it?
                 baseResourceList.AddRange(Connection.Repository.Releases.GetDeployments(release).Items.Where(d => (d.Created > After) && (d.Created < Before) && (envIds.Contains(d.EnvironmentId))).ToList());
             }
 

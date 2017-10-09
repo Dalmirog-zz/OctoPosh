@@ -33,7 +33,7 @@ namespace Octoposh.Cmdlets
     [OutputType(typeof(List<EnvironmentResource>))]
     public class GetOctopusEnvironment : GetOctoposhCmdlet
     {
-        //todo Ask Shannon if these could also be put into GetOctoposhCmdlet
+        //todo Ask Shannon  - if these could also be put into GetOctoposhCmdlet
         private const string ByName = "ByName";
         private const string All = "All";
 

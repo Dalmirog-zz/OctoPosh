@@ -40,7 +40,9 @@ namespace Octoposh.Tests
                     SingleValue = projectName
                 }
             };
+            
 
+            //todo ask Shannon - How to make this more generic.
             var powershell = new CmdletRunspace().CreatePowershellcmdlet(CmdletName, CmdletType, parameters);
             var results = powershell.Invoke<OutputOctopusChannel>();
 

@@ -11,7 +11,7 @@ using Octopus.Client;
 namespace Octoposh.Tests
 {
     /// <summary>
-    /// Helper class whose purpose is to provie some properties/methods that will aid during unit tests.
+    /// Helper class whose purpose is to provide some properties/methods that will aid during unit tests.
     /// </summary>
     static class TestUtilities
     {

@@ -105,8 +105,8 @@ namespace Octoposh.Cmdlets
 
                     else
                     {
-                        //todo Ask Shannon how to work around this
-                        //baseResourceList = FilterByName<ChannelResource>(channelNameList, Connection.Repository.Channels, "Channel");
+                        //todo Ask Shannon - IChannelRepository has its own implementation of FindByName, and doesn't in herit it from IFindByName. Should I maybe have an overload of FilterByName just for this case?
+                        //baseResourceList = FilterByName<ChannelResource>(channelNameList, Connection.Repository.Channels, "ChannelName");
 
                         //Multiple values but one of them is wildcarded, which is not an accepted scenario (I.e -MachineName WebServer*, Database1)
                         if (channelNameList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && channelNameList.Count > 1))
@@ -124,11 +124,14 @@ namespace Octoposh.Cmdlets
                         {
                             baseResourceList.AddRange(Connection.Repository.Projects.GetChannels(project).Items.Where(t => channelNameList.Contains(t.Name.ToLower())).ToList());
                         }
-
                     }
                 }
             }
 
+            //todo Ask shannon - This bit is pretty much the same in most GET cmdlets. The only thing that changes is the method from OutputConverter that its used. Was thinking to:
+            //- Remove the OutputConverterClass.
+            //- Move all the converter methods to the GetOctoposhCmdlet abstract class.
+            //- Name all the converter methods the same (vs the current per-cmdlet-basis) and on their signatures so the compiler picks the right one each time.
             if (ResourceOnly)
             {
                 if (baseResourceList.Count == 1)
@@ -145,7 +148,6 @@ namespace Octoposh.Cmdlets
             {
                 var converter = new OutputConverter();
 
-                //todo Ask shannon how to make this more generic
                 var outputList = converter.GetOctopusChannel(baseResourceList);
 
                 if (outputList.Count == 1)

@@ -71,7 +71,7 @@ namespace Octoposh.Cmdlets
                     baseResourceList = FilterByName(feedNameList,Connection.Repository.Feeds,"Feeds");
                     break;
                 case ByUrl:
-                    //todo Ask Shannon if its possible to make a Filter by X property or if I should have another function for FilterByFeedURI. Also this is the only part of the project where I'm filtering by this property
+                    //todo Ask Shannon  - if its possible to make a Filter by X property or if I should have another function for FilterByFeedURI. Also this is the only part of the project where I'm filtering by this property
                     //Multiple values but one of them is wildcarded, which is not an accepted scenario (I.e -MachineName WebServer*, Database1)
                     if (urlList.Any(item => WildcardPattern.ContainsWildcardCharacters(item) && urlList.Count > 1))
                     {
