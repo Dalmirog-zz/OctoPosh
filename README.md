@@ -1,14 +1,6 @@
 # OctoPosh: The Octopus Deploy Powershell Module
 
-**Octoposh** is a Powershell module that provides cmdlets to interact with Octopus Deploy. All the cmdlets included rely on the [Octopus .NET client](https://www.nuget.org/packages/Octopus.Client) .
-
-- [Getting Started](#getting-started)
-- [Documentation](#documentation)
-- [Contribution guide](https://github.com/Dalmirog/OctoPosh/blob/master/CONTRIBUTING.md)
-- [Questions and feature requests](#questions-and-feature-requests)
-- [Builds](#builds)
-- [Disclaimer](#disclaimer)
-- [License](https://github.com/Dalmirog/OctoPosh/blob/master/LICENSE.md)
+**Octoposh** is a Powershell module that provides cmdlets to interact with Octopus Deploy. All the cmdlets included rely on the [Octopus .NET client](https://www.nuget.org/packages/Octopus.Client).
 
 ## Getting Started
 
@@ -36,3 +28,7 @@ Your questions will help shape up the module according to the needs of the commu
 
 ## Disclaimer
 This is an open source project which is NOT supported by the Octopus Deploy team. All questions/bugs about this module should be entered on this github project.
+
+## License
+
+https://github.com/Dalmirog/OctoPosh/blob/master/LICENSE.md
