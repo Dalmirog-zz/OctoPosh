@@ -23,9 +23,17 @@ Get-OctopusProjectGroup -name "MyProjectGroup" | Get-OctopusProject | Remove-Oct
 ```
 
 ###Environments
+
+Delete single environment by name
 ```Powershell
 Get-OctopusEnvironment -name "MyEnvironment" | Remove-OctopusResource
 ```
+
+Delete all environments that have no machines in them
+```Powershell
+Get-OctopusEnvironment | ? {$_.Machines.count -eq 0} |Remove-OctopusResource
+```
+
 
 ###NuGet Feeds
 *This example removes the reference of an external NuGet feed from Octopus. It doesnt delete any packages from the NuGet feed itself*
