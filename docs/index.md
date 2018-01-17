@@ -9,8 +9,8 @@ The goal of this module is for it to be the go-to place to programatically get i
 Use the sidebar on the right to learn more about the cmdlets that are inside of the module.
 
 You might wanna start by reading:
-- [How to Install the module](https://github.com/Dalmirog/OctoPosh/wiki/Installing-the-module)
-- [How to setup your credentials](https://github.com/Dalmirog/OctoPosh/wiki/Setting-Credentials)
+- [How to Install the module](http://octoposh.readthedocs.io/en/latest/gettingstarted/installing-the-module/)
+- [How to setup your credentials](http://octoposh.readthedocs.io/en/latest/gettingstarted/setting-credentials/)
 
 ##Start using the cmdlets
 
