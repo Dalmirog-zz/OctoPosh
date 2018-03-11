@@ -1,15 +1,36 @@
-# OctoPosh: The Octopus Deploy Powershell Module
+# OctoPoshCli: Octoposh wrapped in a cli, no need to install the cmdlet
 
-**Octoposh** is a Powershell module that provides cmdlets to interact with Octopus Deploy. All the cmdlets included rely on the [Octopus .NET client](https://www.nuget.org/packages/Octopus.Client).
+**OctoposhCli** is a Cli utility which interacts with Octopus Deploy and returns json. All the functionality included relies on Octoposh and the [Octopus .NET client](https://www.nuget.org/packages/Octopus.Client).
 
 ## Getting Started
 
-- [Installing the module](http://octoposh.readthedocs.io/en/latest/gettingstarted/installing-the-module/)
-- [Setting credentials](http://octoposh.readthedocs.io/en/latest/gettingstarted/setting-credentials/)
+[Usage] 
+
+Use ```<command>``` in place of the Octoposh cmdlet's.
+
+count in the parameter list controls how may objects to return.
+
+groupby in the parameter list controls grouping.
+
+Use ```;``` to seperate multiple values.
+
+```
+OctoposhCli <apiKey> <serverUrl> <command> <parameter(s)>
+```
+Examples:
+```
+.\OctoposhCli.exe "API-QUCG8W2QIMS56WGQJK6F3AQC" "http://octopus.mysite.com" "Get-OctopusDeployment" "EnvironmentName=dev;prod,ProjectName=someproject,LatestReleases=1,count=1,groupby=EnvironmentName"
+```
+
+```
+.\OctoposhCli.exe "API-QUCG8W2QIMS56WGQJK6F3AQC" "http://octopus.mysite.com" "Get-OctopusDeployment" "EnvironmentName=dev;stage,ProjectName=someProject;anotherProject,LatestReleases=1"
+```
+
+
 
 ## Documentation
 
-Check our docs site to learn how to use each cmdlet and some other avanced usages:
+Check the docs site to learn how to use each command and some other advanced usages:
 
 http://octoposh.readthedocs.io
 
